@@ -82,7 +82,7 @@ arXiv DOI 与期刊DOI不同。本目录CSV缺失DOI写“未核实”，BibTeX�
 
 ## 5. 分类与证据等级
 
-A必须同时具备独立模型Agent、受限网络机制以及可确认实体端侧部署；本轮为0。B纳入模型协作/Agent-Network工作，即便执行集中或物理部署未知。C收录时效、队列、上下文和网络机制基础；D只保留必要部署/切分/综述对照。P22暂为B，待核实部署，不从“无线节点数”推断“模型实例数”。
+A必须同时具备独立模型Agent、受限网络机制以及可确认实体端侧部署；初始22篇为0，问题审查新增P26后为1。B纳入模型协作/Agent-Network工作，即便执行集中或物理部署未知。C收录时效、队列、上下文和网络机制基础；D只保留必要部署/切分/综述对照。P22暂为B，待核实部署，不从“无线节点数”推断“模型实例数”。
 
 E1：书目与摘要；E2：方法、系统、实验段原文；E3：在E2基础上额外看作者代码/配置说明。本轮E3不包含运行测试。CSV verification_status对元数据、方法和部署分别描述，不使用一个“已核实”掩盖所有未知。
 
@@ -102,3 +102,21 @@ E1：书目与摘要；E2：方法、系统、实验段原文；E3：在E2基础
 实际检查结果：8个文件，22条CSV记录、22个唯一BibTeX key；25个用户必需字段齐全，实际31列；18个arXiv编号无重复；文档内本地链接无缺失，代码围栏成对，未发现乱码替换字符。CSV与BibTeX年份、已知DOI一致。分类为A=0、B=13、C=5、D=4；E2/E3核心阅读共10篇。目录约92 KB，无PDF、模型权重或仿真输出。
 
 三条已收录代码URL（CoMuRoS、LLM2Swarm、EC2-Bench）均经HTTP GET返回200；仅确认可访问，不代表已执行或核实全部实现。公式人工检查了bit/秒/Hz/W/J量纲、队列守恒、目的端吸收、有限缓存、半双工与取消竞态。未进行Mermaid图形渲染或LaTeX编译，也未宣称数学性质得到证明。
+
+## 8. 问题存在性定向审查（2026-10-20）
+
+用户要求先证实问题强存在。因此将选题判断从“机制组合空缺”调整为“实际损失—原因—已有解决—剩余问题”，暂停把架构设想作为立项前提。
+
+检索簇包括 DARPA SubT communication lessons、ROS 2 wireless experimental performance、multi-robot LLM latency/communication、on-device agent coordinated networking。先读系统失败与通信部署，再追踪反例和解决方案；本轮非数据库穷尽检索，不能据此估计全领域发生率。
+
+纳入五篇原始研究 P23–P27。arXiv 官方 citation 元数据核实标题、全体作者、首次日期和标识；重点核查范围见 CSV。正文均通过官方 arXiv HTML 读取，未批量下载 PDF。P23/P24 是现场部署，P25 是实际无线加注入故障，P26 区分真机测试与轨迹仿真，P27 是野外应用且 LLM 调用在云端。E2 表示读到方法/系统/实验，不代表复现。
+
+补充来源与限制：
+
+- P27 正式期刊及 DOI 由[作者项目页](https://tfr-air-ground.fcladera.com/)核实；阅读了[作者仓库首页](https://github.com/KumarRobotics/lang-air-ground-teaming)，但未深入源码，保留 E2。
+- P26 的 [USENIX NSDI27 条目](https://www.usenix.org/conference/nsdi27/presentation/lee-goodsol)已发现，页面可读内容不足，未将 2027 会议记为已出版论文；引用已核实的 2026 arXiv。摘要 HFS/HAFS 名称不一致，正文统一 HAFS。
+- [LLM 多机器人综述](https://link.springer.com/article/10.1007/s10514-026-10257-4) §6.3/7.1 作为引用追踪入口。其指标缺失讨论仅支持测量不足，不支持网络瓶颈已经成立；据此找到 P27，最终技术判断回到原始论文。
+- [Swarm Robot Communications in ROS 2](https://www.diana.uma.es/publications/) 作为后续交叉验证线索；作者页核实 DOI 10.1109/ACCESS.2024.3470254，但本轮未完成实验段核查，未混入五篇证据。
+- P25 表头出现 Kb、正文使用 KB；记录采用 §V-B 明确的 KB，保留此排版差异。不能从其 RELIABLE/KEEP_ALL 配置推断所有发行版的默认行为。
+
+本轮修正严格 A 类计数为 1（P26），八条件全部满足计数仍为 0。前述第7节为初始版本检查记录；更新后为27条文献、27个BibTeX key，分类A=1/B=14/C=8/D=4；初始10篇核心核查另加5篇问题定向核查。未运行模型、网络实验或源码；新增的“门槛”和“停止条件”是后续方法建议，非已获得结果。
