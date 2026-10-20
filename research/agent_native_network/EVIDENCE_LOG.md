@@ -154,3 +154,13 @@ P27 补读 §5.2–7.1，区分云 API 失败、里程计失败、可通行性�
 复核 [P31 作者机构原始 PDF](https://publications.ri.cmu.edu/storage/publications/pub_files/2015/0/Thompson_2015_SpatioSpectral.pdf) Results/Table 1/Conclusion：自适应重规划较静态科学计划的额外收益有限。该反证加入任务与对照设计，避免将采样优化收益冒称通信收益。另复核 P30 机构摘要及 P32 作者预印本页面；不升级 P30 的 E1 评级。
 
 文献数量仍为32，未新增书目。未执行模型、仿真或硬件测试；当前产出支持进入数据与模拟器选型，不构成网络瓶颈、新算法收益或 Agent 特有性的实验证明。
+
+## 12. Python/SimPy 工程先导实验（2026-10-20）
+
+用户授权按任务级仿真方向初步推进。核查 [SimPy 事件 API](https://simpy.readthedocs.io/en/latest/api_reference/simpy.events.html) 与 [JPL 数据页](https://aviris.jpl.nasa.gov/data/free_data.html)。Cuprite 旧 FTP 在当前环境返回 502，同路径 HTTPS 返回 404，UPV/EHU 镜像返回 403；没有取得真实影像，不把数据页面当成完成数据核验。
+
+建立隔离 .venv；未修改缺失标准库模块的系统 Python。实现任务、紧凑观测、可靠字节队列、断续接触、终局公平汇总与固定留出评价。真实数据接口要求来源、使用条件、预处理记录，禁止 pickle。默认仅使用合成场景，所有时间和通信参数标为未经实测校准。
+
+本轮最终运行 2 种先验 × 24 个配对种子 × 7 条件，共 336 次；11 项因果、边界与输入检查通过。理想共享未展示优于本地自治的稳定改善，良好链路与理想共享的任务误差一致；更基础的限制是采样后简化估计器的平均误差高于仅使用先验。完整快照与解释见 [simulation/results](../../simulation/results/2026-10-20-synthetic-v1/INTERPRETATION.md)。
+
+指标是轻量残差插值的留出光谱 RMSE，不是 P31 解混方法的复现，不是矿物识别准确率。当前结果只说明原型可运行，不能支持真实找矿瓶颈或 Agent 特有性。下一步先补数据和应用估计基线，暂不搭建新理论模型。文献数量仍为 32。

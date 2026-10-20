@@ -1,0 +1,111 @@
+{"time_s": 0.0, "event": "decision", "node": 0, "site": 61, "known_ids": []}
+{"time_s": 0.0, "event": "decision", "node": 1, "site": 21, "known_ids": []}
+{"time_s": 1.368033988749895, "event": "arrive", "node": 0, "site": 61}
+{"time_s": 5.174428900898052, "event": "arrive", "node": 1, "site": 21}
+{"time_s": 5.368033988749895, "event": "sample", "node": 0, "site": 61, "oid": 0}
+{"time_s": 5.368033988749895, "event": "decision", "node": 0, "site": 73, "known_ids": [0]}
+{"time_s": 6.618033988749895, "event": "arrive", "node": 0, "site": 73}
+{"time_s": 9.174428900898052, "event": "sample", "node": 1, "site": 21, "oid": 1000000}
+{"time_s": 9.174428900898052, "event": "decision", "node": 1, "site": 58, "known_ids": [1000000]}
+{"time_s": 10.618033988749895, "event": "sample", "node": 0, "site": 73, "oid": 1}
+{"time_s": 10.618033988749895, "event": "decision", "node": 0, "site": 60, "known_ids": [0, 1]}
+{"time_s": 12.28224755112299, "event": "arrive", "node": 0, "site": 60}
+{"time_s": 12.586706561066432, "event": "arrive", "node": 1, "site": 58}
+{"time_s": 16.282247551122992, "event": "sample", "node": 0, "site": 60, "oid": 2}
+{"time_s": 16.282247551122992, "event": "decision", "node": 0, "site": 26, "known_ids": [0, 1, 2]}
+{"time_s": 16.586706561066432, "event": "sample", "node": 1, "site": 58, "oid": 1000001}
+{"time_s": 16.586706561066432, "event": "decision", "node": 1, "site": 92, "known_ids": [1000000, 1000001]}
+{"time_s": 20.13779882658698, "event": "arrive", "node": 0, "site": 26}
+{"time_s": 20.44225783653042, "event": "arrive", "node": 1, "site": 92}
+{"time_s": 24.13779882658698, "event": "sample", "node": 0, "site": 26, "oid": 3}
+{"time_s": 24.13779882658698, "event": "decision", "node": 0, "site": 49, "known_ids": [0, 1, 2, 3]}
+{"time_s": 24.44225783653042, "event": "sample", "node": 1, "site": 92, "oid": 1000002}
+{"time_s": 24.44225783653042, "event": "decision", "node": 1, "site": 54, "known_ids": [1000000, 1000001, 1000002]}
+{"time_s": 26.62386680408677, "event": "arrive", "node": 0, "site": 49}
+{"time_s": 28.297809111994408, "event": "arrive", "node": 1, "site": 54}
+{"time_s": 30.62386680408677, "event": "sample", "node": 0, "site": 49, "oid": 4}
+{"time_s": 30.62386680408677, "event": "decision", "node": 0, "site": 50, "known_ids": [0, 1, 2, 3, 4]}
+{"time_s": 31.87386680408677, "event": "arrive", "node": 0, "site": 50}
+{"time_s": 32.29780911199441, "event": "sample", "node": 1, "site": 54, "oid": 1000003}
+{"time_s": 32.29780911199441, "event": "decision", "node": 1, "site": 43, "known_ids": [1000000, 1000001, 1000002, 1000003]}
+{"time_s": 33.9620226743675, "event": "arrive", "node": 1, "site": 43}
+{"time_s": 35.873866804086774, "event": "sample", "node": 0, "site": 50, "oid": 5}
+{"time_s": 35.873866804086774, "event": "decision", "node": 0, "site": 39, "known_ids": [0, 1, 2, 3, 4, 5]}
+{"time_s": 37.538080366459866, "event": "arrive", "node": 0, "site": 39}
+{"time_s": 37.9620226743675, "event": "sample", "node": 1, "site": 43, "oid": 1000004}
+{"time_s": 37.9620226743675, "event": "decision", "node": 1, "site": 31, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004]}
+{"time_s": 39.2120226743675, "event": "arrive", "node": 1, "site": 31}
+{"time_s": 41.538080366459866, "event": "sample", "node": 0, "site": 39, "oid": 6}
+{"time_s": 41.538080366459866, "event": "decision", "node": 0, "site": 77, "known_ids": [0, 1, 2, 3, 4, 5, 6]}
+{"time_s": 43.2120226743675, "event": "sample", "node": 1, "site": 31, "oid": 1000005}
+{"time_s": 43.2120226743675, "event": "decision", "node": 1, "site": 44, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005]}
+{"time_s": 44.876236236740596, "event": "arrive", "node": 1, "site": 44}
+{"time_s": 45.393631641923854, "event": "arrive", "node": 0, "site": 77}
+{"time_s": 48.876236236740596, "event": "sample", "node": 1, "site": 44, "oid": 1000006}
+{"time_s": 48.876236236740596, "event": "decision", "node": 1, "site": 55, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006]}
+{"time_s": 49.393631641923854, "event": "sample", "node": 0, "site": 77, "oid": 7}
+{"time_s": 49.393631641923854, "event": "decision", "node": 0, "site": 41, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7]}
+{"time_s": 50.54044979911369, "event": "arrive", "node": 1, "site": 55}
+{"time_s": 52.643631641923854, "event": "arrive", "node": 0, "site": 41}
+{"time_s": 54.54044979911369, "event": "sample", "node": 1, "site": 55, "oid": 1000007}
+{"time_s": 54.54044979911369, "event": "decision", "node": 1, "site": 68, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007]}
+{"time_s": 56.20466336148678, "event": "arrive", "node": 1, "site": 68}
+{"time_s": 56.643631641923854, "event": "sample", "node": 0, "site": 41, "oid": 8}
+{"time_s": 56.643631641923854, "event": "decision", "node": 0, "site": 40, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8]}
+{"time_s": 57.893631641923854, "event": "arrive", "node": 0, "site": 40}
+{"time_s": 60.20466336148678, "event": "sample", "node": 1, "site": 68, "oid": 1000008}
+{"time_s": 60.20466336148678, "event": "decision", "node": 1, "site": 83, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008]}
+{"time_s": 61.893631641923854, "event": "sample", "node": 0, "site": 40, "oid": 9}
+{"time_s": 61.893631641923854, "event": "decision", "node": 0, "site": 27, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}
+{"time_s": 63.557845204296946, "event": "arrive", "node": 0, "site": 27}
+{"time_s": 63.61694102165516, "event": "arrive", "node": 1, "site": 83}
+{"time_s": 67.55784520429694, "event": "sample", "node": 0, "site": 27, "oid": 10}
+{"time_s": 67.55784520429694, "event": "decision", "node": 0, "site": 1, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+{"time_s": 67.61694102165515, "event": "sample", "node": 1, "site": 83, "oid": 1000009}
+{"time_s": 67.61694102165515, "event": "decision", "node": 1, "site": 82, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009]}
+{"time_s": 68.86694102165515, "event": "arrive", "node": 1, "site": 82}
+{"time_s": 70.63627232904312, "event": "arrive", "node": 0, "site": 1}
+{"time_s": 72.86694102165515, "event": "sample", "node": 1, "site": 82, "oid": 1000010}
+{"time_s": 72.86694102165515, "event": "decision", "node": 1, "site": 71, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010]}
+{"time_s": 74.53115458402824, "event": "arrive", "node": 1, "site": 71}
+{"time_s": 74.63627232904312, "event": "sample", "node": 0, "site": 1, "oid": 11}
+{"time_s": 74.63627232904312, "event": "decision", "node": 0, "site": 13, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+{"time_s": 75.88627232904312, "event": "arrive", "node": 0, "site": 13}
+{"time_s": 78.53115458402824, "event": "sample", "node": 1, "site": 71, "oid": 1000011}
+{"time_s": 78.53115458402824, "event": "decision", "node": 1, "site": 59, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011]}
+{"time_s": 79.78115458402824, "event": "arrive", "node": 1, "site": 59}
+{"time_s": 79.88627232904312, "event": "sample", "node": 0, "site": 13, "oid": 12}
+{"time_s": 79.88627232904312, "event": "decision", "node": 0, "site": 25, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+{"time_s": 81.13627232904312, "event": "arrive", "node": 0, "site": 25}
+{"time_s": 83.78115458402824, "event": "sample", "node": 1, "site": 59, "oid": 1000012}
+{"time_s": 83.78115458402824, "event": "decision", "node": 1, "site": 34, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012]}
+{"time_s": 85.13627232904312, "event": "sample", "node": 0, "site": 25, "oid": 13}
+{"time_s": 85.13627232904312, "event": "decision", "node": 0, "site": 37, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]}
+{"time_s": 86.26722256152803, "event": "arrive", "node": 1, "site": 34}
+{"time_s": 86.38627232904312, "event": "arrive", "node": 0, "site": 37}
+{"time_s": 90.26722256152803, "event": "sample", "node": 1, "site": 34, "oid": 1000013}
+{"time_s": 90.26722256152803, "event": "decision", "node": 1, "site": 23, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012, 1000013]}
+{"time_s": 90.38627232904312, "event": "sample", "node": 0, "site": 37, "oid": 14}
+{"time_s": 90.38627232904312, "event": "decision", "node": 0, "site": 84, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}
+{"time_s": 91.93143612390112, "event": "arrive", "node": 1, "site": 23}
+{"time_s": 94.75937795466078, "event": "arrive", "node": 0, "site": 84}
+{"time_s": 95.93143612390112, "event": "sample", "node": 1, "site": 23, "oid": 1000014}
+{"time_s": 95.93143612390112, "event": "decision", "node": 1, "site": 11, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012, 1000013, 1000014]}
+{"time_s": 97.18143612390112, "event": "arrive", "node": 1, "site": 11}
+{"time_s": 98.75937795466078, "event": "sample", "node": 0, "site": 84, "oid": 15}
+{"time_s": 98.75937795466078, "event": "decision", "node": 0, "site": 85, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+{"time_s": 100.00937795466078, "event": "arrive", "node": 0, "site": 85}
+{"time_s": 101.18143612390112, "event": "sample", "node": 1, "site": 11, "oid": 1000015}
+{"time_s": 101.18143612390112, "event": "decision", "node": 1, "site": 20, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012, 1000013, 1000014, 1000015]}
+{"time_s": 104.00937795466078, "event": "sample", "node": 0, "site": 85, "oid": 16}
+{"time_s": 104.00937795466078, "event": "decision", "node": 0, "site": 97, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
+{"time_s": 104.59371378406951, "event": "arrive", "node": 1, "site": 20}
+{"time_s": 105.25937795466078, "event": "arrive", "node": 0, "site": 97}
+{"time_s": 108.59371378406951, "event": "sample", "node": 1, "site": 20, "oid": 1000016}
+{"time_s": 108.59371378406951, "event": "decision", "node": 1, "site": 6, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012, 1000013, 1000014, 1000015, 1000016]}
+{"time_s": 109.25937795466078, "event": "sample", "node": 0, "site": 97, "oid": 17}
+{"time_s": 109.25937795466078, "event": "decision", "node": 0, "site": 111, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]}
+{"time_s": 111.0797817615693, "event": "arrive", "node": 1, "site": 6}
+{"time_s": 111.74544593216056, "event": "arrive", "node": 0, "site": 111}
+{"time_s": 115.0797817615693, "event": "sample", "node": 1, "site": 6, "oid": 1000017}
+{"time_s": 115.74544593216056, "event": "sample", "node": 0, "site": 111, "oid": 18}

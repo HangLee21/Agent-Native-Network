@@ -1,0 +1,140 @@
+{"time_s": 0.0, "event": "decision", "node": 0, "site": 60, "known_ids": []}
+{"time_s": 0.0, "event": "decision", "node": 1, "site": 10, "known_ids": []}
+{"time_s": 0.75, "event": "arrive", "node": 0, "site": 60}
+{"time_s": 4.75, "event": "sample", "node": 0, "site": 60, "oid": 0}
+{"time_s": 4.75, "event": "enqueue", "node": 0, "oid": 0, "receiver": 1, "payload_bytes": 88}
+{"time_s": 4.75, "event": "decision", "node": 0, "site": 25, "known_ids": [0]}
+{"time_s": 5.8401699437494745, "event": "arrive", "node": 1, "site": 10}
+{"time_s": 8.16227766016838, "event": "arrive", "node": 0, "site": 25}
+{"time_s": 9.840169943749475, "event": "sample", "node": 1, "site": 10, "oid": 1000000}
+{"time_s": 9.840169943749475, "event": "enqueue", "node": 1, "oid": 1000000, "receiver": 0, "payload_bytes": 88}
+{"time_s": 9.840169943749475, "event": "decision", "node": 1, "site": 58, "known_ids": [1000000]}
+{"time_s": 12.16227766016838, "event": "sample", "node": 0, "site": 25, "oid": 1}
+{"time_s": 12.16227766016838, "event": "enqueue", "node": 0, "oid": 1, "receiver": 1, "payload_bytes": 88}
+{"time_s": 12.16227766016838, "event": "decision", "node": 0, "site": 36, "known_ids": [0, 1]}
+{"time_s": 13.826491222541476, "event": "arrive", "node": 0, "site": 36}
+{"time_s": 14.090169943749475, "event": "arrive", "node": 1, "site": 58}
+{"time_s": 17.826491222541478, "event": "sample", "node": 0, "site": 36, "oid": 2}
+{"time_s": 17.826491222541478, "event": "enqueue", "node": 0, "oid": 2, "receiver": 1, "payload_bytes": 88}
+{"time_s": 17.826491222541478, "event": "decision", "node": 0, "site": 77, "known_ids": [0, 1, 2]}
+{"time_s": 18.090169943749473, "event": "sample", "node": 1, "site": 58, "oid": 1000001}
+{"time_s": 18.090169943749473, "event": "enqueue", "node": 1, "oid": 1000001, "receiver": 0, "payload_bytes": 88}
+{"time_s": 18.090169943749473, "event": "decision", "node": 1, "site": 91, "known_ids": [1000000, 1000001]}
+{"time_s": 22.582810630868757, "event": "arrive", "node": 1, "site": 91}
+{"time_s": 23.907443117386777, "event": "arrive", "node": 0, "site": 77}
+{"time_s": 26.582810630868757, "event": "sample", "node": 1, "site": 91, "oid": 1000002}
+{"time_s": 26.582810630868757, "event": "enqueue", "node": 1, "oid": 1000002, "receiver": 0, "payload_bytes": 88}
+{"time_s": 26.582810630868757, "event": "decision", "node": 1, "site": 68, "known_ids": [1000000, 1000001, 1000002]}
+{"time_s": 27.907443117386777, "event": "sample", "node": 0, "site": 77, "oid": 3}
+{"time_s": 27.907443117386777, "event": "enqueue", "node": 0, "oid": 3, "receiver": 1, "payload_bytes": 88}
+{"time_s": 27.907443117386777, "event": "decision", "node": 0, "site": 63, "known_ids": [0, 1, 2, 3]}
+{"time_s": 29.068878608368546, "event": "arrive", "node": 1, "site": 68}
+{"time_s": 30.393511094886566, "event": "arrive", "node": 0, "site": 63}
+{"time_s": 33.06887860836855, "event": "sample", "node": 1, "site": 68, "oid": 1000003}
+{"time_s": 33.06887860836855, "event": "enqueue", "node": 1, "oid": 1000003, "receiver": 0, "payload_bytes": 88}
+{"time_s": 33.06887860836855, "event": "decision", "node": 1, "site": 33, "known_ids": [1000000, 1000001, 1000002, 1000003]}
+{"time_s": 34.39351109488656, "event": "sample", "node": 0, "site": 63, "oid": 4}
+{"time_s": 34.39351109488656, "event": "enqueue", "node": 0, "oid": 4, "receiver": 1, "payload_bytes": 88}
+{"time_s": 34.39351109488656, "event": "decision", "node": 0, "site": 75, "known_ids": [0, 1, 2, 3, 4]}
+{"time_s": 35.64351109488656, "event": "arrive", "node": 0, "site": 75}
+{"time_s": 36.48115626853693, "event": "arrive", "node": 1, "site": 33}
+{"time_s": 39.64351109488656, "event": "sample", "node": 0, "site": 75, "oid": 5}
+{"time_s": 39.64351109488656, "event": "enqueue", "node": 0, "oid": 5, "receiver": 1, "payload_bytes": 88}
+{"time_s": 39.64351109488656, "event": "decision", "node": 0, "site": 99, "known_ids": [0, 1, 2, 3, 4, 5]}
+{"time_s": 40.48115626853693, "event": "sample", "node": 1, "site": 33, "oid": 1000004}
+{"time_s": 40.48115626853693, "event": "enqueue", "node": 1, "oid": 1000004, "receiver": 0, "payload_bytes": 88}
+{"time_s": 40.48115626853693, "event": "decision", "node": 1, "site": 43, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004]}
+{"time_s": 41.89351109488656, "event": "arrive", "node": 0, "site": 99}
+{"time_s": 42.96722424603672, "event": "arrive", "node": 1, "site": 43}
+{"time_s": 45.89351109488656, "event": "sample", "node": 0, "site": 99, "oid": 6}
+{"time_s": 45.89351109488656, "event": "enqueue", "node": 0, "oid": 6, "receiver": 1, "payload_bytes": 88}
+{"time_s": 45.89351109488656, "event": "decision", "node": 0, "site": 109, "known_ids": [0, 1, 2, 3, 4, 5, 6]}
+{"time_s": 46.96722424603672, "event": "sample", "node": 1, "site": 43, "oid": 1000005}
+{"time_s": 46.96722424603672, "event": "enqueue", "node": 1, "oid": 1000005, "receiver": 0, "payload_bytes": 88}
+{"time_s": 46.96722424603672, "event": "decision", "node": 1, "site": 95, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005]}
+{"time_s": 48.37957907238635, "event": "arrive", "node": 0, "site": 109}
+{"time_s": 52.37957907238635, "event": "sample", "node": 0, "site": 109, "oid": 7}
+{"time_s": 52.37957907238635, "event": "enqueue", "node": 0, "oid": 7, "receiver": 1, "payload_bytes": 88}
+{"time_s": 52.37957907238635, "event": "decision", "node": 0, "site": 84, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7]}
+{"time_s": 52.874078495529105, "event": "arrive", "node": 1, "site": 95}
+{"time_s": 54.865647049886135, "event": "arrive", "node": 0, "site": 84}
+{"time_s": 56.874078495529105, "event": "sample", "node": 1, "site": 95, "oid": 1000006}
+{"time_s": 56.874078495529105, "event": "enqueue", "node": 1, "oid": 1000006, "receiver": 0, "payload_bytes": 88}
+{"time_s": 56.874078495529105, "event": "decision", "node": 1, "site": 83, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006]}
+{"time_s": 58.124078495529105, "event": "arrive", "node": 1, "site": 83}
+{"time_s": 58.865647049886135, "event": "sample", "node": 0, "site": 84, "oid": 8}
+{"time_s": 58.865647049886135, "event": "enqueue", "node": 0, "oid": 8, "receiver": 1, "payload_bytes": 88}
+{"time_s": 58.865647049886135, "event": "decision", "node": 0, "site": 13, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8]}
+{"time_s": 62.124078495529105, "event": "sample", "node": 1, "site": 83, "oid": 1000007}
+{"time_s": 62.124078495529105, "event": "enqueue", "node": 1, "oid": 1000007, "receiver": 0, "payload_bytes": 88}
+{"time_s": 62.124078495529105, "event": "decision", "node": 1, "site": 117, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007]}
+{"time_s": 65.19840958018436, "event": "arrive", "node": 0, "site": 13}
+{"time_s": 65.9796297709931, "event": "arrive", "node": 1, "site": 117}
+{"time_s": 69.19840958018436, "event": "sample", "node": 0, "site": 13, "oid": 9}
+{"time_s": 69.19840958018436, "event": "enqueue", "node": 0, "oid": 9, "receiver": 1, "payload_bytes": 88}
+{"time_s": 69.19840958018436, "event": "decision", "node": 0, "site": 17, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}
+{"time_s": 69.9796297709931, "event": "sample", "node": 1, "site": 117, "oid": 1000008}
+{"time_s": 69.9796297709931, "event": "enqueue", "node": 1, "oid": 1000008, "receiver": 0, "payload_bytes": 88}
+{"time_s": 69.9796297709931, "event": "decision", "node": 1, "site": 106, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008]}
+{"time_s": 71.64384333336619, "event": "arrive", "node": 1, "site": 106}
+{"time_s": 73.44840958018436, "event": "arrive", "node": 0, "site": 17}
+{"time_s": 75.64384333336619, "event": "sample", "node": 1, "site": 106, "oid": 1000009}
+{"time_s": 75.64384333336619, "event": "enqueue", "node": 1, "oid": 1000009, "receiver": 0, "payload_bytes": 88}
+{"time_s": 75.64384333336619, "event": "decision", "node": 1, "site": 93, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009]}
+{"time_s": 77.30805689573928, "event": "arrive", "node": 1, "site": 93}
+{"time_s": 77.44840958018436, "event": "sample", "node": 0, "site": 17, "oid": 10}
+{"time_s": 77.44840958018436, "event": "enqueue", "node": 0, "oid": 10, "receiver": 1, "payload_bytes": 88}
+{"time_s": 77.44840958018436, "event": "decision", "node": 0, "site": 41, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+{"time_s": 79.69840958018436, "event": "arrive", "node": 0, "site": 41}
+{"time_s": 81.30805689573928, "event": "sample", "node": 1, "site": 93, "oid": 1000010}
+{"time_s": 81.30805689573928, "event": "enqueue", "node": 1, "oid": 1000010, "receiver": 0, "payload_bytes": 88}
+{"time_s": 81.30805689573928, "event": "decision", "node": 1, "site": 81, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010]}
+{"time_s": 82.55805689573928, "event": "arrive", "node": 1, "site": 81}
+{"time_s": 83.69840958018436, "event": "sample", "node": 0, "site": 41, "oid": 11}
+{"time_s": 83.69840958018436, "event": "enqueue", "node": 0, "oid": 11, "receiver": 1, "payload_bytes": 88}
+{"time_s": 83.69840958018436, "event": "decision", "node": 0, "site": 27, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+{"time_s": 86.18447755768415, "event": "arrive", "node": 0, "site": 27}
+{"time_s": 86.55805689573928, "event": "sample", "node": 1, "site": 81, "oid": 1000011}
+{"time_s": 86.55805689573928, "event": "enqueue", "node": 1, "oid": 1000011, "receiver": 0, "payload_bytes": 88}
+{"time_s": 86.55805689573928, "event": "decision", "node": 1, "site": 82, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011]}
+{"time_s": 87.80805689573928, "event": "arrive", "node": 1, "site": 82}
+{"time_s": 90.18447755768415, "event": "sample", "node": 0, "site": 27, "oid": 12}
+{"time_s": 90.18447755768415, "event": "enqueue", "node": 0, "oid": 12, "receiver": 1, "payload_bytes": 88}
+{"time_s": 90.18447755768415, "event": "decision", "node": 0, "site": 37, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+{"time_s": 91.80805689573928, "event": "sample", "node": 1, "site": 82, "oid": 1000012}
+{"time_s": 91.80805689573928, "event": "enqueue", "node": 1, "oid": 1000012, "receiver": 0, "payload_bytes": 88}
+{"time_s": 91.80805689573928, "event": "decision", "node": 1, "site": 131, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012]}
+{"time_s": 92.67054553518393, "event": "arrive", "node": 0, "site": 37}
+{"time_s": 96.18116252135694, "event": "arrive", "node": 1, "site": 131}
+{"time_s": 96.67054553518393, "event": "sample", "node": 0, "site": 37, "oid": 13}
+{"time_s": 96.67054553518393, "event": "enqueue", "node": 0, "oid": 13, "receiver": 1, "payload_bytes": 88}
+{"time_s": 96.67054553518393, "event": "decision", "node": 0, "site": 49, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]}
+{"time_s": 97.92054553518393, "event": "arrive", "node": 0, "site": 49}
+{"time_s": 100.18116252135694, "event": "sample", "node": 1, "site": 131, "oid": 1000013}
+{"time_s": 100.18116252135694, "event": "enqueue", "node": 1, "oid": 1000013, "receiver": 0, "payload_bytes": 88}
+{"time_s": 100.18116252135694, "event": "decision", "node": 1, "site": 107, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012, 1000013]}
+{"time_s": 101.92054553518393, "event": "sample", "node": 0, "site": 49, "oid": 14}
+{"time_s": 101.92054553518393, "event": "enqueue", "node": 0, "oid": 14, "receiver": 1, "payload_bytes": 88}
+{"time_s": 101.92054553518393, "event": "decision", "node": 0, "site": 61, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]}
+{"time_s": 102.43116252135694, "event": "arrive", "node": 1, "site": 107}
+{"time_s": 103.17054553518393, "event": "arrive", "node": 0, "site": 61}
+{"time_s": 106.43116252135694, "event": "sample", "node": 1, "site": 107, "oid": 1000014}
+{"time_s": 106.43116252135694, "event": "enqueue", "node": 1, "oid": 1000014, "receiver": 0, "payload_bytes": 88}
+{"time_s": 106.43116252135694, "event": "decision", "node": 1, "site": 116, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012, 1000013, 1000014]}
+{"time_s": 107.17054553518393, "event": "sample", "node": 0, "site": 61, "oid": 15}
+{"time_s": 107.17054553518393, "event": "enqueue", "node": 0, "oid": 15, "receiver": 1, "payload_bytes": 88}
+{"time_s": 107.17054553518393, "event": "decision", "node": 0, "site": 74, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
+{"time_s": 108.83475909755703, "event": "arrive", "node": 0, "site": 74}
+{"time_s": 109.84344018152532, "event": "arrive", "node": 1, "site": 116}
+{"time_s": 112.83475909755703, "event": "sample", "node": 0, "site": 74, "oid": 16}
+{"time_s": 112.83475909755703, "event": "enqueue", "node": 0, "oid": 16, "receiver": 1, "payload_bytes": 88}
+{"time_s": 112.83475909755703, "event": "decision", "node": 0, "site": 98, "known_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
+{"time_s": 113.84344018152532, "event": "sample", "node": 1, "site": 116, "oid": 1000015}
+{"time_s": 113.84344018152532, "event": "enqueue", "node": 1, "oid": 1000015, "receiver": 0, "payload_bytes": 88}
+{"time_s": 113.84344018152532, "event": "decision", "node": 1, "site": 115, "known_ids": [1000000, 1000001, 1000002, 1000003, 1000004, 1000005, 1000006, 1000007, 1000008, 1000009, 1000010, 1000011, 1000012, 1000013, 1000014, 1000015]}
+{"time_s": 115.08475909755703, "event": "arrive", "node": 0, "site": 98}
+{"time_s": 115.09344018152532, "event": "arrive", "node": 1, "site": 115}
+{"time_s": 119.08475909755703, "event": "sample", "node": 0, "site": 98, "oid": 17}
+{"time_s": 119.08475909755703, "event": "enqueue", "node": 0, "oid": 17, "receiver": 1, "payload_bytes": 88}
+{"time_s": 119.09344018152532, "event": "sample", "node": 1, "site": 115, "oid": 1000016}
+{"time_s": 119.09344018152532, "event": "enqueue", "node": 1, "oid": 1000016, "receiver": 0, "payload_bytes": 88}

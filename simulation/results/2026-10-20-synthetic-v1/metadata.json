@@ -1,0 +1,113 @@
+{
+  "data_kind": "synthetic",
+  "data_provenance": {
+    "kind": "synthetic",
+    "generator": "smooth-mixtures-v1",
+    "warning": "Not geological observations or calibrated wireless evidence."
+  },
+  "python": "3.12.14",
+  "packages": {
+    "numpy": "2.5.4",
+    "simpy": "4.1.2",
+    "matplotlib": "3.11.2"
+  },
+  "git_head_at_run": "97eff7cb084c826523f782615476d5d83bf92f41",
+  "git_dirty_at_run": true,
+  "source_sha256": {
+    "simulation/__init__.py": "55797282eaa645c02dbf8f4b919755e0508e485203d03b458b3a408c17557928",
+    "simulation/prospecting.py": "5dd3738a6f3a205d9782c4770e482ad6ea762106425a81c6f3d953e50fa93f00",
+    "simulation/run_pilot.py": "da5c0eababf5ff116837fc923e6319fef31cca474fa5f99418d02ed3e8de5bd2",
+    "simulation/test_prospecting.py": "cdae701495eb03e90835c26b44a2e48a43818ca872929060082f58ee87ceb1aa"
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "configs": {
+    "strong_prior": {
+      "budget_s": 120.0,
+      "speed_cells_s": 1.0,
+      "sensing_s": 4.0,
+      "decision_s": 0.25,
+      "noise_std": 0.01,
+      "prior_block": 1,
+      "prior_noise_std": 0.01
+    },
+    "coarse_prior": {
+      "budget_s": 120.0,
+      "speed_cells_s": 1.0,
+      "sensing_s": 4.0,
+      "decision_s": 0.25,
+      "noise_std": 0.01,
+      "prior_block": 3,
+      "prior_noise_std": 0.02
+    }
+  },
+  "links": {
+    "ideal": {
+      "name": "ideal",
+      "bitrate_bps": "infinity",
+      "latency_s": 0,
+      "period_s": 0.0,
+      "contact_s": 0.0
+    },
+    "good": {
+      "name": "good",
+      "bitrate_bps": 1000000,
+      "latency_s": 0.02,
+      "period_s": 0.0,
+      "contact_s": 0.0
+    },
+    "intermittent": {
+      "name": "intermittent",
+      "bitrate_bps": 9600,
+      "latency_s": 0.2,
+      "period_s": 30,
+      "contact_s": 10
+    },
+    "stress": {
+      "name": "stress",
+      "bitrate_bps": 512,
+      "latency_s": 1,
+      "period_s": 60,
+      "contact_s": 5
+    },
+    "disconnected": {
+      "name": "disconnected",
+      "bitrate_bps": 0,
+      "latency_s": 0,
+      "period_s": 0.0,
+      "contact_s": 0.0
+    }
+  },
+  "decision": "Exploratory only; no practical-effect threshold yet justified.",
+  "ci_scope": "Paired seed bootstrap, not independent real sites; no multiplicity correction.",
+  "metric": "Held-out fine-spectrum residual-interpolation RMSE, reflectance in [0,1].",
+  "limitations": [
+    "Synthetic mixtures by default; no measured ground observations.",
+    "No terrain, return-to-base cost, sensor calibration, MAC, routing or LLM.",
+    "Policy and estimator are fixed heuristics, not reproduced P31/MOCHA/ACHORD."
+  ]
+}

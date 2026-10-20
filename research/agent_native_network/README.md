@@ -1,9 +1,11 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V0.4，2026-10-20（Asia/Shanghai）
+**版本：** V0.5，2026-10-20（Asia/Shanghai）
 
-**状态：** 已形成文献支撑的首个勘查任务定义；下一阶段进行数据与模拟器选型及初步仿真，确认问题后再搭建理论模型。不要求先做大量实地测试。尚未开展模型运行、网络仿真或硬件实验。
+**状态：** 已实现 Python/SimPy 任务级原型并完成 336 次合成场景运行、11 项检查。真实 Cuprite 数据尚未取得；当前未确认共享收益或网络瓶颈。理论机制仍暂缓，未运行大模型、无线协议仿真或硬件实验。
+
+首轮结果：理想共享未优于本地自治，简化估计器在采样后也未优于仅使用先验。当前先补齐数据与应用估计方法，不能据此判断真实找矿通信价值。见 [仿真说明](../../simulation/README.md) 和 [首轮结果解释](../../simulation/results/2026-10-20-synthetic-v1/INTERPRETATION.md)。
 
 ## 研究定位
 
@@ -33,6 +35,7 @@
 | [TASK_DEFINITION.md](TASK_DEFINITION.md) | 首个任务、文献依据、评价对象、初步仿真对照与停止条件 |
 | [NEXT_STEPS.md](NEXT_STEPS.md) | 当前推进顺序与暂缓采用的技术备选 |
 | [EVIDENCE_LOG.md](EVIDENCE_LOG.md) | 检索策略、版本冲突、来源链接、访问限制和核查结果 |
+| [simulation](../../simulation/README.md) | 可运行任务级原型、测试及合成场景结果 |
 
 ## 证据与更新规则
 
