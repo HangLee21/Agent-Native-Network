@@ -1,9 +1,9 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V0.3，2026-10-20（Asia/Shanghai）
+**版本：** V0.4，2026-10-20（Asia/Shanghai）
 
-**状态：** 已补充问题存在性审查；机制立项暂缓，架构仅保留为候选。尚未开展模型运行、网络仿真或硬件实验。
+**状态：** 已形成文献支撑的首个勘查任务定义；下一阶段进行数据与模拟器选型及初步仿真，确认问题后再搭建理论模型。不要求先做大量实地测试。尚未开展模型运行、网络仿真或硬件实验。
 
 ## 研究定位
 
@@ -19,7 +19,7 @@
 
 问题证据、反证、适用边界和停止条件集中见 [RESEARCH_GAPS.md §0](RESEARCH_GAPS.md)。联合优化、语义压缩、版本标签等仍需遵守既有研究边界。
 
-**应用收敛：** 用户确认实验室已有无人机/机器狗平台，但载荷、链路及协作流程未定。优先核查找矿中的区域筛查—地面核查需求，火灾为对照场景。空地观测互补已有依据；同次作业反馈价值和实际网络瓶颈仍需分别验证。具体证据见 RESEARCH_GAPS §0.8，四组对照设计见 NEXT_STEPS §0.1；当前没有“必须实时协作”或“必须多跳”的结论。
+**应用收敛：** 用户确认实验室已有无人机/机器狗平台，但载荷、链路及协作流程未定。优先核查找矿中的区域筛查—地面核查需求，火灾为对照场景。空地观测互补已有依据；同次作业反馈价值和实际网络瓶颈仍需分别验证。具体证据见 RESEARCH_GAPS §0.8，任务定义、反证和四组对照见 [TASK_DEFINITION.md](TASK_DEFINITION.md)；当前没有“必须实时协作”或“必须多跳”的结论。
 
 ## 文件导航
 
@@ -30,7 +30,8 @@
 | [references.bib](references.bib) | 与 paper_id 一一对应的引用；未核实 DOI 不填入 BibTeX |
 | [RESEARCH_GAPS.md](RESEARCH_GAPS.md) | 问题存在性审查、反证、八条件矩阵及待验证假设 |
 | [ARCHITECTURE_MODEL.md](ARCHITECTURE_MODEL.md) | 三类架构图、消息协议、V0 数学模型及可控性 |
-| [NEXT_STEPS.md](NEXT_STEPS.md) | 原型、同步方案、指标和阶段验收 |
+| [TASK_DEFINITION.md](TASK_DEFINITION.md) | 首个任务、文献依据、评价对象、初步仿真对照与停止条件 |
+| [NEXT_STEPS.md](NEXT_STEPS.md) | 当前推进顺序与暂缓采用的技术备选 |
 | [EVIDENCE_LOG.md](EVIDENCE_LOG.md) | 检索策略、版本冲突、来源链接、访问限制和核查结果 |
 
 ## 证据与更新规则
