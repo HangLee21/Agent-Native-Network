@@ -1,0 +1,114 @@
+{
+  "upstream_commit": "083c6a8acb0c25aa1a35e34517e628cd3b52ae77",
+  "inputs": [
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/LICENSE",
+      "file": "LICENSE",
+      "sha256": "9591247ed645849fb550816c06e7d3fc036c0633b7c5c1347c1aa70a8ef67580"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/COPYING",
+      "file": "COPYING",
+      "sha256": "e1925845017bf307c7d465af432e8bb20cbb6ce17b10cd323af59da717753075"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/subt_ign/worlds/urban_circuit/01/urban_circuit_01.dot",
+      "file": "urban_circuit_01.dot",
+      "sha256": "944d45a96fbc2b8e11779234a78d515b2de4b6db3fda7005b1472fdf925e8dfb"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/subt_ign/worlds/urban_circuit/02/urban_circuit_02.dot",
+      "file": "urban_circuit_02.dot",
+      "sha256": "19902f2251a42c00a748680fe060d36d00711853b7a2f9611bb8d2a9ad9fe83a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/subt_ign/worlds/urban_circuit/03/urban_circuit_03.dot",
+      "file": "urban_circuit_03.dot",
+      "sha256": "e6f1261a6448610c75936d1a5fff1adcc4142e8bdc853da5c2f2e56e5a961613"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/subt_ign/worlds/urban_circuit/04/urban_circuit_04.dot",
+      "file": "urban_circuit_04.dot",
+      "sha256": "c6d6a83c160c9387aeda8e608bf9935d13b17954d7116dd2d7bc422206f0f637"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/subt_ign/worlds/urban_circuit/05/urban_circuit_05.dot",
+      "file": "urban_circuit_05.dot",
+      "sha256": "5259c5e6ace69422e4fc92902f489befaff39909155af1baaa35e80f5acd0ea0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/subt_ign/worlds/urban_circuit/06/urban_circuit_06.dot",
+      "file": "urban_circuit_06.dot",
+      "sha256": "dc791b975e29a23584fd96da3d6cc82400d5d9aeba049484ccbaaa7c15605811"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/subt_ign/worlds/urban_circuit/07/urban_circuit_07.dot",
+      "file": "urban_circuit_07.dot",
+      "sha256": "201cd22c16563b3dbb6a4c471269e3ccd44b2b7ead687f1e6ceb0f7cf4aec106"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/osrf/subt/083c6a8acb0c25aa1a35e34517e628cd3b52ae77/subt_ign/worlds/urban_circuit/08/urban_circuit_08.dot",
+      "file": "urban_circuit_08.dot",
+      "sha256": "e83446597f13eaa972f2788b7f68468a82b60267293fa7f8042eb1325ae0a678"
+    }
+  ],
+  "hashes": {
+    "rescue_graph.py": "3757663ebee933cd50c5dc5965b7a85e6ebf083cd04c1b625fa06c181cf7ce65",
+    "RESCUE_GRAPH_PROTOCOL.md": "3165f221c72d2eda5cbc47de68a419282d66fe5b0532aaa94b10825cab5b5a5b"
+  },
+  "rows": 12672,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "development_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "test_seeds": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ]
+}

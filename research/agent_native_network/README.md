@@ -1,11 +1,11 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V1.0，2026-10-21（Asia/Shanghai）
+**版本：** V1.1，2026-10-21（Asia/Shanghai）
 
-**状态：** 当前推进救灾搜索回报。已完成5184次任务级先导和5184次返回周期补查（含1728条复现），35项代码检查通过。摘要优先基本消除合成负载下的积压，剩余问题转向失联等待与搜索/返回/中继的资源取舍；未证明Agent特有瓶颈或新机制必要性。
+**状态：** 已进一步完成8张公开SubT城市模拟拓扑的12672次检验，40项代码检查通过。既有事件触发、最近可达点回报改善时效但常减少发现量；尚未确认新协议或Agent特有机制的必要性。
 
-最新：[救灾任务定义](RESCUE_TASK_DEFINITION.md)、[首轮结果](../../simulation/results/2026-10-21-rescue-reporting-v1/INTERPRETATION.md)、[返回周期留出补查](../../simulation/results/2026-10-21-rescue-return-v1/INTERPRETATION.md)。场景为未校准合成走廊，不是火灾现场或SubT复现。下一阶段优先验证公开建筑拓扑与已有连通性措施。
+最新：[公开拓扑结果与判定](../../simulation/results/2026-10-21-rescue-graph-v1/INTERPRETATION.md)、[救灾任务定义](RESCUE_TASK_DEFINITION.md)。此前[合成走廊先导](../../simulation/results/2026-10-21-rescue-reporting-v1/INTERPRETATION.md)与[返回周期补查](../../simulation/results/2026-10-21-rescue-return-v1/INTERPRETATION.md)保留。本轮使用公开模拟图和合成移动/接触规则，未执行Gazebo或完整SubT无线模型，不能称火场验证。
 
 找矿覆盖分支保持暂停，历史结论见 [反馈机制审查](FEEDBACK_MECHANISM_REVIEW.md)。
 

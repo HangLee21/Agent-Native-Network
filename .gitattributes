@@ -6,6 +6,7 @@ simulation/FEEDBACK_AUDIT_PROTOCOL.md text eol=lf
 simulation/SPATIAL_MIXING_PROTOCOL.md text eol=lf
 simulation/RESCUE_REPORT_PROTOCOL.md text eol=lf
 simulation/RESCUE_RETURN_PROTOCOL.md text eol=lf
+simulation/RESCUE_GRAPH_PROTOCOL.md text eol=lf
 simulation/results/**/*.json text eol=lf
 simulation/results/**/*.jsonl text eol=lf
 simulation/results/**/*.csv text eol=lf
