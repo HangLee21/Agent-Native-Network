@@ -1,6 +1,7 @@
 import unittest
 import numpy as np
 from simulation.route_pilot import RouteConfig, episode
+from simulation.route_robustness import layout_for, layouts
 
 
 class RouteTests(unittest.TestCase):
@@ -71,6 +72,36 @@ class RouteTests(unittest.TestCase):
         b,rb=self.run_case('ideal')
         np.testing.assert_array_equal(a,b)
         self.assertEqual(ra,rb)
+
+    def test_all_layouts_partition_candidates_and_reach_endpoints(self):
+        for axis,cut,reverse in layouts():
+            layout=layout_for(self.xy,axis,cut,reverse)
+            regions,_,ends=layout
+            self.assertFalse(set(regions[0]) & set(regions[1]))
+            self.assertEqual(set(regions[0]) | set(regions[1]),set(range(len(self.xy))))
+            _,result=episode(self.remote,self.xy,self.initial,self.response,lambda s:self.truth[s],
+                             2,'ideal',RouteConfig(),layout=layout)
+            for node in result['nodes']:
+                self.assertEqual(node['path'][-1],ends[node['node']].tolist())
+                self.assertLessEqual(node['finish_time'],node['budget']+1e-8)
+                self.assertTrue(set(node['samples']).issubset(set(regions[node['node']])))
+
+    def test_explicit_original_layout_matches_default(self):
+        library,detail=self.run_case('ideal')
+        other,record=episode(self.remote,self.xy,self.initial,self.response,lambda s:self.truth[s],
+                             2,'ideal',RouteConfig(),layout=layout_for(self.xy,'x',40,False))
+        np.testing.assert_array_equal(library,other)
+        self.assertEqual(detail,record)
+
+    def test_high_band_changes_with_same_projection_do_not_change_routes(self):
+        # Diagnostic limitation: the planner consumes only low-band projections.
+        perturbation=np.array([.01,-.01,.01,-.01,.01,-.01])
+        np.testing.assert_allclose(perturbation@self.response,0,atol=1e-15)
+        a,ra=self.run_case('ideal')
+        b,rb=self.run_case('ideal',measure=lambda s:self.truth[s]+perturbation)
+        self.assertEqual(ra['nodes'],rb['nodes'])
+        self.assertEqual(ra['sites'],rb['sites'])
+        self.assertFalse(np.allclose(a,b))
 
 
 if __name__=='__main__':unittest.main()

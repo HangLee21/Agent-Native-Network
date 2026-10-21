@@ -6,6 +6,8 @@
 
 **2026-10-21：** 已按 [行程实验方案](ROUTE_PROTOCOL.md) 完成1008次行程/终点约束执行，比较单节点路线和双节点共享。22项检查通过；B区有局部共享收益，跨区域并不一致。见 [最新结果](results/2026-10-21-cuprite-route-v1/INTERPRETATION.md)。运行入口：`.venv/Scripts/python.exe -m simulation.route_pilot --output simulation/outputs/route-rerun`。
 
+**几何稳健性更新：** 按 [预设方案](ROBUSTNESS_PROTOCOL.md) 完成12布局、5184次执行与25项检查；原布局432条记录复现。B区紧预算平均共享收益缩小且可反转，见 [最新结果](results/2026-10-21-cuprite-geometry-v1/INTERPRETATION.md)。运行入口：`.venv/Scripts/python.exe -m simulation.route_robustness --output simulation/outputs/geometry-rerun`。
+
 ## 运行
 
 在仓库根目录使用 Python 3.12（本次验证版本）：
@@ -81,4 +83,4 @@ provenance  # JSON 字符串，必须填写以下字段
 
 ## 下一步门槛
 
-Cuprite 光谱代理在行程约束下仍显示观测收益，共享则仅在部分条件下有益；下一步检查起终点变化及规划器是否利用高维反馈。只有共享需求稳健且通信损失仍值得追求，才接入 ns-3、实测链路参数或建立新的理论模型。当前不引入大模型或三维机器人引擎。
+Cuprite 光谱代理在行程约束下仍显示观测收益，共享则仅在部分条件下有益；起终点稳健性已检查，下一步核查文献中高维反馈如何驱动采样。只有共享需求稳健且通信损失仍值得追求，才接入 ns-3、实测链路参数或建立新的理论模型。当前不引入大模型或三维机器人引擎。

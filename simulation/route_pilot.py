@@ -76,11 +76,11 @@ def plan_static(remote, xy, regions, starts, ends, budgets, initial_remote, cfg,
     return plans
 
 
-def episode(remote, xy, initial_library, response, measure, nodes, mode, cfg, sharing=True):
+def episode(remote, xy, initial_library, response, measure, nodes, mode, cfg, sharing=True, layout=None):
     """measure is the only environment callback; policies cannot read fine truth."""
     if mode not in ('nearest', 'static', 'local', 'ideal'):
         raise ValueError(mode)
-    regions, starts, ends = geometry(xy, nodes)
+    regions, starts, ends = geometry(xy, nodes) if layout is None else layout
     budgets = [float(np.linalg.norm(e-s) / cfg.speed * cfg.factor) for s,e in zip(starts,ends)]
     plans = plan_static(remote, xy, regions, starts, ends, budgets, initial_library @ response,
                         cfg, mode == 'nearest') if mode in ('static','nearest') else [[] for _ in starts]
