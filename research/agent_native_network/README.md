@@ -1,11 +1,13 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V0.9，2026-10-21（Asia/Shanghai）
+**版本：** V1.0，2026-10-21（Asia/Shanghai）
 
-**状态：** 已完成观测反馈文献核查、1728组因果审计及8064条空间混合评分，30项代码检查通过。当前光谱覆盖策略不足以支撑强在线网络需求，暂停该分支的参数扩展和网络理论建模。
+**状态：** 当前推进救灾搜索回报。已完成5184次任务级先导和5184次返回周期补查（含1728条复现），35项代码检查通过。摘要优先基本消除合成负载下的积压，剩余问题转向失联等待与搜索/返回/中继的资源取舍；未证明Agent特有瓶颈或新机制必要性。
 
-最新：[反馈机制审查与阶段判定](FEEDBACK_MECHANISM_REVIEW.md)。事前仅用先验预演即可复现全部无噪声理想共享路线；补入空间混合后仍只有局部收益。此前B区局部优势不能作为在线通信必要性的依据。原始结果保持不变，新增强静态对照与反证单独归档。
+最新：[救灾任务定义](RESCUE_TASK_DEFINITION.md)、[首轮结果](../../simulation/results/2026-10-21-rescue-reporting-v1/INTERPRETATION.md)、[返回周期留出补查](../../simulation/results/2026-10-21-rescue-return-v1/INTERPRETATION.md)。场景为未校准合成走廊，不是火灾现场或SubT复现。下一阶段优先验证公开建筑拓扑与已有连通性措施。
+
+找矿覆盖分支保持暂停，历史结论见 [反馈机制审查](FEEDBACK_MECHANISM_REVIEW.md)。
 
 首轮336次合成实验未确认共享优势，保留为 [历史结果](../../simulation/results/2026-10-20-synthetic-v1/INTERPRETATION.md)。后续改用真实航空数据与非负混合估计构件，在三个固定区域观察到补充光谱代理降低预测误差；仍不等于真实地面观测、找矿识别或通信收益。见 [Cuprite 结果与边界](../../simulation/results/2026-10-20-cuprite-observation-v1/INTERPRETATION.md)。
 
@@ -37,6 +39,7 @@
 | [RESEARCH_GAPS.md](RESEARCH_GAPS.md) | 问题存在性审查、反证、八条件矩阵及待验证假设 |
 | [ARCHITECTURE_MODEL.md](ARCHITECTURE_MODEL.md) | 三类架构图、消息协议、V0 数学模型及可控性 |
 | [TASK_DEFINITION.md](TASK_DEFINITION.md) | 首个任务、文献依据、评价对象、初步仿真对照与停止条件 |
+| [RESCUE_TASK_DEFINITION.md](RESCUE_TASK_DEFINITION.md) | 当前救灾发现回报任务、先导结论与停止条件 |
 | [FEEDBACK_MECHANISM_REVIEW.md](FEEDBACK_MECHANISM_REVIEW.md) | 反馈来源、因果审计、空间混合及停止判定 |
 | [NEXT_STEPS.md](NEXT_STEPS.md) | 当前推进顺序与暂缓采用的技术备选 |
 | [EVIDENCE_LOG.md](EVIDENCE_LOG.md) | 检索策略、版本冲突、来源链接、访问限制和核查结果 |

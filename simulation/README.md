@@ -1,5 +1,13 @@
 # 勘查任务级初步仿真
 
+**救灾新入口：** [搜索回报先导](results/2026-10-21-rescue-reporting-v1/INTERPRETATION.md) 和 [周期留出补查](results/2026-10-21-rescue-return-v1/INTERPRETATION.md) 已完成，两轮各5184次（含1728次复现），全套35项检查通过。新实现为1秒步长任务级模型；不模拟火灾、真实无线或LLM。
+
+```powershell
+.venv/Scripts/python.exe -m simulation.rescue_reporting --output simulation/outputs/rescue-rerun
+.venv/Scripts/python.exe -m simulation.rescue_return_sensitivity --output simulation/outputs/rescue-return-rerun
+.venv/Scripts/python.exe -m unittest simulation.test_rescue_reporting -v
+```
+
 **最新阶段判定（2026-10-21）：** 已连续完成 [观测反馈因果审计](results/2026-10-21-cuprite-feedback-audit-v1/INTERPRETATION.md) 与 [空间混合检查](results/2026-10-21-cuprite-spatial-mixing-v1/INTERPRETATION.md)，30项检查通过。当前覆盖策略的在线网络分支暂停；下面保留各阶段历史实验。
 
 新增复现入口（输出须为空）：

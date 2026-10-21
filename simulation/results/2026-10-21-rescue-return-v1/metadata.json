@@ -1,0 +1,37 @@
+{
+  "records": 5184,
+  "matched_previous": 1728,
+  "development_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "heldout_seeds": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "source_sha256": {
+    "simulation/rescue_return_sensitivity.py": "88457dba7eb8f8522f278cdf0683afc6fcbadeb558f0b06a2faee6ac302d3b8d",
+    "simulation/rescue_reporting.py": "72d71404571ef5bcccdbf6d465dcaeeca333869039120aa9b3bbbef7639725ee",
+    "simulation/RESCUE_RETURN_PROTOCOL.md": "b576cd70f45849c2acde0cfbd3906e60138b671f6bf62cf6c8fc67bb2b0c519a"
+  }
+}
