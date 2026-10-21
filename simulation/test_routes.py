@@ -2,6 +2,7 @@ import unittest
 import numpy as np
 from simulation.route_pilot import RouteConfig, episode
 from simulation.route_robustness import layout_for, layouts
+from simulation.feedback_audit import preplan, same_routes
 
 
 class RouteTests(unittest.TestCase):
@@ -102,6 +103,21 @@ class RouteTests(unittest.TestCase):
         self.assertEqual(ra['nodes'],rb['nodes'])
         self.assertEqual(ra['sites'],rb['sites'])
         self.assertFalse(np.allclose(a,b))
+
+    def test_prior_only_preplan_reproduces_noiseless_feedback(self):
+        for axis,cut,reverse in layouts():
+            layout=layout_for(self.xy,axis,cut,reverse)
+            plan=preplan(self.remote,self.xy,self.initial@self.response,layout,RouteConfig())
+            _,full=episode(self.remote,self.xy,self.initial,self.response,lambda s:self.truth[s],
+                           2,'ideal',RouteConfig(),layout=layout)
+            self.assertTrue(same_routes(plan,full))
+
+    def test_compact_observations_reproduce_noisy_feedback(self):
+        measured=self.truth+np.random.default_rng(3).normal(0,.002,self.truth.shape)
+        _,full=self.run_case('ideal',measure=lambda s:measured[s])
+        _,compact=episode(self.remote,self.xy,self.initial@self.response,np.eye(3),
+                          lambda s:measured[s]@self.response,2,'ideal',RouteConfig())
+        self.assertTrue(same_routes(full,compact))
 
 
 if __name__=='__main__':unittest.main()

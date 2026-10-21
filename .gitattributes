@@ -2,6 +2,8 @@
 simulation/*.py text eol=lf
 simulation/ROUTE_PROTOCOL.md text eol=lf
 simulation/ROBUSTNESS_PROTOCOL.md text eol=lf
+simulation/FEEDBACK_AUDIT_PROTOCOL.md text eol=lf
+simulation/SPATIAL_MIXING_PROTOCOL.md text eol=lf
 simulation/results/**/*.json text eol=lf
 simulation/results/**/*.jsonl text eol=lf
 simulation/results/**/*.csv text eol=lf

@@ -1,5 +1,15 @@
 # 勘查任务级初步仿真
 
+**最新阶段判定（2026-10-21）：** 已连续完成 [观测反馈因果审计](results/2026-10-21-cuprite-feedback-audit-v1/INTERPRETATION.md) 与 [空间混合检查](results/2026-10-21-cuprite-spatial-mixing-v1/INTERPRETATION.md)，30项检查通过。当前覆盖策略的在线网络分支暂停；下面保留各阶段历史实验。
+
+新增复现入口（输出须为空）：
+
+```powershell
+.venv/Scripts/python.exe -m simulation.feedback_audit --output simulation/outputs/audit-rerun
+.venv/Scripts/python.exe -m simulation.spatial_mixing --output simulation/outputs/spatial-rerun
+.venv/Scripts/python.exe -m unittest simulation.test_prospecting simulation.test_observation simulation.test_routes simulation.test_spatial_mixing -q
+```
+
 这是 Python/SimPy 最小闭环，不是无线协议仿真器。当前默认数据是**合成光谱混合场景**；不代表真实矿区，不证明实际网络瓶颈。任务依据见 [任务定义](../research/agent_native_network/TASK_DEFINITION.md)。
 
 **后续进展：** 已另行取得作者发布的 Cuprite 航空基准，完成单节点观测价值检查。新增入口为 [固定实验方案](OBSERVATION_PROTOCOL.md)，结果见 [Cuprite 初查](results/2026-10-20-cuprite-observation-v1/INTERPRETATION.md)。下述 run_pilot 仍保留原合成实验，不静默替换数据或估计器。
@@ -83,4 +93,4 @@ provenance  # JSON 字符串，必须填写以下字段
 
 ## 下一步门槛
 
-Cuprite 光谱代理在行程约束下仍显示观测收益，共享则仅在部分条件下有益；起终点稳健性已检查，下一步核查文献中高维反馈如何驱动采样。只有共享需求稳健且通信损失仍值得追求，才接入 ns-3、实测链路参数或建立新的理论模型。当前不引入大模型或三维机器人引擎。
+当前覆盖策略的空间混合和反馈审计已完成，停止该分支参数扩展。重新进入仿真所需科学目标/数据及反馈对照见 [机制审查](../research/agent_native_network/FEEDBACK_MECHANISM_REVIEW.md)。只有共享需求稳定且通信仍造成值得追求的损失，才接入ns-3或建立网络理论。
