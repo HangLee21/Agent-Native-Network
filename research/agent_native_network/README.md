@@ -1,9 +1,11 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V0.6，2026-10-20（Asia/Shanghai）
+**版本：** V0.7，2026-10-21（Asia/Shanghai）
 
-**状态：** 已取得作者发布的 Cuprite 航空基准，初步确认人工低维先验下的补充高光谱代理观测价值；15 项代码检查通过。尚未确认途中共享收益或网络瓶颈。理论机制仍暂缓，未运行大模型、无线协议仿真或硬件实验。
+**状态：** 已在 Cuprite 代理任务中加入行程/测量时间和终点约束，完成1008次单/双节点执行与22项检查。理想共享在B区出现局部收益，A/C区不一致；尚未确认稳健的共享需求或无线瓶颈。理论机制仍暂缓，未运行大模型、无线协议仿真或硬件实验。
+
+最新：[行程与共享结果](../../simulation/results/2026-10-21-cuprite-route-v1/INTERPRETATION.md)。B区紧预算下，理想共享相对本地策略平均误差降低5.37%，相对联合静态计划降低2.63%；下一步检查起终点变化与规划器的信息使用方式，不把这一局部结果直接升级为网络研究问题。
 
 首轮336次合成实验未确认共享优势，保留为 [历史结果](../../simulation/results/2026-10-20-synthetic-v1/INTERPRETATION.md)。后续改用真实航空数据与非负混合估计构件，在三个固定区域观察到补充光谱代理降低预测误差；仍不等于真实地面观测、找矿识别或通信收益。见 [Cuprite 结果与边界](../../simulation/results/2026-10-20-cuprite-observation-v1/INTERPRETATION.md)。
 

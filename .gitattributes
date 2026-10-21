@@ -1,5 +1,6 @@
 # Keep recorded simulation source hashes stable across Windows/Linux checkouts.
 simulation/*.py text eol=lf
+simulation/ROUTE_PROTOCOL.md text eol=lf
 simulation/results/**/*.json text eol=lf
 simulation/results/**/*.jsonl text eol=lf
 simulation/results/**/*.csv text eol=lf
