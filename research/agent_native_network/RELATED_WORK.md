@@ -1,5 +1,7 @@
 # 系统性文献综述与核心证据
 
+最新补查：2026-10-23沿用户新增综述核查任务感知网络调度，见[本文补查表](#survey-network-screen)与[核心问题分析](RESEARCH_GAPS.md#scalability-core)。下文原P编号体系保留；本次候选单列，不改变已登记38篇的主表计数。
+
 检索截止 2026-10-20。编号、原始链接及完整作者见 [PAPERS.csv](PAPERS.csv)，检索限制见 [EVIDENCE_LOG.md](EVIDENCE_LOG.md)。本报告是有明确筛选规则的初始系统性检索，不是已穷尽数据库的系统综述或元分析。
 
 ## 问题审查补充（P23–P27）
@@ -217,3 +219,25 @@ AgenticDTN [P22] 的官方摘要报告真实 802.11s Mesh 上的路由与信道�
 ## 反馈机制补查（2026-10-21）
 
 新增P33–P35：现场自主光谱调查摘要（E1）、GP/log-GP自适应条件（E2）、非短视空地观测规划（E2，方法核查arXiv v1）。当前集合35篇。来源、核查范围及局限见 [反馈机制审查](FEEDBACK_MECHANISM_REVIEW.md)；不改变严格A类结论。软件教程作为实现线索单列，不计为论文。
+
+<a id="survey-network-screen"></a>
+
+## 新增综述的定向补查（2026-10-23）
+
+来源为[用户提供的综述PDF](../../任务感知网络调度_新版文献综述_论文原图版.pdf)（19页）。围绕具身网络扩展性重点核查以下7篇：6篇方法原文，CORA为作者机构摘要。表中全名、版本和章节用于后续复现，正式出版版本与已读作者稿分别记录。此前MOCHA/ACHORD另外复核，继续使用P28/P29编号。
+
+| 论文与来源 | 本轮阅读范围 | 已有动态机制 | 对本项目最重要的接口条件 |
+|---|---|---|---|
+| **ARMA** — *Towards End-to-End Latency Guarantee in MEC Live Video Analytics with App-RAN Mutual Awareness*；MobiSys 2025，[作者全文](https://daehyeok.kim/assets/papers/arma-mobisys25.pdf)，DOI 10.1145/3711875.3729139 | §5–7、§8.3.3、§9.2 | 帧配置、端到端期限拆分、按信道和紧迫性分配RB；处理信道与计算负载变化 | App–RAN快速互感知接口；论文已统计控制字节。共置DU的EdgeRIC与动态mesh中的远端状态维护具有不同通信路径 |
+| **CORA** — *End-to-End Coordination of RAN and Edge Server for Latency-Critical Inference Serving over Cellular Networks*；PACMNET/CoNEXT 2025，[作者机构摘要](https://experts.colorado.edu/display/pubid_504668)，DOI 10.1145/3768987 | 书目、摘要；ACM全文入口403 | 动态分配上行/计算/下行时延预算，协调RAN与服务器调度，已有空口原型 | 作为阶段预算与服务接口参考；具体算法公式和控制开销待取得全文后复核 |
+| **Co-Scheduling** — *Computation and Communication Co-scheduling for Timely Multi-Task Inference at the Wireless Edge*；[arXiv:2501.04231v1](https://arxiv.org/html/2501.04231v1)，综述对应INFOCOM 2025 | §II–V，重点II-C、III-A、V-B Definition 2 | 按AoI对应的推理误差联合选择计算/发送，拉格朗日松弛得到MGF | 已知各任务AoI及误差函数；调度后下一槽无错到达；渐近结论同比扩展任务与计算/通信资源。复现锁定v1；[v2](https://arxiv.org/abs/2501.04231v2)已改标题并调整算法 |
+| **AutoCast** — *AutoCast: Scalable Infrastructure-less Cooperative Perception for Distributed Collaborative Driving*；MobiSys 2022，[作者稿](https://arxiv.org/html/2112.14947)，DOI 10.1145/3498361.3538925 | §3、§5.6；[作者仓库入口](https://github.com/hangqiu/AutoCast) | 接收者相关性、可见性、数据大小与饥饿补偿驱动Greedy Max-Weight；控制消息缺失时外推 | 单跳可互闻调度域，用共同控制消息分别计算发送计划；跨域分频道。优先审计元数据交换与调度模块 |
+| **C-MASS** — *C-MASS: Combinatorial Mobility-Aware Sensor Scheduling for Collaborative Perception with Second-Order Topology Approximation*；[arXiv:2407.00412v1](https://arxiv.org/html/2407.00412v1)，2024作者稿；综述列TVT 2026 | §III–V；正式期刊全文未取得 | 移动候选集、CAM信道测量、时变带宽；二阶感知拓扑、Hybrid Greedy和探索/利用 | 单个接收者取得预算W_t后选参与者。保证在等成本特例推导，并随互补度增大而变弱；计算/存储复杂度不能直接转记为通信量 |
+| **CoSMO** — *Update for Decisions, Not Freshness: Goal-Oriented Status Updating and Selective Offloading at the Network Edge*；[arXiv:2609.01082v1](https://arxiv.org/html/2609.01082v1) | §III、IV、V-A1、VI | 局部观测与过时远端缓存，联合学习状态表示、更新触发/间隔和卸载；按后续任务效用协调 | EN–SN回传共载任务、结果、状态；ns-3.42/ns3-gym含排队传输。配置为4UE、1EN、1relay、1SN；多EN/SN干扰耦合是扩展方向 |
+| **CC-OPI** — *CC-OPI: Online Distributed Task Allocation for UAV Swarms under Communication Constraints*；[arXiv:2609.19208v1](https://arxiv.org/html/2609.19208v1) | §V-B、VI-A Table II、补充材料Table S4 | 拓扑/任务事件触发协商，执行锁、版本同步与断连容错 | 初始任务及新增任务公告全局可得；应用层广播计费，空口争用/重传未建模。可将其状态交换接到共享无线服务模型 |
+
+这组方法已经分别覆盖动态资源、任务价值、互补信息、部分可观测状态和机会协商。当前研究沿“这些调度依据如何经由同一个网络取得、各局部服务预算如何在共享竞争中形成”继续推进。
+
+对综述需保留两项阅读修正：第14/17页对CoSMO的抽象控制分类应同时注明已有ns-3网络仿真；第7页的Co-Scheduling渐近最优应注明资源同比扩展条件。C-MASS的W_t也可时变。ARMA的80UE结果是单独的调度计算开销测试，不能与其空口原型规模合并。
+
+综述其余条目中，Don't Fire Together的错峰通信可作时序对照；Hybrid TDMA–NOMA、UAV语义频谱、JAB-TORA、PACE、RACI保留为后续资源控制线索，本轮核心判断不依赖其未复核的细节。新候选尚未加入PAPERS.csv/references.bib，正式登记时再统一作者、版本与证据字段。
