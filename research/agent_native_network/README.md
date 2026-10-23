@@ -5,7 +5,7 @@
 
 **状态：** 结合新增综述，核心问题收敛为具身集群扩展时的协作状态维护与任务数据服务：二者共同竞争动态无线资源，状态过时与同步开销会影响协作收益。已定向核查7篇网络调度文献，并明确原baseline复现、开销/观测诊断和规模实验顺序。
 
-最新：[核心问题分析与最小模型](RESEARCH_GAPS.md#scalability-core)、[综述原文核查](RELATED_WORK.md#survey-network-screen)、[网络baseline角色](AGENT_COLLAB_BASELINES.md)。[任务调度筛查](TASK_SCHEDULING_SCREEN.md)中的HeteroMRTA仍作为首个学习任务执行器，已完成源码固定、状态审计和初始化检查；AutoCast、MGF、C-MASS、CoSMO等提供网络侧对照。此前[自建模型](AGENT_COLLAB_MODEL.md)和[8640次机制实验](../../simulation/results/2026-10-22-agent-collab-v1/INTERPRETATION.md)保留为辅助工具。
+最新：[核心问题分析与最小模型](RESEARCH_GAPS.md#scalability-core)、[综述原文核查](RELATED_WORK.md#survey-network-screen)、[网络baseline角色](AGENT_COLLAB_BASELINES.md)。[任务调度筛查](TASK_SCHEDULING_SCREEN.md)中的HeteroMRTA仍作为首个学习任务执行器，已完成源码固定、原权重与作者Greedy小实例配对评估；AutoCast、MGF、C-MASS、CoSMO等提供网络侧对照。此前[自建模型](AGENT_COLLAB_MODEL.md)和[8640次机制实验](../../simulation/results/2026-10-22-agent-collab-v1/INTERPRETATION.md)保留为辅助工具。
 
 当前应用入口为救灾空地协作，实际任务证据见[现场部署与观测协作](RESCUE_OPERATIONAL_EVIDENCE.md)。实验室已有无人机/机器狗平台，载荷、通信链路及协作流程仍可按研究需要确定。
 
@@ -23,7 +23,7 @@
 
 主表已登记 **38篇**，引用与证据等级对应P01–P38。本轮另定向核查综述中的7篇候选：6篇方法原文、CORA为作者机构摘要；任务调度另有7组筛查结果，两部分尚未合并主表。HAFS P26是已确认的严格A类实例，其部署特征和其他系统差异见文献矩阵。矩阵用于描述系统，具体研究贡献通过方法与结果比较。
 
-HeteroMRTA已完成固定源码、状态读取审计及环境初始化，下一步运行原策略和Greedy配对评估。MOCHA已有源码静态审计，协议运行待开展；AutoCast已确认作者代码入口。CoSMO、MGF、C-MASS按原任务条件安排后续复现。当前联合更新/发送方案尚未产生新实验结果。
+[HeteroMRTA原权重与作者Greedy评估](HETEROMRTA_REPRODUCTION.md)已完成9机器人、15/20任务各5种子，共20次正常运行全部成功，另记录单行Greedy诊断失败。[MOCHA/AutoCast组件核查](NETWORK_BASELINE_RUNTIME.md)完成14项原函数探针，完整协议运行仍待开展。CoSMO、MGF、C-MASS按原任务条件安排后续复现。当前联合更新/发送方案尚未产生新实验结果。
 
 **问题与改进依据：** 野外机器人断续连接、大消息无线交付退化，以及特定端侧Agent上下文流与实时业务竞争，有原始研究支持。本地自治、紧凑语义图、机会通信和DDS配置优化提供了已有能力。继续复现这些方法，测量其任务性能、通信成本和规模边界，围绕更优的收益—成本折中、稳定性、可扩展性及理论保证开展改进。
 

@@ -1,0 +1,10 @@
+{
+  "corrected_nearest": {
+    "attempts": 1,
+    "success": 0,
+    "statuses": {
+      "action_budget_exhausted": 1
+    },
+    "mean_makespan_return": null
+  }
+}

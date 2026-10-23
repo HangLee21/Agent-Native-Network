@@ -13,3 +13,9 @@ simulation/results/**/*.jsonl text eol=lf
 simulation/results/**/*.csv text eol=lf
 *.gz binary
 *.png binary
+
+# Preserve exact raw-byte provenance for this evaluation archive and its snapshots.
+simulation/results/2026-10-23-E1-002-heteromrta/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+simulation/results/2026-10-23-D-002-network-components/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+simulation/heteromrta_eval.py -text
+simulation/network_baseline_probe.py -text

@@ -1,3 +1,7 @@
+# 当前baseline运行入口
+
+2026-10-23：[HeteroMRTA原代码配对评估](../research/agent_native_network/HETEROMRTA_REPRODUCTION.md)已完成20次正常运行；[MOCHA/AutoCast组件核查](../research/agent_native_network/NETWORK_BASELINE_RUNTIME.md)完成14项探针。恢复依赖和固定源码的命令见对应报告。新输出使用 `simulation/outputs/<任务ID>/<新run-id>/`。下述环境、依赖和测试记录属于历史仿真阶段；当前HeteroMRTA使用独立的 `heteromrta_requirements.txt`，不要用旧筛查脚本覆盖历史记录。
+
 # 勘查任务级初步仿真
 
 **救灾新入口：** [搜索回报先导](results/2026-10-21-rescue-reporting-v1/INTERPRETATION.md) 和 [周期留出补查](results/2026-10-21-rescue-return-v1/INTERPRETATION.md) 已完成，两轮各5184次（含1728次复现），全套35项检查通过。新实现为1秒步长任务级模型；不模拟火灾、真实无线或LLM。
