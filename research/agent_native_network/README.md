@@ -1,11 +1,11 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V1.3，2026-10-22（Asia/Shanghai）
+**版本：** V1.4，2026-10-23（Asia/Shanghai）
 
-**状态：** 已建立Agent-Native分布式辅助观测初步模型，固定运动与感知能力，运行8640次请求—观测—结果—执行实验；46项检查通过。当前研究接口为任务消息服务、协作接纳、等待预算与本地回退。
+**状态：** 主线转为已有任务调度baseline复现。已筛查7组方法，选择HeteroMRTA作为首个可执行学习基线，原Greedy/CTAS-D作为配套对照；局部意图MAPPO与CBBA异步变体列为后续重点。已完成固定源码版本、状态读取审计与原环境初始化检查。
 
-最新：[初步模型](AGENT_COLLAB_MODEL.md)、[baseline筛选](AGENT_COLLAB_BASELINES.md)、[首轮协作通信结果](../../simulation/results/2026-10-22-agent-collab-v1/INTERPRETATION.md)。现场任务依据见[救灾证据](RESCUE_OPERATIONAL_EVIDENCE.md)。[前期公开城市图实验](../../simulation/results/2026-10-21-rescue-graph-v1/INTERPRETATION.md)保留为后续几何接入基础。
+最新：[任务调度筛查与复现选择](TASK_SCHEDULING_SCREEN.md)。此前[自建模型](AGENT_COLLAB_MODEL.md)和[8640次机制实验](../../simulation/results/2026-10-22-agent-collab-v1/INTERPRETATION.md)保留为辅助工具。先还原原方法任务及表现，再通过通信信息更新诊断差距。
 
 找矿覆盖分支保持暂停，历史结论见 [反馈机制审查](FEEDBACK_MECHANISM_REVIEW.md)。
 

@@ -1,0 +1,29 @@
+{
+  "check": "environment initialization and observation only; no policy inference",
+  "seed": 0,
+  "numpy_version": "2.5.4",
+  "compatibility_patch": {
+    "original": "float(tasks_time[i, :])",
+    "replacement": "tasks_time[i, :].item()",
+    "reason": "NumPy 2 rejects float conversion of a one-element non-scalar array"
+  },
+  "agents": 9,
+  "tasks": 15,
+  "observation_shapes": [
+    [
+      1,
+      16,
+      15
+    ],
+    [
+      1,
+      9,
+      11
+    ],
+    [
+      1,
+      16
+    ]
+  ],
+  "all_finite": true
+}
