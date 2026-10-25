@@ -39,5 +39,9 @@
   "independent_review": "coordination/reviews/C-004.md",
   "local_links_checked": 102,
   "missing_local_links": [],
-  "active_experiment_processes": []
+  "active_experiment_processes": [],
+  "staged_archive_and_source_byte_matches": 182,
+  "cached_diff_check": "passed",
+  "stage_commit": "ae539ef",
+  "stage_push": "origin/codex/baseline-reproduction-20261023 successful"
 }
