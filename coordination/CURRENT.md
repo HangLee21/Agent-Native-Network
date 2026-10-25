@@ -1,8 +1,16 @@
 # 当前摘要
 
-更新：2026-10-25（Asia/Shanghai）。M维护摘要；任务实时状态以主任务卡为准。
+更新：2026-10-26（Asia/Shanghai）。M维护摘要；任务实时状态以主任务卡为准。
 
 ## 本轮范围
+
+用户“继续”授权M-006/E1-004/E2-005/C-006实现因果闭环和有限服务诊断，从ff2157c干净工作区起步。已完成58回合（45成功、13到H未完成）及6固定业务回放，10项终版因果测试和10项服务测试通过。C从事件独立重建6030决策、11091消息、750现场开工及FIFO费用，未发现一致性错误。总报告：[因果闭环与服务诊断](../research/agent_native_network/CAUSAL_SERVICE_STAGE.md)。实现和输出已停止写入，无实验进程；M正在完成验收与串行Git交付。
+
+原10实例因果instant全部成功；15任务seed2/3的正延迟失败来自t=0并发能力分散及200等待，极小正延迟也复现。共同wait20恢复seed3，seed2仍同步重复。另在FIFO同成功实例中观测到低服务率产生更多晚到访问与维护流量。下一阶段先建立共同错相/退避、预约恢复和合理限速强基础，再比较更新/发送机制；暂不从该诊断推节点规模或无线容量阈值。
+
+归档[E1-004](../simulation/results/2026-10-25-E1-004-causal/README.md)、[E2-005](../simulation/results/2026-10-25-E2-005-service/README.md)共750份证据原/存储/解压hash一致，445份原有文件未改；[55回合结果图](../simulation/results/2026-10-25-E1-004-causal/figures/figure.png)保留全部失败。验证见[C-006](reviews/C-006.md)、[M-006一致性](reviews/M-006-consistency.json)。
+
+### 005阶段全面分析（已完成）
 
 用户要求基于动态与扩展性的矫正进行全面分析。M-005/D-005/E2-004/C-005从f136c6e干净工作区起步，只做研究分析、来源核查和独立审读，未运行新实验。主文档[SCALABILITY_COMPREHENSIVE_ANALYSIS](../research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)及[文献/模型补充](../research/agent_native_network/scalability_20261025/)已完成，[C-005独立审读](reviews/C-005.md)通过。分析提交`55299a5`已推送`origin/codex/baseline-reproduction-20261023`，四张任务卡已验收关闭并释放范围；无实验进程。
 
@@ -36,7 +44,7 @@ M在本聊天统筹，临时D/E2/C子代理均已结束本轮工作，四张003�
 
 ## 下一实现入口
 
-S1送达缓存在固定轨迹下通过10实例、384决策点零延迟等价；MOCHA原同步路径双进程18项检查通过。下一步实现因果运动、实际到场组队、本地唤醒和消息反馈，再比较闭环即时信息与延迟条件，最后接共享服务。详细交付和判据见[M-004阶段判断](reviews/M-004-interpretation.md)。文献和现场资料用于设计真实任务关系，初期实验采用可控仿真，后续校准无线与设备实现。
+因果执行、本地唤醒与共享FIFO已由006阶段完成。下一步先实现全条件共用的错相/退避、预约撤销与恢复基础，并使用共同服务费用比较周期、事件触发、latest-state、队列优先级和限速；之后接MOCHA/任务价值机制及L2无线和节点扩展。详细证据与优先级见[006阶段判断](../research/agent_native_network/CAUSAL_SERVICE_STAGE.md#5-下一阶段的优先级)。旧[M-004阶段判断](reviews/M-004-interpretation.md)保留为因果适配的来源。
 
 ## 历史记录的读取方式
 

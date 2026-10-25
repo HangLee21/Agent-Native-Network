@@ -2,7 +2,7 @@
 
 **Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence**
 
-面向自主推理边缘设备的去中心化无线网络研究。更新：2026-10-25。
+面向自主推理边缘设备的去中心化无线网络研究。更新：2026-10-26。
 
 本机多窗口协作从 [START_HERE.md](START_HERE.md) 进入：角色分工、任务卡、目录归属和新窗口交接见该入口。
 
@@ -29,8 +29,9 @@
 
 ## 当前进度
 
-- 已完成[扩展性主线全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)：主目标为同资源下扩大达标运行域。S1接口结果保留；下一步接因果任务闭环、真实需求账本及分层网络服务，当前分析没有新增仿真。
-- [HeteroMRTA通信接口](research/agent_native_network/HETEROMRTA_NETWORK_INTERFACE.md)：10实例、384决策点零延迟等价；0.5/2模拟时间延迟分别改变138/215次影子动作，尚未执行这些动作。
+- 已完成[因果闭环与共享服务诊断](research/agent_native_network/CAUSAL_SERVICE_STAGE.md)：58任务回合、6固定回放，实际执行各节点缓存动作；10项因果测试和10项服务测试通过。识别初始并发分派/恢复失配，以及服务改变行动后增加维护负载两条机制。下一步先建立共同错相/恢复强对照，再比较更新与发送机制。
+- 已完成[扩展性主线全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)：主目标为同资源下扩大达标运行域。005阶段的分析及S1接口结果保留，后续006实测见上述新报告。
+- [HeteroMRTA通信接口](research/agent_native_network/HETEROMRTA_NETWORK_INTERFACE.md)：S1保留10实例、384决策点零延迟等价，以及延迟改变影子动作的诊断；E1-004另建上述因果执行入口，原结果不改写。
 - [MOCHA原协议运行](research/agent_native_network/MOCHA_RUNTIME_ENTRY.md)：原状态机、SMACH与ZeroMQ双进程回环18项检查通过。阶段判断与下一实验入口见[M-004](coordination/reviews/M-004-interpretation.md)。
 - [HeteroMRTA原权重与作者Greedy](research/agent_native_network/HETEROMRTA_REPRODUCTION.md)：9机器人、15/20任务各5种子，20次正常运行全部完成并返回驻地；另保留Greedy单行修改失败诊断。
 - [MOCHA/AutoCast](research/agent_native_network/NETWORK_BASELINE_RUNTIME.md)：固定源码，14项原函数组件探针通过；完整ROS2/CARLA协议与任务运行尚待开展。

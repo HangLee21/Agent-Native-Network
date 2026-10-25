@@ -1,0 +1,24 @@
+version: 1
+artifacts:
+  - id: causal-service-diagnostic
+    kind: figure
+    artifact_types: [paper_figure, data_figure]
+    claim: The recorded delivery and FIFO conditions change causal task trajectories and expose recovery-dependent failures.
+    files:
+      outputs: [figure.pdf, figure.svg, figure.png]
+      scripts: [../../../../coordination/reviews/M-006-plot.py]
+      source_data: [source_data.csv, profile.json]
+      previews: [preview_final_width.png]
+      table_sources: []
+hard_results:
+  - rule_id: FIG.FINAL_WIDTH_READABLE
+    status: PASS
+    artifact: preview_final_width.png
+    artifact_refs: [causal-service-diagnostic]
+    locator: Four-panel research preview, intended 7-inch width at 180 dpi
+    evidence: Assistant inspected the rendered 1260-pixel preview; labels, legend, log ticks and censored crosses are readable without clipping. No human review or submission-readiness claim is made.
+    evaluator: assistant_visual_inspection
+soft_results:
+  - rule_id: FIG.SOURCE_FONT_SCALE
+    status: APPLIED
+    rationale: 3x source canvas, explicit text at least 24pt, 7-inch intended placement.

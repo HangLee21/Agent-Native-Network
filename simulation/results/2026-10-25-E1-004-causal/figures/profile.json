@@ -1,0 +1,152 @@
+{
+  "sources": [
+    {
+      "path": "simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\summary.json.gz",
+      "sha256": "7353f41eecd3a415932a44f3d408e12e015e19d7279d82154746cc4f46113f5f"
+    },
+    {
+      "path": "simulation\\results\\2026-10-25-E1-004-causal\\20261025-03-fifo\\summary.json.gz",
+      "sha256": "3b34fc562227e9f237b6757fec6222bf126baf0851d0ecf5b90995d691d40dec"
+    },
+    {
+      "path": "simulation\\results\\2026-10-25-E1-004-causal\\20261025-04-wait20\\summary.json.gz",
+      "sha256": "ee412542ad5d6aac40ecd20b92f7543a0eaaeb02ccd0e975ed7f784d184b819d"
+    }
+  ],
+  "rows": 55,
+  "missing_return_times": 11,
+  "groups": [
+    {
+      "tasks": 15,
+      "condition": "delay0.5",
+      "task_wait": 20.0,
+      "n": 5,
+      "success": 4,
+      "mean_completion": 0.8,
+      "successful_mean_return": 31.368382908210176,
+      "capped_mean": 65.09470632656814,
+      "mean_application_bytes": 79469.6,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 15,
+      "condition": "delay0.5",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 3,
+      "mean_completion": 0.6,
+      "successful_mean_return": 24.88720486015498,
+      "capped_mean": 94.932322916093,
+      "mean_application_bytes": 43721.6,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 15,
+      "condition": "delay2",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 3,
+      "mean_completion": 0.6,
+      "successful_mean_return": 24.716957260879074,
+      "capped_mean": 94.83017435652745,
+      "mean_application_bytes": 49556.8,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 15,
+      "condition": "fifo2048",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 3,
+      "mean_completion": 0.6,
+      "successful_mean_return": 34.09753821603679,
+      "capped_mean": 100.45852292962209,
+      "mean_application_bytes": 65168.6,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 15,
+      "condition": "fifo4096",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 3,
+      "mean_completion": 0.6,
+      "successful_mean_return": 26.420166601087875,
+      "capped_mean": 95.85209996065272,
+      "mean_application_bytes": 42487.0,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 15,
+      "condition": "fifo8192",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 3,
+      "mean_completion": 0.6,
+      "successful_mean_return": 24.020714349760837,
+      "capped_mean": 94.4124286098565,
+      "mean_application_bytes": 39223.0,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 15,
+      "condition": "instant",
+      "task_wait": 20.0,
+      "n": 5,
+      "success": 5,
+      "mean_completion": 1.0,
+      "successful_mean_return": 21.531945129590994,
+      "capped_mean": 21.531945129590994,
+      "mean_application_bytes": 47154.8,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 15,
+      "condition": "instant",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 5,
+      "mean_completion": 1.0,
+      "successful_mean_return": 21.531945129590994,
+      "capped_mean": 21.531945129590994,
+      "mean_application_bytes": 47154.8,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 20,
+      "condition": "delay0.5",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 5,
+      "mean_completion": 1.0,
+      "successful_mean_return": 30.785238249899994,
+      "capped_mean": 30.785238249899994,
+      "mean_application_bytes": 87710.6,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 20,
+      "condition": "delay2",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 5,
+      "mean_completion": 1.0,
+      "successful_mean_return": 34.08557775341457,
+      "capped_mean": 34.08557775341457,
+      "mean_application_bytes": 112858.0,
+      "total_dropped": 0
+    },
+    {
+      "tasks": 20,
+      "condition": "instant",
+      "task_wait": 200.0,
+      "n": 5,
+      "success": 5,
+      "mean_completion": 1.0,
+      "successful_mean_return": 25.584029769891547,
+      "capped_mean": 25.584029769891547,
+      "mean_application_bytes": 60529.0,
+      "total_dropped": 0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-X",
+    "utf8",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-005\\20261025-01-verification\\source_snapshot\\test_message_service.py"
+  ],
+  "exit_code": 0,
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "source_sha256": {
+    "message_service.py": "de4c4e507b083e82462dfd233e13507a813aeb673935c6c0b227f366f9e240c0",
+    "test_message_service.py": "4fd33f1e211181c3c67f82fe54731bbc3a1836bd24589d08c14b34ae2c758564",
+    "service_replay.py": "502aadf76442d54383919d74a1fffa1f46d3de929c4b79a25de51d25f8c425d0"
+  },
+  "checks_count": 10,
+  "earlier_read_only_path_error": "Initial --describe used pilot/messages.json before locating tasks15_seed0_instant/messages.json; FileNotFoundError, no replay or output created."
+}

@@ -21,3 +21,5 @@ simulation/heteromrta_eval.py -text
 simulation/network_baseline_probe.py -text
 simulation/results/2026-10-25-E1-003-interface/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 simulation/results/2026-10-25-D-004-protocol/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+simulation/results/2026-10-25-E1-004-causal/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+simulation/results/2026-10-25-E2-005-service/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

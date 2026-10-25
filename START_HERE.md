@@ -35,4 +35,4 @@
 
 项目研究背景继续从[原 README](README.md)进入。`simulation/AGENT_COLLAB_PROTOCOL.md` 描述研究中的通信仿真，不是本机窗口协作规则。
 
-当前研究总入口为[可扩展性全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)，首版[科研链条](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)保留。本轮M-005/D-005/E2-004/C-005只开展分析与复核，不启动新实验；最新进展与交接见coordination/CURRENT.md。
+当前研究总入口为[可扩展性全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)，首版[科研链条](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)保留。M-005分析阶段已结束；用户后续授权的M-006因果闭环与服务诊断完成58任务回合、6固定回放，见[阶段结果](research/agent_native_network/CAUSAL_SERVICE_STAGE.md)。最新验收与交接见coordination/CURRENT.md；各阶段实验预算互不自动延续。
