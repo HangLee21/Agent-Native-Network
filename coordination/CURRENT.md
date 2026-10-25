@@ -4,7 +4,7 @@
 
 ## 本轮范围
 
-用户要求基于动态与扩展性的矫正进行全面分析。当前M-005/D-005/E2-004/C-005从f136c6e干净工作区起步，写入范围见主卡；只做研究分析、来源核查和独立审读，不运行新实验。主文档[SCALABILITY_COMPREHENSIVE_ANALYSIS](../research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)及[文献/模型补充](../research/agent_native_network/scalability_20261025/)已完成，[C-005独立审读](reviews/C-005.md)通过。D-005/E2-004/C-005已验收关闭，M负责串行Git交付；无实验进程。
+用户要求基于动态与扩展性的矫正进行全面分析。M-005/D-005/E2-004/C-005从f136c6e干净工作区起步，只做研究分析、来源核查和独立审读，未运行新实验。主文档[SCALABILITY_COMPREHENSIVE_ANALYSIS](../research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)及[文献/模型补充](../research/agent_native_network/scalability_20261025/)已完成，[C-005独立审读](reviews/C-005.md)通过。分析提交`55299a5`已推送`origin/codex/baseline-reproduction-20261023`，四张任务卡已验收关闭并释放范围；无实验进程。
 
 主目标升级为同资源下扩大达标运行域：规模/协作关系/数据/动态→维护与任务负载→实际网络服务→有效消费→任务反馈。三层服务对照保留共同容量和需求分母。下一实现是因果执行、原生业务账本、L0/L1比较及L2竞争无线，详见全面分析§8–10。445份既有文件未改、184处本地链接检查无缺失，见[一致性记录](reviews/M-005-consistency.json)。
 
