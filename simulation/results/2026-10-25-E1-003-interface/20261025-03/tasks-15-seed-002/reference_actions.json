@@ -1,0 +1,282 @@
+[
+  {
+    "time": 0.0,
+    "actor": 3,
+    "action": 9,
+    "accepted": true,
+    "decision": 0
+  },
+  {
+    "time": 0.0,
+    "actor": 6,
+    "action": 9,
+    "accepted": true,
+    "decision": 1
+  },
+  {
+    "time": 0.0,
+    "actor": 4,
+    "action": 8,
+    "accepted": true,
+    "decision": 2
+  },
+  {
+    "time": 0.0,
+    "actor": 5,
+    "action": 5,
+    "accepted": true,
+    "decision": 3
+  },
+  {
+    "time": 0.0,
+    "actor": 7,
+    "action": 6,
+    "accepted": true,
+    "decision": 4
+  },
+  {
+    "time": 0.0,
+    "actor": 2,
+    "action": 9,
+    "accepted": true,
+    "decision": 5
+  },
+  {
+    "time": 0.0,
+    "actor": 8,
+    "action": 13,
+    "accepted": true,
+    "decision": 6
+  },
+  {
+    "time": 0.0,
+    "actor": 1,
+    "action": 13,
+    "accepted": true,
+    "decision": 7
+  },
+  {
+    "time": 0.0,
+    "actor": 0,
+    "action": 8,
+    "accepted": true,
+    "decision": 8
+  },
+  {
+    "time": 4.375965559253485,
+    "actor": 3,
+    "action": 12,
+    "accepted": true,
+    "decision": 9
+  },
+  {
+    "time": 4.375965559253485,
+    "actor": 2,
+    "action": 4,
+    "accepted": true,
+    "decision": 10
+  },
+  {
+    "time": 4.375965559253485,
+    "actor": 6,
+    "action": 4,
+    "accepted": true,
+    "decision": 11
+  },
+  {
+    "time": 6.61105672052274,
+    "actor": 7,
+    "action": 5,
+    "accepted": true,
+    "decision": 12
+  },
+  {
+    "time": 6.696811062870502,
+    "actor": 4,
+    "action": 7,
+    "accepted": true,
+    "decision": 13
+  },
+  {
+    "time": 6.696811062870502,
+    "actor": 0,
+    "action": 5,
+    "accepted": true,
+    "decision": 14
+  },
+  {
+    "time": 8.02705581078541,
+    "actor": 2,
+    "action": 12,
+    "accepted": true,
+    "decision": 15
+  },
+  {
+    "time": 8.02705581078541,
+    "actor": 6,
+    "action": 12,
+    "accepted": true,
+    "decision": 16
+  },
+  {
+    "time": 8.32628003250529,
+    "actor": 1,
+    "action": 15,
+    "accepted": true,
+    "decision": 17
+  },
+  {
+    "time": 8.32628003250529,
+    "actor": 8,
+    "action": 7,
+    "accepted": true,
+    "decision": 18
+  },
+  {
+    "time": 10.82772631288028,
+    "actor": 0,
+    "action": 1,
+    "accepted": true,
+    "decision": 19
+  },
+  {
+    "time": 10.82772631288028,
+    "actor": 5,
+    "action": 1,
+    "accepted": true,
+    "decision": 20
+  },
+  {
+    "time": 10.82772631288028,
+    "actor": 7,
+    "action": 15,
+    "accepted": true,
+    "decision": 21
+  },
+  {
+    "time": 14.904491504432603,
+    "actor": 2,
+    "action": 2,
+    "accepted": true,
+    "decision": 22
+  },
+  {
+    "time": 14.904491504432603,
+    "actor": 3,
+    "action": 11,
+    "accepted": true,
+    "decision": 23
+  },
+  {
+    "time": 14.904491504432603,
+    "actor": 6,
+    "action": 2,
+    "accepted": true,
+    "decision": 24
+  },
+  {
+    "time": 14.99253869919415,
+    "actor": 4,
+    "action": 3,
+    "accepted": true,
+    "decision": 25
+  },
+  {
+    "time": 14.99253869919415,
+    "actor": 8,
+    "action": 11,
+    "accepted": true,
+    "decision": 26
+  },
+  {
+    "time": 16.960038764354266,
+    "actor": 6,
+    "action": 3,
+    "accepted": true,
+    "decision": 27
+  },
+  {
+    "time": 16.960038764354266,
+    "actor": 2,
+    "action": 10,
+    "accepted": true,
+    "decision": 28
+  },
+  {
+    "time": 17.032086730538552,
+    "actor": 7,
+    "action": 14,
+    "accepted": true,
+    "decision": 29
+  },
+  {
+    "time": 17.032086730538552,
+    "actor": 1,
+    "action": 14,
+    "accepted": true,
+    "decision": 30
+  },
+  {
+    "time": 17.245806495945743,
+    "actor": 3,
+    "action": 0,
+    "accepted": true,
+    "decision": 31
+  },
+  {
+    "time": 17.245806495945743,
+    "actor": 8,
+    "action": 0,
+    "accepted": true,
+    "decision": 32
+  },
+  {
+    "time": 17.824307608373086,
+    "actor": 0,
+    "action": 0,
+    "accepted": true,
+    "decision": 33
+  },
+  {
+    "time": 17.824307608373086,
+    "actor": 5,
+    "action": 0,
+    "accepted": true,
+    "decision": 34
+  },
+  {
+    "time": 18.258910923143258,
+    "actor": 1,
+    "action": 0,
+    "accepted": true,
+    "decision": 35
+  },
+  {
+    "time": 18.258910923143258,
+    "actor": 7,
+    "action": 0,
+    "accepted": true,
+    "decision": 36
+  },
+  {
+    "time": 20.58698868558578,
+    "actor": 2,
+    "action": 0,
+    "accepted": true,
+    "decision": 37
+  },
+  {
+    "time": 21.443396380127027,
+    "actor": 4,
+    "action": 0,
+    "accepted": true,
+    "decision": 38
+  },
+  {
+    "time": 21.443396380127027,
+    "actor": 6,
+    "action": 0,
+    "accepted": true,
+    "decision": 39
+  }
+]

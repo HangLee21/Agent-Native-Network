@@ -1,0 +1,25 @@
+{
+  "archive": "simulation\\results\\2026-10-23-E1-002-heteromrta\\20261023-03\\seed-003-policy",
+  "files": [
+    {
+      "path": "simulation\\results\\2026-10-23-E1-002-heteromrta\\20261023-03\\seed-003-policy\\result.json",
+      "stored_sha256": "5facb0515d9a91f83c349e89b35681b49e4bb49b3be8f3918732cc03e25aa7ba",
+      "content_sha256": "5facb0515d9a91f83c349e89b35681b49e4bb49b3be8f3918732cc03e25aa7ba"
+    },
+    {
+      "path": "simulation\\results\\2026-10-23-E1-002-heteromrta\\20261023-03\\seed-003-policy\\events.json.gz",
+      "stored_sha256": "7b8f5b650a5951d87ba3224548a57b52489513acf7f03aa606bbd26a92395df5",
+      "content_sha256": "9c43e95a833cc585703eccbafa10c78dfaa8a907b2187e2232b30ff954c2493f"
+    },
+    {
+      "path": "simulation\\results\\2026-10-23-E1-002-heteromrta\\20261023-03\\seed-003-policy\\final.json.gz",
+      "stored_sha256": "7d0c75e283e0bbf14f1dd06fd684102a508a08c0d85d6a0aa6e9b3eccf2d7172",
+      "content_sha256": "1cc9551f04fd200ba094bbf94f2005e957a413ec78ecd6818ed7db64339a6314"
+    }
+  ],
+  "initial_equal": true,
+  "action_trace_equal": true,
+  "masks_equal": true,
+  "final_state_equal": true,
+  "return_time_equal": true
+}

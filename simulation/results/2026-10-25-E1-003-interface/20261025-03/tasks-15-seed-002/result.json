@@ -1,0 +1,66 @@
+{
+  "seed": 2,
+  "tasks": 15,
+  "initial_sha256": "60e9103ba15cd4192e1b7527007fd990bbc82814e26eaca3833e1f734b12febf",
+  "layer": "fixed_trajectory_shadow",
+  "status": "completed",
+  "reference_metrics": {
+    "success_rate": [
+      1.0
+    ],
+    "makespan": [
+      25.83951204370794
+    ],
+    "time_cost": [
+      10.842443077350461
+    ],
+    "waiting_time": [
+      2.2887136780083583
+    ],
+    "travel_dist": [
+      17.877458876018967
+    ],
+    "efficiency": [
+      1.948888888888889
+    ]
+  },
+  "reference_finished": true,
+  "reference_return_time": 25.83951204370794,
+  "reference_completed": 15,
+  "reference_returned": 9,
+  "reference_success": true,
+  "wall_seconds": 1.2236063000163995,
+  "shadow_summary": {
+    "0.0": {
+      "decisions": 40,
+      "observation_mismatch": 0,
+      "mask_mismatch": 0,
+      "branch_mismatch": 0,
+      "action_mismatch": 0,
+      "pending_deliveries": 0,
+      "blocked_intents": 0
+    },
+    "0.5": {
+      "decisions": 40,
+      "observation_mismatch": 35,
+      "mask_mismatch": 17,
+      "branch_mismatch": 0,
+      "action_mismatch": 16,
+      "pending_deliveries": 0,
+      "blocked_intents": 0
+    },
+    "2.0": {
+      "decisions": 40,
+      "observation_mismatch": 38,
+      "mask_mismatch": 24,
+      "branch_mismatch": 0,
+      "action_mismatch": 23,
+      "pending_deliveries": 0,
+      "blocked_intents": 0
+    }
+  },
+  "zero_delay_equivalent": true,
+  "command_bytes_once_per_publication": 9512,
+  "backdated_legacy_commands": [],
+  "archived_reference_equal": true
+}

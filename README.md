@@ -28,7 +28,9 @@
 
 ## 当前进度
 
-- 已完成首轮原代码配对评估与通信组件审计；当前建立完整科研与实验框架，下一实现入口为送达缓存与零延迟等价检查。
+- [科研与实验框架](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)已建立；S1完成独立送达缓存与固定轨迹诊断，下一步接因果任务执行闭环及共享通信服务。
+- [HeteroMRTA通信接口](research/agent_native_network/HETEROMRTA_NETWORK_INTERFACE.md)：10实例、384决策点零延迟等价；0.5/2模拟时间延迟分别改变138/215次影子动作，尚未执行这些动作。
+- [MOCHA原协议运行](research/agent_native_network/MOCHA_RUNTIME_ENTRY.md)：原状态机、SMACH与ZeroMQ双进程回环18项检查通过。阶段判断与下一实验入口见[M-004](coordination/reviews/M-004-interpretation.md)。
 - [HeteroMRTA原权重与作者Greedy](research/agent_native_network/HETEROMRTA_REPRODUCTION.md)：9机器人、15/20任务各5种子，20次正常运行全部完成并返回驻地；另保留Greedy单行修改失败诊断。
 - [MOCHA/AutoCast](research/agent_native_network/NETWORK_BASELINE_RUNTIME.md)：固定源码，14项原函数组件探针通过；完整ROS2/CARLA协议与任务运行尚待开展。
 - 主文献表已登记38篇；新增综述的7篇定向核查及7组任务调度候选分别记录，尚未合并主表。

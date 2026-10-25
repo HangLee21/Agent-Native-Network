@@ -1,7 +1,7 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V1.8，2026-10-25（Asia/Shanghai）
+**版本：** V1.9，2026-10-25（Asia/Shanghai）
 
 **状态：** 当前以[完整科研与实验框架](RESEARCH_EXPERIMENT_CHAIN.md)为总入口，串起现场需求、最新论文、初步理论模型、算法构思、数据来源、指标和实验产出。核心问题仍是具身集群扩展时，协作状态维护与任务消息如何共享动态无线资源。近期论文核查、模型推导和实验设计详表位于[本轮资料目录](framework_20261025/)。
 
@@ -23,7 +23,7 @@
 
 主表已登记 **38篇**，引用与证据等级对应P01–P38。本轮另定向核查综述中的7篇候选：6篇方法原文、CORA为作者机构摘要；任务调度另有7组筛查结果，两部分尚未合并主表。HAFS P26是已确认的严格A类实例，其部署特征和其他系统差异见文献矩阵。矩阵用于描述系统，具体研究贡献通过方法与结果比较。
 
-[HeteroMRTA原权重与作者Greedy评估](HETEROMRTA_REPRODUCTION.md)已完成9机器人、15/20任务各5种子，共20次正常运行全部成功，另记录单行Greedy诊断失败。[MOCHA/AutoCast组件核查](NETWORK_BASELINE_RUNTIME.md)完成14项原函数探针，完整协议运行仍待开展。CoSMO、MGF、C-MASS按原任务条件安排后续复现。当前联合更新/发送方案尚未产生新实验结果。
+[HeteroMRTA原权重与作者Greedy评估](HETEROMRTA_REPRODUCTION.md)已完成9机器人、15/20任务各5种子，共20次正常运行全部成功，另记录单行Greedy诊断失败。[HeteroMRTA送达缓存](HETEROMRTA_NETWORK_INTERFACE.md)完成10实例384个决策点零延迟等价，并测得0.5/2模拟时间延迟分别改变138/215次影子动作。[MOCHA原协议运行](MOCHA_RUNTIME_ENTRY.md)通过18项双进程回环检查，原状态机、SMACH、DB与ZeroMQ路径均实际执行。此前[MOCHA/AutoCast组件核查](NETWORK_BASELINE_RUNTIME.md)的14项探针保留。当前闭环通信任务性能、完整ROS/CARLA与无线效果仍待测量；CoSMO、MGF、C-MASS按任务兼容条件接入。下一实验入口见[阶段判断](../../coordination/reviews/M-004-interpretation.md)。
 
 **问题与改进依据：** 野外机器人断续连接、大消息无线交付退化，以及特定端侧Agent上下文流与实时业务竞争，有原始研究支持。本地自治、紧凑语义图、机会通信和DDS配置优化提供了已有能力。继续复现这些方法，测量其任务性能、通信成本和规模边界，围绕更优的收益—成本折中、稳定性、可扩展性及理论保证开展改进。
 

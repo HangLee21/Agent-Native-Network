@@ -1,0 +1,529 @@
+[
+  {
+    "command": {
+      "action": 14,
+      "arrival": 0.5138466514514347,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.10276933029028695,
+      "travel_time": 0.5138466514514347
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 7,
+    "serialized_bytes": 218,
+    "sha256": "7c490a828e751d7379edcf96172c43dd957bb1c131a5ae0fd0a18ac58777f9ef"
+  },
+  {
+    "command": {
+      "action": 2,
+      "arrival": 1.7422375376713273,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.34844750753426545,
+      "travel_time": 1.7422375376713273
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 5,
+    "serialized_bytes": 217,
+    "sha256": "718b21e364d8404d80eb79726559f3b9cc22871acec9ce3c17469adcb7c90370"
+  },
+  {
+    "command": {
+      "action": 12,
+      "arrival": 0.5098760707599137,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.10197521415198275,
+      "travel_time": 0.5098760707599137
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 1,
+    "serialized_bytes": 218,
+    "sha256": "b8c722efedd3590c2b2ab24591da464cc7e00854450bdcb43386450ff984a106"
+  },
+  {
+    "command": {
+      "action": 5,
+      "arrival": 2.7110362772383945,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.5422072554476789,
+      "travel_time": 2.7110362772383945
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 3,
+    "serialized_bytes": 216,
+    "sha256": "9356455178042a711a9df5e91d7132d6f4a74dd29bafaf96f54d17b1a501db70"
+  },
+  {
+    "command": {
+      "action": 1,
+      "arrival": 3.678772599595906,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.7357545199191813,
+      "travel_time": 3.678772599595906
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 4,
+    "serialized_bytes": 214,
+    "sha256": "a7bd3620e87501979b37c60b78715f4d0035dbec05f62302d4b8def5a475ba7c"
+  },
+  {
+    "command": {
+      "action": 11,
+      "arrival": 2.0209162723686025,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.4041832544737205,
+      "travel_time": 2.0209162723686025
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 2,
+    "serialized_bytes": 217,
+    "sha256": "f56ccadfed7573658a57621d8a50d1484e990f21421f3889537af94a0f6938c1"
+  },
+  {
+    "command": {
+      "action": 13,
+      "arrival": 1.8844334716544733,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.37688669433089467,
+      "travel_time": 1.8844334716544733
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 0,
+    "serialized_bytes": 218,
+    "sha256": "89a34236ae39255f5db7471e99c2fbcbaebd74a9df35b4b17a670bf6011621e5"
+  },
+  {
+    "command": {
+      "action": 13,
+      "arrival": 0.2446972936003138,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.048939458720062765,
+      "travel_time": 0.2446972936003138
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 8,
+    "serialized_bytes": 219,
+    "sha256": "03872790c2d508ec4b4488a08be4b58589c78477be42666eef1b525439c9768a"
+  },
+  {
+    "command": {
+      "action": 11,
+      "arrival": 1.1735643499295356,
+      "decision_step": 0,
+      "departure": 0.0,
+      "travel_dist": 0.23471286998590712,
+      "travel_time": 1.1735643499295356
+    },
+    "generated_at": 0.0,
+    "kind": "body",
+    "schema": 1,
+    "seq": 1,
+    "source": 6,
+    "serialized_bytes": 218,
+    "sha256": "ec46a9e78415c2a0488918d418e5202d5d91060207eb5d78c7f76439d3896444"
+  },
+  {
+    "command": {
+      "action": 10,
+      "arrival": 3.729114751122852,
+      "decision_step": 1,
+      "departure": 2.5783283648558983,
+      "travel_dist": 0.33292660754367775,
+      "travel_time": 1.1507863862669538
+    },
+    "generated_at": 2.578328364855898,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 7,
+    "serialized_bytes": 246,
+    "sha256": "e6859fca7c18533cdddbc473710e751741aa44af4d7bf4d8105781c4005ae2e1"
+  },
+  {
+    "command": {
+      "action": 5,
+      "arrival": 5.286335818464859,
+      "decision_step": 2,
+      "departure": 3.3122558307908427,
+      "travel_dist": 0.496791211686786,
+      "travel_time": 1.9740799876740163
+    },
+    "generated_at": 3.3122558307908427,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 1,
+    "serialized_bytes": 244,
+    "sha256": "30d88e6f5173fce6ed5af9aed88a1b9d123aed7be28faff8248e0671a54847c4"
+  },
+  {
+    "command": {
+      "action": 15,
+      "arrival": 6.771237540255919,
+      "decision_step": 3,
+      "departure": 3.3265395438105254,
+      "travel_dist": 1.0658262936199734,
+      "travel_time": 3.444697996445394
+    },
+    "generated_at": 3.326539543810526,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 0,
+    "serialized_bytes": 244,
+    "sha256": "0b8d8469f9a737fb8fb390d81d24e646a4932d01d973a6c15ab0cd07db027806"
+  },
+  {
+    "command": {
+      "action": 4,
+      "arrival": 7.113064208314381,
+      "decision_step": 3,
+      "departure": 3.326539543810526,
+      "travel_dist": 0.806244391620834,
+      "travel_time": 3.7865246645038555
+    },
+    "generated_at": 3.326539543810526,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 8,
+    "serialized_bytes": 242,
+    "sha256": "a23e52d2e39c0b2e1e5c69192a99c08dc63cedddcd01abe4c16cf9cd48af8e2a"
+  },
+  {
+    "command": {
+      "action": 2,
+      "arrival": 10.954455339807101,
+      "decision_step": 4,
+      "departure": 6.0694701519324905,
+      "travel_dist": 1.3811802920486427,
+      "travel_time": 4.8849851878746104
+    },
+    "generated_at": 6.0694701519324905,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 2,
+    "serialized_bytes": 246,
+    "sha256": "da8a825f87d6cbcbb61cd3d5594f85c3ba50b04af7c14fb22fdc411573650c29"
+  },
+  {
+    "command": {
+      "action": 6,
+      "arrival": 10.625945794436362,
+      "decision_step": 4,
+      "departure": 6.069470151932491,
+      "travel_dist": 1.1460079984866813,
+      "travel_time": 4.55647564250387
+    },
+    "generated_at": 6.0694701519324905,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 6,
+    "serialized_bytes": 243,
+    "sha256": "88c35b92d5cca4531700c9d08c2cd91d2029fe8aebb83ef418c7389f0cb40809"
+  },
+  {
+    "command": {
+      "action": 1,
+      "arrival": 11.640783819751626,
+      "decision_step": 5,
+      "departure": 6.499567261989191,
+      "travel_dist": 1.3611699190961648,
+      "travel_time": 5.1412165577624345
+    },
+    "generated_at": 6.499567261989191,
+    "kind": "body",
+    "schema": 1,
+    "seq": 3,
+    "source": 7,
+    "serialized_bytes": 244,
+    "sha256": "043f017f1dc837861158004156c87f0b88d601d9ac2e72d1031e8f559b39ce95"
+  },
+  {
+    "command": {
+      "action": 8,
+      "arrival": 10.622398008033159,
+      "decision_step": 6,
+      "departure": 8.321442778786107,
+      "travel_dist": 1.2664354374702445,
+      "travel_time": 2.300955229247052
+    },
+    "generated_at": 8.321442778786107,
+    "kind": "body",
+    "schema": 1,
+    "seq": 3,
+    "source": 8,
+    "serialized_bytes": 243,
+    "sha256": "673751ec515e4dffd421ae3cb4644fb86bc3f36d74ff6f5491b5af7faf76ae12"
+  },
+  {
+    "command": {
+      "action": 9,
+      "arrival": 13.053989304696856,
+      "decision_step": 7,
+      "departure": 9.726927421760758,
+      "travel_dist": 1.2076196320348984,
+      "travel_time": 3.3270618829360976
+    },
+    "generated_at": 9.726927421760758,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 3,
+    "serialized_bytes": 244,
+    "sha256": "7a3f24284129712c8cb4d56c39f12d4ab946bf0f430f8bf25e9ab33aa340a909"
+  },
+  {
+    "command": {
+      "action": 9,
+      "arrival": 13.053989304696856,
+      "decision_step": 7,
+      "departure": 9.726927421760758,
+      "travel_dist": 1.1622035882740056,
+      "travel_time": 3.3270618829360976
+    },
+    "generated_at": 9.726927421760758,
+    "kind": "body",
+    "schema": 1,
+    "seq": 3,
+    "source": 1,
+    "serialized_bytes": 244,
+    "sha256": "9f872c96ef4c942afca7c56c83b5876b99cc783d44bd1e546b1a2884e978bfb6"
+  },
+  {
+    "command": {
+      "action": 7,
+      "arrival": 11.531054180338057,
+      "decision_step": 8,
+      "departure": 10.861842395110472,
+      "travel_dist": 1.1996686506654903,
+      "travel_time": 0.6692117852275844
+    },
+    "generated_at": 10.861842395110472,
+    "kind": "body",
+    "schema": 1,
+    "seq": 3,
+    "source": 0,
+    "serialized_bytes": 246,
+    "sha256": "79d108308f1d92178eb3018f04d9a0135466dd2661efe9a46dd6563051254972"
+  },
+  {
+    "command": {
+      "action": 3,
+      "arrival": 15.030090362497234,
+      "decision_step": 9,
+      "departure": 11.755292936522984,
+      "travel_dist": 1.800967483681531,
+      "travel_time": 3.2747974259742483
+    },
+    "generated_at": 11.755292936522984,
+    "kind": "body",
+    "schema": 1,
+    "seq": 3,
+    "source": 6,
+    "serialized_bytes": 245,
+    "sha256": "986292890b47c24a1d82ffa726a7d61a94988532cc738cc0aa40470d47d3b3d0"
+  },
+  {
+    "command": {
+      "action": 7,
+      "arrival": 14.2141944311081,
+      "decision_step": 10,
+      "departure": 12.064051793071046,
+      "travel_dist": 1.6964639650776552,
+      "travel_time": 2.1501426380370536
+    },
+    "generated_at": 12.064051793071046,
+    "kind": "body",
+    "schema": 1,
+    "seq": 4,
+    "source": 8,
+    "serialized_bytes": 245,
+    "sha256": "eec33fadc97827233566ddd3650e61a86abd664b1d6c013f16adcf80b6de51bb"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 15.507852088620714,
+      "decision_step": 11,
+      "departure": 13.765614550949387,
+      "travel_dist": 0.6968950150685309,
+      "travel_time": 1.7422375376713273
+    },
+    "generated_at": 13.765614550949387,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 5,
+    "serialized_bytes": 247,
+    "sha256": "cc03f68eadce3e45d77a47d315fc53c1a78680fbbcaf6d5db1b6322021a54759"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 16.648972017449875,
+      "decision_step": 11,
+      "departure": 13.765614550949389,
+      "travel_dist": 1.95785178534874,
+      "travel_time": 2.883357466500487
+    },
+    "generated_at": 13.765614550949387,
+    "kind": "body",
+    "schema": 1,
+    "seq": 3,
+    "source": 2,
+    "serialized_bytes": 244,
+    "sha256": "f10fe4f60d8f3c8895ba61f35b295dff48022ab308234f950e267613f0f028a9"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 17.5085167822825,
+      "decision_step": 12,
+      "departure": 14.836967960284518,
+      "travel_dist": 1.7339784150650865,
+      "travel_time": 2.671548821997981
+    },
+    "generated_at": 14.836967960284516,
+    "kind": "body",
+    "schema": 1,
+    "seq": 4,
+    "source": 0,
+    "serialized_bytes": 244,
+    "sha256": "88d29d916227fdc6c443b9308d1252c0e3d9c35f87dc7b068a6634101ef999ef"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 18.784243886485328,
+      "decision_step": 12,
+      "departure": 14.836967960284515,
+      "travel_dist": 2.4859191503178177,
+      "travel_time": 3.947275926200813
+    },
+    "generated_at": 14.836967960284516,
+    "kind": "body",
+    "schema": 1,
+    "seq": 5,
+    "source": 8,
+    "serialized_bytes": 246,
+    "sha256": "06fd92a4dc5cb5cad36e2f64251de552b6c7cae8436177fa11026f13ae019c8a"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 19.456036643339743,
+      "decision_step": 13,
+      "departure": 15.984604628760522,
+      "travel_dist": 1.901906034950743,
+      "travel_time": 3.4714320145792223
+    },
+    "generated_at": 15.98460462876052,
+    "kind": "body",
+    "schema": 1,
+    "seq": 3,
+    "source": 3,
+    "serialized_bytes": 245,
+    "sha256": "926b463a89b177cdeb847affa5c9cc2722ce94d472001c7053bc6f02fbad4e8b"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 20.034746763023648,
+      "decision_step": 13,
+      "departure": 15.98460462876052,
+      "travel_dist": 1.972232015126631,
+      "travel_time": 4.050142134263128
+    },
+    "generated_at": 15.98460462876052,
+    "kind": "body",
+    "schema": 1,
+    "seq": 4,
+    "source": 1,
+    "serialized_bytes": 243,
+    "sha256": "a1b6d639c54925f91e26ccb076aa09d81fe714dcbcd27f00d516d2d5027495a9"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 22.13215568580074,
+      "decision_step": 14,
+      "departure": 16.324413328351895,
+      "travel_dist": 2.9625159551713,
+      "travel_time": 5.807742357448845
+    },
+    "generated_at": 16.324413328351895,
+    "kind": "body",
+    "schema": 1,
+    "seq": 4,
+    "source": 6,
+    "serialized_bytes": 242,
+    "sha256": "35222acd09350809fc85234b238ed95eb3f09b74e31c188bc9edf5bd73309249"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 22.391609579060265,
+      "decision_step": 15,
+      "departure": 16.471094223671976,
+      "travel_dist": 2.5452729901738227,
+      "travel_time": 5.92051535538829
+    },
+    "generated_at": 16.471094223671976,
+    "kind": "body",
+    "schema": 1,
+    "seq": 4,
+    "source": 7,
+    "serialized_bytes": 245,
+    "sha256": "cf5676e3ea5f0468ccf642b9965fcdf668b84f890e0ad54d0e613312b03679f1"
+  },
+  {
+    "command": {
+      "action": 0,
+      "arrival": 20.14986682326788,
+      "decision_step": 15,
+      "departure": 16.471094223671976,
+      "travel_dist": 1.4715090398383626,
+      "travel_time": 3.678772599595906
+    },
+    "generated_at": 16.471094223671976,
+    "kind": "body",
+    "schema": 1,
+    "seq": 2,
+    "source": 4,
+    "serialized_bytes": 245,
+    "sha256": "99b6d32e8e89031f229837a354122fa75dfcd5fac477323373c9d9cffa65440c"
+  }
+]

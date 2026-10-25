@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-25",
+  "base_commit": "7b6b09c23333609ee428cd45e4e24fc77a08fc24",
+  "previous_tracked_files": 263,
+  "previous_files_unchanged": 263,
+  "archives": [
+    {
+      "path": "simulation/results/2026-10-25-E1-003-interface",
+      "files": 157,
+      "stored_and_decoded_and_raw_hashes_equal": true
+    },
+    {
+      "path": "simulation/results/2026-10-25-D-004-protocol",
+      "files": 18,
+      "stored_and_decoded_and_raw_hashes_equal": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "simulation/heteromrta_network.py",
+      "sha256": "1b1ef7d123adf9b3e1edf0a49d4e364bb6c2a2ddb8127ff41856a8abe6a061bd",
+      "syntax_valid": true,
+      "LF": true
+    },
+    {
+      "path": "simulation/test_heteromrta_network.py",
+      "sha256": "d842048bab8ca49892595549faca098c526a3be49646679995c088a622021d00",
+      "syntax_valid": true,
+      "LF": true
+    },
+    {
+      "path": "simulation/mocha_runtime_probe.py",
+      "sha256": "7b524d3555c56eeba28e292faf9299c6b3d1d28f855783ab2b121fb0c6f0af44",
+      "syntax_valid": true,
+      "LF": true
+    }
+  ],
+  "test_evidence": "simulation/results/2026-10-25-E1-003-interface/20261025-03/interface_tests.log",
+  "independent_review": "coordination/reviews/C-004.md",
+  "local_links_checked": 102,
+  "missing_local_links": [],
+  "active_experiment_processes": []
+}

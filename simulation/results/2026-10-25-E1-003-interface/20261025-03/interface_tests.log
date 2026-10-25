@@ -1,0 +1,16 @@
+test_body_transport_delay_and_local_self_visibility (simulation.test_heteromrta_network.IntentDeliveryTests.test_body_transport_delay_and_local_self_visibility) ... D:\Multi-Agent Network\data\heteromrta\upstream\env\task_env.py:121: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  'time': float(tasks_time[i, :]),
+ok
+test_branch_uses_receiver_copy_only (simulation.test_heteromrta_network.IntentDeliveryTests.test_branch_uses_receiver_copy_only) ... ok
+test_depot_action_zero_keeps_species_specific_route_id (simulation.test_heteromrta_network.IntentDeliveryTests.test_depot_action_zero_keeps_species_specific_route_id) ... ok
+test_error_or_changed_reference_cannot_pass_on_shadow_equality (simulation.test_heteromrta_network.IntentDeliveryTests.test_error_or_changed_reference_cannot_pass_on_shadow_equality) ... ok
+test_future_generation_rejected (simulation.test_heteromrta_network.IntentDeliveryTests.test_future_generation_rejected) ... ok
+test_global_mutation_and_enqueue_do_not_change_receiver (simulation.test_heteromrta_network.IntentDeliveryTests.test_global_mutation_and_enqueue_do_not_change_receiver) ... ok
+test_header_is_not_body_and_duplicate_is_idempotent (simulation.test_heteromrta_network.IntentDeliveryTests.test_header_is_not_body_and_duplicate_is_idempotent) ... ok
+test_out_of_order_intents_wait_for_missing_predecessor (simulation.test_heteromrta_network.IntentDeliveryTests.test_out_of_order_intents_wait_for_missing_predecessor) ... ok
+test_published_body_excludes_global_task_snapshot (simulation.test_heteromrta_network.IntentDeliveryTests.test_published_body_excludes_global_task_snapshot) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.061s
+
+OK

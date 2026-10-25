@@ -2,7 +2,7 @@
 
 本项目：Agent-Native Network。主目录：`D:\Multi-Agent Network`。
 
-五个独立角色聊天已创建并完成初始化回执验收。实际聊天与任务绑定见 [窗口登记](coordination/WINDOWS.md)，总控交接见 ORG-002 任务卡。002阶段的原baseline评估与组件审计已完成。当前按用户2026-10-25要求整理完整科研链条，范围见M-003/D-003/E2-003/C-003。
+五个独立角色聊天已创建并完成初始化回执验收。实际聊天与任务绑定见 [窗口登记](coordination/WINDOWS.md)，总控交接见 ORG-002 任务卡。002阶段的原baseline评估与组件审计已完成。003阶段科研框架已完成。S1接口与原协议实测已验收，M-004负责集成交付；结果和下一因果闭环入口见当前摘要。
 
 ## 五个窗口
 
@@ -35,4 +35,4 @@
 
 项目研究背景继续从[原 README](README.md)进入。`simulation/AGENT_COLLAB_PROTOCOL.md` 描述研究中的通信仿真，不是本机窗口协作规则。
 
-当前研究总入口为[科研与实验框架](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)。本轮不启动新实验；最新进展与交接见coordination/CURRENT.md及主任务卡。
+当前研究总入口为[科研与实验框架](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)。本轮按主任务卡开展有限预算的接口与协议运行；最新进展与交接见coordination/CURRENT.md。

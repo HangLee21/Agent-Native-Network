@@ -1,0 +1,66 @@
+{
+  "seed": 0,
+  "tasks": 15,
+  "initial_sha256": "f233e57b9a76975e845c5749520874a882cfb1596d2bcb632a9f08ddc06e262c",
+  "layer": "fixed_trajectory_shadow",
+  "status": "completed",
+  "reference_metrics": {
+    "success_rate": [
+      1.0
+    ],
+    "makespan": [
+      22.391609579060265
+    ],
+    "time_cost": [
+      7.59804545631486
+    ],
+    "waiting_time": [
+      2.7688618794201365
+    ],
+    "travel_dist": [
+      17.728080401061035
+    ],
+    "efficiency": [
+      2.2
+    ]
+  },
+  "reference_finished": true,
+  "reference_return_time": 22.391609579060265,
+  "reference_completed": 15,
+  "reference_returned": 9,
+  "reference_success": true,
+  "wall_seconds": 0.9324470999999903,
+  "shadow_summary": {
+    "0.0": {
+      "decisions": 31,
+      "observation_mismatch": 0,
+      "mask_mismatch": 0,
+      "branch_mismatch": 0,
+      "action_mismatch": 0,
+      "pending_deliveries": 0,
+      "blocked_intents": 0
+    },
+    "0.5": {
+      "decisions": 31,
+      "observation_mismatch": 25,
+      "mask_mismatch": 12,
+      "branch_mismatch": 0,
+      "action_mismatch": 11,
+      "pending_deliveries": 0,
+      "blocked_intents": 0
+    },
+    "2.0": {
+      "decisions": 31,
+      "observation_mismatch": 30,
+      "mask_mismatch": 17,
+      "branch_mismatch": 1,
+      "action_mismatch": 18,
+      "pending_deliveries": 0,
+      "blocked_intents": 0
+    }
+  },
+  "zero_delay_equivalent": true,
+  "command_bytes_once_per_publication": 7332,
+  "backdated_legacy_commands": [],
+  "archived_reference_equal": true
+}
