@@ -274,3 +274,13 @@ HeteroMRTA固定db51e29535e34bcaa8cb75f70be3fd28b0027988并恢复38,361,491字�
 MOCHA固定bfbde0d186d77278085b25a365bf735d5acdc6bd、AutoCast固定5a69701081dcda9741106ad749270dc27b647ee9、AutoCastSim固定其gitlink 10837c2a942e92312ea1a53697bc4513d9325454，86份文件记录双哈希。14项原AST组件探针通过；AutoCast控制Beacon可包含点云，示例10/1000点对应653/17483字节；原发送预算在两个60ms对象后退出，累计120ms。默认中央控制缓存及直接数据写缓存已定位，完整ROS2/CARLA和无线竞争没有运行。
 
 C独立核对任务能力约束、返回时间、动作mask、完整分母、种子/源码哈希，以及组件代码和序列化字节；2项执行安全测试通过。原始结果、代码快照和失败诊断采纳至simulation/results/2026-10-23-E1-002-heteromrta及2026-10-23-D-002-network-components。详细限制与恢复命令见HETEROMRTA_REPRODUCTION.md和NETWORK_BASELINE_RUNTIME.md。75份既有结果另以接手哈希核对，未覆盖。下一阶段围绕送达缓存、同步成本和消息队列进入机制实验。
+
+## 28. 完整科研链条与实验框架（2026-10-25）
+
+按用户要求建立[RESEARCH_EXPERIMENT_CHAIN](RESEARCH_EXPERIMENT_CHAIN.md)，统一现场需求、论文进展、研究问题、初步理论模型、算法构思、数据、指标、消融与扩展实验、图表和实施顺序。配套资料为framework_20261025下的LITERATURE_FRONTIER、MODEL_ALGORITHM、EXPERIMENT_DESIGN。任务与审读见M-003/D-003/E2-003/C-003；本轮只读已有代码/结果，未运行仿真、训练或完整协议。
+
+新增定向检索发现更直接的2026工作：CommHG已包含接收缓存、查询/遥测及回复/控制竞争；AC-DMTA已按分配稳定性触发信息交换；Planned synchronization已有执行、观测和重新协商成本模型。研究据此采用更强比较对象，在相同问题下检验联合更新/发送的性能—成本、复杂度和动态适应改善。具体官方来源、版本与读取范围保存在文献分项；新来源本轮单列，不改变原P01–P38及BibTeX。
+
+数据分项核查HeteroMRTA、AutoCast/CARLA和SubT官方入口，区分原任务、统一网络适配、传感回放与救灾闭环。定义完成率/原makespan、含失败时间分数、空口与忙时、有效及时交付和未交付分母；规模实验分开控制面积、密度、任务量和无线资源。原实验结果保持原位，新方案没有填入预期性能数字。
+
+源码审读明确S1的关键工作：观测、mask和Worker的全局控制分支均需遵守消息可得性；保留同时间逐机器人微步用于零延迟回归；原location为派遣目的地，网络轨迹须另建；受限信息执行检查回溯出发问题。信息/计费四格先固定回放校准，闭环报告具体干预的总效应与交互。上述事项直接服务于后续结果的正确性，详细审读与修订记录见coordination/reviews/C-003.md。

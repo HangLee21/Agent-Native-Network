@@ -1,43 +1,31 @@
 # 当前摘要
 
-建立时间：2026-10-23（Asia/Shanghai）。本页由 M 更新；任务实时状态只看任务卡。
+更新：2026-10-25（Asia/Shanghai）。M维护摘要；任务实时状态以主任务卡为准。
 
 ## 本轮范围
 
-2026-10-23，用户已授权连续推进原baseline复现、机制分析和初步仿真，阶段完成后提交推送。M 已接管总控；E1-002 已完成20次正常配对评估及1次失败诊断，D-002 已完成14项原组件探针，C-002 已独立验收，M-002 已完成归档，阶段提交361f5e2已推送origin/codex/baseline-reproduction-20261023。使用本聊天内临时子代理完成分工，长期角色聊天未唤醒。
+用户要求完整科研链条：近期论文与研究位置、需求事实、可实施和可拓展点、算法创新、初步模型、数据、指标及实验产出。任务为[M-003](tasks/M-003.md)、[D-003](tasks/D-003.md)、[E2-003](tasks/E2-003.md)、[C-003](tasks/C-003.md)。总文档见[科研与实验框架](../research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)。本轮设计和来源核查已完成，C-003终审通过，M完成文档集成；不运行新仿真或训练。
 
-## 本机已核实的起点
+M在本聊天统筹，使用临时D/E2/C子代理分工。长期角色聊天未唤醒；写入路径按任务卡独占。阶段提交由M串行操作。
 
-- 主目录：`D:\Multi-Agent Network`。
-- 远端：`git@github.com:HangLee21/Agent-Native-Network.git`。
-- 建立架构前：`main`，提交 `e724f7a557cf322280f252d394cb8533c8663fc7`，工作区干净。
-- 本次 clone 存在研究文档、仿真源码与已跟踪的历史结果；未找到 `.venv/`、`data/`、`simulation/outputs/`。
-- 上述信息是建立时快照。组织文件当前为本地新增/修改；后续接手必须重新检查 Git 状态。
+## 工作副本与已有实测
 
-## 研究主线：从既有文档读取
+- 主目录：`D:/Multi-Agent Network`；远端：`git@github.com:HangLee21/Agent-Native-Network.git`。
+- 当前工作分支：`codex/baseline-reproduction-20261023`；本轮起始提交`dde4cff`，进入本轮时工作区干净。
+- E1-002：9机器人、15/20任务各5个配对种子，原权重/作者Greedy共20次正常运行全部完成并返回；均值分别为21.408737/24.030662与25.900583/32.299929，单位为模拟器时间。
+- 作者Greedy候选选择问题及单行修改导致驻地循环的失败诊断完整保留；该差距不是网络机制结果。
+- D-002：固定MOCHA/AutoCast源码，14项原组件探针通过；完整ROS2/CARLA及无线任务效果尚未运行。
+- 环境：`.venv`复用Python3.11系统库，源码与权重位于`data/`；均为忽略目录，不随clone复制。恢复步骤见[HeteroMRTA报告](../research/agent_native_network/HETEROMRTA_REPRODUCTION.md)与[通信组件报告](../research/agent_native_network/NETWORK_BASELINE_RUNTIME.md)。
+- 采纳结果：`simulation/results/2026-10-23-E1-002-heteromrta/`、`simulation/results/2026-10-23-D-002-network-components/`；独立审查[C-002](reviews/C-002.md)。阶段提交`361f5e2`及交接提交`dde4cff`已推送。
 
-当前方向是具身集群中协作状态维护与任务消息共享无线资源的扩展性问题；HeteroMRTA 原策略/Greedy 小实例配对为近期实验入口，MOCHA 与 AutoCast 分别提供通信机制和任务价值调度参照。以上属于仓库记录，未在本机复现。
+## 下一实现入口
 
-研究优先级仍由 [NEXT_STEPS 第 0 节](../research/agent_native_network/NEXT_STEPS.md)和[研究问题分析](../research/agent_native_network/RESEARCH_GAPS.md)提供；本页不另建一份研究路线。
+按总框架S1建立实际送达缓存；远端观测与mask遵守同一信息条件，先通过零延迟等价，再进入更新/发送与共享服务诊断。保留同一任务策略、同一规模的即时信息参照。文献和现场资料用于设计真实任务关系，初期实验采用可控仿真，后续再校准无线与设备实现。
 
-## 接手时容易混淆的地方
+## 历史记录的读取方式
 
-| 现有记录 | 本机应如何理解 |
-|---|---|
-| [任务筛查](../research/agent_native_network/TASK_SCHEDULING_SCREEN.md)称已有固定源码与环境初始化 | 历史记录；源码所在 `data/task_baseline_screen/` 本机缺失，权重评估仍未完成 |
-| [仿真 README](../simulation/README.md)称 `.venv` 已建、记录过 Python 故障 | 原环境叙述，不证明本机依赖可用；不要照抄旧机器判断 |
-| [下载检查脚本](../simulation/screen_task_baselines.py) | 按清单下载 `files`，不自动获取权重；会改写 `task_baseline_smoke.json` |
-| [agent_collab](../simulation/agent_collab.py)、[rescue_graph](../simulation/rescue_graph.py)及相应 audit 脚本 | 存在固定历史结果路径，执行前检查写入，不能直接作为只读审计命令 |
-| 研究目录中的 AGENT_COLLAB 文档 | 研究对象的通信协作模型，与本机角色窗口分工分开阅读 |
+首次clone时缺少`.venv/data/outputs`是建立时快照；002阶段已恢复所需环境与资产。TASK_SCHEDULING_SCREEN中“权重未评估”、旧方案中“组件未运行”的状态以本页链接的运行报告替代。
 
-## 下次恢复
+M-001只统计旧CSV，不属于新仿真。旧D-001/E1-001/E2-001/C-001保留历史待办，当前任务由新卡承接。找矿及救灾先导结果保留原位，用作历史证据。旧脚本可能固定写入结果路径，运行前仍须检查；新的实验均使用任务ID/run-id空目录。
 
-先读 M-002/E1-002/D-002/C-002 的主任务卡和交接记录。旧四张待办卡的范围由新卡承接，避免重复启动。M-001只统计了历史CSV，不能视为本机仿真或HeteroMRTA复现；其证据在simulation/outputs/M-001/20261023-01/。
-
-## 本轮实际产物
-
-- HeteroMRTA：9机器人、15/20任务各5种子，两策略全部完成并返回；均值21.408737/24.030662与25.900583/32.299929。原Greedy实现问题和单行修复失败已记录。
-- MOCHA/AutoCast：固定源码及14项组件探针；完整ROS2/CARLA/无线协议任务未运行。
-- 当前环境：.venv使用Python3.11系统库，权重/源码在data；这些目录Git忽略，不随clone复制。恢复命令见两份研究运行报告。
-- 归档：simulation/results/2026-10-23-E1-002-heteromrta/、2026-10-23-D-002-network-components/；审查coordination/reviews/C-002.md。
-- 无活动计算或后台队列。下一步：即时信息/送达缓存接口的零延迟等价检查，再比较更新触发与消息队列；Greedy变体先明确定义回站与等待。
+当前无仿真、训练或后台队列。下次接手先核实Git、任务卡和进程，再按当前授权继续。

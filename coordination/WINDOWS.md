@@ -31,3 +31,7 @@ D-001、E1-001、E2-001、C-001 保持 backlog。角色窗口仅收到任务上�
 恢复提示词：
 
 > 你接手角色 <角色>。主目录为 D:\Multi-Agent Network。先读 AGENTS.md、START_HERE.md、coordination/roles/<角色>.md、coordination/CURRENT.md 和指定任务卡 <任务ID>。核实当前工作副本和交接检查点，简述当前状态、可写范围、下一步；只继续该任务已经授权的工作。若仍为 backlog，报告待办范围后等待，不启动实验。不要重读全部历史聊天。
+
+## 2026-10-25 科研框架阶段
+
+用户要求完整科研链条。M在本聊天集成M-003；临时子代理/root/network承接D-003，/root/heteromrta以E2角色承接E2-003，/root/audit承接C-003。对应独占写入范围见任务卡。长期角色聊天保持原登记，本轮没有跨聊天派发。起始提交dde4cff，分支codex/baseline-reproduction-20261023；进入本轮时工作区干净。

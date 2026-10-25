@@ -1,0 +1,12 @@
+version: 1
+submission_stage: draft
+language: zh
+task_scope: multi_section
+task_mode: writing
+evidence_structure: multi_role
+scopes: [writing]
+artifacts: [prose, paper_outline]
+features: [paper_prose, related_work, contribution_list, evaluation_section]
+approved_citation_sources: [official_papers, author_repositories, local_results, user_notes]
+provenance:
+  submission_stage: user

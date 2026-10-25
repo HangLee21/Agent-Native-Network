@@ -1,9 +1,9 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V1.7，2026-10-23（Asia/Shanghai）
+**版本：** V1.8，2026-10-25（Asia/Shanghai）
 
-**状态：** 结合新增综述，核心问题收敛为具身集群扩展时的协作状态维护与任务数据服务：二者共同竞争动态无线资源，状态过时与同步开销会影响协作收益。已定向核查7篇网络调度文献，并明确原baseline复现、开销/观测诊断和规模实验顺序。
+**状态：** 当前以[完整科研与实验框架](RESEARCH_EXPERIMENT_CHAIN.md)为总入口，串起现场需求、最新论文、初步理论模型、算法构思、数据来源、指标和实验产出。核心问题仍是具身集群扩展时，协作状态维护与任务消息如何共享动态无线资源。近期论文核查、模型推导和实验设计详表位于[本轮资料目录](framework_20261025/)。
 
 最新：[核心问题分析与最小模型](RESEARCH_GAPS.md#scalability-core)、[综述原文核查](RELATED_WORK.md#survey-network-screen)、[网络baseline角色](AGENT_COLLAB_BASELINES.md)。[任务调度筛查](TASK_SCHEDULING_SCREEN.md)中的HeteroMRTA仍作为首个学习任务执行器，已完成源码固定、原权重与作者Greedy小实例配对评估；AutoCast、MGF、C-MASS、CoSMO等提供网络侧对照。此前[自建模型](AGENT_COLLAB_MODEL.md)和[8640次机制实验](../../simulation/results/2026-10-22-agent-collab-v1/INTERPRETATION.md)保留为辅助工具。
 

@@ -2,7 +2,7 @@
 
 **Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence**
 
-面向自主推理边缘设备的去中心化无线网络研究。更新：2026-10-23。
+面向自主推理边缘设备的去中心化无线网络研究。更新：2026-10-25。
 
 本机多窗口协作从 [START_HERE.md](START_HERE.md) 进入：角色分工、任务卡、目录归属和新窗口交接见该入口。
 
@@ -16,6 +16,7 @@
 
 | 内容 | 文档 |
 |---|---|
+| 当前完整科研链条：背景、近期论文、模型算法、数据指标与实验产出 | [科研与实验框架](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md) |
 | 核心问题、文献依据、最小数学模型 | [研究问题分析](research/agent_native_network/RESEARCH_GAPS.md#scalability-core) |
 | 立足点、baseline、优化层次与评价指标 | [首轮研究方案](research/agent_native_network/AGENT_COLLAB_BASELINES.md#first-study) |
 | 新增综述涉及的7篇重点文献核查 | [文献补查表](research/agent_native_network/RELATED_WORK.md#survey-network-screen) |
@@ -27,7 +28,7 @@
 
 ## 当前进度
 
-- 已完成首轮原代码配对评估与通信组件审计；新网络机制进入接口实现阶段。
+- 已完成首轮原代码配对评估与通信组件审计；当前建立完整科研与实验框架，下一实现入口为送达缓存与零延迟等价检查。
 - [HeteroMRTA原权重与作者Greedy](research/agent_native_network/HETEROMRTA_REPRODUCTION.md)：9机器人、15/20任务各5种子，20次正常运行全部完成并返回驻地；另保留Greedy单行修改失败诊断。
 - [MOCHA/AutoCast](research/agent_native_network/NETWORK_BASELINE_RUNTIME.md)：固定源码，14项原函数组件探针通过；完整ROS2/CARLA协议与任务运行尚待开展。
 - 主文献表已登记38篇；新增综述的7篇定向核查及7组任务调度候选分别记录，尚未合并主表。
