@@ -23,3 +23,11 @@ simulation/results/2026-10-25-E1-003-interface/** -text whitespace=blank-at-eol,
 simulation/results/2026-10-25-D-004-protocol/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 simulation/results/2026-10-25-E1-004-causal/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 simulation/results/2026-10-25-E2-005-service/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+simulation/results/2026-10-26-E1-005-demand/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Documents whose exact bytes are referenced by the demand audit.
+research/agent_native_network/DEMAND_CENSUS.md text eol=lf
+research/agent_native_network/DEMAND_DRIVEN_RESEARCH_CHAIN.md text eol=lf
+research/agent_native_network/CAUSAL_SERVICE_STAGE.md text eol=lf
+research/agent_native_network/demand_20261026/* text eol=lf
+coordination/reviews/C-007* text eol=lf
+coordination/reviews/M-007* text eol=lf

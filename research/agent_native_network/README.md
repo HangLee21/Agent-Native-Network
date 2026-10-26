@@ -1,9 +1,9 @@
 # Agent-Native 去中心化无线网络研究
 
 **研究题目：** Agent-Native Decentralized Wireless Networking for Collaborative Edge Intelligence  
-**版本：** V2.0，2026-10-25（Asia/Shanghai）
+**版本：** V2.1，2026-10-26（Asia/Shanghai）
 
-**状态：** 当前以[动态网络可扩展性全面分析](SCALABILITY_COMPREHENSIVE_ANALYSIS.md)为总入口，研究规模—负载—实际网络服务—任务反馈，目标是在相同资源下扩大有效协作的达标运行域。[本轮证据与模型](scalability_20261025/)承接用户对可靠服务假设与扩展性的矫正；[首版科研链条](RESEARCH_EXPERIMENT_CHAIN.md)及其[详细资料](framework_20261025/)保留为实施基础。
+**状态：** 当前以[需求驱动研究链条](DEMAND_DRIVEN_RESEARCH_CHAIN.md)为总入口，研究多态团队实际任务中的信息依赖，以及团队和任务扩展后的维护与传输成本。已新增[应用需求](demand_20261026/APPLICATION_REQUIREMENTS.md)、[工作负载合同](demand_20261026/WORKLOAD_CONTRACT.json)和[原生账本复算](DEMAND_CENSUS.md)。[动态网络可扩展性全面分析](SCALABILITY_COMPREHENSIVE_ANALYSIS.md)及其[模型](scalability_20261025/)保留为候选机制参考；[首版科研链条](RESEARCH_EXPERIMENT_CHAIN.md)及其[详细资料](framework_20261025/)保留为实施基础。当前验收状态见[CURRENT](../../coordination/CURRENT.md)。
 
 最新：[核心问题分析与最小模型](RESEARCH_GAPS.md#scalability-core)、[综述原文核查](RELATED_WORK.md#survey-network-screen)、[网络baseline角色](AGENT_COLLAB_BASELINES.md)。[任务调度筛查](TASK_SCHEDULING_SCREEN.md)中的HeteroMRTA仍作为首个学习任务执行器，已完成源码固定、原权重与作者Greedy小实例配对评估；AutoCast、MGF、C-MASS、CoSMO等提供网络侧对照。此前[自建模型](AGENT_COLLAB_MODEL.md)和[8640次机制实验](../../simulation/results/2026-10-22-agent-collab-v1/INTERPRETATION.md)保留为辅助工具。
 
@@ -21,7 +21,9 @@
 
 ## 当前证据与实现状态
 
-最新完成[因果闭环与共享服务诊断](CAUSAL_SERVICE_STAGE.md)：58个任务回合和6次固定业务回放，真实执行缓存动作，完成现场能力与运动约束、局部观测和共同FIFO服务。10个原实例在因果instant下均完成；正延迟中的两例失败定位到并发能力分散与恢复规则，FIFO成功样例呈现服务—行动—维护负载反馈。下一步建立共同错相/恢复与限速强对照，再开展更新和发送机制比较。
+最新需求复算读取006主45回合，其中10个instant作为原生样本，另外35个为服务条件诊断；没有新增任务策略运行。固定9节点的既有数据不能给出规模失效边界，静态catalog也没有计入发现与协作者查找成本。下一步先补需求/消费记录及共同恢复条件，再用任务扩展产生业务，测量现有网络机制的实际成本与任务后果。
+
+此前完成[因果闭环与共享服务诊断](CAUSAL_SERVICE_STAGE.md)：58个任务回合和6次固定业务回放，真实执行缓存动作，完成现场能力与运动约束、局部观测和共同FIFO服务。10个原实例在因果instant下均完成；正延迟中的两例失败定位到并发能力分散与恢复规则，FIFO成功样例呈现服务—行动—维护负载反馈。
 主表已登记 **38篇**，引用与证据等级对应P01–P38。本轮另定向核查综述中的7篇候选：6篇方法原文、CORA为作者机构摘要；任务调度另有7组筛查结果，两部分尚未合并主表。HAFS P26是已确认的严格A类实例，其部署特征和其他系统差异见文献矩阵。矩阵用于描述系统，具体研究贡献通过方法与结果比较。
 
 [HeteroMRTA原权重与作者Greedy评估](HETEROMRTA_REPRODUCTION.md)已完成9机器人、15/20任务各5种子，共20次正常运行全部成功，另记录单行Greedy诊断失败。[HeteroMRTA送达缓存](HETEROMRTA_NETWORK_INTERFACE.md)完成10实例384个决策点零延迟等价，并测得0.5/2模拟时间延迟分别改变138/215次影子动作。[MOCHA原协议运行](MOCHA_RUNTIME_ENTRY.md)通过18项双进程回环检查，原状态机、SMACH、DB与ZeroMQ路径均实际执行。此前[MOCHA/AutoCast组件核查](NETWORK_BASELINE_RUNTIME.md)的14项探针保留。闭环应用服务任务性能现已由E1-004测量；完整ROS/CARLA与竞争无线仍待测量，CoSMO、MGF、C-MASS按任务兼容条件接入。旧[阶段判断](../../coordination/reviews/M-004-interpretation.md)保留，最新实测和优先级以上述新报告为准。

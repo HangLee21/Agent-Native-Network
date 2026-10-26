@@ -8,15 +8,16 @@
 
 ## 当前研究问题
 
-面向无人机、机器狗等具身设备组成的动态集群，研究规模、协作关系与数据负载增长怎样改变无线网络的实际服务，以及如何联合维护协作信息和调度任务消息，在相同资源下扩大有效协作的运行范围。救灾空地协作为当前应用入口。
+面向无人机、机器狗等不同形态、能力和工作方式的自主设备，研究共同任务产生的信息依赖，以及设备、作业区域和协作需求扩展后，如何用合理的维护与传输成本保持任务收益。救灾空地协作为当前应用入口。网络排队和交付变化由实际业务与网络执行产生，服务率扫描用于辅助诊断。
 
-已有工作提供问题依据与baseline。研究关注同一问题中的机制、算法、理论、性能和成本改进。首轮从状态更新与消息发送联合控制开展实验，保留MAC、PHY、路由及跨层优化空间。
+已有工作提供问题依据与baseline。研究关注同一问题中的机制、算法、理论、性能和成本改进。已建立状态更新与消息服务实验接口；具体机制依据需求与测量选择，保留MAC、PHY、路由及跨层优化空间。
 
 ## 阅读入口
 
 | 内容 | 文档 |
 |---|---|
-| 当前全面分析：扩展性、内生网络服务、创新位置、模型和实验 | [可扩展性全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md) |
+| 当前总入口：多态协作需求、原生信息账本、扩展实验与机制选择 | [需求驱动研究链条](research/agent_native_network/DEMAND_DRIVEN_RESEARCH_CHAIN.md) |
+| 网络服务模型、候选算法及此前全面分析 | [可扩展性全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md) |
 | 首版完整科研链条与详细实施基础 | [科研与实验框架](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md) |
 | 核心问题、文献依据、最小数学模型 | [研究问题分析](research/agent_native_network/RESEARCH_GAPS.md#scalability-core) |
 | 立足点、baseline、优化层次与评价指标 | [首轮研究方案](research/agent_native_network/AGENT_COLLAB_BASELINES.md#first-study) |
@@ -29,7 +30,9 @@
 
 ## 当前进度
 
-- 已完成[因果闭环与共享服务诊断](research/agent_native_network/CAUSAL_SERVICE_STAGE.md)：58任务回合、6固定回放，实际执行各节点缓存动作；10项因果测试和10项服务测试通过。识别初始并发分派/恢复失配，以及服务改变行动后增加维护负载两条机制。下一步先建立共同错相/恢复强对照，再比较更新与发送机制。
+- 本轮完成需求起点梳理与[原生信息/维护成本复算](research/agent_native_network/DEMAND_CENSUS.md)：只读45个既有主回合，以10个instant实例描述能力需求和消息结构。应用来源与[工作负载合同](research/agent_native_network/demand_20261026/WORKLOAD_CONTRACT.json)分别记录现场事实和拟议适配；验收状态见coordination/CURRENT.md。下一实施先补需求/消费账本和共同执行条件，再从实际任务扩展产生负载。
+
+- 已完成[因果闭环与共享服务诊断](research/agent_native_network/CAUSAL_SERVICE_STAGE.md)：58任务回合、6固定回放，实际执行各节点缓存动作；10项因果测试和10项服务测试通过。识别初始并发分派/恢复失配，以及服务改变行动后增加维护负载两条机制。共同错相/恢复仍是后续公平对照的实现条件；研究顺序以上述需求链条为准。
 - 已完成[扩展性主线全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)：主目标为同资源下扩大达标运行域。005阶段的分析及S1接口结果保留，后续006实测见上述新报告。
 - [HeteroMRTA通信接口](research/agent_native_network/HETEROMRTA_NETWORK_INTERFACE.md)：S1保留10实例、384决策点零延迟等价，以及延迟改变影子动作的诊断；E1-004另建上述因果执行入口，原结果不改写。
 - [MOCHA原协议运行](research/agent_native_network/MOCHA_RUNTIME_ENTRY.md)：原状态机、SMACH与ZeroMQ双进程回环18项检查通过。阶段判断与下一实验入口见[M-004](coordination/reviews/M-004-interpretation.md)。

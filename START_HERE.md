@@ -35,4 +35,4 @@
 
 项目研究背景继续从[原 README](README.md)进入。`simulation/AGENT_COLLAB_PROTOCOL.md` 描述研究中的通信仿真，不是本机窗口协作规则。
 
-当前研究总入口为[可扩展性全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)，首版[科研链条](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)保留。M-005分析阶段已结束；用户后续授权的M-006因果闭环与服务诊断完成58任务回合、6固定回放，见[阶段结果](research/agent_native_network/CAUSAL_SERVICE_STAGE.md)。最新验收与交接见coordination/CURRENT.md；各阶段实验预算互不自动延续。
+当前研究总入口为[需求驱动研究链条](research/agent_native_network/DEMAND_DRIVEN_RESEARCH_CHAIN.md)：以多态团队的实际协作需求和扩展为起点，按需求与成本测量选择网络机制。[可扩展性全面分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)及首版[科研链条](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)保留为模型和实现参考。M-006完成58任务回合、6固定回放，见[阶段结果](research/agent_native_network/CAUSAL_SERVICE_STAGE.md)；M-007只读其中45个主回合建立[需求与成本账本](research/agent_native_network/DEMAND_CENSUS.md)。最新验收与交接见coordination/CURRENT.md；各阶段实验预算互不自动延续。

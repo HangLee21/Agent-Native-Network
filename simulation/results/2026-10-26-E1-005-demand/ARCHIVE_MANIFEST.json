@@ -1,0 +1,80 @@
+{
+  "task": "M-007",
+  "date": "2026-10-26",
+  "mode": "byte-for-byte copy",
+  "originals_retained": true,
+  "files": [
+    {
+      "source": "simulation/outputs/E1-005/20261026-01-census/cases.csv",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/cases.csv",
+      "bytes": 10740,
+      "sha256": "79fedf8ab00ef5d2d6c2a81a0d1ed7bf2eb24403a72a5fc949de55112f55fe17"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-01-census/groups.csv",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/groups.csv",
+      "bytes": 2027,
+      "sha256": "ec66a59fa05f8c890ca5fc6fe1628dce170b3a59896ba8b4741161b5e7149dd3"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-01-census/manifest.json",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/manifest.json",
+      "bytes": 120073,
+      "sha256": "18c46824e3405fea7d1f3ede7ac19fa19a4ed0a30f51ad65351996a4bf5a8759"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-01-census/message_causes.csv",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/message_causes.csv",
+      "bytes": 7604,
+      "sha256": "4076b369edce26e5dcf70151163a3e1a9bb2708af0196ff09038f3f28e96489c"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-01-census/messages.csv",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/messages.csv",
+      "bytes": 1177683,
+      "sha256": "68786acb64a23f9a7676d6893006f96a2018d7f130359a67ea5f70b7acf4a3a4"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-01-census/summary.json",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/summary.json",
+      "bytes": 14376,
+      "sha256": "089703e4f9a9c9fac966d0cc9297eb187119ac34cd02c5b845112166f5cca68e"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-01-census/task_coalitions.csv",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/task_coalitions.csv",
+      "bytes": 92724,
+      "sha256": "e962bccb5170d47d450aabdf5e5b76b542df7d3e168db1c9902f1232e9d8b258"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-02-verification/demand_census.py",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-02-verification/demand_census.py",
+      "bytes": 20267,
+      "sha256": "9c74e34dffc3c6ec4a6bcce37eeeb19c96089f5d545f842d948c71768dd353c9"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-02-verification/test_demand_census.py",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-02-verification/test_demand_census.py",
+      "bytes": 2700,
+      "sha256": "82d14e0503e66bd3b7e4beef6528cef3145131d46cf3cae3ed0ea9e231c621f4"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-02-verification/tests.stderr.txt",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-02-verification/tests.stderr.txt",
+      "bytes": 803,
+      "sha256": "4effc03fb8531c3464f6dd0ef457d5faab737d52778c25a54960972b1540eedc"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-02-verification/tests.stdout.txt",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-02-verification/tests.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-005/20261026-02-verification/verification.json",
+      "stored": "simulation/results/2026-10-26-E1-005-demand/20261026-02-verification/verification.json",
+      "bytes": 692,
+      "sha256": "776ba7ad2b5d9d5de53b66069d2627724540d0c541e96e243af2aab6c6c96200"
+    }
+  ]
+}

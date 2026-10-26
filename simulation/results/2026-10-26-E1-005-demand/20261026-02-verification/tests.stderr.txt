@@ -1,0 +1,10 @@
+test_complementary_and_infeasible_capabilities (simulation.test_demand_census.CensusTests.test_complementary_and_infeasible_capabilities) ... ok
+test_generalist_prevents_assumed_team_requirement (simulation.test_demand_census.CensusTests.test_generalist_prevents_assumed_team_requirement) ... ok
+test_local_scene_is_not_network_reference (simulation.test_demand_census.CensusTests.test_local_scene_is_not_network_reference) ... ok
+test_pair_birth_and_departure (simulation.test_demand_census.CensusTests.test_pair_birth_and_departure) ... ok
+test_replaced_version_is_not_counted_as_referenced (simulation.test_demand_census.CensusTests.test_replaced_version_is_not_counted_as_referenced) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
