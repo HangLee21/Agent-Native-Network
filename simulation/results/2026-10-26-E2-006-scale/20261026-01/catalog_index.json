@@ -1,0 +1,177 @@
+{
+  "schema_version": "ann.scale-catalog-index.v1",
+  "cases": [
+    {
+      "case_id": "seed-005-n009-t015",
+      "seed": 5,
+      "agents": 9,
+      "tasks": 15,
+      "families": [
+        "fixed_total_15",
+        "fixed_tasks_per_agent_5_over_3"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n009-t015\\catalog.json",
+      "catalog_sha256": "1980fed559426598a232bc3cb2acab0684b3db9f464711a9106549d46814770f",
+      "canonical_sha256": "c64ec05bc98ef7cc19b2bc0837a36851dc7451c8489bbf1d6b1e20efba31bd0c",
+      "master_catalog_sha256": "c77d118566480de00590d0ade709c8a0852cf96b1694e41d20aa965cf0ca9277",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n009-t015\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n009-t015\\probe.json"
+    },
+    {
+      "case_id": "seed-005-n018-t015",
+      "seed": 5,
+      "agents": 18,
+      "tasks": 15,
+      "families": [
+        "fixed_total_15"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n018-t015\\catalog.json",
+      "catalog_sha256": "2d61092b20bd84a78fb45345b6f4bfae2b95e09e71d686f58d8a131473e38e5f",
+      "canonical_sha256": "a0e3241cbc590d77c14364fe625be2a2dd58c8c512908c8b5c618bb9a4b6c299",
+      "master_catalog_sha256": "c77d118566480de00590d0ade709c8a0852cf96b1694e41d20aa965cf0ca9277",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n018-t015\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n018-t015\\probe.json"
+    },
+    {
+      "case_id": "seed-005-n036-t015",
+      "seed": 5,
+      "agents": 36,
+      "tasks": 15,
+      "families": [
+        "fixed_total_15"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n036-t015\\catalog.json",
+      "catalog_sha256": "9503df3e4b817b8be48a6be0d809bd4dc861775420d52a7f98dff1050366d9f7",
+      "canonical_sha256": "50c5ef0be76f2f51abaaa686778daea0adb4071be52c2409d0ecb2616ca6ee19",
+      "master_catalog_sha256": "c77d118566480de00590d0ade709c8a0852cf96b1694e41d20aa965cf0ca9277",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n036-t015\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n036-t015\\probe.json"
+    },
+    {
+      "case_id": "seed-005-n018-t030",
+      "seed": 5,
+      "agents": 18,
+      "tasks": 30,
+      "families": [
+        "fixed_tasks_per_agent_5_over_3"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n018-t030\\catalog.json",
+      "catalog_sha256": "52a9594832377e4492adb2faf6d4e735b06169290ddbc20cf72bdc3a0ab8b642",
+      "canonical_sha256": "f494c0d5f3ccbfec38dee12b451c8eec2be80bf795ee1e9d47c0bd585dfb19dc",
+      "master_catalog_sha256": "c77d118566480de00590d0ade709c8a0852cf96b1694e41d20aa965cf0ca9277",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n018-t030\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n018-t030\\probe.json"
+    },
+    {
+      "case_id": "seed-005-n036-t060",
+      "seed": 5,
+      "agents": 36,
+      "tasks": 60,
+      "families": [
+        "fixed_tasks_per_agent_5_over_3"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n036-t060\\catalog.json",
+      "catalog_sha256": "929286b353af051cbed16af02d21faaf1e642b7bd56d8eb87c7d795710ef4380",
+      "canonical_sha256": "98a64dddd22823f868a69baa8662346ad62d5862b7942dcbaa0be2ebdacd2da3",
+      "master_catalog_sha256": "c77d118566480de00590d0ade709c8a0852cf96b1694e41d20aa965cf0ca9277",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n036-t060\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-005-n036-t060\\probe.json"
+    },
+    {
+      "case_id": "seed-006-n009-t015",
+      "seed": 6,
+      "agents": 9,
+      "tasks": 15,
+      "families": [
+        "fixed_total_15",
+        "fixed_tasks_per_agent_5_over_3"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n009-t015\\catalog.json",
+      "catalog_sha256": "3aad3e80714825821ea0ab7d7c0e97219cbea35505aecb5db012777503eee5b4",
+      "canonical_sha256": "4a4bec24df5e926372ddc2d4ec39c73f77bb315c99cd409544a0d2840212f469",
+      "master_catalog_sha256": "c09d92904ef86cdb671c09408ed485286c09f64b6426e933ec9ffcf5e7b519d0",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n009-t015\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n009-t015\\probe.json"
+    },
+    {
+      "case_id": "seed-006-n018-t015",
+      "seed": 6,
+      "agents": 18,
+      "tasks": 15,
+      "families": [
+        "fixed_total_15"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n018-t015\\catalog.json",
+      "catalog_sha256": "4a4b8ee01d76d6d82d7ef05c0808a9bb26e7edd1814e70f116f38b6b178eb259",
+      "canonical_sha256": "ddd6e999ef9a938299d5c1f7f91ca6b9535aed88ec9b1692edd0f5592ca55113",
+      "master_catalog_sha256": "c09d92904ef86cdb671c09408ed485286c09f64b6426e933ec9ffcf5e7b519d0",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n018-t015\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n018-t015\\probe.json"
+    },
+    {
+      "case_id": "seed-006-n036-t015",
+      "seed": 6,
+      "agents": 36,
+      "tasks": 15,
+      "families": [
+        "fixed_total_15"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n036-t015\\catalog.json",
+      "catalog_sha256": "ec4b62c0fae92ec65eee68c14eedc0bc09697b0c33a5901eeb8f9d69fe0f7ddd",
+      "canonical_sha256": "edb0a2d0399168877675f46e5b68df10e65a738739f9a05218c29eb4b04a7ee4",
+      "master_catalog_sha256": "c09d92904ef86cdb671c09408ed485286c09f64b6426e933ec9ffcf5e7b519d0",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n036-t015\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n036-t015\\probe.json"
+    },
+    {
+      "case_id": "seed-006-n018-t030",
+      "seed": 6,
+      "agents": 18,
+      "tasks": 30,
+      "families": [
+        "fixed_tasks_per_agent_5_over_3"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n018-t030\\catalog.json",
+      "catalog_sha256": "9d58e8265c430f7d13a1da9bfc004b8eb84c9317786d85df40a73da5e4bff132",
+      "canonical_sha256": "c1a361a611791e9d368edc3c3ce98972dd47412660141339e87d9e5c8ab32437",
+      "master_catalog_sha256": "c09d92904ef86cdb671c09408ed485286c09f64b6426e933ec9ffcf5e7b519d0",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n018-t030\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n018-t030\\probe.json"
+    },
+    {
+      "case_id": "seed-006-n036-t060",
+      "seed": 6,
+      "agents": 36,
+      "tasks": 60,
+      "families": [
+        "fixed_tasks_per_agent_5_over_3"
+      ],
+      "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n036-t060\\catalog.json",
+      "catalog_sha256": "132d5e5d2e65c2d76612e5e2d22a438f55bbeb76cc1f537f5284a1c18372b739",
+      "canonical_sha256": "741ed66971ed5d16791e3cbc31d6bf73f1d2f44013450ad74d4a858c0d88217d",
+      "master_catalog_sha256": "c09d92904ef86cdb671c09408ed485286c09f64b6426e933ec9ffcf5e7b519d0",
+      "pairing_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n036-t060\\pairing.json",
+      "probe_status": "passed",
+      "probe_process_exit_code": 0,
+      "probe_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n036-t060\\probe.json"
+    }
+  ]
+}

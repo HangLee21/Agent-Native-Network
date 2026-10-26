@@ -30,6 +30,8 @@
 
 ## 当前进度
 
+- 已完成[需求执行链条与首轮规模实验](research/agent_native_network/DEMAND_EXECUTION_STAGE.md)：运行时信息来源/决策/行动关联、共同恢复和9/18/36节点配对入口。30回合中旧规则10回归完全一致、共同恢复10/10成功、新规模10/10成功；固定任务数时更多设备缩短执行时间并增加维护业务，固定每节点任务时总业务随任务增长。下一轮接入明确无线条件，检验实际业务的承载边界。
+
 - 本轮完成需求起点梳理与[原生信息/维护成本复算](research/agent_native_network/DEMAND_CENSUS.md)：只读45个既有主回合，以10个instant实例描述能力需求和消息结构。应用来源与[工作负载合同](research/agent_native_network/demand_20261026/WORKLOAD_CONTRACT.json)分别记录现场事实和拟议适配；验收状态见coordination/CURRENT.md。下一实施先补需求/消费账本和共同执行条件，再从实际任务扩展产生负载。
 
 - 已完成[因果闭环与共享服务诊断](research/agent_native_network/CAUSAL_SERVICE_STAGE.md)：58任务回合、6固定回放，实际执行各节点缓存动作；10项因果测试和10项服务测试通过。识别初始并发分派/恢复失配，以及服务改变行动后增加维护负载两条机制。共同错相/恢复仍是后续公平对照的实现条件；研究顺序以上述需求链条为准。

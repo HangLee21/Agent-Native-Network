@@ -1,0 +1,492 @@
+{
+  "actors": {
+    "0": {
+      "mode": "waiting",
+      "target": 2,
+      "position": [
+        0.660050747548238,
+        0.7207721695546327
+      ],
+      "origin": [
+        0.07777792836489461,
+        0.8664392717878026
+      ],
+      "destination": [
+        0.660050747548238,
+        0.7207721695546327
+      ],
+      "departure": 0.0,
+      "arrival": 3.0010853896245906,
+      "changed_at": 3.0010853896245906,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 3,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 3.0010853896245906,
+          "origin": [
+            0.07777792836489461,
+            0.8664392717878026
+          ],
+          "destination": [
+            0.660050747548238,
+            0.7207721695546327
+          ],
+          "target": 2,
+          "distance": 0.6002170779249182
+        }
+      ],
+      "distance": 0.6002170779249182
+    },
+    "1": {
+      "mode": "waiting",
+      "target": 2,
+      "position": [
+        0.660050747548238,
+        0.7207721695546327
+      ],
+      "origin": [
+        0.07777792836489461,
+        0.8664392717878026
+      ],
+      "destination": [
+        0.660050747548238,
+        0.7207721695546327
+      ],
+      "departure": 0.0,
+      "arrival": 3.0010853896245906,
+      "changed_at": 3.0010853896245906,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 0,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 3.0010853896245906,
+          "origin": [
+            0.07777792836489461,
+            0.8664392717878026
+          ],
+          "destination": [
+            0.660050747548238,
+            0.7207721695546327
+          ],
+          "target": 2,
+          "distance": 0.6002170779249182
+        }
+      ],
+      "distance": 0.6002170779249182
+    },
+    "2": {
+      "mode": "waiting",
+      "target": 2,
+      "position": [
+        0.660050747548238,
+        0.7207721695546327
+      ],
+      "origin": [
+        0.07777792836489461,
+        0.8664392717878026
+      ],
+      "destination": [
+        0.660050747548238,
+        0.7207721695546327
+      ],
+      "departure": 0.0,
+      "arrival": 3.0010853896245906,
+      "changed_at": 3.0010853896245906,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 0,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 3.0010853896245906,
+          "origin": [
+            0.07777792836489461,
+            0.8664392717878026
+          ],
+          "destination": [
+            0.660050747548238,
+            0.7207721695546327
+          ],
+          "target": 2,
+          "distance": 0.6002170779249182
+        }
+      ],
+      "distance": 0.6002170779249182
+    },
+    "3": {
+      "mode": "waiting",
+      "target": 10,
+      "position": [
+        0.6248687488469331,
+        0.8925523288105455
+      ],
+      "origin": [
+        0.8762899122438538,
+        0.9624443813499501
+      ],
+      "destination": [
+        0.6248687488469331,
+        0.8925523288105455
+      ],
+      "departure": 0.0,
+      "arrival": 1.3047748887454875,
+      "changed_at": 1.3047748887454875,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 3,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 1.3047748887454875,
+          "origin": [
+            0.8762899122438538,
+            0.9624443813499501
+          ],
+          "destination": [
+            0.6248687488469331,
+            0.8925523288105455
+          ],
+          "target": 10,
+          "distance": 0.26095497774909754
+        }
+      ],
+      "distance": 0.26095497774909754
+    },
+    "4": {
+      "mode": "waiting",
+      "target": 10,
+      "position": [
+        0.6248687488469331,
+        0.8925523288105455
+      ],
+      "origin": [
+        0.8762899122438538,
+        0.9624443813499501
+      ],
+      "destination": [
+        0.6248687488469331,
+        0.8925523288105455
+      ],
+      "departure": 0.0,
+      "arrival": 1.3047748887454875,
+      "changed_at": 1.3047748887454875,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 0,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 1.3047748887454875,
+          "origin": [
+            0.8762899122438538,
+            0.9624443813499501
+          ],
+          "destination": [
+            0.6248687488469331,
+            0.8925523288105455
+          ],
+          "target": 10,
+          "distance": 0.26095497774909754
+        }
+      ],
+      "distance": 0.26095497774909754
+    },
+    "5": {
+      "mode": "waiting",
+      "target": 10,
+      "position": [
+        0.6248687488469331,
+        0.8925523288105455
+      ],
+      "origin": [
+        0.8762899122438538,
+        0.9624443813499501
+      ],
+      "destination": [
+        0.6248687488469331,
+        0.8925523288105455
+      ],
+      "departure": 0.0,
+      "arrival": 1.3047748887454875,
+      "changed_at": 1.3047748887454875,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 0,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 1.3047748887454875,
+          "origin": [
+            0.8762899122438538,
+            0.9624443813499501
+          ],
+          "destination": [
+            0.6248687488469331,
+            0.8925523288105455
+          ],
+          "target": 10,
+          "distance": 0.26095497774909754
+        }
+      ],
+      "distance": 0.26095497774909754
+    },
+    "6": {
+      "mode": "waiting",
+      "target": 7,
+      "position": [
+        0.542717227711984,
+        0.16804170383275796
+      ],
+      "origin": [
+        0.1356776064297076,
+        0.11537751269401142
+      ],
+      "destination": [
+        0.542717227711984,
+        0.16804170383275796
+      ],
+      "departure": 0.0,
+      "arrival": 2.0521620935120928,
+      "changed_at": 2.0521620935120928,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 3,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 2.0521620935120928,
+          "origin": [
+            0.1356776064297076,
+            0.11537751269401142
+          ],
+          "destination": [
+            0.542717227711984,
+            0.16804170383275796
+          ],
+          "target": 7,
+          "distance": 0.4104324187024186
+        }
+      ],
+      "distance": 0.4104324187024186
+    },
+    "7": {
+      "mode": "waiting",
+      "target": 7,
+      "position": [
+        0.542717227711984,
+        0.16804170383275796
+      ],
+      "origin": [
+        0.1356776064297076,
+        0.11537751269401142
+      ],
+      "destination": [
+        0.542717227711984,
+        0.16804170383275796
+      ],
+      "departure": 0.0,
+      "arrival": 2.0521620935120928,
+      "changed_at": 2.0521620935120928,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 0,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 2.0521620935120928,
+          "origin": [
+            0.1356776064297076,
+            0.11537751269401142
+          ],
+          "destination": [
+            0.542717227711984,
+            0.16804170383275796
+          ],
+          "target": 7,
+          "distance": 0.4104324187024186
+        }
+      ],
+      "distance": 0.4104324187024186
+    },
+    "8": {
+      "mode": "waiting",
+      "target": 7,
+      "position": [
+        0.542717227711984,
+        0.16804170383275796
+      ],
+      "origin": [
+        0.1356776064297076,
+        0.11537751269401142
+      ],
+      "destination": [
+        0.542717227711984,
+        0.16804170383275796
+      ],
+      "departure": 0.0,
+      "arrival": 2.0521620935120928,
+      "changed_at": 2.0521620935120928,
+      "finish": null,
+      "seq": 2,
+      "scene_seq": 0,
+      "timer": 1,
+      "route": [
+        {
+          "decision_time": 0.0,
+          "departure": 0.0,
+          "arrival": 2.0521620935120928,
+          "origin": [
+            0.1356776064297076,
+            0.11537751269401142
+          ],
+          "destination": [
+            0.542717227711984,
+            0.16804170383275796
+          ],
+          "target": 7,
+          "distance": 0.4104324187024186
+        }
+      ],
+      "distance": 0.4104324187024186
+    }
+  },
+  "tasks": {
+    "0": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "1": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "2": {
+      "phase": "open",
+      "present": [
+        0,
+        1,
+        2
+      ],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "3": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "4": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "5": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "6": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "7": {
+      "phase": "open",
+      "present": [
+        6,
+        7,
+        8
+      ],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "8": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "9": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "10": {
+      "phase": "open",
+      "present": [
+        3,
+        4,
+        5
+      ],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "11": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "12": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "13": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    },
+    "14": {
+      "phase": "open",
+      "present": [],
+      "workers": [],
+      "started_at": null,
+      "finished_at": null
+    }
+  }
+}

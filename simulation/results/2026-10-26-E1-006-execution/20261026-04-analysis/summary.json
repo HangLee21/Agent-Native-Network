@@ -1,0 +1,672 @@
+{
+  "cases": 30,
+  "groups": [
+    {
+      "group": "legacy",
+      "cases": 10,
+      "statuses": {
+        "success": 8,
+        "horizon_incomplete": 2
+      },
+      "messages": 1472,
+      "application_bytes": 454382,
+      "information_records": 18490,
+      "information_log_bytes": 15677151,
+      "decisions": 902,
+      "task_starts": 120,
+      "wait_cancels": 0,
+      "max_counted_event_records": 3710
+    },
+    {
+      "group": "recovery",
+      "cases": 10,
+      "statuses": {
+        "success": 10
+      },
+      "messages": 1897,
+      "application_bytes": 596379,
+      "information_records": 21486,
+      "information_log_bytes": 15494755,
+      "decisions": 671,
+      "task_starts": 150,
+      "wait_cancels": 9,
+      "max_counted_event_records": 3681
+    },
+    {
+      "group": "scale",
+      "cases": 10,
+      "statuses": {
+        "success": 10
+      },
+      "messages": 3091,
+      "application_bytes": 977998,
+      "information_records": 93671,
+      "information_log_bytes": 77249398,
+      "decisions": 1554,
+      "task_starts": 270,
+      "wait_cancels": 0,
+      "max_counted_event_records": 27825
+    }
+  ],
+  "source_files": [
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\summary.json",
+      "sha256": "eb768d7de84faf6a807ba621b64a60816ed820d3bcfa3a7db84c2360931c4296"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-instant-legacy\\result.json",
+      "sha256": "3d50f7c29fc4a49c5b6b95c085c5cfa05f4e2ec605d6a3e71fe8287210866685"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-instant-legacy\\config.json",
+      "sha256": "07239f463bc2d66ee9e83e0f729ac397299f65672860b720e27077d9a705a141"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-instant-legacy\\events.json",
+      "sha256": "90afa0c7a3b6b64cd007b1ce7625f4fa26727ec3a56d6033c0a21501e7b854a0"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-instant-legacy\\messages.json",
+      "sha256": "b79fdc83bb46753cba77e4fa3c7e402424081d993b2907e3fec2e12543cc4a5b"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-instant-legacy\\information_ledger.json",
+      "sha256": "37d69b3f0bed8fc50c78593990e89284174551f42f781ee0616373f74e5feab9"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-delay0.5-legacy\\result.json",
+      "sha256": "0e1cf3516b2f10bd56f2f59bc2ec50c3dedc111969cf2380e947a77f37d2b7c0"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-delay0.5-legacy\\config.json",
+      "sha256": "a558a1b55abebbb9b31f08f5d71f6e2fa72931ed5487f938fd01970e6ab12db8"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-delay0.5-legacy\\events.json",
+      "sha256": "3832776a3a9a8e02855fda04d4c837d77537c8c27f538c93d13accaf6b3a8c04"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-delay0.5-legacy\\messages.json",
+      "sha256": "aeb400db1b67b367ea2b972700fc78fc8a27451a0a1ce6906289c43739d9d5c9"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed0-tasks15-delay0.5-legacy\\information_ledger.json",
+      "sha256": "1915458d55bbb17a0961d65d8064eebec7c8b5d783f377bb29f2eeb9196c6765"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-instant-legacy\\result.json",
+      "sha256": "7aa6851a6640b0acdf524a8e3630d01027020da962cbded81d7905ebd49c8665"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-instant-legacy\\config.json",
+      "sha256": "0346729e11d4f76da39f757063c2c328f9e169b62d52140fac5e54b45c606854"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-instant-legacy\\events.json",
+      "sha256": "4fb0de1ff21114afb65eedeb50a7c5879d8930e7818df526ab3edb1537078f52"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-instant-legacy\\messages.json",
+      "sha256": "26894b664ccacf2bedf6d1e25d8fbbdf7cbeb6e6c63bf222705ff2dd86872659"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-instant-legacy\\information_ledger.json",
+      "sha256": "e2bf31fc215d597d6324a56a4d05918b36865253f3966d3c1936316eac7130d7"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-delay0.5-legacy\\result.json",
+      "sha256": "b7ea703708d47952a41199b1af859d515135ce88343feeb37172eb8b78819054"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-delay0.5-legacy\\config.json",
+      "sha256": "ce5042775b7c4c21967ef94c1c5f99d655f58489b60d5f6f63420273dbca30ab"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-delay0.5-legacy\\events.json",
+      "sha256": "d1ec9cb494acacbcd94defa9f43df5d01d1897bad2b8e4b51a2df26b04139ecc"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-delay0.5-legacy\\messages.json",
+      "sha256": "0f7dc9b9755ed500cbeecff3b952297fc13f22bba6cc950183839720dfca979e"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed1-tasks15-delay0.5-legacy\\information_ledger.json",
+      "sha256": "5111f80f78f3679672db6c6fad2595402e08bf6d6dba1791c5d0479f23fdf900"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-instant-legacy\\result.json",
+      "sha256": "365e7970dbf31ad50ee3fa9b5d3f0c44d7611c1b34a58cb26c4844035d50b099"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-instant-legacy\\config.json",
+      "sha256": "1dec2951643ebbfb025946b5506a0f2704f1cc7c73438dff317355eed97ec82a"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-instant-legacy\\events.json",
+      "sha256": "c798d85e2246916bbcd2c1ac94c2b9dbcb903fe3cdc0e240d63cdd71431187c7"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-instant-legacy\\messages.json",
+      "sha256": "a69b8cc03410d5a79092b57318f2ff8d212a29ce9d25c0432f436f2ae52abe65"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-instant-legacy\\information_ledger.json",
+      "sha256": "732b2e640c24c6986d7b78235e5ba0227131d779bbeeacfd04939085919d7ae8"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-delay0.5-legacy\\result.json",
+      "sha256": "47b511fc5d9598a0aafec7f1771201585970f3f8e0656d4331334a0df95ab968"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-delay0.5-legacy\\config.json",
+      "sha256": "2e0a8f6caed422a34f327333f11a5801d8c2fe517183657281a4aa099cf35426"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-delay0.5-legacy\\events.json",
+      "sha256": "1fd77416e9ee2c3264cb2b11a58ba8dacff8cc25dafeaf8e6bb5cf8ff2d32c7e"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-delay0.5-legacy\\messages.json",
+      "sha256": "337d1bef3fbe87d6f98b6a41e70f3ffb894a620ce5094c5770bc20dbadf5f296"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed2-tasks15-delay0.5-legacy\\information_ledger.json",
+      "sha256": "c76c607826b9fd55a880d3d0bf680eceb639b09cb58d84077aef58355b152ef1"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-instant-legacy\\result.json",
+      "sha256": "65daeee886a88baea99c531dd63ceae68218ffbfd0d838a13d65404bb67bbfad"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-instant-legacy\\config.json",
+      "sha256": "63a227d08faaa3a02be2c2ccac611e811511f298caff34c441864f4052427ec2"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-instant-legacy\\events.json",
+      "sha256": "2807d73fd61ba344a163a3f2d349878f106e2d1dea98286c61db486fe51f894f"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-instant-legacy\\messages.json",
+      "sha256": "ff3f69c6f46f289f840697ea6735bff9eb7d3e10bf06280ac59a9b289db69cf6"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-instant-legacy\\information_ledger.json",
+      "sha256": "3c012bc0bdc87da183ee3207ead900dd87d16af032ea5067418f0e3e82775434"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-delay0.5-legacy\\result.json",
+      "sha256": "85237e9ecddee2110d3f35ae173aa066f22cdd8c54593a43d2268430c25f5f9d"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-delay0.5-legacy\\config.json",
+      "sha256": "9b4c230a5a47a59abb9bda2b79f0dbc4ac0bd97362252c42292d614548748b93"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-delay0.5-legacy\\events.json",
+      "sha256": "de3d7f20522b90f5751f44c5855169b65f5c93aaf28519f14692441901692f83"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-delay0.5-legacy\\messages.json",
+      "sha256": "444bf270632cd206bd282bef7efe1bc62434aaa8a1dab08e4bb0b3dae0a67922"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed3-tasks15-delay0.5-legacy\\information_ledger.json",
+      "sha256": "62841abb40c37c74d586d8a8f3b71e7651f56382bfc386de782ae65910728903"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-instant-legacy\\result.json",
+      "sha256": "719763af938fe26d31afd94899da56abe945214b21e209e4df995345bcb97e5e"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-instant-legacy\\config.json",
+      "sha256": "736438dfb6a766c675a17b4d1e7620dafa8b81906903b7ab7ddf009fc4e081d2"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-instant-legacy\\events.json",
+      "sha256": "78f931bd6cbe1c2b2c8b57db3eb2b49d07d7dd0b2cfb132d3dbc8ea515b1d5af"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-instant-legacy\\messages.json",
+      "sha256": "b3000de269ecc94b1886319afcfb7b3814e0c9dd487b64e74a38454175a27742"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-instant-legacy\\information_ledger.json",
+      "sha256": "7ee546e9abfa97d3c945cf1dd5406867944dda5a65ab416a0f90c31f7d24ac3d"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-delay0.5-legacy\\result.json",
+      "sha256": "bb5515baffd63aec866104f91db49881ebce6cc41382dbfeb3e0b73c1575c54d"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-delay0.5-legacy\\config.json",
+      "sha256": "c7767736c17ff979df16a6f68a7083842900d971f4cf742d7b56eb20d0631a30"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-delay0.5-legacy\\events.json",
+      "sha256": "d016e383750672a61d36c5257cb62fe7e2b55f00c6e5f7b0e027c06b41b5c5db"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-delay0.5-legacy\\messages.json",
+      "sha256": "3562220669649e9bb34469440a0f96f4231f5b5764fe2cfa8a878eb4bafaf4a6"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-01-legacy\\seed4-tasks15-delay0.5-legacy\\information_ledger.json",
+      "sha256": "6dd4d9d93b90962bdd9d280078c69dd108d073ece499e5ac389202ab51bc2d0f"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\summary.json",
+      "sha256": "01ddaf37e5492e8a9fc55b8c161601c6fdbe4ea2fc790662dc48b4cd6d408c0f"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-instant-recovery\\result.json",
+      "sha256": "3ab796f51568f95fa2811a98911975684d8b07e3c989f68cff31a9f8aed5e4f1"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-instant-recovery\\config.json",
+      "sha256": "0a4d4fd496ae3c4ee438ab2f91a88992fe9ab96021b0588a6586b0ba5e1ed22a"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-instant-recovery\\events.json",
+      "sha256": "88ab9262b435ac75bad0ea22a22eef1361090fe513f1b08f43f802e9415bc0cd"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-instant-recovery\\messages.json",
+      "sha256": "159cf56a0463e644329d124c7b371c88210c9f11907cf6e33e2669b808164f58"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-instant-recovery\\information_ledger.json",
+      "sha256": "181e4d0539ff836c3410a691c5c5fd028f3d9fd1439456033b5d250fe1c952e8"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-delay0.5-recovery\\result.json",
+      "sha256": "06ff21c845bf776a976d73bff9c019a22f15499f506ffe2c847ceeb17a6afabc"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-delay0.5-recovery\\config.json",
+      "sha256": "7acd0386d90e0273230411277fccfa82b17f47d64e94088d6fbe11abb69134a9"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-delay0.5-recovery\\events.json",
+      "sha256": "3d09bd75d8f7f85079906e1e2a3d0f59d8f15fef0d8c69f214375e8b0d6d0550"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-delay0.5-recovery\\messages.json",
+      "sha256": "308fe9250572274de2526f27b5eb51552e04d490d836df7dcf9d964aa30858de"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed0-tasks15-delay0.5-recovery\\information_ledger.json",
+      "sha256": "7f5006a61f3e45ac398872d8e36c68b6fd264329b02ac41e8cc58db4a1e70e18"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-instant-recovery\\result.json",
+      "sha256": "89525064b1cd1befb9993dd33f864f3a162501ee208dc502b1bff564fab7c741"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-instant-recovery\\config.json",
+      "sha256": "1395e136665132a07bebb37983b1b602ebe8d7777d8c2c8533b1f5a792460b4c"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-instant-recovery\\events.json",
+      "sha256": "18f4f4044b153ae1c993e447c745519d64700dd7725244e2af20a10408220a30"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-instant-recovery\\messages.json",
+      "sha256": "603726c2b5159e3406c6614acdf28117b706db272ea1c1bfee089e8dda0697cd"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-instant-recovery\\information_ledger.json",
+      "sha256": "2bec51359317c500c5e4d113239a4d31ca5bea816c2a14309379521b803a858e"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-delay0.5-recovery\\result.json",
+      "sha256": "3142bf7f1db50fa706ab2aaf889efea833b470e4962acd902c52fc3f4ffa22e2"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-delay0.5-recovery\\config.json",
+      "sha256": "0e17b4880d9267916a67772562511551c8b9d05d6c7bcd690c6733c9cc9a4f7d"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-delay0.5-recovery\\events.json",
+      "sha256": "7f703966b56595573f2cac75f5726950faa67dd0f641246f1407e4f2e1ddfbc8"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-delay0.5-recovery\\messages.json",
+      "sha256": "7a411e287329a2d64274de9f5d87b1df67098e688ba084cb1e080b881f7d01ec"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed1-tasks15-delay0.5-recovery\\information_ledger.json",
+      "sha256": "a9975f6e20d6a8e249994c6e4644d1c98774a987d318ee77cb3da1719584b2e9"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-instant-recovery\\result.json",
+      "sha256": "679922b6882bc3e44e713383b359b3a37207afa6df3be206dd59f40461e5af91"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-instant-recovery\\config.json",
+      "sha256": "eeccefd7d741b0fd93188998fd4d82c56efa2b0659c43ef74705bc343cfb8c7d"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-instant-recovery\\events.json",
+      "sha256": "bb1e43cd6dfea9755757085a064a4910f28d121566c85fbd9bd0b48f9c7e612a"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-instant-recovery\\messages.json",
+      "sha256": "f08b99e67be2d0fa4712410d11cd6a0de5dc44629bbf9b252610006b47098e68"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-instant-recovery\\information_ledger.json",
+      "sha256": "80d34ab1abbae1252ca42f9da44e90d8a5f5b394941cd4485e9a263a0973837f"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-delay0.5-recovery\\result.json",
+      "sha256": "708d67b5818a27d493cf929fb3a31da1082fbe59c12333e0fe83c60d2cdccc78"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-delay0.5-recovery\\config.json",
+      "sha256": "dc69f7f54d3116158343b60b6969ee062c088951b3179b70dfc7d38b83bee759"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-delay0.5-recovery\\events.json",
+      "sha256": "e4d5f0b2a9a161f170ae7be6eff3ab0a5444fd0fc86e1f25371eca9011041722"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-delay0.5-recovery\\messages.json",
+      "sha256": "29513630ed33a60c13eeefcd4b7a9f1325f71bb4e48f10443595018fab107c32"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed2-tasks15-delay0.5-recovery\\information_ledger.json",
+      "sha256": "e6614822528521baedda03ff50b9687f860bc0f6cb576fc59175b05b7d7d93da"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-instant-recovery\\result.json",
+      "sha256": "f07cd054a90928b4e5810de655d08b59b72a0afbfe971a3f9d92e99a5dba8fe4"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-instant-recovery\\config.json",
+      "sha256": "5fe65d554adacae496ccd113af913bde70688ad0240afabd8eee9a9304a0c95b"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-instant-recovery\\events.json",
+      "sha256": "a2e58fd4eea7769901cc4f3ef079e962b48f9fb5c13d035f696469523c31e560"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-instant-recovery\\messages.json",
+      "sha256": "928596c245540088f8770c88fd028467abe56dd40bf7f24e989d2cb64e91c9e4"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-instant-recovery\\information_ledger.json",
+      "sha256": "19b20f2d6b6f58bcd4d71cbfa0269741f73dbd6d51488ee82d0dc5ec672b8f90"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-delay0.5-recovery\\result.json",
+      "sha256": "fcf15d23c36ae2727be8bf3e45e0d93b7419c44babcccd14f6628b27d429cff9"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-delay0.5-recovery\\config.json",
+      "sha256": "e33b4f2b522bd8f17fcbb16f9967ec5ebee0f1457ed74de578b0a877c6ce03c5"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-delay0.5-recovery\\events.json",
+      "sha256": "ab678e2efe786908920346e8d1f561ff179f8ad080632524f132cdc767802cd9"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-delay0.5-recovery\\messages.json",
+      "sha256": "0511e41afc50096eb76618e818aa134e0f9fe1b14390fd0c1c5b9924dbbe0e32"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed3-tasks15-delay0.5-recovery\\information_ledger.json",
+      "sha256": "cd08d291922873e696d4e2464ce4c205bd04fe1699e483fc8384e5cc86e22048"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-instant-recovery\\result.json",
+      "sha256": "37dba6c433a6e9e679e115b8b8933802131e4e8523399fa10a892bbfaba2253d"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-instant-recovery\\config.json",
+      "sha256": "7a16d31b5f4e4b5cee584c4234285b4caf3f97bf12235af8e1278251d9914100"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-instant-recovery\\events.json",
+      "sha256": "b419c57021cfbac0b240fb9de1c569bc2942a5aa63ea3d2cc34a77006f015244"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-instant-recovery\\messages.json",
+      "sha256": "c79dd4f8d1343e6b6847d0aba7a4a825d3957f980c596111516b16aefe1f3dbb"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-instant-recovery\\information_ledger.json",
+      "sha256": "1b0e46ce429beb64f6c3ad3c8ed6816938e53c5f06d20cb44a99c4abf5e0f2aa"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-delay0.5-recovery\\result.json",
+      "sha256": "5b1810f389ea0713b2c008204a522f0304072279196acc7aba3c22cd71c7562e"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-delay0.5-recovery\\config.json",
+      "sha256": "7a168b896f0c036d9c4ada5bd42c4be244390aba490040ce7780f0b8b40dd396"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-delay0.5-recovery\\events.json",
+      "sha256": "c7a88342200a57f1c05cdb15374e1b731324d67fa0f66b85a49f1a6acd55f8d3"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-delay0.5-recovery\\messages.json",
+      "sha256": "92ce8855917b3b5aa8c67d8cb734cbd62da859c246409a8a3d4f8f2d2cc42a69"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-02-recovery\\seed4-tasks15-delay0.5-recovery\\information_ledger.json",
+      "sha256": "e48dcf2a554e9d1f5f031c0f7f70579312c771723b217d040d8c6708cbae27dd"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\summary.json",
+      "sha256": "79a8cdd8c9dcc23efceba71b446f78f6150ac5e03eac2830cce4bea92e16e0b5"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n009-t015-instant-recovery\\result.json",
+      "sha256": "f36b4d2b5ba393f5b73781eb0e0c477da18ba6ced02d0442382e0b96e01c494a"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n009-t015-instant-recovery\\config.json",
+      "sha256": "92996fb67d6a597e59ca2c8b990088d5938b32233cdd49adafc39e8e77d8bddb"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n009-t015-instant-recovery\\events.json",
+      "sha256": "821b0bc4daa4520e4b7d0c292cc1c179402cd6ed2f29d90b07e77a68f5a5b233"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n009-t015-instant-recovery\\messages.json",
+      "sha256": "60edb28e0f024a9ef3c2ffd2c5249f80f8700a6ae4dc37f04274c9805de0c466"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n009-t015-instant-recovery\\information_ledger.json",
+      "sha256": "aab442793fbf4c7a43c5b878200bb439a63535a4bb41caad646bd9923299b2fb"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t015-instant-recovery\\result.json",
+      "sha256": "9974a951fac228c461df25f9c8f8293f757f7352f965018d460f4060fdc92ce7"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t015-instant-recovery\\config.json",
+      "sha256": "8fb9084c57df342da469f5b0f892554f6b245a4c51d6b6a2b16f15ef09b7b48c"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t015-instant-recovery\\events.json",
+      "sha256": "cdb660606fd67034763a57b49b12ce765a2fb694af0124878f99e8cd03bb7960"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t015-instant-recovery\\messages.json",
+      "sha256": "91cf7b18d2849e9c9919a22c8c2789143547b441cba5b697be5e542cf160de32"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t015-instant-recovery\\information_ledger.json",
+      "sha256": "5467463fd558a71be0467acd2bb5e3043b069c5eb39ad5a79b889269ba7a9240"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t015-instant-recovery\\result.json",
+      "sha256": "ae12ed02bb8bfc2e1a3e8d5f9155b8aba1a3904984e8893a60a3b42a75d1566c"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t015-instant-recovery\\config.json",
+      "sha256": "0cef8c3913011fbbafe2d446257f44f21fb719ba9d69649805d07e101c99c106"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t015-instant-recovery\\events.json",
+      "sha256": "d6d12cbe7b4b2ae2cbd221d373ff98e1b5ce28621edb98799622e07b8e934d5d"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t015-instant-recovery\\messages.json",
+      "sha256": "8047b177a668a9bba621bc365f127b452cfcb3b92cdca1ed6bab71d1efa18c4c"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t015-instant-recovery\\information_ledger.json",
+      "sha256": "86bb6bd4e1b4da9e104d1331bdeb7af69bd16906d4ef9b6ae2f1f2a94668c043"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t030-instant-recovery\\result.json",
+      "sha256": "7486b272a96496e591e82402b684eaac8b6d1843bc347f692f404c55b0971852"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t030-instant-recovery\\config.json",
+      "sha256": "7f380b57892ffe1decc07795ded15b07fe0da741f28675d88a2f5c5f776dfa94"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t030-instant-recovery\\events.json",
+      "sha256": "464ad7b0515275f9fe12aabf55f5e27398106e78416281bad2ffc90dc8f7bb26"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t030-instant-recovery\\messages.json",
+      "sha256": "d7006431c7b99da384d7e8b9aa0fe6ff3f3de87e6787092b6faaa253440f666f"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n018-t030-instant-recovery\\information_ledger.json",
+      "sha256": "abccb24ad75f37a1430d1124c207a1e55ea413587ba55fc93ad510a1e6bbde1e"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t060-instant-recovery\\result.json",
+      "sha256": "4f7fc0c428a0703ced9896f1401fa48b97bddcc101da9d3b5f267990ed72349f"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t060-instant-recovery\\config.json",
+      "sha256": "ced1ce41f5677179b23897cf8f24a83d5812ec082b2365993603485370aae50a"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t060-instant-recovery\\events.json",
+      "sha256": "566ec10b5c2ea02b04c243599c2d4274ce446812bd04f967ea92240fa55aeb1c"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t060-instant-recovery\\messages.json",
+      "sha256": "edc9e7b539e08deaa69f855481588b4bb17a728ca6f7be6f37f4274088392665"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-005-n036-t060-instant-recovery\\information_ledger.json",
+      "sha256": "b3f5ff3627f88e7940f1c385a29ef432adb4564984d3b5aa76e251aab4ecba29"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n009-t015-instant-recovery\\result.json",
+      "sha256": "1e41c3e58eedb26e18425510ddf9e4b221a79854ba1fb33b1c4320a679b7ef87"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n009-t015-instant-recovery\\config.json",
+      "sha256": "0aba2af4743300d56e0d759388b851363505da33d811aeffa0c949669eb1bdac"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n009-t015-instant-recovery\\events.json",
+      "sha256": "25aad2f086f31544c717d624aba41a590451233503b9d03cf6b0c697f5c0cdd5"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n009-t015-instant-recovery\\messages.json",
+      "sha256": "b9599cf91f7d1227563c4606398905397058d67476b1114669a26d07abb82fcb"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n009-t015-instant-recovery\\information_ledger.json",
+      "sha256": "b56a8f1626378e8058774e77f7d6fa91aead3d85795a93a83c812fc865f5d0a5"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t015-instant-recovery\\result.json",
+      "sha256": "2512458fbfbde5de1a0acf6e3122491d8e18355dfc8be378869a94f332b041a2"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t015-instant-recovery\\config.json",
+      "sha256": "bb13b54c70dd05f03332d98a1f1cb046b8d89046d569257fa034d4a1dc469e4e"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t015-instant-recovery\\events.json",
+      "sha256": "e494dea6ec6ea83da41e4fcd3ca9c2a51030e32dc1843a42eed7ca86880e63e4"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t015-instant-recovery\\messages.json",
+      "sha256": "7652fee338f9a783613ca1dfdb8d1bc4c049e09647a66799a7c251d9b0110586"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t015-instant-recovery\\information_ledger.json",
+      "sha256": "897065fbdb0ae21af0d2c48f2bf1fbcccf5fb9296acdaa9e6d0f01a891168975"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t015-instant-recovery\\result.json",
+      "sha256": "96d259bd2bbb361eaa9b1362b2d3dd50ee11a1388ca5bc2563f2165e14c67264"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t015-instant-recovery\\config.json",
+      "sha256": "a2dd1fff285e7f821905898602ecbd4d03e06cfb3d19a3f71b5e5d756cebdc3f"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t015-instant-recovery\\events.json",
+      "sha256": "6fbe958eac9f091b35d45c93ced50736c094f10f360beae0b241484b0f11e8bf"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t015-instant-recovery\\messages.json",
+      "sha256": "2ed2c71b899fae447f4576441d5fca05bfb630d6eac8661a3be3853fdea581bf"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t015-instant-recovery\\information_ledger.json",
+      "sha256": "613195e0cbf4169e9c506632d07c4123b8b9adcd0230e55323fcda17d51f86f8"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t030-instant-recovery\\result.json",
+      "sha256": "3e3c807bc6414d8ff352729beda4186ad1886872ea6978f339f16c5713df2cfa"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t030-instant-recovery\\config.json",
+      "sha256": "75179759e25ff8bbc8fcbd0b41f8e874ba652b8d363a766b96f1fa1f0d824d59"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t030-instant-recovery\\events.json",
+      "sha256": "919845370952172cf068304096d808f1cd9aa9623d8437820c3aee8fb9e5da5a"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t030-instant-recovery\\messages.json",
+      "sha256": "e8a2aa3e3a6473c66ed3052bff70e0ca1eb35c042fce31396e294cec1d149ec0"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n018-t030-instant-recovery\\information_ledger.json",
+      "sha256": "67812bf7cff92ab2c62395c1f35d325f282cd636521a73296095fec3cc0016bc"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t060-instant-recovery\\result.json",
+      "sha256": "8a4c33ff7c7c443f1f3b6a680ed98cf8d93266e104f0133279eeac06daf3366b"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t060-instant-recovery\\config.json",
+      "sha256": "cc7e02e5b1f6c6917cccbdd109cae2e771e92a686b6af6771f44e456831783d9"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t060-instant-recovery\\events.json",
+      "sha256": "89bc5dd4d30822283f3073cb56dda36b90b078967426742755da619f76fb4ca8"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t060-instant-recovery\\messages.json",
+      "sha256": "fafcfe83a5608f106366b46115242e03dd0a2ce3aabc7d920154d22eb508cff6"
+    },
+    {
+      "path": "simulation\\outputs\\E1-006\\20261026-03-scale\\seed-006-n036-t060-instant-recovery\\information_ledger.json",
+      "sha256": "509848eb46a25dbad38dd52fd2be06949d6bce743c745153d64a12b5f73d1cfb"
+    }
+  ],
+  "analysis_script_sha256": "5d4117337ce709f39c720949272b6a8f835ee611f71994b00e0974160c8282dd",
+  "definitions": {
+    "information_references": "syntactic references to logged initial/local/network cache origins, not causal usefulness",
+    "application_bytes": "one serialized publication, receiver fanout charged once, not airtime",
+    "wall_seconds": "includes Python imports and model loading; not robot inference latency",
+    "scope": "recovery package and instantaneous-information workload feasibility; no wireless scale effect"
+  }
+}
