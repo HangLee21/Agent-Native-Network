@@ -1,5 +1,9 @@
 # 多态自主团队的可扩展协作网络：需求与实验链条
 
+**当前进度与执行来源（2026-10-26，D-007补充）：** [007需求账本](DEMAND_CENSUS.md)、[008运行时记录与规模执行](DEMAND_EXECUTION_STAGE.md)、[009简化无线执行](WIRELESS_EXECUTION_STAGE.md)均已有保存结果；空间复用、路由及应用工作流W1–W3尚待实现。下文保留各阶段原文，其中“本轮／下一步”按当时阶段理解；当前任务范围以[CURRENT](../../coordination/CURRENT.md)和主任务卡为准。
+
+M-002至M-009的历史执行与C角色审查来自M聊天内子代理，不能视为既有独立角色聊天执行；本轮独立C窗口复核另见[C-010](../../coordination/tasks/C-010.md)。来源、合同适用范围及运行记录字段说明见[研究来源导航](RESEARCH_PROVENANCE_INDEX.md)。本次仅补充文档，未重跑历史实验。
+
 2026-10-26，M-007。本文是当前研究主线和实验顺序的总入口，承接用户本轮矫正。已有[全面分析](SCALABILITY_COMPREHENSIVE_ANALYSIS.md)、[科研链条](RESEARCH_EXPERIMENT_CHAIN.md)及全部原始结果继续保留；其中的AVUS和服务反馈算法作为候选方案。本阶段复算既有轨迹，不运行新任务策略。
 
 ## 1. 固定研究问题，按证据选择机制
