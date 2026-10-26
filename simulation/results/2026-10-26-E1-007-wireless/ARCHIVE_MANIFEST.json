@@ -1,0 +1,97 @@
+{
+  "stage": "M-009",
+  "task": "E1-007",
+  "originals_retained": true,
+  "files": [
+    {
+      "source": "simulation/outputs/E1-007/20261026-01-tests/evidence.json",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-01-tests/evidence.json.gz",
+      "bytes": 130613,
+      "stored_bytes": 6790,
+      "gzip": true,
+      "raw_sha256": "53f35dbfb0cf611c82f5bb9ae07d6d8c36a8ed3a5d0217c3f8ba9651ea5afb0e",
+      "stored_sha256": "8519876abc781167a8aed5ee452c487d3d9539759296981b5bfdad0e1c8da6d1"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-01-tests/manifest.json",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-01-tests/manifest.json",
+      "bytes": 706,
+      "stored_bytes": 706,
+      "gzip": false,
+      "raw_sha256": "b897eed055860b9c8418e052cefa7e5dfbedf572e7f535f511d21fa045761f69",
+      "stored_sha256": "b897eed055860b9c8418e052cefa7e5dfbedf572e7f535f511d21fa045761f69"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-01-tests/source/test_wireless_broadcast_service.py",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-01-tests/source/test_wireless_broadcast_service.py",
+      "bytes": 11498,
+      "stored_bytes": 11498,
+      "gzip": false,
+      "raw_sha256": "1ee02c4eb4ddfd433f45835d9e262a83b9133aeea6d7f2b21383a74471e60be8",
+      "stored_sha256": "1ee02c4eb4ddfd433f45835d9e262a83b9133aeea6d7f2b21383a74471e60be8"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-01-tests/source/wireless_broadcast_service.py",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-01-tests/source/wireless_broadcast_service.py",
+      "bytes": 18296,
+      "stored_bytes": 18296,
+      "gzip": false,
+      "raw_sha256": "dbbd7909de51603f16ecc12f8756f369afe663f658a371b2261e505974398fc7",
+      "stored_sha256": "dbbd7909de51603f16ecc12f8756f369afe663f658a371b2261e505974398fc7"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-01-tests/tests.txt",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-01-tests/tests.txt",
+      "bytes": 1832,
+      "stored_bytes": 1832,
+      "gzip": false,
+      "raw_sha256": "bf2d9f237bf06358c15dd024681eef2a1a98adb8822732700d0aca76335310c0",
+      "stored_sha256": "bf2d9f237bf06358c15dd024681eef2a1a98adb8822732700d0aca76335310c0"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-02-tests/evidence.json",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-02-tests/evidence.json.gz",
+      "bytes": 140251,
+      "stored_bytes": 7286,
+      "gzip": true,
+      "raw_sha256": "69d5e65efb914dc8c3bd159ee5a90eb86391acf9a5dfe6ad81a1f1d22197f3ce",
+      "stored_sha256": "1c22c5c670f4f99e922aeea7c92cb36d6873a8328ac805771b59e30cb84eb8f6"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-02-tests/manifest.json",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-02-tests/manifest.json",
+      "bytes": 706,
+      "stored_bytes": 706,
+      "gzip": false,
+      "raw_sha256": "aada75c0b72b2b94df791ead688ea250603dc9161399b45159bd99b9929cbdd4",
+      "stored_sha256": "aada75c0b72b2b94df791ead688ea250603dc9161399b45159bd99b9929cbdd4"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-02-tests/source/test_wireless_broadcast_service.py",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-02-tests/source/test_wireless_broadcast_service.py",
+      "bytes": 12177,
+      "stored_bytes": 12177,
+      "gzip": false,
+      "raw_sha256": "f9b8a2bdd909696184a9eeb19ee818d36d2639876b422b108a0c60f2b7feb9bb",
+      "stored_sha256": "f9b8a2bdd909696184a9eeb19ee818d36d2639876b422b108a0c60f2b7feb9bb"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-02-tests/source/wireless_broadcast_service.py",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-02-tests/source/wireless_broadcast_service.py",
+      "bytes": 18296,
+      "stored_bytes": 18296,
+      "gzip": false,
+      "raw_sha256": "dbbd7909de51603f16ecc12f8756f369afe663f658a371b2261e505974398fc7",
+      "stored_sha256": "dbbd7909de51603f16ecc12f8756f369afe663f658a371b2261e505974398fc7"
+    },
+    {
+      "source": "simulation/outputs/E1-007/20261026-02-tests/tests.txt",
+      "stored": "simulation/results/2026-10-26-E1-007-wireless/20261026-02-tests/tests.txt",
+      "bytes": 1968,
+      "stored_bytes": 1968,
+      "gzip": false,
+      "raw_sha256": "6a4f09c85fc008042132e7cac72936db8b0bb865046c2bca10f6db2169677758",
+      "stored_sha256": "6a4f09c85fc008042132e7cac72936db8b0bb865046c2bca10f6db2169677758"
+    }
+  ]
+}

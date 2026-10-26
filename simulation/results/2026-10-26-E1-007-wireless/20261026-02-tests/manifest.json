@@ -1,0 +1,17 @@
+{
+  "command": [
+    "simulation/test_wireless_broadcast_service.py",
+    "--output",
+    "simulation/outputs/E1-007/20261026-02-tests"
+  ],
+  "interpreter": "D:\\Multi-Agent Network\\.venv\\Scripts\\python.exe",
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "sources": {
+    "D:\\Multi-Agent Network\\simulation\\test_wireless_broadcast_service.py": "f9b8a2bdd909696184a9eeb19ee818d36d2639876b422b108a0c60f2b7feb9bb",
+    "D:\\Multi-Agent Network\\simulation\\wireless_broadcast_service.py": "dbbd7909de51603f16ecc12f8756f369afe663f658a371b2261e505974398fc7"
+  },
+  "tests_run": 17,
+  "failures": 0,
+  "errors": 0,
+  "successful": true
+}

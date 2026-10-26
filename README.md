@@ -30,6 +30,8 @@
 
 ## 当前进度
 
+- 已完成[固定无线条件回放与任务执行](research/agent_native_network/WIRELESS_EXECUTION_STAGE.md)：17项服务测试、7项接口测试、60次固定业务回放及18个任务回合。任务全部成功；待发状态合并使固定回放发射时长减少约25.5%，闭环任务时间有升有降。当前状态业务的平均busy低于0.3%，尚未测出容量瓶颈；已定位碰撞、缓存版本和动作变化，下一轮细化状态恢复并引入有应用来源的观测业务与空间扩展。
+
 - 已完成[需求执行链条与首轮规模实验](research/agent_native_network/DEMAND_EXECUTION_STAGE.md)：运行时信息来源/决策/行动关联、共同恢复和9/18/36节点配对入口。30回合中旧规则10回归完全一致、共同恢复10/10成功、新规模10/10成功；固定任务数时更多设备缩短执行时间并增加维护业务，固定每节点任务时总业务随任务增长。下一轮接入明确无线条件，检验实际业务的承载边界。
 
 - 本轮完成需求起点梳理与[原生信息/维护成本复算](research/agent_native_network/DEMAND_CENSUS.md)：只读45个既有主回合，以10个instant实例描述能力需求和消息结构。应用来源与[工作负载合同](research/agent_native_network/demand_20261026/WORKLOAD_CONTRACT.json)分别记录现场事实和拟议适配；验收状态见coordination/CURRENT.md。下一实施先补需求/消费账本和共同执行条件，再从实际任务扩展产生负载。

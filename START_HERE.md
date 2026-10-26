@@ -27,6 +27,7 @@
 
 ## 管理入口
 
+- 最新阶段：[固定无线条件下的业务与任务](research/agent_native_network/WIRELESS_EXECUTION_STAGE.md)。M-009已完成60回放与18任务，参数合同、模型范围、机制诊断及下一步见该报告；当前验收和进程以CURRENT及主卡为准。
 - 当前最新实验：[需求执行链条与首轮规模结果](research/agent_native_network/DEMAND_EXECUTION_STAGE.md)。M-008完成30回合与运行时信息账本、共同恢复；9/18/36节点任务已跑通。验收、进程和下一步以CURRENT及M-008任务卡为准。
 - [组织架构与目录分工](coordination/README.md)
 - [窗口登记与换窗方法](coordination/WINDOWS.md)

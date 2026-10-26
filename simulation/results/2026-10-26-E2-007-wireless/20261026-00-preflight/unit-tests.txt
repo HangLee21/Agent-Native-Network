@@ -1,0 +1,12 @@
+test_refresh_keeps_bytes_version_age_and_does_not_create_local_fact (simulation.test_heteromrta_wireless_eval.WirelessTests.test_refresh_keeps_bytes_version_age_and_does_not_create_local_fact) ... ok
+test_refresh_only_own_origin_not_received_cache (simulation.test_heteromrta_wireless_eval.WirelessTests.test_refresh_only_own_origin_not_received_cache) ... ok
+test_refresh_schedule_and_event_only_scope (simulation.test_heteromrta_wireless_eval.WirelessTests.test_refresh_schedule_and_event_only_scope) ... ok
+test_replay_cutoff_then_drain_and_fact_age (simulation.test_heteromrta_wireless_eval.WirelessTests.test_replay_cutoff_then_drain_and_fact_age) ... ok
+test_scene_objects_and_latest_local_version_are_separate (simulation.test_heteromrta_wireless_eval.WirelessTests.test_scene_objects_and_latest_local_version_are_separate) ... ok
+test_scene_witness_does_not_republish_other_source (simulation.test_heteromrta_wireless_eval.WirelessTests.test_scene_witness_does_not_republish_other_source) ... ok
+test_wireless_service_receives_original_body (simulation.test_heteromrta_wireless_eval.WirelessTests.test_wireless_service_receives_original_body) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.008s
+
+OK

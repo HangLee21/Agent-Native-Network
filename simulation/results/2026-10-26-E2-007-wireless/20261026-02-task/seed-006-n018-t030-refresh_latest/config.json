@@ -1,0 +1,17 @@
+{
+  "case_id": "seed-006-n018-t030-refresh_latest",
+  "seed": 6,
+  "agents": 18,
+  "tasks": 30,
+  "condition": "refresh_latest",
+  "mac_seed": 0,
+  "recovery": true,
+  "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-26-E2-006-scale\\20261026-01\\catalogs\\seed-006-n018-t030\\catalog.json",
+  "expected_catalog_sha256": "9d58e8265c430f7d13a1da9bfc004b8eb84c9317786d85df40a73da5e4bff132",
+  "instant_reference": {
+    "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-26-E1-006-execution\\20261026-03-scale\\seed-006-n018-t030-instant-recovery\\result.json",
+    "sha256": "3e3c807bc6414d8ff352729beda4186ad1886872ea6978f339f16c5713df2cfa",
+    "makespan_return": 24.62052246993665,
+    "status": "success"
+  }
+}
