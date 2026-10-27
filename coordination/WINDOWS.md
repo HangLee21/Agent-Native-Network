@@ -1,17 +1,19 @@
 # 窗口登记
 
 项目ID：`d1d5c8d4-4a2a-460d-90b2-9129ef59bdd8`；host：local；工作副本：`D:\Multi-Agent Network`。
-分支：`codex/baseline-reproduction-20261023`；本轮基准：`514382a`。运行状态以任务卡为准。
+分支：`codex/baseline-reproduction-20261023`；本轮基准：`8654d73`。运行状态以任务卡为准。
 
 | 实际窗口名称 | 聊天ID | 本轮任务 |
 |---|---|---|
-| M \| Research Lead | `01a16824-1141-7202-929b-3b558df47ade` | [M-010](tasks/M-010.md) |
-| E1 \| Core Experiments | `01a16824-294e-7eb2-85eb-d98b7a8748f1` | 无本轮执行任务；[最近接管](tasks/E1-008.md) |
-| E2 \| Validation & Ablation | `01a16824-3f4e-7e61-8a83-08d2dd8c82f6` | [E2-009](tasks/E2-009.md) |
-| D \| Research Repository | `01a16824-727d-7fd3-8696-c1a0b9694386` | [D-008](tasks/D-008.md) |
-| C \| Repository Auditor | `01a16824-5c84-7081-8f0c-7e1e94beff35` | [C-011](tasks/C-011.md) |
+| M \| Research Lead | `01a16824-1141-7202-929b-3b558df47ade` | [M-011](tasks/M-011.md) |
+| E1 \| Core Experiments | `01a16824-294e-7eb2-85eb-d98b7a8748f1` | [E1-009](tasks/E1-009.md) |
+| E2 \| Validation & Ablation | `01a16824-3f4e-7e61-8a83-08d2dd8c82f6` | [E2-010](tasks/E2-010.md) |
+| D \| Research Repository | `01a16824-727d-7fd3-8696-c1a0b9694386` | [D-009](tasks/D-009.md) |
+| C \| Repository Auditor | `01a16824-5c84-7081-8f0c-7e1e94beff35` | [C-012](tasks/C-012.md) |
 
-2026-10-27：用户要求完整研究文档，沿已授权的独立窗口方式由M派发D-008/E2-009，C-011先核对E2证据，正文冻结后终审；E1本轮无实现任务。E2/D派发及C两轮审查均已完成，M依据独立终审验收并释放范围。实际完成turn：E2 `01a17b28-396e-7100-a15f-a2974ed38c76`；D `01a17b28-42a2-7c92-bdfd-f19b340befd9`；C初审 `01a17b2e-acba-7c72-90c7-651c8f8c3c4a`、终审 `01a17b33-9018-7651-af6c-2623a4a86291`。这些turn均由wait_threads确认completed，角色已停写；主卡均done。
+2026-10-27当前：M-011实质纠偏已完成。E1初稿及修订、E2规划、D整合和C终审均completed并停写；M根据独立终审验收五卡并释放范围。C首次终审turn `01a17b78-751d-7cf2-a1a1-91523a657396`中断；恢复turn `01a17ba6-50f9-7af1-b1de-7aa67370b971`已由wait_threads确认completed。其余实际完成turn及冻结hash见M-011-verification.json。没有新增研究进程；后续执行需新卡。
+
+此前2026-10-27：用户要求完整研究文档，沿已授权的独立窗口方式由M派发D-008/E2-009，C-011先核对E2证据，正文冻结后终审；E1本轮无实现任务。E2/D派发及C两轮审查均已完成，M依据独立终审验收并释放范围。实际完成turn：E2 `01a17b28-396e-7100-a15f-a2974ed38c76`；D `01a17b28-42a2-7c92-bdfd-f19b340befd9`；C初审 `01a17b2e-acba-7c72-90c7-651c8f8c3c4a`、终审 `01a17b33-9018-7651-af6c-2623a4a86291`。这些turn均由wait_threads确认completed，角色已停写；主卡均done。
 
 以下为ORG-003历史交接记录：用户已明确授权M向四个既有窗口发送接管任务。发送登记：2026-10-26，send_message_to_thread已向四个表列聊天成功送达对应任务；四个窗口均已各自完成首轮回填；E1/E2交付、D接管交付及C初审已由wait_threads核实completed。D追加文档修正及C终审也均completed；M已按终审验收并释放范围，实时状态仍以主卡为准。接收、running、review均以各窗口回填为证，绑定或发送成功不代表完成。
 

@@ -1,3 +1,15 @@
+# 当前文献入口：动态具身边缘智能网络
+
+更新：2026-10-27。当前定向核查见[近期文献与强机制矩阵](reorientation_20261027/LITERATURE_REVIEW.md)，总体问题及候选比较见[方向修订总报告](RESEARCH_REORIENTATION_20261027.md)。
+
+本轮围绕实际独立模型、动态物理拓扑、去中心/多跳、协议与无线资源、规模和推理反馈检索，深读12篇核心资料。覆盖MEAN、Joint Agent–Network Design、AgentComm/AgentComm-Bench、Agent-Native Wireless、HAFS、语言空地协作、CoSMO、两类Agentic MAC、MOCHA和ACHORD；另核AgenticDTN摘要、NetLLM及MANET/Mesh/DTN规范。方法、设备/实例/流的规模单位、版本和访问限制逐篇登记，已有能力作为强对照保留。
+
+近期矩阵的R01–R12只作新稿导航，尚未并入旧CSV/BibTeX。旧主表仍为P01–P38，不将12项机械相加，也不改变既有出版版本。传统MRTA、MEC固定DAG与任务调度资料保留为辅助业务/组件来源；当前核心比较围绕发现、路由、传输、接入/链路及拓扑重构的具体机制。
+
+## 历史文献体系（以下原检索与P编号保留）
+
+以下“最新”“本轮”“检索截止”均为原阶段记录，2026-10-27核查日期和范围以上方新稿为准。历史锚点、引用和来源不变。
+
 # 系统性文献综述与核心证据
 
 最新补查：2026-10-23沿用户新增综述核查任务感知网络调度，见[本文补查表](#survey-network-screen)与[核心问题分析](RESEARCH_GAPS.md#scalability-core)。下文原P编号体系保留；本次候选单列，不改变已登记38篇的主表计数。

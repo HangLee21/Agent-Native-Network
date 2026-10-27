@@ -1,0 +1,167 @@
+{
+  "task": "M-011",
+  "baseline_commit": "8654d7355d3d63002110c93fd0f62b7b22c04920",
+  "baseline_worktree_clean": true,
+  "checked_at": "2026-10-27T11:22:04.627762",
+  "user_request_sha256": "6787d265c90dfc799c3e495b946c490201b8cec4ee519506b4831359af825b4e",
+  "protected_stage_reports": {
+    "research/agent_native_network/HETEROMRTA_REPRODUCTION.md": {
+      "git_blob_sha256": "cadba4ad0919761238d2644c1d47d753b0ba13086d0b9ef34604ca7ad7521aef",
+      "working_sha256": "3f72979b9b647ffd5bdf1316fdaa03cc31e27a609611e8db69bfebc3ef332178"
+    },
+    "research/agent_native_network/HETEROMRTA_NETWORK_INTERFACE.md": {
+      "git_blob_sha256": "fa357dd7360df4c070432ef3882683c866c430a4be58e55fa2486f37e9a4ecc8",
+      "working_sha256": "fa357dd7360df4c070432ef3882683c866c430a4be58e55fa2486f37e9a4ecc8"
+    },
+    "research/agent_native_network/NETWORK_BASELINE_RUNTIME.md": {
+      "git_blob_sha256": "713c936277e944b08f772dd860bfd7d55d22bf44a3a79dbe0ccb1aa7141acf01",
+      "working_sha256": "35b166142c025b7527ec86e20524ca97608ec3e485ab70fde18b5cdb01ed0d9f"
+    },
+    "research/agent_native_network/MOCHA_RUNTIME_ENTRY.md": {
+      "git_blob_sha256": "6364aac9106c91eadf17afa2af5d0a5a95e624681e134469067659ee7cf397fc",
+      "working_sha256": "6364aac9106c91eadf17afa2af5d0a5a95e624681e134469067659ee7cf397fc"
+    },
+    "research/agent_native_network/CAUSAL_SERVICE_STAGE.md": {
+      "git_blob_sha256": "06fcf85fee182018c85ff116f0d15c254b8d33357c6118e59c62b7b8b8cf3e3a",
+      "working_sha256": "06fcf85fee182018c85ff116f0d15c254b8d33357c6118e59c62b7b8b8cf3e3a"
+    },
+    "research/agent_native_network/DEMAND_CENSUS.md": {
+      "git_blob_sha256": "d8bf0dc39377008a03062fdca26d854a51cb95f488666b193f5017d8f754d3af",
+      "working_sha256": "d8bf0dc39377008a03062fdca26d854a51cb95f488666b193f5017d8f754d3af"
+    },
+    "research/agent_native_network/DEMAND_EXECUTION_STAGE.md": {
+      "git_blob_sha256": "d9dfcb808179b306621aa78ab30ecbe7b9d433e3c4a63f937ebe4477c9c76526",
+      "working_sha256": "d9dfcb808179b306621aa78ab30ecbe7b9d433e3c4a63f937ebe4477c9c76526"
+    },
+    "research/agent_native_network/WIRELESS_EXECUTION_STAGE.md": {
+      "git_blob_sha256": "309a886a9133f5e2c1dbf29e0083cf082e5fdecba6c4a5b5a5fcdb588818e943",
+      "working_sha256": "309a886a9133f5e2c1dbf29e0083cf082e5fdecba6c4a5b5a5fcdb588818e943"
+    },
+    "research/agent_native_network/WIRELESS_EXECUTION_IMPLEMENTATION.md": {
+      "git_blob_sha256": "bf114a466072acd06773ca505eb8c2e48b4224f516155ebb06a0700fce24721d",
+      "working_sha256": "bf114a466072acd06773ca505eb8c2e48b4224f516155ebb06a0700fce24721d"
+    }
+  },
+  "allowed_existing_changes": [
+    "START_HERE.md",
+    "coordination/CURRENT.md",
+    "coordination/TASKS.md",
+    "coordination/WINDOWS.md",
+    "coordination/DECISIONS.md",
+    "research/agent_native_network/README.md",
+    "research/agent_native_network/NEXT_STEPS.md",
+    "research/agent_native_network/RELATED_WORK.md",
+    "research/agent_native_network/RESEARCH_PROGRESS_AND_PROBLEM_STATEMENT.md",
+    "README.md"
+  ],
+  "required_outputs": [
+    "RESEARCH_REORIENTATION_20261027.md",
+    "reorientation_20261027/ARCHITECTURE_AND_MODEL.md",
+    "reorientation_20261027/VALIDATION_PLAN.md",
+    "reorientation_20261027/LITERATURE_REVIEW.md"
+  ],
+  "acceptance_checks": {
+    "research_object": "independent model agents on dynamic wireless nodes, rather than HeteroMRTA state only",
+    "network_problem": "operational demand and topology changes with control and wireless resource costs",
+    "architecture": "Agent interface, evolving physical and interaction graphs, multihop and timescale feedback",
+    "literature": "dated primary sources with deployment, actual network controls, scale and prior coverage",
+    "mechanisms": "2-3 concrete candidates with strong protocol baselines and measurable incremental effects",
+    "near_term_experiments": "real model traces, dynamic multihop and both area/density scaling families",
+    "attribution": "model compute, app behavior, network mechanism and extra nodes separated",
+    "preservation": "historical results retained, synchronization module repositioned, stale plans marked history"
+  },
+  "new_experiments": 0,
+  "new_model_runs": 0,
+  "new_simulations": 0,
+  "review_status": "C-012 final independent review passed; M accepted all five tasks and released write scopes",
+  "frozen_outputs": {
+    "research/agent_native_network/reorientation_20261027/ARCHITECTURE_AND_MODEL.md": "e74a085d288c0bcbbe31614a5118cf3f0a86a31c6e28bb997be058c2850724d1",
+    "research/agent_native_network/reorientation_20261027/VALIDATION_PLAN.md": "5feada5d898dea03eecc2868ffc4e5d1ab9a94e57e2ab3726402545fc5b443af",
+    "research/agent_native_network/RESEARCH_REORIENTATION_20261027.md": "bfe019c52ac8d063566c061e92fd0b68ca8eb90edf209a42d9b65bee9e625a70",
+    "research/agent_native_network/reorientation_20261027/LITERATURE_REVIEW.md": "697a143d5156da2dfd6b7aeed578f12ed20860e668b4a4f347d4c67a0134c568",
+    "README.md": "3b4d90252af7f6d2c0207309f61da73b0200703dc26b05f7bba24cce3a31f464",
+    "research/agent_native_network/README.md": "295ebf1cc7841f966743355986f51c8e2ff94406d7ca2d1831de98db73108b9f",
+    "research/agent_native_network/NEXT_STEPS.md": "5f19f4417ab1b2f56d4890c295b55d611295f18bea2890b04c53c5213abdbf9a",
+    "research/agent_native_network/RELATED_WORK.md": "be1034bd98e70836d2618913dce9e71f3abf91a343dcd8ff6bb301abc153f816",
+    "research/agent_native_network/RESEARCH_PROGRESS_AND_PROBLEM_STATEMENT.md": "5b798292550408f119cfa67f54d8cb37276c47e7bcd9f0f0a87523660f67571c"
+  },
+  "completed_turns": {
+    "E1-009": "01a17b5e-21b5-70e2-8633-769686cf9188",
+    "E2-010": "01a17b5e-2dd4-7a91-b393-bfef0f331615",
+    "C-012-initial": "01a17b68-9cc6-71f3-b2dd-40418e7cb67c",
+    "D-009": "01a17b5e-3b15-7050-a0a4-1630f7c553b1",
+    "C-012-final": "01a17ba6-50f9-7af1-b1de-7aa67370b971",
+    "E1-009-fix": "01a17b6c-91e2-70c0-b1dd-99d4d040ea4d"
+  },
+  "architecture_review_revision": {
+    "initial_sha256": "cc170292d7015f46eaa1f85037af3bccedb19574a50db3325f39099ecd9386c5",
+    "corrected_sha256": "e74a085d288c0bcbbe31614a5118cf3f0a86a31c6e28bb997be058c2850724d1",
+    "reason": "C-012 P2 destination queue absorbing boundary",
+    "e1_fix_turn": "01a17b6c-91e2-70c0-b1dd-99d4d040ea4d",
+    "status": "C final review independently verified the correction; P2 closed"
+  },
+  "interim_preservation": {
+    "protected_reports_unchanged": 9,
+    "user_request_byte_preserved": true,
+    "unexpected_tracked_changes": [],
+    "changed_tracked_files": [
+      "START_HERE.md",
+      "coordination/CURRENT.md",
+      "coordination/DECISIONS.md",
+      "coordination/TASKS.md",
+      "coordination/WINDOWS.md"
+    ]
+  },
+  "historical_progress_body_byte_preserved": true,
+  "historical_progress_original_bytes": 34480,
+  "local_links_checked": 261,
+  "missing_local_link_targets": [],
+  "historical_body_check_note": "Original 34480-byte file preserved as suffix after banner; initial check expected banner after title and was corrected to actual prefix insertion.",
+  "resume_check": {
+    "frozen_hashes_matched": 9,
+    "historical_reports_unchanged": 9,
+    "historical_body_preserved": true,
+    "unexpected_changes": [],
+    "interrupted_review_turn": "01a17b78-751d-7cf2-a1a1-91523a657396",
+    "review_resume_dispatched": true
+  },
+  "final_acceptance": {
+    "accepted_at": "2026-10-27T12:42:59.230611+08:00",
+    "review_path": "coordination/reviews/C-012.md",
+    "review_sha256": "955f87f88eaacb641f996e0f356f3279296a9e8c9ce12acdd7303d9b7c3942a7",
+    "frozen_hashes_matched": 9,
+    "protected_reports_unchanged": 9,
+    "all_role_turns_completed_and_stopped": true,
+    "research_outputs_changed_after_final_review": false,
+    "new_experiments": 0,
+    "changed_tracked_files": [
+      "README.md",
+      "START_HERE.md",
+      "coordination/CURRENT.md",
+      "coordination/DECISIONS.md",
+      "coordination/TASKS.md",
+      "coordination/WINDOWS.md",
+      "research/agent_native_network/NEXT_STEPS.md",
+      "research/agent_native_network/README.md",
+      "research/agent_native_network/RELATED_WORK.md",
+      "research/agent_native_network/RESEARCH_PROGRESS_AND_PROBLEM_STATEMENT.md"
+    ],
+    "new_files": [
+      "coordination/handoffs/M-011-user-request.md",
+      "coordination/reviews/C-012.md",
+      "coordination/reviews/M-011-verification.json",
+      "coordination/tasks/C-012.md",
+      "coordination/tasks/D-009.md",
+      "coordination/tasks/E1-009.md",
+      "coordination/tasks/E2-010.md",
+      "coordination/tasks/M-011.md",
+      "research/agent_native_network/RESEARCH_REORIENTATION_20261027.md",
+      "research/agent_native_network/reorientation_20261027/ARCHITECTURE_AND_MODEL.md",
+      "research/agent_native_network/reorientation_20261027/LITERATURE_REVIEW.md",
+      "research/agent_native_network/reorientation_20261027/VALIDATION_PLAN.md"
+    ],
+    "local_links_checked_after_management_close": 266,
+    "missing_local_link_targets": [],
+    "historical_progress_body_byte_preserved": true
+  }
+}
