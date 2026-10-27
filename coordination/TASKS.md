@@ -2,7 +2,14 @@
 
 状态、范围和检查点只保存在任务卡；窗口绑定见[WINDOWS](WINDOWS.md)。
 
-## 当前组织修正
+## 当前文档任务
+
+- [M-010](tasks/M-010.md)
+- [E2-009](tasks/E2-009.md)
+- [D-008](tasks/D-008.md)
+- [C-011](tasks/C-011.md)
+
+## 既有组织修正
 
 - [ORG-003](tasks/ORG-003.md)
 - [E1-008](tasks/E1-008.md)

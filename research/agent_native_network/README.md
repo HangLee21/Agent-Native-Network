@@ -1,5 +1,7 @@
 # Agent-Native 去中心化无线网络研究
 
+**详细研究报告（2026-10-27）：** [前期调研、实验数据、问题定义与探索方向](RESEARCH_PROGRESS_AND_PROBLEM_STATEMENT.md)。
+
 **当前进度与执行来源（2026-10-26，D-007补充）：** [007需求账本](DEMAND_CENSUS.md)、[008运行时记录与规模执行](DEMAND_EXECUTION_STAGE.md)、[009简化无线执行](WIRELESS_EXECUTION_STAGE.md)均已有保存结果；空间复用、路由及应用工作流W1–W3尚待实现。下文保留各阶段原文，其中“本轮／下一步”按当时阶段理解；当前任务范围以[CURRENT](../../coordination/CURRENT.md)和主任务卡为准。
 
 M-002至M-009的历史执行与C角色审查来自M聊天内子代理，不能视为既有独立角色聊天执行；本轮独立C窗口复核另见[C-010](../../coordination/tasks/C-010.md)。来源、合同适用范围及运行记录字段说明见[研究来源导航](RESEARCH_PROVENANCE_INDEX.md)。本次仅补充文档，未重跑历史实验。

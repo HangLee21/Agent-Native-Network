@@ -1,6 +1,8 @@
 # 当前摘要
 
-更新：2026-10-26，Asia/Shanghai。M维护；任务状态以主任务卡为准。
+更新：2026-10-27，Asia/Shanghai。M维护；任务状态以主任务卡为准。
+
+最新完成：[M-010](tasks/M-010.md)详细文档已由M验收。D-008撰写，E2-009核对39份来源及18项算术，C-011数据初审和正文终审均无阻塞；四张卡已关闭并释放范围，本轮没有运行新实验。
 
 [ORG-003](tasks/ORG-003.md)已验收：五个独立角色窗口恢复实际分工，E1/E2完成接管，D完成资料接管和文档修订，C-010独立窗口终审无阻塞，M按证据关闭五张任务卡并释放范围；具体聊天、任务和发送记录见[窗口登记](WINDOWS.md)。本轮不新增实验。
 
@@ -19,3 +21,5 @@
 [研究来源导航](../research/agent_native_network/RESEARCH_PROVENANCE_INDEX.md)汇总阶段、baseline来源及历史manifest字段映射。
 
 本轮交付已冻结，各实际窗口均completed并停写；无后台研究队列。后续实现、验证、资料维护和审计继续由对应独立窗口执行，M维护任务与验收。
+
+本轮文档：[调研、实验进展与问题定义](../research/agent_native_network/RESEARCH_PROGRESS_AND_PROBLEM_STATEMENT.md)；[数据核对表](handoffs/E2-009-evidence.md)。正文已经C独立终审并由M验收；其中候选方法和实验方案供下一阶段实现。
