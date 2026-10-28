@@ -1,0 +1,69 @@
+Warn about uninitialized values.
+-- Using default output directory D:/Multi-Agent Network/data/agent_native/E2-011/ns-3.46/build
+-- Proceeding without cmake-format
+-- Found Python3: C:\environment\python3.11\python.exe (found version "3.11.5") found components: Interpreter
+-- Python: development libraries were not found
+-- docs: doxygen documentation not enabled due to missing dependencies: dia python3
+-- docs: sphinx documentation not enabled due to missing dependencies: dia
+-- Int128 was not found. Falling back to Cairo.
+-- Platform doesn't support TAP and EMU features. Continuing without them.
+-- Processing src/aodv
+-- Processing src/applications
+-- Processing src/core
+-- Boost Units are an optional feature of length.cc.  Ubuntu ships it within the libboost-dev package.  You may need to clean up the CMake cache after installing it to pass this check.
+-- Processing src/internet
+-- Processing src/mobility
+-- Processing src/network
+-- Processing src/wifi
+-- Processing src/bridge
+-- Processing src/stats
+-- Processing src/traffic-control
+-- Processing src/internet-apps
+-- Processing src/energy
+-- Processing src/spectrum
+-- Processing src/propagation
+-- Processing src/antenna
+-- Boost Bessel function is required for CircularApertureAntennaModel  on platforms using Clang libc++ such as macOS.  You may need to clean up the CMake cache after installing it to pass this check.
+-- Processing src/buildings
+-- ---- Summary of ns-3 settings:
+Build profile                 : default
+Build directory               : D:/Multi-Agent Network/data/agent_native/E2-011/ns-3.46/build
+Build with runtime asserts    : ON
+Build with runtime logging    : ON
+Build version embedding       : OFF (not requested)
+BRITE Integration             : OFF (missing dependency)
+DES Metrics event collection  : OFF (not requested)
+DPDK NetDevice                : OFF (not requested)
+Emulation FdNetDevice         : OFF (not requested)
+Examples                      : OFF (not requested)
+File descriptor NetDevice     : OFF (missing dependency)
+GNU Scientific Library (GSL)  : OFF (GSL was not found)
+GtkConfigStore                : OFF (Harfbuzz is required by GTK3 and was not found)
+LibXml2 support               : OFF (LibXML2 was not found)
+MPI Support                   : OFF (not requested)
+ns-3 Click Integration        : OFF (missing dependency)
+ns-3 OpenFlow Integration     : OFF (missing dependency)
+Netmap emulation FdNetDevice  : OFF (not requested)
+PyViz visualizer              : OFF (Python Bindings are disabled)
+Python Bindings               : OFF (not requested)
+SQLite support                : OFF (missing dependency)
+Eigen3 support                : OFF (Eigen was not found)
+Tap Bridge                    : OFF (not requested)
+Tap FdNetDevice               : OFF (not requested)
+Tests                         : OFF (not requested)
+
+
+Modules configured to be built:
+antenna                   aodv                      applications              
+bridge                    buildings                 core                      
+energy                    internet                  internet-apps             
+mobility                  network                   propagation               
+spectrum                  stats                     traffic-control           
+wifi                      
+
+
+-- Configuring done (9.8s)
+-- Generating done (1.0s)
+-- Build files have been written to: D:/Multi-Agent Network/data/agent_native/E2-011/ns-3.46/cmake-cache
+Finished executing the following commands:
+D:\CMake\bin\cmake -S D:\Multi-Agent Network\data\agent_native\E2-011\ns-3.46 -B D:\Multi-Agent Network\data\agent_native\E2-011\ns-3.46\cmake-cache -DNS3_EXAMPLES=OFF -DNS3_TESTS=OFF -DNS3_ENABLED_MODULES=core;network;internet;wifi;mobility;aodv;applications -G Ninja --warn-uninitialized -DCMAKE_CXX_COMPILER=g++ -DNS3_CCACHE=OFF -DPython3_EXECUTABLE=C:\environment\python3.11\python.exe

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "ns3",
+    "configure",
+    "--enable-modules=core;network;internet;wifi;mobility;aodv;applications",
+    "--disable-examples",
+    "--disable-tests",
+    "-G",
+    "Ninja",
+    "--",
+    "-DCMAKE_CXX_COMPILER=g++",
+    "-DNS3_CCACHE=OFF",
+    "-DPython3_EXECUTABLE=C:\\environment\\python3.11\\python.exe",
+    "-DCMAKE_CXX_FLAGS=-include algorithm"
+  ],
+  "process_id": 45924,
+  "started_at": "2026-10-28T09:01:12.493970+00:00"
+}

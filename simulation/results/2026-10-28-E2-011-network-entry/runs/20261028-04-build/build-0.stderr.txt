@@ -1,0 +1,33 @@
+permission denied
+CMake Warning at build-support/3rd-party/colored-messages.cmake:84 (_message):
+  Python3 executable was not found and write permissions won't be checked.
+  Build may break for file permission issues.
+Call Stack (most recent call first):
+  build-support/custom-modules/ns3-output-directory.cmake:35 (message)
+  build-support/custom-modules/ns3-output-directory.cmake:92 (make_directory)
+  build-support/macros-and-definitions.cmake:35 (include)
+  CMakeLists.txt:116 (include)
+
+
+CMake Warning at build-support/3rd-party/colored-messages.cmake:84 (_message):
+  Python3 executable was not found and write permissions won't be checked.
+  Build may break for file permission issues.
+Call Stack (most recent call first):
+  build-support/custom-modules/ns3-output-directory.cmake:35 (message)
+  build-support/custom-modules/ns3-output-directory.cmake:93 (make_directory)
+  build-support/macros-and-definitions.cmake:35 (include)
+  CMakeLists.txt:116 (include)
+
+
+CMake Warning at build-support/3rd-party/colored-messages.cmake:84 (_message):
+  Python3 executable was not found and write permissions won't be checked.
+  Build may break for file permission issues.
+Call Stack (most recent call first):
+  build-support/custom-modules/ns3-output-directory.cmake:35 (message)
+  build-support/custom-modules/ns3-output-directory.cmake:94 (make_directory)
+  build-support/macros-and-definitions.cmake:35 (include)
+  CMakeLists.txt:116 (include)
+
+
+ccache: error: failed to rename C:\Users\14111\AppData\Local\Packages\sandbox.{e5b2d7a2-e81c-44ed-8ac6-f222fc0dfde5}\AC\ccache\ccache.conf.tmp.ks1Yof.tmp to C:\Users\14111\AppData\Local\Packages\sandbox.{e5b2d7a2-e81c-44ed-8ac6-f222fc0dfde5}\AC\ccache\ccache.conf: 数据无效。
+

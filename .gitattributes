@@ -47,3 +47,15 @@ simulation/results/2026-10-26-E2-007-wireless/** -text whitespace=-blank-at-eof,
 coordination/reviews/C-009* text eol=lf
 coordination/reviews/M-009* text eol=lf
 research/agent_native_network/WIRELESS*.md text eol=lf
+
+# M-012: stable entry source and exact raw evidence on all checkouts.
+simulation/edge_agent_entry/** text eol=lf
+simulation/dynamic_network_entry/** text eol=lf
+simulation/results/2026-10-28-E1-010-model-entry/** -text whitespace=-blank-at-eof,cr-at-eol
+simulation/results/2026-10-28-E2-011-network-entry/** -text whitespace=-blank-at-eof,cr-at-eol
+research/agent_native_network/preparation_20261028/** text eol=lf
+research/agent_native_network/PREPARATION_20261028.md text eol=lf
+coordination/reviews/C-013.md text eol=lf
+coordination/reviews/M-012-verification.json text eol=lf
+# Preserve the frozen CRLF negative fixture verbatim.
+simulation/edge_agent_entry/invalid_fixture_config.json -text whitespace=cr-at-eol

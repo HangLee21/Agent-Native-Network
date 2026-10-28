@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "E1-010 event, outer envelope v1",
+  "type": "object",
+  "required": ["schema_version", "run_id", "event_id", "kind", "node_id", "root_task_id", "t_logical_s", "wall_elapsed_s", "parent_event_ids", "backend", "details"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "edge-agent-event/1"},
+    "run_id": {"type": "string"},
+    "event_id": {"type": "string", "pattern": "^e[0-9]+$"},
+    "kind": {"enum": ["call_started", "call_finished", "generated", "sent", "arrived_complete", "consumed", "finished", "expired", "budget_stopped", "tool_or_backend_failed"]},
+    "node_id": {"type": ["string", "null"]},
+    "root_task_id": {"type": "string"},
+    "t_logical_s": {"type": "number", "minimum": 0},
+    "wall_elapsed_s": {"type": "number", "minimum": 0},
+    "parent_event_ids": {"type": "array", "items": {"type": "string"}},
+    "backend": {"enum": ["fixture_scripted_not_model", "smolvlm_local_model"]},
+    "details": {"type": "object"}
+  },
+  "$comment": "Not the full architecture wire contract. Logical fixture time is not ns-3 or radio time. Model call logs include real token counts in the model-worker result."
+}

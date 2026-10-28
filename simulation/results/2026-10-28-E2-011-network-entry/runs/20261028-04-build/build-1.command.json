@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "ns3",
+    "build",
+    "b0-aodv",
+    "-j",
+    "4"
+  ],
+  "cwd": "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46",
+  "process_id": 45332,
+  "exit_code": 1,
+  "timed_out": false,
+  "wall_seconds": 39.46899999999732
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "ns3",
+    "run",
+    "b0-aodv",
+    "--no-build",
+    "--",
+    "--output=D:\\Multi-Agent Network\\simulation\\outputs\\E2-011\\20261028-10-dynamic0\\raw",
+    "--mode=dynamic",
+    "--seed=0"
+  ],
+  "process_id": 15520,
+  "started_at": "2026-10-28T09:13:30.434701+00:00",
+  "child_path_prefix": [
+    "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46\\build\\lib",
+    "C:\\Strawberry\\c\\bin"
+  ]
+}
