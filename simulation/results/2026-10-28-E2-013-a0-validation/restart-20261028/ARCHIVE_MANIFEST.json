@@ -1,0 +1,124 @@
+{
+  "task_id": "E2-013",
+  "kind": "second validation increment; original root archive retained",
+  "created_at": "2026-10-28T14:04:58.953547+00:00",
+  "parent_manifest_sha256": "70327fecbd2e1f1bfb7f61555d1d06a74fb755babeaf02ea1bf82ee7474c2b07",
+  "freeze_sha256": "2247e4f9200cd94cf3c2c2396ad430a87310a9e054e9d199ce443b673369b7b5",
+  "formal_validation_runs_total": 2,
+  "files": [
+    {
+      "source": "research/agent_native_network/a0_20261028/VALIDATION.md",
+      "archive": "payload/research/agent_native_network/a0_20261028/VALIDATION.md",
+      "bytes": 6683,
+      "sha256": "9f19a4640c91c907d9b3bd140e234d1971d9b902087ffb6d9fadc3bca34cc25b"
+    },
+    {
+      "source": "simulation/edge_agent_validation/criteria_restart.json",
+      "archive": "payload/simulation/edge_agent_validation/criteria_restart.json",
+      "bytes": 1024,
+      "sha256": "34f33b0f01caffae9ac1ef2cd44dc8869634d0e8741ee35124696a75e747cf1f"
+    },
+    {
+      "source": "simulation/edge_agent_validation/RESTART_ADAPTATION.md",
+      "archive": "payload/simulation/edge_agent_validation/RESTART_ADAPTATION.md",
+      "bytes": 1789,
+      "sha256": "c9ed324944d202463478948476ebc1726a3cd2935e8fb2d46606aa0d50977060"
+    },
+    {
+      "source": "simulation/edge_agent_validation/SOURCE_REVIEW_RESTART.md",
+      "archive": "payload/simulation/edge_agent_validation/SOURCE_REVIEW_RESTART.md",
+      "bytes": 3253,
+      "sha256": "f514645113cc6df8d732409593ad98aaacb9a0f6173bec6355486891794bbf95"
+    },
+    {
+      "source": "simulation/edge_agent_validation/validate_restart.py",
+      "archive": "payload/simulation/edge_agent_validation/validate_restart.py",
+      "bytes": 20302,
+      "sha256": "76d3ca0759a6640272b531563bff4a1a5102fcf35aec63a873646656faab5acb"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/E2-013.md",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/E2-013.md",
+      "bytes": 6767,
+      "sha256": "ee8d2571e9f06d027ca29fb8c335cd8657d1ee5cabff563345ac2053b40d07a8"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/freeze.json",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/freeze.json",
+      "bytes": 184655,
+      "sha256": "2247e4f9200cd94cf3c2c2396ad430a87310a9e054e9d199ce443b673369b7b5"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/manifest.json",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/manifest.json",
+      "bytes": 186015,
+      "sha256": "e8a6d2517c6087a2b0503c357d43ba78b383070aa821134da15ff0848d2da491"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/RUN_MANIFEST.template.json",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/RUN_MANIFEST.template.json",
+      "bytes": 582,
+      "sha256": "aa09f184f908c53345c34a476ce0f32fd56770f6ba828c11068a1812a2199ac7"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/ADAPTATION.md",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/ADAPTATION.md",
+      "bytes": 2135,
+      "sha256": "9f6389f52542f3eb5d60915319a118afabb7cda83629cddf52eba4175dc5fe2e"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/criteria.json",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/criteria.json",
+      "bytes": 1620,
+      "sha256": "a672ba55033ffd9b9df34de4043eccb9fd76fa7d3a2e53f0618dac98da3ed990"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/criteria_restart.json",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/criteria_restart.json",
+      "bytes": 1024,
+      "sha256": "34f33b0f01caffae9ac1ef2cd44dc8869634d0e8741ee35124696a75e747cf1f"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/PREPARATION.json",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/PREPARATION.json",
+      "bytes": 1708,
+      "sha256": "5b25da14a00d507c3793a35f8a2367ffedd00e92605d96648185db7ef94d034e"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/README.md",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/README.md",
+      "bytes": 3330,
+      "sha256": "bb8bc97e2ea69686af0b7f06c95c93ef1f9bc6d794053836276100dc162341eb"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/RESTART_ADAPTATION.md",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/RESTART_ADAPTATION.md",
+      "bytes": 1789,
+      "sha256": "c9ed324944d202463478948476ebc1726a3cd2935e8fb2d46606aa0d50977060"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/SOURCE_REVIEW.md",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/SOURCE_REVIEW.md",
+      "bytes": 2880,
+      "sha256": "0491ae4b8381a17875330414de74dbf46ca100b515a346aa973ee2ccbe958365"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/validate_a0.py",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/validate_a0.py",
+      "bytes": 29247,
+      "sha256": "959791bae426b460fbe4f98843601a364b3b6d265172a94128a3e416823d2ce6"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/source/validate_restart.py",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/source/validate_restart.py",
+      "bytes": 20302,
+      "sha256": "76d3ca0759a6640272b531563bff4a1a5102fcf35aec63a873646656faab5acb"
+    },
+    {
+      "source": "simulation/outputs/E2-013/20261028-02-user-approved-restart/validation.json",
+      "archive": "payload/simulation/outputs/E2-013/20261028-02-user-approved-restart/validation.json",
+      "bytes": 233316,
+      "sha256": "6616befc38fa75a634951e26d560de44043e553262b0eb739f82d91c0c22ec88"
+    }
+  ]
+}

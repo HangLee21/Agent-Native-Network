@@ -31,6 +31,21 @@ def utc_now():
     return datetime.now(timezone.utc).isoformat()
 
 
+def available_ram():
+    """Cheap launch guard; no package imports or resource polling."""
+    if sys.platform != "win32":
+        raise RuntimeError("RAM launch guard currently requires Windows")
+    class Memory(ctypes.Structure):
+        _fields_ = [("length", ctypes.c_ulong), ("load", ctypes.c_ulong)] + [
+            (name, ctypes.c_ulonglong) for name in
+            ("total_physical", "free_physical", "total_page", "free_page", "total_virtual", "free_virtual", "extended")]
+    memory = Memory()
+    memory.length = ctypes.sizeof(memory)
+    if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(memory)):
+        raise RuntimeError("RAM launch guard unavailable")
+    return memory.free_physical
+
+
 def inventory():
     result = dict(python_executable=sys.executable, python_version=sys.version,
                   platform=platform.platform(), logical_cpu=os.cpu_count(),
@@ -59,13 +74,16 @@ def inventory():
     return result
 
 
-def new_run(output, kind, budget, config_file=None):
+def new_run(output, kind, budget, config_file=None, *, task_id="E1-010"):
+    if task_id not in {"E1-010", "E1-012"}:
+        raise ValueError("unsupported task output scope")
+    output_root = ROOT / "simulation/outputs" / task_id
     out = Path(output).resolve()
-    if not out.is_relative_to(OUTPUT_ROOT.resolve()) or out == OUTPUT_ROOT.resolve():
-        raise ValueError("output must be a new run directory below simulation/outputs/E1-010")
+    if not out.is_relative_to(output_root.resolve()) or out == output_root.resolve():
+        raise ValueError(f"output must be a new run directory below simulation/outputs/{task_id}")
     out.mkdir(parents=True, exist_ok=False)
     manifest = __import__("json").loads((ROOT / "coordination/templates/RUN_MANIFEST.json").read_text(encoding="utf-8-sig"))
-    manifest.update(template_only=False, task_id="E1-010", run_id=out.name, started_at=utc_now(),
+    manifest.update(template_only=False, task_id=task_id, run_id=out.name, started_at=utc_now(),
                     worktree=str(ROOT), command=[sys.executable, *sys.argv],
                     python_executable=sys.executable, config_file=str(config_file) if config_file else None,
                     seeds=[0], budget=budget, output_directory=str(out), process_id=os.getpid(),

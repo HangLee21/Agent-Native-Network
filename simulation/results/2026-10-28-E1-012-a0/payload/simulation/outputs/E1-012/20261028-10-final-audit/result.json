@@ -1,0 +1,52 @@
+{
+  "task_id": "E1-012",
+  "checked_at": "2026-10-28T13:30:09.971748+00:00",
+  "source_matches_run": {
+    "simulation\\edge_agent_entry\\__init__.py": true,
+    "simulation\\edge_agent_entry\\a0.py": true,
+    "simulation\\edge_agent_entry\\a0_task.py": true,
+    "simulation\\edge_agent_entry\\acquire.py": true,
+    "simulation\\edge_agent_entry\\cli.py": true,
+    "simulation\\edge_agent_entry\\common.py": true,
+    "simulation\\edge_agent_entry\\event_schema.json": true,
+    "simulation\\edge_agent_entry\\fixture_config.json": true,
+    "simulation\\edge_agent_entry\\invalid_fixture_config.json": true,
+    "simulation\\edge_agent_entry\\model_backend.py": true,
+    "simulation\\edge_agent_entry\\model_worker.py": true,
+    "simulation\\edge_agent_entry\\preflight.py": true,
+    "simulation\\edge_agent_entry\\runtime.py": true,
+    "simulation\\edge_agent_entry\\test_runtime.py": true,
+    "simulation\\edge_agent_entry\\test_source_identity.py": true,
+    "simulation\\edge_agent_entry\\test_task_scope.py": true
+  },
+  "run_source_matches_final_test": true,
+  "final_tests": 35,
+  "config_sha256_matches": true,
+  "model_files_verified": 13,
+  "formal_preflights": 2,
+  "worker_starts": 1,
+  "actual_model_forwards": 0,
+  "worker_wall_seconds": 33.203000000008615,
+  "monitor_protection_stopped": true,
+  "ram_samples": 128,
+  "first_sample_free_ram_bytes": 2004123648,
+  "minimum_sample_free_ram_bytes": 412577792,
+  "maximum_sampling_gap_seconds": 0.26600000000325963,
+  "all_sampling_gaps_at_most_half_second": true,
+  "monitor_final_row": {
+    "elapsed_seconds": 33.1880000000092,
+    "worker_pid": 49936,
+    "free_ram_bytes": 412577792,
+    "stop_reason": "low_system_ram"
+  },
+  "worker_process_record": {
+    "exit_code": 1,
+    "minimum_observed_free_ram_bytes": 412577792,
+    "monitor_stop_reason": "low_system_ram",
+    "monitoring_interval_seconds": 0.25,
+    "ram_samples": 128,
+    "timed_out": false,
+    "worker_pid": 49936,
+    "worker_reaped": true
+  }
+}

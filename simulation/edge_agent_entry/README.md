@@ -1,4 +1,23 @@
-# E1-010入口
+# 本地模型与fixture入口
+
+E1-012使用独立入口和累计账本，先读实时主卡 `coordination/tasks/E1-012.md`：
+
+```powershell
+.\.venv\Scripts\python.exe -B -m simulation.edge_agent_entry.test_task_scope --output simulation/outputs/E1-012/<new-check-run>
+.\.venv\Scripts\python.exe -B -m simulation.edge_agent_entry.a0_task --output simulation/outputs/E1-012/<new-A0-run>
+```
+
+新入口只读复用E1-010的model/env，固定D来源锁，写入E1-012新目录。最多4次worker启动（失败计入）、每次256新token/180秒、累计720秒；未完成reservation按全部保留时间计费，不删除账本重置。正式预检最多两次，首失败后须有明确资源变化，通过 `--resource-change-note` 留证；失败时不得用 `--resume` 越过。`--resume`仅在已有通过预检时供有界运行时修复重入，仍沿同一账本计费。启动前另做瞬时RAM门槛检查，worker加载前核显存，均不轮询。
+
+两个64×64纯色图使用中性文件名，期望颜色只在评估器文件中，模型文本不含颜色答案。每次独立进程与私有上下文，只给一张图；视觉识别、JSON格式和引用合法性分别评分。最多一次提示修订；direct CUDA加载与实际processor张量是否可用须以运行证据判断。当前执行证据见 `research/agent_native_network/a0_20261028/MODEL_RUN.md`。
+
+M在03失败后新增有监测低RAM模式：`--monitored-direct-cuda`须匹配实时主卡修订，使用直接CUDA加载、FP16及低CPU加载，启动RAM门槛1.5GiB；默认模式仍2GiB。父进程按0.25秒间隔记录系统可用RAM，低于512MiB或监测不可用时仅终止并等待自身worker。保护停止进入持久账本，阻止后续自动启动；不因剩余名额继续运行。显存门槛仍2.5GiB。实际采样间隔和保护结果查`ram_curve.jsonl`及`process.json`，配置间隔不替代观测间隔。
+
+以下保留E1-010历史入口说明及预算，不能用于扩大新任务范围。
+
+资源改善后用户明确批准恢复时，E1-012主卡新增了本次人工授权，`--user-approved-restart --monitored-direct-cuda`仅可沿这一主卡记录使用一次，新增一次启动检查，原累计worker预算与保护历史不清零。普通`--resume`不能自行解除保护；新的保护停止仍会禁止启动。`--diagnostic-input 1 --resume --monitored-direct-cuda`可在同一预算、同一提示版本下只记录尚缺的固定蓝图，不把“已执行两个输入”当成两个输入都通过验收。具体执行以各次源码快照为准。
+
+本次实测：64×64原始PNG经processor生成`pixel_values=[1,1,3,512,512]`，`do_resize=False`没有消除内部视觉编码适配步骤，不能称为64×64张量推理。真实加载和生成已完成，但严格JSON工具格式未通过，详见MODEL_RUN报告。
 
 先读 `coordination/tasks/E1-010.md`。本目录包含离线fixture和待实际验证的SmolVLM本地适配器；二者不会相互回退。
 

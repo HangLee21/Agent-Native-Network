@@ -1,0 +1,11 @@
+{
+  "backend": "smolvlm_local_model",
+  "actual_forward_started": false,
+  "source_revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+  "status": "loading",
+  "node_id": "participant-0",
+  "context_sha256": "74072e784bf7dbc4f3e822150f8f58af504b0fc425bc526abc7bbfb649319d93",
+  "max_new_tokens": 256,
+  "python": "D:\\Multi-Agent Network\\data\\agent_native\\E1-010\\env\\Scripts\\python.exe",
+  "wall_seconds": 0.0
+}

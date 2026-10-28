@@ -33,6 +33,7 @@ def main():
         Path(args.result).write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
 
     try:
+        save()
         os.environ.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1", HF_HUB_DISABLE_TELEMETRY="1",
                           USE_TF="0", USE_FLAX="0")
         import torch
@@ -50,14 +51,29 @@ def main():
             raise RuntimeError("less than 2.5GiB free GPU memory before loading")
         device = "cuda:0"
         dtype = torch.float16
+        torch.cuda.reset_peak_memory_stats()
+        loading_start = time.monotonic()
         processor = AutoProcessor.from_pretrained(spec["model_dir"], local_files_only=True, trust_remote_code=False)
         # Prevent default multi-tile upsampling of a 64px compatibility fixture.
         processor.image_processor.do_resize = False
+        placement = {"device_map": {"": device}} if spec.get("direct_cuda_load", False) else {}
         model = AutoModelForImageTextToText.from_pretrained(
             spec["model_dir"], local_files_only=True, trust_remote_code=False,
-            torch_dtype=dtype, low_cpu_mem_usage=True, attn_implementation="eager")
-        model.to(device)
+            torch_dtype=dtype, low_cpu_mem_usage=True, attn_implementation="eager", **placement)
+        if not spec.get("direct_cuda_load", False):
+            model.to(device)
         model.eval()
+        torch.cuda.synchronize()
+        devices = sorted({str(param.device) for param in model.parameters()})
+        if placement and devices != [device]:
+            raise RuntimeError(f"direct CUDA loading left parameters on {devices}")
+        result.update(status="model_loaded", model_load_seconds=time.monotonic() - loading_start,
+                      loading_strategy="direct_cuda" if placement else "cpu_then_cuda",
+                      hf_device_map=getattr(model, "hf_device_map", None), parameter_devices=devices,
+                      parameter_dtypes=sorted({str(param.dtype) for param in model.parameters()}),
+                      parameter_bytes=sum(param.numel() * param.element_size() for param in model.parameters()),
+                      peak_allocated_gpu_bytes_through_load=torch.cuda.max_memory_allocated())
+        save()
         images = []
         for record in spec["images"]:
             data = Path(record["path"]).read_bytes()
@@ -91,7 +107,8 @@ def main():
         result.update(status="generated", raw_output=raw, output_tokens=int(new_tokens.shape[-1]),
                       output_utf8_bytes=len(raw.encode("utf-8")), generation_seconds=time.monotonic() - generation_start,
                       peak_allocated_gpu_bytes=torch.cuda.max_memory_allocated(),
-                      peak_reserved_gpu_bytes=torch.cuda.max_memory_reserved())
+                      peak_reserved_gpu_bytes=torch.cuda.max_memory_reserved(),
+                      gpu_generation_peak_scope="reset after load/preprocess; resident model plus generation; excludes transient load peak")
         save()
         return 0
     except Exception as exc:

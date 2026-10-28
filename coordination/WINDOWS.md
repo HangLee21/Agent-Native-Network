@@ -1,17 +1,19 @@
 # 窗口登记
 
 项目ID：`d1d5c8d4-4a2a-460d-90b2-9129ef59bdd8`；host：local；工作副本：`D:\Multi-Agent Network`。
-分支：`codex/baseline-reproduction-20261023`；本轮基准：`b19fbe9`。运行状态以任务卡为准。
+分支：`codex/baseline-reproduction-20261023`；本轮基准：`7f92deb`。运行状态以任务卡为准。
 
 | 实际窗口名称 | 聊天ID | 本轮任务 |
 |---|---|---|
-| M \| Research Lead | `01a16824-1141-7202-929b-3b558df47ade` | [M-013](tasks/M-013.md) |
-| E1 \| Core Experiments | `01a16824-294e-7eb2-85eb-d98b7a8748f1` | [E1-011](tasks/E1-011.md) |
-| E2 \| Validation & Ablation | `01a16824-3f4e-7e61-8a83-08d2dd8c82f6` | [E2-012](tasks/E2-012.md) |
-| D \| Research Repository | `01a16824-727d-7fd3-8696-c1a0b9694386` | [D-011](tasks/D-011.md) |
-| C \| Repository Auditor | `01a16824-5c84-7081-8f0c-7e1e94beff35` | [C-014](tasks/C-014.md) |
+| M \| Research Lead | `01a16824-1141-7202-929b-3b558df47ade` | [M-014](tasks/M-014.md) |
+| E1 \| Core Experiments | `01a16824-294e-7eb2-85eb-d98b7a8748f1` | [E1-012](tasks/E1-012.md) |
+| E2 \| Validation & Ablation | `01a16824-3f4e-7e61-8a83-08d2dd8c82f6` | [E2-013](tasks/E2-013.md) |
+| D \| Research Repository | `01a16824-727d-7fd3-8696-c1a0b9694386` | [D-012](tasks/D-012.md) |
+| C \| Repository Auditor | `01a16824-5c84-7081-8f0c-7e1e94beff35` | [C-015](tasks/C-015.md) |
 
-2026-10-28当前：M-013实验框架已完成。E1/E2/D交付冻结，C-014分链及整体核对通过；M验收五卡并释放范围，所有角色completed并停写。本轮零新实验；实际turn与hash见reviews/M-013-verification.json。
+2026-10-28当前：M-014五卡均已验收done，写入范围释放；E1/E2/D/C实际turn均completed并停写，相关worker/controller已结束。累计4worker/3生成，A0严格JSON仍未通过。执行、独立核验与终审来源见reviews/M-014-verification.json；后续不沿旧预算自动续行。
+
+2026-10-28框架阶段历史：M-013实验框架已完成。E1/E2/D交付冻结，C-014分链及整体核对通过；M验收五卡并释放范围，所有角色completed并停写。本轮零新实验；实际turn与hash见reviews/M-013-verification.json。
 
 2026-10-28实验阶段历史：E1/E2/D均已完成并停写，C-013最终turn `01a181df-432a-76e3-93c8-787fdb65102f`已completed，独立终审通过且无未决P1/P2。M验收五卡并释放写入范围，无研究进程。实际派发、完成及冻结证据见M-012-verification.json；后续执行按新卡。
 

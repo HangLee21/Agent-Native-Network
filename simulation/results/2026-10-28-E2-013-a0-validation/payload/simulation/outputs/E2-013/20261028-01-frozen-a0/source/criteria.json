@@ -1,0 +1,22 @@
+{
+  "schema": "E2-013-a0-criteria/1",
+  "baseline_commit": "7f92debd36310a7d5e37ef52d23c019138284cdd",
+  "target_task": "E1-012",
+  "max_worker_starts": 4,
+  "max_worker_seconds": 720,
+  "max_call_seconds": 180,
+  "max_new_tokens": 256,
+  "minimum_free_ram_bytes": 2147483648,
+  "monitored_minimum_free_ram_bytes": 1610612736,
+  "monitor_stop_free_ram_bytes": 536870912,
+  "mode_revision_basis": "M revision in E1-012 after 03 preflight; only direct CUDA with parent RAM monitoring may use 1.5GiB. Default remains 2GiB. This changes resource gate only, not A0 capability criteria.",
+  "minimum_free_vram_bytes": 2684354560,
+  "expected_node_colors": {"n0": [255, 0, 0], "n1": [0, 0, 255]},
+  "expected_input_colors": {"0": [255, 0, 0], "1": [0, 0, 255]},
+  "expected_png_dimensions": [64, 64],
+  "model_revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+  "source_lock_sha256": "139330b3c5ba0468b06999e0b238a999c21cd6d10f1f106fe03b21d2601503c1",
+  "semantic_rule": "A finish answer must mention only the correct red/blue color. Negation or other color words require manual review. Malformed JSON and other tools receive semantic needs_review, independently of their format result.",
+  "acceptance": "Both private inputs must have actual generated outputs, image tensors, valid local tool actions and correct color semantics; every attempt and failure remains reported. This is compatibility only, never collaboration or general accuracy.",
+  "execution_gate": "Do not run against E1 until M explicitly supplies a frozen file inventory and SHA-256 values. Criteria/schema adaptation after freeze must be recorded."
+}

@@ -4,6 +4,8 @@ Agent-Native Network；主目录：`D:\Multi-Agent Network`。
 
 每次接手先读[协作规则](AGENTS.md)、[本角色说明](coordination/README.md)、[当前摘要](coordination/CURRENT.md)和[任务索引](coordination/TASKS.md)中分配的主任务卡；再按卡读取指定资料。先核实分支、提交和Git状态，保留已有修改。
 
+最近完成：[M-014真实模型A0执行阶段](coordination/tasks/M-014.md)，已通过E2核验、C-015独立终审并由M验收；[阶段报告](research/agent_native_network/A0_EXECUTION_20261028.md)。累计4次worker、3次真实生成，加载已跑通，严格JSON工具协议未通过；下一步为协议与输出适配，A0尚未整体通过。
+
 实验进度总览：[完整实验框架与当前位置](research/agent_native_network/EXPERIMENT_FRAMEWORK.md)。按研究阶段查看输入、实现入口、完成证据和下一步；[M-013](coordination/tasks/M-013.md)已通过C-014独立核对并由M验收；后续每阶段完成后更新总览对应行。
 
 最近完成[M-012前置实现与有限兼容验证](coordination/tasks/M-012.md)：[阶段报告](research/agent_native_network/PREPARATION_20261028.md)已通过C-013独立终审并由M验收。模型资产与隔离环境已取得，真实模型前向仍为0；原生ns-3已完成两次动态两跳微场景。研究主线保持M-011修订。

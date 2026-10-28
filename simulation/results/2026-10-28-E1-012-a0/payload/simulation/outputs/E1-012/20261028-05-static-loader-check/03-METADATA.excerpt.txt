@@ -1,0 +1,5 @@
+1: Metadata-Version: 2.1
+2: Name: transformers
+3: Version: 4.51.3
+4: Summary: State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow
+5: Home-page: https://github.com/huggingface/transformers

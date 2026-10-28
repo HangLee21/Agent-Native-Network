@@ -1,0 +1,5 @@
+1: Metadata-Version: 2.1
+2: Name: accelerate
+3: Version: 0.32.1
+4: Summary: Accelerate
+5: Home-page: https://github.com/huggingface/accelerate

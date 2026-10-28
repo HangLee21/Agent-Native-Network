@@ -59,3 +59,22 @@ coordination/reviews/C-013.md text eol=lf
 coordination/reviews/M-012-verification.json text eol=lf
 # Preserve the frozen CRLF negative fixture verbatim.
 simulation/edge_agent_entry/invalid_fixture_config.json -text whitespace=cr-at-eol
+
+# M-014: reproducible A0 source and exact execution evidence.
+simulation/edge_agent_validation/** -text whitespace=cr-at-eol
+simulation/results/2026-10-28-E1-012-a0/** -text whitespace=-blank-at-eof,-blank-at-eol,cr-at-eol
+simulation/results/2026-10-28-E2-013-a0-validation/** -text whitespace=-blank-at-eof,-blank-at-eol,cr-at-eol
+research/agent_native_network/a0_20261028/** text eol=lf
+research/agent_native_network/A0_EXECUTION_20261028.md text eol=lf
+research/agent_native_network/EXPERIMENT_FRAMEWORK.md text eol=lf
+coordination/reviews/C-015.md text eol=lf
+coordination/reviews/M-014-verification.json text eol=lf
+
+# Exact snapshots used by the independent A0 validation.
+coordination/reviews/M-014-freeze.json -text whitespace=cr-at-eol
+coordination/reviews/M-014-E1-review-card.md -text whitespace=cr-at-eol
+research/agent_native_network/a0_20261028/MODEL_RUN.md -text whitespace=cr-at-eol
+research/agent_native_network/a0_20261028/VALIDATION.md -text whitespace=cr-at-eol
+
+coordination/reviews/M-014-restart-freeze.json -text whitespace=cr-at-eol
+coordination/reviews/M-014-E1-restart-review-card.md -text whitespace=cr-at-eol
