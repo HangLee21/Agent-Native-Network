@@ -78,3 +78,12 @@ research/agent_native_network/a0_20261028/VALIDATION.md -text whitespace=cr-at-e
 
 coordination/reviews/M-014-restart-freeze.json -text whitespace=cr-at-eol
 coordination/reviews/M-014-E1-restart-review-card.md -text whitespace=cr-at-eol
+
+# M-015: preserve the reviewed network framework documents.
+research/agent_native_network/network_focus_20261029/PUBLISHED_NETWORK_FOUNDATIONS.md text eol=lf
+research/agent_native_network/network_focus_20261029/NETWORK_MODEL.md text eol=lf
+research/agent_native_network/network_focus_20261029/NETWORK_EXPERIMENTS.md -text whitespace=cr-at-eol
+research/agent_native_network/NETWORK_RESEARCH_FRAMEWORK.md text eol=lf
+research/agent_native_network/NEXT_STEPS.md text eol=lf
+coordination/reviews/C-016.md text eol=lf
+coordination/reviews/M-015-verification.json -text whitespace=cr-at-eol
