@@ -1,0 +1,395 @@
+{
+  "source_freeze_sha256": "aa01c19bb84fc6f47bffe2318b9e424a67a83141378f01aef83fdac2e2268d42",
+  "checks": 419,
+  "issues": [
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-07-real-core-independent\\E1-frozen-source\\idf\\main\\Kconfig.projbuild",
+      "kind": "compiled E1 source",
+      "expected": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-07-real-core-independent\\E1-frozen-source\\idf\\sdkconfig.defaults",
+      "kind": "compiled E1 source",
+      "expected": "0db8b80d5e23fda6171a4c2be24c043f60af5afd16f5195babd8ac35c5080c7f",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-07-real-core-independent\\E2-core-driver.exe",
+      "kind": "compiled host binary",
+      "expected": "accc846e112b2a254931c28f8e5ae1eee872e4c981aac77396037c7402190dbd",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-07-real-core-independent\\E1-ann-host.exe",
+      "kind": "compiled host binary",
+      "expected": "0bd726c2a0b5c315a0ce6ceb63143aab8e149e6d6cd1414fe15afb94796ee954",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-08-v3-regression-and-telemetry\\E1-frozen-source\\idf\\main\\Kconfig.projbuild",
+      "kind": "compiled E1 source",
+      "expected": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-08-v3-regression-and-telemetry\\E1-frozen-source\\idf\\sdkconfig.defaults",
+      "kind": "compiled E1 source",
+      "expected": "0db8b80d5e23fda6171a4c2be24c043f60af5afd16f5195babd8ac35c5080c7f",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-08-v3-regression-and-telemetry\\E2-core-driver.exe",
+      "kind": "compiled host binary",
+      "expected": "cd0f2bad865496b28c17e25fa9865357873382e0416cfe1799d4b03e88c7b191",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-08-v3-regression-and-telemetry\\E1-ann-host.exe",
+      "kind": "compiled host binary",
+      "expected": "f97168c05585ab04a79e83883a40fb11bdab7a6a42310590ed3b4fd00acbda6e",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-12-lifecycle-v4-independent\\E1-frozen-source\\idf\\main\\Kconfig.projbuild",
+      "kind": "compiled E1 source",
+      "expected": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-12-lifecycle-v4-independent\\E1-frozen-source\\idf\\sdkconfig.defaults",
+      "kind": "compiled E1 source",
+      "expected": "0db8b80d5e23fda6171a4c2be24c043f60af5afd16f5195babd8ac35c5080c7f",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-12-lifecycle-v4-independent\\E2-core-driver.exe",
+      "kind": "compiled host binary",
+      "expected": "352f141b66e1072964337022f7adf0ba5b1ad5423f713c616146669a618e3c00",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-12-lifecycle-v4-independent\\E1-ann-host.exe",
+      "kind": "compiled host binary",
+      "expected": "f383037a6c9e666a260ef7fe4a49a629b5ed44b0095a68a09c18212c808fb4bf",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-13-final-core-contract\\E1-frozen-source\\idf\\main\\Kconfig.projbuild",
+      "kind": "compiled E1 source",
+      "expected": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-13-final-core-contract\\E1-frozen-source\\idf\\sdkconfig.defaults",
+      "kind": "compiled E1 source",
+      "expected": "0db8b80d5e23fda6171a4c2be24c043f60af5afd16f5195babd8ac35c5080c7f",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-13-final-core-contract\\E2-core-driver.exe",
+      "kind": "compiled host binary",
+      "expected": "a1bc4b84d41eb63b41402f76d0bfa6530c409976a6fcbdbfe379bf64b7deab91",
+      "actual": null
+    },
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\results\\2026-11-03-M-016-espnow-host\\E2-015\\20261103-13-final-core-contract\\E1-ann-host.exe",
+      "kind": "compiled host binary",
+      "expected": "8083a9e6af63b3f6a48a4203c726afdefec498eed9a83dff3b835f84e9f820a8",
+      "actual": null
+    }
+  ],
+  "runs": [
+    {
+      "run": "20261103-01-preparation",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 37,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-02-strict-json-preparation",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 38,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-03-H-frozen-independent",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 38,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0,
+        "successful": false,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 1,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-04-H-frozen-corrected",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 46,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-05-H-envelope-analysis",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 48,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-06-analysis-api",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 32,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-07-real-core-independent",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": true,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": "Parent preparation-template limitation stale; actual core_build/result records C host compilation"
+    },
+    {
+      "run": "20261103-08-v3-regression-and-telemetry",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 18,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0,
+        "successful": false,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": true,
+        "hardware_measurements": false
+      },
+      "exit_code": 1,
+      "protection_stopped": false,
+      "historical_limitations_note": "Parent preparation-template limitation stale; actual core_build/result records C host compilation"
+    },
+    {
+      "run": "20261103-09-actual-telemetry-analysis",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-10-H-v3-C-telemetry",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 2,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0,
+        "successful": false,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 1,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-11-analyzer-release",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 36,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-12-lifecycle-v4-independent",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": true,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": "Parent preparation-template limitation stale; actual core_build/result records C host compilation"
+    },
+    {
+      "run": "20261103-13-final-core-contract",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 20,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": true,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-14-immutable-capture-context",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-15-analyzer-v2-regression",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 44,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    },
+    {
+      "run": "20261103-16-v2-v4-capture-context",
+      "result": {
+        "evidence_kind": "synthetic_host_tests",
+        "tests_run": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "real_radio_calls": 0,
+        "real_model_calls": 0,
+        "actual_E1_core_compiled": false,
+        "hardware_measurements": false
+      },
+      "exit_code": 0,
+      "protection_stopped": false,
+      "historical_limitations_note": null
+    }
+  ],
+  "new_author_tests_executed": 0,
+  "new_C_binaries_executed": 0,
+  "elapsed_s": 0.48399999999855936
+}

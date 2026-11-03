@@ -1,0 +1,66 @@
+{
+  "template_only": false,
+  "task_id": "E2-015",
+  "run_id": "20261103-09-actual-telemetry-analysis",
+  "started_at": "2026-11-03T08:23:18.965370+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "tests\\espnow\\analyze_logs.py": "41da96b31d20381f390914d6bd31b2bf6e60a03d008f755e92423b07b35c0e5d",
+    "tests\\espnow\\CASES.json": "9a6d6ac5e562e596d1603c5db79e51a1effbb7af7a8cb650f903499db17adcf8",
+    "tests\\espnow\\core_driver.c": "93b6944b2298597b681251721321522e37e9a5a3ef95b2dafa68813a5074d91c",
+    "tests\\espnow\\core_freeze.json": "f2d8d03d50231360eb827876c4d2bbe67383510f5bf9c9dd66fbb62e7f448f77",
+    "tests\\espnow\\frozen_inputs.json": "452b0cf8d95dab3c656f850a17686a33d320ea63472945bb0608556598c5fbbc",
+    "tests\\espnow\\protocol_properties.py": "afeda42a6eb725279b2062a5ed9311d1be54ac030699e441ee987b18cd63701e",
+    "tests\\espnow\\README.md": "5f263ca26027a9b287defe613e7b4e477195c730e2c389f62aa1ddd966b5d283",
+    "tests\\espnow\\run_validation.py": "4138ab4ed07d1abe7a82af1c6226de818d59b4093ea6997694c8fc86b89e0e33",
+    "tests\\espnow\\test_analysis.py": "ea1d96223a075eddb1cfcbf06a64135222ba4f6d1f0278edbf8113424038c429",
+    "tests\\espnow\\test_core.py": "3bff72369a9e3fae1ad185799f03d930f2228caa2e97df2e2298fbe4d11a18b3",
+    "tests\\espnow\\test_frozen_telemetry.py": "5fcd714e2f50f079b13d10169e1cf1c8f8b094e684e99810896d2da85a769fd6",
+    "tests\\espnow\\test_h_frozen.py": "a37ea56ab5ba0201ef2693df2300e3ac7c6f05a4a5dd88bffabd5708c4e7ec4f",
+    "tests\\espnow\\test_properties.py": "0e4fee81ae0508ef038e8672f6c45496d47b8bf9c623fe8dad1e11a878a23fd5",
+    "tests\\espnow\\test_wire.py": "807c8d56b37dcb6986db0305eacd980adc5376d01ad474f9a8d99e6205663470",
+    "tests\\espnow\\VALIDATION.md": "e5813f9ec5e521c4408ba40c4d335df4ecbdd60deef0743804b14cf8fd09dffe",
+    "tests\\espnow\\wire_reference.py": "407d246160c18b93a2c95c474213ceab4edf37c65c400eed7c58c6c584c9a46e"
+  },
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "D:\\Multi-Agent Network\\tests\\espnow\\run_validation.py",
+    "--child",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-09-actual-telemetry-analysis\\result.json",
+    "--pattern",
+    "test_frozen_telemetry.py"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "libraries": "stdlib only"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": "D:\\Multi-Agent Network\\tests\\espnow\\CASES.json",
+  "seeds": [],
+  "budget": {
+    "command_timeout_s": 120,
+    "task_cap_s": 600,
+    "prior_charged_s": 14.07799999999861,
+    "output_cap_bytes": 104857600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-09-actual-telemetry-analysis",
+  "process_id": 38844,
+  "finished_at": "2026-11-03T08:23:19.602076+00:00",
+  "exit_code": 0,
+  "status": "host_checks_passed",
+  "limitations": [
+    "preparation tests, no E1 C implementation or target compilation",
+    "all fixtures synthetic; no serial opened or hardware measurements"
+  ],
+  "review_reference": null,
+  "contract_sha256": "ba69e4a3be5e3fe2f9c2679ed46e7cb6bbbe23f278820c7c7919fa649ce0d2e0",
+  "task_card_sha256": "3078b8f0e0fda3cf924d40429b44f765cffbcc2fa847a6e080cdcff9fa72dde9",
+  "execution_elapsed_s": 0.3599999999996726,
+  "protection_stopped": false,
+  "task_output_bytes": 1580471
+}

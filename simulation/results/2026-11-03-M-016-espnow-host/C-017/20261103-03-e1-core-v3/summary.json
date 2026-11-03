@@ -1,0 +1,38 @@
+{
+  "schema": "C-017.E1-v3-audit/1",
+  "author_scenarios": 12,
+  "author_summary": {
+    "schema": "ann.test.v1",
+    "assertions": 6208,
+    "failures": 0,
+    "evidence_kind": "synthetic"
+  },
+  "console_framing_passed": true,
+  "golden_verbatim_lines": 12,
+  "independent_cases": [
+    {
+      "case": "late_ack",
+      "receive_rc": 0,
+      "confirmed": 1,
+      "expired_events": 0,
+      "passed": false
+    },
+    {
+      "case": "late_rrep",
+      "receive_rc": 0,
+      "queued_after_expiry": 1,
+      "remaining_ms": 4294967295,
+      "self_decode_rc": -1,
+      "passed": false
+    },
+    {
+      "case": "cancel_unsent_cached_data",
+      "cancel_rc": 0,
+      "next_type": 4,
+      "receiver_delivered": 1,
+      "passed": false
+    }
+  ],
+  "target_compilation": "not_performed",
+  "hardware_runs": 0
+}

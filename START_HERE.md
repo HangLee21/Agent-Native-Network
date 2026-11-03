@@ -1,5 +1,13 @@
 # 从这里开始
 
+最新验收：M-016 到货前协议/固件、采集分析工具及主机验证已通过 C-017 整体独立终审，M 验收六卡 done。源码、文档、当前结果及修复前证据已归档；无无线实测。H-002 后续自动检测取消，h-eora 已删除，等用户通知到货。M 按需决策，不持续监控。
+
+以下保留此前任务登记与阶段记录。
+
+最新协作要求：M 派发后不持续监控；执行者自主推进，需审批、指导或阶段验收时再联系 M。到货检测定时任务已删除，硬件测试等用户通知到货。详见 [M职责](coordination/roles/M.md)。
+
+当前推进：[M-016](coordination/tasks/M-016.md)：五块EoRa-HUB-400TB到货前协议/固件、主机验证和硬件检测准备；原E1/E2/D/C加既有H执行。
+
 最近完成：[M-015网络主线框架](coordination/tasks/M-015.md)：以已发表成熟网络论文为依据，固定计算条件，聚焦动态多跳网络服务与扩展成本；已通过C-016独立终审并由M验收，本轮只做框架与实验设计。
 
 Agent-Native Network；主目录：`D:\Multi-Agent Network`。
@@ -20,6 +28,6 @@ Agent-Native Network；主目录：`D:\Multi-Agent Network`。
 
 当前框架：[已发表论文支撑的网络研究框架](research/agent_native_network/NETWORK_RESEARCH_FRAMEWORK.md)（M-015整合，C-016终审通过，M已验收）。方向沿革：[动态可扩展具身边缘智能网络修订](research/agent_native_network/RESEARCH_REORIENTATION_20261027.md)（M-011整合，C-012终审通过，M已验收）。此前[需求驱动研究链条](research/agent_native_network/DEMAND_DRIVEN_RESEARCH_CHAIN.md)保留为历史探索。最近保存实验：[009无线阶段](research/agent_native_network/WIRELESS_EXECUTION_STAGE.md)。更早阶段沿研究文件和当前摘要的历史链接查阅。
 
-管理规范：[目录与流程](coordination/README.md)、[组织决定](coordination/DECISIONS.md)、[任务卡模板](coordination/templates/TASK.md)、[实验来源模板](coordination/templates/RUN_MANIFEST.json)。角色说明：[M](coordination/roles/M.md)、[E1](coordination/roles/E1.md)、[E2](coordination/roles/E2.md)、[C](coordination/roles/C.md)、[D](coordination/roles/D.md)。
+管理规范：[目录与流程](coordination/README.md)、[组织决定](coordination/DECISIONS.md)、[任务卡模板](coordination/templates/TASK.md)、[实验来源模板](coordination/templates/RUN_MANIFEST.json)。角色说明：[M](coordination/roles/M.md)、[E1](coordination/roles/E1.md)、[E2](coordination/roles/E2.md)、[C](coordination/roles/C.md)、[D](coordination/roles/D.md)、[H](coordination/roles/H.md)。
 
 独立worktree仍读取主目录coordination中的实时任务卡。`simulation/AGENT_COLLAB_PROTOCOL.md`是科研仿真说明，不是窗口协作规则。

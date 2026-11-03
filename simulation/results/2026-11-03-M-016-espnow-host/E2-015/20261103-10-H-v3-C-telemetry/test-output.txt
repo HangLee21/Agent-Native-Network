@@ -1,0 +1,22 @@
+test_actual_C_log_and_H_envelope (test_frozen_telemetry.FrozenTelemetryTests.test_actual_C_log_and_H_envelope) ... ok
+test_actual_frozen_H_capture_class_wraps_actual_C_log (test_frozen_telemetry.FrozenTelemetryTests.test_actual_frozen_H_capture_class_wraps_actual_C_log) ... ERROR
+
+======================================================================
+ERROR: test_actual_frozen_H_capture_class_wraps_actual_C_log (test_frozen_telemetry.FrozenTelemetryTests.test_actual_frozen_H_capture_class_wraps_actual_C_log)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Multi-Agent Network\tests\espnow\test_frozen_telemetry.py", line 40, in test_actual_frozen_H_capture_class_wraps_actual_C_log
+    expected=json.loads((own/"H_v3_freeze.json").read_text(encoding="utf-8"))["E2_readonly_tool_snapshot_sha256"]
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\environment\python3.11\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\environment\python3.11\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Multi-Agent Network\\tests\\espnow\\H_v3_freeze.json'
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.027s
+
+FAILED (errors=1)

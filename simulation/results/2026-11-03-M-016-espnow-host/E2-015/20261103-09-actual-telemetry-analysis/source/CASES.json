@@ -1,0 +1,19 @@
+{
+  "schema": "E2-015-independent-cases/1",
+  "basis": "coordination/handoffs/M-016-contract.md v1; exact C ABI/wire semantics wait for M freeze",
+  "evidence_kind": "test_specification_not_measurement",
+  "cases": [
+    {"id":"normal","stimulus":"A-B-C, one finite reliable transaction","assert":"destination delivers once and origin completes once after the specified end-to-end acknowledgement"},
+    {"id":"partition","stimulus":"remove B-C before sending","assert":"no fabricated destination delivery; retries/queue/expiry stay bounded"},
+    {"id":"alternate_path","stimulus":"A-B-D and A-C-D; remove B-D","assert":"with discovery/repair enabled and enough lifetime, use an actually received alternate route; never inject topology oracle into core"},
+    {"id":"duplicate_ack","stimulus":"replay data and ACK, lose an ACK","assert":"application delivery/completion at most once per origin+boot+sequence; physical retransmissions still logged"},
+    {"id":"cancel","stimulus":"cancel a queued/in-flight transaction then deliver a late ACK","assert":"no further retries after applicable cancellation; late ACK does not create a second terminal completion; specify in-flight boundary after ABI freeze"},
+    {"id":"expiry","stimulus":"advance monotonic clock past deadline","assert":"expired work is not resent/delivered as timely success; report explicit terminal status"},
+    {"id":"reboot","stimulus":"reuse seq with a new origin boot; reboot an intermediate","assert":"new origin boot is a new identity; stale routes/dedup epochs handled by explicit frozen policy"},
+    {"id":"queue_limit","stimulus":"submit beyond finite capacity","assert":"reject/drop explicitly without exceeding capacity or erasing generated demand; no heap growth hidden in retries"},
+    {"id":"raw_vs_reliable","stimulus":"same payload raw and reliable modes","assert":"raw does not add application retries; reliability/callback/delivery counters stay separate"},
+    {"id":"serial_safety","stimulus":"info, unknown command, overlength input, unarmed bench","assert":"nonce/error visible; info/idle do not emit business; input size and finite bench bounds enforced"},
+    {"id":"hardware_null","stimulus":"hardware unavailable or fixture-only evidence","assert":"range/PDR/goodput/RTT measurement registry remains null with not_measured/hardware_not_available/source=null"},
+    {"id":"continuous_100","stimulus":"100 low-load sequential reliable transactions, concurrency=1, planned generation spacing 100ms and lifetime 60000ms; retain old raw DATA frames and replay them after seq17 and seq100 while their original dedup lifetime is live","assert":"all 100 complete once, including seq17 onward; live historical duplicates never redeliver. Replaying old packets after new admissions prevents eviction-to-pass from hiding loss of dedup. This is deterministic host functionality, not RF performance. Exact drain/tick schedule must use frozen core contract."}
+  ]
+}

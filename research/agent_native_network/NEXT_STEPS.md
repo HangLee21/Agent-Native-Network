@@ -1,6 +1,18 @@
 # 科研推进顺序与后续技术备选
 
-## 当前推进入口（2026-10-29网络主线）
+## 当前推进入口（2026-11-03五板到货前实现）
+
+当前先完成[ESP-NOW上层协议与台架文档](espnow_20261103/README.md)，五块同固件、无固定中心板，电脑只作绑定与观察。E1生命周期修订已冻结：原12场景实际6200断言，另164边界检查及3原反例通过，旧6208仅属修复前记录；按需源路由、端点ACK有限重试、latest/expiry与best-effort CANCEL已有实现。ESP目标未编译、RF未测，不能由主机宣布实板成功。
+
+E1_lifecycle_v4已C复核，E2独立核心20项、分析器v2的44+1项通过；H_capture_v5冻结12文件，35项主机测试及17号实际C host→H Capture→v2分析互验通过。闭合采集后的自动计算/实测追加入口已经实现，synthetic不填实测。到货运行需同run/hash完整context、接收覆盖/计数和stop等证据；不足时相关指标留null。最终独立互验/审查以[C-017](../../coordination/tasks/C-017.md)、[E2-015](../../coordination/tasks/E2-015.md)、[M-016](../../coordination/tasks/M-016.md)为准，不将主机测试当RF。
+
+H-002绑定路径hardware/eora_hub_400tb/bindings.local.json已忽略；每小时heartbeat h-eora已建且PAUSED，待最终验收、预检和阶段提交后启用，当前未自动运行。[H-002主卡](../../coordination/tasks/H-002.md)与应用控制其状态；主动台架另需armed合同。
+
+硬件到货后先核板型/引脚/固件及绑定，按有界授权做ESP目标编译与静态单跳、五板发现、两跳/中继退出、事务/状态，再上车。info探测仅限已绑定且允许probe的测试固件；主动bench另需armed设备/参数/次数/输出合同。距离/PDR/goodput/RTT/RF重试/airtime当前均null；未知RF量不猜填，host-synthetic不导入真实测量。
+
+网络研究仍沿[已发表论文框架](NETWORK_RESEARCH_FRAMEWORK.md)。五板功能/校准与百节点规模分开，下面36次ns-3建议保留为后续独立任务，不在本阶段续跑。模型A线工具协议/真实业务准备可并行，不阻塞基础网络工作。精确主机/构建与台架命令及其未验证项见[协议计划§7](espnow_20261103/PROTOCOL_AND_BENCH_PLAN.md#7-编译刷写与实现状态如何登记)。
+
+## 历史推进入口（2026-10-29网络主线）
 
 研究入口为[动态多跳网络服务与扩展成本框架](NETWORK_RESEARCH_FRAMEWORK.md)，机制依据为[六篇已发表论文](network_focus_20261029/PUBLISHED_NETWORK_FOUNDATIONS.md)。固定计算、模型、正文与业务生成，先回答网络维护、拥塞转发和无线竞争怎样影响及时多跳交付。
 

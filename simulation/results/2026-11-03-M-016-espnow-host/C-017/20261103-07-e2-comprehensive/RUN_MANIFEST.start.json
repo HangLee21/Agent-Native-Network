@@ -1,0 +1,67 @@
+{
+  "template_only": false,
+  "task_id": "C-017",
+  "run_id": "20261103-07-e2-comprehensive",
+  "started_at": "2026-11-03T09:01:47.695400+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "audit_evidence.py": "e1ca73455ef300af3daee0e2760886e5735bf18710581f521b08e02d4f7d0cfd",
+    "tests/espnow/analyze_logs.py": "acb8ba503597d4943c3f7d340dfec9508b4a86126389dc67bfc362a83c1025cd",
+    "tests/espnow/ANALYZER_API.md": "53a4b65d298fd85d16de21f0249d1663b082d7886eb34c28555fc9655c34c8ec",
+    "tests/espnow/ANALYZER_FREEZE.json": "919ee80516e48548e086813badaf18dcd7a5f2d1d8311dad1290df1d92d6b3f9",
+    "tests/espnow/CASES.json": "9a6d6ac5e562e596d1603c5db79e51a1effbb7af7a8cb650f903499db17adcf8",
+    "tests/espnow/core_driver.c": "93b6944b2298597b681251721321522e37e9a5a3ef95b2dafa68813a5074d91c",
+    "tests/espnow/core_freeze.json": "745cda541140f546ea7013505229f35c3948a0336770bf112a097a6222972404",
+    "tests/espnow/execution_budget.jsonl": "87cdf9c06fb86670c4bb2fec6950be1ae2241310610ae1be878bfe95c6227e0c",
+    "tests/espnow/freeze_history/E2-final-7f511e9e4edf5d683e39bec95d0d5828e0fa28afa41b31a27881a6ac4f5bd980.json": "7f511e9e4edf5d683e39bec95d0d5828e0fa28afa41b31a27881a6ac4f5bd980",
+    "tests/espnow/frozen_inputs.json": "452b0cf8d95dab3c656f850a17686a33d320ea63472945bb0608556598c5fbbc",
+    "tests/espnow/protocol_properties.py": "afeda42a6eb725279b2062a5ed9311d1be54ac030699e441ee987b18cd63701e",
+    "tests/espnow/README.md": "ce4efa3c06ff4c7c1fb22fafbf102d692abeaad32d0955397b591568c3e67379",
+    "tests/espnow/RUN_INDEX.json": "b07a1f6cf1991eb10e33731d0cfa14ce4fd1235f0b3640b33f78bd7e2934337b",
+    "tests/espnow/run_validation.py": "c2ffe574962d63db6dc9199c1be257bead8a7c34880735b5f57e7f686b7a2747",
+    "tests/espnow/test_analysis.py": "7f2b3fa9752903f4a62e15f7df25ebb1b9e91d52948e541c69ddfd804e32d00f",
+    "tests/espnow/test_capture_context.py": "3d5a824fe0fefa361b3e68d8df7e725966b97eb99a5c3a59c7fe3d258f5c0a8b",
+    "tests/espnow/test_core.py": "a275c8baeac15143fad34a9203e4d3610551a7868575f249ea8d3f1eed6fd3aa",
+    "tests/espnow/test_frozen_telemetry.py": "b6d2f67240ccfce24ab868af8372ee10461ecba3055d6149901ad1a14f06f2e4",
+    "tests/espnow/test_h_frozen.py": "a37ea56ab5ba0201ef2693df2300e3ac7c6f05a4a5dd88bffabd5708c4e7ec4f",
+    "tests/espnow/test_properties.py": "0e4fee81ae0508ef038e8672f6c45496d47b8bf9c623fe8dad1e11a878a23fd5",
+    "tests/espnow/test_wire.py": "807c8d56b37dcb6986db0305eacd980adc5376d01ad474f9a8d99e6205663470",
+    "tests/espnow/VALIDATION.md": "031a5dc76cc2b79d6ea64e3bacef87b8b7d3d84a325954fd2d5f3f785a62be4a",
+    "tests/espnow/wire_reference.py": "407d246160c18b93a2c95c474213ceab4edf37c65c400eed7c58c6c584c9a46e",
+    "tests/espnow/E2_FINAL_FREEZE.json": "aa01c19bb84fc6f47bffe2318b9e424a67a83141378f01aef83fdac2e2268d42"
+  },
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\C-017\\20261103-07-e2-comprehensive\\audit_evidence.py"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "libraries": "stdlib only"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": "D:\\Multi-Agent Network\\simulation\\outputs\\C-017\\20261103-07-e2-comprehensive\\source_hashes.json",
+  "seeds": [],
+  "budget": {
+    "task_cap_s": 600,
+    "prior_charged_s": 27,
+    "command_timeout_s": 120,
+    "output_cap_bytes": 104857600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\C-017\\20261103-07-e2-comprehensive",
+  "process_id": null,
+  "finished_at": null,
+  "exit_code": null,
+  "status": "running",
+  "limitations": [
+    "Read-only provenance audit; no new execution of author tests, C binaries, ESP, serial or RF.",
+    "23 source copies were verified before this manifest was created; copy start time not recorded.",
+    "Archived absolute paths are mapped by original E2 run-relative suffix; original bytes remain unchanged."
+  ],
+  "review_reference": null,
+  "evidence_kind": "source_and_historical_evidence_audit"
+}

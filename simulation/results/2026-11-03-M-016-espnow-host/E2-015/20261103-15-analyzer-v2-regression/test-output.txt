@@ -1,0 +1,49 @@
+test_H_capture_envelope_and_host_tx_exclusion (test_analysis.AnalysisTests.test_H_capture_envelope_and_host_tx_exclusion) ... ok
+test_callback_ordinal_duplicate_is_not_two_callbacks (test_analysis.AnalysisTests.test_callback_ordinal_duplicate_is_not_two_callbacks) ... ok
+test_callback_success_is_not_delivery (test_analysis.AnalysisTests.test_callback_success_is_not_delivery) ... ok
+test_console_noise_and_unknown_schema (test_analysis.AnalysisTests.test_console_noise_and_unknown_schema) ... ok
+test_duplicate_generation_never_selects_a_timestamp_or_body (test_analysis.AnalysisTests.test_duplicate_generation_never_selects_a_timestamp_or_body) ... ok
+test_duplicate_keys_and_nan_are_not_valid_json_evidence (test_analysis.AnalysisTests.test_duplicate_keys_and_nan_are_not_valid_json_evidence) ... ok
+test_echo_after_source_reboot_is_not_rtt (test_analysis.AnalysisTests.test_echo_after_source_reboot_is_not_rtt) ... ok
+test_expected_generation_mismatch_is_not_hidden_success (test_analysis.AnalysisTests.test_expected_generation_mismatch_is_not_hidden_success) ... ok
+test_explicit_false_echo_is_not_legacy_rtt (test_analysis.AnalysisTests.test_explicit_false_echo_is_not_legacy_rtt) ... ok
+test_explicit_origin_boot_resolves_sequence_reuse (test_analysis.AnalysisTests.test_explicit_origin_boot_resolves_sequence_reuse) ... ok
+test_foreign_receiver_is_not_final_delivery (test_analysis.AnalysisTests.test_foreign_receiver_is_not_final_delivery) ... ok
+test_frame_limit_and_payload_mismatch (test_analysis.AnalysisTests.test_frame_limit_and_payload_mismatch) ... ok
+test_hardware_missing_unique_flag_never_uses_legacy_delivery (test_analysis.AnalysisTests.test_hardware_missing_unique_flag_never_uses_legacy_delivery) ... ok
+test_missing_measured_window_is_unknown_goodput (test_analysis.AnalysisTests.test_missing_measured_window_is_unknown_goodput) ... ok
+test_missing_receiver_coverage_is_unknown_not_zero_pdr (test_analysis.AnalysisTests.test_missing_receiver_coverage_is_unknown_not_zero_pdr) ... ok
+test_mixed_conflicting_and_valid_identities_keep_only_valid_rtt (test_analysis.AnalysisTests.test_mixed_conflicting_and_valid_identities_keep_only_valid_rtt) ... ok
+test_mixed_modes_refused (test_analysis.AnalysisTests.test_mixed_modes_refused) ... ok
+test_no_cross_device_one_way_delay (test_analysis.AnalysisTests.test_no_cross_device_one_way_delay) ... ok
+test_no_generated_denominator_has_no_pdr (test_analysis.AnalysisTests.test_no_generated_denominator_has_no_pdr) ... ok
+test_nominal_or_cross_clock_window_is_not_accepted (test_analysis.AnalysisTests.test_nominal_or_cross_clock_window_is_not_accepted) ... ok
+test_out_of_order_local_clock_is_detected (test_analysis.AnalysisTests.test_out_of_order_local_clock_is_detected) ... ok
+test_oversized_serial_line_rejected (test_analysis.AnalysisTests.test_oversized_serial_line_rejected) ... ok
+test_raw_retries_are_reported_reliable_mode_separate (test_analysis.AnalysisTests.test_raw_retries_are_reported_reliable_mode_separate) ... ok
+test_reboot_sequence_collision_without_origin_boot_is_ambiguous (test_analysis.AnalysisTests.test_reboot_sequence_collision_without_origin_boot_is_ambiguous) ... ok
+test_receiver_reboot_duplicate_still_deduplicated (test_analysis.AnalysisTests.test_receiver_reboot_duplicate_still_deduplicated) ... ok
+test_same_clock_echo_rtt_and_duplicate_echo (test_analysis.AnalysisTests.test_same_clock_echo_rtt_and_duplicate_echo) ... ok
+test_synthetic_capture_cannot_be_promoted_to_measured (test_analysis.AnalysisTests.test_synthetic_capture_cannot_be_promoted_to_measured) ... ok
+test_unique_payload_goodput_excludes_header_and_duplicate (test_analysis.AnalysisTests.test_unique_payload_goodput_excludes_header_and_duplicate) ... ok
+test_unique_receive_boolean_and_explicit_legacy_boundary (test_analysis.AnalysisTests.test_unique_receive_boolean_and_explicit_legacy_boundary) ... ok
+test_unknown_payload_keeps_goodput_null (test_analysis.AnalysisTests.test_unknown_payload_keeps_goodput_null) ... ok
+test_v3_numeric_status_is_not_driver_acceptance (test_analysis.AnalysisTests.test_v3_numeric_status_is_not_driver_acceptance) ... ok
+test_actual_C_v3_direct_and_H_envelope_interoperate (test_analysis.FileAPITests.test_actual_C_v3_direct_and_H_envelope_interoperate) ... ok
+test_cli_matches_function_and_refuses_overwrite (test_analysis.FileAPITests.test_cli_matches_function_and_refuses_overwrite) ... ok
+test_context_must_bind_all_current_log_bytes (test_analysis.FileAPITests.test_context_must_bind_all_current_log_bytes) ... ok
+test_function_has_hashes_lineage_and_explicit_null_reasons (test_analysis.FileAPITests.test_function_has_hashes_lineage_and_explicit_null_reasons) ... ok
+test_hardware_declaration_requires_manifest_and_rejects_fixture (test_analysis.FileAPITests.test_hardware_declaration_requires_manifest_and_rejects_fixture) ... ok
+test_malformed_capture_keeps_delivery_metric_unavailable (test_analysis.FileAPITests.test_malformed_capture_keeps_delivery_metric_unavailable) ... ok
+test_same_run_hash_bound_hardware_context_control_is_read_only (test_analysis.FileAPITests.test_same_run_hash_bound_hardware_context_control_is_read_only) ... ok
+test_wrong_missing_or_conflicting_context_run_cannot_support_hardware (test_analysis.FileAPITests.test_wrong_missing_or_conflicting_context_run_cannot_support_hardware) ... ok
+test_fixture_cannot_enter_hardware_registry (test_analysis.HardwareRecordTests.test_fixture_cannot_enter_hardware_registry) ... ok
+test_invalid_measured_values (test_analysis.HardwareRecordTests.test_invalid_measured_values) ... ok
+test_measured_requires_source (test_analysis.HardwareRecordTests.test_measured_requires_source) ... ok
+test_unavailable_cannot_contain_numeric_metrics (test_analysis.HardwareRecordTests.test_unavailable_cannot_contain_numeric_metrics) ... ok
+test_unavailable_record_remains_null (test_analysis.HardwareRecordTests.test_unavailable_record_remains_null) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.935s
+
+OK

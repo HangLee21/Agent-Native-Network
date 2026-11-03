@@ -1,0 +1,59 @@
+{
+  "schema": "ann.hardware.profile.v1",
+  "requested_model": "EoRa-HUB-400TB",
+  "planned_quantity": 5,
+  "physical_board_verified": false,
+  "identity": {
+    "board": "unverified",
+    "chip_vendor_claim": "esp32s3",
+    "lora_vendor_claim": "LR1121",
+    "board_revision": null,
+    "flash_bytes": null,
+    "psram_bytes": null,
+    "usb_vid": null,
+    "usb_pid": null,
+    "usb_bridge_vendor_claim": "CH340"
+  },
+  "serial": {
+    "baud": 115200,
+    "data_bits": 8,
+    "parity": "N",
+    "stop_bits": 1,
+    "schema": "ann.serial.v1",
+    "command_max_bytes_including_newline": 512,
+    "default_open": false,
+    "dtr_rts_request_on_bound_open": false,
+    "os_control_line_transients_verified": false
+  },
+  "pins_vendor_documented_not_measured": {
+    "uart0_rx_gpio": 44,
+    "uart0_tx_gpio": 43,
+    "boot_gpio": 0,
+    "logic_voltage_v": 3.3,
+    "source": "https://www.ebyte.com/product/2472.html"
+  },
+  "transport": {
+    "selected": "ESP-NOW over ESP32-S3 Wi-Fi",
+    "idf_reference_version": "5.5.1",
+    "espnow_field_max_bytes_v1_contract": 250,
+    "ann_header_bytes": 112,
+    "bench_min_bytes": 112,
+    "echo_min_bytes": 120,
+    "channel": null,
+    "radio_config_authority": "E1 firmware, then M frozen integration",
+    "lora_used_by_this_stage": false,
+    "antenna_path_verified": false
+  },
+  "status": {
+    "hardware_available": false,
+    "target_compilation": "not_verified",
+    "firmware_flashed": "not_verified",
+    "wireless_measurements": "not_measured"
+  },
+  "sources": [
+    {"url": "https://www.ebyte.com/product/2472.html", "checked_on": "2026-11-03", "kind": "manufacturer_product_page", "scope": "board composition and public UART pin table; physical revision not inspected"},
+    {"url": "https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32s3/api-reference/network/esp_now.html", "checked_on": "2026-11-03", "kind": "official_sdk_documentation", "scope": "250-byte v1 compatibility ceiling; callback success is not application delivery"},
+    {"url": "https://www.ebyte.com/downpdf/2472.html", "checked_on": "2026-11-03", "kind": "manufacturer_manual_link", "scope": "linked manual not parsed: web tool reports unsupported octet-stream"},
+    {"url": "https://www.ebyte.com/pdf-down/3699.html", "checked_on": "2026-11-03", "kind": "manufacturer_schematic_link", "scope": "linked schematic not parsed; no LoRa/OLED GPIO map inferred"}
+  ]
+}

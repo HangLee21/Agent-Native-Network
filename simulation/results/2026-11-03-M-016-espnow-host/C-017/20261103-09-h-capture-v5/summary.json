@@ -1,0 +1,12 @@
+{
+  "tests": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "elapsed_s": 0.625,
+  "evidence_kind": "synthetic",
+  "physical_ports_opened": 0,
+  "real_OS_enumerations": 0,
+  "wireless_runs": 0,
+  "source_copies_unchanged": true
+}

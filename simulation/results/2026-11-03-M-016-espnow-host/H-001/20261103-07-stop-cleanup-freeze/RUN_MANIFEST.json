@@ -1,0 +1,42 @@
+{
+  "template_only": false,
+  "task_id": "H-001",
+  "run_id": "20261103-07-stop-cleanup-freeze",
+  "started_at": "2026-11-03T08:01:35.713472+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "tools\\espnow_hardware\\__init__.py": "a3ad1fb6d7d138895ad84ca910c3be001cedcd408b0ed34b2a187554a7e44c9e",
+    "tools\\espnow_hardware\\hardware_tool.py": "30f34e1fd3153a592c2297867c990e95e15656c7d676574db0f55f5c43bb843c",
+    "tools\\espnow_hardware\\tests\\test_hardware_tool.py": "be755fb1951ac2489465309519e654c1b7885529734f979d8662be5d3e3f1534",
+    "tools\\espnow_hardware\\verify_host.py": "eb9957a0a8f3b08280de733a98b74bf2e32159e1797129c0a8d6e28a02aa5058",
+    "hardware\\eora_hub_400tb\\bench.example.json": "5e0fa59a763852a2c481fe977ebf79a3e0df837841ecd2ee99f33947a5963f79",
+    "hardware\\eora_hub_400tb\\bindings.example.json": "171e4df4c834f54d3a6d7210f466af163ec4b6ab809b07558e5d4e00e62e022d",
+    "hardware\\eora_hub_400tb\\profile.json": "66196ae50a40d173e458cc20d14ae5c25f4bb919a817ece6f742e93fde57ba39",
+    "hardware\\eora_hub_400tb\\README.md": "28aa233af978826842653f992320ddabdea6de39578bd28892caeca5e80d9952"
+  },
+  "command": "stdin Python: preserved regression log and guarded failure, static syntax/hash validation",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": null,
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": {
+    "cumulative_task_seconds_upper_bound": 60,
+    "task_limit_seconds": 600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\H-001\\20261103-07-stop-cleanup-freeze",
+  "process_id": null,
+  "finished_at": "2026-11-03T08:01:35.713472+00:00",
+  "exit_code": 0,
+  "status": "review",
+  "limitations": [
+    "Start timestamp was not persisted by runner; null retained",
+    "Source hashes recovered after failure; H source unchanged since test command",
+    "19 synthetic tests passed; E1 integration guard then stopped",
+    "No physical hardware operations"
+  ],
+  "review_reference": null
+}

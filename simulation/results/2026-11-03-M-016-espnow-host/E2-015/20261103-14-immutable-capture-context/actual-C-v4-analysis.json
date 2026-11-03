@@ -1,0 +1,143 @@
+{
+  "schema": "ann.analysis.v1",
+  "run_id": "E2-echo",
+  "mode": "reliable",
+  "evidence_kind": "synthetic",
+  "generated_unique": 1,
+  "expected_generated": null,
+  "driver_accepted": null,
+  "driver_accepted_known": 0,
+  "driver_acceptance_unknown": 37,
+  "callback_binding_issues": [],
+  "link_callbacks_success": 37,
+  "link_callbacks_failed": 0,
+  "link_callbacks_unknown": 0,
+  "destination_unique_rx_observed": 1,
+  "destination_duplicates_observed": 0,
+  "unmatched_or_ambiguous_rx": 0,
+  "pdr": 1.0,
+  "goodput_bps": 128.0,
+  "successful_same_boot_rtt_count": 1,
+  "rtt_p95_ms": 1.0,
+  "generated_without_echo": 0,
+  "invalid_echoes": 0,
+  "range_m": null,
+  "one_way_delay_ms": null,
+  "rf_retry_count": null,
+  "airtime_us": null,
+  "raw_event_counts": {
+    "tx_submit": 37,
+    "tx_result": 37,
+    "generated": 2,
+    "frame_rx": 46,
+    "rx": 1,
+    "confirmed": 2,
+    "echo_correlation": 1,
+    "echo": 1
+  },
+  "issues": [],
+  "clock_order_warnings": [
+    {
+      "node_id": "00:00:00:00:00:01",
+      "boot_id": "00000064",
+      "t_us": 0,
+      "reason": "buffered_event_timestamp_precedes_already_emitted_record",
+      "source": {
+        "file": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-13-final-core-contract\\telemetry.jsonl",
+        "line": 21
+      }
+    }
+  ],
+  "metric_status": {
+    "driver_accepted": {
+      "status": "unavailable",
+      "reason": "transport_API_acceptance_not_explicitly_logged"
+    },
+    "pdr": {
+      "status": "calculated",
+      "reason": null
+    },
+    "goodput_bps": {
+      "status": "calculated",
+      "reason": null
+    },
+    "rtt_p95_ms": {
+      "status": "calculated_successful_echo_subset",
+      "reason": null
+    },
+    "one_way_delay_ms": {
+      "status": "unavailable",
+      "reason": "cross_device_clock_synchronization_not_established"
+    },
+    "range_m": {
+      "status": "unavailable",
+      "reason": "distance_not_measured"
+    },
+    "rf_retry_count": {
+      "status": "unavailable",
+      "reason": "RF_retry_counter_not_observed"
+    },
+    "airtime_us": {
+      "status": "unavailable",
+      "reason": "PHY_airtime_not_observed"
+    }
+  },
+  "identity_evidence": [
+    {
+      "identity": [
+        "E2-echo",
+        "00:00:00:00:00:01",
+        "00000064",
+        1
+      ],
+      "generated_source": {
+        "file": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-13-final-core-contract\\telemetry.jsonl",
+        "line": 21
+      },
+      "destination_rx_sources": [
+        {
+          "file": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-13-final-core-contract\\telemetry.jsonl",
+          "line": 65
+        }
+      ],
+      "echo_source": {
+        "file": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-13-final-core-contract\\telemetry.jsonl",
+        "line": 111
+      }
+    }
+  ],
+  "goodput_definition": "unique protocol payload bits at destination per measured window; excludes 112-byte ANN header, includes any metadata inside payload",
+  "limitations": [
+    "callback success is not end-to-end delivery",
+    "one-way delay unavailable without synchronized clocks",
+    "event creation timestamps may be emitted after later TX logs; ordering warnings alone do not prove clock regression",
+    "RTT nearest-rank P95 covers successful same-origin-boot echoes; missing echoes remain counted",
+    "evidence_kind is provenance supplied by caller, not physical authentication",
+    "unknown receiver coverage/duration yields null metrics; RF retry/airtime/range not inferred"
+  ],
+  "parsing": {
+    "ignored_non_schema_lines": 1,
+    "malformed_json_lines": 0
+  },
+  "source_logs": [
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-13-final-core-contract\\telemetry.jsonl",
+      "sha256": "22049f5b1a1c05cd22583f24c72f4a21dd3850176f6fd183d2c1c8826a509c33",
+      "bytes": 46045
+    }
+  ],
+  "source_manifests": [
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-14-immutable-capture-context\\CAPTURE_CONTEXT.json",
+      "sha256": "14af768be60e3f0c4293b0c598f9a264347670462cc22795ebac6f32dc0375a8",
+      "task_id": "E2-015",
+      "run_id": "20261103-14-immutable-capture-context",
+      "status": "synthetic_capture_complete"
+    }
+  ],
+  "source_config": {
+    "path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-13-final-core-contract\\actual-C-log-config.json",
+    "sha256": "2f1d0a1537d8cc4acaff735e513e2e90c9f78f0a961a8b77b628ff118566100e"
+  },
+  "analyzer_sha256": "e317f4eeed40ba299641ec61d37f531b5fcbcad4f154c87d2623936be3c14818"
+}

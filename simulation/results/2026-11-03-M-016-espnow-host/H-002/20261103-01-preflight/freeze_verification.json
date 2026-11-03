@@ -1,0 +1,200 @@
+{
+  "active_releases": {
+    "H": "H_capture_v5",
+    "E1": "E1_lifecycle_v4",
+    "E2_analyzer": "E2_analyzer_v2"
+  },
+  "source_files": {
+    "tools/espnow_hardware/__init__.py": {
+      "release": "H_capture_v5",
+      "expected": "a3ad1fb6d7d138895ad84ca910c3be001cedcd408b0ed34b2a187554a7e44c9e",
+      "actual": "a3ad1fb6d7d138895ad84ca910c3be001cedcd408b0ed34b2a187554a7e44c9e"
+    },
+    "tools/espnow_hardware/analysis_bridge.py": {
+      "release": "H_capture_v5",
+      "expected": "3cbfdeb49e2345f496db7081c113a824f2fa1581b118491df7bb7ae1d0f56895",
+      "actual": "3cbfdeb49e2345f496db7081c113a824f2fa1581b118491df7bb7ae1d0f56895"
+    },
+    "tools/espnow_hardware/hardware_tool.py": {
+      "release": "H_capture_v5",
+      "expected": "b626b9fff05db29206f714269422a8a8dbdb7b41789e560aec2a6c572c583415",
+      "actual": "b626b9fff05db29206f714269422a8a8dbdb7b41789e560aec2a6c572c583415"
+    },
+    "tools/espnow_hardware/tests/test_active_release.py": {
+      "release": "H_capture_v5",
+      "expected": "c217100cc187e69bd724ae61aa1e5e6ee8c26bb5bb7de6ddab178398d040bf30",
+      "actual": "c217100cc187e69bd724ae61aa1e5e6ee8c26bb5bb7de6ddab178398d040bf30"
+    },
+    "tools/espnow_hardware/tests/test_analysis_bridge.py": {
+      "release": "H_capture_v5",
+      "expected": "3b8469d52f355ff41739f817da96263ea8d598d41be0f5843980cfa6a32e1f75",
+      "actual": "3b8469d52f355ff41739f817da96263ea8d598d41be0f5843980cfa6a32e1f75"
+    },
+    "tools/espnow_hardware/tests/test_hardware_tool.py": {
+      "release": "H_capture_v5",
+      "expected": "20f19ccc6f933f4e3e2737d738c2f5ca67cc21ef7ffd22d5715b63fad82f5359",
+      "actual": "20f19ccc6f933f4e3e2737d738c2f5ca67cc21ef7ffd22d5715b63fad82f5359"
+    },
+    "tools/espnow_hardware/verify_c_capture.py": {
+      "release": "H_capture_v5",
+      "expected": "0a03b4b539189cc9a72c79e332e957240faf169e299f15c1d17ae57cb7b9cc60",
+      "actual": "0a03b4b539189cc9a72c79e332e957240faf169e299f15c1d17ae57cb7b9cc60"
+    },
+    "tools/espnow_hardware/verify_host.py": {
+      "release": "H_capture_v5",
+      "expected": "a52b0384b6a5a12b9e7b30b08f148315bceb2d892a2d30146a0e31e9f1603a07",
+      "actual": "a52b0384b6a5a12b9e7b30b08f148315bceb2d892a2d30146a0e31e9f1603a07"
+    },
+    "hardware/eora_hub_400tb/bench.example.json": {
+      "release": "H_capture_v5",
+      "expected": "5e0fa59a763852a2c481fe977ebf79a3e0df837841ecd2ee99f33947a5963f79",
+      "actual": "5e0fa59a763852a2c481fe977ebf79a3e0df837841ecd2ee99f33947a5963f79"
+    },
+    "hardware/eora_hub_400tb/bindings.example.json": {
+      "release": "H_capture_v5",
+      "expected": "171e4df4c834f54d3a6d7210f466af163ec4b6ab809b07558e5d4e00e62e022d",
+      "actual": "171e4df4c834f54d3a6d7210f466af163ec4b6ab809b07558e5d4e00e62e022d"
+    },
+    "hardware/eora_hub_400tb/profile.json": {
+      "release": "H_capture_v5",
+      "expected": "66196ae50a40d173e458cc20d14ae5c25f4bb919a817ece6f742e93fde57ba39",
+      "actual": "66196ae50a40d173e458cc20d14ae5c25f4bb919a817ece6f742e93fde57ba39"
+    },
+    "hardware/eora_hub_400tb/README.md": {
+      "release": "H_capture_v5",
+      "expected": "243f1808b12c931f9d6b32f4b4ea5bb5a623edb67ff7b21ee47461c0d3b33787",
+      "actual": "243f1808b12c931f9d6b32f4b4ea5bb5a623edb67ff7b21ee47461c0d3b33787"
+    },
+    "firmware/agent_native/CMakeLists.txt": {
+      "release": "E1_lifecycle_v4",
+      "expected": "db025a72d83f5b4b368e48ba9009cfbc68a5ea5b2cde4600be62eecae7f6bb0c",
+      "actual": "db025a72d83f5b4b368e48ba9009cfbc68a5ea5b2cde4600be62eecae7f6bb0c"
+    },
+    "firmware/agent_native/golden/provenance.json": {
+      "release": "E1_lifecycle_v4",
+      "expected": "cacf1305c95b0a56486cc681b42fbccad8c9bc594a1b626cdf707c320e6f2a65",
+      "actual": "cacf1305c95b0a56486cc681b42fbccad8c9bc594a1b626cdf707c320e6f2a65"
+    },
+    "firmware/agent_native/golden/serial-v1.jsonl": {
+      "release": "E1_lifecycle_v4",
+      "expected": "1fe7634db59c512987be068e3205e521a726bc0cc112733c7ca2e03fdc221178",
+      "actual": "1fe7634db59c512987be068e3205e521a726bc0cc112733c7ca2e03fdc221178"
+    },
+    "firmware/agent_native/host/c017_regressions.c": {
+      "release": "E1_lifecycle_v4",
+      "expected": "ccdc51bf9075b58a9c5fe4ce2fa2125fb8555c6f9f0568c4be3f6f8cf5bdfa05",
+      "actual": "ccdc51bf9075b58a9c5fe4ce2fa2125fb8555c6f9f0568c4be3f6f8cf5bdfa05"
+    },
+    "firmware/agent_native/host/lifecycle_regressions.c": {
+      "release": "E1_lifecycle_v4",
+      "expected": "0a2b82d3a9e879a2a44d982a3851fd028d2bfbe7ad14110eeee8335c692a1422",
+      "actual": "0a2b82d3a9e879a2a44d982a3851fd028d2bfbe7ad14110eeee8335c692a1422"
+    },
+    "firmware/agent_native/host/main.c": {
+      "release": "E1_lifecycle_v4",
+      "expected": "19f05600c21346785b33a02e43009cfb2a789efc8eee020d67d13c662883486e",
+      "actual": "19f05600c21346785b33a02e43009cfb2a789efc8eee020d67d13c662883486e"
+    },
+    "firmware/agent_native/idf/CMakeLists.txt": {
+      "release": "E1_lifecycle_v4",
+      "expected": "f815227a3e0e95db84c990a99fe8bde9175d707826f1acce5a54b72ac7269a1a",
+      "actual": "f815227a3e0e95db84c990a99fe8bde9175d707826f1acce5a54b72ac7269a1a"
+    },
+    "firmware/agent_native/idf/main/app_main.c": {
+      "release": "E1_lifecycle_v4",
+      "expected": "d6adf0c578812d5834024586b097865b8b08b77b0fbeefd470866013ff10c4fa",
+      "actual": "d6adf0c578812d5834024586b097865b8b08b77b0fbeefd470866013ff10c4fa"
+    },
+    "firmware/agent_native/idf/main/CMakeLists.txt": {
+      "release": "E1_lifecycle_v4",
+      "expected": "a4793e598a3a37f2d17d8b30b36a8acb2ed5643674f27b5b8a43c31c0f2e92b3",
+      "actual": "a4793e598a3a37f2d17d8b30b36a8acb2ed5643674f27b5b8a43c31c0f2e92b3"
+    },
+    "firmware/agent_native/idf/main/Kconfig.projbuild": {
+      "release": "E1_lifecycle_v4",
+      "expected": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a",
+      "actual": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a"
+    },
+    "firmware/agent_native/idf/sdkconfig.defaults": {
+      "release": "E1_lifecycle_v4",
+      "expected": "0db8b80d5e23fda6171a4c2be24c043f60af5afd16f5195babd8ac35c5080c7f",
+      "actual": "0db8b80d5e23fda6171a4c2be24c043f60af5afd16f5195babd8ac35c5080c7f"
+    },
+    "firmware/agent_native/include/ann.h": {
+      "release": "E1_lifecycle_v4",
+      "expected": "1a39ed4df19f0bfa63ca3da213ff5bc23c7047beaea23020e61e82ae5558e309",
+      "actual": "1a39ed4df19f0bfa63ca3da213ff5bc23c7047beaea23020e61e82ae5558e309"
+    },
+    "firmware/agent_native/include/ann_console.h": {
+      "release": "E1_lifecycle_v4",
+      "expected": "e495a23a6a7dfa78e6ab8f54d5bb3b41c9c467439800633a20921304db49453e",
+      "actual": "e495a23a6a7dfa78e6ab8f54d5bb3b41c9c467439800633a20921304db49453e"
+    },
+    "firmware/agent_native/INTERFACE.md": {
+      "release": "E1_lifecycle_v4",
+      "expected": "ee87f1e1a2c6f134b306582a0d2c003a9cdf91038032b132c80ab744f8b3e32e",
+      "actual": "ee87f1e1a2c6f134b306582a0d2c003a9cdf91038032b132c80ab744f8b3e32e"
+    },
+    "firmware/agent_native/README.md": {
+      "release": "E1_lifecycle_v4",
+      "expected": "4097b99a03a53d4cd804f435bb3276a52f824b21f8b0f64ba7e3992b77f8b17b",
+      "actual": "4097b99a03a53d4cd804f435bb3276a52f824b21f8b0f64ba7e3992b77f8b17b"
+    },
+    "firmware/agent_native/run_host_checks.py": {
+      "release": "E1_lifecycle_v4",
+      "expected": "8cd13afa5edf6b3901b33c6a77abf64c2da1d2da69d28dec03692db6360bb928",
+      "actual": "8cd13afa5edf6b3901b33c6a77abf64c2da1d2da69d28dec03692db6360bb928"
+    },
+    "firmware/agent_native/src/ann.c": {
+      "release": "E1_lifecycle_v4",
+      "expected": "bdd4f570ea0da8c20094cac02c1a33e48535ba0b20c1ff3e88623442a7cc264b",
+      "actual": "bdd4f570ea0da8c20094cac02c1a33e48535ba0b20c1ff3e88623442a7cc264b"
+    },
+    "firmware/agent_native/src/ann_console.c": {
+      "release": "E1_lifecycle_v4",
+      "expected": "d336dceb92e110b1548475d9171dab3eead0d566677b7a66ae9ec0cbd30f27b7",
+      "actual": "d336dceb92e110b1548475d9171dab3eead0d566677b7a66ae9ec0cbd30f27b7"
+    },
+    "firmware/agent_native/src/ann_log.c": {
+      "release": "E1_lifecycle_v4",
+      "expected": "b5928a1b12f4b3e0b19a1609f4ba579d43e75e75ad14db0c52941600e570690a",
+      "actual": "b5928a1b12f4b3e0b19a1609f4ba579d43e75e75ad14db0c52941600e570690a"
+    },
+    "firmware/agent_native/src/ann_log.h": {
+      "release": "E1_lifecycle_v4",
+      "expected": "7d009ea19c839f21bb50683f93fda304867f798ab1127acccfa2a838fceed1c3",
+      "actual": "7d009ea19c839f21bb50683f93fda304867f798ab1127acccfa2a838fceed1c3"
+    },
+    "firmware/agent_native/VALIDATION.md": {
+      "release": "E1_lifecycle_v4",
+      "expected": "dc97dcb387b4e59c821b44ae90f8869fd291b5257b5ce79437ecd7daa1c7a15b",
+      "actual": "dc97dcb387b4e59c821b44ae90f8869fd291b5257b5ce79437ecd7daa1c7a15b"
+    },
+    "firmware/agent_native/FREEZE.json": {
+      "release": "E1_lifecycle_v4",
+      "expected": "3b028fb77103ad011a92e0fdb7f34d4065a940806240ad570f7f30e21c2d908f",
+      "actual": "3b028fb77103ad011a92e0fdb7f34d4065a940806240ad570f7f30e21c2d908f"
+    },
+    "tests/espnow/analyze_logs.py": {
+      "release": "E2_analyzer_v2",
+      "expected": "acb8ba503597d4943c3f7d340dfec9508b4a86126389dc67bfc362a83c1025cd",
+      "actual": "acb8ba503597d4943c3f7d340dfec9508b4a86126389dc67bfc362a83c1025cd"
+    },
+    "tests/espnow/ANALYZER_API.md": {
+      "release": "E2_analyzer_v2",
+      "expected": "53a4b65d298fd85d16de21f0249d1663b082d7886eb34c28555fc9655c34c8ec",
+      "actual": "53a4b65d298fd85d16de21f0249d1663b082d7886eb34c28555fc9655c34c8ec"
+    },
+    "tests/espnow/README.md": {
+      "release": "E2_analyzer_v2",
+      "expected": "ce4efa3c06ff4c7c1fb22fafbf102d692abeaad32d0955397b591568c3e67379",
+      "actual": "ce4efa3c06ff4c7c1fb22fafbf102d692abeaad32d0955397b591568c3e67379"
+    },
+    "tests/espnow/ANALYZER_FREEZE.json": {
+      "release": "E2_analyzer_v2",
+      "expected": "919ee80516e48548e086813badaf18dcd7a5f2d1d8311dad1290df1d92d6b3f9",
+      "actual": "919ee80516e48548e086813badaf18dcd7a5f2d1d8311dad1290df1d92d6b3f9"
+    }
+  },
+  "all_matched_before_and_after": true
+}

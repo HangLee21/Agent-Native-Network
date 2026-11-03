@@ -1,0 +1,1 @@
+E2 assertion D:\Multi-Agent Network\tests\espnow\core_driver.c:62: n[4].delivered==1&&n[0].confirmed==1

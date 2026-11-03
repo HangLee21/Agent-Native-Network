@@ -1,0 +1,12 @@
+test_actual_C_capture_pipeline_stays_synthetic (__main__.CaptureReview.test_actual_C_capture_pipeline_stays_synthetic) ... ok
+test_coverage_faults_never_admit_metrics (__main__.CaptureReview.test_coverage_faults_never_admit_metrics) ... ok
+test_default_once_never_opens_with_empty_bindings (__main__.CaptureReview.test_default_once_never_opens_with_empty_bindings) ... ok
+test_finite_plan_rejects_unarmed_overflow_and_extra_runs (__main__.CaptureReview.test_finite_plan_rejects_unarmed_overflow_and_extra_runs) ... ok
+test_input_mutation_detected_before_publishing_analysis (__main__.CaptureReview.test_input_mutation_detected_before_publishing_analysis) ... ok
+test_stop_unconfirmed_saves_context_without_analysis (__main__.CaptureReview.test_stop_unconfirmed_saves_context_without_analysis) ... ok
+test_unknown_analyzer_version_rejected (__main__.CaptureReview.test_unknown_analyzer_version_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.630s
+
+OK

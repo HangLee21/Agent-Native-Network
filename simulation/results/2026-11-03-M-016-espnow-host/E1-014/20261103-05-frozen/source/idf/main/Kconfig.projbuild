@@ -1,0 +1,6 @@
+menu "ANN radio bench"
+config ANN_CHANNEL
+ int "Fixed ESP-NOW channel (all nodes must match)"
+ range 1 13
+ default 1
+endmenu

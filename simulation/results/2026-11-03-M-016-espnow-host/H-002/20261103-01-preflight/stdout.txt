@@ -1,0 +1,1 @@
+{"status": "waiting_hardware", "output": "D:\\Multi-Agent Network\\simulation\\outputs\\H-002\\20261103-01-preflight", "opened_ports": 0}

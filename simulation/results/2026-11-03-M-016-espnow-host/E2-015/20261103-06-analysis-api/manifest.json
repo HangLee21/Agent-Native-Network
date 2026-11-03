@@ -1,0 +1,62 @@
+{
+  "template_only": false,
+  "task_id": "E2-015",
+  "run_id": "20261103-06-analysis-api",
+  "started_at": "2026-11-03T08:04:34.724775+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "tests\\espnow\\analyze_logs.py": "a5ea540d6bcaf47b12ebcb6ba6e6c410d66ceaf1a66d0b5f83ae8e3235822e11",
+    "tests\\espnow\\CASES.json": "9a6d6ac5e562e596d1603c5db79e51a1effbb7af7a8cb650f903499db17adcf8",
+    "tests\\espnow\\frozen_inputs.json": "452b0cf8d95dab3c656f850a17686a33d320ea63472945bb0608556598c5fbbc",
+    "tests\\espnow\\protocol_properties.py": "afeda42a6eb725279b2062a5ed9311d1be54ac030699e441ee987b18cd63701e",
+    "tests\\espnow\\README.md": "717262992b8b42f9f2658f87c3c71ca41cce1bd1098f12344a9adc7050ba6900",
+    "tests\\espnow\\run_validation.py": "e84f5d69079f744875e2c1617999631ee0184ab082d912a5e0b7f64078d4710f",
+    "tests\\espnow\\test_analysis.py": "39f738a4a11b4050d3fb238e84b9d82f0a4b0e70b9fac0db9fd8f6873c7c06c0",
+    "tests\\espnow\\test_h_frozen.py": "a37ea56ab5ba0201ef2693df2300e3ac7c6f05a4a5dd88bffabd5708c4e7ec4f",
+    "tests\\espnow\\test_properties.py": "0e4fee81ae0508ef038e8672f6c45496d47b8bf9c623fe8dad1e11a878a23fd5",
+    "tests\\espnow\\test_wire.py": "807c8d56b37dcb6986db0305eacd980adc5376d01ad474f9a8d99e6205663470",
+    "tests\\espnow\\VALIDATION.md": "a5a915e5564cd6475649d0c30a95702e54449d587018ceecba3e0a1904bd2a66",
+    "tests\\espnow\\wire_reference.py": "407d246160c18b93a2c95c474213ceab4edf37c65c400eed7c58c6c584c9a46e"
+  },
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "D:\\Multi-Agent Network\\tests\\espnow\\run_validation.py",
+    "--child",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-06-analysis-api\\result.json",
+    "--pattern",
+    "test_analysis.py"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "libraries": "stdlib only"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": "D:\\Multi-Agent Network\\tests\\espnow\\CASES.json",
+  "seeds": [],
+  "budget": {
+    "command_timeout_s": 120,
+    "task_cap_s": 600,
+    "prior_charged_s": 2.2659999999996217,
+    "output_cap_bytes": 104857600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-06-analysis-api",
+  "process_id": 17956,
+  "finished_at": "2026-11-03T08:04:35.663846+00:00",
+  "exit_code": 0,
+  "status": "host_checks_passed",
+  "limitations": [
+    "preparation tests, no E1 C implementation or target compilation",
+    "all fixtures synthetic; no serial opened or hardware measurements"
+  ],
+  "review_reference": null,
+  "contract_sha256": "eaa8290cae21c958e4b0beb27cfdc910aeb35987de8d6a75122c766882eb55ae",
+  "task_card_sha256": "1ef017582bcc3b44b35693bfbb1358171c3289148788cb55c4b2363dd480754d",
+  "execution_elapsed_s": 0.7809999999999491,
+  "protection_stopped": false,
+  "task_output_bytes": 375199
+}

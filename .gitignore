@@ -4,3 +4,10 @@ __pycache__/
 .pytest_cache/
 data/
 simulation/outputs/
+
+# Local board bindings and generated ESP-IDF build state.
+/hardware/eora_hub_400tb/bindings.local.json
+/hardware/eora_hub_400tb/bench.local.json
+/firmware/agent_native/idf/build/
+/firmware/agent_native/idf/sdkconfig
+/firmware/agent_native/idf/sdkconfig.old

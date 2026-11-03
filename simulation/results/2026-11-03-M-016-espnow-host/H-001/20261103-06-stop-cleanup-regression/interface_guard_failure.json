@@ -1,0 +1,23 @@
+{
+  "status": "public_interface_changed",
+  "action": "integration_stopped_no_retry",
+  "checked_hashes": {
+    "firmware/agent_native/include/ann.h": {
+      "expected": "d7da15f4d00639a88c8691b38599f7199b070322a7de00d89ebf0b06dba9b021",
+      "actual": "1a39ed4df19f0bfa63ca3da213ff5bc23c7047beaea23020e61e82ae5558e309"
+    },
+    "firmware/agent_native/include/ann_console.h": {
+      "expected": "e495a23a6a7dfa78e6ab8f54d5bb3b41c9c467439800633a20921304db49453e",
+      "actual": "e495a23a6a7dfa78e6ab8f54d5bb3b41c9c467439800633a20921304db49453e"
+    },
+    "firmware/agent_native/INTERFACE.md": {
+      "expected": "01451e3205b27ca88fd5de83c70b566943c0d6e4999e295c18369af666746f83",
+      "actual": "2ab28e7cd849a4c768be94d22b6ea5c187029db192369dfbd19ced23e61fe282"
+    }
+  },
+  "unittest_tests": 19,
+  "unittest_status": "passed",
+  "runner_exit_code": 1,
+  "traceback": "RuntimeError: public interface changed; stop integration",
+  "note": "supplemental record after runner stopped before final manifest; initial stdout/stderr preserved"
+}

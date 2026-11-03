@@ -1,19 +1,26 @@
 # 窗口登记
 
+最新验收：M-016 到货前协议/固件、采集分析工具及主机验证已通过 C-017 整体独立终审，M 验收六卡 done。源码、文档、当前结果及修复前证据已归档；无无线实测。H-002 后续自动检测取消，h-eora 已删除，等用户通知到货。M 按需决策，不持续监控。
+
+以下保留此前任务登记与阶段记录。
+
 项目ID：`d1d5c8d4-4a2a-460d-90b2-9129ef59bdd8`；host：local；工作副本：`D:\Multi-Agent Network`。
-分支：`codex/baseline-reproduction-20261023`；本轮基准：`2143417`。运行状态以任务卡为准。
+分支：`codex/baseline-reproduction-20261023`；本轮基准：`d8325a2`。运行状态以任务卡为准。
 
 | 实际窗口名称 | 聊天ID | 本轮任务 |
 |---|---|---|
-| M \| Research Lead | `01a16824-1141-7202-929b-3b558df47ade` | [M-015](tasks/M-015.md) |
-| E1 \| Core Experiments | `01a16824-294e-7eb2-85eb-d98b7a8748f1` | [E1-013](tasks/E1-013.md) |
-| E2 \| Validation & Ablation | `01a16824-3f4e-7e61-8a83-08d2dd8c82f6` | [E2-014](tasks/E2-014.md) |
-| D \| Research Repository | `01a16824-727d-7fd3-8696-c1a0b9694386` | [D-013](tasks/D-013.md) |
-| C \| Repository Auditor | `01a16824-5c84-7081-8f0c-7e1e94beff35` | [C-016](tasks/C-016.md) |
+| M \| Research Lead | `01a16824-1141-7202-929b-3b558df47ade` | [M-016](tasks/M-016.md) |
+| E1 \| Core Experiments | `01a16824-294e-7eb2-85eb-d98b7a8748f1` | [E1-014](tasks/E1-014.md) |
+| E2 \| Validation & Ablation | `01a16824-3f4e-7e61-8a83-08d2dd8c82f6` | [E2-015](tasks/E2-015.md) |
+| D \| Research Repository | `01a16824-727d-7fd3-8696-c1a0b9694386` | [D-014](tasks/D-014.md) |
+| C \| Repository Auditor | `01a16824-5c84-7081-8f0c-7e1e94beff35` | [C-017](tasks/C-017.md) |
+| H \| Hardware | `01a19b44-a645-74e3-be49-51d596d6ff35` | [H-001](tasks/H-001.md) |
+
+2026-11-03当前：M-016预留六角色范围，五个执行窗口，先无硬件实现后独立审查。
 
 2026-10-28实验阶段历史：M-014五卡均已验收done，写入范围释放；E1/E2/D/C实际turn均completed并停写，相关worker/controller已结束。累计4worker/3生成，A0严格JSON仍未通过。执行、独立核验与终审来源见reviews/M-014-verification.json；后续不沿旧预算自动续行。
 
-2026-10-29当前：M-015五卡已验收done，C-016独立终审通过；E1/E2/D/C实际turn均completed并停写，写入范围已释放。原四角色独立聊天交付，来源见reviews/M-015-verification.json；无新模型/仿真或后台续跑。
+2026-10-29阶段历史：M-015五卡已验收done，C-016独立终审通过；E1/E2/D/C实际turn均completed并停写，写入范围已释放。原四角色独立聊天交付，来源见reviews/M-015-verification.json；无新模型/仿真或后台续跑。
 
 2026-10-28框架阶段历史：M-013实验框架已完成。E1/E2/D交付冻结，C-014分链及整体核对通过；M验收五卡并释放范围，所有角色completed并停写。本轮零新实验；实际turn与hash见reviews/M-013-verification.json。
 

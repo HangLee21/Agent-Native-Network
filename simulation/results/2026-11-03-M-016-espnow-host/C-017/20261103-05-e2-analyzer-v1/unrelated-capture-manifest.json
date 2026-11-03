@@ -1,0 +1,6 @@
+{
+  "task_id": "H-001",
+  "run_id": "OTHER-RUN",
+  "status": "hardware_capture_unanalyzed",
+  "fixture_notice": "Synthetic negative test, no hardware capture exists"
+}
