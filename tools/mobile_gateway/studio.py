@@ -17,6 +17,11 @@ from urllib.parse import urlsplit
 from .server import Gateway, Handler, ROOT
 from .state import State
 from .lora import LoRaTopology
+
+# Ethernet LoRa gateway source (tools/mid_baseline/gateway_probe/topology_server.py). Used
+# only when the serial A reader is idle or empty, so the same page can show our EoRa
+# topology whether it arrives over a serial board or over the RHF2S008 gateway.
+GATEWAY_TOPOLOGY = 'http://127.0.0.1:8780/api/v1/lora/topology'
 from tools.field_gateway.client import Client
 from tools.mid_hardware.field_agent.wire_operator import Operator
 from tools.mobile_node.providers import fake_GPS_function
@@ -280,6 +285,15 @@ class StudioHandler(Handler):
         if path=='/api/studio/status':
             return self.reply(200,self.server.state.status())
         if path=='/api/v1/lora/topology':
+            # The RHF2S008 gateway is the production receiver for our EoRa nodes, so it wins
+            # when it is producing frames. The serial A reader stays as the fallback for the
+            # bench setup where no gateway is attached.
+            try:
+                external=get_json(GATEWAY_TOPOLOGY)
+                if external.get('reports'):
+                    return self.reply(200,external)
+            except OSError:
+                pass
             return self.reply(200,self.server.state.lora.snapshot())
         if path in ('/api/pc/status','/api/pc/inbox','/api/pc/events'):
             try:

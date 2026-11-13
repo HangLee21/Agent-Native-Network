@@ -54,7 +54,7 @@
 | 移动感知 ND（自适应 Hello） | ⛔ 未开始 | 需先把 `mobility` 接线（P2） |
 | LET 感知选路 / 主备 / 预热 | ⛔ 未开始 | 依赖 P2 与对照实验 |
 | 真实 GNSS / 飞控输入 | ⛔ 硬件缺失 | 用户确认「暂时拿不到」；LET 只用合成/回放 |
-| 接入的 LoRa 网关 | 🟢 已登录实测、参数已提取 | 树莓派 `b8:27:eb:32:e2:c1`，Raspbian 8（OpenSSH 6.7p1），**仅 22/tcp、无 Web**，仅 IPv6 链路本地可达；无 IPv4（ARP 全 /24 无应答）。参数清单与只读采集脚本见 `docs/LORA_GATEWAY_PARAMETERS.md` |
+| 接入的 LoRa 网关 | ✅ **已打通并接入前端** | RHF2S008 八通道网关收 4 块 EoRa 板 470.5 MHz/ch5 的 LRN1：29/29 帧 CRC32 正确，RSSI −43…−57 dBm；Studio 的 /api/v1/lora/topology 已改为网关优先、串口兜底。详见 simulation/results/20261113-H019-gateway-eora-link/RESULT.md |
 | ESP-NOW peer 上限治理 | ⛔ 未开始 | 已知 `ESP_NOW_MAX_TOTAL_PEER_NUM=20` |
 
 ### 2.4 已知未解决问题
