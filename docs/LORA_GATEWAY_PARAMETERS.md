@@ -8,27 +8,45 @@
   详见 `docs/LORA_GATEWAY_PARAMETERS.md` §0 的实测诊断。
 - 探测工具：`python -m tools.mid_baseline.gateway_probe.probe discover|scan|http`
 
-## 0 接入诊断（2026-11-13 实测）
+## 0 接入诊断（2026-11-13 实测，结论已更新）
 
-| 检查 | 结果 | 含义 |
+### 0.1 设备身份（已确认）
+
+| 项 | 值 | 依据 |
 |---|---|---|
-| 网卡状态 | Up / 100 Mbps / Full duplex / Connected | 对端有电路，链路层可通 |
-| 主机 IPv4 | `169.254.173.200/16`（APIPA） | 无 DHCP 应答 |
-| `ipconfig /renew` | 失败（I/O aborted） | 无 DHCP 服务器 |
-| 5 s 收包 | RX 180 B、**0 个单播包**（仅本机自己的多播） | 对端**未发送任何流量** |
-| SSDP / mDNS / LLMNR / NetBIOS | 无任何响应 | 对端不做服务公告 |
-| 被动 DHCP 监听 25 s | 仅 1 个 DISCOVER，来自本机（`e8:9c:25:4b:26:84` / `hli` / MSFT 5.0） | **对端不请求地址** |
-| 常见网段 ARP 探测 | 未能执行 | 添加 IP 需管理员权限 |
+| MAC | `b8:27:eb:32:e2:c1` | IPv6 邻居表；`B8:27:EB` 为 Raspberry Pi Foundation 前缀 |
+| IPv6 链路本地 | `fe80::ba27:ebff:fe32:e2c1`（EUI-64 由 MAC 推导） | `netsh interface ipv6 show neighbors` |
+| 可达性 | `ping6` **4/4 应答，<1 ms** | 实测 |
+| 开放端口 | **仅 22/tcp**（1–10000 全扫无其他） | IPv6 全端口扫描 |
+| SSH 标识 | `SSH-2.0-OpenSSH_6.7p1 Raspbian-5+deb8u3` | 未认证读取 banner |
+| 结论 | **树莓派 + Raspbian 8 (Jessie) 的 LoRa 网关，SSH 管理，无 Web 界面** | 上述合计 |
 
-**结论**：该设备当前处于**网络静默**状态（未启动网络栈、未上电完成，或网口接错）。
-在它开始发送流量之前，**无法从设备侧提取任何参数**。
+### 0.2 为什么先前的 IPv4 检查全部落空
 
-### 解除静默的可能原因（按可能性排序）
+| 检查 | 结果 | 解释 |
+|---|---|---|
+| 网卡 | Up / 100 Mbps / Full duplex | 链路正常 |
+| 主机 IPv4 | 曾为 `169.254.x`，后手动设为 `192.168.137.10/24` | — |
+| ARP 扫 `192.168.137.0/24` 全部 254 个地址 | **0 个应答** | 该 Pi **没有**此网段的 IPv4 地址 |
+| DHCP / SSDP / mDNS / LLMNR / NetBIOS | 无响应 | 它不申请地址、也不做服务公告 |
+| 广播 ICMP | 超时 | 不响应广播 ping |
+| 但链路上有 IPv6 多播流量 | 约 0.6 包/秒 | 正是这台 Pi 的 IPv6 邻居发现/MLD |
 
-1. 网关未完成启动（部分设备 HTTP 服务 60–90 s 才起来，期间不响应）。
-2. 网线插在 WAN 口而设备把 LAN 口设为管理口。
-3. 设备是 DHCP 客户端但只在启动瞬间广播一次，已错过。
-4. 设备使用静态 IP，且不响应多播（少见但可能）——需要知道它的默认网段。
+**教训**：只用 IPv4 工具会漏掉「没有 IPv4、仅 IPv6 链路本地可达」的设备。
+排查顺序应改为：IPv6 邻居表 → `ping6 fe80::` → IPv6 端口扫描 → 再谈 IPv4。
+
+### 0.3 要提取参数还缺什么
+
+设备只开 SSH，**没有 Web 界面**，因此参数只能通过登录读取。需要：
+
+1. SSH 用户名与认证方式（密码或密钥）。
+2. 若允许，我会在网关上只读执行
+   `tools/mid_baseline/gateway_probe/pi_dump.sh`，它会打印：
+   系统与板型、SPI/串口设备、LoRa 相关进程与目录、`global_conf.json` / `local_conf.json`
+   内容、IPv4/IPv6 与路由、监听端口、网关日志尾部。**该脚本只读，不安装、不重启。**
+
+> 不猜测默认口令。Raspbian 的 `pi/raspberry` 属于公开默认值，但用它登录并读取配置
+> 不属于被授权的操作，需你明确提供凭据。
 
 ## 1 射频参数（必须与节点完全一致）
 
