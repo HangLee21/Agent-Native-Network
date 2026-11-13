@@ -285,16 +285,17 @@ class StudioHandler(Handler):
         if path=='/api/studio/status':
             return self.reply(200,self.server.state.status())
         if path=='/api/v1/lora/topology':
-            # The RHF2S008 gateway is the production receiver for our EoRa nodes, so it wins
-            # when it is producing frames. The serial A reader stays as the fallback for the
-            # bench setup where no gateway is attached.
+            # The RHF2S008 gateway is now the only receiver: there is no serial fallback any
+            # more, so an unreachable gateway is reported as such instead of silently
+            # switching to a board's USB port.
             try:
-                external=get_json(GATEWAY_TOPOLOGY)
-                if external.get('reports'):
-                    return self.reply(200,external)
-            except OSError:
-                pass
-            return self.reply(200,self.server.state.lora.snapshot())
+                return self.reply(200,get_json(GATEWAY_TOPOLOGY))
+            except OSError as exc:
+                return self.reply(200,{'schema':'lora.topology.v1','source':'gateway_udp_lrn1',
+                                       'labels':{},'reports':[],
+                                       'receiver':{'state':'unavailable','gateway_id':None,
+                                                   'serial_open':False,'error':str(exc)},
+                                       'evidence':'gateway source unreachable'})
         if path in ('/api/pc/status','/api/pc/inbox','/api/pc/events'):
             try:
                 return self.reply(200,get_json(f'http://127.0.0.1:{self.server.state.pc_port}'+self.path))

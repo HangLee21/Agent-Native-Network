@@ -1,7 +1,7 @@
 'use strict';
 // Pure presentation helpers: no route solver, transport, coordinates or side effects.
 const MobileStudioModel=(()=>{
-  const mac=x=>String(x||'').trim().toLowerCase(),isMAC=x=>/^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$/.test(mac(x));
+  const mac=x=>String(x||'').trim().toLowerCase(),isMAC=x=>/^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$/.test(mac(x))||/^[0-9a-f]{16}$/.test(mac(x));
   const hash=x=>{let h=2166136261;for(const c of x)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;};
   function topology(ids,edges,previous=new Map()){
     const ordered=[...new Set(ids.map(mac).filter(isMAC))].sort().slice(0,128),points=new Map();

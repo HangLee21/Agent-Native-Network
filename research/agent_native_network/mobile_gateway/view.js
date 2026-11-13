@@ -34,7 +34,7 @@
       bar.style.borderTopColor=look.color;bar.style.borderTopStyle=look.dash?'dashed':'solid';
       chip.append(bar,html('span',look.label));box.append(chip);
     }
-    for(const [name,color] of [['节点：LoRa 在线','#8056ad'],['节点：仅被邻居看到','#aa7021'],['节点：采样已失效','#b3261e']]){
+    for(const [name,color] of [['节点：LoRa 在线','#8056ad'],['节点：仅被邻居看到','#aa7021'],['节点：采样已失效','#b3261e'],['节点：网关（接收端）','#1f6f78']]){
       const chip=html('span','','legendChip'),dot=html('i','','legendDot');
       dot.style.background=color;chip.append(dot,html('span',name));box.append(chip);
     }
@@ -66,7 +66,7 @@
   function renderLoRaNodes(){
     const data=lora(),nodes=graphNodes();text('statNodes',nodes.length);text('statLocated',nodes.filter(n=>M.positionState(n,now()).valid).length);text('statOffline','—');
     $('nodeList').replaceChildren();$('unlocated').replaceChildren();
-    for(const n of nodes){const node=data.nodes.get(n.id),r=node?.report,pos=M.positionState(n,now()),status=node?.status||(r?'reported':'seen'),b=html('button','','nodeRow'+(selected===n.id?' selected':''));b.style.setProperty('--node-state',status==='reported'?'#8056ad':status==='lost'?'#b3261e':'#aa7021');b.append(html('b',label(n.id)),html('span',status==='reported'?'LoRa 在线':status==='lost'?'采样已失效':'仅被邻居看到','pill'+(status==='reported'?'':status==='lost'?' off':' warn')),html('small',n.id),html('small',r?`LoRa 报告 #${r.report.report_seq} · PC 收报距今 ${age(r.age)}`:'仅出现在 LoRa 邻居快照中'),html('small',`位置另取原来源：${pos.valid?source(n.position?.source):pos.reason}`));b.onclick=()=>choose(n.id);$('nodeList').append(b);if(!pos.valid)$('unlocated').append(html('div',label(n.id)+' · '+pos.reason));}
+    for(const n of nodes){const node=data.nodes.get(n.id),r=node?.report,pos=M.positionState(n,now()),status=node?.status||(r?'reported':'seen'),gw=status==='gateway',b=html('button','','nodeRow'+(selected===n.id?' selected':''));b.style.setProperty('--node-state',gw?'#1f6f78':status==='reported'?'#8056ad':status==='lost'?'#b3261e':'#aa7021');b.append(html('b',label(n.id)),html('span',gw?'网关':status==='reported'?'LoRa 在线':status==='lost'?'采样已失效':'仅被邻居看到','pill'+(gw?' gw':status==='reported'?'':status==='lost'?' off':' warn')),html('small',gw?'接收端 · 不经 ESP-NOW':n.id),html('small',gw?"LoRa 上行接收 5 个节点，逐帧上报 RSSI/SNR":r?`LoRa 报告 #${r.report.report_seq} · PC 收报距今 ${age(r.age)}`:'仅出现在 LoRa 邻居快照中'),html('small',gw?'该节点是接收端，不产生邻居快照':`位置另取原来源：${pos.valid?source(n.position?.source):pos.reason}`));b.onclick=()=>choose(n.id);$('nodeList').append(b);if(!pos.valid&&!gw)$('unlocated').append(html('div',label(n.id)+' · '+pos.reason));}
     if(!nodes.length)text('nodeList','尚无实际 LoRa 成员报告');if(!$('unlocated').children.length)text('unlocated',nodes.length?'成员沿用已有定位来源':'暂无 LoRa 成员');
     if(selected&&data.nodes.has(selected)){const r=data.nodes.get(selected).report,n=model.nodes.get(selected);text('detailTitle',label(selected)+' · LoRa 观测');text('detail',r?`报告者 ${selected}\nboot ${r.report.observer_boot} / report seq ${r.report.report_seq}\n源板采样钟 ${r.report.snapshot_at_ms} ms\nPC 收报 ${r.pc_received_at||'未提供'}\nPC 收报距今 ${age(r.age)}\n位置：${n?source(n.position?.source):'无原位置来源，使用非地理拓扑'}\n邻居快照 ${r.report.neighbors.length}/${r.report.total_rows}${r.report.truncated?'，已截断':''}`:`${selected}\n该成员仅见于其他报告者的邻居行，未收到它自己的 LoRa 报告。\n位置：${n?source(n.position?.source):'无原位置来源，使用非地理拓扑'}`);}
   }
@@ -171,8 +171,9 @@
     const pairs=renderRadio(edges);
     for(const [id,p]of positions){const n=model.nodes.get(id),lr=isLoRa()?lora().nodes.get(id):null,active=isLoRa()?!!lr?.report:n&&M.online(n,current),group=svg('g',{class:'mapNode',tabindex:0,role:'button','data-node':id,'aria-label':`${label(id)} · ${isLoRa()?lr?.report?'LoRa 来源报告':'LoRa 快照邻居':n?active?'报告在线':'报告失联':'仅邻居观测'} · ${topology?'非地理拓扑位置':source(n?.position?.source)}`});
       const nodeState=isLoRa()?(lr?.status||(lr?.report?'reported':'seen')):null;
-      const ringColor=isLoRa()?(nodeState==='reported'?'#8056ad':nodeState==='lost'?'#b3261e':'#aa7021'):(active?'#1c8270':'#8d9a9e');
-      group.append(svg('circle',{cx:p.x,cy:p.y,r:25,fill:active?'#fff':nodeState==='lost'?'#fdeceb':'#e6ebea',stroke:selected===id?'#153e46':ringColor,'stroke-width':selected===id?4:2}),svg('text',{x:p.x,y:p.y+5,'text-anchor':'middle','font-size':label(id).length>5?12:17,'font-weight':700,fill:active?'#1a655b':'#7c8b90'},label(id)));
+      // The receiver is drawn as its own vertex: teal ring, square-ish emphasis below.
+      const ringColor=isLoRa()?(nodeState==='gateway'?'#1f6f78':nodeState==='reported'?'#8056ad':nodeState==='lost'?'#b3261e':'#aa7021'):(active?'#1c8270':'#8d9a9e');
+      group.append(svg('circle',{cx:p.x,cy:p.y,r:25,fill:active?'#fff':nodeState==='gateway'?'#e7f4f4':nodeState==='lost'?'#fdeceb':'#e6ebea',stroke:selected===id?'#153e46':ringColor,'stroke-width':selected===id?4:nodeState==='gateway'?3:2}),svg('text',{x:p.x,y:p.y+5,'text-anchor':'middle','font-size':label(id).length>5?12:17,'font-weight':700,fill:active?'#1a655b':'#7c8b90'},label(id)));
       group.append(svg('text',{x:p.x,y:p.y+43,'text-anchor':'middle','font-size':11,fill:'#536e74'},isLoRa()?lr?.report?'LoRa #'+lr.report.report.report_seq+' · '+age(lr.report.age):'仅邻居快照':n?topology?M.online(n,current)?'报告在线':'报告失联':source(n.position?.source)+' · '+age(M.positionState(n,current).age):'仅邻居被观测'));
       const recent=[...model.events].reverse().find(e=>M.clean(e.reporter)===id&&['tx_submit','rx_relay','rx_local'].includes(e.event)&&Number.isFinite(e.received_ms)&&Math.max(0,(model.server?.now_ms??e.received_ms)-e.received_ms)<12000);if(recent)group.append(svg('text',{x:p.x,y:p.y-37,'text-anchor':'middle','font-size':12,'font-weight':700,fill:recent.event==='rx_local'?colors.green:colors.blue},({tx_submit:'TX 提交',rx_relay:'RELAY 收',rx_local:'RX 收到'})[recent.event]));
       const agent=n?.agent;if(active&&agent?.running===true)group.append(svg('circle',{cx:p.x+19,cy:p.y-18,r:5,fill:'#20a985'}));

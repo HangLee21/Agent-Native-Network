@@ -1,5 +1,11 @@
 """Studio-owned passive LoRa gateway reader.
 
+DEPRECATED (2026-11-13): the RHF2S008 Ethernet gateway is now the only receiver for the
+EoRa nodes, so Studio serves /api/v1/lora/topology from
+tools/mid_baseline/gateway_probe/topology_server.py and no longer falls back to a board's
+USB port. Nothing calls this module any more; it is kept so the historical serial workflow
+stays readable, and so a board can act as a temporary receiver again if needed.
+
 The gateway is *discovered*, never hard-coded: this process may be pointed at an
 explicit serial port, or it scans the serial devices once and adopts whichever one
 first emits a `lora.ref.v1` receive envelope. The adopted identity (gateway MAC,
