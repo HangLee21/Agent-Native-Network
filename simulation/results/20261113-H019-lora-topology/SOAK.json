@@ -1,0 +1,77 @@
+{
+  "at": "2026-11-13T11:24:24.904471+08:00",
+  "duration_s": 180,
+  "note": "after root-cause fix: input overflow no longer stops the radio, ND frames are no longer printed one line per frame, and the UART reader never blocks on a full queue",
+  "boards": {
+    "A": {
+      "mode": "active",
+      "radio": true,
+      "locked": false,
+      "overflow": 0,
+      "heal": 0,
+      "hello_rx": 406,
+      "lora": "rx",
+      "lora_rx": 119,
+      "lora_tx": 0,
+      "heap": 90576,
+      "boot": 1517125861,
+      "build": "mid-lora-ref-v1-31279b6f51075d10ac483d0b25c8a180044fbb538a5f6e3ad1085f74afeb2b49"
+    },
+    "B": {
+      "mode": "active",
+      "radio": true,
+      "locked": false,
+      "overflow": 0,
+      "heal": 0,
+      "hello_rx": 419,
+      "lora": "tx",
+      "lora_rx": 0,
+      "lora_tx": 34,
+      "heap": 90548,
+      "boot": 309266097,
+      "build": "mid-lora-ref-v1-31279b6f51075d10ac483d0b25c8a180044fbb538a5f6e3ad1085f74afeb2b49"
+    },
+    "C": {
+      "mode": "active",
+      "radio": true,
+      "locked": false,
+      "overflow": 0,
+      "heal": 0,
+      "hello_rx": 417,
+      "lora": "tx",
+      "lora_rx": 0,
+      "lora_tx": 32,
+      "heap": 90620,
+      "boot": 893247487,
+      "build": "mid-lora-ref-v1-31279b6f51075d10ac483d0b25c8a180044fbb538a5f6e3ad1085f74afeb2b49"
+    },
+    "D": {
+      "mode": "active",
+      "radio": true,
+      "locked": false,
+      "overflow": 0,
+      "heal": 0,
+      "hello_rx": 414,
+      "lora": "tx",
+      "lora_rx": 0,
+      "lora_tx": 30,
+      "heap": 90448,
+      "boot": 2464607573,
+      "build": "mid-lora-ref-v1-31279b6f51075d10ac483d0b25c8a180044fbb538a5f6e3ad1085f74afeb2b49"
+    },
+    "E": {
+      "mode": "active",
+      "radio": true,
+      "locked": false,
+      "overflow": 0,
+      "heal": 0,
+      "hello_rx": 417,
+      "lora": "tx",
+      "lora_rx": 0,
+      "lora_tx": 28,
+      "heap": 90588,
+      "boot": 4133719125,
+      "build": "mid-lora-ref-v1-31279b6f51075d10ac483d0b25c8a180044fbb538a5f6e3ad1085f74afeb2b49"
+    }
+  }
+}
