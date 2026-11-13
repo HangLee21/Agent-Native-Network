@@ -6,6 +6,17 @@
 
 本机多窗口协作从[START_HERE](START_HERE.md)进入；实际执行范围与验收以[CURRENT](coordination/CURRENT.md)和主任务卡为准。
 
+## 工程线：固件与自组网
+
+| 内容 | 文档 |
+|---|---|
+| **目标与完成度（单一事实来源）** | [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) |
+| 文档索引 | [docs/README.md](docs/README.md) |
+| 固件版本沿革、build_id 与回滚 | [CHANGELOG.md](CHANGELOG.md) |
+| 三平面算法总纲（协议逻辑入口） | [ALGORITHM.md](firmware/mid_baseline/field_agent/ALGORITHM.md) |
+| 规模扩展与高速移动规划 | [SCALABILITY_MOBILITY_PLAN.md](docs/SCALABILITY_MOBILITY_PLAN.md) |
+| 实现状态（板/编/仿/未） | [IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md) |
+
 ## 当前研究方向
 
 研究具备独立端侧推理能力的设备，如何通过移动、多跳、局部连接和间歇连接无线网络持续协作。模型根据收到的证据产生、追加、改选或终止信息请求；网络发现、路由、竞争排队和分区重构影响证据服务，反过来改变后续推理需求。研究主体是网络系统，核心评价是同资源下的服务连续性、有效goodput、控制成本与达标运行域。
