@@ -1,0 +1,35 @@
+{
+  "schema": "mid.hardware.backups.v1",
+  "C": {
+    "status": "C_complete_private_backup_verified",
+    "MAC": "90:da:72:48:a4:e0",
+    "bytes": 4194304,
+    "sha256": "e429df1e9651fd44a645f716ebfa71610c02adce670731d72ec433a41feda353",
+    "host_md5": "4c81d36f5147fc71b2773d56bb7c9ded",
+    "device_md5": "4c81d36f5147fc71b2773d56bb7c9ded",
+    "device_md5_matched": true,
+    "baud": 230400,
+    "part_supervisor_seconds": [
+      52.0,
+      52.15700000000652,
+      51.844000000011874,
+      61.610000000015134
+    ],
+    "C_incremental_seconds": 220.01700000003353,
+    "C_incremental_limit": 600,
+    "total_device_seconds": 458.36000000003355,
+    "total_device_limit": 1500,
+    "Flash_writes": 0,
+    "eFuse_writes": 0,
+    "RF_runs": 0,
+    "all_ports_closed": true,
+    "last_state": "normal_reset_requested_application_unverified",
+    "application_verified": false,
+    "original_private_only": true
+  },
+  "A_manifest": "simulation/outputs/H-004/20261106-05-backup-460800/backup_manifest.json",
+  "B_manifest": "simulation/outputs/H-005/20261106-11-B-segmented/backup_manifest.json",
+  "identity": "hardware/mid_baseline/BOARD_INVENTORY_20261106_ABC.json",
+  "labels": "hardware/mid_baseline/BOARD_LABELS_20261106_ABC.json",
+  "note": "Identity/labels immutable inputs preserved; private raw originals not distributed."
+}

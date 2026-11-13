@@ -1,0 +1,69 @@
+{
+  "template_only": false,
+  "task_id": "BUILD-20261111-fieldagent-470",
+  "run_id": "20261111-01-build",
+  "started_at": "2026-11-11T16:56:46+08:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:/Multi-Agent Network",
+  "git_commit": "b7f16ea94c1f4e07045784d06f87362ebc3e84c3",
+  "dirty_files_sha256": {
+    "firmware/mid_baseline/field_agent/source_route.h": "18a01e0b17eae7498e16f660cde13593a3e6a6c10b953417b3a6bc352a97bc7a",
+    "firmware/mid_baseline/field_agent/source_route.c": "6287b8b203df0f6eae6b431b4a6afe0eaf37233dac0ee9bd985411e9197690d1",
+    "firmware/mid_baseline/field_agent/idf/main/field_runtime.inc": "ffbb4c226bb616738661895afdb17798c7ea44c2ab7a67a4f3078ba3f0c6fac2",
+    "firmware/mid_baseline/field_agent/idf/main/app_main.c": "836e68276d22979c241e65e1de9ef5635550de70c955f38152d8f33f21e31c2c",
+    "firmware/mid_baseline/field_agent/lora_ref/runtime.c": "211d148e142a3a65adebeb63d1a32f8d3c95a1911dc1ae2cda677ef5f432c205",
+    "firmware/mid_baseline/field_agent/lora_ref/INTEGRATION.md": "97f03d772ca9eb2edb6065e802b22ceaa9b3cfdae5d9bcd9dab92bd7d7d97b94",
+    "firmware/mid_baseline/field_agent/PROACTIVE_ROUTING.md": "35fe6e76b7442b5c5db55ae41555983b44f40a07a16f3b980a61753d54d0459d",
+    "tools/mid_hardware/lora_ref/receive.py": "2815443b16141b6123446c3a0f0acf803a7b4cf66a9d1f842eabde111e846446",
+    "tools/mid_hardware/lora_ref/configure.py": "acd6959a55ec2e0a29741d00001ae3c0a8dc9c11dcf22e83e8b69f65fdb50971",
+    "tools/mid_hardware/lora_ref/GATEWAY_SWAP.md": "83ce9c6399d65f865fe22124648c1731ca4159a1b0af331ed666a6c064467828"
+  },
+  "command": [
+    "D:/Multi-Agent Network/.local/espnow/E1-015/tools/python_env/idf5.5_py3.11_env/Scripts/python.exe",
+    "D:/Multi-Agent Network/.local/espnow/E1-015/sdk/esp-idf-v5.5.1/tools/idf.py",
+    "-B", "<temp>/build",
+    "-D", "SDKCONFIG=<temp>/sdkconfig",
+    "-D", "SDKCONFIG_DEFAULTS=D:/Multi-Agent Network/firmware/mid_baseline/field_agent/idf/sdkconfig.defaults",
+    "-D", "MID_HEADLESS=OFF",
+    "build"
+  ],
+  "python_executable": "D:/Multi-Agent Network/.local/espnow/E1-015/tools/python_env/idf5.5_py3.11_env/Scripts/python.exe",
+  "dependency_snapshot": "ESP-IDF v5.5.1-dirty at .local/espnow/E1-015/sdk/esp-idf-v5.5.1; esptool 4.13.0; xtensa-esp-elf esp-14.2.0_20241119; environment.json sha256 24c6a7a18c9315417c163cdee5fe7cd766ca503a034c481c0277f463ec0d1cc1",
+  "upstream_commit": null,
+  "data_and_weights_sha256": {
+    "environment.json": "24c6a7a18c9315417c163cdee5fe7cd766ca503a034c481c0277f463ec0d1cc1",
+    "images/mid_edge.bin": "1c1f8b411db58650ab7c294ed462157c9d9dcb000cf0356a74d88c9340067fab",
+    "images/bootloader.bin": "df61d2a7b27ed094e11b22c26fdbb39a315a618207196ddb146551365bbd7c76",
+    "images/partition-table.bin": "7f00b6c042a89b15b0cac534f82ed988caf29278ff5700b0c511eb1b5bb7c820",
+    "mid_edge.elf": "fb4222d07571b43e2474802ce7434195ce43aaf6fd53767d2856456ac418f172"
+  },
+  "config_file": "sdkconfig",
+  "seeds": [],
+  "budget": {"cpu_jobs": 2, "wall_clock_s": 124},
+  "output_directory": "D:/Multi-Agent Network/BUILD-20261111-fieldagent-470",
+  "process_id": null,
+  "finished_at": "2026-11-11T16:58:50+08:00",
+  "exit_code": 0,
+  "status": "passed",
+  "build_id": "mid-lora-ref-v1-158bf1db1c611f9d024537bda6c51117068d66d0b97db67c64aff734934a948f",
+  "superseded_build_id": "mid-lora-ref-v1-6f62fc56a70718250928d818fadd2a943d965587acb6622d36dd04c4b6d7ce50",
+  "image_bytes": 951712,
+  "app_partition_free_bytes": 97376,
+  "compiler_diagnostics": {"warnings": 0, "errors": 0},
+  "unit_test": {
+    "name": "sr_retry_check",
+    "assertions": 15,
+    "failures": 0,
+    "log": "unit-test/run.log",
+    "scope": "host gcc build of real mid.c + source_route.c; local re-discovery after a first-edge failure"
+  },
+  "limitations": [
+    "Target build only: no serial port opened, no flash write, no RF transmission.",
+    "Proactive warm-up, demand probe, single retry and radio self-heal are unverified on hardware; only the build and a host unit test cover them.",
+    "470 MHz default is compiled in, but no antenna match or air-interface evidence exists for 470 MHz; deployed boards keep 433 MHz in NVS until lora_ref_config is explicitly re-sent.",
+    "No mobility or neighbour-loss measurement was performed.",
+    "Archived at the repository root, not under .local/mid or simulation/outputs: .local is owned by another Windows account (repair refused by policy) and simulation writes stay blocked by the sandbox label despite an ACL grant.",
+    "The worktree already carried many unrelated uncommitted changes before this run; only the ten files in dirty_files_sha256 belong to it."
+  ],
+  "review_reference": null
+}

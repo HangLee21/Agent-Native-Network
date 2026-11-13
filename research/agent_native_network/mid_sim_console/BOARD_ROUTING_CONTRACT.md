@@ -1,0 +1,21 @@
+# D-026 板端自动路由接入
+
+UI只给本地板最终dst与原始payload，不传全图、路径、下一跳或PC plan_id。最终目的可不是一跳邻居；历史台架/手动入口及纯模拟接入回放保留。现已按E1-025最终INTERFACE.md和E2-027本地API绑定，不从目录名猜为已启用自主模式。
+
+先消费E2已发布GET requests/<request_id>、GET packet?origin&origin_boot&seq&dst、GET events?after&wait=0及send的精确身份回执。accepted_pending_events是本地接纳，不必等待立即tx_queued；observation_timeout只是本地观察截止，不等于板端no_route。
+
+板端选择、沿途本板观测、端点交付分开显示。route_selected路径向量不等于各跳已走过；DATA tx_submit只证明本板提交，不能将同seq的RREQ/RREP当业务发出。只有目的本板rx_local的原身份/字节或明确匹配的端点ACK才能确认交付。未有端点证据一直显示未确认。
+
+选路历史按源boot/轮次/目的和实际path保存；旧轮失效不能覆盖新轮，新包不能改写旧包路径。缺包身份的路由事件仅显示路由状态；缺实际沿途记录不补完整链。
+
+8767首页的AD-HOC入口打开当前浏览器所在主机的127.0.0.1:8780/?mode=adhoc；只允许改本机端口，不反向代理业务。该意图下，接口未接入/当前模式不符时隐藏旧发送与仿真面板，发送禁用，给启动及显式配置步骤。当前原生autonomous模式才打开已有本地发送器。无路不回退台架、模拟或一跳发送。原生routing_supported:false只表示当前未配置自主模式，不据此猜老固件能力。
+
+正式事件适配：route_waiting.request关联route_selected.request，后者的seq是寻路请求序号，绝不是业务seq。route_selected.path只标板选；相同轮次有冲突路径会显式显示冲突。route_invalidated按轮次及对应路径/失效边处理，不撤另一轮新路。业务按origin/origin_boot/seq/dst归档，原生tx_queued无next_hop只算本地入队；route_no_route reason6是stop取消，普通截止另列。RREQ/RREP/candidate/request不创建业务发出证据。
+
+E1实际serializer仅对SR_DATA输出route_pump的tx_submit/link和rx_relay/rx_local；未带packet_kind时按这份合同适配。若显式packet_kind是控制帧则拒绝作为业务观测。所有观测先核本板node_id和当前会话/boot；外板rx_local不能提升源端交付。目的本板rx_local须带完整身份和合法0–160字节payload_hex；有已知预期载荷时须逐字节匹配。
+
+当前板端DATA串口记录不携带完整header路径。首次等待寻路的包可用request相关选路；缓存命中但没有本包waiting/selected的包，其路径保持未确认。GET routes的source=local_board_cache/host_planner_used=false只画成读取时缓存，绝不补到历史包或当实际沿途实收。request/progress只读结果亦不能越过这些判据。
+
+事件查询和请求查询是本机GET。显式跟踪最多30秒，退出或错误停止；模式、boot、instance_id及成功route_config/route_start边界分开旧新会话。丢失提交响应或回执绑定不一致时保留原request_id为未知、禁自动再次发送。
+
+部署、停止、恢复及OLED/无屏边界见[AD-HOC指南](../edge_deployment/ADHOC_AUTONOMOUS.md)。D的HTTP夹具不是RF、算法或三Ubuntu实机证明；板端真实执行由H记录。

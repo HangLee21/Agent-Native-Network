@@ -1,0 +1,11 @@
+{
+  "schema": "mid.board.labels.v1",
+  "labels": {
+    "A": "90:da:72:48:a4:f8",
+    "B": "90:da:72:48:a5:cc",
+    "C": "90:da:72:48:a4:e0",
+    "D": "90:da:72:48:a5:20",
+    "E": "90:da:72:48:a6:98"
+  },
+  "note": "ABC retained by actual MAC. D/E newly assigned logical labels in ascending MAC order; not inferred from port or physical printed letters."
+}

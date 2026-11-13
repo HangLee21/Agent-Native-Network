@@ -1,0 +1,22 @@
+"""Analyze saved H014 RF records only; no device, network or simulation calls."""
+import argparse,datetime,hashlib,json,os,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3]
+p=argparse.ArgumentParser();p.add_argument('--source',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();source=a.source.resolve();out=a.output.resolve();assert source.is_relative_to(ROOT/'simulation/outputs/H-014') and out.is_relative_to(ROOT/'simulation/outputs/H-014');out.mkdir(parents=True,exist_ok=False)
+begin=datetime.datetime.now(datetime.timezone.utc).isoformat();r=json.loads((source/'result.json').read_bytes());assert r['success'] and r['all_ports_closed'] and all(r['stop_confirmed'].values())
+marks=r['markers']
+def phase(name):return [x for x in marks if x['phase']==name]
+def observed_seconds(left,right):return (right['host_monotonic_ns']-left['host_monotonic_ns'])/1e9
+confirmed=phase('pair_bidirectional');assert len(confirmed)==2 and len(r['packets'])==2
+timing=dict(late_join_to_first_A_observation_s=observed_seconds(phase('B_late_started')[0],phase('A_observed_B')[0]),late_join_to_both_confirmed_s=observed_seconds(phase('B_late_started')[0],confirmed[0]),B_stop_to_A_lost_observation_s=observed_seconds(phase('B_radio_stopped')[0],phase('A_observed_B_lost')[0]),B_reset_to_both_reconfirmed_s=observed_seconds(phase('B_normal_reset_issued')[0],confirmed[1]))
+if phase('A_confirmation_expired'):timing['B_stop_to_A_confirmation_expired_observation_s']=observed_seconds(phase('B_radio_stopped')[0],phase('A_confirmation_expired')[0])
+fields=['control_hello_generated','control_ack_generated','control_submitted','control_link_ok','control_link_fail','control_hello_received','control_ack_received','control_rejected','neighbor_table_full']
+segments=[dict(board='A',boot_id=r['initial_info']['A']['boot_id'],stats=r['stopped_discovery_stats']['A']),dict(board='B',boot_id=r['initial_info']['B']['boot_id'],stats=r['after_off_stats']['B']),dict(board='B',boot_id=r['new_B_boot'],stats=r['stopped_discovery_stats']['B'])]
+controls=[dict(board=x['board'],boot_id=x['boot_id'],counts={k:x['stats'].get(k)for k in fields})for x in segments]
+packets=[]
+for x in r['packets']:
+ e=x['destination']['event'];assert e['event']=='rx_local' and all(e.get(k)==v for k,v in x['identity'].items()) and e['payload_hex']==x['payload_hex'] and bytes.fromhex(x['payload_hex'])==x['text'].encode('utf-8')
+ packets.append(dict(identity=x['identity'],payload_bytes=len(bytes.fromhex(x['payload_hex'])),payload_sha256=hashlib.sha256(bytes.fromhex(x['payload_hex'])).hexdigest(),native_capture_line=x['destination']['capture_line']))
+submitted=[x['counts']['control_submitted']for x in controls];total=sum(submitted)if all(type(x)is int for x in submitted)else None
+report=dict(success=True,source=str(source),timing=timing,control_segments=controls,total_control_submitted=total,control_application_frame_bytes=41,submitted_control_application_bytes=total*41 if total is not None else None,raw_RF_bytes=None,RF_retransmissions=None,packets=packets,unique_endpoint_deliveries=len(packets),before_B_neighbors=r['A_before_B'],new_B_boot=r['new_B_boot'],Ubuntu_physical_hotplug_verified=False,limitations=['Times are bounded host observations and include local serial sampling/command overhead, not exact RF first-arrival timestamps.','Generated, submitted, link callback and actual received controls are separate counters.','41-byte application frames exclude MAC/PHY overhead and retries.','One Windows host with two RF boards; no Ubuntu physical hotplug or independent Ubuntu hosts.'])
+(out/'result.json').write_text(json.dumps(report,indent=2),encoding='utf-8');m=json.loads((ROOT/'coordination/templates/RUN_MANIFEST.json').read_bytes());m.update(template_only=False,task_id='H-014',run_id=out.name,started_at=begin,finished_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),worktree=str(ROOT),command=[sys.executable,*sys.argv],python_executable=sys.executable,process_id=os.getpid(),output_directory=str(out),data_and_weights_sha256={str(source/'result.json'):hashlib.sha256((source/'result.json').read_bytes()).hexdigest()},status='passed',exit_code=0,limitations=report['limitations']);(out/'RUN_MANIFEST.json').write_text(json.dumps(m,indent=2),encoding='utf-8');print(json.dumps(dict(success=True,timing=timing,total_control_submitted=total,endpoint_deliveries=len(packets))))

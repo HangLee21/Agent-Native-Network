@@ -11,3 +11,14 @@ simulation/outputs/
 /firmware/agent_native/idf/build/
 /firmware/agent_native/idf/sdkconfig
 /firmware/agent_native/idf/sdkconfig.old
+
+# Local SDKs and hardware tools for first-device flashing.
+/.local/espnow/
+/.local/mid/
+
+# Generated ESP-IDF debug output inside build archives: the flashable image, the
+# build record and the checksums are kept; the ELF/MAP are reproducible from them.
+BUILD-*/mid_edge.elf
+BUILD-*/mid_edge.map
+# 56 MB generated dataset for the simulation demo; regenerate with its scripts.
+/research/agent_native_network/mid_simulation_demo/viewer-data.json

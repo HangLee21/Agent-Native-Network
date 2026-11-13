@@ -1,0 +1,18 @@
+{
+  "schema": "mid.validation.config.v1",
+  "run_id": "example-not-measured",
+  "evidence_kind": "synthetic",
+  "input_freezes": {},
+  "streams": [
+    {
+      "flow_id": "A-to-E",
+      "source_id": "A",
+      "destination_id": "E",
+      "expected_generated": 5,
+      "source_log_complete": false,
+      "receiver_log_complete": false,
+      "measurement_duration_us": null,
+      "duration_clock": null
+    }
+  ]
+}

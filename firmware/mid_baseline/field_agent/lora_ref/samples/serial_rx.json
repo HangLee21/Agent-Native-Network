@@ -1,0 +1,19 @@
+{
+  "schema": "lora.ref.v1",
+  "event": "lora_ref_rx",
+  "gateway_id": "90:da:72:48:a4:f8",
+  "gateway_boot": 591751049,
+  "rx_seq": 1,
+  "received_at_ms": 987654,
+  "lora": {
+    "frequency_hz": 433000000,
+    "sf": 7,
+    "bandwidth_hz": 125000,
+    "coding_rate": 5,
+    "preamble_symbols": 8,
+    "sync_word": 18,
+    "rssi_dbm": -78,
+    "snr_db": 7
+  },
+  "frame_hex": "4c524e312c14040190da7248a5cc785634120700000040e20100000000001f0000000100102700000c00000090da7248a4f844332211020f6400c800ca32000b999810ef"
+}

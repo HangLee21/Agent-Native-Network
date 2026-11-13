@@ -1,0 +1,36 @@
+{
+  "recorded_at": "2026-11-08T19:04:22.460913+08:00",
+  "packages": [
+    {
+      "label": "OLED调试",
+      "path": ".local/mid/E1-023/oled-package-02",
+      "build_id": "mid-edge-v1-1969b4d894badc0f1c59940fc426b779a14f49b89cca5fedd69a8216d90da143",
+      "app_sha256": "71e1cddf67263ae3c98d83c5dd6521c6067a63192636e43292ce17159004fbcf",
+      "manifest_sha256": "fe222ad894f469b0239cc1096209e47ff9ce92923f9be80bd54cb11b44f6c35d",
+      "uart_baud": 460800
+    },
+    {
+      "label": "无屏上线候选",
+      "path": ".local/mid/E1-023/headless-package-01",
+      "build_id": "mid-edge-v1-26f0f3bbc58fdfa29be384118d069c8c11328dc7efe5ff5aa7aac35cc2346efa",
+      "app_sha256": "3c5ac572e5a236fb84e7f1041ccc5a80ddbd53f946ad7f32556034a761d20b58",
+      "manifest_sha256": "be219b29434a88cd87cd333700f0d94150c6b9d72292c5c2aa6d491aedc61e83",
+      "uart_baud": 460800
+    }
+  ],
+  "profile": {
+    "path": "profiles/abc-deploy.json",
+    "source": "simulation/outputs/E1-023/20261108-03-abc-profile/deploy.json",
+    "sha256": "fdcc22923a38146df24221a304901377056f4813763b33bda29f3f56cc2f9f1f",
+    "profile_id": "abc-two-way-v1",
+    "autostart": true
+  },
+  "current_ports": {
+    "A": "COM12",
+    "B": "COM10",
+    "C": "COM7"
+  },
+  "baud": 460800,
+  "current_state": "OLED MID idle, offline profile cleared; first offline deployment requires --profile",
+  "scope": "same-PC 3 independent processes plus 3 real RF boards; physical 3-host and power-cycle not verified"
+}

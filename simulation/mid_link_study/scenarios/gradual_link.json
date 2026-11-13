@@ -1,0 +1,216 @@
+{
+  "schema": "mid.link_scenario.v1",
+  "version": 1,
+  "evidence_kind": "synthetic_simulation",
+  "nodes": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "duration_s": 60,
+  "seeds": [
+    11,
+    23,
+    37,
+    53,
+    71
+  ],
+  "traffic": {
+    "flows": [
+      {
+        "src": "A",
+        "dst": "B"
+      },
+      {
+        "src": "B",
+        "dst": "A"
+      }
+    ],
+    "packets_per_direction_per_s": 2,
+    "payload_bytes": 32,
+    "first_generation_s": 0,
+    "generation_end_exclusive_s": 60,
+    "planned_per_arm": 240
+  },
+  "units": {
+    "time": "simulated_seconds",
+    "capacity_payload_bps": "application_payload_bits_per_simulated_second",
+    "pdr": "conditional_success_probability_per_link_attempt"
+  },
+  "assumptions": [
+    "All coefficients are synthetic assumptions, not RF measurements.",
+    "Capacity and success probability are separate quantities; unlisted directed edges have both zero.",
+    "Listed edges default to PDR 1; segments override only their half-open interval.",
+    "Capacity excludes protocol overhead. Engine must declare queue, contention and retry treatment.",
+    "Coordinates are schematic; they do not imply a physical propagation model.",
+    "Reachability witnesses are evaluation-only truth, never privileged policy inputs.",
+    "Observation, detection, computation and configuration delays belong to the engine contract."
+  ],
+  "positions": {
+    "A": [
+      0,
+      0
+    ],
+    "C": [
+      1,
+      1
+    ],
+    "E": [
+      1,
+      -1
+    ],
+    "D": [
+      2,
+      0
+    ],
+    "B": [
+      3,
+      0
+    ]
+  },
+  "initial_reference_path": [
+    "A",
+    "C",
+    "D",
+    "B"
+  ],
+  "alternative_reference_path": [
+    "A",
+    "E",
+    "D",
+    "B"
+  ],
+  "edges": [
+    {
+      "src": "A",
+      "dst": "C",
+      "capacity_payload_bps": 8192,
+      "pdr": 1.0,
+      "segments": [
+        {
+          "start_s": 20,
+          "end_s": 35,
+          "pdr_start": 1.0,
+          "pdr_end": 0.0
+        },
+        {
+          "start_s": 35,
+          "end_s": 45,
+          "pdr_start": 0.0,
+          "pdr_end": 0.0
+        },
+        {
+          "start_s": 45,
+          "end_s": 50,
+          "pdr_start": 0.0,
+          "pdr_end": 1.0
+        }
+      ]
+    },
+    {
+      "src": "C",
+      "dst": "A",
+      "capacity_payload_bps": 8192,
+      "pdr": 1.0,
+      "segments": [
+        {
+          "start_s": 20,
+          "end_s": 35,
+          "pdr_start": 1.0,
+          "pdr_end": 0.0
+        },
+        {
+          "start_s": 35,
+          "end_s": 45,
+          "pdr_start": 0.0,
+          "pdr_end": 0.0
+        },
+        {
+          "start_s": 45,
+          "end_s": 50,
+          "pdr_start": 0.0,
+          "pdr_end": 1.0
+        }
+      ]
+    },
+    {
+      "src": "C",
+      "dst": "D",
+      "capacity_payload_bps": 8192,
+      "pdr": 1.0,
+      "segments": []
+    },
+    {
+      "src": "D",
+      "dst": "C",
+      "capacity_payload_bps": 8192,
+      "pdr": 1.0,
+      "segments": []
+    },
+    {
+      "src": "D",
+      "dst": "B",
+      "capacity_payload_bps": 8192,
+      "pdr": 1.0,
+      "segments": []
+    },
+    {
+      "src": "B",
+      "dst": "D",
+      "capacity_payload_bps": 8192,
+      "pdr": 1.0,
+      "segments": []
+    },
+    {
+      "src": "A",
+      "dst": "E",
+      "capacity_payload_bps": 4096,
+      "pdr": 1.0,
+      "segments": []
+    },
+    {
+      "src": "E",
+      "dst": "A",
+      "capacity_payload_bps": 4096,
+      "pdr": 1.0,
+      "segments": []
+    },
+    {
+      "src": "E",
+      "dst": "D",
+      "capacity_payload_bps": 4096,
+      "pdr": 1.0,
+      "segments": []
+    },
+    {
+      "src": "D",
+      "dst": "E",
+      "capacity_payload_bps": 4096,
+      "pdr": 1.0,
+      "segments": []
+    }
+  ],
+  "node_intervals": [],
+  "events": [
+    {
+      "time_s": 20,
+      "kind": "degradation_begins"
+    },
+    {
+      "time_s": 35,
+      "kind": "AC_CA_zero_success"
+    },
+    {
+      "time_s": 45,
+      "kind": "recovery_begins"
+    },
+    {
+      "time_s": 50,
+      "kind": "AC_CA_restored"
+    }
+  ],
+  "id": "gradual_link",
+  "description": "AC/CA gradually fail, stay failed, then recover; alternative AE/ED stays available."
+}
