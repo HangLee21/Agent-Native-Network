@@ -54,7 +54,7 @@
 | 移动感知 ND（自适应 Hello） | ⛔ 未开始 | 需先把 `mobility` 接线（P2） |
 | LET 感知选路 / 主备 / 预热 | ⛔ 未开始 | 依赖 P2 与对照实验 |
 | 真实 GNSS / 飞控输入 | ⛔ 硬件缺失 | 用户确认「暂时拿不到」；LET 只用合成/回放 |
-| 八通道网关 | ⏳ 已接入但**设备静默** | 2026-11-13 实测：网口 Up/100 Mbps，但零单播流量、不请求 DHCP、不响应 SSDP/mDNS；参数清单见 `docs/LORA_GATEWAY_PARAMETERS.md` |
+| 接入的 LoRa 网关 | 🟡 已识别、待登录取参数 | 树莓派 `b8:27:eb:32:e2:c1`，Raspbian 8（OpenSSH 6.7p1），**仅 22/tcp、无 Web**，仅 IPv6 链路本地可达；无 IPv4（ARP 全 /24 无应答）。参数清单与只读采集脚本见 `docs/LORA_GATEWAY_PARAMETERS.md` |
 | ESP-NOW peer 上限治理 | ⛔ 未开始 | 已知 `ESP_NOW_MAX_TOTAL_PEER_NUM=20` |
 
 ### 2.4 已知未解决问题
