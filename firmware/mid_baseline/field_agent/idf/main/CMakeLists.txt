@@ -3,10 +3,10 @@ if(MID_HEADLESS)
 else()
  set(DISPLAY_ENABLED 1)
 endif()
-idf_component_register(SRCS "app_main.c" "../../../mid.c" "../../deployment.c" "../../neighbors.c" "../../source_route.c" "../../telemetry.c" "../../field.c" "../../bridge.c" "../../field_ip.c" "../../lora_ref/runtime.c" "../../lora_ref/port.c" "../../lora_ref/vendor/lr11xx/src/lr11xx_system.c" "../../lora_ref/vendor/lr11xx/src/lr11xx_radio.c" "../../lora_ref/vendor/lr11xx/src/lr11xx_regmem.c" INCLUDE_DIRS "../../.." "../.." "../../lora_ref" "../../lora_ref/vendor/lr11xx/src"
+idf_component_register(SRCS "app_main.c" "../../../mid.c" "../../deployment.c" "../../neighbors.c" "../../source_route.c" "../../telemetry.c" "../../field.c" "../../bridge.c" "../../field_ip.c" "../../mobility.c" "../../lora_ref/runtime.c" "../../lora_ref/port.c" "../../lora_ref/vendor/lr11xx/src/lr11xx_system.c" "../../lora_ref/vendor/lr11xx/src/lr11xx_radio.c" "../../lora_ref/vendor/lr11xx/src/lr11xx_regmem.c" INCLUDE_DIRS "../../.." "../.." "../../lora_ref" "../../lora_ref/vendor/lr11xx/src"
  REQUIRES esp_driver_spi esp_driver_gpio esp_driver_uart esp_wifi esp_event esp_netif esp_timer nvs_flash esp_hw_support json mid_display)
 set(IDENTITIES "MID_DISPLAY_ENABLED=${DISPLAY_ENABLED}")
-set(SOURCES app_main.c CMakeLists.txt ../../../mid.c ../../../mid.h ../../deployment.c ../../deployment.h ../../neighbors.c ../../neighbors.h ../../source_route.c ../../source_route.h ../../telemetry.c ../../telemetry.h ../../field.c ../../field.h ../../bridge.c ../../bridge.h ../../field_ip.c ../../field_ip.h field_runtime.inc
+set(SOURCES app_main.c CMakeLists.txt ../../../mid.c ../../../mid.h ../../deployment.c ../../deployment.h ../../neighbors.c ../../neighbors.h ../../source_route.c ../../source_route.h ../../telemetry.c ../../telemetry.h ../../field.c ../../field.h ../../bridge.c ../../bridge.h ../../field_ip.c ../../field_ip.h ../../mobility.c ../../mobility.h field_runtime.inc
  ../CMakeLists.txt ../sdkconfig.defaults ../../display/mid_display/include/mid_display.h ../../display/mid_display/src/mid_display_model.c)
 if(MID_HEADLESS)
  list(APPEND SOURCES ../../headless_components/mid_display/CMakeLists.txt ../../headless_components/mid_display/headless.c)
