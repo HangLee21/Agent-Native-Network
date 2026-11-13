@@ -54,7 +54,7 @@
 | 移动感知 ND（自适应 Hello） | ⛔ 未开始 | 需先把 `mobility` 接线（P2） |
 | LET 感知选路 / 主备 / 预热 | ⛔ 未开始 | 依赖 P2 与对照实验 |
 | 真实 GNSS / 飞控输入 | ⛔ 硬件缺失 | 用户确认「暂时拿不到」；LET 只用合成/回放 |
-| 八通道网关 | ⏳ 待采购 | 规格 `docs/LORA_GATEWAY_REQUIREMENTS.md` |
+| 八通道网关 | ⏳ 已接入但**设备静默** | 2026-11-13 实测：网口 Up/100 Mbps，但零单播流量、不请求 DHCP、不响应 SSDP/mDNS；参数清单见 `docs/LORA_GATEWAY_PARAMETERS.md` |
 | ESP-NOW peer 上限治理 | ⛔ 未开始 | 已知 `ESP_NOW_MAX_TOTAL_PEER_NUM=20` |
 
 ### 2.4 已知未解决问题
