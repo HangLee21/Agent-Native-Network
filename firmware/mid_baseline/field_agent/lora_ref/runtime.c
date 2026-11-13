@@ -1,5 +1,6 @@
 #include "lora_ref.h"
 #include "port.h"
+#include "../lrn1_frame.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "freertos/task.h"
@@ -21,21 +22,12 @@ static uint64_t due;
 static uint32_t attempted,submitted,completed,skipped,rx_bad,event_drops,rx_ok,last_rx_ms;
 static int running,boot_suppressed;
 static uint64_t ms(void){return (uint64_t)esp_timer_get_time()/1000;}
-static void put(uint8_t*p,uint64_t v,unsigned n){for(unsigned i=0;i<n;i++)p[i]=(uint8_t)(v>>(8*i));}
 static uint32_t crc32(const uint8_t*p,unsigned n){uint32_t crc=0xffffffffu;while(n--){crc^=*p++;for(unsigned i=0;i<8;i++)crc=(crc>>1)^(0xedb88320u&(0u-(crc&1u)));}return ~crc;}
-static uint16_t age(uint64_t now,uint64_t at,unsigned cap){return (uint16_t)(at>now||now-at>=cap?cap:now-at+1);}
+static uint32_t lrn1_cursor;
 static unsigned capture(nd_node*n,mt_node*m,uint64_t now,int(*allowed)(mid_id),uint8_t*data,uint32_t seq){
- memset(data,0,208);memcpy(data,"LRN1",4);data[4]=44;data[5]=20;data[6]=n->full?2:0;
- memcpy(data+8,n->self.mac,6);put(data+14,n->boot,4);put(data+18,seq,4);put(data+22,now,8);put(data+30,n->group,4);put(data+36,cfg.period,4);
- unsigned count=0;
- for(unsigned i=0;i<ND_PEERS;i++){nd_peer*p=&n->peers[i];if(!p->used||!p->boot||!allowed(p->id))continue;
-  uint8_t*r=data+44+20*count++;memcpy(r,p->id.mac,6);put(r+6,p->boot,4);r[10]=(uint8_t)nd_state(p,now);put(r+12,age(now,p->seen,12000),2);
-  if(p->confirmed){r[11]|=1;put(r+14,age(now,p->ack,9000),2);}
-  for(unsigned k=0;k<MT_ROWS;k++){mt_rf*rf=&m->rf[k];if(!rf->used||!mid_equal(rf->peer,p->id)||rf->at>now)continue;
-   r[11]|=4;put(r+17,age(now,rf->at,12000),2);if(rf->rssi_valid){r[11]|=2;r[16]=(uint8_t)(int8_t)rf->rssi;}if(rf->channel_valid){r[11]|=8;r[19]=(uint8_t)rf->channel;}break;
-  }
- }
- data[7]=data[34]=(uint8_t)count;unsigned len=48+20*count;put(data+len-4,crc32(data,len-4),4);return len;
+ lrn1_result res;unsigned len=lrn1_build(n,m,now,allowed,data,208,seq,cfg.period,&lrn1_cursor,&res);
+ if(!len)__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);
+ return len;
 }
 static void emit_event(ref_event*e){if(xQueueSend(events,e,0)!=pdTRUE)__atomic_fetch_add(&event_drops,1,__ATOMIC_RELAXED);}
 static void worker(void*unused){
@@ -51,7 +43,7 @@ static void worker(void*unused){
     if(job.generation!=applied_generation){__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);continue;}
     memset(&e,0,sizeof(e));e.kind=1;e.seq=job.seq;e.frame=job;e.config=current;e.at=ms();uint64_t delay=e.at-job.sampled;
     if(delay>UINT32_MAX){__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);continue;}
-    e.frame.bytes[6]|=4;put(e.frame.bytes+40,delay,4);put(e.frame.bytes+job.len-4,crc32(e.frame.bytes,job.len-4),4);
+    lrn1_set_delay(e.frame.bytes,job.len,(uint32_t)delay);
     __atomic_fetch_add(&attempted,1,__ATOMIC_RELAXED);int r=lref_port_tx(e.frame.bytes,e.frame.len,&e.toa);e.result=r?-1:0;if(r)__atomic_store_n(&running,-1,__ATOMIC_RELEASE);
     if(!r){__atomic_fetch_add(&submitted,1,__ATOMIC_RELAXED);emit_event(&e);uint64_t stop=ms()+e.toa+1500;int done=0;while(ms()<stop){done=lref_port_tx_done();if(done)break;vTaskDelay(pdMS_TO_TICKS(5)+1);}e.done=ms();e.result=done==1?1:done<0?-1:2;if(done==1)__atomic_fetch_add(&completed,1,__ATOMIC_RELAXED);else{lref_port_off();__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}}
     emit_event(&e);
