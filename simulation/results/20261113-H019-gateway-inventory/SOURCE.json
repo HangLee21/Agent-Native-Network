@@ -1,0 +1,43 @@
+{
+  "schema": "mid.results.gateway_inventory.v1",
+  "captured_at": "2026-11-13T17:09:13.988080+08:00",
+  "device": {
+    "model": "RisingHF RHF2S008",
+    "hostname": "rhf2s008",
+    "hw": "3.0",
+    "sw": "0.1.3 (CM3)",
+    "mac": "b8:27:eb:32:e2:c1",
+    "ipv4": "192.168.137.200/24",
+    "ipv6_ll": "fe80::ba27:ebff:fe32:e2c1",
+    "os": "Raspbian 8 (jessie) 4.4.50-v7+"
+  },
+  "access": "ssh rxhf@192.168.137.200, read-only (cat/ls/ps/find only)",
+  "remote_paths": {
+    "global_conf": "/opt/risinghf/pktfwd/global_conf.json -> global_conf_cn470_ch00_07.json",
+    "local_conf": "/opt/risinghf/pktfwd/local_conf.json -> local_conf_localhost_1680.json",
+    "service": "/opt/risinghf/pktfwd/pktfwd.service",
+    "receiver": "/home/rxhf/lora_receiver.py"
+  },
+  "files": [
+    {
+      "file": "global_conf_cn470_ch00_07.json",
+      "bytes": 3437,
+      "sha256": "a86fa36eaec65d00e1d988fd036b13a86ae4d61145577da3990bbc305643529e"
+    },
+    {
+      "file": "local_conf_localhost_1680.json",
+      "bytes": 176,
+      "sha256": "1dfb2b9e1ecbe1b2d7efa6cc5568719e9bf0610fc9c11dd67dff21c929460b40"
+    },
+    {
+      "file": "lora_receiver.py",
+      "bytes": 2160,
+      "sha256": "d3ef159984d2d009f25d285c9d28a3ded95486536ee40a7dcf10e7acc2c98c94"
+    },
+    {
+      "file": "pktfwd.service",
+      "bytes": 286,
+      "sha256": "73baa339e61c17d835378d31e5c192a7c7503da52df239eab03e4b6cf08c3505"
+    }
+  ]
+}

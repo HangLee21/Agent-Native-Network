@@ -1,116 +1,189 @@
-# 八通道 LoRa 网关：需要配置的参数清单
-
-用途：网关到货/接入后，按本表逐项确认。**左侧是网关侧要配的，右侧是我们固件侧的现值**，
-两边必须一致，否则收不到帧。
+# LoRa 网关：实测参数与配置清单
 
 - 生成日期：2026-11-13
-- 现状：网口已连接（链路 Up / 100 Mbps 全双工），但**对端零流量**，参数无法从设备读出。
-  详见 `docs/LORA_GATEWAY_PARAMETERS.md` §0 的实测诊断。
-- 探测工具：`python -m tools.mid_baseline.gateway_probe.probe discover|scan|http`
+- 设备：RisingHF **RHF2S008**（**已登录实测**，非推测、非规格书）
+- 配套工具：`tools/mid_baseline/gateway_probe/`（`probe.py` 网络探测、`pi_dump.sh` 只读盘点）
 
-## 0 接入诊断（2026-11-13 实测，结论已更新）
+## 1 设备与访问（实测）
 
-### 0.1 设备身份（已确认）
+| 项 | 值 |
+|---|---|
+| 型号 | **RisingHF RHF2S008**（hostname `rhf2s008`） |
+| 硬件 | Raspberry Pi **Compute Module 3 Rev 1.0**，载板 HW 3.0 |
+| 固件 | RHF **0.1.3 (CM3)**，2018-07-04 |
+| 系统 | Raspbian GNU/Linux 8 (jessie)，内核 `4.4.50-v7+`，armv7l |
+| MAC | `b8:27:eb:32:e2:c1` |
+| IPv4 | **192.168.137.200/24**，网关 `192.168.137.1` |
+| IPv6 LL | `fe80::ba27:ebff:fe32:e2c1`（EUI-64，由 MAC 推出） |
+| 登录 | SSH `rxhf@<ip>`；用户属 `adm/dialout/sudo/spi/gpio/i2c` |
+| 开放端口 | **仅 22/tcp**（1–10000 全扫，IPv4/IPv6 皆同） |
+| 管理方式 | **SSH + 本地脚本，无 Web 界面** |
 
-| 项 | 值 | 依据 |
+> 排查教训：上一轮只用 IPv4 工具（ARP/DHCP/SSDP/mDNS）全部落空。正确顺序是
+> **先查 IPv6 邻居表 → `ping6 fe80::` → 端口扫描 → 再谈 IPv4**。
+
+## 2 集中器与射频参数
+
+活动配置是**软链**：`/opt/risinghf/pktfwd/global_conf.json -> global_conf_cn470_ch00_07.json`
+（同目录另有 as920/us915/eu868/cn470 全信道组等约 40 个备选）。
+
+| 参数 | 值 |
+|---|---|
+| 集中器 | **RHF0M301-470**（SX1301 + 2× SX1255），SPI `/dev/spidev0.0` |
+| `lorawan_public` | **true** → 监听**公有 sync 0x34** |
+| `clksrc` | 1 |
+| `antenna_gain` | 0 |
+| `radio_0` | **470,600,000 Hz**，`tx_enable: true`，TX 范围 470–510 MHz |
+| `radio_1` | **471,400,000 Hz**，`tx_enable: false` |
+| `chan_Lora_std` | **disabled** |
+| `chan_FSK` | **disabled** |
+
+### 2.1 八个并行信道（radio 频率 + IF 偏移算出）
+
+| 信道 | 配置项 | IF | 实际频率 |
+|---:|---|---:|---:|
+| 0 | `chan_multiSF_0` (radio_1) | −300 kHz | 471.100 MHz |
+| 1 | `chan_multiSF_1` (radio_1) | −100 kHz | 471.300 MHz |
+| 2 | `chan_multiSF_2` (radio_1) | +100 kHz | 471.500 MHz |
+| 3 | `chan_multiSF_3` (radio_1) | +300 kHz | 471.700 MHz |
+| 4 | `chan_multiSF_4` (radio_0) | −300 kHz | **470.300 MHz** |
+| 5 | `chan_multiSF_5` (radio_0) | −100 kHz | 470.500 MHz |
+| 6 | `chan_multiSF_6` (radio_0) | +100 kHz | 470.700 MHz |
+| 7 | `chan_multiSF_7` (radio_0) | +300 kHz | 470.900 MHz |
+
+全部 **BW125**，多 SF 并行（SF7–SF12）。
+
+## 3 转发与配置参数
+
+`gateway_conf`（全局）+ `local_conf.json`（覆盖，生效）：
+
+| 参数 | 全局值 | 本地覆盖（当前生效） |
 |---|---|---|
-| MAC | `b8:27:eb:32:e2:c1` | IPv6 邻居表；`B8:27:EB` 为 Raspberry Pi Foundation 前缀 |
-| IPv6 链路本地 | `fe80::ba27:ebff:fe32:e2c1`（EUI-64 由 MAC 推导） | `netsh interface ipv6 show neighbors` |
-| 可达性 | `ping6` **4/4 应答，<1 ms** | 实测 |
-| 开放端口 | **仅 22/tcp**（1–10000 全扫无其他） | IPv6 全端口扫描 |
-| SSH 标识 | `SSH-2.0-OpenSSH_6.7p1 Raspbian-5+deb8u3` | 未认证读取 banner |
-| 结论 | **树莓派 + Raspbian 8 (Jessie) 的 LoRa 网关，SSH 管理，无 Web 界面** | 上述合计 |
+| `gateway_ID` | `AA555A0000000000`（占位） | **`b827ebFFFE32e2c1`**（= MAC 的 EUI-64，正确） |
+| `server_address` | `localhost` | `localhost` |
+| `serv_port_up/down` | 1680 / 1680 | 1680 / 1680 |
+| `keepalive_interval` | 10 s | — |
+| `stat_interval` | 3600 s | — |
+| `push_timeout_ms` | 100 | — |
+| `forward_crc_valid` | **true** | — |
+| `forward_crc_error` | **false** | — |
+| `forward_crc_disabled` | **false** | — |
 
-### 0.2 为什么先前的 IPv4 检查全部落空
+**转发链路已就绪**：`lora_pkt_fwd` 以 Semtech UDP JSON（`PUSH_DATA` / `rxpk`）发到
+`localhost:1680`。机上已有两个接收脚本：
 
-| 检查 | 结果 | 解释 |
-|---|---|---|
-| 网卡 | Up / 100 Mbps / Full duplex | 链路正常 |
-| 主机 IPv4 | 曾为 `169.254.x`，后手动设为 `192.168.137.10/24` | — |
-| ARP 扫 `192.168.137.0/24` 全部 254 个地址 | **0 个应答** | 该 Pi **没有**此网段的 IPv4 地址 |
-| DHCP / SSDP / mDNS / LLMNR / NetBIOS | 无响应 | 它不申请地址、也不做服务公告 |
-| 广播 ICMP | 超时 | 不响应广播 ping |
-| 但链路上有 IPv6 多播流量 | 约 0.6 包/秒 | 正是这台 Pi 的 IPv6 邻居发现/MLD |
+- `/home/rxhf/lora_receiver.py`：打印 freq/RSSI/SNR/CRC/datr/payload hex，并回
+  `PUSH_ACK`/`PULL_ACK` —— **通用接收器，正合我们使用**。
+- `/home/rxhf/lora_test.py`：100 包测试，但**只接受 `stat==1`（CRC 有效）且载荷匹配
+  `HELLO_<n>`** 的包；`lora_test.csv` **只有表头、0 条记录** → 该测试从未收到过有效帧。
 
-**教训**：只用 IPv4 工具会漏掉「没有 IPv4、仅 IPv6 链路本地可达」的设备。
-排查顺序应改为：IPv6 邻居表 → `ping6 fe80::` → IPv6 端口扫描 → 再谈 IPv4。
+服务：`pktfwd.service` → `/opt/risinghf/pktfwd/pktfwd.sh` → `./pktfwdbin`，
+`Restart=always`，`After=network-online.target`。
 
-### 0.3 要提取参数还缺什么
+## 4 与节点侧的三处不匹配（这就是收不到帧的原因）
 
-设备只开 SSH，**没有 Web 界面**，因此参数只能通过登录读取。需要：
-
-1. SSH 用户名与认证方式（密码或密钥）。
-2. 若允许，我会在网关上只读执行
-   `tools/mid_baseline/gateway_probe/pi_dump.sh`，它会打印：
-   系统与板型、SPI/串口设备、LoRa 相关进程与目录、`global_conf.json` / `local_conf.json`
-   内容、IPv4/IPv6 与路由、监听端口、网关日志尾部。**该脚本只读，不安装、不重启。**
-
-> 不猜测默认口令。Raspbian 的 `pi/raspberry` 属于公开默认值，但用它登录并读取配置
-> 不属于被授权的操作，需你明确提供凭据。
-
-## 1 射频参数（必须与节点完全一致）
-
-| 参数 | 网关侧需配置 | 我们固件现值 | 来源 |
+| # | 网关 | 我们的节点（5 板） | 后果 |
 |---|---|---|---|
-| 频段 | 470 MHz | 470,000,000 Hz | `lora_ref` 默认 |
-| 调制 | LoRa | LoRa | — |
-| 扩频因子 SF | 7 | 7 | `lr_ref/cfg` |
-| 带宽 BW | 125 kHz | 125,000 Hz | 同上 |
-| 编码率 CR | 4/5 | 5 | 同上 |
-| 前导长度 | 8 | 8 | 同上 |
-| 同步字（私有） | 0x12（18） | 18 | 同上 |
-| 发射功率 | 视网关规格 | 0 dBm（节点侧） | 同上 |
-| 上行信道数 | **8 路并行** | 单信道（节点） | `LORA_GATEWAY_REQUIREMENTS.md` |
-| 下行信道数 | 1 | — | 同上 |
+| 1 | 最低信道 **470.300 MHz** | **470.000 MHz** | 差 300 kHz，BW125 外 → **收不到** |
+| 2 | `lorawan_public: true` → 公有 sync **0x34** | sync **18 (0x12)** 私有 | 同步字不符 → **根本不解调** |
+| 3 | 只转 CRC 有效帧 | LRN1 是自定义格式 + 自定义 CRC32，**非 LoRaWAN** | CRC 判定失败 → **不转发** |
 
-> 8 路上行的频点分配方式（哪一路收哪个频点）**必须在网关侧明确并记录**。
-> 若 8 路必须收同一频点才能覆盖全部节点，则"8 通道"对容量没有帮助，要当场否决。
+## 5 推荐方案：改网关（节点零改动）
 
-## 2 帧与解析参数
+在 `/opt/risinghf/pktfwd/` 新建 `global_conf_adhoc.json`（**不改原文件**），
+把 8 个信道整体下移到 470.0–471.4 MHz，并放开同步字与 CRC：
 
-| 参数 | 网关侧需要 | 我们现状 |
-|---|---|---|
-| 帧格式 | 透传原始字节 + 每帧元数据 | `LRN1`：44 B 头 + n×20 B + CRC32 |
-| 最大载荷 | ≥255 B | 当前 ≤208 B |
-| 是否做 CRC 校验 | 建议只上报状态，不丢弃 | 节点侧已带 CRC32 |
-| 元数据字段 | 频点、RSSI、SNR、到达时刻（≤1 ms）、CRC 状态、长度 | 现有 `lora.ref.v1` 信封只含 RSSI/SNR/频率 |
-| 时间基准 | 8 路共用同一时基 | 节点侧 `esp_timer` 单调 |
+```json
+{
+  "SX1301_conf": {
+    "lorawan_public": false,
+    "clksrc": 1,
+    "antenna_gain": 0,
+    "radio_0": { "enable": true, "type": "SX1255", "freq": 470300000,
+                 "rssi_offset": -176.0, "tx_enable": false },
+    "radio_1": { "enable": true, "type": "SX1255", "freq": 471100000,
+                 "rssi_offset": -176.0, "tx_enable": false },
+    "chan_multiSF_0": { "enable": true, "radio": 0, "if": -300000 },
+    "chan_multiSF_1": { "enable": true, "radio": 0, "if": -100000 },
+    "chan_multiSF_2": { "enable": true, "radio": 0, "if":  100000 },
+    "chan_multiSF_3": { "enable": true, "radio": 0, "if":  300000 },
+    "chan_multiSF_4": { "enable": true, "radio": 1, "if": -300000 },
+    "chan_multiSF_5": { "enable": true, "radio": 1, "if": -100000 },
+    "chan_multiSF_6": { "enable": true, "radio": 1, "if":  100000 },
+    "chan_multiSF_7": { "enable": true, "radio": 1, "if":  300000 }
+  },
+  "gateway_conf": {
+    "gateway_ID": "b827ebFFFE32e2c1",
+    "server_address": "192.168.137.10",
+    "serv_port_up": 1680, "serv_port_down": 1680,
+    "keepalive_interval": 10, "stat_interval": 3600, "push_timeout_ms": 100,
+    "forward_crc_valid": true,
+    "forward_crc_error": true,
+    "forward_crc_disabled": true
+  }
+}
+```
 
-## 3 主机接口参数（到货后填）
+信道映射（radio_0 = 470.3）：ch0=**470.000**、ch1=470.200、ch2=470.400、ch3=470.600；
+（radio_1 = 471.1）：ch4=470.800、ch5=471.000、ch6=471.200、ch7=471.400。
 
-| 参数 | 待填 | 说明 |
-|---|---|---|
-| 接口类型 | ☐ USB-CDC ☐ 网口 TCP ☐ UDP | |
-| IP 地址 / 端口 | | 若为网口 |
-| 协议文档版本 | | 必须索取 |
-| 是否支持 raw 透传 | ☐ 是 ☐ 否 | 否则需要厂商协议适配器 |
-| 配置方式 | ☐ Web ☐ CLI ☐ 配置文件 | |
-| 管理凭据 | | 不要写进仓库 |
+切换与回滚：
 
-## 4 我们侧需要跟着改的参数
+```sh
+cd /opt/risinghf/pktfwd
+sudo ln -sfn global_conf_adhoc.json global_conf.json
+sudo systemctl restart pktfwd
+# 回滚
+sudo ln -sfn global_conf_cn470_ch00_07.json global_conf.json && sudo systemctl restart pktfwd
+```
 
-| 项 | 现值 | 到货后 |
-|---|---|---|
-| `lora_reader` 来源 | 只认 `lora.ref.v1` JSON 信封（串口） | 新增「来源适配器」，保留原默认行为 |
-| 上报周期 | 10 s ± 250 ms | 按 `T ≥ m·τ/ρ` 重算（8 路时 N=30、ρ=0.05 → 26 s；ρ=0.5 → 2.6 s） |
-| 邻居行数 | ≤8（帧长限制） | 分片或增量上报（LRN2） |
-| 拓扑展示 | 单信道 | 增加**每帧信道号**→ 信道占用率/冲突率 |
+把 `server_address` 指向 PC（`192.168.137.10`）后，**接收端在 Windows 上**，Pi 上无需装任何东西。
 
-## 5 验收口径（到货当天必须验证）
+### 备选方案：改节点（网关只动两个开关）
 
-1. **8 路同时收**：8 个节点分别在不同频点同时发，网关必须**同秒**收到 8 帧。
-2. **确认不是时分**：把发送间隔压缩到同一毫秒级，仍全部收到。
-3. **下行可用**：网关在 8 路接收的同时发 1 帧下行，节点能收到。
-4. **时间戳**：连续 1000 帧，到达时刻单调且间隔与节点发送周期一致（误差 <5%）。
-5. **稳定性**：连续 30 min 不丢流、不重启。
+- 节点频率 `470,000,000` → **`470,300,000`**（5 块板，一条命令）
+- 网关仅改 `lorawan_public: false` + `forward_crc_disabled: true`
 
-任一项不满足，按 `LORA_GATEWAY_REQUIREMENTS.md` §3 判定为不可接受。
+> 推荐前者：一次把 8 个信道都对齐，节点侧零改动，后续扩信道有余量。
 
-## 6 下一步
+## 6 已知风险：SX1301 对「非 LoRaWAN 帧」的解析（必须实测）
 
-1. 确认网关**已上电并完成启动**（看指示灯/串口日志），再跑一次
-   `python -m tools.mid_baseline.gateway_probe.probe discover`。
-2. 若仍静默：确认网线插在**管理口/LAN 口**，不要插 WAN 口。
-3. 若已知其默认 IP（手册），用管理员权限给网卡加同网段地址后
-   `probe scan --cidr <网段>/24`，再 `probe http --host <IP>`。
-4. 拿到参数后回填本文件 §1–§3，并把协议文档存入 `docs/`。
+SX1301 的 multiSF 解调器按 **LoRaWAN 显式头**工作：把载荷首字节当 MHDR 解析长度与
+CRC 形式。我们的 LRN1 首字节是 `'L' (0x4C)`，不是合法 MHDR，可能出现：
+
+- 长度解析错 → 交付截断或超长载荷；
+- 仍标 `stat=0`（CRC 错）→ 只能靠 `forward_crc_disabled/forward_crc_error` 转发。
+
+**不能假设它一定工作。** 若不工作，两条退路：
+
+1. 节点侧加 **2 字节 LoRaWAN 兼容头**（MHDR + 长度），载荷仍是 LRN1；
+   需同步改 `decoder.py` 与主机解析。
+2. 改用 SX1276/SX1262 类**单通道收发器**做原始收包（SX1301 本非为此设计）。
+
+## 7 验收步骤
+
+1. 网关上重启 `pktfwd`，`journalctl -u pktfwd -n 30` 检查信道初始化是否报错。
+2. PC 上起接收器（UDP 1680）。
+3. 4 块 tx 板按 10 s 周期发 LRN1，观察 `rxpk`：
+   - 有 `rxpk` 且 `freq` 落在 470.0–471.4 → 射频通；
+   - `stat=0` → CRC/头解析问题（§6）；
+   - `data` base64 解码后首字节不是 `0x4C` → 被截断或错位。
+4. 记录每帧 `freq / rssi / lsnr / datr / stat`，回填本文档。
+
+## 8 我们侧要跟着改的
+
+| 项 | 现状 | 方案 A 后 | 备选方案 B 后 |
+|---|---|---|---|
+| 节点频率 | 470,000,000 | 不变 | 470,300,000 |
+| 节点 sync | 18 (0x12) | 不变 | 不变 |
+| 网关 `lorawan_public` | true | **false** | **false** |
+| 网关 CRC 转发 | 只转有效 | **全转** | **全转** |
+| 接收端位置 | Pi 本机 | **Windows 192.168.137.10** | Pi 本机 |
+| `lora_reader` 来源 | 串口 `lora.ref.v1` | 新增 **UDP/JSON 适配器** | 同左 |
+| 上报周期 | 10 s | 不变（8 信道下可缩短） | 同左 |
+
+## 9 安全提示（不阻塞）
+
+Raspbian 8 + OpenSSH 6.7p1 已停止维护（CVE-2016-6210 用户枚举、CVE-2018-15473 等）。
+RHF 固件与该镜像耦合，**升级系统风险高于收益**，建议以网络隔离为主：仅接内网、
+改密钥登录、限制源地址。
