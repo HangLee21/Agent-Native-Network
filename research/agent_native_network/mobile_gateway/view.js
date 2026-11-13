@@ -9,6 +9,9 @@
   let loraData=null,loraReadAt=0,loraError='',loraVersion=0,loraLoading=false;
   let shownSource='wifi';const sourceViews=new Map();
   const isLoRa=()=>$('topologySource').value==='lora';
+  // Both sources are legitimate: a serial board relaying LRN1 snapshots, and the Ethernet
+  // LoRa gateway (RHF2S008) that receives the same frames directly.
+  const LORA_SOURCES=['lora_received_snapshot','gateway_udp_lrn1'];
   const lora=()=>L.snapshot(loraData,Math.max(0,now()-loraReadAt));
   const radioEdges=()=>isLoRa()?lora().edges:M.edges(model,now()).filter(e=>e.hasObservation!==false);
   const graphNodes=()=>isLoRa()?[...lora().nodes.values()].map(n=>({...model.nodes.get(n.id),...n})):[...model.nodes.values()];
@@ -49,7 +52,7 @@
   async function refreshLoRa(){
     if(!isLoRa()||window.MobileStudio?.status?.mode==='demo')return;
     const token=++loraVersion,base=$('gateway').value.trim().replace(/\/$/,'');loraLoading=true;
-    try{const response=await fetch(base+'/api/v1/lora/topology',{cache:'no-store',signal:AbortSignal.timeout(6000)});if(!response.ok)throw Error('LoRa HTTP '+response.status);const data=await response.json();if(data.schema!=='lora.topology.v1'||data.source!=='lora_received_snapshot'||!Array.isArray(data.reports))throw Error('LoRa 来源响应格式不匹配');if(token!==loraVersion)return;loraData=data;loraReadAt=now();loraError='';}
+    try{const response=await fetch(base+'/api/v1/lora/topology',{cache:'no-store',signal:AbortSignal.timeout(6000)});if(!response.ok)throw Error('LoRa HTTP '+response.status);const data=await response.json();if(data.schema!=='lora.topology.v1'||!LORA_SOURCES.includes(data.source)||!Array.isArray(data.reports))throw Error('LoRa 来源响应格式不匹配');if(token!==loraVersion)return;loraData=data;loraReadAt=now();loraError='';}
     catch(e){if(token!==loraVersion)return;loraError=e.message;}finally{if(token===loraVersion){loraLoading=false;if(isLoRa())render();}}
   }
   function renderLoRaEdge(edge,detailOpen){

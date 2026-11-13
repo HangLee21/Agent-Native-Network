@@ -2,10 +2,13 @@
 // LoRa transports source snapshots. It never establishes current Wi-Fi freshness.
 const MobileLoRaModel=(()=>{
   const clean=x=>String(x||'').trim().toLowerCase(),valid=x=>/^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$/.test(clean(x));
+  // The Ethernet gateway is identified by an EUI-64 (16 hex digits, no separators), which is
+  // not a MAC, so label lookup needs to accept it as well.
+  const validLabelId=x=>valid(x)||/^[0-9a-f]{16}$/.test(clean(x));
   const number=x=>Number.isFinite(x)?x:null;
   function snapshot(data,elapsed=0){
     const labels=new Map(),nodes=new Map(),edges=[],reports=[];
-    for(const [id,name]of Object.entries(data?.labels||{}))if(valid(id)&&typeof name==='string')labels.set(clean(id),name);
+    for(const [id,name]of Object.entries(data?.labels||{}))if(validLabelId(id)&&typeof name==='string')labels.set(clean(id),name);
     const member=(id,name)=>{if(!valid(id))return;id=clean(id);if(typeof name==='string'&&name.trim())labels.set(id,name.trim());if(!nodes.has(id))nodes.set(id,{id});};
     for(const item of data?.reports||[]){
       const r=item.report;if(!r||r.frame_schema!=='LRN1'||!valid(r.observer_id))continue;
