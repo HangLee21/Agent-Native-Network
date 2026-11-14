@@ -1,5 +1,7 @@
 # 从这里开始
 
+2026-11-14 当前：[M-036 高速 30 节点仿真](coordination/tasks/M-036.md)。先读 docs/HANDOFF_TO_CODEX_20261114.md、docs/PROJECT_STATUS.md 和自身新任务卡；用户要求设备未到场先用模拟器推进，八通道网关已在场。本阶段不恢复台架、不烧录，旧硬件流程不自动激活。
+
 [M-035 组网图增加 LoRa 上报来源](coordination/tasks/M-035.md)。
 
 [M-034 LoRa 参考通道](coordination/tasks/M-034.md) 开始准备两板试点。

@@ -1,5 +1,7 @@
 # 任务索引
 
+[M-036](tasks/M-036.md) 30 节点高速 AD-HOC 与 LoRa 控制仿真：[E1-030](tasks/E1-030.md)、[E2-033](tasks/E2-033.md)、[D-031](tasks/D-031.md)、[C-033](tasks/C-033.md)。新目录分工，不启动 H 硬件任务。
+
 [M-035](tasks/M-035.md) 现场组网图增加 LoRa，执行 [H-020](tasks/H-020.md)、[D-030](tasks/D-030.md)。
 
 [M-034](tasks/M-034.md) LoRa 参考通道；[E1-029](tasks/E1-029.md) 固件、[H-019](tasks/H-019.md) 网关与台架、[E2-032](tasks/E2-032.md) 树莓派 Python 控制。
