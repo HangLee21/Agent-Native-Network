@@ -1,0 +1,58 @@
+{
+  "task_id": "M-038",
+  "date": "2026-11-14",
+  "receipts": [
+    {
+      "role": "H",
+      "task": "H-021",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"threadId\":\"01a19b44-a645-74e3-be49-51d596d6ff35\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "role": "E1",
+      "task": "E1-032",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"threadId\":\"01a16824-294e-7eb2-85eb-d98b7a8748f1\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "role": "E2",
+      "task": "E2-035",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"threadId\":\"01a16824-3f4e-7e61-8a83-08d2dd8c82f6\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "role": "C",
+      "task": "C-035",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"threadId\":\"01a16824-5c84-7081-8f0c-7e1e94beff35\"}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ]
+}

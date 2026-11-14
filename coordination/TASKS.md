@@ -1,5 +1,7 @@
 # 任务索引
 
+[M-038](tasks/M-038.md) 紧急工程交付：[E1-032](tasks/E1-032.md)、[E2-035](tasks/E2-035.md)、[H-021](tasks/H-021.md)、[C-035](tasks/C-035.md)。M-037研究比较后置，成果保留。
+
 [M-037](tasks/M-037.md)：成熟MANET/FANET基线与30节点协议重构，执行[E1-031](tasks/E1-031.md)、[E2-034](tasks/E2-034.md)、[D-032](tasks/D-032.md)、[C-034](tasks/C-034.md)。
 
 [M-036](tasks/M-036.md) 30 节点高速 AD-HOC 与 LoRa 控制仿真：[E1-030](tasks/E1-030.md)、[E2-033](tasks/E2-033.md)、[D-031](tasks/D-031.md)、[C-033](tasks/C-033.md)。新目录分工，不启动 H 硬件任务。

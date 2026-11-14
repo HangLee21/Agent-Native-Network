@@ -1,5 +1,7 @@
 # 实现状态（代码级审计结果）
 
+M-038：紧急稳定候选在独立firmware/flight_link与tools/flight_link实现，H-021负责唯一硬件通道和试点；尚待交付与实收。研究manet_core不会直接替换板上固件。
+
 M-037新增阶段：新目录manet_core/manet_baselines/manet_eval承载成熟协议复现和新帧候选，当前为已分工未交付。旧uav_adhoc与LoRa结果冻结保留，不代表RF或30板验证。资源/时限按工程合同继续约束，旧4跳不是新方案上限。
 
 ## 2026-11-14 当前仿真阶段补充
