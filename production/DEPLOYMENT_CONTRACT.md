@@ -1,0 +1,13 @@
+# Production deployment contract v1
+
+Branch: codex/production-deployment. Development remains on codex/baseline-reproduction-20261023. Live task cards reside at D:/Multi-Agent Network/coordination/tasks, not this worktree's historical copies.
+
+Root entry points: FLASH_NODES.cmd (H), START_STUDIO.cmd (E2). Both support offline --dry-run / --self-test and explicit --config PATH / --release PATH. No hardware operations are performed during today's implementation tests.
+
+D owns production/config/fleet.example.json. Schema version 1: schema_version, nodes (array of {node_id: positive integer, mac: normalized MAC}), gateway ({eui, candidate_hosts, udp_port:1680}), services ({topology_port:8780, studio_port:8794}), release_manifest (relative path). No credentials. Local user config defaults to production/local/fleet.json; absent config may use example for known MAC mapping but must not guess new board identities. Duplicate IDs/MACs are rejected, COM numbers are ephemeral. Display IDs are not routing identities. Unknown boards remain UNSET until provisioned. A–E maps to1–5 as defined in M-039.
+
+H owns production/release/manifest.example.json and package validation. Manifest fields: schema_version, release_id, status(candidate|validated), source_commit, protocol_version, config_schema_version, firmware ({path,sha256,build_id,chip,flash_offset,partition_layout_id}), services ({gateway_module,studio_module}), rollback_release, validation_evidence. Unknown values null; null required flash identity/hash must fail flashing, not be guessed. Service paths resolve inside the selected frozen release. Package creation must not pull/flash moving research HEAD automatically. Bootloader/partition changes require explicit migration, no default full erase.
+
+Runtime and logs: production/local/ is untracked. Scripts report requested/succeeded/failed steps, identified node/MAC, selected firmware version, and exact logs. TX callback / gateway TX_ACK is not destination receipt. Gateway discovery is bounded and configurable; verify the reported EUI and current valid packets; don't silently change network settings. If unavailable, offer an explicit offline UI state without historical replay.
+
+M coordinates source synchronization: freeze selected development commit and tests, assemble candidate with hashes and source map, check affected offline tests, push production candidate, H validates connected devices after user notification, then record validated release plus rollback. Raw research outputs and credentials are not copied by default. Until actual release artifacts exist, entrypoints must say unavailable rather than claim ready.

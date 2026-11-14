@@ -1,4 +1,6 @@
 .venv/
+/production/local/
+/production/release/packages/
 __pycache__/
 *.py[cod]
 .pytest_cache/
