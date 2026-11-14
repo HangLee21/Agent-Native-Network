@@ -1,5 +1,7 @@
 # 任务索引
 
+[M-039](tasks/M-039.md) 生产分支与一键部署：[H-022](tasks/H-022.md)、[E2-036](tasks/E2-036.md)、[D-033](tasks/D-033.md)，E1-032追加数字ID/OLED，C-035追加部署增量。
+
 [M-038](tasks/M-038.md) 紧急工程交付：[E1-032](tasks/E1-032.md)、[E2-035](tasks/E2-035.md)、[H-021](tasks/H-021.md)、[C-035](tasks/C-035.md)。M-037研究比较后置，成果保留。
 
 [M-037](tasks/M-037.md)：成熟MANET/FANET基线与30节点协议重构，执行[E1-031](tasks/E1-031.md)、[E2-034](tasks/E2-034.md)、[D-032](tasks/D-032.md)、[C-034](tasks/C-034.md)。
