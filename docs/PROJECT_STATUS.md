@@ -1,5 +1,7 @@
 # 项目状态：目标与完成度
 
+2026-11-15 M-042：烧录入口已改逐节点固定面板，详细esptool输出写data/logs。生产ae2c74a，五项显示模拟检查及临时PTY通过，用户下次打开原CMD生效；无实刷。
+
 2026-11-15 M-041现场反馈：用户两轮自行烧录中五板均被识别，但分区读取后的写入会话失败，尚无本候选真实烧录成功证据。H修复esptool读分区后旧ROM对象复用/未重新同步，以及统一插拔提示掩盖原错的问题。原始记录位于生产本地data/logs的110220及110633两轮，均保留；不得把先前dry-run写为实刷通过。
 
 2026-11-15 M-040纠正：生产分支已重组纯交付树，旧production/release路径失效；当前根为README、双CMD、app、firmware、config、runtime，本机数据在data。发布清单firmware/manifest.json，版本v0.1.0-test。PDF/研究/历史实验/任务卡及内部迭代均移出生产当前树，原树备份.local/M-040/pre-clean-production；两入口最终根dry-run通过，无设备操作。
