@@ -1,5 +1,6 @@
 .venv/
 /production/local/
+/production/flash/runtime-win64-py311/
 /production/release/packages/
 __pycache__/
 *.py[cod]

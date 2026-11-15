@@ -17,6 +17,7 @@ from urllib.parse import urlsplit
 from .server import Gateway, Handler, ROOT
 from .state import State
 from .lora import LoRaTopology
+from .fleet_registry import merged_fleet, read_nodes
 
 # Ethernet LoRa gateway source (tools/mid_baseline/gateway_probe/topology_server.py). Used
 # only when the serial A reader is idle or empty, so the same page can show our EoRa
@@ -282,6 +283,18 @@ class Studio:
 class StudioHandler(Handler):
     def do_GET(self):
         path=urlsplit(self.path).path
+        if path=='/api/v1/recovery':
+            try:
+                value=json.loads(self.server.recovery_path.read_text(encoding='utf-8'))
+                if value.get('schema')!='studio.recovery.v1' or value.get('state') not in ('connecting','recovering','online','recovered','unavailable') or time.time()-value['updated_at']>10:raise ValueError('recovery status stale or invalid')
+                return self.reply(200,value)
+            except (OSError,ValueError,TypeError,KeyError):
+                return self.reply(503,{'schema':'studio.recovery.v1','state':'unknown','reason':'启动服务状态不可用'})
+        if path=='/api/v1/fleet':
+            try:
+                return self.reply(200,merged_fleet(self.server.fleet_path,self.server.registry_path))
+            except (ValueError,OSError) as exc:
+                return self.reply(503,{'error':'节点编号配置不可用，请联系交付人员检查 fleet 和 registry：'+str(exc)})
         if path=='/api/studio/status':
             return self.reply(200,self.server.state.status())
         if path=='/api/v1/lora/topology':
@@ -289,7 +302,7 @@ class StudioHandler(Handler):
             # more, so an unreachable gateway is reported as such instead of silently
             # switching to a board's USB port.
             try:
-                return self.reply(200,get_json(GATEWAY_TOPOLOGY))
+                return self.reply(200,get_json(self.server.gateway_topology))
             except OSError as exc:
                 return self.reply(200,{'schema':'lora.topology.v1','source':'gateway_udp_lrn1',
                                        'labels':{},'reports':[],
@@ -333,15 +346,29 @@ def main():
     p.add_argument('--demo-port',type=int,default=8795)
     p.add_argument('--pc-port',type=int,default=8791)
     p.add_argument('--output',required=True,type=Path)
+    p.add_argument('--production-output',action='store_true',help='allow a new explicit production run directory')
+    p.add_argument('--fleet',type=Path,help='same validated fleet configuration passed by launcher')
+    p.add_argument('--registry',type=Path,help='read-only runtime node registry')
+    p.add_argument('--recovery-file',type=Path,help='read-only supervisor health state')
+    p.add_argument('--topology-port',type=int,default=8780)
     p.add_argument('--stop-file',type=Path)
     args=p.parse_args()
     out=args.output.resolve()
-    if not any(out.is_relative_to(ROOT/'simulation/outputs'/task) for task in ('H-016','H-018','H-019','H-020')):
+    if not args.production_output and not any(out.is_relative_to(ROOT/'simulation/outputs'/task) for task in ('H-016','H-018','H-019','H-020')):
         p.error('new H-016, H-018, H-019 or H-020 output required')
+    fleet_path=args.fleet or (ROOT/'production/local/fleet.json' if (ROOT/'production/local/fleet.json').is_file() else ROOT/'production/config/fleet.example.json')
+    try:
+        read_nodes(fleet_path)
+    except (OSError,ValueError,KeyError,TypeError) as exc:
+        p.error('fleet configuration invalid: '+str(exc))
     out.mkdir(parents=True,exist_ok=False)
     state=Studio(out,args.demo_port,args.pc_port)
     server=Gateway(('127.0.0.1',args.port),state,ROOT/'research/agent_native_network/mobile_gateway')
     server.RequestHandlerClass=StudioHandler
+    server.fleet_path=fleet_path
+    server.registry_path=args.registry or ROOT/'production/local/registry.json'
+    server.recovery_path=args.recovery_file or ROOT/'production/local/studio-recovery.json'
+    server.gateway_topology=f'http://127.0.0.1:{args.topology_port}/api/v1/lora/topology'
     def halt(*_):
         threading.Thread(target=server.shutdown,daemon=True).start()
     for sig in (signal.SIGINT,signal.SIGTERM):

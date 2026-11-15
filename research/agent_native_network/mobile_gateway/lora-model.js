@@ -42,7 +42,7 @@ const MobileLoRaModel=(()=>{
     // "gateway" for the receiver itself.
     const live=new Set(),gone=new Set();
     for(const e of edges){if(e.kind==='lora_uplink')continue;(e.state==='lost'?gone:live).add(e.from);(e.state==='lost'?gone:live).add(e.to);}
-    for(const n of nodes.values())n.status=n.gateway?'gateway':n.report?'reported':live.has(n.id)?'seen':gone.has(n.id)?'lost':'seen';
+    for(const n of nodes.values()){const limit=data?.receiver?.recent_threshold_ms,age=n.report?.age,observed=data?.receiver?.gateway_observed;n.status=n.gateway?'gateway':n.report?(observed===false||Number.isFinite(limit)&&Number.isFinite(age)&&age>limit?'stale_report':observed===true&&Number.isFinite(limit)&&Number.isFinite(age)?'reported':'report_unknown'):live.has(n.id)?'seen':gone.has(n.id)?'lost':'seen';}
     return{nodes,labels,edges,reports,gateway:hasGateway?gateway:null,receiver:data?.receiver||null};
   }
   const STATES={
