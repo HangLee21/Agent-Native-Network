@@ -189,7 +189,7 @@ def main():
                 json.dump({'release_id':manifest['release_id'],'boards':final_rows,'history':reports,'unresolved_attempts':list(final_pending),'power_cycle_verified':False},stream,ensure_ascii=False,indent=2)
             for row in final_rows:
                 label=str(row.get('node_id','未识别'))
-                print(f'节点 {label}：'+('完成，已核对版本和自启设置' if row['result']=='success' else '正在等待恢复，请检查电源并将 USB 线插回原接口，再次双击工具'))
+                print(f'节点 {label}：'+('完成，已核对版本和自启设置' if row['result']=='success' else '已停止，未完成；'+str(row.get('error') or row.get('last_error') or row.get('pending_reason') or '请查看日志')))
             print('检查日志：'+str(path))
             return 0 if success else 1
     except Blocked as exc:

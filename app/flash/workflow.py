@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import re
 import uuid
+import time
 
 
 class ProvisionError(RuntimeError): pass
@@ -22,7 +23,9 @@ def summarize_results(reports, pending):
         if isinstance(mac,str) and MAC.fullmatch(mac):
             key=('mac',mac)
             current=latest.get(key,{'mac':mac,'node_id':entry.get('node_id')})
-            current.update(result='unknown',error='存在未完成的写入记录，等待恢复')
+            current.update(result='unknown',pending_reason='存在未完成的写入记录，等待核验')
+            last_error=current.get('error') or entry.get('_last_error')
+            if last_error: current['last_error']=last_error
             latest[key]=current
     rows=list(latest.values())
     return rows, bool(rows) and all(row.get('result')=='success' for row in rows)
@@ -72,7 +75,7 @@ def check_identity(info, mac=None, build=None):
 
 def pending_writes(directory):
     """Fold durable events, preserving the exact attempted image and identity."""
-    attempts={}; completed={}; old_unresolved=set()
+    attempts={}; completed={}; old_unresolved=set(); last_errors={}
     for path in sorted(Path(directory).glob('flash-*.jsonl')):
         old_started=set(); old_success=set(); new_seen=set()
         try:
@@ -92,7 +95,9 @@ def pending_writes(directory):
                         if not isinstance(attempt,str) or not isinstance(mac,str): raise ValueError('读回日志缺少身份')
                         completed[attempt]=mac
                     elif kind=='progress' and event.get('step')=='写入程序' and isinstance(mac,str): old_started.add(mac)
-                    elif kind=='finished' and event.get('result')=='success' and isinstance(mac,str): old_success.add(mac)
+                    elif kind=='finished' and isinstance(mac,str):
+                        if event.get('result')=='success': old_success.add(mac)
+                        if event.get('error'): last_errors[mac]=event['error']
         except (OSError,ValueError) as exc:
             raise ProvisionError(f'写入日志损坏，请联系交付人员检查：{path}') from exc
         old_unresolved.update(old_started-old_success-new_seen)
@@ -100,6 +105,8 @@ def pending_writes(directory):
         if attempt not in attempts or attempts[attempt].get('mac')!=mac: raise ProvisionError('写入读回日志不匹配')
     pending={key:value for key,value in attempts.items() if key not in completed}
     for mac in old_unresolved: pending['legacy:'+mac]={'mac':mac}
+    for value in pending.values():
+        if value['mac'] in last_errors: value['_last_error']=last_errors[value['mac']]
     return pending
 
 
@@ -156,10 +163,13 @@ def execute(transport, config, manifest, image, registry_path, progress, on_reco
     configured={row['mac']:row['node_id'] for row in config['nodes']}
     mapping=load_registry(registry_path,configured)
     pending=pending or {}; results=[]; seen=set()
-    for port in transport.ports():
+    detected=transport.ports()
+    for index,port in enumerate(detected,1):
+        started=time.monotonic()
         board=None; record={'port':port,'result':'failed','flash_attempted':False,'firmware_write_verified':False,'steps':[]}
         try:
             on_record(dict(record,event='starting'))
+            progress('未识别',f'[{index}/{len(detected)}] {port} 正在识别，耗时 0.0 秒')
             board=transport.Board(port)
             location=transport.location(port) if hasattr(transport,'location') else None
             record['usb_location']=location
@@ -185,7 +195,12 @@ def execute(transport, config, manifest, image, registry_path, progress, on_reco
             def step(value):
                 record['steps'].append(value)
                 on_record(dict(record,event='progress',step=value))
-                progress(record['node_id'],value)
+                progress(record['node_id'],f'[{index}/{len(detected)}] {port} 正在执行：{value}，耗时 {time.monotonic()-started:.1f} 秒')
+            if hasattr(board,'set_progress'):
+                def transfer(done,total,mode,elapsed):
+                    pct=100*done//total if total else 0
+                    progress(record['node_id'],f'[{index}/{len(detected)}] {port} {mode}：已确认接收 {done}/{total} 字节（{pct}%），耗时 {elapsed:.1f} 秒'+('；正在等待镜像校验和重启' if total and done>=total else ''))
+                board.set_progress(transfer)
             attempt_id=uuid.uuid4().hex
             def write_event(value):
                 if value=='write_attempted': record['flash_attempted']=True
@@ -230,6 +245,9 @@ def execute(transport, config, manifest, image, registry_path, progress, on_reco
             record.update(value,result='success')
         except Exception as exc:
             record['error']=str(exc)
+            record['failed_stage']=record['steps'][-1] if record['steps'] else '识别设备'
+            record['write_call_entered']=bool(board and getattr(board,'written',False))
+            progress(record.get('node_id','未识别'),f'[{index}/{len(detected)}] {port} 已停止，阶段：{record["failed_stage"]}，写入调用：'+('已进入' if record['write_call_entered'] else '未进入')+f'，耗时 {time.monotonic()-started:.1f} 秒：{exc}')
         finally:
             if board:
                 record['flash_attempted']=record['flash_attempted'] or getattr(board,'written',False)
@@ -251,7 +269,9 @@ def run_with_retries(transport,config,manifest,image,registry_path,logdir,progre
                       pending=pending,skip_macs=successful)
         reports.extend(row for row in batch if row['result']!='skipped')
         successful.update(row['mac'] for row in batch if row['result']=='success')
-        if batch and all(row['result'] in ('success','skipped') for row in batch): break
+        # An observed device failure is actionable, not evidence of a late USB
+        # insertion. Do not repeatedly attempt the same protocol/write failure.
+        if batch: break
         if attempt<2:
             notify();wait(5)
     return reports

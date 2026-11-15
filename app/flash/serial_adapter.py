@@ -23,6 +23,18 @@ class Board:
         self.esp = None
         self.written = False
         self.write_verified = False
+        self.progress = lambda *_: None
+
+    def set_progress(self, callback):
+        self.progress = callback
+
+    @staticmethod
+    def check_rom(esp, expected=None):
+        actual=':'.join(f'{x:02x}' for x in esp.read_mac())
+        sec=esp.get_security_info(); flags=sec['parsed_flags']
+        if (expected is not None and actual!=expected) or esp.CHIP_NAME!='ESP32-S3' or flags['SECURE_BOOT_EN'] or flags['SECURE_DOWNLOAD_ENABLE'] or bin(sec['flash_crypt_cnt']).count('1')%2:
+            raise AdapterError('ROM 身份或安全状态不匹配')
+        return actual
 
     def close(self):
         try:
@@ -73,10 +85,7 @@ class Board:
         self.wire.baudrate=115200
         esp=esptool.detect_chip(self.wire,baud=115200,connect_mode='default_reset',trace_enabled=False,connect_attempts=1)
         try:
-            actual=':'.join(f'{x:02x}' for x in esp.read_mac())
-            sec=esp.get_security_info(); flags=sec['parsed_flags']
-            if esp.CHIP_NAME != 'ESP32-S3' or flags['SECURE_BOOT_EN'] or flags['SECURE_DOWNLOAD_ENABLE'] or bin(sec['flash_crypt_cnt']).count('1')%2:
-                raise AdapterError('ROM 芯片或安全状态不匹配')
+            actual=self.check_rom(esp)
             self.esp=esp
             return actual
         except Exception:
@@ -96,6 +105,13 @@ class Board:
                 raw=partition.read_bytes()
                 if len(raw)!=4096 or hashlib.sha256(raw).hexdigest()!=partition_sha256:
                     raise AdapterError('设备分区表不匹配，未写入')
+            # esptool 4.13 --after no_reset exits its temporary stub to ROM.
+            # Re-enter the loader and sync on the existing open port; never reuse
+            # the old session after that transition. Recheck the identity.
+            self.wire.baudrate=115200
+            esp=esptool.detect_chip(self.wire,baud=115200,connect_mode='default_reset',trace_enabled=False,connect_attempts=1)
+            self.check_rom(esp,expected)
+            self.esp=esp
         except Exception:
             self.wire.baudrate=460800
             esp.hard_reset()
@@ -106,11 +122,34 @@ class Board:
         import esptool
         if self.esp is None or self.written: raise AdapterError('写入前校验未完成或重复写入')
         image=Path(image).resolve(); original=esptool.write_flash
+        started=time.monotonic()
         def guarded(esp,args):
             if self.written or getattr(args,'erase_all',False) or getattr(args,'force',False) or {offset:Path(f.name).resolve() for offset,f in args.addr_filename}!={65536:image}:
                 raise AdapterError('仅允许单次应用区写入')
             self.written=True
-            result=original(esp,args)
+            originals={k:getattr(esp,k) for k in ('flash_defl_begin','flash_defl_block','flash_begin','flash_block')}
+            previous_attempts=esp.WRITE_FLASH_ATTEMPTS
+            esp.WRITE_FLASH_ATTEMPTS=1
+            state={'total':0,'done':0,'mode':'压缩传输'}
+            def begin_compressed(size,compressed,address,*a,**kw):
+                value=originals['flash_defl_begin'](size,compressed,address,*a,**kw)
+                state.update(total=compressed,done=0,mode='压缩传输');return value
+            def begin_plain(size,address,*a,**kw):
+                value=originals['flash_begin'](size,address,*a,**kw)
+                state.update(total=size,done=0,mode='原始传输');return value
+            def done_block(name,block,*a,**kw):
+                value=originals[name](block,*a,**kw)
+                state['done']=min(state['total'],state['done']+len(block))
+                self.progress(state['done'],state['total'],state['mode'],time.monotonic()-started)
+                return value
+            esp.flash_defl_begin=begin_compressed;esp.flash_begin=begin_plain
+            esp.flash_defl_block=lambda block,*a,**kw:done_block('flash_defl_block',block,*a,**kw)
+            esp.flash_block=lambda block,*a,**kw:done_block('flash_block',block,*a,**kw)
+            try:
+                result=original(esp,args)
+            finally:
+                for name,value in originals.items():setattr(esp,name,value)
+                esp.WRITE_FLASH_ATTEMPTS=previous_attempts
             reset=esp.hard_reset
             def reset_at_runtime_baud():
                 self.wire.baudrate=460800
