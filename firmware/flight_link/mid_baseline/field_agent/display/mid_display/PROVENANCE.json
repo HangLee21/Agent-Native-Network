@@ -1,0 +1,40 @@
+{
+  "schema": "mid.display.provenance.v1",
+  "source_task": "H-004",
+  "old_source_root": "D:\\Multi-Agent Network\\.local\\espnow\\H-004\\oled-01\\project\\idf\\main",
+  "old_source_hashes": {
+    "ann_oled.c": "7dd7e2764041f512e1f53e3dc95d137ef5bc3d6979c9c045e0ae39666760b9a0",
+    "ann_oled.h": "15385a69e32890798dfc82e57a0cc04888e702736fcf6db032cc12646faa3ea7",
+    "ann_oled_view.c": "1e1c0b1d97bab7df97070bca4ea0ecf9acfef9c25d707562d1b3ed2825445f2c",
+    "ann_oled_view.h": "c406d9aa97d660872c82371858be2eb6690e53e9fa00fe58d8adbff4212f9fd0",
+    "app_main.c": "b313bdffa2ee211c69e50367f9a08c8f1d1caebc8a5896b7d92cc3280cc7e455",
+    "CMakeLists.txt": "87a31ea54d993e1b46965f4acb9b7acf1ad5e08b0b39abf4ace37a059d24bd76",
+    "Kconfig.projbuild": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a"
+  },
+  "old_package_manifest_sha256": "45e373e019bafebad249d4341c8dd5a7f5bdcc1ff8ac1bf65f12f3b1678280ee",
+  "old_build_id": "ann-v1-75266b4504be32826e859f2d91b06c4c00f62fb662d5e03c23b6572a30e01013",
+  "old_source_still_unchanged": true,
+  "derived": [
+    "SSD1306 init/window sequence",
+    "SDA18/SCL17/RES21/EN36 and PRG0",
+    "400kHz/50ms I2C and 500ms refresh",
+    "one-slot asynchronous snapshot and task failure isolation",
+    "original bitmap alphabet"
+  ],
+  "adjusted": [
+    "Remove ANN/global-node dependencies; use explicit frozen POD API",
+    "six pages, original command help retained for ANN and MID help provided only by E1",
+    "independent TX/RX/config/command records, counters and sticky fault marker",
+    "MAC callbacks never imply MID end delivery; original ANN confirmation guarded",
+    "presence masks for unknown identity/sequence, late callback correlation",
+    "6144-byte display task stack; atomic hardware status; queue survives display failure",
+    "complete printable ASCII for future E1 CLI help"
+  ],
+  "not_added": [
+    "MID ACK/retransmission/feedback/timeouts",
+    "radio/route changes",
+    "serial protocol parser",
+    "RF or new-board measurement"
+  ],
+  "new_display_physical_confirmation": null
+}
