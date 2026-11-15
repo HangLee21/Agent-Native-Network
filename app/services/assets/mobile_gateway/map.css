@@ -29,3 +29,5 @@
 .loraReportsDetails summary{cursor:pointer;color:#564278;font-weight:600}.loraReportsDetails[open]{margin-top:7px}
 
 .sourceSelector{display:flex;gap:8px;align-items:center;font-weight:600}.sourceSelector select{max-width:100%;padding:5px;border:1px solid #c6d6d6;border-radius:5px;background:white}#sourceStatus{overflow-wrap:anywhere}
+
+.nodeFilters{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px}.nodeFilters input{grid-column:1/-1;min-width:0;border:1px solid #c6d6d6;border-radius:6px;padding:8px}.nodeFilters select,.mapControls select{border:1px solid #c6d6d6;background:#fff;border-radius:6px;padding:7px;min-width:0}.nodeFilters button{padding:6px 10px}.nodeCount{margin:8px 0;color:#647b80;font-size:12px}.nodeList{max-height:420px;overflow:auto}.nodeRow[hidden]{display:none}#unlocated{max-height:180px;overflow:auto}.mapControls .topologyChoice{display:flex;align-items:center;gap:5px;font-size:12px;white-space:nowrap}
