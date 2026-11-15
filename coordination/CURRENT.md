@@ -1,5 +1,9 @@
 # 当前摘要
 
+M-045已完成：生产e036077修复有线口识别，用户可重开SETUP_GATEWAY；真实只读识别通过，未修改网络。
+
+2026-11-15 当前 [M-045](tasks/M-045.md)：修复 SETUP_GATEWAY 将已连接有线口过滤掉的问题；H 仅改 bootstrap 网卡识别，使用真实 Windows 属性验证，不执行网络改动。
+
 2026-11-15 [M-044](tasks/M-044.md) 脚本离线交付已验收，生产 05d4ca6 已推送。首次用 SETUP_GATEWAY.cmd，日常用 START_STUDIO.cmd；真实网关与换电脑尚待现场验证。
 
 2026-11-15 当前 [M-044](tasks/M-044.md)：网关 DHCP/本地接收服务＋PC主动连接，E2-037/H-023/D-034/C-036 分工；脚本先完成，现场网络只读，不烧板。主卡路径以主仓 coordination/tasks/M-044.md 为准。

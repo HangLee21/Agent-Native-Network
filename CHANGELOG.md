@@ -1,5 +1,7 @@
 # 固件版本沿革（field_agent）
 
+2026-11-15 M-045：修复初始化脚本错误使用不存在的 ifType 导致有线网口被过滤。生产 e036077 已推送；改读 InterfaceType，保持物理/已连接/有线条件。实际 Windows PowerShell 只读识别以太网 ifIndex20，并排除 WLAN；分类夹具通过，C增量审查无本机误判阻断。证据 simulation/results/20261115-M-045-ethernet-detection/。未运行网关初始化或修改网络。
+
 2026-11-15 M-044 脚本离线交付完成，生产 05d4ca6 已推送：新增 SETUP_GATEWAY.cmd 一次初始化/回滚，START_STUDIO 默认 remote，PC主动发现并核对网关、不绑定本机LoRa接收UDP。网关标准库接收服务采用systemd socket activation，限定专用接口、普通用户运行；DHCP不下发默认路由/DNS。E2真实本机回环、H假Linux/Windows及故障重试测试、C独立增量审查已完成。真实RHF/ARM/Python3.4、systemd215、DHCP、换电脑/断电/RF未实测，本轮未改变现场网络或烧板。证据 simulation/results/20261115-M-044-gateway-deployment/。
 
 2026-11-15 M-043 浏览器续修已交付生产 222dce3：首次/复用入口统一显示 URL，Windows 默认调用失败时尝试备用方式，提示不再声称页面已展示。E2-036/20261115-12-browser-open 五项模拟分支通过，C 独立审查无阻断；M 实际调用系统默认 URL 处理器后检测到 Edge 窗口标题 AD-HOC · 动态组网与业务观测，未做截图验收。以太网现场只读为 169.254.173.200/16，与交接网关 192.168.137.200/24、回传目标 192.168.137.10 不匹配；本轮没有修改网络配置，自动配置仍为建议方案。
