@@ -1,0 +1,35 @@
+{
+  "task": "M-049",
+  "production_commit": "4f1ee7f",
+  "sources": [
+    {
+      "source": "simulation/outputs/M-049/20261115-user-space-failure/RUN_MANIFEST.json",
+      "file": "20261115-user-space-failure/RUN_MANIFEST.json",
+      "sha256": "1ce5cdda057d10b4b4137d9f7b98f0dfb3c802b855e2213cd5a11d9f373946f1"
+    },
+    {
+      "source": "simulation/outputs/M-049/20261115-user-space-failure/setup-stages.jsonl",
+      "file": "20261115-user-space-failure/setup-stages.jsonl",
+      "sha256": "d0b80c6dbadda1d9744c301fdfca2b1214db9785f9193c5761cd2f0b1a628f17"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-15-space-close/RESULT.json",
+      "file": "20261115-15-space-close/RESULT.json",
+      "sha256": "471f7720560ed31516fc2b6aafc42550eab405776fb6734e2e55b2a53e01cfed"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-15-space-close/RUN_MANIFEST.json",
+      "file": "20261115-15-space-close/RUN_MANIFEST.json",
+      "sha256": "70a98a792dd259674e6797eafca9b379880186dc847f2b8c7286d6ba2147d353"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-15-space-close/test_space_close.py",
+      "file": "20261115-15-space-close/test_space_close.py",
+      "sha256": "268e0f410764b222e38d58426e0d1268a1a8a420855fa964fcf8817c10ef3368"
+    }
+  ],
+  "limitations": [
+    "Original target log did not record available space; SPACE_TMP and socket10038 root causes not established by target measurement.",
+    "Changes verified with host shell and focused fixtures, not a new gateway install."
+  ]
+}

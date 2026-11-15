@@ -1,5 +1,9 @@
 # 当前摘要
 
+M-049修复已交付生产4f1ee7f：暂存预算按包计算、自动选/tmp或/var/tmp、SSH正常关闭顺序修正。目标安装仍待用户重开原入口，详见M-049主卡。
+
+M-049进行中：用户初始化停在SPACE_TMP，空间值未留证；H修暂存预算/诊断及SSH退出10038，不访问设备。
+
 M-048完整离线候选已交付生产1816020：随包Python/dnsmasq、单连接一次密码、传输失败有界恢复。目标安装尚待用户运行SETUP_GATEWAY.cmd，见M-048主卡及simulation/results/20261115-M-048-offline-deployment/。
 
 M-048认证/预检修复已交付生产f81dbf6；依赖补齐待用户运行新版后的目标环境记录，网关安装仍未完成。见主卡coordination/tasks/M-048.md。
