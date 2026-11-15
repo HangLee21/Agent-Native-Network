@@ -19,6 +19,8 @@ from .state import State
 from .fleet_registry import merged_fleet, read_nodes
 from .remote import RemoteGateway
 from .node_serial import SerialTopology
+from .sources import Sources
+from .serial_discovery import SerialDiscovery
 
 # Ethernet LoRa gateway source (tools/mid_baseline/gateway_probe/topology_server.py). Used
 # only when the serial A reader is idle or empty, so the same page can show our EoRa
@@ -163,10 +165,11 @@ class StudioHandler(Handler):
                 return self.reply(503,{'error':'节点编号配置不可用，请联系交付人员检查 fleet 和 registry：'+str(exc)})
         if path=='/api/studio/status':
             value=self.server.state.status()
-            if isinstance(self.server.remote,SerialTopology):
-                value['live']['serial_opens']=1 if self.server.remote.serial_open else 0
+            if self.server.serial:
+                value['live']['serial_opens']=len(self.server.serial.sessions)
                 value['live']['source']='node_serial_lora'
             return self.reply(200,value)
+        if path=='/api/v1/lora/sources':return self.reply(200,self.server.sources.sources())
         if path=='/api/v1/remote/health' and self.server.remote:
             self.server.remote.topology()
             return self.reply(200,self.server.remote.info)
@@ -193,6 +196,16 @@ class StudioHandler(Handler):
         return super().do_GET()
 
     def do_POST(self):
+        if urlsplit(self.path).path=='/api/v1/lora/sources/select':
+            host=self.headers.get('Host');port=self.server.server_port
+            if self.headers.get_all('Host')!=[host] or host not in (f'127.0.0.1:{port}',f'localhost:{port}') or self.headers.get_all('Origin')!=['http://'+host]:return self.reply(403,{'error':'loopback same origin required'})
+            try:
+                size=int(self.headers.get('Content-Length','0'))
+                if not 0<size<=2048 or self.headers.get('Transfer-Encoding') or self.headers.get('Content-Type','').split(';')[0]!='application/json':raise ValueError('bounded JSON required')
+                data=json.loads(self.rfile.read(size))
+                if not isinstance(data,dict) or set(data)!={'source_id'}:raise ValueError('source_id required')
+                return self.reply(200,self.server.sources.select(data['source_id']))
+            except (ValueError,TypeError,UnicodeError) as exc:return self.reply(400,{'error':str(exc)})
         return self.reply(404, {'error':'控制入口未启用'})
 
 
@@ -206,6 +219,7 @@ def main():
     p.add_argument('--registry',type=Path,help='read-only runtime node registry')
     p.add_argument('--recovery-file',type=Path,help='read-only supervisor health state')
     p.add_argument('--topology-port',type=int,default=8780)
+    p.add_argument('--udp-port',type=int,default=1680)
     p.add_argument('--gateway-mode',choices=['remote','legacy_local','node_serial'],default='legacy_local')
     p.add_argument('--gateway-eui')
     p.add_argument('--node-mac')
@@ -232,8 +246,13 @@ def main():
     server.recovery_path=args.recovery_file or ROOT/'data/studio-recovery.json'
     server.gateway_topology=f'http://127.0.0.1:{args.topology_port}/api/v1/lora/topology'
     if args.gateway_mode=='remote' and not args.gateway_eui:p.error('remote gateway EUI required')
-    if args.gateway_mode=='node_serial' and not args.node_mac:p.error('节点1 MAC 必需')
-    server.remote=RemoteGateway(args.gateway_eui,args.candidate_host,args.remote_http_port,args.discovery_port) if args.gateway_mode=='remote' else SerialTopology(args.node_mac,args.serial_location,args.serial_port,args.serial_lease_dir) if args.gateway_mode=='node_serial' else None
+    class LocalTopology:
+        def topology(self):return get_json(server.gateway_topology)
+    server.sources=Sources(udp_port=args.udp_port if args.gateway_mode!='legacy_local' else None)
+    server.serial=SerialDiscovery(server.sources,args.serial_lease_dir,node_mac=args.node_mac,location=args.serial_location,port=args.serial_port) if args.serial_lease_dir else None
+    if args.gateway_eui and args.candidate_host:server.sources.add('http',RemoteGateway(args.gateway_eui,args.candidate_host,args.remote_http_port,args.discovery_port),'HTTP 接收器')
+    if args.gateway_mode=='legacy_local':server.sources.add('legacy',LocalTopology(),'本机 UDP 接收器')
+    server.remote=server.sources
     def halt(*_):
         threading.Thread(target=server.shutdown,daemon=True).start()
     for sig in (signal.SIGINT,signal.SIGTERM):
@@ -255,7 +274,8 @@ def main():
     finally:
         done.set()
         server.server_close()
-        if args.gateway_mode=='node_serial' and server.remote:server.remote.close()
+        if server.serial:server.serial.close()
+        server.sources.close()
         state.close()
 
 

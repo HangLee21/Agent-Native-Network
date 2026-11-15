@@ -4,7 +4,7 @@ const MobileStudioModel=(()=>{
   const mac=x=>String(x||'').trim().toLowerCase(),isMAC=x=>/^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$/.test(mac(x))||/^[0-9a-f]{16}$/.test(mac(x));
   const hash=x=>{let h=2166136261;for(const c of x)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;};
   function topology(ids,edges,previous=new Map()){
-    const ordered=[...new Set(ids.map(mac).filter(isMAC))].sort().slice(0,128),points=new Map();
+    const ordered=[...new Set(ids.map(mac).filter(id=>id.length>0&&id.length<=256))].sort().slice(0,128),points=new Map();
     for(const id of ordered){const old=previous.get(id),h=hash(id);points.set(id,old?{...old}:{x:((h%997)/997-.5)*540,y:(((h>>>10)%991)/991-.5)*330});}
     const links=edges.filter(e=>e.state!=='lost'&&points.has(e.from)&&points.has(e.to));
     for(let iteration=0;iteration<75;iteration++){

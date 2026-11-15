@@ -1,4 +1,4 @@
-"""Node-1 serial LoRa observation; port selection requires a verified USB location."""
+"""Serial LoRa observation; port selection requires a verified USB location."""
 import copy,datetime,json,msvcrt,os,threading,time
 from pathlib import Path
 from firmware.mid_baseline.field_agent.lora_ref.decoder import decode_serial_line
@@ -9,7 +9,7 @@ class SerialTopology:
   if start:self.thread=threading.Thread(target=self.run,daemon=True);self.thread.start()
  def ingest(self,line):
   event=decode_serial_line(line)
-  if event['gateway_id']!=self.mac:raise ValueError('接收节点 MAC 与节点1不匹配')
+  if event['gateway_id']!=self.mac:raise ValueError('接收节点 MAC 不匹配')
   r=event['report'];node=r['observer_id'];boot=r['observer_boot'];seq=r['report_seq']
   with self.lock:
    old=self.rows.get(node)

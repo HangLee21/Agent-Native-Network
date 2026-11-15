@@ -1,5 +1,5 @@
 """Bounded LAN-only discovery and authenticated-by-EUI read-only topology fetch."""
-import ipaddress,json,secrets,select,socket,threading,time,urllib.request
+import copy,ipaddress,json,secrets,select,socket,threading,time,urllib.request
 
 def private_ip(host):
  try:
@@ -11,7 +11,7 @@ def get_json(url):
 
 class RemoteGateway:
  def __init__(self,eui,candidates,http_port=8780,discovery_port=8781,broadcast='255.255.255.255'):
-  self.eui=eui.lower();self.candidates=[x for x in candidates if private_ip(x)];self.http_port=http_port;self.discovery_port=discovery_port;self.broadcast=broadcast;self.lock=threading.Lock();self.last_at=0;self.cached=None;self.info={'state':'connecting'}
+  self.eui=eui.lower();self.candidates=[x for x in candidates if private_ip(x)];self.http_port=http_port;self.discovery_port=discovery_port;self.broadcast=broadcast;self.lock=threading.Lock();self.last_at=0;self.cached=None;self.last_good=None;self.good_at=0;self.info={'state':'connecting'}
  def discover(self):
   nonce=secrets.token_hex(16);sockets=[]
   # Bind a separate broadcast socket to each local private IPv4 interface; a
@@ -55,6 +55,11 @@ class RemoteGateway:
      if identity.get('schema')!='ann.gateway.appliance.v1' or identity.get('gateway_eui')!=self.eui or identity.get('api_version')!=1 or identity.get('ready') is not True:continue
      topo=get_json(base+'/api/v1/lora/topology')
      if topo.get('schema')!='lora.topology.v1' or topo.get('receiver',{}).get('gateway_id')!=self.eui:continue
-     self.info={'state':'connected','gateway_observed':topo['receiver'].get('gateway_observed') is True};self.cached=topo;self.last_at=time.monotonic();return topo
+     self.info={'state':'connected','gateway_observed':topo['receiver'].get('gateway_observed') is True};self.cached=topo;self.last_at=time.monotonic();self.last_good=copy.deepcopy(topo);self.good_at=self.last_at;return topo
     except (OSError,ValueError,AttributeError):continue
-   self.info={'state':'unavailable','gateway_observed':False};self.cached={'schema':'lora.topology.v1','source':'gateway_udp_lrn1','labels':{},'reports':[],'control':{'enabled':False,'reason':'网关未连接'},'receiver':{'gateway_id':self.eui,'gateway_observed':False,'state':'unavailable'}};self.last_at=time.monotonic();return self.cached
+   self.info={'state':'unavailable','gateway_observed':False};now=time.monotonic()
+   self.cached=copy.deepcopy(self.last_good) if self.last_good else {'schema':'lora.topology.v1','source':'gateway_udp_lrn1','labels':{},'reports':[],'receiver':{'gateway_id':self.eui}}
+   elapsed=max(0,int((now-self.good_at)*1000)) if self.last_good else 0
+   for row in self.cached.get('reports',[]):
+    if type(row.get('pc_receive_age_ms')) is int:row['pc_receive_age_ms']+=elapsed
+   self.cached['receiver'].update(state='unavailable',gateway_observed=False);self.cached['control']={'enabled':False,'reason':'网关未连接'};self.last_at=now;return self.cached
