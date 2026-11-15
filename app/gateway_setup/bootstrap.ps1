@@ -37,6 +37,16 @@ function Test-ApplianceIdentity {
     } finally { $response.Dispose() }
 }
 
+function Test-DedicatedEthernetCandidate {
+    param($Adapter)
+    $interfaceType = $Adapter.InterfaceType
+    if ($null -eq $interfaceType) { $interfaceType = $Adapter.ifType }
+    return ($Adapter.Status -eq 'Up' -and $Adapter.HardwareInterface -eq $true -and
+        $Adapter.Virtual -eq $false -and $interfaceType -eq 6 -and
+        $Adapter.MediaType -eq '802.3' -and
+        $Adapter.PhysicalMediaType -in @('802.3','Unspecified'))
+}
+
 try {
     if (Test-Path -LiteralPath $statePath) {
         Write-Host '正在恢复上一次中断的网卡设置……'
@@ -49,8 +59,13 @@ try {
     if ($eui -notmatch '^[0-9a-f]{16}$') { throw '网关标识无效。' }
     $python = Join-Path $root 'runtime/python/python.exe'
     if (-not (Test-Path -LiteralPath $python)) { throw '交付包缺少运行环境。' }
-    $choices = @(Get-NetAdapter -Physical | Where-Object { $_.Status -eq 'Up' -and $_.ifType -eq 6 })
-    if ($choices.Count -eq 0) { throw '未发现已连接的有线网口，请连接网关网线后重试。' }
+    $adapters = @(Get-NetAdapter -Physical)
+    $choices = @($adapters | Where-Object { Test-DedicatedEthernetCandidate $_ })
+    if ($choices.Count -eq 0) {
+        Write-Host '未找到符合条件的已连接物理有线网口。检测到的物理网卡：'
+        foreach ($adapter in $adapters) { Write-Host ('  {0}：{1}，介质 {2}' -f $adapter.Name,$adapter.Status,$adapter.PhysicalMediaType) }
+        throw '请检查网线、网卡状态或驱动，然后重试。'
+    }
     Write-Host '请选择只连接网关、不接入共享网络的电脑有线网口：'
     for ($i=0; $i -lt $choices.Count; $i++) { Write-Host ('{0}. {1}' -f ($i+1),$choices[$i].Name) }
     $choice = Read-Host '输入序号'
