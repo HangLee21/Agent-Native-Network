@@ -1,0 +1,44 @@
+{
+  "template_only": false,
+  "task_id": "H-025",
+  "run_id": "20261115-05-live",
+  "started_at": null,
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network\\.worktrees\\production",
+  "git_commit": "93a203db0692604d829aa3cb48d9c706c131e053",
+  "dirty_files_sha256": {
+    "data/fleet.json": "480a7a5efe4340c645853568c1e9cc94953eaf439572caf78a28ad103a41a416",
+    "firmware/manifest.json": "3ffbf8e8cae941851b46a8c23c4889affd22f57b08fd3887642b011c0ba6de5d"
+  },
+  "command": [
+    "START_STUDIO.cmd --dry-run",
+    "PID/creation/parent verification and project-only stop fallback",
+    "START_STUDIO.cmd",
+    "GET local lora/sources and lora/topology"
+  ],
+  "python_executable": null,
+  "dependency_snapshot": null,
+  "upstream_commit": null,
+  "data_and_weights_sha256": {
+    "fleet-before.json": "480a7a5efe4340c645853568c1e9cc94953eaf439572caf78a28ad103a41a416",
+    "fleet-sha256.txt": "8479a73190287df82b4d3d8114aa04bbcedb684a6502e1710c2ca46322ab7eeb",
+    "stop_old.py": "043f09ab0dc899fcf575f3301327553323a1657b793520e73fe795e3c9dba86b",
+    "live-snapshot.json": "1575574c9c72ce14270f45a9e0656ad14a58dc9ab97165d0d43a55560039871b"
+  },
+  "config_file": null,
+  "seeds": [],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\H-025\\20261115-05-live",
+  "process_id": null,
+  "finished_at": "2026-11-15T16:37:30.053321+08:00",
+  "exit_code": 0,
+  "status": "completed",
+  "limitations": [
+    "Real node 1 serial reports observed; old physical RHF gateway not connected or modified",
+    "Previous normal console stop was refused; bounded PID-checked fallback ended owned launcher and Job",
+    "No physical disconnect/reconnect or delivery-rate experiment",
+    "UI backend source auto-selection verified by API; no manual source switch done",
+    "Real device readonly discovery info/status may inspect other CH340 nodes; no role or NVS writes"
+  ],
+  "review_reference": "coordination/tasks/H-025.md"
+}

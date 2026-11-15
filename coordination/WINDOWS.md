@@ -1,5 +1,7 @@
 # 窗口登记
 
+2026-11-15 当前M-053：旧网关不可修改，电脑端兼容旧UDP/既有HTTP/串口并与前端解耦。E2-039适配/来源管理，D-036前端，H-025旧协议与现场交接，C-038窄审；不SSH/安装/网卡改动/烧录。主卡coordination/tasks/M-053.md。
+
 M-052沿用既有D/E2/H/C独立聊天：D-035、E2-038、H-024、C-037。生产app/services/assets、后端/启动、现场/data配置分别独占；无新聊天或子代理，无定时任务。
 
 M-039生产worktree D:/Multi-Agent Network/.worktrees/production，分支codex/production-deployment，起点f304632；E2/H/D用新卡E2-036/H-022/D-033独占子目录，主卡仍在主目录。E1-032和E2-035研发候选保持主目录，冻结后M同步；C-035只读生产检查。明日接板前无硬件探测。

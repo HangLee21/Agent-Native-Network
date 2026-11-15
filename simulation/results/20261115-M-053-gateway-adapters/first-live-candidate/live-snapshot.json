@@ -1,0 +1,149 @@
+{
+  "captured_utc": "2026-11-15T08:36:51.088778+00:00",
+  "sources": {
+    "schema": "lora.sources.v1",
+    "selection": "auto",
+    "preferred_source_id": null,
+    "selected_source_id": "serial:90:da:72:48:a4:f8",
+    "selection_epoch": 1,
+    "sources": [
+      {
+        "id": "http:configured",
+        "kind": "http",
+        "label": "HTTP 接收器",
+        "gateway_id": "b827ebfffe32e2c1",
+        "state": "unavailable",
+        "available": false,
+        "verified": false,
+        "selected": false,
+        "capabilities": {
+          "receive": true,
+          "transmit": false,
+          "reason": "网关未连接"
+        }
+      },
+      {
+        "id": "serial:90:da:72:48:a4:e0",
+        "kind": "serial",
+        "label": "串口节点 90:da:72:48:a4:e0",
+        "gateway_id": "90:da:72:48:a4:e0",
+        "state": "not_receiving",
+        "available": false,
+        "verified": true,
+        "selected": false,
+        "capabilities": {
+          "receive": false,
+          "transmit": false,
+          "reason": "节点当前未运行 LoRa RX；未修改设备配置"
+        }
+      },
+      {
+        "id": "serial:90:da:72:48:a6:98",
+        "kind": "serial",
+        "label": "串口节点 90:da:72:48:a6:98",
+        "gateway_id": "90:da:72:48:a6:98",
+        "state": "not_receiving",
+        "available": false,
+        "verified": true,
+        "selected": false,
+        "capabilities": {
+          "receive": false,
+          "transmit": false,
+          "reason": "节点当前未运行 LoRa RX；未修改设备配置"
+        }
+      },
+      {
+        "id": "serial:90:da:72:48:a5:20",
+        "kind": "serial",
+        "label": "串口节点 90:da:72:48:a5:20",
+        "gateway_id": "90:da:72:48:a5:20",
+        "state": "not_receiving",
+        "available": false,
+        "verified": true,
+        "selected": false,
+        "capabilities": {
+          "receive": false,
+          "transmit": false,
+          "reason": "节点当前未运行 LoRa RX；未修改设备配置"
+        }
+      },
+      {
+        "id": "serial:90:da:72:48:a5:cc",
+        "kind": "serial",
+        "label": "串口节点 90:da:72:48:a5:cc",
+        "gateway_id": "90:da:72:48:a5:cc",
+        "state": "not_receiving",
+        "available": false,
+        "verified": true,
+        "selected": false,
+        "capabilities": {
+          "receive": false,
+          "transmit": false,
+          "reason": "节点当前未运行 LoRa RX；未修改设备配置"
+        }
+      },
+      {
+        "id": "serial:90:da:72:48:a4:f8",
+        "kind": "serial",
+        "label": "串口节点 90:da:72:48:a4:f8",
+        "gateway_id": "90:da:72:48:a4:f8",
+        "state": "receiving",
+        "available": true,
+        "verified": true,
+        "selected": true,
+        "capabilities": {
+          "receive": true,
+          "transmit": false,
+          "reason": "节点串口仅接收"
+        }
+      }
+    ],
+    "udp_error": null
+  },
+  "topology": {
+    "schema": "lora.topology.v1",
+    "source": "lora_received_snapshot",
+    "source_id": "serial:90:da:72:48:a4:f8",
+    "selection_epoch": 1,
+    "receiver": {
+      "mode": "node_serial",
+      "gateway_id": "90:da:72:48:a4:f8",
+      "gateway_observed": true,
+      "serial_open": true,
+      "state": "receiving",
+      "last_rx_age_ms": 2171,
+      "error": null,
+      "identity_verified": true
+    },
+    "reports": [
+      {
+        "id": "90:da:72:48:a5:20",
+        "observer_boot": 2090625299,
+        "report_seq": 356,
+        "age_ms": 8562,
+        "state": "recent"
+      },
+      {
+        "id": "90:da:72:48:a5:cc",
+        "observer_boot": 2001565995,
+        "report_seq": 357,
+        "age_ms": 4391,
+        "state": "recent"
+      },
+      {
+        "id": "90:da:72:48:a6:98",
+        "observer_boot": 1492214843,
+        "report_seq": 356,
+        "age_ms": 2171,
+        "state": "recent"
+      },
+      {
+        "id": "90:da:72:48:a4:e0",
+        "observer_boot": 1026229417,
+        "report_seq": 355,
+        "age_ms": 11578,
+        "state": "recent"
+      }
+    ]
+  }
+}

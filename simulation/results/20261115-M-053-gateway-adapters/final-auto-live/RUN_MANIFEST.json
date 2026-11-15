@@ -1,0 +1,47 @@
+{
+  "template_only": false,
+  "task_id": "H-025",
+  "run_id": "20261115-06-auto-config",
+  "started_at": null,
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network\\.worktrees\\production",
+  "git_commit": "397cee9bc8d8e70c16873bb1f477ede5c257aa36",
+  "dirty_files_sha256": {
+    "app/services/tools/mobile_gateway/studio.py": "31814147bbfcb70fabcb0f688cca11cba8cc39066418b6c5b78f575da765bcf0",
+    "app/services/tools/mobile_gateway/serial_discovery.py": "d7295378f73950aaa2e504ded1fcfaad994a8dac5d29cffd2d333954a988e5ad",
+    "app/services/tools/mobile_gateway/sources.py": "a18927bdd1aabdcfc391e752aa05be7c68395393e03a129be63b76b863244421",
+    "app/start/launcher.py": "46642f8df93d2434618598728f420e61ef637cd8b781b633ed2db149c25a9624",
+    "firmware/manifest.json": "30ecee4c4ebc684e4755a36a6d017f13d77dbe7fbe04b1e941944d3abde03aed",
+    "data/fleet.json": "38bf9d3460275cb9aee40519aa647a82658f02950025d3b9dfd0e02226456703"
+  },
+  "command": [
+    "START_STUDIO.cmd --dry-run --config candidate",
+    "PID-verified project-only stop after console attach failure",
+    "START_STUDIO.cmd",
+    "GET sources/topology; local POST manual then auto"
+  ],
+  "python_executable": null,
+  "dependency_snapshot": null,
+  "upstream_commit": null,
+  "data_and_weights_sha256": {
+    "fleet-before.json": "480a7a5efe4340c645853568c1e9cc94953eaf439572caf78a28ad103a41a416",
+    "fleet-candidate.json": "38bf9d3460275cb9aee40519aa647a82658f02950025d3b9dfd0e02226456703",
+    "APPLIED.json": "250461daa475e8efbbd54d12b962069f352a42088af9ce23aa2f9300e5fd4c5c",
+    "live-confirmation.json": "811b18f39e2acff4e2489294dba6d16e4140fd9f1807e6285951335caaac1920"
+  },
+  "config_file": null,
+  "seeds": [],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\H-025\\20261115-06-auto-config",
+  "process_id": null,
+  "finished_at": "2026-11-15T16:43:24.065710+08:00",
+  "exit_code": 0,
+  "status": "completed",
+  "limitations": [
+    "Actual four-node live serial receiver snapshot only; no physical unplug/reconnect or PDR",
+    "Old RHF not accessed or reverified, UDP historical fixture validated separately",
+    "Explicit serial configuration compatibility separately validated by E2 worker tests, not masked by this auto config",
+    "Current managed service intentionally remains running"
+  ],
+  "review_reference": "coordination/tasks/H-025.md"
+}

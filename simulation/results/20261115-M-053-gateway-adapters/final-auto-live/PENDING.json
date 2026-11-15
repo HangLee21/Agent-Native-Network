@@ -1,0 +1,16 @@
+{
+  "before_sha256": "480a7a5efe4340c645853568c1e9cc94953eaf439572caf78a28ad103a41a416",
+  "candidate_sha256": "38bf9d3460275cb9aee40519aa647a82658f02950025d3b9dfd0e02226456703",
+  "removed": {
+    "serial_usb_location": "1-1"
+  },
+  "retained": {
+    "eui": "b827ebfffe32e2c1",
+    "candidate_hosts": [
+      "192.168.137.200"
+    ],
+    "udp_port": 1680,
+    "mode": "node_serial"
+  },
+  "applied": false
+}
