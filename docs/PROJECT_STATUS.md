@@ -1,5 +1,7 @@
 # 项目状态：目标与完成度
 
+2026-11-15 M-040纠正：生产分支已重组纯交付树，旧production/release路径失效；当前根为README、双CMD、app、firmware、config、runtime，本机数据在data。发布清单firmware/manifest.json，版本v0.1.0-test。PDF/研究/历史实验/任务卡及内部迭代均移出生产当前树，原树备份.local/M-040/pre-clean-production；两入口最终根dry-run通过，无设备操作。
+
 2026-11-15 M-039：本机candidate-20261115-default31已装配在.worktrees/production/production/release，默认反馈OFF、随包Python。FLASH_NODES.cmd/START_STUDIO.cmd离线dry-run通过，C接受作为用户自行点击测试的candidate；未代烧或启动现场服务，真实烧录/断电/RF待用户测试。默认fleet沿用H021一次只读识别的组31/频道11，端口已释放。LoRa网关接收/展示已离线联调，下行控制未配置而禁用。详见M-039/H-022/E2-036/C-035。
 
 M-039：新增codex/production-deployment独立worktree，面向一键烧录/网关启动/前端和数字节点；初始1–5映射既有MAC，不改底层身份。今天无硬件、用户明日接板，算法候选与部署脚本离线推进。初始化分支不等于生产已验证，发布manifest将区分candidate/validated。
