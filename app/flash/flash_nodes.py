@@ -9,7 +9,7 @@ import re
 import sys
 import time
 import uuid
-from contextlib import contextmanager
+from contextlib import contextmanager, redirect_stdout, redirect_stderr
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -162,36 +162,44 @@ def main():
             raise Blocked('Python 依赖版本不匹配：需要 esptool 4.13.0 和 pyserial 3.5')
         import serial_adapter
         import workflow
+        from console import ConsolePanel
         with exclusive_flash():
             config_data=read(config)
             print('正在自动识别连接的设备，请保持 USB 连接……',flush=True)
             directory=ROOT/'data/logs';directory.mkdir(parents=True,exist_ok=True)
             stem='flash-'+datetime.now().strftime('%Y%m%d-%H%M%S')+'-'+uuid.uuid4().hex[:8]
             journal=directory/(stem+'.jsonl')
+            detail=directory/(stem+'-detail.log')
+            panel=ConsolePanel()
+            panel.log='data/logs/'+detail.name
             try:
-                with journal.open('x',encoding='utf-8') as stream:
+                with journal.open('x',encoding='utf-8') as stream, detail.open('x',encoding='utf-8') as details:
                     def record(event):
                         stream.write(json.dumps(event,ensure_ascii=False)+'\n');stream.flush();os.fsync(stream.fileno())
+                        if event.get('event')=='finished' and event.get('error'):
+                            details.write('设备错误：'+str(event['error'])+'\n');details.flush()
+                        panel.record(event)
                     record({'event':'started','release_id':manifest['release_id']})
-                    reports=workflow.run_with_retries(serial_adapter,config_data,manifest,image,ROOT/'data/registry.json',directory,
-                        lambda number,step: print(f'节点 {number}：{step}',flush=True),record,time.sleep,
-                        lambda: print('正在重新连接设备，请保持 USB 连接；如已拔出，请插回原接口。',flush=True))
+                    with redirect_stdout(details),redirect_stderr(details):
+                        reports=workflow.run_with_retries(serial_adapter,config_data,manifest,image,ROOT/'data/registry.json',directory,
+                            panel.progress,record,time.sleep,
+                            lambda: panel.notify('正在重新连接；请保持 USB 连接'))
+                if not reports:
+                    panel.notify('未发现设备；请检查电源和 USB 连接')
+                    return 2
+                final_pending=workflow.pending_writes(directory)
+                final_rows,success=workflow.summarize_results(reports,final_pending)
+                path=directory/(stem+'-result.json')
+                with path.open('x',encoding='utf-8') as stream:
+                    json.dump({'release_id':manifest['release_id'],'boards':final_rows,'history':reports,'unresolved_attempts':list(final_pending),'power_cycle_verified':False},stream,ensure_ascii=False,indent=2)
+                panel.final(final_rows,detail)
+                return 0 if success else 1
             except Exception as exc:
-                print('操作被中断，设备完成情况未知，请保持连接并联系交付人员。',file=sys.stderr)
-                print('进度日志：'+str(journal)+'；原因：'+str(exc),file=sys.stderr)
+                panel.log=str(detail)
+                panel.notify('已停止，设备状态未知：'+str(exc))
                 return 1
-            if not reports:
-                raise Blocked('没有发现已连接的节点，请检查 USB 线和电源')
-            final_pending=workflow.pending_writes(directory)
-            final_rows,success=workflow.summarize_results(reports,final_pending)
-            path=directory/(stem+'-result.json')
-            with path.open('x',encoding='utf-8') as stream:
-                json.dump({'release_id':manifest['release_id'],'boards':final_rows,'history':reports,'unresolved_attempts':list(final_pending),'power_cycle_verified':False},stream,ensure_ascii=False,indent=2)
-            for row in final_rows:
-                label=str(row.get('node_id','未识别'))
-                print(f'节点 {label}：'+('完成，已核对版本和自启设置' if row['result']=='success' else '已停止，未完成；'+str(row.get('error') or row.get('last_error') or row.get('pending_reason') or '请查看日志')))
-            print('检查日志：'+str(path))
-            return 0 if success else 1
+            finally:
+                panel.close()
     except Blocked as exc:
         if not args.dry_run:
             print('\n本次没有烧录任何设备。',file=sys.stderr)

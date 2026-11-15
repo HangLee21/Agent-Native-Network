@@ -164,6 +164,7 @@ def execute(transport, config, manifest, image, registry_path, progress, on_reco
     mapping=load_registry(registry_path,configured)
     pending=pending or {}; results=[]; seen=set()
     detected=transport.ports()
+    on_record({'event':'discovered','ports':list(detected)})
     for index,port in enumerate(detected,1):
         started=time.monotonic()
         board=None; record={'port':port,'result':'failed','flash_attempted':False,'firmware_write_verified':False,'steps':[]}
