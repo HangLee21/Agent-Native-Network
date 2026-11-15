@@ -1,5 +1,7 @@
 # 当前摘要
 
+M-048完整离线候选已交付生产1816020：随包Python/dnsmasq、单连接一次密码、传输失败有界恢复。目标安装尚待用户运行SETUP_GATEWAY.cmd，见M-048主卡及simulation/results/20261115-M-048-offline-deployment/。
+
 M-048认证/预检修复已交付生产f81dbf6；依赖补齐待用户运行新版后的目标环境记录，网关安装仍未完成。见主卡coordination/tasks/M-048.md。
 
 M-048进行中：用户真实SSH/上传成功，sudo找不到python3；H修运行时预检和重复认证，E2仅查依赖可交付性。当前网关服务尚未安装。

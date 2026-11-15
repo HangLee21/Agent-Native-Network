@@ -1,0 +1,4837 @@
+{
+  "elf_count": 80,
+  "needed": [
+    "ld-linux-armhf.so.3",
+    "libbz2.so.1.0",
+    "libc.so.6",
+    "libcrypt.so.1",
+    "libcrypto.so.1.0.0",
+    "libdb-5.3.so",
+    "libdbus-1.so.3",
+    "libdl.so.2",
+    "libexpat.so.1",
+    "libffi.so.6",
+    "libgcc_s.so.1",
+    "libgmp.so.10",
+    "libhogweed.so.2",
+    "libidn.so.11",
+    "liblzma.so.5",
+    "libm.so.6",
+    "libmnl.so.0",
+    "libmpdec.so.2",
+    "libncursesw.so.5",
+    "libnetfilter_conntrack.so.3",
+    "libnettle.so.4",
+    "libnfnetlink.so.0",
+    "libnsl.so.1",
+    "libpanelw.so.5",
+    "libpthread.so.0",
+    "libreadline.so.6",
+    "librt.so.1",
+    "libsqlite3.so.0",
+    "libssl.so.1.0.0",
+    "libtinfo.so.5",
+    "libutil.so.1",
+    "libz.so.1"
+  ],
+  "provided": [
+    "AutoComplete.py",
+    "AutoCompleteWindow.py",
+    "AutoExpand.py",
+    "Bindings.py",
+    "CDROM.py",
+    "CREDITS.txt",
+    "CallTipWindow.py",
+    "CallTips.py",
+    "ChangeLog",
+    "ClassBrowser.py",
+    "CodeContext.py",
+    "ColorDelegator.py",
+    "DLFCN.py",
+    "Debugger.py",
+    "Delegator.py",
+    "EditorWindow.py",
+    "ElementInclude.py",
+    "ElementPath.py",
+    "ElementTree.py",
+    "FileList.py",
+    "FormatParagraph.py",
+    "Grammar.txt",
+    "GrepDialog.py",
+    "HISTORY.txt",
+    "HyperParser.py",
+    "IN.py",
+    "IOBinding.py",
+    "IdleHistory.py",
+    "LICENSE.txt",
+    "MultiCall.py",
+    "MultiStatusBar.py",
+    "NEWS.txt",
+    "NodeFilter.py",
+    "ObjectBrowser.py",
+    "OutputWindow.py",
+    "ParenMatch.py",
+    "PathBrowser.py",
+    "PatternGrammar.txt",
+    "Percolator.py",
+    "PyParse.py",
+    "PyShell.py",
+    "README",
+    "README.txt",
+    "RemoteDebugger.py",
+    "RemoteObjectBrowser.py",
+    "ReplaceDialog.py",
+    "RstripExtension.py",
+    "ScriptBinding.py",
+    "ScrolledList.py",
+    "SearchDialog.py",
+    "SearchDialogBase.py",
+    "SearchEngine.py",
+    "StackViewer.py",
+    "TODO.txt",
+    "TYPES.py",
+    "ToolTip.py",
+    "TreeWidget.py",
+    "UndoDelegator.py",
+    "WidgetRedirector.py",
+    "WindowList.py",
+    "ZoomHeight.py",
+    "__future__.py",
+    "__init__.py",
+    "__main__.py",
+    "__phello__.foo.py",
+    "_base.py",
+    "_bootlocale.py",
+    "_bootstrap.py",
+    "_bz2.cpython-34m-arm-linux-gnueabihf.so",
+    "_codecs_cn.cpython-34m-arm-linux-gnueabihf.so",
+    "_codecs_hk.cpython-34m-arm-linux-gnueabihf.so",
+    "_codecs_iso2022.cpython-34m-arm-linux-gnueabihf.so",
+    "_codecs_jp.cpython-34m-arm-linux-gnueabihf.so",
+    "_codecs_kr.cpython-34m-arm-linux-gnueabihf.so",
+    "_codecs_tw.cpython-34m-arm-linux-gnueabihf.so",
+    "_collections_abc.py",
+    "_compat_pickle.py",
+    "_crypt.cpython-34m-arm-linux-gnueabihf.so",
+    "_csv.cpython-34m-arm-linux-gnueabihf.so",
+    "_ctypes.cpython-34m-arm-linux-gnueabihf.so",
+    "_ctypes_test.cpython-34m-arm-linux-gnueabihf.so",
+    "_curses.cpython-34m-arm-linux-gnueabihf.so",
+    "_curses_panel.cpython-34m-arm-linux-gnueabihf.so",
+    "_dbm.cpython-34m-arm-linux-gnueabihf.so",
+    "_decimal.cpython-34m-arm-linux-gnueabihf.so",
+    "_dummy_thread.py",
+    "_encoded_words.py",
+    "_endian.py",
+    "_exceptions.py",
+    "_fix.py",
+    "_hashlib.cpython-34m-arm-linux-gnueabihf.so",
+    "_header_value_parser.py",
+    "_json.cpython-34m-arm-linux-gnueabihf.so",
+    "_lsprof.cpython-34m-arm-linux-gnueabihf.so",
+    "_lzma.cpython-34m-arm-linux-gnueabihf.so",
+    "_markupbase.py",
+    "_multibytecodec.cpython-34m-arm-linux-gnueabihf.so",
+    "_multiprocessing.cpython-34m-arm-linux-gnueabihf.so",
+    "_opcode.cpython-34m-arm-linux-gnueabihf.so",
+    "_osx_support.py",
+    "_parseaddr.py",
+    "_policybase.py",
+    "_pydoc.css",
+    "_pyio.py",
+    "_sitebuiltins.py",
+    "_sqlite3.cpython-34m-arm-linux-gnueabihf.so",
+    "_ssl.cpython-34m-arm-linux-gnueabihf.so",
+    "_strptime.py",
+    "_sysconfigdata.py",
+    "_sysconfigdata_m.py",
+    "_testbuffer.cpython-34m-arm-linux-gnueabihf.so",
+    "_testcapi.cpython-34m-arm-linux-gnueabihf.so",
+    "_testimportmultiple.cpython-34m-arm-linux-gnueabihf.so",
+    "_threading_local.py",
+    "_weakrefset.py",
+    "abc.py",
+    "aboutDialog.py",
+    "activate",
+    "activate.csh",
+    "activate.fish",
+    "aifc.py",
+    "aliases.py",
+    "antigravity.py",
+    "application.py",
+    "architecture.rst",
+    "archive_util.py",
+    "argparse.py",
+    "ascii.py",
+    "ast.py",
+    "asynchat.py",
+    "asyncore.py",
+    "audio.py",
+    "audioop.cpython-34m-arm-linux-gnueabihf.so",
+    "base.py",
+    "base64.py",
+    "base64_codec.py",
+    "base64mime.py",
+    "base_events.py",
+    "base_subprocess.py",
+    "bcppcompiler.py",
+    "bdb.py",
+    "bdist.py",
+    "bdist_dumb.py",
+    "bdist_msi.py",
+    "bdist_rpm.py",
+    "bdist_wininst.py",
+    "big5.py",
+    "big5hkscs.py",
+    "binhex.py",
+    "bisect.py",
+    "btm_matcher.py",
+    "btm_utils.py",
+    "build.py",
+    "build_clib.py",
+    "build_ext.py",
+    "build_py.py",
+    "build_scripts.py",
+    "bz2.py",
+    "bz2_codec.py",
+    "cElementTree.py",
+    "cProfile.py",
+    "calendar.py",
+    "case.py",
+    "ccompiler.py",
+    "cgi.py",
+    "cgitb.py",
+    "charmap.py",
+    "charset.py",
+    "check.py",
+    "chunk.py",
+    "clean.py",
+    "client.py",
+    "cmath.cpython-34m-arm-linux-gnueabihf.so",
+    "cmd.py",
+    "code.py",
+    "codecs.py",
+    "codeop.py",
+    "colorchooser.py",
+    "colorsys.py",
+    "command_template",
+    "commondialog.py",
+    "compileall.py",
+    "config-extensions.def",
+    "config-highlight.def",
+    "config-keys.def",
+    "config-main.def",
+    "config.py",
+    "configDialog.py",
+    "configHandler.py",
+    "configHelpSourceEdit.py",
+    "configSectionNameDialog.py",
+    "configparser.py",
+    "connection.py",
+    "constants.py",
+    "contentmanager.py",
+    "context.py",
+    "contextlib.py",
+    "conv.py",
+    "cookiejar.py",
+    "cookies.py",
+    "copy.py",
+    "copyreg.py",
+    "core.py",
+    "coroutines.py",
+    "cp037.py",
+    "cp1006.py",
+    "cp1026.py",
+    "cp1125.py",
+    "cp1140.py",
+    "cp1250.py",
+    "cp1251.py",
+    "cp1252.py",
+    "cp1253.py",
+    "cp1254.py",
+    "cp1255.py",
+    "cp1256.py",
+    "cp1257.py",
+    "cp1258.py",
+    "cp273.py",
+    "cp424.py",
+    "cp437.py",
+    "cp500.py",
+    "cp65001.py",
+    "cp720.py",
+    "cp737.py",
+    "cp775.py",
+    "cp850.py",
+    "cp852.py",
+    "cp855.py",
+    "cp856.py",
+    "cp857.py",
+    "cp858.py",
+    "cp860.py",
+    "cp861.py",
+    "cp862.py",
+    "cp863.py",
+    "cp864.py",
+    "cp865.py",
+    "cp866.py",
+    "cp869.py",
+    "cp874.py",
+    "cp875.py",
+    "cp932.py",
+    "cp949.py",
+    "cp950.py",
+    "crypt.py",
+    "csv.py",
+    "cygwinccompiler.py",
+    "datetime.py",
+    "dbapi2.py",
+    "debug.py",
+    "decimal.py",
+    "decoder.py",
+    "dep_util.py",
+    "dialog.py",
+    "difflib.py",
+    "dir_util.py",
+    "dis.py",
+    "dist.py",
+    "dnd.py",
+    "dnsmasq",
+    "doctest.py",
+    "domreg.py",
+    "driver.py",
+    "dumb.py",
+    "dummy_threading.py",
+    "dump.py",
+    "dynOptionMenuWidget.py",
+    "encoder.py",
+    "encoders.py",
+    "entities.py",
+    "enum.py",
+    "error.py",
+    "errors.py",
+    "euc_jis_2004.py",
+    "euc_jisx0213.py",
+    "euc_jp.py",
+    "euc_kr.py",
+    "events.py",
+    "expat.py",
+    "expatbuilder.py",
+    "expatreader.py",
+    "extend.txt",
+    "extension.py",
+    "fancy_getopt.py",
+    "feedparser.py",
+    "file_util.py",
+    "filecmp.py",
+    "filedialog.py",
+    "fileinput.py",
+    "filelist.py",
+    "fix_apply.py",
+    "fix_asserts.py",
+    "fix_basestring.py",
+    "fix_buffer.py",
+    "fix_callable.py",
+    "fix_dict.py",
+    "fix_except.py",
+    "fix_exec.py",
+    "fix_execfile.py",
+    "fix_exitfunc.py",
+    "fix_filter.py",
+    "fix_funcattrs.py",
+    "fix_future.py",
+    "fix_getcwdu.py",
+    "fix_has_key.py",
+    "fix_idioms.py",
+    "fix_import.py",
+    "fix_imports.py",
+    "fix_imports2.py",
+    "fix_input.py",
+    "fix_intern.py",
+    "fix_isinstance.py",
+    "fix_itertools.py",
+    "fix_itertools_imports.py",
+    "fix_long.py",
+    "fix_map.py",
+    "fix_metaclass.py",
+    "fix_methodattrs.py",
+    "fix_ne.py",
+    "fix_next.py",
+    "fix_nonzero.py",
+    "fix_numliterals.py",
+    "fix_operator.py",
+    "fix_paren.py",
+    "fix_print.py",
+    "fix_raise.py",
+    "fix_raw_input.py",
+    "fix_reduce.py",
+    "fix_reload.py",
+    "fix_renames.py",
+    "fix_repr.py",
+    "fix_set_literal.py",
+    "fix_standarderror.py",
+    "fix_sys_exc.py",
+    "fix_throw.py",
+    "fix_tuple_params.py",
+    "fix_types.py",
+    "fix_unicode.py",
+    "fix_urllib.py",
+    "fix_ws_comma.py",
+    "fix_xrange.py",
+    "fix_xreadlines.py",
+    "fix_zip.py",
+    "fixer_base.py",
+    "fixer_util.py",
+    "fnmatch.py",
+    "folder.gif",
+    "font.py",
+    "forkserver.py",
+    "formatter.py",
+    "fpectl.cpython-34m-arm-linux-gnueabihf.so",
+    "fractions.py",
+    "ftplib.py",
+    "functools.py",
+    "futures.py",
+    "gb18030.py",
+    "gb2312.py",
+    "gbk.py",
+    "generator.py",
+    "genericpath.py",
+    "getopt.py",
+    "getpass.py",
+    "gettext.py",
+    "glob.py",
+    "gnu.py",
+    "grammar.py",
+    "gzip.py",
+    "handler.py",
+    "handlers.py",
+    "has_key.py",
+    "hashlib.py",
+    "header.py",
+    "headerregistry.py",
+    "headers.py",
+    "heap.py",
+    "heapq.py",
+    "help.txt",
+    "hex_codec.py",
+    "hmac.py",
+    "hp_roman8.py",
+    "hz.py",
+    "idle.icns",
+    "idle.ico",
+    "idle.py",
+    "idle.pyw",
+    "idle_16.gif",
+    "idle_16.png",
+    "idle_32.gif",
+    "idle_32.png",
+    "idle_48.gif",
+    "idle_48.png",
+    "idlever.py",
+    "idna.py",
+    "image.py",
+    "imaplib.py",
+    "imghdr.py",
+    "imp.py",
+    "inspect.py",
+    "install.py",
+    "install_data.py",
+    "install_egg_info.py",
+    "install_headers.py",
+    "install_lib.py",
+    "install_scripts.py",
+    "io.py",
+    "ipaddress.py",
+    "iso2022_jp.py",
+    "iso2022_jp_1.py",
+    "iso2022_jp_2.py",
+    "iso2022_jp_2004.py",
+    "iso2022_jp_3.py",
+    "iso2022_jp_ext.py",
+    "iso2022_kr.py",
+    "iso8859_1.py",
+    "iso8859_10.py",
+    "iso8859_11.py",
+    "iso8859_13.py",
+    "iso8859_14.py",
+    "iso8859_15.py",
+    "iso8859_16.py",
+    "iso8859_2.py",
+    "iso8859_3.py",
+    "iso8859_4.py",
+    "iso8859_5.py",
+    "iso8859_6.py",
+    "iso8859_7.py",
+    "iso8859_8.py",
+    "iso8859_9.py",
+    "iterators.py",
+    "johab.py",
+    "keybindingDialog.py",
+    "keyword.py",
+    "koi8_r.py",
+    "koi8_u.py",
+    "latin_1.py",
+    "lib4758cca.so",
+    "libaep.so",
+    "libatalla.so",
+    "libbz2.so.1",
+    "libbz2.so.1.0",
+    "libbz2.so.1.0.4",
+    "libcapi.so",
+    "libchil.so",
+    "libcrypto.so.1.0.0",
+    "libcswift.so",
+    "libdb-5.3.so",
+    "libdbus-1.so.3",
+    "libdbus-1.so.3.8.14",
+    "libexpat.so.1",
+    "libexpat.so.1.6.0",
+    "libexpatw.so.1",
+    "libexpatw.so.1.6.0",
+    "libffi.so.6",
+    "libffi.so.6.0.2",
+    "libformw.so.5",
+    "libformw.so.5.9",
+    "libgcc_s.so.1",
+    "libgmp.so",
+    "libgmp.so.10",
+    "libgmp.so.10.2.0",
+    "libgost.so",
+    "libhistory.so.6",
+    "libhistory.so.6.3",
+    "libhogweed.so.2",
+    "libhogweed.so.2.5",
+    "libidn.so.11",
+    "libidn.so.11.6.12",
+    "liblzma.so.5",
+    "liblzma.so.5.0.0",
+    "libmenuw.so.5",
+    "libmenuw.so.5.9",
+    "libmnl.so.0",
+    "libmnl.so.0.1.0",
+    "libmpdec.so.2",
+    "libmpdec.so.2.4.1",
+    "libncursesw.so.5",
+    "libncursesw.so.5.9",
+    "libnetfilter_conntrack.so.3",
+    "libnetfilter_conntrack.so.3.5.0",
+    "libnettle.so.4",
+    "libnettle.so.4.7",
+    "libnfnetlink.so.0",
+    "libnfnetlink.so.0.2.0",
+    "libnuron.so",
+    "libpadlock.so",
+    "libpanelw.so.5",
+    "libpanelw.so.5.9",
+    "libreadline.so.6",
+    "libreadline.so.6.3",
+    "libsqlite3.so.0",
+    "libsqlite3.so.0.8.6",
+    "libssl.so.1.0.0",
+    "libsureware.so",
+    "libtic.so.5",
+    "libtic.so.5.9",
+    "libtinfo.so.5",
+    "libtinfo.so.5.9",
+    "libubsec.so",
+    "libz.so.1",
+    "libz.so.1.2.8",
+    "linecache.py",
+    "literals.py",
+    "loader.py",
+    "locale.py",
+    "locks.py",
+    "log.py",
+    "lzma.py",
+    "mac_arabic.py",
+    "mac_centeuro.py",
+    "mac_croatian.py",
+    "mac_cyrillic.py",
+    "mac_farsi.py",
+    "mac_greek.py",
+    "mac_iceland.py",
+    "mac_latin2.py",
+    "mac_roman.py",
+    "mac_romanian.py",
+    "mac_turkish.py",
+    "machinery.py",
+    "macosxSupport.py",
+    "macpath.py",
+    "macurl2path.py",
+    "mailbox.py",
+    "mailcap.py",
+    "main.py",
+    "managers.py",
+    "mbcs.py",
+    "message.py",
+    "messagebox.py",
+    "mimetypes.py",
+    "minicompat.py",
+    "minidom.py",
+    "minusnode.gif",
+    "mmap.cpython-34m-arm-linux-gnueabihf.so",
+    "mock.py",
+    "modulefinder.py",
+    "msvc9compiler.py",
+    "msvccompiler.py",
+    "multipart.py",
+    "ndbm.py",
+    "netrc.py",
+    "nis.cpython-34m-arm-linux-gnueabihf.so",
+    "nntplib.py",
+    "nonmultipart.py",
+    "ntpath.py",
+    "nturl2path.py",
+    "numbers.py",
+    "opcode.py",
+    "openfolder.gif",
+    "operator.py",
+    "optparse.py",
+    "os.py",
+    "ossaudiodev.cpython-34m-arm-linux-gnueabihf.so",
+    "palmos.py",
+    "panel.py",
+    "parse.py",
+    "parser.cpython-34m-arm-linux-gnueabihf.so",
+    "parser.py",
+    "patcomp.py",
+    "pathlib.py",
+    "pdb.py",
+    "pgen.py",
+    "pickle.py",
+    "pickletools.py",
+    "pipes.py",
+    "pkgutil.py",
+    "platform.py",
+    "plistlib.py",
+    "plusnode.gif",
+    "policy.py",
+    "pool.py",
+    "popen_fork.py",
+    "popen_forkserver.py",
+    "popen_spawn_posix.py",
+    "popen_spawn_win32.py",
+    "poplib.py",
+    "posixpath.py",
+    "pprint.py",
+    "proactor_events.py",
+    "process.py",
+    "profile.py",
+    "protocols.py",
+    "pstats.py",
+    "ptcp154.py",
+    "pty.py",
+    "pulldom.py",
+    "punycode.py",
+    "py_compile.py",
+    "pyclbr.py",
+    "pydoc.py",
+    "pygram.py",
+    "pystone.py",
+    "python.gif",
+    "python3.4",
+    "python3.4m",
+    "pytree.py",
+    "queue.py",
+    "queues.py",
+    "quopri.py",
+    "quopri_codec.py",
+    "quoprimime.py",
+    "random.py",
+    "raw_unicode_escape.py",
+    "re.py",
+    "readline.cpython-34m-arm-linux-gnueabihf.so",
+    "reduction.py",
+    "refactor.py",
+    "register.py",
+    "regrtest.py",
+    "reprlib.py",
+    "request.py",
+    "resource.cpython-34m-arm-linux-gnueabihf.so",
+    "resource_sharer.py",
+    "response.py",
+    "result.py",
+    "rlcompleter.py",
+    "robotparser.py",
+    "rot_13.py",
+    "rpc.py",
+    "run.py",
+    "runner.py",
+    "runpy.py",
+    "saxutils.py",
+    "scanner.py",
+    "sched.py",
+    "scrolledtext.py",
+    "sdist.py",
+    "selector_events.py",
+    "selectors.py",
+    "semaphore_tracker.py",
+    "server.py",
+    "sharedctypes.py",
+    "shelve.py",
+    "shift_jis.py",
+    "shift_jis_2004.py",
+    "shift_jisx0213.py",
+    "shlex.py",
+    "shutil.py",
+    "signals.py",
+    "simple_server.py",
+    "simpledialog.py",
+    "site.py",
+    "sitecustomize.py",
+    "smtpd.py",
+    "smtplib.py",
+    "sndhdr.py",
+    "socket.py",
+    "socketserver.py",
+    "spawn.py",
+    "sre_compile.py",
+    "sre_constants.py",
+    "sre_parse.py",
+    "ssl.py",
+    "stat.py",
+    "statistics.py",
+    "streams.py",
+    "string.py",
+    "stringprep.py",
+    "struct.py",
+    "subprocess.py",
+    "suite.py",
+    "sunau.py",
+    "symbol.py",
+    "symtable.py",
+    "synchronize.py",
+    "sysconfig.py",
+    "tabbedpages.py",
+    "tabnanny.py",
+    "tarfile.py",
+    "tasks.py",
+    "telnetlib.py",
+    "tempfile.py",
+    "termios.cpython-34m-arm-linux-gnueabihf.so",
+    "test_utils.py",
+    "testcode.py",
+    "text.py",
+    "textView.py",
+    "text_file.py",
+    "textpad.py",
+    "textwrap.py",
+    "this.py",
+    "thread.py",
+    "threading.py",
+    "timeit.py",
+    "tis_620.py",
+    "tix.py",
+    "tk.gif",
+    "token.py",
+    "tokenize.py",
+    "tool.py",
+    "topics.py",
+    "trace.py",
+    "traceback.py",
+    "tracemalloc.py",
+    "transports.py",
+    "ttk.py",
+    "tty.py",
+    "turtle.py",
+    "types.py",
+    "undefined.py",
+    "unicode_escape.py",
+    "unicode_internal.py",
+    "unix_events.py",
+    "unixccompiler.py",
+    "upload.py",
+    "utf_16.py",
+    "utf_16_be.py",
+    "utf_16_le.py",
+    "utf_32.py",
+    "utf_32_be.py",
+    "utf_32_le.py",
+    "utf_7.py",
+    "utf_8.py",
+    "utf_8_sig.py",
+    "util.py",
+    "utils.py",
+    "uu.py",
+    "uu_codec.py",
+    "uuid.py",
+    "validate.py",
+    "version.py",
+    "versionpredicate.py",
+    "warnings.py",
+    "wave.py",
+    "weakref.py",
+    "webbrowser.py",
+    "windows_events.py",
+    "windows_utils.py",
+    "wintypes.py",
+    "xdrlib.py",
+    "xmlbuilder.py",
+    "xmlreader.py",
+    "xxlimited.cpython-34m-arm-linux-gnueabihf.so",
+    "zipfile.py",
+    "zlib_codec.py"
+  ],
+  "base_glibc_assumptions": [
+    "ld-linux-armhf.so.3",
+    "libc.so.6",
+    "libcrypt.so.1",
+    "libdl.so.2",
+    "libm.so.6",
+    "libnsl.so.1",
+    "libpthread.so.0",
+    "librt.so.1",
+    "libutil.so.1"
+  ],
+  "missing": [],
+  "glibc_symbol_versions": [
+    "GLIBC_2.0",
+    "GLIBC_2.10",
+    "GLIBC_2.11",
+    "GLIBC_2.13",
+    "GLIBC_2.15",
+    "GLIBC_2.17",
+    "GLIBC_2.4",
+    "GLIBC_2.6",
+    "GLIBC_2.7",
+    "GLIBC_2.8",
+    "GLIBC_2.9"
+  ],
+  "files": {
+    "usr/sbin/dnsmasq": {
+      "type": "file",
+      "package": "dnsmasq-base",
+      "size": 307852
+    },
+    "lib/arm-linux-gnueabihf/libbz2.so.1.0.4": {
+      "type": "file",
+      "package": "libbz2-1.0",
+      "size": 66008
+    },
+    "lib/arm-linux-gnueabihf/libbz2.so.1.0": {
+      "type": "link",
+      "target": "libbz2.so.1.0.4",
+      "package": "libbz2-1.0"
+    },
+    "lib/arm-linux-gnueabihf/libbz2.so.1": {
+      "type": "link",
+      "target": "libbz2.so.1.0.4",
+      "package": "libbz2-1.0"
+    },
+    "usr/lib/arm-linux-gnueabihf/libdb-5.3.so": {
+      "type": "file",
+      "package": "libdb5.3",
+      "size": 1541292
+    },
+    "lib/arm-linux-gnueabihf/libdbus-1.so.3.8.14": {
+      "type": "file",
+      "package": "libdbus-1-3",
+      "size": 244120
+    },
+    "lib/arm-linux-gnueabihf/libdbus-1.so.3": {
+      "type": "link",
+      "target": "libdbus-1.so.3.8.14",
+      "package": "libdbus-1-3"
+    },
+    "usr/lib/arm-linux-gnueabihf/libexpatw.so.1.6.0": {
+      "type": "file",
+      "package": "libexpat1",
+      "size": 136660
+    },
+    "lib/arm-linux-gnueabihf/libexpat.so.1.6.0": {
+      "type": "file",
+      "package": "libexpat1",
+      "size": 136660
+    },
+    "usr/lib/arm-linux-gnueabihf/libexpatw.so.1": {
+      "type": "link",
+      "target": "libexpatw.so.1.6.0",
+      "package": "libexpat1"
+    },
+    "lib/arm-linux-gnueabihf/libexpat.so.1": {
+      "type": "link",
+      "target": "libexpat.so.1.6.0",
+      "package": "libexpat1"
+    },
+    "usr/lib/arm-linux-gnueabihf/libffi.so.6.0.2": {
+      "type": "file",
+      "package": "libffi6",
+      "size": 30376
+    },
+    "usr/lib/arm-linux-gnueabihf/libffi.so.6": {
+      "type": "link",
+      "target": "libffi.so.6.0.2",
+      "package": "libffi6"
+    },
+    "lib/arm-linux-gnueabihf/libgcc_s.so.1": {
+      "type": "file",
+      "package": "libgcc1",
+      "size": 117520
+    },
+    "usr/lib/arm-linux-gnueabihf/libgmp.so.10.2.0": {
+      "type": "file",
+      "package": "libgmp10",
+      "size": 400156
+    },
+    "usr/lib/arm-linux-gnueabihf/libgmp.so.10": {
+      "type": "link",
+      "target": "libgmp.so.10.2.0",
+      "package": "libgmp10"
+    },
+    "usr/lib/arm-linux-gnueabihf/libhogweed.so.2.5": {
+      "type": "file",
+      "package": "libhogweed2",
+      "size": 165992
+    },
+    "usr/lib/arm-linux-gnueabihf/libhogweed.so.2": {
+      "type": "link",
+      "target": "libhogweed.so.2.5",
+      "package": "libhogweed2"
+    },
+    "usr/lib/arm-linux-gnueabihf/libidn.so.11.6.12": {
+      "type": "file",
+      "package": "libidn11",
+      "size": 198200
+    },
+    "usr/lib/arm-linux-gnueabihf/libidn.so.11": {
+      "type": "link",
+      "target": "libidn.so.11.6.12",
+      "package": "libidn11"
+    },
+    "lib/arm-linux-gnueabihf/liblzma.so.5.0.0": {
+      "type": "file",
+      "package": "liblzma5",
+      "size": 124592
+    },
+    "lib/arm-linux-gnueabihf/liblzma.so.5": {
+      "type": "link",
+      "target": "liblzma.so.5.0.0",
+      "package": "liblzma5"
+    },
+    "lib/arm-linux-gnueabihf/libmnl.so.0.1.0": {
+      "type": "file",
+      "package": "libmnl0",
+      "size": 17712
+    },
+    "lib/arm-linux-gnueabihf/libmnl.so.0": {
+      "type": "link",
+      "target": "libmnl.so.0.1.0",
+      "package": "libmnl0"
+    },
+    "usr/lib/arm-linux-gnueabihf/libmpdec.so.2.4.1": {
+      "type": "file",
+      "package": "libmpdec2",
+      "size": 157916
+    },
+    "usr/lib/arm-linux-gnueabihf/libmpdec.so.2": {
+      "type": "link",
+      "target": "libmpdec.so.2.4.1",
+      "package": "libmpdec2"
+    },
+    "lib/arm-linux-gnueabihf/libncursesw.so.5.9": {
+      "type": "file",
+      "package": "libncursesw5",
+      "size": 178600
+    },
+    "usr/lib/arm-linux-gnueabihf/libpanelw.so.5.9": {
+      "type": "file",
+      "package": "libncursesw5",
+      "size": 9520
+    },
+    "usr/lib/arm-linux-gnueabihf/libformw.so.5.9": {
+      "type": "file",
+      "package": "libncursesw5",
+      "size": 55520
+    },
+    "usr/lib/arm-linux-gnueabihf/libmenuw.so.5.9": {
+      "type": "file",
+      "package": "libncursesw5",
+      "size": 26360
+    },
+    "lib/arm-linux-gnueabihf/libncursesw.so.5": {
+      "type": "link",
+      "target": "libncursesw.so.5.9",
+      "package": "libncursesw5"
+    },
+    "usr/lib/arm-linux-gnueabihf/libmenuw.so.5": {
+      "type": "link",
+      "target": "libmenuw.so.5.9",
+      "package": "libncursesw5"
+    },
+    "usr/lib/arm-linux-gnueabihf/libformw.so.5": {
+      "type": "link",
+      "target": "libformw.so.5.9",
+      "package": "libncursesw5"
+    },
+    "usr/lib/arm-linux-gnueabihf/libpanelw.so.5": {
+      "type": "link",
+      "target": "libpanelw.so.5.9",
+      "package": "libncursesw5"
+    },
+    "usr/lib/arm-linux-gnueabihf/libnetfilter_conntrack.so.3.5.0": {
+      "type": "file",
+      "package": "libnetfilter-conntrack3",
+      "size": 87748
+    },
+    "usr/lib/arm-linux-gnueabihf/libnetfilter_conntrack.so.3": {
+      "type": "link",
+      "target": "libnetfilter_conntrack.so.3.5.0",
+      "package": "libnetfilter-conntrack3"
+    },
+    "usr/lib/arm-linux-gnueabihf/libnettle.so.4.7": {
+      "type": "file",
+      "package": "libnettle4",
+      "size": 194424
+    },
+    "usr/lib/arm-linux-gnueabihf/libnettle.so.4": {
+      "type": "link",
+      "target": "libnettle.so.4.7",
+      "package": "libnettle4"
+    },
+    "usr/lib/arm-linux-gnueabihf/libnfnetlink.so.0.2.0": {
+      "type": "file",
+      "package": "libnfnetlink0",
+      "size": 21616
+    },
+    "usr/lib/arm-linux-gnueabihf/libnfnetlink.so.0": {
+      "type": "link",
+      "target": "libnfnetlink.so.0.2.0",
+      "package": "libnfnetlink0"
+    },
+    "usr/lib/python3.4/lib-dynload/_hashlib.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 23716
+    },
+    "usr/lib/python3.4/lib-dynload/_opcode.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5680
+    },
+    "usr/lib/python3.4/lib-dynload/_ssl.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 77224
+    },
+    "usr/lib/python3.4/__future__.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 4584
+    },
+    "usr/lib/python3.4/_bootlocale.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1301
+    },
+    "usr/lib/python3.4/_collections_abc.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 19967
+    },
+    "usr/lib/python3.4/_compat_pickle.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 4338
+    },
+    "usr/lib/python3.4/_sitebuiltins.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 3115
+    },
+    "usr/lib/python3.4/_threading_local.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 7410
+    },
+    "usr/lib/python3.4/_weakrefset.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5705
+    },
+    "usr/lib/python3.4/configparser.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 49437
+    },
+    "usr/lib/python3.4/abc.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 8624
+    },
+    "usr/lib/python3.4/argparse.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 89948
+    },
+    "usr/lib/python3.4/ast.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12034
+    },
+    "usr/lib/python3.4/bisect.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 2595
+    },
+    "usr/lib/python3.4/compileall.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 9793
+    },
+    "usr/lib/python3.4/contextlib.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 11648
+    },
+    "usr/lib/python3.4/copy.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 8991
+    },
+    "usr/lib/python3.4/copyreg.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 6833
+    },
+    "usr/lib/python3.4/dis.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 17160
+    },
+    "usr/lib/python3.4/enum.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 20351
+    },
+    "usr/lib/python3.4/fnmatch.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 3163
+    },
+    "usr/lib/python3.4/functools.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 28681
+    },
+    "usr/lib/python3.4/genericpath.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 3882
+    },
+    "usr/lib/python3.4/getopt.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 7488
+    },
+    "usr/lib/python3.4/glob.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 3461
+    },
+    "usr/lib/python3.4/hashlib.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 7983
+    },
+    "usr/lib/python3.4/heapq.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 17997
+    },
+    "usr/lib/python3.4/imp.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 9984
+    },
+    "usr/lib/python3.4/inspect.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 104117
+    },
+    "usr/lib/python3.4/io.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 3395
+    },
+    "usr/lib/python3.4/linecache.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 3862
+    },
+    "usr/lib/python3.4/locale.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 74534
+    },
+    "usr/lib/python3.4/opcode.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5442
+    },
+    "usr/lib/python3.4/operator.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 9195
+    },
+    "usr/lib/python3.4/optparse.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 60346
+    },
+    "usr/lib/python3.4/os.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 33763
+    },
+    "usr/lib/python3.4/pickle.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 55802
+    },
+    "usr/lib/python3.4/pkgutil.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 21215
+    },
+    "usr/lib/python3.4/posixpath.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13448
+    },
+    "usr/lib/python3.4/py_compile.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 7094
+    },
+    "usr/lib/python3.4/random.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 26084
+    },
+    "usr/lib/python3.4/re.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 15262
+    },
+    "usr/lib/python3.4/reprlib.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5110
+    },
+    "usr/lib/python3.4/runpy.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 10816
+    },
+    "usr/lib/python3.4/selectors.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 16460
+    },
+    "usr/lib/python3.4/socket.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 18927
+    },
+    "usr/lib/python3.4/sre_compile.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 15568
+    },
+    "usr/lib/python3.4/sre_constants.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 7267
+    },
+    "usr/lib/python3.4/sre_parse.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 30445
+    },
+    "usr/lib/python3.4/ssl.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34402
+    },
+    "usr/lib/python3.4/stat.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 4400
+    },
+    "usr/lib/python3.4/string.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 10444
+    },
+    "usr/lib/python3.4/struct.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 257
+    },
+    "usr/lib/python3.4/subprocess.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 64048
+    },
+    "usr/lib/python3.4/sysconfig.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 24820
+    },
+    "usr/lib/python3.4/tempfile.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 26387
+    },
+    "usr/lib/python3.4/textwrap.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 19104
+    },
+    "usr/lib/python3.4/threading.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 48997
+    },
+    "usr/lib/python3.4/token.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 3034
+    },
+    "usr/lib/python3.4/tokenize.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 24876
+    },
+    "usr/lib/python3.4/traceback.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 11167
+    },
+    "usr/lib/python3.4/types.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5360
+    },
+    "usr/lib/python3.4/warnings.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 14180
+    },
+    "usr/lib/python3.4/weakref.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 18785
+    },
+    "usr/lib/python3.4/collections/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 41964
+    },
+    "usr/lib/python3.4/collections/__main__.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1275
+    },
+    "usr/lib/python3.4/collections/abc.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 68
+    },
+    "usr/lib/python3.4/encodings/big5.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1019
+    },
+    "usr/lib/python3.4/encodings/big5hkscs.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1039
+    },
+    "usr/lib/python3.4/encodings/bz2_codec.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 2249
+    },
+    "usr/lib/python3.4/encodings/cp932.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1023
+    },
+    "usr/lib/python3.4/encodings/cp949.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1023
+    },
+    "usr/lib/python3.4/encodings/cp950.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1023
+    },
+    "usr/lib/python3.4/encodings/euc_jis_2004.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1051
+    },
+    "usr/lib/python3.4/encodings/euc_jisx0213.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1051
+    },
+    "usr/lib/python3.4/encodings/euc_jp.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1027
+    },
+    "usr/lib/python3.4/encodings/euc_kr.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1027
+    },
+    "usr/lib/python3.4/encodings/gb18030.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1031
+    },
+    "usr/lib/python3.4/encodings/gb2312.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1027
+    },
+    "usr/lib/python3.4/encodings/gbk.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1015
+    },
+    "usr/lib/python3.4/encodings/iso2022_jp.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1053
+    },
+    "usr/lib/python3.4/encodings/iso2022_jp_1.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1061
+    },
+    "usr/lib/python3.4/encodings/iso2022_jp_2.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1061
+    },
+    "usr/lib/python3.4/encodings/iso2022_jp_2004.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1073
+    },
+    "usr/lib/python3.4/encodings/iso2022_jp_3.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1061
+    },
+    "usr/lib/python3.4/encodings/iso2022_jp_ext.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1069
+    },
+    "usr/lib/python3.4/encodings/iso2022_kr.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1053
+    },
+    "usr/lib/python3.4/encodings/johab.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1023
+    },
+    "usr/lib/python3.4/encodings/shift_jis.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1039
+    },
+    "usr/lib/python3.4/encodings/shift_jis_2004.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1059
+    },
+    "usr/lib/python3.4/encodings/shift_jisx0213.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1059
+    },
+    "usr/lib/python3.4/encodings/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5067
+    },
+    "usr/lib/python3.4/encodings/aliases.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 15414
+    },
+    "usr/lib/python3.4/encodings/ascii.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1248
+    },
+    "usr/lib/python3.4/encodings/base64_codec.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1533
+    },
+    "usr/lib/python3.4/encodings/charmap.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 2084
+    },
+    "usr/lib/python3.4/encodings/cp037.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13121
+    },
+    "usr/lib/python3.4/encodings/cp1006.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13568
+    },
+    "usr/lib/python3.4/encodings/cp1026.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13113
+    },
+    "usr/lib/python3.4/encodings/cp1125.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34597
+    },
+    "usr/lib/python3.4/encodings/cp1140.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13105
+    },
+    "usr/lib/python3.4/encodings/cp1250.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13686
+    },
+    "usr/lib/python3.4/encodings/cp1251.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13361
+    },
+    "usr/lib/python3.4/encodings/cp1252.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13511
+    },
+    "usr/lib/python3.4/encodings/cp1253.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13094
+    },
+    "usr/lib/python3.4/encodings/cp1254.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13502
+    },
+    "usr/lib/python3.4/encodings/cp1255.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12466
+    },
+    "usr/lib/python3.4/encodings/cp1256.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12814
+    },
+    "usr/lib/python3.4/encodings/cp1257.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13374
+    },
+    "usr/lib/python3.4/encodings/cp1258.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13364
+    },
+    "usr/lib/python3.4/encodings/cp273.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 14132
+    },
+    "usr/lib/python3.4/encodings/cp424.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12055
+    },
+    "usr/lib/python3.4/encodings/cp437.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34564
+    },
+    "usr/lib/python3.4/encodings/cp500.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13121
+    },
+    "usr/lib/python3.4/encodings/cp65001.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1003
+    },
+    "usr/lib/python3.4/encodings/cp720.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13686
+    },
+    "usr/lib/python3.4/encodings/cp737.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34681
+    },
+    "usr/lib/python3.4/encodings/cp775.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34476
+    },
+    "usr/lib/python3.4/encodings/cp850.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34105
+    },
+    "usr/lib/python3.4/encodings/cp852.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 35002
+    },
+    "usr/lib/python3.4/encodings/cp855.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 33850
+    },
+    "usr/lib/python3.4/encodings/cp856.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12423
+    },
+    "usr/lib/python3.4/encodings/cp857.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 33908
+    },
+    "usr/lib/python3.4/encodings/cp858.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34015
+    },
+    "usr/lib/python3.4/encodings/cp860.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34681
+    },
+    "usr/lib/python3.4/encodings/cp861.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34633
+    },
+    "usr/lib/python3.4/encodings/cp862.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 33370
+    },
+    "usr/lib/python3.4/encodings/cp863.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34252
+    },
+    "usr/lib/python3.4/encodings/cp864.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 33663
+    },
+    "usr/lib/python3.4/encodings/cp865.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34618
+    },
+    "usr/lib/python3.4/encodings/cp866.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 34396
+    },
+    "usr/lib/python3.4/encodings/cp869.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 32965
+    },
+    "usr/lib/python3.4/encodings/cp874.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12595
+    },
+    "usr/lib/python3.4/encodings/cp875.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12854
+    },
+    "usr/lib/python3.4/encodings/hex_codec.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1508
+    },
+    "usr/lib/python3.4/encodings/hp_roman8.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13447
+    },
+    "usr/lib/python3.4/encodings/hz.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1011
+    },
+    "usr/lib/python3.4/encodings/idna.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 9170
+    },
+    "usr/lib/python3.4/encodings/iso8859_1.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13176
+    },
+    "usr/lib/python3.4/encodings/iso8859_10.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13589
+    },
+    "usr/lib/python3.4/encodings/iso8859_11.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12335
+    },
+    "usr/lib/python3.4/encodings/iso8859_13.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13271
+    },
+    "usr/lib/python3.4/encodings/iso8859_14.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13652
+    },
+    "usr/lib/python3.4/encodings/iso8859_15.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13212
+    },
+    "usr/lib/python3.4/encodings/iso8859_16.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13557
+    },
+    "usr/lib/python3.4/encodings/iso8859_2.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13404
+    },
+    "usr/lib/python3.4/encodings/iso8859_3.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13089
+    },
+    "usr/lib/python3.4/encodings/iso8859_4.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13376
+    },
+    "usr/lib/python3.4/encodings/iso8859_5.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13015
+    },
+    "usr/lib/python3.4/encodings/iso8859_6.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 10833
+    },
+    "usr/lib/python3.4/encodings/iso8859_7.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12844
+    },
+    "usr/lib/python3.4/encodings/iso8859_8.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 11036
+    },
+    "usr/lib/python3.4/encodings/iso8859_9.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13156
+    },
+    "usr/lib/python3.4/encodings/koi8_r.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13779
+    },
+    "usr/lib/python3.4/encodings/koi8_u.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13762
+    },
+    "usr/lib/python3.4/encodings/latin_1.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1264
+    },
+    "usr/lib/python3.4/encodings/mac_arabic.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 36467
+    },
+    "usr/lib/python3.4/encodings/mac_centeuro.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 14102
+    },
+    "usr/lib/python3.4/encodings/mac_croatian.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13633
+    },
+    "usr/lib/python3.4/encodings/mac_cyrillic.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13454
+    },
+    "usr/lib/python3.4/encodings/mac_farsi.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 15170
+    },
+    "usr/lib/python3.4/encodings/mac_greek.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13721
+    },
+    "usr/lib/python3.4/encodings/mac_iceland.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13498
+    },
+    "usr/lib/python3.4/encodings/mac_latin2.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 14118
+    },
+    "usr/lib/python3.4/encodings/mac_roman.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13480
+    },
+    "usr/lib/python3.4/encodings/mac_romanian.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13661
+    },
+    "usr/lib/python3.4/encodings/mac_turkish.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13513
+    },
+    "usr/lib/python3.4/encodings/mbcs.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1211
+    },
+    "usr/lib/python3.4/encodings/palmos.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 13519
+    },
+    "usr/lib/python3.4/encodings/ptcp154.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 14015
+    },
+    "usr/lib/python3.4/encodings/punycode.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 6881
+    },
+    "usr/lib/python3.4/encodings/quopri_codec.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1512
+    },
+    "usr/lib/python3.4/encodings/raw_unicode_escape.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1208
+    },
+    "usr/lib/python3.4/encodings/tis_620.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12300
+    },
+    "usr/lib/python3.4/encodings/undefined.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1299
+    },
+    "usr/lib/python3.4/encodings/unicode_escape.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1184
+    },
+    "usr/lib/python3.4/encodings/unicode_internal.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1196
+    },
+    "usr/lib/python3.4/encodings/utf_16.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5235
+    },
+    "usr/lib/python3.4/encodings/utf_16_be.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1037
+    },
+    "usr/lib/python3.4/encodings/utf_16_le.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1037
+    },
+    "usr/lib/python3.4/encodings/utf_32.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5128
+    },
+    "usr/lib/python3.4/encodings/utf_32_be.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 930
+    },
+    "usr/lib/python3.4/encodings/utf_32_le.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 930
+    },
+    "usr/lib/python3.4/encodings/utf_7.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 946
+    },
+    "usr/lib/python3.4/encodings/utf_8.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 1005
+    },
+    "usr/lib/python3.4/encodings/utf_8_sig.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 4133
+    },
+    "usr/lib/python3.4/encodings/uu_codec.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 2725
+    },
+    "usr/lib/python3.4/encodings/zlib_codec.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 2204
+    },
+    "usr/lib/python3.4/encodings/rot_13.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 2428
+    },
+    "usr/lib/python3.4/importlib/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 5156
+    },
+    "usr/lib/python3.4/importlib/_bootstrap.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 86787
+    },
+    "usr/lib/python3.4/importlib/abc.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 10476
+    },
+    "usr/lib/python3.4/importlib/machinery.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 789
+    },
+    "usr/lib/python3.4/importlib/util.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 7227
+    },
+    "usr/lib/python3.4/logging/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 68934
+    },
+    "usr/lib/python3.4/logging/config.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 35727
+    },
+    "usr/lib/python3.4/logging/handlers.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 55810
+    },
+    "usr/lib/python3.4/codecs.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 35956
+    },
+    "usr/lib/python3.4/stringprep.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 12917
+    },
+    "usr/lib/python3.4/site.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 22526
+    },
+    "usr/lib/python3.4/_sysconfigdata.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 126
+    },
+    "usr/lib/python3.4/plat-arm-linux-gnueabihf/_sysconfigdata_m.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 20341
+    },
+    "usr/lib/python3.4/base64.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 20165
+    },
+    "usr/lib/python3.4/keyword.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 2209
+    },
+    "usr/lib/python3.4/platform.py": {
+      "type": "file",
+      "package": "libpython3.4-minimal",
+      "size": 50018
+    },
+    "usr/lib/python3.4/sitecustomize.py": {
+      "type": "link",
+      "target": "/etc/python3.4/sitecustomize.py",
+      "package": "libpython3.4-minimal"
+    },
+    "usr/lib/python3.4/test/support/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 78084
+    },
+    "usr/lib/python3.4/test/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 47
+    },
+    "usr/lib/python3.4/test/regrtest.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 61713
+    },
+    "usr/lib/python3.4/test/pystone.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7733
+    },
+    "usr/lib/python3.4/tkinter/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 163568
+    },
+    "usr/lib/python3.4/tkinter/__main__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 148
+    },
+    "usr/lib/python3.4/tkinter/_fix.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2897
+    },
+    "usr/lib/python3.4/tkinter/colorchooser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1793
+    },
+    "usr/lib/python3.4/tkinter/commondialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1412
+    },
+    "usr/lib/python3.4/tkinter/constants.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1493
+    },
+    "usr/lib/python3.4/tkinter/dialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1568
+    },
+    "usr/lib/python3.4/tkinter/dnd.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11488
+    },
+    "usr/lib/python3.4/tkinter/filedialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14502
+    },
+    "usr/lib/python3.4/tkinter/font.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6611
+    },
+    "usr/lib/python3.4/tkinter/messagebox.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3701
+    },
+    "usr/lib/python3.4/tkinter/scrolledtext.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1814
+    },
+    "usr/lib/python3.4/tkinter/simpledialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11407
+    },
+    "usr/lib/python3.4/tkinter/tix.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 77022
+    },
+    "usr/lib/python3.4/tkinter/ttk.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 55714
+    },
+    "usr/lib/python3.4/asyncio/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1376
+    },
+    "usr/lib/python3.4/asyncio/base_events.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 41913
+    },
+    "usr/lib/python3.4/asyncio/base_subprocess.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6135
+    },
+    "usr/lib/python3.4/asyncio/constants.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 195
+    },
+    "usr/lib/python3.4/asyncio/coroutines.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6139
+    },
+    "usr/lib/python3.4/asyncio/events.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19212
+    },
+    "usr/lib/python3.4/asyncio/futures.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14753
+    },
+    "usr/lib/python3.4/asyncio/locks.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14408
+    },
+    "usr/lib/python3.4/asyncio/log.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 124
+    },
+    "usr/lib/python3.4/asyncio/proactor_events.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 18098
+    },
+    "usr/lib/python3.4/asyncio/protocols.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4404
+    },
+    "usr/lib/python3.4/asyncio/queues.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9019
+    },
+    "usr/lib/python3.4/asyncio/selector_events.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 36307
+    },
+    "usr/lib/python3.4/asyncio/streams.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 16169
+    },
+    "usr/lib/python3.4/asyncio/subprocess.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7702
+    },
+    "usr/lib/python3.4/asyncio/tasks.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 22923
+    },
+    "usr/lib/python3.4/asyncio/test_utils.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11895
+    },
+    "usr/lib/python3.4/asyncio/transports.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9872
+    },
+    "usr/lib/python3.4/asyncio/unix_events.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 31413
+    },
+    "usr/lib/python3.4/asyncio/windows_events.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 23240
+    },
+    "usr/lib/python3.4/asyncio/windows_utils.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6066
+    },
+    "usr/lib/python3.4/concurrent/futures/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 800
+    },
+    "usr/lib/python3.4/concurrent/futures/_base.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19638
+    },
+    "usr/lib/python3.4/concurrent/futures/process.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17574
+    },
+    "usr/lib/python3.4/concurrent/futures/thread.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4548
+    },
+    "usr/lib/python3.4/concurrent/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 38
+    },
+    "usr/lib/python3.4/email/mime/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 0
+    },
+    "usr/lib/python3.4/email/mime/application.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1256
+    },
+    "usr/lib/python3.4/email/mime/audio.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2674
+    },
+    "usr/lib/python3.4/email/mime/base.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 794
+    },
+    "usr/lib/python3.4/email/mime/image.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1764
+    },
+    "usr/lib/python3.4/email/mime/message.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1286
+    },
+    "usr/lib/python3.4/email/mime/multipart.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1573
+    },
+    "usr/lib/python3.4/email/mime/nonmultipart.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 691
+    },
+    "usr/lib/python3.4/email/mime/text.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1367
+    },
+    "usr/lib/python3.4/email/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1789
+    },
+    "usr/lib/python3.4/email/_encoded_words.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7913
+    },
+    "usr/lib/python3.4/email/_header_value_parser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 103965
+    },
+    "usr/lib/python3.4/email/_parseaddr.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17604
+    },
+    "usr/lib/python3.4/email/_policybase.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14327
+    },
+    "usr/lib/python3.4/email/architecture.rst": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9560
+    },
+    "usr/lib/python3.4/email/base64mime.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3558
+    },
+    "usr/lib/python3.4/email/charset.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17219
+    },
+    "usr/lib/python3.4/email/contentmanager.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10598
+    },
+    "usr/lib/python3.4/email/encoders.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1786
+    },
+    "usr/lib/python3.4/email/errors.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3535
+    },
+    "usr/lib/python3.4/email/feedparser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 22516
+    },
+    "usr/lib/python3.4/email/generator.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19858
+    },
+    "usr/lib/python3.4/email/header.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 24163
+    },
+    "usr/lib/python3.4/email/headerregistry.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20035
+    },
+    "usr/lib/python3.4/email/iterators.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2135
+    },
+    "usr/lib/python3.4/email/message.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 45901
+    },
+    "usr/lib/python3.4/email/parser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5045
+    },
+    "usr/lib/python3.4/email/policy.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9290
+    },
+    "usr/lib/python3.4/email/quoprimime.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9859
+    },
+    "usr/lib/python3.4/email/utils.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14309
+    },
+    "usr/lib/python3.4/html/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4756
+    },
+    "usr/lib/python3.4/html/entities.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 75240
+    },
+    "usr/lib/python3.4/html/parser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20781
+    },
+    "usr/lib/python3.4/json/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 13246
+    },
+    "usr/lib/python3.4/json/decoder.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12763
+    },
+    "usr/lib/python3.4/json/encoder.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15788
+    },
+    "usr/lib/python3.4/json/scanner.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2416
+    },
+    "usr/lib/python3.4/json/tool.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 954
+    },
+    "usr/lib/python3.4/http/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 38
+    },
+    "usr/lib/python3.4/http/client.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 47862
+    },
+    "usr/lib/python3.4/http/cookiejar.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 76065
+    },
+    "usr/lib/python3.4/http/cookies.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20859
+    },
+    "usr/lib/python3.4/http/server.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 46144
+    },
+    "usr/lib/python3.4/dbm/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5777
+    },
+    "usr/lib/python3.4/dbm/dumb.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10539
+    },
+    "usr/lib/python3.4/dbm/gnu.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 186
+    },
+    "usr/lib/python3.4/dbm/ndbm.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 70
+    },
+    "usr/lib/python3.4/xmlrpc/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 38
+    },
+    "usr/lib/python3.4/xmlrpc/client.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 47237
+    },
+    "usr/lib/python3.4/xmlrpc/server.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 36597
+    },
+    "usr/lib/python3.4/sqlite3/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1018
+    },
+    "usr/lib/python3.4/sqlite3/dbapi2.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2687
+    },
+    "usr/lib/python3.4/sqlite3/dump.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2825
+    },
+    "usr/lib/python3.4/wsgiref/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 587
+    },
+    "usr/lib/python3.4/wsgiref/handlers.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20632
+    },
+    "usr/lib/python3.4/wsgiref/headers.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6682
+    },
+    "usr/lib/python3.4/wsgiref/simple_server.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5153
+    },
+    "usr/lib/python3.4/wsgiref/util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5634
+    },
+    "usr/lib/python3.4/wsgiref/validate.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15151
+    },
+    "usr/lib/python3.4/urllib/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 0
+    },
+    "usr/lib/python3.4/urllib/error.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2667
+    },
+    "usr/lib/python3.4/urllib/parse.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 35891
+    },
+    "usr/lib/python3.4/urllib/request.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 92682
+    },
+    "usr/lib/python3.4/urllib/response.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2188
+    },
+    "usr/lib/python3.4/urllib/robotparser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6964
+    },
+    "usr/lib/python3.4/lib2to3/fixes/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 47
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_apply.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1901
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_asserts.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 984
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_basestring.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 320
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_buffer.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 590
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_callable.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1151
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_dict.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3816
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_except.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3344
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_exec.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1001
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_execfile.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1990
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_exitfunc.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2497
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_filter.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2102
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_funcattrs.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 644
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_future.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 547
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_getcwdu.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 451
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_has_key.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3222
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_idioms.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4876
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_import.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3256
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_imports.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5684
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_imports2.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 289
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_input.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 707
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_intern.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 774
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_isinstance.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1608
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_itertools.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1548
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_itertools_imports.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2086
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_long.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 476
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_map.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3058
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_metaclass.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8201
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_methodattrs.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 606
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_ne.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 571
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_next.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3174
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_nonzero.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 597
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_numliterals.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 768
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_operator.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3471
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_paren.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1227
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_print.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2854
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_raise.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2926
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_raw_input.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 454
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_reduce.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 837
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_reload.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 693
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_renames.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2221
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_repr.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 613
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_set_literal.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1697
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_standarderror.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 449
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_sys_exc.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1034
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_throw.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1582
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_tuple_params.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5565
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_types.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1797
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_unicode.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1256
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_urllib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8384
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_ws_comma.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1090
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_xrange.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2694
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_xreadlines.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 689
+    },
+    "usr/lib/python3.4/lib2to3/fixes/fix_zip.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 902
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 143
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/conv.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9642
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/driver.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5361
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/grammar.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5366
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/literals.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1615
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/parse.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8053
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/pgen.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 13780
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/tokenize.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19321
+    },
+    "usr/lib/python3.4/lib2to3/pgen2/token.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1262
+    },
+    "usr/lib/python3.4/lib2to3/Grammar.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6635
+    },
+    "usr/lib/python3.4/lib2to3/PatternGrammar.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 793
+    },
+    "usr/lib/python3.4/lib2to3/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7
+    },
+    "usr/lib/python3.4/lib2to3/__main__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 67
+    },
+    "usr/lib/python3.4/lib2to3/btm_matcher.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6833
+    },
+    "usr/lib/python3.4/lib2to3/btm_utils.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9965
+    },
+    "usr/lib/python3.4/lib2to3/fixer_base.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6706
+    },
+    "usr/lib/python3.4/lib2to3/fixer_util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15256
+    },
+    "usr/lib/python3.4/lib2to3/main.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11622
+    },
+    "usr/lib/python3.4/lib2to3/patcomp.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7075
+    },
+    "usr/lib/python3.4/lib2to3/pygram.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1114
+    },
+    "usr/lib/python3.4/lib2to3/pytree.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 28305
+    },
+    "usr/lib/python3.4/lib2to3/refactor.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 28040
+    },
+    "usr/lib/python3.4/ctypes/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17020
+    },
+    "usr/lib/python3.4/ctypes/_endian.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1954
+    },
+    "usr/lib/python3.4/ctypes/util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9615
+    },
+    "usr/lib/python3.4/ctypes/wintypes.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5628
+    },
+    "usr/lib/python3.4/idlelib/Icons/folder.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 120
+    },
+    "usr/lib/python3.4/idlelib/Icons/idle.icns": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 57435
+    },
+    "usr/lib/python3.4/idlelib/Icons/idle.ico": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19790
+    },
+    "usr/lib/python3.4/idlelib/Icons/idle_16.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1034
+    },
+    "usr/lib/python3.4/idlelib/Icons/idle_16.png": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1264
+    },
+    "usr/lib/python3.4/idlelib/Icons/idle_32.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1435
+    },
+    "usr/lib/python3.4/idlelib/Icons/idle_32.png": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2542
+    },
+    "usr/lib/python3.4/idlelib/Icons/idle_48.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1388
+    },
+    "usr/lib/python3.4/idlelib/Icons/idle_48.png": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4710
+    },
+    "usr/lib/python3.4/idlelib/Icons/minusnode.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 96
+    },
+    "usr/lib/python3.4/idlelib/Icons/openfolder.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 125
+    },
+    "usr/lib/python3.4/idlelib/Icons/plusnode.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 79
+    },
+    "usr/lib/python3.4/idlelib/Icons/python.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 585
+    },
+    "usr/lib/python3.4/idlelib/Icons/tk.gif": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 85
+    },
+    "usr/lib/python3.4/idlelib/AutoComplete.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9202
+    },
+    "usr/lib/python3.4/idlelib/AutoCompleteWindow.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17672
+    },
+    "usr/lib/python3.4/idlelib/AutoExpand.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3395
+    },
+    "usr/lib/python3.4/idlelib/Bindings.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3049
+    },
+    "usr/lib/python3.4/idlelib/CREDITS.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1865
+    },
+    "usr/lib/python3.4/idlelib/CallTipWindow.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6247
+    },
+    "usr/lib/python3.4/idlelib/CallTips.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5932
+    },
+    "usr/lib/python3.4/idlelib/ChangeLog": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 56393
+    },
+    "usr/lib/python3.4/idlelib/ClassBrowser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6784
+    },
+    "usr/lib/python3.4/idlelib/CodeContext.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8353
+    },
+    "usr/lib/python3.4/idlelib/ColorDelegator.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9679
+    },
+    "usr/lib/python3.4/idlelib/Debugger.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 16347
+    },
+    "usr/lib/python3.4/idlelib/Delegator.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 665
+    },
+    "usr/lib/python3.4/idlelib/EditorWindow.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 66718
+    },
+    "usr/lib/python3.4/idlelib/FileList.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3813
+    },
+    "usr/lib/python3.4/idlelib/FormatParagraph.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7194
+    },
+    "usr/lib/python3.4/idlelib/GrepDialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5143
+    },
+    "usr/lib/python3.4/idlelib/HISTORY.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10317
+    },
+    "usr/lib/python3.4/idlelib/HyperParser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12877
+    },
+    "usr/lib/python3.4/idlelib/IOBinding.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19745
+    },
+    "usr/lib/python3.4/idlelib/IdleHistory.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4052
+    },
+    "usr/lib/python3.4/idlelib/MultiCall.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 18762
+    },
+    "usr/lib/python3.4/idlelib/MultiStatusBar.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1268
+    },
+    "usr/lib/python3.4/idlelib/NEWS.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 34329
+    },
+    "usr/lib/python3.4/idlelib/ObjectBrowser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3975
+    },
+    "usr/lib/python3.4/idlelib/OutputWindow.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4394
+    },
+    "usr/lib/python3.4/idlelib/ParenMatch.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6713
+    },
+    "usr/lib/python3.4/idlelib/PathBrowser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3111
+    },
+    "usr/lib/python3.4/idlelib/Percolator.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3244
+    },
+    "usr/lib/python3.4/idlelib/PyParse.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20491
+    },
+    "usr/lib/python3.4/idlelib/README.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2502
+    },
+    "usr/lib/python3.4/idlelib/RemoteDebugger.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12029
+    },
+    "usr/lib/python3.4/idlelib/RemoteObjectBrowser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 964
+    },
+    "usr/lib/python3.4/idlelib/ReplaceDialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6642
+    },
+    "usr/lib/python3.4/idlelib/RstripExtension.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1050
+    },
+    "usr/lib/python3.4/idlelib/ScriptBinding.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8057
+    },
+    "usr/lib/python3.4/idlelib/ScrolledList.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4159
+    },
+    "usr/lib/python3.4/idlelib/SearchDialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2634
+    },
+    "usr/lib/python3.4/idlelib/SearchDialogBase.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7009
+    },
+    "usr/lib/python3.4/idlelib/SearchEngine.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7483
+    },
+    "usr/lib/python3.4/idlelib/StackViewer.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4410
+    },
+    "usr/lib/python3.4/idlelib/TODO.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8478
+    },
+    "usr/lib/python3.4/idlelib/ToolTip.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3173
+    },
+    "usr/lib/python3.4/idlelib/TreeWidget.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15030
+    },
+    "usr/lib/python3.4/idlelib/UndoDelegator.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10815
+    },
+    "usr/lib/python3.4/idlelib/WidgetRedirector.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6869
+    },
+    "usr/lib/python3.4/idlelib/WindowList.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2472
+    },
+    "usr/lib/python3.4/idlelib/ZoomHeight.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1300
+    },
+    "usr/lib/python3.4/idlelib/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 37
+    },
+    "usr/lib/python3.4/idlelib/__main__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 109
+    },
+    "usr/lib/python3.4/idlelib/aboutDialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6623
+    },
+    "usr/lib/python3.4/idlelib/config-extensions.def": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2788
+    },
+    "usr/lib/python3.4/idlelib/config-highlight.def": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1740
+    },
+    "usr/lib/python3.4/idlelib/config-keys.def": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7777
+    },
+    "usr/lib/python3.4/idlelib/config-main.def": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2514
+    },
+    "usr/lib/python3.4/idlelib/configDialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 54611
+    },
+    "usr/lib/python3.4/idlelib/configHandler.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 29599
+    },
+    "usr/lib/python3.4/idlelib/configHelpSourceEdit.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6670
+    },
+    "usr/lib/python3.4/idlelib/configSectionNameDialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4007
+    },
+    "usr/lib/python3.4/idlelib/dynOptionMenuWidget.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1987
+    },
+    "usr/lib/python3.4/idlelib/extend.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3642
+    },
+    "usr/lib/python3.4/idlelib/help.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17689
+    },
+    "usr/lib/python3.4/idlelib/idle.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 400
+    },
+    "usr/lib/python3.4/idlelib/idle.pyw": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 671
+    },
+    "usr/lib/python3.4/idlelib/idlever.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 23
+    },
+    "usr/lib/python3.4/idlelib/keybindingDialog.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12416
+    },
+    "usr/lib/python3.4/idlelib/macosxSupport.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8543
+    },
+    "usr/lib/python3.4/idlelib/rpc.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20933
+    },
+    "usr/lib/python3.4/idlelib/run.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 13684
+    },
+    "usr/lib/python3.4/idlelib/tabbedpages.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 18418
+    },
+    "usr/lib/python3.4/idlelib/testcode.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 233
+    },
+    "usr/lib/python3.4/idlelib/textView.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3225
+    },
+    "usr/lib/python3.4/idlelib/PyShell.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 58546
+    },
+    "usr/lib/python3.4/distutils/command/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 799
+    },
+    "usr/lib/python3.4/distutils/command/bdist.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5488
+    },
+    "usr/lib/python3.4/distutils/command/bdist_dumb.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4875
+    },
+    "usr/lib/python3.4/distutils/command/bdist_msi.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 35217
+    },
+    "usr/lib/python3.4/distutils/command/bdist_rpm.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 21670
+    },
+    "usr/lib/python3.4/distutils/command/bdist_wininst.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15044
+    },
+    "usr/lib/python3.4/distutils/command/build.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5413
+    },
+    "usr/lib/python3.4/distutils/command/build_clib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8022
+    },
+    "usr/lib/python3.4/distutils/command/build_ext.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 31250
+    },
+    "usr/lib/python3.4/distutils/command/build_py.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17162
+    },
+    "usr/lib/python3.4/distutils/command/build_scripts.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6231
+    },
+    "usr/lib/python3.4/distutils/command/check.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5484
+    },
+    "usr/lib/python3.4/distutils/command/clean.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2776
+    },
+    "usr/lib/python3.4/distutils/command/command_template": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 633
+    },
+    "usr/lib/python3.4/distutils/command/config.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 13092
+    },
+    "usr/lib/python3.4/distutils/command/install.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 28524
+    },
+    "usr/lib/python3.4/distutils/command/install_data.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2822
+    },
+    "usr/lib/python3.4/distutils/command/install_egg_info.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3522
+    },
+    "usr/lib/python3.4/distutils/command/install_headers.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1298
+    },
+    "usr/lib/python3.4/distutils/command/install_lib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8629
+    },
+    "usr/lib/python3.4/distutils/command/install_scripts.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2017
+    },
+    "usr/lib/python3.4/distutils/command/register.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11708
+    },
+    "usr/lib/python3.4/distutils/command/sdist.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 18221
+    },
+    "usr/lib/python3.4/distutils/command/upload.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7395
+    },
+    "usr/lib/python3.4/distutils/README": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 295
+    },
+    "usr/lib/python3.4/distutils/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 314
+    },
+    "usr/lib/python3.4/distutils/archive_util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7945
+    },
+    "usr/lib/python3.4/distutils/bcppcompiler.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14935
+    },
+    "usr/lib/python3.4/distutils/ccompiler.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 47383
+    },
+    "usr/lib/python3.4/distutils/cmd.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19147
+    },
+    "usr/lib/python3.4/distutils/config.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4871
+    },
+    "usr/lib/python3.4/distutils/core.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8909
+    },
+    "usr/lib/python3.4/distutils/cygwinccompiler.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 16471
+    },
+    "usr/lib/python3.4/distutils/debug.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 139
+    },
+    "usr/lib/python3.4/distutils/dep_util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3491
+    },
+    "usr/lib/python3.4/distutils/dir_util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8197
+    },
+    "usr/lib/python3.4/distutils/dist.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 49786
+    },
+    "usr/lib/python3.4/distutils/errors.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3577
+    },
+    "usr/lib/python3.4/distutils/extension.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10335
+    },
+    "usr/lib/python3.4/distutils/fancy_getopt.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17784
+    },
+    "usr/lib/python3.4/distutils/file_util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7812
+    },
+    "usr/lib/python3.4/distutils/filelist.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12720
+    },
+    "usr/lib/python3.4/distutils/log.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1908
+    },
+    "usr/lib/python3.4/distutils/msvc9compiler.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 30528
+    },
+    "usr/lib/python3.4/distutils/msvccompiler.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 23479
+    },
+    "usr/lib/python3.4/distutils/spawn.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7514
+    },
+    "usr/lib/python3.4/distutils/sysconfig.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 21476
+    },
+    "usr/lib/python3.4/distutils/text_file.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12467
+    },
+    "usr/lib/python3.4/distutils/unixccompiler.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 13694
+    },
+    "usr/lib/python3.4/distutils/util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20665
+    },
+    "usr/lib/python3.4/distutils/version.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12479
+    },
+    "usr/lib/python3.4/distutils/versionpredicate.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5132
+    },
+    "usr/lib/python3.4/xml/dom/NodeFilter.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 936
+    },
+    "usr/lib/python3.4/xml/dom/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4019
+    },
+    "usr/lib/python3.4/xml/dom/domreg.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3402
+    },
+    "usr/lib/python3.4/xml/dom/expatbuilder.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 35755
+    },
+    "usr/lib/python3.4/xml/dom/minicompat.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3340
+    },
+    "usr/lib/python3.4/xml/dom/minidom.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 66804
+    },
+    "usr/lib/python3.4/xml/dom/pulldom.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11761
+    },
+    "usr/lib/python3.4/xml/dom/xmlbuilder.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12377
+    },
+    "usr/lib/python3.4/xml/etree/ElementInclude.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5151
+    },
+    "usr/lib/python3.4/xml/etree/ElementPath.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9791
+    },
+    "usr/lib/python3.4/xml/etree/ElementTree.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 57368
+    },
+    "usr/lib/python3.4/xml/etree/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1604
+    },
+    "usr/lib/python3.4/xml/etree/cElementTree.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 82
+    },
+    "usr/lib/python3.4/xml/parsers/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 167
+    },
+    "usr/lib/python3.4/xml/parsers/expat.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 248
+    },
+    "usr/lib/python3.4/xml/sax/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3503
+    },
+    "usr/lib/python3.4/xml/sax/_exceptions.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4785
+    },
+    "usr/lib/python3.4/xml/sax/expatreader.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14659
+    },
+    "usr/lib/python3.4/xml/sax/handler.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 13922
+    },
+    "usr/lib/python3.4/xml/sax/saxutils.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12039
+    },
+    "usr/lib/python3.4/xml/sax/xmlreader.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12612
+    },
+    "usr/lib/python3.4/xml/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 557
+    },
+    "usr/lib/python3.4/multiprocessing/dummy/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2881
+    },
+    "usr/lib/python3.4/multiprocessing/dummy/connection.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1620
+    },
+    "usr/lib/python3.4/multiprocessing/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 923
+    },
+    "usr/lib/python3.4/multiprocessing/connection.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 30570
+    },
+    "usr/lib/python3.4/multiprocessing/context.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10669
+    },
+    "usr/lib/python3.4/multiprocessing/forkserver.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8477
+    },
+    "usr/lib/python3.4/multiprocessing/heap.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7952
+    },
+    "usr/lib/python3.4/multiprocessing/managers.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 36273
+    },
+    "usr/lib/python3.4/multiprocessing/pool.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 24643
+    },
+    "usr/lib/python3.4/multiprocessing/popen_fork.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2420
+    },
+    "usr/lib/python3.4/multiprocessing/popen_forkserver.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1967
+    },
+    "usr/lib/python3.4/multiprocessing/popen_spawn_posix.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1915
+    },
+    "usr/lib/python3.4/multiprocessing/popen_spawn_win32.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2998
+    },
+    "usr/lib/python3.4/multiprocessing/process.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9144
+    },
+    "usr/lib/python3.4/multiprocessing/queues.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11393
+    },
+    "usr/lib/python3.4/multiprocessing/reduction.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8108
+    },
+    "usr/lib/python3.4/multiprocessing/resource_sharer.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5318
+    },
+    "usr/lib/python3.4/multiprocessing/semaphore_tracker.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4820
+    },
+    "usr/lib/python3.4/multiprocessing/sharedctypes.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6334
+    },
+    "usr/lib/python3.4/multiprocessing/spawn.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8847
+    },
+    "usr/lib/python3.4/multiprocessing/synchronize.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12224
+    },
+    "usr/lib/python3.4/multiprocessing/util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10619
+    },
+    "usr/lib/python3.4/unittest/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2718
+    },
+    "usr/lib/python3.4/unittest/__main__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 485
+    },
+    "usr/lib/python3.4/unittest/case.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 55519
+    },
+    "usr/lib/python3.4/unittest/loader.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 16378
+    },
+    "usr/lib/python3.4/unittest/main.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9759
+    },
+    "usr/lib/python3.4/unittest/mock.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 76037
+    },
+    "usr/lib/python3.4/unittest/result.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7308
+    },
+    "usr/lib/python3.4/unittest/runner.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7484
+    },
+    "usr/lib/python3.4/unittest/signals.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2403
+    },
+    "usr/lib/python3.4/unittest/suite.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10541
+    },
+    "usr/lib/python3.4/unittest/util.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5429
+    },
+    "usr/lib/python3.4/venv/scripts/posix/activate": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2158
+    },
+    "usr/lib/python3.4/venv/scripts/posix/activate.csh": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1276
+    },
+    "usr/lib/python3.4/venv/scripts/posix/activate.fish": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2410
+    },
+    "usr/lib/python3.4/venv/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19514
+    },
+    "usr/lib/python3.4/venv/__main__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 145
+    },
+    "usr/lib/python3.4/curses/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3366
+    },
+    "usr/lib/python3.4/curses/ascii.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2607
+    },
+    "usr/lib/python3.4/curses/has_key.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5634
+    },
+    "usr/lib/python3.4/curses/panel.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 87
+    },
+    "usr/lib/python3.4/curses/textpad.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7339
+    },
+    "usr/lib/python3.4/pydoc_data/__init__.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 0
+    },
+    "usr/lib/python3.4/pydoc_data/_pydoc.css": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 96
+    },
+    "usr/lib/python3.4/pydoc_data/topics.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 386447
+    },
+    "usr/lib/python3.4/plat-arm-linux-gnueabihf/CDROM.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5035
+    },
+    "usr/lib/python3.4/plat-arm-linux-gnueabihf/DLFCN.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1625
+    },
+    "usr/lib/python3.4/plat-arm-linux-gnueabihf/IN.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15033
+    },
+    "usr/lib/python3.4/plat-arm-linux-gnueabihf/TYPES.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3416
+    },
+    "usr/lib/python3.4/__phello__.foo.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 64
+    },
+    "usr/lib/python3.4/_dummy_thread.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4872
+    },
+    "usr/lib/python3.4/_markupbase.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14598
+    },
+    "usr/lib/python3.4/_osx_support.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19101
+    },
+    "usr/lib/python3.4/_pyio.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 73565
+    },
+    "usr/lib/python3.4/_strptime.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 21679
+    },
+    "usr/lib/python3.4/aifc.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 31494
+    },
+    "usr/lib/python3.4/antigravity.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 475
+    },
+    "usr/lib/python3.4/asynchat.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11825
+    },
+    "usr/lib/python3.4/asyncore.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20998
+    },
+    "usr/lib/python3.4/bdb.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 23354
+    },
+    "usr/lib/python3.4/binhex.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 13708
+    },
+    "usr/lib/python3.4/bz2.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 18839
+    },
+    "usr/lib/python3.4/calendar.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 22940
+    },
+    "usr/lib/python3.4/cgitb.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12041
+    },
+    "usr/lib/python3.4/chunk.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5377
+    },
+    "usr/lib/python3.4/cmd.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14860
+    },
+    "usr/lib/python3.4/code.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10037
+    },
+    "usr/lib/python3.4/codeop.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5994
+    },
+    "usr/lib/python3.4/colorsys.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4064
+    },
+    "usr/lib/python3.4/crypt.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1879
+    },
+    "usr/lib/python3.4/csv.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 16185
+    },
+    "usr/lib/python3.4/datetime.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 75376
+    },
+    "usr/lib/python3.4/decimal.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 228637
+    },
+    "usr/lib/python3.4/difflib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 81683
+    },
+    "usr/lib/python3.4/doctest.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 104684
+    },
+    "usr/lib/python3.4/dummy_threading.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2815
+    },
+    "usr/lib/python3.4/filecmp.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 9830
+    },
+    "usr/lib/python3.4/fileinput.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14570
+    },
+    "usr/lib/python3.4/formatter.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15076
+    },
+    "usr/lib/python3.4/fractions.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 23203
+    },
+    "usr/lib/python3.4/ftplib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 38443
+    },
+    "usr/lib/python3.4/getpass.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6069
+    },
+    "usr/lib/python3.4/gettext.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17661
+    },
+    "usr/lib/python3.4/gzip.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 24293
+    },
+    "usr/lib/python3.4/hmac.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5063
+    },
+    "usr/lib/python3.4/imaplib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 50338
+    },
+    "usr/lib/python3.4/imghdr.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 3528
+    },
+    "usr/lib/python3.4/ipaddress.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 72856
+    },
+    "usr/lib/python3.4/lzma.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19371
+    },
+    "usr/lib/python3.4/macpath.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5619
+    },
+    "usr/lib/python3.4/macurl2path.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2732
+    },
+    "usr/lib/python3.4/mailbox.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 78286
+    },
+    "usr/lib/python3.4/mailcap.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7437
+    },
+    "usr/lib/python3.4/mimetypes.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20735
+    },
+    "usr/lib/python3.4/modulefinder.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 23421
+    },
+    "usr/lib/python3.4/netrc.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5748
+    },
+    "usr/lib/python3.4/nntplib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 42782
+    },
+    "usr/lib/python3.4/ntpath.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 20473
+    },
+    "usr/lib/python3.4/nturl2path.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2396
+    },
+    "usr/lib/python3.4/numbers.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10398
+    },
+    "usr/lib/python3.4/pathlib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 41820
+    },
+    "usr/lib/python3.4/pickletools.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 91170
+    },
+    "usr/lib/python3.4/pipes.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8916
+    },
+    "usr/lib/python3.4/plistlib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 31477
+    },
+    "usr/lib/python3.4/poplib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14328
+    },
+    "usr/lib/python3.4/pprint.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14861
+    },
+    "usr/lib/python3.4/pstats.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 26316
+    },
+    "usr/lib/python3.4/pty.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 4763
+    },
+    "usr/lib/python3.4/pyclbr.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 13520
+    },
+    "usr/lib/python3.4/queue.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8835
+    },
+    "usr/lib/python3.4/rlcompleter.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5763
+    },
+    "usr/lib/python3.4/sched.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6354
+    },
+    "usr/lib/python3.4/shelve.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 8428
+    },
+    "usr/lib/python3.4/shlex.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11502
+    },
+    "usr/lib/python3.4/shutil.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 39203
+    },
+    "usr/lib/python3.4/sndhdr.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6256
+    },
+    "usr/lib/python3.4/socketserver.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 24249
+    },
+    "usr/lib/python3.4/statistics.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17859
+    },
+    "usr/lib/python3.4/sunau.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 18149
+    },
+    "usr/lib/python3.4/symtable.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7404
+    },
+    "usr/lib/python3.4/telnetlib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 23059
+    },
+    "usr/lib/python3.4/this.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 1003
+    },
+    "usr/lib/python3.4/tracemalloc.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15651
+    },
+    "usr/lib/python3.4/tty.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 879
+    },
+    "usr/lib/python3.4/turtle.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 143547
+    },
+    "usr/lib/python3.4/uuid.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 22451
+    },
+    "usr/lib/python3.4/wave.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17671
+    },
+    "usr/lib/python3.4/xdrlib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5381
+    },
+    "usr/lib/python3.4/zipfile.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 68482
+    },
+    "usr/lib/python3.4/LICENSE.txt": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 12755
+    },
+    "usr/lib/python3.4/lib-dynload/_bz2.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 15672
+    },
+    "usr/lib/python3.4/lib-dynload/_codecs_cn.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 132644
+    },
+    "usr/lib/python3.4/lib-dynload/_codecs_hk.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 144948
+    },
+    "usr/lib/python3.4/lib-dynload/_codecs_iso2022.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17964
+    },
+    "usr/lib/python3.4/lib-dynload/_codecs_jp.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 226856
+    },
+    "usr/lib/python3.4/lib-dynload/_codecs_kr.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 124448
+    },
+    "usr/lib/python3.4/lib-dynload/_codecs_tw.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 99872
+    },
+    "usr/lib/python3.4/lib-dynload/_crypt.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5920
+    },
+    "usr/lib/python3.4/lib-dynload/_csv.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 32008
+    },
+    "usr/lib/python3.4/lib-dynload/_ctypes.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 103340
+    },
+    "usr/lib/python3.4/lib-dynload/_ctypes_test.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 18040
+    },
+    "usr/lib/python3.4/lib-dynload/_curses.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 75036
+    },
+    "usr/lib/python3.4/lib-dynload/_curses_panel.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14208
+    },
+    "usr/lib/python3.4/lib-dynload/_dbm.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10528
+    },
+    "usr/lib/python3.4/lib-dynload/_decimal.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 157524
+    },
+    "usr/lib/python3.4/lib-dynload/_json.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 44148
+    },
+    "usr/lib/python3.4/lib-dynload/_lsprof.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19936
+    },
+    "usr/lib/python3.4/lib-dynload/_lzma.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 26648
+    },
+    "usr/lib/python3.4/lib-dynload/_multibytecodec.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 32712
+    },
+    "usr/lib/python3.4/lib-dynload/_multiprocessing.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 14440
+    },
+    "usr/lib/python3.4/lib-dynload/_sqlite3.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 67460
+    },
+    "usr/lib/python3.4/lib-dynload/_testbuffer.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 43808
+    },
+    "usr/lib/python3.4/lib-dynload/_testcapi.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 62636
+    },
+    "usr/lib/python3.4/lib-dynload/_testimportmultiple.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5632
+    },
+    "usr/lib/python3.4/lib-dynload/audioop.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 41872
+    },
+    "usr/lib/python3.4/lib-dynload/cmath.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 40248
+    },
+    "usr/lib/python3.4/lib-dynload/fpectl.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5608
+    },
+    "usr/lib/python3.4/lib-dynload/mmap.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 19724
+    },
+    "usr/lib/python3.4/lib-dynload/nis.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10616
+    },
+    "usr/lib/python3.4/lib-dynload/ossaudiodev.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 27224
+    },
+    "usr/lib/python3.4/lib-dynload/parser.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 76296
+    },
+    "usr/lib/python3.4/lib-dynload/readline.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 25568
+    },
+    "usr/lib/python3.4/lib-dynload/resource.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10232
+    },
+    "usr/lib/python3.4/lib-dynload/termios.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 17964
+    },
+    "usr/lib/python3.4/lib-dynload/xxlimited.cpython-34m-arm-linux-gnueabihf.so": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 10048
+    },
+    "usr/lib/python3.4/cProfile.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 5311
+    },
+    "usr/lib/python3.4/cgi.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 35599
+    },
+    "usr/lib/python3.4/pdb.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 60892
+    },
+    "usr/lib/python3.4/profile.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 22019
+    },
+    "usr/lib/python3.4/pydoc.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 102171
+    },
+    "usr/lib/python3.4/quopri.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 7248
+    },
+    "usr/lib/python3.4/smtpd.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 30228
+    },
+    "usr/lib/python3.4/smtplib.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 39004
+    },
+    "usr/lib/python3.4/symbol.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 2040
+    },
+    "usr/lib/python3.4/tabnanny.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11397
+    },
+    "usr/lib/python3.4/tarfile.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 90964
+    },
+    "usr/lib/python3.4/timeit.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 11508
+    },
+    "usr/lib/python3.4/trace.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 31474
+    },
+    "usr/lib/python3.4/uu.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 6753
+    },
+    "usr/lib/python3.4/webbrowser.py": {
+      "type": "file",
+      "package": "libpython3.4-stdlib",
+      "size": 21419
+    },
+    "lib/arm-linux-gnueabihf/libhistory.so.6.3": {
+      "type": "file",
+      "package": "libreadline6",
+      "size": 30336
+    },
+    "lib/arm-linux-gnueabihf/libreadline.so.6.3": {
+      "type": "file",
+      "package": "libreadline6",
+      "size": 227624
+    },
+    "lib/arm-linux-gnueabihf/libhistory.so.6": {
+      "type": "link",
+      "target": "libhistory.so.6.3",
+      "package": "libreadline6"
+    },
+    "lib/arm-linux-gnueabihf/libreadline.so.6": {
+      "type": "link",
+      "target": "libreadline.so.6.3",
+      "package": "libreadline6"
+    },
+    "usr/lib/arm-linux-gnueabihf/libsqlite3.so.0.8.6": {
+      "type": "file",
+      "package": "libsqlite3-0",
+      "size": 693524
+    },
+    "usr/lib/arm-linux-gnueabihf/libsqlite3.so.0": {
+      "type": "link",
+      "target": "libsqlite3.so.0.8.6",
+      "package": "libsqlite3-0"
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/lib4758cca.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 14196
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libaep.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 14296
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libatalla.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 10128
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libcswift.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 18424
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libgmp.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 5472
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libchil.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 18564
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libnuron.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 10072
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libsureware.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 18464
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libubsec.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 14288
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libpadlock.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 5472
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libcapi.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 5472
+    },
+    "usr/lib/arm-linux-gnueabihf/openssl-1.0.0/engines/libgost.so": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 74200
+    },
+    "usr/lib/arm-linux-gnueabihf/libcrypto.so.1.0.0": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 1418548
+    },
+    "usr/lib/arm-linux-gnueabihf/libssl.so.1.0.0": {
+      "type": "file",
+      "package": "libssl1.0.0",
+      "size": 300868
+    },
+    "lib/arm-linux-gnueabihf/libtinfo.so.5.9": {
+      "type": "file",
+      "package": "libtinfo5",
+      "size": 125348
+    },
+    "usr/lib/arm-linux-gnueabihf/libtic.so.5.9": {
+      "type": "file",
+      "package": "libtinfo5",
+      "size": 55112
+    },
+    "lib/arm-linux-gnueabihf/libtinfo.so.5": {
+      "type": "link",
+      "target": "libtinfo.so.5.9",
+      "package": "libtinfo5"
+    },
+    "usr/lib/arm-linux-gnueabihf/libtic.so.5": {
+      "type": "link",
+      "target": "libtic.so.5.9",
+      "package": "libtinfo5"
+    },
+    "usr/bin/python3.4": {
+      "type": "file",
+      "package": "python3.4-minimal",
+      "size": 3821024
+    },
+    "usr/bin/python3.4m": {
+      "type": "link",
+      "target": "./usr/bin/python3.4",
+      "package": "python3.4-minimal"
+    },
+    "lib/arm-linux-gnueabihf/libz.so.1.2.8": {
+      "type": "file",
+      "package": "zlib1g",
+      "size": 91888
+    },
+    "lib/arm-linux-gnueabihf/libz.so.1": {
+      "type": "link",
+      "target": "libz.so.1.2.8",
+      "package": "zlib1g"
+    }
+  }
+}

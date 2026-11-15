@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "runtime_id": "jessie-armhf-v1",
+  "archive_filename": "ann-gateway-runtime-jessie-armhf-v1.tar.gz",
+  "archive_sha256": "f27b7b165ad41589e48b0ccb902e7c1cced6bb5bb8bd02bce669031ce177a3e0",
+  "archive_size": 8789982,
+  "unpacked_file_bytes": 23830720,
+  "minimum_free_bytes": 134217728,
+  "target": {
+    "os": "Raspbian 8 Jessie",
+    "dpkg_arch": "armhf",
+    "cpu": "armv7l",
+    "glibc_minimum": "2.19",
+    "required_loader": "/lib/ld-linux-armhf.so.3"
+  },
+  "install_root": "/opt/ann-gateway/runtime/jessie-armhf-v1",
+  "entrypoints": {
+    "python": "bin/python3",
+    "dnsmasq": "bin/dnsmasq"
+  },
+  "environment": {
+    "pythonhome": "<runtime>/usr",
+    "library_path": [
+      "<runtime>/lib/arm-linux-gnueabihf",
+      "<runtime>/usr/lib/arm-linux-gnueabihf"
+    ]
+  },
+  "system_packages_modified": false,
+  "package_count": 27,
+  "index_sha256": "ac0b85391dac372cc4633b04a80c1b3b1f27afe6ed637ad82eaa513732211a17",
+  "source_signing_key_fingerprint": "A0DA38D0D76E8B5D638872819165938D90FDDD2E",
+  "elf_dt_needed_unresolved": [],
+  "validation_status": "candidate-static-only",
+  "limitations": [
+    "Not run on ARM, Python 3.4 or target",
+    "Requires existing compatible glibc 2.19 and loader",
+    "Dynamic loading and full service/systemd behavior not verified",
+    "Not a dpkg dependency closure; privately extracted ELF runtime only"
+  ]
+}

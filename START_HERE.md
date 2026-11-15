@@ -1,5 +1,7 @@
 # 从这里开始
 
+M-048完整离线候选已交付生产1816020：随包Python/dnsmasq、单连接一次密码、传输失败有界恢复。目标安装尚待用户运行SETUP_GATEWAY.cmd，见M-048主卡及simulation/results/20261115-M-048-offline-deployment/。
+
 M-048认证/预检修复已交付生产f81dbf6；依赖补齐待用户运行新版后的目标环境记录，网关安装仍未完成。见主卡coordination/tasks/M-048.md。
 
 M-047本轮已完成：生产816958f已推送；实际短探测网关TCP22可达，已恢复DHCP。先前超时原因未确定，真实初始化待用户重开SETUP_GATEWAY。证据见simulation/results/20261115-M-047-gateway-connection/。

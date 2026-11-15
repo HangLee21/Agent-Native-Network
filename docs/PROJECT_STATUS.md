@@ -1,5 +1,7 @@
 # 项目状态：目标与完成度
 
+2026-11-15 M-048离线候选交付：生产1816020已推送。用户实机确认Raspbian8/Jessie、armhf、libc6 2.19、systemd215，缺Python3/dnsmasq。现随包提供8,789,982字节私有运行时（27个签名索引包、80个ARM ELF静态闭包），不安装系统dpkg包或替换libc/systemd；单Paramiko连接完成预检/SFTP/安装，登录密码仅内存用于sudo，默认同密一次输入。依赖先验证再切服务，SFTP握手/I/O/传输均有超时，租约使用项目目录及明确账号权限。H主机/模拟验证、E2静态包检查、C针对性复核已完成，C036-03在此范围关闭。真实ARM运行、SFTP/sudo和完整网关安装仍待用户运行原SETUP_GATEWAY.cmd；不称已安装成功。证据 simulation/results/20261115-M-048-offline-deployment/。
+
 2026-11-15 M-048阶段交付：生产 f81dbf6 已推送，将查询/传包/安装合并成单次SSH会话，依赖齐全时再进行必要sudo认证；POSIX预检实际Python路径/版本/标准库及系统、架构、相关包，缺依赖在解包前停止，白名单事实写本地日志，包mtime固定。H五项主机/隔离测试及C窄审通过有限范围；实际Windows交互与目标网关新版未测。用户上一轮SSH及上传成功，sudo找不到python3，安装器未启动；匹配运行时依赖包尚未交付。等待用户重开入口采集实际环境，不称网关安装完成。证据 simulation/results/20261115-M-048-runtime-preflight/。
 
 2026-11-15 M-047：生产 816958f 已推送。初始化脚本等待临时地址 Preferred，SSH/SCP 连接超时5秒且只尝试一次，保存阶段/退出码/恢复记录，不保存密码；C窄审和非零状态修复通过。经用户明确授权及Windows UAC，单次实测192.168.137.200经以太网20可ping通、TCP22可连接，ARP B8-27-EB-32-E2-C1；之后已移除临时地址并恢复DHCP，无pending。此前超时根因未确定，未SSH认证、安装或修改网关；现场部署仍待用户运行SETUP_GATEWAY.cmd。证据 simulation/results/20261115-M-047-gateway-connection/。

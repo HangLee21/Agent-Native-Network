@@ -1,0 +1,272 @@
+{
+  "dnsmasq-base": {
+    "Package": "dnsmasq-base",
+    "Version": "2.72-3+deb8u5",
+    "Architecture": "armhf",
+    "Depends": "adduser, libc6 (>= 2.15), libdbus-1-3 (>= 1.1.1), libgmp10, libhogweed2 (>= 2.7), libidn11 (>= 1.13), libnetfilter-conntrack3, libnettle4 (>= 2.2), libnfnetlink0",
+    "Pre-Depends": "",
+    "Filename": "pool/main/d/dnsmasq/dnsmasq-base_2.72-3+deb8u5_armhf.deb",
+    "Size": "375796",
+    "SHA256": "87ce4a9c79a984c4197f14481359bb948f80e4687206905a0148428d6e0752ec"
+  },
+  "libbz2-1.0": {
+    "Package": "libbz2-1.0",
+    "Version": "1.0.6-7+deb8u2",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/b/bzip2/libbz2-1.0_1.0.6-7+deb8u2_armhf.deb",
+    "Size": "42216",
+    "SHA256": "d0445338fc349fc2f5691ca931143b40e8c77c64da96f898fce3b18b64f025b1"
+  },
+  "libdb5.3": {
+    "Package": "libdb5.3",
+    "Version": "5.3.28-9+deb8u1",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.17)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/d/db5.3/libdb5.3_5.3.28-9+deb8u1_armhf.deb",
+    "Size": "575076",
+    "SHA256": "a4168f3f340ee0d6f4ead6957147d76ec8c1265851a404547dcdd7f98e8b71af"
+  },
+  "libdbus-1-3": {
+    "Package": "libdbus-1-3",
+    "Version": "1.8.22-0+deb8u3",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.17)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/d/dbus/libdbus-1-3_1.8.22-0+deb8u3_armhf.deb",
+    "Size": "149554",
+    "SHA256": "bcf70829ac83a012264f78d113e6e04e66e187114df4fe8cdf5f8d1eaaed53ac"
+  },
+  "libexpat1": {
+    "Package": "libexpat1",
+    "Version": "2.1.0-6+deb8u6",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4), libgcc1 (>= 1:4.4.0)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/e/expat/libexpat1_2.1.0-6+deb8u6_armhf.deb",
+    "Size": "60978",
+    "SHA256": "c05be26024a5cad9c93f6887c381144b8f3281101880348017629ee2303eb734"
+  },
+  "libffi6": {
+    "Package": "libffi6",
+    "Version": "3.1-2+deb8u1",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4), libgcc1 (>= 1:4.4.0)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/libf/libffi/libffi6_3.1-2+deb8u1_armhf.deb",
+    "Size": "18648",
+    "SHA256": "76703fd86bbe062ac79d11192fa35fb0076ebc8782f02326261a88386d378fbe"
+  },
+  "libgcc1": {
+    "Package": "libgcc1",
+    "Version": "1:4.9.2-10+deb8u2",
+    "Architecture": "armhf",
+    "Depends": "gcc-4.9-base (= 4.9.2-10+deb8u2), libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/g/gcc-4.9/libgcc1_4.9.2-10+deb8u2_armhf.deb",
+    "Size": "39464",
+    "SHA256": "fe8e46c579b6db0b98d2cd19b3868e2a513d80aef8fb5d3727e34959fd07aa7d"
+  },
+  "libgmp10": {
+    "Package": "libgmp10",
+    "Version": "2:6.0.0+dfsg-6+rpi1",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.7)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/g/gmp/libgmp10_6.0.0+dfsg-6+rpi1_armhf.deb",
+    "Size": "188652",
+    "SHA256": "7f413d6329ed39f939fc7b5ad900051ca4b745ab2ad40dec554cc21402e520da"
+  },
+  "libhogweed2": {
+    "Package": "libhogweed2",
+    "Version": "2.7.1-5+deb8u2",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4), libgmp10 (>= 2:6.0.0), libnettle4 (= 2.7.1-5+deb8u2)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/n/nettle/libhogweed2_2.7.1-5+deb8u2_armhf.deb",
+    "Size": "116668",
+    "SHA256": "07c1aec6fcfd2279c3cfda0cf2de9c4136f3538230d98068a52b5d7bb731b5e7"
+  },
+  "libidn11": {
+    "Package": "libidn11",
+    "Version": "1.29-1+deb8u3",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/libi/libidn/libidn11_1.29-1+deb8u3_armhf.deb",
+    "Size": "133286",
+    "SHA256": "197808c735b4aa08494c6d160c0f90cd9588b5772e8c253e98de8162ed894820"
+  },
+  "liblzma5": {
+    "Package": "liblzma5",
+    "Version": "5.1.1alpha+20120614-2",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.13-28)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/x/xz-utils/liblzma5_5.1.1alpha+20120614-2_armhf.deb",
+    "Size": "198588",
+    "SHA256": "21bf5b0232f618c7553520c8d8f59d164296c8079565fcfd9bee547b251c1349"
+  },
+  "libmnl0": {
+    "Package": "libmnl0",
+    "Version": "1.0.3-5",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/libm/libmnl/libmnl0_1.0.3-5_armhf.deb",
+    "Size": "10866",
+    "SHA256": "ee06f7b65bd48a1f5fc9199b7df38e580f99146a09b3f4cf5d0833fbfdfc35b2"
+  },
+  "libmpdec2": {
+    "Package": "libmpdec2",
+    "Version": "2.4.1-1",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/m/mpdecimal/libmpdec2_2.4.1-1_armhf.deb",
+    "Size": "65788",
+    "SHA256": "d9c54be0e916873d6dae2a38377b5e85aa12ba8b8af8d5e4e24b97ee9917a8e6"
+  },
+  "libncursesw5": {
+    "Package": "libncursesw5",
+    "Version": "5.9+20140913-1+deb8u3",
+    "Architecture": "armhf",
+    "Depends": "libtinfo5 (= 5.9+20140913-1+deb8u3), libc6 (>= 2.15)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/n/ncurses/libncursesw5_5.9+20140913-1+deb8u3_armhf.deb",
+    "Size": "98958",
+    "SHA256": "45764ea272823c48b58ff6d6ba1662b48d7c758ddb9add1c174d18fece243601"
+  },
+  "libnetfilter-conntrack3": {
+    "Package": "libnetfilter-conntrack3",
+    "Version": "1.0.4-1",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4), libgcc1 (>= 1:4.4.0), libmnl0, libnfnetlink0",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/libn/libnetfilter-conntrack/libnetfilter-conntrack3_1.0.4-1_armhf.deb",
+    "Size": "40002",
+    "SHA256": "80c8ee004feed827649e92f99cb1fd8f20d98c3d7d5dd7505f7014553a98f74a"
+  },
+  "libnettle4": {
+    "Package": "libnettle4",
+    "Version": "2.7.1-5+deb8u2",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/n/nettle/libnettle4_2.7.1-5+deb8u2_armhf.deb",
+    "Size": "177664",
+    "SHA256": "d02455d8a4bd090aa8352ca8da320e6628d2e44565bdd1ce0f52f9efad3ac6ab"
+  },
+  "libnfnetlink0": {
+    "Package": "libnfnetlink0",
+    "Version": "1.0.1-3",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/libn/libnfnetlink/libnfnetlink0_1.0.1-3_armhf.deb",
+    "Size": "12094",
+    "SHA256": "3e08fab288ede78b33e49461eac78617403be77af8c47c5ee9457e387bb164b4"
+  },
+  "libpython3.4-minimal": {
+    "Package": "libpython3.4-minimal",
+    "Version": "3.4.2-1+deb8u7",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4), libssl1.0.0 (>= 1.0.1)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/p/python3.4/libpython3.4-minimal_3.4.2-1+deb8u7_armhf.deb",
+    "Size": "483666",
+    "SHA256": "a1896291b8ea593462b7d635acb4bb6b0551e8f14c9b565761557f38eb0caf8c"
+  },
+  "libpython3.4-stdlib": {
+    "Package": "libpython3.4-stdlib",
+    "Version": "3.4.2-1+deb8u7",
+    "Architecture": "armhf",
+    "Depends": "libpython3.4-minimal (= 3.4.2-1+deb8u7), mime-support, libbz2-1.0, libc6 (>= 2.15), libdb5.3, libffi6 (>= 3.0.4), liblzma5 (>= 5.1.1alpha+20120614), libmpdec2, libncursesw5 (>= 5.6+20070908), libreadline6 (>= 6.0), libsqlite3-0 (>= 3.5.9), libtinfo5",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/p/python3.4/libpython3.4-stdlib_3.4.2-1+deb8u7_armhf.deb",
+    "Size": "2013902",
+    "SHA256": "36faebbee460c8b5cbe67f027f6a1c7d75ca60e43da5e45739d5211acb3b9acb"
+  },
+  "libreadline6": {
+    "Package": "libreadline6",
+    "Version": "6.3-8",
+    "Architecture": "armhf",
+    "Depends": "readline-common, libc6 (>= 2.15), libtinfo5",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/r/readline6/libreadline6_6.3-8_armhf.deb",
+    "Size": "122806",
+    "SHA256": "4319325066a3a10abb745262752bf1b877ab36f21cbbb0e1aa6c7aedd79b093f"
+  },
+  "libsqlite3-0": {
+    "Package": "libsqlite3-0",
+    "Version": "3.8.7.1-1+deb8u6",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/s/sqlite3/libsqlite3-0_3.8.7.1-1+deb8u6_armhf.deb",
+    "Size": "377802",
+    "SHA256": "67d14e9137a0737856e523fd41c92554497c99f14567c1b382300c7f51346895"
+  },
+  "libssl1.0.0": {
+    "Package": "libssl1.0.0",
+    "Version": "1.0.1t-1+deb8u12",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.11), debconf (>= 0.5) | debconf-2.0",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u12_armhf.deb",
+    "Size": "854258",
+    "SHA256": "5c83203446ac1493dd59562c51ae915e0920e262bdd768e5cb1a5d821f905fe3"
+  },
+  "libtinfo5": {
+    "Package": "libtinfo5",
+    "Version": "5.9+20140913-1+deb8u3",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.15)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/n/ncurses/libtinfo5_5.9+20140913-1+deb8u3_armhf.deb",
+    "Size": "271478",
+    "SHA256": "995a104c4edc84a0fa7a362fbbd6be50e9433b06d04df1303c7dfc3babb85e24"
+  },
+  "python3.4": {
+    "Package": "python3.4",
+    "Version": "3.4.2-1+deb8u7",
+    "Architecture": "armhf",
+    "Depends": "python3.4-minimal (= 3.4.2-1+deb8u7), libpython3.4-stdlib (= 3.4.2-1+deb8u7), mime-support",
+    "Pre-Depends": "",
+    "Filename": "pool/main/p/python3.4/python3.4_3.4.2-1+deb8u7_armhf.deb",
+    "Size": "205104",
+    "SHA256": "28bd47c4a40f6a3a88219a42755162b96285c9c79cc4acd9ea942aa8a4c3631c"
+  },
+  "python3.4-minimal": {
+    "Package": "python3.4-minimal",
+    "Version": "3.4.2-1+deb8u7",
+    "Architecture": "armhf",
+    "Depends": "libpython3.4-minimal (= 3.4.2-1+deb8u7), libexpat1 (>= 2.1~beta3), zlib1g (>= 1:1.2.0)",
+    "Pre-Depends": "libc6 (>= 2.15)",
+    "Filename": "pool/main/p/python3.4/python3.4-minimal_3.4.2-1+deb8u7_armhf.deb",
+    "Size": "1353986",
+    "SHA256": "f8fdca2584657223a686fbe86e0a770d99a10feb190bdca6d13b66c93e4f61f7"
+  },
+  "zlib1g": {
+    "Package": "zlib1g",
+    "Version": "1:1.2.8.dfsg-2+deb8u1",
+    "Architecture": "armhf",
+    "Depends": "libc6 (>= 2.4)",
+    "Pre-Depends": "multiarch-support",
+    "Filename": "pool/main/z/zlib/zlib1g_1.2.8.dfsg-2+deb8u1_armhf.deb",
+    "Size": "82340",
+    "SHA256": "4996145a6179a0d24bdd71e5fffa89cc2a96b607a4d35851cb998a536d1d4810"
+  },
+  "gcc-4.9-base": {
+    "Package": "gcc-4.9-base",
+    "Version": "4.9.2-10+deb8u2",
+    "Architecture": "armhf",
+    "Depends": "",
+    "Pre-Depends": "",
+    "Filename": "pool/main/g/gcc-4.9/gcc-4.9-base_4.9.2-10+deb8u2_armhf.deb",
+    "Size": "160244",
+    "SHA256": "0d8c254ee1239b93d1d5ea11218dfdf3f61ee64e3b7e8e288cfb200aaf0e8e87"
+  }
+}
