@@ -60,16 +60,17 @@ def configuration(interface,address,cidr,pool_start,pool_end,eui):
         raise SetupError('pool overlaps gateway or reserved network addresses')
     if not network.is_private:raise SetupError('dedicated private IPv4 subnet required')
     dns='\n'.join(['port=0','interface='+interface,'bind-interfaces','dhcp-authoritative',
+        'user=nobody','group=nogroup','dhcp-leasefile=/var/lib/ann-gateway/state/dnsmasq.leases',
         'dhcp-range='+str(start)+','+str(end)+','+str(network.netmask)+',12h',
         'dhcp-option=3','dhcp-option=6',''])
     return dict(interface=interface,address=str(ip),network=str(network),prefix=network.prefixlen,
                 pool_start=str(start),pool_end=str(end),gateway_eui=eui,dnsmasq=dns)
 
 
-def render_units(c,python):
+def render_units(c,python,dnsmasq='/usr/sbin/dnsmasq'):
     service='''[Unit]\nDescription=AD-HOC gateway local receiver\nRequires=ann-gateway-http.socket ann-gateway-discovery.socket\nAfter=ann-gateway-http.socket ann-gateway-discovery.socket\n[Service]\nType=simple\nUser=nobody\nSockets=ann-gateway-http.socket ann-gateway-discovery.socket\nEnvironment=PYTHONPATH=/opt/ann-gateway/release\nExecStart={python} -B -m tools.flight_link.appliance --gateway-eui {eui} --forwarder-host 127.0.0.1 --forwarder-port 1680 --http-host {ip} --http-port 8780 --discovery-host 0.0.0.0 --discovery-port 8781 --interface {interface} --systemd-sockets\nRestart=on-failure\nRestartSec=5\nProtectSystem=full\nReadWriteDirectories=/var/lib/ann-gateway/state\nStandardOutput=null\nStandardError=null\n[Install]\nWantedBy=multi-user.target\n'''.format(python=python,eui=c['gateway_eui'],ip=c['address'],interface=c['interface'])
     address='''[Unit]\nDescription=Dedicated gateway address\nAfter=network.target\n[Service]\nType=oneshot\nExecStart=/sbin/ip address replace {ip}/{prefix} dev {interface}\nRemainAfterExit=yes\n[Install]\nWantedBy=multi-user.target\n'''.format(ip=c['address'],prefix=c['prefix'],interface=c['interface'])
-    dhcp='''[Unit]\nDescription=Dedicated gateway DHCP\nRequires=ann-gateway-address.service\nAfter=ann-gateway-address.service\n[Service]\nType=simple\nExecStart=/usr/sbin/dnsmasq --keep-in-foreground --log-facility=/dev/null --conf-file=/etc/ann-gateway/dnsmasq.conf\nRestart=on-failure\nRestartSec=5\nStandardOutput=null\nStandardError=null\n[Install]\nWantedBy=multi-user.target\n'''
+    dhcp='''[Unit]\nDescription=Dedicated gateway DHCP\nRequires=ann-gateway-address.service\nAfter=ann-gateway-address.service\n[Service]\nType=simple\nExecStart={dnsmasq} --keep-in-foreground --log-facility=/dev/null --conf-file=/etc/ann-gateway/dnsmasq.conf\nRestart=on-failure\nRestartSec=5\nStandardOutput=null\nStandardError=null\n[Install]\nWantedBy=multi-user.target\n'''.format(dnsmasq=dnsmasq)
     http='''[Unit]\nDescription=Dedicated gateway HTTP socket\nRequires=ann-gateway-address.service\nAfter=ann-gateway-address.service\n[Socket]\nListenStream={ip}:8780\nBindToDevice={interface}\nService=ann-gateway.service\n[Install]\nWantedBy=sockets.target\n'''.format(ip=c['address'],interface=c['interface'])
     discovery='''[Unit]\nDescription=Dedicated gateway discovery socket\nRequires=ann-gateway-address.service\nAfter=ann-gateway-address.service\n[Socket]\nListenDatagram=0.0.0.0:8781\nBindToDevice={interface}\nService=ann-gateway.service\n[Install]\nWantedBy=sockets.target\n'''.format(interface=c['interface'])
     return {SERVICE:service,DHCP:dhcp,ADDRESS:address,HTTP_SOCKET:http,DISCOVERY_SOCKET:discovery,DHCP_CONF:c['dnsmasq']}
@@ -214,12 +215,23 @@ def rollback():
     print('原转发配置和服务状态已恢复；备份及运行数据保留。')
 
 
-def install(package,c):
+def install(package,c,python_executable=None,dnsmasq_executable=None):
     if os.geteuid()!=0:raise SetupError('需要管理员权限')
     meta=verify_package(package)
     if sys.version_info<tuple(meta['minimum_python']):raise SetupError('网关 Python 版本不满足服务要求；未修改任何配置')
-    for command in ('systemctl','dnsmasq','ip'):
+    python_executable=python_executable or sys.executable
+    dnsmasq_executable=dnsmasq_executable or '/usr/sbin/dnsmasq'
+    private='/opt/ann-gateway/runtime/jessie-armhf-v1/bin/'
+    if python_executable!=sys.executable and python_executable!=private+'python3':raise SetupError('invalid Python wrapper')
+    if dnsmasq_executable not in ('/usr/sbin/dnsmasq',private+'dnsmasq'):raise SetupError('invalid dnsmasq wrapper')
+    for command in ('systemctl','ip'):
         if not shutil.which(command):raise SetupError('缺少依赖: '+command)
+    if dnsmasq_executable=='/usr/sbin/dnsmasq' and not shutil.which('dnsmasq'):raise SetupError('缺少依赖: dnsmasq')
+    if dnsmasq_executable!= '/usr/sbin/dnsmasq' and not os.access(dnsmasq_executable,os.X_OK):raise SetupError('私有 DHCP 程序不可执行')
+    try:
+        import pwd,grp
+        owner=pwd.getpwnam('nobody');lease_group=grp.getgrnam('nogroup')
+    except (ImportError,KeyError):raise SetupError('网关缺少 nobody 用户或 nogroup 用户组，未修改配置')
     iface=Path(SYS_NET)/c['interface']
     if not iface.exists() or (iface/'wireless').exists() or read_text(iface/'type').strip()!='1':raise SetupError('请选择已连接的专用有线接口')
     if call('ip','route','show','default','dev',c['interface']).stdout.strip():raise SetupError('该网口存在默认路由，不可启用专用 DHCP')
@@ -247,10 +259,10 @@ def install(package,c):
     if not isinstance(gw,dict) or str(gw.get('gateway_ID','')).lower()!=c['gateway_eui']:
         raise SetupError('网关 EUI 与现有转发器配置不匹配')
     gw.update(server_address='127.0.0.1',serv_port_up=1680,serv_port_down=1680)
-    units=render_units(c,sys.executable)
+    units=render_units(c,python_executable,dnsmasq_executable)
     with tempfile.NamedTemporaryFile('w',encoding='utf-8',delete=False) as f:
         f.write(c['dnsmasq']);tmp=f.name
-    try:call('dnsmasq','--test','--conf-file='+tmp)
+    try:call(dnsmasq_executable,'--test','--conf-file='+tmp)
     finally:os.unlink(tmp)
     addr=call('ip','-o','-4','addr','show','dev',c['interface']).stdout
     present=(c['address']+'/'+str(c['prefix'])) in addr
@@ -263,10 +275,9 @@ def install(package,c):
         for rel,digest in meta['files'].items():
             if hashlib.sha256(read_bytes(Path(RELEASE)/rel)).hexdigest()!=digest:raise SetupError('copied service checksum mismatch')
         import_check=os.environ.copy();import_check['PYTHONPATH']=RELEASE
-        child=subprocess.Popen([sys.executable,'-B','-c','import tools.flight_link.appliance'],env=import_check)
+        child=subprocess.Popen([python_executable,'-B','-c','import tools.flight_link.appliance'],env=import_check)
         if child.wait()!=0:raise SetupError('网关服务依赖检查失败')
-        import pwd
-        owner=pwd.getpwnam('nobody'); writable=Path(STATE)/'state';mkdirp(writable);os.chown(str(writable),owner.pw_uid,owner.pw_gid)
+        writable=Path(STATE)/'state';mkdirp(writable);os.chown(str(writable),owner.pw_uid,lease_group.gr_gid);os.chmod(str(writable),0o750)
         write_atomic(LOCAL_CONF,(json.dumps(conf,indent=2)+'\n').encode('utf-8'))
         for path,content in units.items():write_atomic(path,content.encode('utf-8'))
         call('systemctl','daemon-reload')
@@ -287,13 +298,14 @@ def main():
     p.add_argument('--package');p.add_argument('--interface',default='eth0');p.add_argument('--address',default='192.168.137.200')
     p.add_argument('--network',default='192.168.137.0/24');p.add_argument('--pool-start',default='192.168.137.20');p.add_argument('--pool-end',default='192.168.137.99')
     p.add_argument('--gateway-eui',default='b827ebfffe32e2c1');p.add_argument('--dedicated',action='store_true')
+    p.add_argument('--python-wrapper');p.add_argument('--dnsmasq-wrapper')
     a=p.parse_args()
     try:
         if a.action=='rollback':rollback();return 0
         c=configuration(a.interface,a.address,a.network,a.pool_start,a.pool_end,a.gateway_eui)
         if a.action=='plan':print(json.dumps({'config':c,'units':render_units(c,'/usr/bin/python3')},indent=2));return 0
         if not a.dedicated or not a.package:raise SetupError('必须明确确认专用网口并提供完整服务包')
-        install(a.package,c);return 0
+        install(a.package,c,a.python_wrapper,a.dnsmasq_wrapper);return 0
     except Exception as exc:print('未完成：'+str(exc),file=sys.stderr);return 1
 
 

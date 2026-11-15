@@ -166,35 +166,23 @@ def stream_session(args,launcher=subprocess.Popen):
         log_event('ssh_session','failed',error=type(exc).__name__);raise
 
 
-def remote_exec(user,host,action,interface,eui,launcher=subprocess.Popen):
-    target=ssh_target(user,host)
-    if action not in ('install','rollback'):raise SetupError('unknown action')
-    if interface is not None and (not isinstance(interface,str) or not re.fullmatch(r'[A-Za-z0-9_.-]{1,15}',interface)):raise SetupError('网口名格式无效')
+def remote_exec(user,host,action,interface,eui):
+    ssh_target(user,host)
+    if action not in ('install','rollback'):raise SetupError('操作无效')
+    if interface is not None and not re.fullmatch(r'[A-Za-z0-9_.-]{1,15}',interface):raise SetupError('网口名格式无效')
     if not re.fullmatch(r'[0-9a-f]{16}',eui):raise SetupError('网关标识格式无效')
-    token=uuid.uuid4().hex;remote='/tmp/ann-gateway-'+token
-    with tempfile.TemporaryDirectory(prefix='ann-gateway-') as tmp:
-        directory=Path(tmp)/'package';directory.mkdir()
-        if action=='install':prepare(directory)
-        else:shutil.copyfile(ROOT/'app/gateway_setup/linux_installer.py',directory/'linux_installer.py')
-        payload=base64.b64encode(package_bytes(directory)).decode('ascii')
-        ignore=" | grep -v '^MISSING dnsmasq$'" if action=='rollback' else ''
-        select='iface='+interface if interface else "set -- $SSH_CONNECTION; server=$3; iface=$(printf '%s\\n' \"$facts\" | awk -v h='{host}' -v s=\"$server\" '$1==\"ADDRESS\" {{split($3,a,\"/\"); if(a[1]==h && a[1]==s) print $2}}' | sort -u); [ \"$(printf '%s\\n' \"$iface\" | grep -c .)\" = 1 ] || {{ echo '无法唯一确认网关专用网口，未更改网关'; exit 22; }}".format(host=host)
-        command="""facts=$({preflight})
-printf '%s\\n' "$facts"
-missing=$(printf '%s\\n' "$facts" | grep '^MISSING ' {ignore} || true)
-[ -z "$missing" ] || {{ echo '缺少网关运行组件，未安装；请将诊断日志交给技术支持'; exit 20; }}
-py=$(printf '%s\\n' "$facts" | sed -n 's/^PY_PATH //p'); sudo_path=$(printf '%s\\n' "$facts" | sed -n 's/^SUDO_PATH //p')
-printf '%s\\n' "$facts" | grep -qx PY_OK || {{ echo 'Python版本或依赖不兼容，未安装'; exit 20; }}
-printf '%s\\n' "$py" "$sudo_path" | grep -Eqv '^/[A-Za-z0-9_./+-]+$' && {{ echo '运行程序路径无效，未安装'; exit 20; }}
-[ -n "$py" ] && [ -n "$sudo_path" ] || exit 20
-{select}
-echo '网关环境检查通过，正在安装；如要求管理员密码，请输入后按回车。'
-set -e; mkdir -m 700 {r}; trap 'rm -rf {r}' EXIT; printf '%s' '{payload}' | base64 -d | tar -xzm -C {r}
-"$sudo_path" "$py" {r}/linux_installer.py {action}{extra}
-""".format(preflight=PREFLIGHT,ignore=ignore,select=select,r=remote,payload=payload,action=action,extra=(' --package '+remote+' --interface "$iface" --gateway-eui '+eui+' --dedicated') if action=='install' else '')
-        if len(command)>28000:raise SetupError('交付包过大，无法安全传送；未更改网关。')
-        print('正在连接网关。若提示输入密码，输入时屏幕不会显示字符，输完按回车。',flush=True)
-        stream_session(['ssh']+SSH_OPTIONS+['-tt',target,command],launcher)
+    import private_deploy
+    import ssh_transport
+    try:
+        log_event('private_deploy','started')
+        private_deploy.deploy(user,host,action,interface,eui,sys.modules[__name__])
+        log_event('private_deploy','completed')
+    except (private_deploy.DeployError,ssh_transport.TransportError) as exc:
+        log_event('private_deploy','failed',error=type(exc).__name__)
+        raise SetupError(str(exc)) from exc
+    except Exception as exc:
+        log_event('private_deploy','failed',error=type(exc).__name__)
+        raise SetupError('网关连接或初始化未完成（{}），请查看诊断日志。'.format(type(exc).__name__)) from exc
 
 
 def main():
@@ -210,7 +198,10 @@ def main():
         ssh_target(a.user,a.host)
         if a.plan:
             with tempfile.TemporaryDirectory(prefix='ann-gateway-plan-') as tmp:
-                meta=prepare(tmp);print(json.dumps({'status':'ready_for_review','minimum_python':meta['minimum_python'],'hardware_access':False}))
+                meta=prepare(tmp)
+                import private_deploy,ssh_transport
+                private_deploy.load_runtime();ssh_transport.load_ssh_library()
+                print(json.dumps({'status':'ready_for_review','minimum_python':meta['minimum_python'],'hardware_access':False}))
             return 0
         remote_exec(a.user,a.host,a.action,a.interface,a.gateway_eui);return 0
     except (SetupError,OSError,ValueError,EOFError,subprocess.CalledProcessError) as exc:
@@ -218,6 +209,10 @@ def main():
         if isinstance(exc,subprocess.CalledProcessError):
             print('未完成：连接或远端操作失败（退出码 {}），请检查上方提示及诊断日志。'.format(exc.returncode),file=sys.stderr)
         else:print('未完成：'+str(exc),file=sys.stderr)
+        return 1
+    except Exception as exc:
+        log_event('setup','failed',error=type(exc).__name__)
+        print('未完成：交付包检查或运行环境异常（{}）。'.format(type(exc).__name__),file=sys.stderr)
         return 1
 
 

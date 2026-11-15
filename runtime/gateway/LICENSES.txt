@@ -1,0 +1,1 @@
+Runtime archive contains copyright notices under licenses/ from the corresponding Raspbian Jessie packages. Shared copyright mappings: libgcc1 -> gcc-4.9-base; libhogweed2 -> libnettle4; libncursesw5 -> libtinfo5; libpython3.4-stdlib -> libpython3.4-minimal. Package versions, checksums and source records are retained with the build evidence.
