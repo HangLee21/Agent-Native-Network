@@ -39,10 +39,15 @@ def config(path):
   if type(i) is not int or not 1<=i<=0xffffffff or not isinstance(mac,str) or not MAC.fullmatch(mac) or i in ids or mac in macs:raise ValueError('invalid or duplicate node ID/MAC')
   ids.add(i);macs.add(mac)
  g=c['gateway'];eui=g['eui']
+ mode=g.get('mode','remote')
+ if mode not in ('remote','legacy_local'):raise ValueError('invalid gateway mode')
+ for name in ('http_port','discovery_port'):
+  v=g.get(name,8780 if name=='http_port' else 8781)
+  if type(v) is not int or not 1024<=v<=65535:raise ValueError('invalid gateway '+name)
  if not isinstance(eui,str) or not re.fullmatch(r'[0-9a-fA-F]{16}',eui):raise ValueError('gateway EUI required')
  if not isinstance(g['candidate_hosts'],list) or not 1<=len(g['candidate_hosts'])<=8:raise ValueError('one to eight explicit gateway candidates required')
  for host in g['candidate_hosts']:ipaddress.IPv4Address(host)
- ports=[g['udp_port'],c['services']['topology_port'],c['services']['studio_port']]
+ ports=[g.get('udp_port',1680),c['services']['topology_port'],c['services']['studio_port']]
  if any(type(v) is not int or not 1024<=v<=65535 for v in ports) or ports[1]==ports[2]:raise ValueError('invalid service ports')
  return c
 
@@ -106,7 +111,7 @@ def available(tcp_ports,udp_port):
 def start_child(root,module,args,log):
  # Isolated Python removes the development checkout and PYTHONPATH from imports.
  code='import runpy,sys;root=sys.argv.pop(1);name=sys.argv.pop(1);sys.path.insert(0,root);runpy.run_module(name,run_name="__main__")'
- child=subprocess.Popen([sys.executable,'-I','-u','-c',code,str(root),module,*args],cwd=root,stdout=log,stderr=subprocess.STDOUT,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+ child=subprocess.Popen([sys.executable,'-I','-u','-X','utf8','-c',code,str(root),module,*args],cwd=root,stdout=log,stderr=subprocess.STDOUT,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
  if JOB:JOB.add(child)
  return child
 
@@ -195,21 +200,59 @@ class Health:
 class Control(BaseHTTPRequestHandler):
  def do_GET(self):
   if self.headers.get('X-Studio-Token')!=self.server.token:self.send_error(403);return
-  body=json.dumps(dict(schema='studio.instance.v1',url=self.server.health.url,state=self.server.health.state)).encode();self.send_response(200);self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
+  body=json.dumps(dict(schema='studio.instance.v1',url=self.server.health.url,state=self.server.health.state,gateway_mode=self.server.gateway_mode)).encode();self.send_response(200);self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
  def log_message(self,*_):pass
 
-def reuse_instance(path,expected_port):
+def reuse_instance(path,expected_port,expected_mode):
  end=time.monotonic()+3
  while time.monotonic()<end:
   try:
    v=json.loads(path.read_text(encoding='utf-8'));req=urllib.request.Request(f"http://127.0.0.1:{v['port']}/",headers={'X-Studio-Token':v['token']})
    with urllib.request.build_opener(urllib.request.ProxyHandler({})).open(req,timeout=.5) as r:info=json.load(r)
-   if info.get('schema')=='studio.instance.v1' and info.get('url')==f'http://127.0.0.1:{expected_port}/':open_studio_page(info['url']);return True
+   if info.get('schema')=='studio.instance.v1' and info.get('url')==f'http://127.0.0.1:{expected_port}/':
+    if info.get('gateway_mode')!=expected_mode:print('检测到旧版或不同网关模式的实例，请关闭原窗口后重新双击。',flush=True);return 'incompatible'
+    open_studio_page(info['url']);return True
   except (OSError,ValueError,KeyError,TypeError):pass
   time.sleep(.15)
  return False
 
+def launch_remote(c,release_root,m,run_dir,offline_server=None,fleet_path=None,health=None):
+ g=c['gateway'];ports=c['services'];svc=m['services'];child=None;log=None
+ try:
+  if offline_server:offline_server.shutdown();offline_server.server_close()
+  session_dir=run_dir/('session-'+uuid.uuid4().hex[:12]);session_dir.mkdir(parents=True,exist_ok=False)
+  values=dict(udp_port=g.get('udp_port',1680),topology_port=ports['topology_port'],studio_port=ports['studio_port'],gateway_ip=g['candidate_hosts'][0],gateway_eui=g['eui'].lower(),run_dir=str(session_dir),release_dir=str(release_root))
+  args=arguments(svc['studio_args'],values)+['--fleet',str(Path(fleet_path).resolve()),'--registry',str(ROOT/'data/registry.json'),'--production-output','--gateway-mode','remote','--gateway-eui',g['eui'].lower(),'--remote-http-port',str(g.get('http_port',8780)),'--discovery-port',str(g.get('discovery_port',8781))]
+  for host in g['candidate_hosts']:args+=['--candidate-host',host]
+  if health:args+=['--recovery-file',str(health.path)]
+  log=(run_dir/'studio.log').open('a',encoding='utf-8');child=start_child(release_root,svc['studio_module'],args,log);url=f"http://127.0.0.1:{ports['studio_port']}/";end=time.monotonic()+8;ready=False
+  while time.monotonic()<end and child.poll() is None:
+   try:
+    with urllib.request.build_opener(urllib.request.ProxyHandler({})).open(url,timeout=.5) as response:ready=response.status==200
+    if ready:break
+   except OSError:time.sleep(.2)
+  if not ready:return False,'Studio 服务未就绪'
+  if health:health.set('recovering','等待远端网关连接')
+  print(json.dumps(dict(state='recovering',url=url,reason='等待远端网关连接'),ensure_ascii=False),flush=True);open_studio_page(url)
+  was=False
+  while child.poll() is None:
+   try:
+    info=get_json(url+'api/v1/remote/health');observed=info.get('state')=='connected' and info.get('gateway_observed') is True
+   except (OSError,ValueError,AttributeError):observed=False
+   if health:health.set(('recovered' if health.had_recovery else 'online') if observed else 'recovering','网关已连接' if observed else '等待远端网关连接')
+   if observed!=was:print('网关状态：'+('已恢复' if observed else '等待连接'),flush=True);was=observed
+   time.sleep(2)
+  return False,'Studio 服务退出，正在恢复'
+ finally:
+  if child and child.poll() is None:
+   child.terminate()
+   try:child.wait(timeout=5)
+   except subprocess.TimeoutExpired:child.kill();child.wait()
+  if log:log.close()
+
+
 def launch(c,release_root,m,run_dir,offline_server=None,fleet_path=None,health=None):
+ if c['gateway'].get('mode','remote')=='remote':return launch_remote(c,release_root,m,run_dir,offline_server,fleet_path,health)
  g=c['gateway'];ports=c['services'];available([ports['topology_port']] if offline_server else [ports['topology_port'],ports['studio_port']],g['udp_port']);svc=m['services'];children=[];logs=[]
  try:
   found=False;service_ready=False;reason='no gateway candidate'
@@ -303,18 +346,21 @@ def main():
  try:rr,m=release(manifest);reason=None
  except (ValueError,OSError,KeyError,json.JSONDecodeError) as e:rr=m=None;reason='发布服务包不可用，请联系交付人员安装并校验完整发布包：'+str(e)
  if a.dry_run:
-  print(json.dumps(dict(state='dry_run',config=str(cfg),release=str(manifest),release_ready=m is not None,reason=reason,hardware_probed=False),ensure_ascii=False));return 0
+  print(json.dumps(dict(state='dry_run',config=str(cfg),release=str(manifest),release_ready=m is not None,reason=reason,gateway_mode=c['gateway'].get('mode','remote'),hardware_probed=False),ensure_ascii=False));return 0
+ if 'mode' not in c['gateway']:print('旧配置未指定网关模式：本次使用 remote（不绑定电脑 UDP 1680）；显式 legacy_local 可回退。',flush=True)
  instance_file=local/'studio-instance.json';url=f"http://127.0.0.1:{c['services']['studio_port']}/"
  try:handle=lock(local/'studio.lock')
  except (OSError,RuntimeError) as e:
-  if reuse_instance(instance_file,c['services']['studio_port']):print('已连接到运行中的 Studio。',flush=True);return 0
+  reused=reuse_instance(instance_file,c['services']['studio_port'],c['gateway'].get('mode','remote'))
+  if reused=='incompatible':return 1
+  if reused:print('已连接到运行中的 Studio。',flush=True);return 0
   print('Studio 正在启动或无法访问，请稍后再次双击。',e,file=sys.stderr);return 1
  control=None
  try:
   if not recovered:save_config_backup(original_cfg,local)
   JOB=OwnedJob()
   health=Health(local/'studio-recovery.json',url)
-  control=ThreadingHTTPServer(('127.0.0.1',0),Control);control.token=secrets_token=uuid.uuid4().hex+uuid.uuid4().hex;control.health=health
+  control=ThreadingHTTPServer(('127.0.0.1',0),Control);control.token=secrets_token=uuid.uuid4().hex+uuid.uuid4().hex;control.health=health;control.gateway_mode=c['gateway'].get('mode','remote')
   threading.Thread(target=control.serve_forever,daemon=True).start()
   instance_file.write_text(json.dumps(dict(port=control.server_port,token=secrets_token)),encoding='utf-8')
   run_dir=ROOT/'data/logs'/('studio-'+time.strftime('%Y%m%d-%H%M%S')+'-'+uuid.uuid4().hex[:6]);run_dir.mkdir(parents=True,exist_ok=False)

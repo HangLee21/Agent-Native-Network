@@ -48,15 +48,29 @@
     "assets/mobile_gateway/view.js": "62879ed8fcc2bc6e1007623e6216a4700cb35879efafa37d841caf5f26dc2ad9",
     "firmware/mid_baseline/field_agent/lora_ref/decoder.py": "dfd5e04b7b293284117739063db31b93cdd98734d289920cd06720ee58d17366",
     "tools/field_gateway/client.py": "0de3beae71e9da8a26d232104ffbc1d764ef6da5d93774c432b40819d1b35171",
+    "tools/flight_link/appliance.py": "bba6273bc0e06ffc692ebd714914380a95625d1cf218bf08230d8f2eb12b46e0",
     "tools/flight_link/archive.py": "a93bba53499149199927bec88910e95ef588488a30ed056901b04b25885eb01d",
     "tools/flight_link/codec.py": "ec3debdd184f9b1f434f127e4a020407d079e7d95c5d98f403055e01193ab81d",
+    "tools/flight_link/compat_decoder.py": "092a5cf1ce234b393cb378e2f38b8f6b7ae3de118c0c7fd0e94bc34ae878a417",
     "tools/flight_link/gateway.py": "1702b772621bbc8591300a03b8804ae5b0d69b51c9220551f1ffa167bea2a93a",
     "tools/mid_hardware/field_agent/wire_operator.py": "ab85c914456a99f76bb3233d41dac00074c91552dc80ad377f846939fd5a9a39",
     "tools/mobile_gateway/fleet_registry.py": "004281bea0bf42489dfd67faac22743257cee409014271d60d8f6e7ac5033982",
+    "tools/mobile_gateway/remote.py": "4dabcb8869bb0c63dd8e95c386e409ea3c6e686cd68f083eb665cbc579d374bd",
     "tools/mobile_gateway/server.py": "980911208531c0c311931f984d0a5ee4b2a23500a65599ca9414471fc8599c56",
     "tools/mobile_gateway/state.py": "4f8d753e275fb4b8d11c3932a553dc349af6e7597407e2b8e530c3f3e14cbf79",
-    "tools/mobile_gateway/studio.py": "852ceb0c788e124cecec7e5f1099c28afc7f19f3404a8f3c7f49c4b43aa5ae02"
+    "tools/mobile_gateway/studio.py": "b4bbbd490a8d7b1e2a4c48633f8b9f4597f1906c3de7274fb43c38205cd24a2e"
   },
   "rollback_release": null,
-  "validation_evidence": []
+  "validation_evidence": [],
+  "gateway_appliance": {
+    "module": "tools.flight_link.appliance",
+    "minimum_python": [
+      3,
+      4
+    ],
+    "files": [
+      "tools/flight_link/appliance.py",
+      "tools/flight_link/compat_decoder.py"
+    ]
+  }
 }
