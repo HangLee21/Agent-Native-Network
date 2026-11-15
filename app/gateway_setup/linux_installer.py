@@ -215,7 +215,8 @@ def rollback():
     print('原转发配置和服务状态已恢复；备份及运行数据保留。')
 
 
-def install(package,c,python_executable=None,dnsmasq_executable=None):
+def install(package,c,python_executable=None,dnsmasq_executable=None,dedicated=False):
+    if not dedicated:raise SetupError('必须明确确认专用网口，未修改配置')
     if os.geteuid()!=0:raise SetupError('需要管理员权限')
     meta=verify_package(package)
     if sys.version_info<tuple(meta['minimum_python']):raise SetupError('网关 Python 版本不满足服务要求；未修改任何配置')
@@ -234,7 +235,8 @@ def install(package,c,python_executable=None,dnsmasq_executable=None):
     except (ImportError,KeyError):raise SetupError('网关缺少 nobody 用户或 nogroup 用户组，未修改配置')
     iface=Path(SYS_NET)/c['interface']
     if not iface.exists() or (iface/'wireless').exists() or read_text(iface/'type').strip()!='1':raise SetupError('请选择已连接的专用有线接口')
-    if call('ip','route','show','default','dev',c['interface']).stdout.strip():raise SetupError('该网口存在默认路由，不可启用专用 DHCP')
+    original_default_route=call('ip','route','show','default','dev',c['interface']).stdout.strip()
+    if original_default_route:print('专用网口已有默认路由，将保留原配置：'+original_default_route)
     if call('systemctl','is-active','dnsmasq.service',check=False).stdout.strip()=='active':raise SetupError('已有 DHCP 服务运行，未修改')
     saved=Path(STATE)/'backup.json'
     if saved.exists():
@@ -267,7 +269,7 @@ def install(package,c,python_executable=None,dnsmasq_executable=None):
     addr=call('ip','-o','-4','addr','show','dev',c['interface']).stdout
     present=(c['address']+'/'+str(c['prefix'])) in addr
     state={'schema':1,'config':c,'files':{p:capture(p) for p in PATHS},'pktfwd':current_service('pktfwd.service'),
-           'address_was_present':present,'package_hash':meta['package_sha256'],'package_files':meta['files'],'phase':'installing'}
+           'address_was_present':present,'original_default_route':original_default_route,'package_hash':meta['package_sha256'],'package_files':meta['files'],'phase':'installing'}
     write_atomic(saved,json.dumps(state,indent=2).encode('utf-8'),0o600)
     try:
         mkdirp(Path(RELEASE).parent)
@@ -305,7 +307,7 @@ def main():
         c=configuration(a.interface,a.address,a.network,a.pool_start,a.pool_end,a.gateway_eui)
         if a.action=='plan':print(json.dumps({'config':c,'units':render_units(c,'/usr/bin/python3')},indent=2));return 0
         if not a.dedicated or not a.package:raise SetupError('必须明确确认专用网口并提供完整服务包')
-        install(a.package,c,a.python_wrapper,a.dnsmasq_wrapper);return 0
+        install(a.package,c,a.python_wrapper,a.dnsmasq_wrapper,dedicated=a.dedicated);return 0
     except Exception as exc:print('未完成：'+str(exc),file=sys.stderr);return 1
 
 
