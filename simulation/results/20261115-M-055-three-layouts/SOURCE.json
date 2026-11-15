@@ -1,0 +1,72 @@
+{
+  "task_id": "M-055",
+  "date": "2026-11-15",
+  "production_base": "3d9765b689121a0dbbd54f9c09b8fe374e6653ae",
+  "production_commit": "d27bb3e07e0c3db8f3904161cdadc500ea2879c4",
+  "review": "coordination/reviews/C-040.md",
+  "files": {
+    "D-038/20261115-08-final/01-clear-five.png": {
+      "source": "simulation/outputs/D-038/20261115-08-final/01-clear-five.png",
+      "sha256": "9947163190ac44e8a1adaa0db8af962acc8d9054be0f58279c1debd0059bddea"
+    },
+    "D-038/20261115-08-final/02-clear-clusters.png": {
+      "source": "simulation/outputs/D-038/20261115-08-final/02-clear-clusters.png",
+      "sha256": "e198a8bc34da887b8c0d9ce7051b2e56cb6a193897f94fe4a4ef05df955ce7e8"
+    },
+    "D-038/20261115-08-final/02b-clear-sparse.png": {
+      "source": "simulation/outputs/D-038/20261115-08-final/02b-clear-sparse.png",
+      "sha256": "ddeeaf027c217348204a6964b1701cbab49f9154e72415b2a529112232aa8fc4"
+    },
+    "D-038/20261115-08-final/03-clear-dense-focus.png": {
+      "source": "simulation/outputs/D-038/20261115-08-final/03-clear-dense-focus.png",
+      "sha256": "339c58d1011c7290948fd1f4a2855a0e880167ff29631357ce330d6b9d74c61a"
+    },
+    "D-038/20261115-08-final/03a-clear-dense.png": {
+      "source": "simulation/outputs/D-038/20261115-08-final/03a-clear-dense.png",
+      "sha256": "625053c70e578d8525a200842c6941509465a33b0a1e5a2988824604b88bb725"
+    },
+    "D-038/20261115-08-final/04-manual-drag.png": {
+      "source": "simulation/outputs/D-038/20261115-08-final/04-manual-drag.png",
+      "sha256": "b740f6087cc8c4345fb4e7377ee623b93c225b435d83f95fafbd6207b266b34e"
+    },
+    "D-038/20261115-08-final/05-gps-partial.png": {
+      "source": "simulation/outputs/D-038/20261115-08-final/05-gps-partial.png",
+      "sha256": "269537ba38a91eecf450b94a888ca276a6250a8d85a6b18d4e3f09826dba6b28"
+    },
+    "D-038/20261115-08-final/check.py": {
+      "source": "simulation/outputs/D-038/20261115-08-final/check.py",
+      "sha256": "8f500399578a9332f29f54656f06e63d85b8706bc275ce5d5167e9bde4401ae1"
+    },
+    "D-038/20261115-08-final/PROCESS_END.json": {
+      "source": "simulation/outputs/D-038/20261115-08-final/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    "D-038/20261115-08-final/RESULT.json": {
+      "source": "simulation/outputs/D-038/20261115-08-final/RESULT.json",
+      "sha256": "25fe8582b7924faad10ad71a15cdb51d4866b71235ce3c94aabd3a97c0856e30"
+    },
+    "D-038/20261115-08-final/RUN_MANIFEST.json": {
+      "source": "simulation/outputs/D-038/20261115-08-final/RUN_MANIFEST.json",
+      "sha256": "77fd8e187665ed8c33c5408a33ab50759a7f9f54c8504b120f3524a5c64db187"
+    },
+    "review/C-040-review.md": {
+      "source": "coordination/reviews/C-040.md",
+      "sha256": "e8d33816b874b1dad5217932278ee28c97223db876a5404252e877cbd09d1e8f"
+    },
+    "review/C-040-task.md": {
+      "source": "coordination/tasks/C-040.md",
+      "sha256": "9caca56720e198805ad45a892a08893ecbb83fb75cd8707599791cc3a9408d92"
+    },
+    "review/D-038-task.md": {
+      "source": "coordination/tasks/D-038.md",
+      "sha256": "7864314dc968cf04b1434e6a98fc60462bf250ac411c2c35ab7a5b587a8a9a0c"
+    }
+  },
+  "limitations": [
+    "All browser scenarios use synthetic loopback data, not real 30-node RF measurements.",
+    "Manual positions are stored in this browser, scoped by gateway and source; no cross-browser synchronization.",
+    "Earlier D-038 runs 01-07 are retained unchanged in outputs and are not adopted as final evidence.",
+    "No hardware, firmware, gateway, network adapter or live service restart in this task."
+  ],
+  "production_manifest_sha256": "b0ac027d41fab35f2eb4ea48dd492023ad04a01be3b11deabe625a3f77cd60be"
+}
