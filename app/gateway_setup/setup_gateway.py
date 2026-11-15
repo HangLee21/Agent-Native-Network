@@ -10,10 +10,34 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import time
 import uuid
 
 ROOT=Path(__file__).resolve().parents[2]
 class SetupError(RuntimeError):pass
+LOG_FILE=None
+SSH_OPTIONS=['-o','ConnectTimeout=5','-o','ConnectionAttempts=1']
+
+
+def log_event(stage,status,code=None,error=None):
+    if not LOG_FILE:return
+    event={'time':time.strftime('%Y-%m-%dT%H:%M:%S'),'component':'setup','stage':stage,'status':status}
+    if code is not None:event['exit_code']=code
+    if error is not None:event['error_type']=error
+    try:
+        with open(LOG_FILE,'a',encoding='utf-8') as stream:stream.write(json.dumps(event,ensure_ascii=True)+'\n')
+    except OSError:pass
+
+
+def run_step(runner,stage,args,**kwargs):
+    log_event(stage,'started')
+    try:result=runner(args,**kwargs)
+    except subprocess.CalledProcessError as exc:
+        log_event(stage,'failed',code=exc.returncode,error=type(exc).__name__);raise
+    except OSError as exc:
+        log_event(stage,'failed',error=type(exc).__name__);raise
+    log_event(stage,'completed',code=result.returncode)
+    return result
 
 
 def prepare(directory,root=ROOT):
@@ -72,8 +96,10 @@ def remote_exec(user,host,action,interface,eui,runner=subprocess.run):
     if action=='install' and interface is None:
         print('正在连接网关。若提示输入密码，输入时屏幕不会显示字符，输完按回车。',flush=True)
         command='printf "CONNECTION %s\\n" "$SSH_CONNECTION"; for p in /sys/class/net/*; do n=${p##*/}; [ "$n" = lo ] && continue; [ -d "$p/wireless" ] && continue; [ "$(cat "$p/type")" = 1 ] || continue; ip -o -4 addr show dev "$n" | awk -v n="$n" \'{print "ADDRESS " n " " $4}\'; done'
-        found=runner(['ssh',target,command],check=True,stdout=subprocess.PIPE,universal_newlines=True)
+        found=run_step(runner,'ssh_enumerate',['ssh']+SSH_OPTIONS+[target,command],check=True,stdout=subprocess.PIPE,universal_newlines=True)
+        log_event('interface_selection','started')
         interface=choose_remote_interface(found.stdout,host)
+        log_event('interface_selection','completed')
     if action=='install' and (not isinstance(interface,str) or not re.fullmatch(r'[A-Za-z0-9_.-]{1,15}',interface)):raise SetupError('网口名格式无效')
     if not re.fullmatch(r'[0-9a-f]{16}',eui):raise SetupError('网关标识格式无效')
     token=uuid.uuid4().hex;remote='/tmp/ann-gateway-'+token
@@ -86,18 +112,21 @@ def remote_exec(user,host,action,interface,eui,runner=subprocess.run):
             for path in sorted(directory.rglob('*')):
                 if path.is_file():tar.add(str(path),arcname=path.relative_to(directory).as_posix(),recursive=False)
         print('请按提示输入网关密码；输入时不会显示字符，输完按回车。密码不会被保存。',flush=True)
-        runner(['scp',str(archive),target+':'+remote+'.tar.gz'],check=True)
+        run_step(runner,'scp_upload',['scp']+SSH_OPTIONS+[str(archive),target+':'+remote+'.tar.gz'],check=True)
         command='mkdir -m 700 {r} && tar -xzf {r}.tar.gz -C {r} && sudo python3 {r}/linux_installer.py {action}'.format(r=remote,action=action)
         if action=='install':command+=' --package '+remote+' --interface '+interface+' --gateway-eui '+eui+' --dedicated'
-        runner(['ssh','-tt',target,command],check=True)
+        run_step(runner,'ssh_install',['ssh']+SSH_OPTIONS+['-tt',target,command],check=True)
 
 
 def main():
+    global LOG_FILE
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--action',choices=['install','rollback'],default='install');p.add_argument('--host',default='192.168.137.200')
     p.add_argument('--user',default='rxhf');p.add_argument('--interface');p.add_argument('--gateway-eui',default='b827ebfffe32e2c1')
     p.add_argument('--plan',action='store_true',help='validate delivery files without network or changes')
+    p.add_argument('--log-file',help=argparse.SUPPRESS)
     a=p.parse_args()
+    LOG_FILE=a.log_file
     try:
         ssh_target(a.user,a.host)
         if a.plan:
@@ -105,8 +134,12 @@ def main():
                 meta=prepare(tmp);print(json.dumps({'status':'ready_for_review','minimum_python':meta['minimum_python'],'hardware_access':False}))
             return 0
         remote_exec(a.user,a.host,a.action,a.interface,a.gateway_eui);return 0
-    except (SetupError,OSError,ValueError,subprocess.CalledProcessError) as exc:
-        print('未完成：'+str(exc),file=sys.stderr);return 1
+    except (SetupError,OSError,ValueError,EOFError,subprocess.CalledProcessError) as exc:
+        log_event('setup','failed',code=exc.returncode if isinstance(exc,subprocess.CalledProcessError) else None,error=type(exc).__name__)
+        if isinstance(exc,subprocess.CalledProcessError):
+            print('未完成：连接或远端操作失败（退出码 {}），请检查上方提示及诊断日志。'.format(exc.returncode),file=sys.stderr)
+        else:print('未完成：'+str(exc),file=sys.stderr)
+        return 1
 
 
 if __name__=='__main__':sys.exit(main())

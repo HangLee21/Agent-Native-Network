@@ -11,6 +11,16 @@ if (-not $Elevated) {
 $stateDir = Join-Path $root 'data/gateway-setup'
 New-Item -ItemType Directory -Force -Path $stateDir | Out-Null
 $statePath = Join-Path $stateDir 'temporary-ip.json'
+$logPath = Join-Path $stateDir ('run-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '-' + [guid]::NewGuid().ToString('N') + '.jsonl')
+$phase = 'start'
+function Write-SetupEvent {
+    param([string]$Stage,[string]$Status,$Code=$null,[string]$ErrorType='')
+    $event = [ordered]@{ time=(Get-Date -Format 'yyyy-MM-ddTHH:mm:ss'); component='bootstrap'; stage=$Stage; status=$Status }
+    if ($null -ne $Code) { $event.exit_code=$Code }
+    if ($ErrorType) { $event.error_type=$ErrorType }
+    try { Add-Content -LiteralPath $logPath -Value ($event | ConvertTo-Json -Compress) -Encoding UTF8 } catch { Write-Warning '无法写入诊断日志。' }
+}
+Write-SetupEvent 'start' 'started'
 
 function Restore-TemporaryAddress {
     param($State)
@@ -50,10 +60,12 @@ function Test-DedicatedEthernetCandidate {
 }
 
 try {
+    $phase = 'previous_recovery'
     if (Test-Path -LiteralPath $statePath) {
         Write-Host '正在恢复上一次中断的网卡设置……'
         Restore-TemporaryAddress (Get-Content -LiteralPath $statePath -Raw -Encoding UTF8 | ConvertFrom-Json)
     }
+    $phase = 'local_preflight'
     $config = Join-Path $root 'data/fleet.json'
     if (-not (Test-Path -LiteralPath $config)) { $config = Join-Path $root 'config/fleet.default.json' }
     $fleet = Get-Content -LiteralPath $config -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -82,8 +94,12 @@ try {
     Write-Host ('电脑网口：{0}；准备{1}网关。' -f $selected.Name,$actionLabel)
     $confirm = Read-Host '请确认网线直连网关、没有接入共享网络。按回车开始，输入 N 取消'
     if ($null -eq $confirm -or $confirm -ne '') { throw '已取消操作。' }
+    Write-SetupEvent 'confirmation' 'completed'
     if ($actionName -eq 'install') {
+        $phase = 'package_check'
         & $python -B (Join-Path $PSScriptRoot 'setup_gateway.py') --plan
+        $code=$LASTEXITCODE; $status=if($code -eq 0){'completed'}else{'failed'}
+        Write-SetupEvent $phase $status $code
         if ($LASTEXITCODE -ne 0) { throw '交付包尚未准备完成，未修改网卡。' }
     }
     $ipState = Get-NetIPInterface -InterfaceIndex $selected.ifIndex -AddressFamily IPv4
@@ -92,6 +108,7 @@ try {
     $already = @($addresses | Where-Object { $_.IPAddress -match '^192\.168\.137\.' }).Count -gt 0
     $result=1
     try {
+        $phase = 'temporary_address'
         if (-not $already) {
         if (Get-NetIPAddress -IPAddress $state.temporary_ip -ErrorAction SilentlyContinue) { throw '临时地址已被本机占用，未修改网卡。' }
         $tmp = $statePath+'.tmp'
@@ -100,16 +117,36 @@ try {
             try { $file.Write($bytes,0,$bytes.Length); $file.Flush($true) } finally { $file.Dispose() }
         Move-Item -LiteralPath $tmp -Destination $statePath
         New-NetIPAddress -InterfaceIndex $selected.ifIndex -IPAddress $state.temporary_ip -PrefixLength 24 -ErrorAction Stop | Out-Null
+        $deadline = [DateTime]::UtcNow.AddSeconds(10)
+        do {
+            $temporary = Get-NetIPAddress -InterfaceIndex $selected.ifIndex -IPAddress $state.temporary_ip -ErrorAction Stop
+            if ($temporary.AddressState -eq 'Preferred') { break }
+            Start-Sleep -Milliseconds 250
+        } while ([DateTime]::UtcNow -lt $deadline)
+        if ($temporary.AddressState -ne 'Preferred') { throw '电脑临时地址未就绪，请检查网卡后重试。' }
         }
-        & $python -B (Join-Path $PSScriptRoot 'setup_gateway.py') --action $actionName --gateway-eui $eui
+        Write-SetupEvent $phase 'completed'
+        $phase = 'remote_setup'
+        Write-SetupEvent $phase 'started'
+        & $python -B (Join-Path $PSScriptRoot 'setup_gateway.py') --action $actionName --gateway-eui $eui --log-file $logPath
         $result=$LASTEXITCODE
+        $status=if($result -eq 0){'completed'}else{'failed'}
+        Write-SetupEvent $phase $status $result
     } finally {
-        if (Test-Path -LiteralPath $statePath) { Restore-TemporaryAddress (Get-Content -LiteralPath $statePath -Raw -Encoding UTF8 | ConvertFrom-Json) }
+        if (Test-Path -LiteralPath $statePath) {
+            $phase = 'local_restore'
+            try { Restore-TemporaryAddress (Get-Content -LiteralPath $statePath -Raw -Encoding UTF8 | ConvertFrom-Json); Write-SetupEvent $phase 'completed' }
+            catch { Write-SetupEvent $phase 'failed' $null $_.Exception.GetType().Name; throw }
+        } else { Write-SetupEvent 'local_restore' 'not_needed' }
         if ($actionName -eq 'install' -and $result -eq 0 -and $state.original_dhcp -eq 'Enabled') {
+            $phase = 'dhcp_renew'
             & ipconfig.exe /renew $selected.Name | Out-Null
+            $code=$LASTEXITCODE; $status=if($code -eq 0){'completed'}else{'failed'}
+            Write-SetupEvent $phase $status $code
             if ($LASTEXITCODE -ne 0) { throw '电脑网口已还原为自动获取地址，但续租未成功；可重新插拔网线后重试。' }
         }
         if ($actionName -eq 'install' -and $result -eq 0) {
+            $phase = 'connection_verify'
             $newAddresses = @(Get-NetIPAddress -InterfaceIndex $selected.ifIndex -AddressFamily IPv4 -ErrorAction SilentlyContinue |
                 Where-Object { $_.IPAddress -match '^192\.168\.137\.' -and $_.IPAddress -ne '192.168.137.200' })
             if ($newAddresses.Count -eq 0) { throw '网关初始化已执行，但电脑网口尚未取得同网段地址；请重新插拔网线后重试。' }
@@ -119,10 +156,13 @@ try {
             if (-not $identityOk) { throw '网关初始化已执行，但接收服务身份或就绪状态未通过核验；请检查网关后重试。' }
         }
     }
-    if ($result -ne 0) { throw '网关操作未完成，请查看上方提示后重试。' }
+    if ($result -ne 0) { $phase='remote_setup'; throw '网关操作未完成，请查看上方提示后重试。' }
+    Write-SetupEvent 'finish' 'completed' 0
     Write-Host '处理完成。'
 } catch {
+    Write-SetupEvent $phase 'failed' $null $_.Exception.GetType().Name
     Write-Host ('未完成：' + $_.Exception.Message)
+    Write-Host ('诊断日志：' + $logPath)
     $result=1
 } finally {
     Write-Host '按任意键关闭。'
