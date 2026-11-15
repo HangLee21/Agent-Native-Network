@@ -1,5 +1,7 @@
 # 从这里开始
 
+M-047本轮已完成：生产816958f已推送；实际短探测网关TCP22可达，已恢复DHCP。先前超时原因未确定，真实初始化待用户重开SETUP_GATEWAY。证据见simulation/results/20261115-M-047-gateway-connection/。
+
 2026-11-15 [M-044](coordination/tasks/M-044.md) 脚本离线交付已验收，生产 05d4ca6 已推送。首次用 SETUP_GATEWAY.cmd，日常用 START_STUDIO.cmd；真实网关与换电脑尚待现场验证。
 
 2026-11-15 当前 [M-044](coordination/tasks/M-044.md)：网关 DHCP/本地接收服务＋PC主动连接，E2-037/H-023/D-034/C-036 分工；脚本先完成，现场网络只读，不烧板。主卡路径以主仓 coordination/tasks/M-044.md 为准。

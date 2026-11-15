@@ -1,5 +1,7 @@
 # 固件版本沿革（field_agent）
 
+2026-11-15 M-047：生产 816958f 已推送。初始化脚本等待临时地址 Preferred，SSH/SCP 连接超时5秒且只尝试一次，保存阶段/退出码/恢复记录，不保存密码；C窄审和非零状态修复通过。经用户明确授权及Windows UAC，单次实测192.168.137.200经以太网20可ping通、TCP22可连接，ARP B8-27-EB-32-E2-C1；之后已移除临时地址并恢复DHCP，无pending。此前超时根因未确定，未SSH认证、安装或修改网关；现场部署仍待用户运行SETUP_GATEWAY.cmd。证据 simulation/results/20261115-M-047-gateway-connection/。
+
 2026-11-15 M-046：生产 c155295 已推送。网关初始化默认install，唯一符合条件的电脑有线口自动选；远端按目标IP、SSH_CONNECTION服务端地址和有线网口地址唯一匹配自动选。仅保留一次中文回车确认；null和非空输入取消，回滚经显式--rollback。密码说明提前且解释无回显，不保存密码。H少量交互/远端选择夹具与C窄审通过，真实SSH/安装/网络改变未执行。证据 simulation/results/20261115-M-046-simple-setup/。
 
 2026-11-15 M-045：修复初始化脚本错误使用不存在的 ifType 导致有线网口被过滤。生产 e036077 已推送；改读 InterfaceType，保持物理/已连接/有线条件。实际 Windows PowerShell 只读识别以太网 ifIndex20，并排除 WLAN；分类夹具通过，C增量审查无本机误判阻断。证据 simulation/results/20261115-M-045-ethernet-detection/。未运行网关初始化或修改网络。

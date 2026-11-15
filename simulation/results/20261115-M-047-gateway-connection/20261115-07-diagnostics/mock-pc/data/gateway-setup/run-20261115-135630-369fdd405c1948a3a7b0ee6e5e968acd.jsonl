@@ -1,0 +1,8 @@
+﻿{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"start","status":"started"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"confirmation","status":"completed"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"package_check","status":"completed","exit_code":0}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"temporary_address","status":"completed"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"remote_setup","status":"started"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"remote_setup","status":"completed","exit_code":255}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"local_restore","status":"completed"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"remote_setup","status":"failed","error_type":"RuntimeException"}

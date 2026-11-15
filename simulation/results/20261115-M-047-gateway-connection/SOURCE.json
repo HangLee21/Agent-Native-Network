@@ -1,0 +1,201 @@
+{
+  "task": "M-047",
+  "production_commit": "816958f",
+  "sources": [
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/bootstrap-fixture.ps1",
+      "file": "20261115-07-diagnostics/bootstrap-fixture.ps1",
+      "sha256": "d7b9d37f98086bb68a300aca3b23c5a71c2fb78900a5f45000cc791f135b739c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/fleet.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/fleet.json",
+      "sha256": "eacb29bead553b6b0d02d07c514e62d356dd30372b141a86a61b795614512d31"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-06afb593e70f43959f144d07d81687a4.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-06afb593e70f43959f144d07d81687a4.json",
+      "sha256": "c1e6596fa3bacd56b197c0c08c859bcfe303b9773915c364fde9a975a2654478"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-46eb161905764154acfb888c62d2035c.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-46eb161905764154acfb888c62d2035c.json",
+      "sha256": "edf66630ad7307f6ce06c2b1f3b23b6b7dd263dafd502356ff16b8161186e67c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-4c910c9e535240c88513ebfce2d609b3.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-4c910c9e535240c88513ebfce2d609b3.json",
+      "sha256": "c1e6596fa3bacd56b197c0c08c859bcfe303b9773915c364fde9a975a2654478"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-70b303df93b44aaf9ed4b083cd1f38ab.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-70b303df93b44aaf9ed4b083cd1f38ab.json",
+      "sha256": "c1e6596fa3bacd56b197c0c08c859bcfe303b9773915c364fde9a975a2654478"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-80d0052a155f44779216851185e8e287.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-80d0052a155f44779216851185e8e287.json",
+      "sha256": "edf66630ad7307f6ce06c2b1f3b23b6b7dd263dafd502356ff16b8161186e67c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-a6c198aa30d04a9ba943839bb1dd59cd.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-a6c198aa30d04a9ba943839bb1dd59cd.json",
+      "sha256": "c1e6596fa3bacd56b197c0c08c859bcfe303b9773915c364fde9a975a2654478"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-c1873d89d7b344d685e5b0a4d5229318.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-c1873d89d7b344d685e5b0a4d5229318.json",
+      "sha256": "c1e6596fa3bacd56b197c0c08c859bcfe303b9773915c364fde9a975a2654478"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-d2e3e4b2fc8c43c08882b4e8cd9b9094.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-d2e3e4b2fc8c43c08882b4e8cd9b9094.json",
+      "sha256": "edf66630ad7307f6ce06c2b1f3b23b6b7dd263dafd502356ff16b8161186e67c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-fc88d449e5bd4fb1b858695a8541190c.json",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/restored-fc88d449e5bd4fb1b858695a8541190c.json",
+      "sha256": "c1e6596fa3bacd56b197c0c08c859bcfe303b9773915c364fde9a975a2654478"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-2709f3839f5d4872aace376e72154e0a.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-2709f3839f5d4872aace376e72154e0a.jsonl",
+      "sha256": "3ce21b24986a1d8133574ce7c2e1f847ae1b0c3878af87c715b235aa86f21bc2"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-753881f0d5f64fc4aa2a788e75e4b639.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-753881f0d5f64fc4aa2a788e75e4b639.jsonl",
+      "sha256": "a2abb2f4416af1c99f4e7e5c914ca56e5db57eadccfa01b9de0e8ace680788ca"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-aa15dc8be811494497372d8b8ea7fe13.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-aa15dc8be811494497372d8b8ea7fe13.jsonl",
+      "sha256": "3ce21b24986a1d8133574ce7c2e1f847ae1b0c3878af87c715b235aa86f21bc2"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-deb9749042934d2d90f7ef0dd02d2f3e.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-deb9749042934d2d90f7ef0dd02d2f3e.jsonl",
+      "sha256": "27e9624f7ae86660a4c5eb780cb1dfaa218ef3c76ab9cb7b6d8befc8fcc18bb3"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-eb31f36dd6dd4055bb12b42820e3d764.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135612-eb31f36dd6dd4055bb12b42820e3d764.jsonl",
+      "sha256": "27e9624f7ae86660a4c5eb780cb1dfaa218ef3c76ab9cb7b6d8befc8fcc18bb3"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135629-3b9eeec914c44f0eaf72a987c5294b13.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135629-3b9eeec914c44f0eaf72a987c5294b13.jsonl",
+      "sha256": "7cc18b9648b670c505ec3bee27e704923ad33e0d4d86206f0318c58997e65a3e"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135630-08cc68072fc1446fb7d38941d35e8ae7.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135630-08cc68072fc1446fb7d38941d35e8ae7.jsonl",
+      "sha256": "63ddcf774687884912ee57daf505b09a4acbfae555c745bf7a90e7284369aa8c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135630-1044e18f9f954e4292cce61093623429.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135630-1044e18f9f954e4292cce61093623429.jsonl",
+      "sha256": "3093fc411b380a09213bb76b4ac39455bfb71342e209a0a51c7c0a9bd7543363"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135630-369fdd405c1948a3a7b0ee6e5e968acd.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135630-369fdd405c1948a3a7b0ee6e5e968acd.jsonl",
+      "sha256": "50c9d2548b7a72e22d888c030dbd88897e74b0ff4bd20d8374f071cce67b606e"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135630-39ef2e765c6b4647b2ccc45a892c8706.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135630-39ef2e765c6b4647b2ccc45a892c8706.jsonl",
+      "sha256": "63ddcf774687884912ee57daf505b09a4acbfae555c745bf7a90e7284369aa8c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-0d42dcfc727140b79ffed3570fe136e7.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-0d42dcfc727140b79ffed3570fe136e7.jsonl",
+      "sha256": "7912bac9b1dd6b3dc3e4404ab2f421d677c0e44b8297d4e2ef7153667a22fe68"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-33eafc3351fa419f8ad999f5824c41d6.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-33eafc3351fa419f8ad999f5824c41d6.jsonl",
+      "sha256": "81327a55de240debff0303be7a94b3bd6cbc0cc40e8b0dae09ae1895f6e5d974"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-5e34085aab8f42dc934f533225f634d0.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-5e34085aab8f42dc934f533225f634d0.jsonl",
+      "sha256": "81327a55de240debff0303be7a94b3bd6cbc0cc40e8b0dae09ae1895f6e5d974"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-71b590c49d7647348343ae232acaee3b.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-71b590c49d7647348343ae232acaee3b.jsonl",
+      "sha256": "7912bac9b1dd6b3dc3e4404ab2f421d677c0e44b8297d4e2ef7153667a22fe68"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-b56837aeed3b48faa473fa0259b5a5aa.jsonl",
+      "file": "20261115-07-diagnostics/mock-pc/data/gateway-setup/run-20261115-135928-b56837aeed3b48faa473fa0259b5a5aa.jsonl",
+      "sha256": "3a115b3149840b0ed07888b5a7156ef1cbad094fe7b4a265b9187a6b6f845ab2"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/probe.ps1",
+      "file": "20261115-07-diagnostics/probe.ps1",
+      "sha256": "7caba482e9194190cd84bd478f395ddb97cbd31697478416334cce62194c1c6a"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/RESULT.json",
+      "file": "20261115-07-diagnostics/RESULT.json",
+      "sha256": "a22c3986d80abb5ed3bca0cbe3e0f42c943ade6a909f86d5de296941c3d5ee94"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/RUN_MANIFEST.json",
+      "file": "20261115-07-diagnostics/RUN_MANIFEST.json",
+      "sha256": "25155cd47b44a885c2fc932aa8ecb64e65bbd2fd40a88b5b3e736f66d10ecbc6"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/test_console.ps1",
+      "file": "20261115-07-diagnostics/test_console.ps1",
+      "sha256": "1b72da72efea98bf7c0a1ac63fce8f888f95b16eecf11b31f34852c56e16535b"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-07-diagnostics/test_logging.py",
+      "file": "20261115-07-diagnostics/test_logging.py",
+      "sha256": "ccb81987d1d3951ea4d5321e0b0d088c745b435cb1b6f12c89e9e9e139726bcd"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-08-permission/RESULT.json",
+      "file": "20261115-08-permission/RESULT.json",
+      "sha256": "cf5e346a36db21f5aa499009fbb04905d783ff588f5efdfa32467969329ab5ae"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-08-permission/RUN_MANIFEST.json",
+      "file": "20261115-08-permission/RUN_MANIFEST.json",
+      "sha256": "7ddaab413fdb6db7374951b13f7dc84338efc8fbdc72c789082c885bea57a1fa"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-09-admin-probe/probe-result.txt",
+      "file": "20261115-09-admin-probe/probe-result.txt",
+      "sha256": "29d8393ff16c53830d00ab61ee4962dc343949aa1580126f715437f497c68de5"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-09-admin-probe/probe.ps1",
+      "file": "20261115-09-admin-probe/probe.ps1",
+      "sha256": "b77f3612e3eb2eb9183c59b263da06e603558fcc90ee84252d76db65d561d40f"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-09-admin-probe/RESULT.json",
+      "file": "20261115-09-admin-probe/RESULT.json",
+      "sha256": "a3b5fe9d7b98b1dcdab23491634b64401d37d04902ff40b6981823198aab8f52"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-09-admin-probe/run-probe.ps1",
+      "file": "20261115-09-admin-probe/run-probe.ps1",
+      "sha256": "916aa523ad7fa1bbeab96e5176b7b0442009692b0204a4005f47c24db1412fed"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-09-admin-probe/RUN_MANIFEST.json",
+      "file": "20261115-09-admin-probe/RUN_MANIFEST.json",
+      "sha256": "57d1026b14483722eb6a41ba04d5f7d45d8bdb0044b0f680477bc915aa891078"
+    }
+  ],
+  "limitations": [
+    "07/08 include mocked tests and earlier blocked attempts, not physical connectivity.",
+    "09 is one actual Ethernet/ICMP/TCP22 diagnostic with DHCP restored; no SSH authentication, gateway install, or RF test.",
+    "Earlier SSH timeout root cause not established."
+  ]
+}
