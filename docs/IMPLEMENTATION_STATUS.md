@@ -1,5 +1,7 @@
 # 实现状态（代码级审计结果）
 
+2026-11-15 M-050：生产0b7f0b1已推送。用户实机运行已通过上传、私有Python/服务导入与dnsmasq语法检查，后被默认路由拦截，服务配置未完成。经用户明确授权专用直连且保留现有路由，安装器在dedicated确认后仅查询/提示/记录默认路由，不增删改；未确认仍拒绝，DHCP专口绑定且不下发网关/DNS、EUI核对保持。H三项针对性检查、C窄审通过限定软件范围；目标新版安装待用户重开原入口。证据simulation/results/20261115-M-050-dedicated-route/。
+
 2026-11-15 M-049：生产4f1ee7f已推送。/opt安装预算保持128MiB，暂存改按实际压缩包+服务解包+8MiB余量动态计算（当前约16.42MiB），优先/tmp、不可用则/var/tmp；错误及白名单日志显示可用/所需值。SSH正常退出先client.close，超时仍可强制中止。H针对性主机检查与C窄审通过；用户旧日志未记录空间值，尚不能确定真实SPACE_TMP/10038根因，目标新版未重试。原失败未上传/安装，日志显示电脑配置已恢复。证据simulation/results/20261115-M-049-staging-space/。
 
 2026-11-15 M-048离线候选交付：生产1816020已推送。用户实机确认Raspbian8/Jessie、armhf、libc6 2.19、systemd215，缺Python3/dnsmasq。现随包提供8,789,982字节私有运行时（27个签名索引包、80个ARM ELF静态闭包），不安装系统dpkg包或替换libc/systemd；单Paramiko连接完成预检/SFTP/安装，登录密码仅内存用于sudo，默认同密一次输入。依赖先验证再切服务，SFTP握手/I/O/传输均有超时，租约使用项目目录及明确账号权限。H主机/模拟验证、E2静态包检查、C针对性复核已完成，C036-03在此范围关闭。真实ARM运行、SFTP/sudo和完整网关安装仍待用户运行原SETUP_GATEWAY.cmd；不称已安装成功。证据 simulation/results/20261115-M-048-offline-deployment/。
