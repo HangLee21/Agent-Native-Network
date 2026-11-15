@@ -44,19 +44,36 @@ def ssh_target(user,host):
     return user+'@'+host
 
 
+def choose_remote_interface(output,host,ask=input):
+    connection=None;choices=[]
+    for line in output.splitlines():
+        fields=line.split()
+        if len(fields)==5 and fields[0]=='CONNECTION':connection=fields[3]
+        elif len(fields)==3 and fields[0]=='ADDRESS' and re.fullmatch(r'[A-Za-z0-9_.-]{1,15}',fields[1]):
+            try:address=str(ipaddress.IPv4Interface(fields[2]).ip)
+            except ValueError:continue
+            choices.append((fields[1],address))
+    host=str(ipaddress.IPv4Address(host))
+    matches=sorted(set(name for name,address in choices if address==host and address==connection))
+    if len(matches)==1:
+        print('已识别网关连接网口：'+matches[0],flush=True);return matches[0]
+    if not choices:raise SetupError('无法识别网关有地址的有线网口，请检查连接。')
+    choices=sorted(set(choices))
+    print('检测到多个可能的网关网口，请选择网线直连电脑的网口：')
+    for index,(name,address) in enumerate(choices,1):print('  {}. {}（地址 {}）'.format(index,name,address))
+    answer=ask('输入序号：').strip()
+    if not answer.isdigit() or not 1<=int(answer)<=len(choices):raise SetupError('未选择有效网口')
+    return choices[int(answer)-1][0]
+
+
 def remote_exec(user,host,action,interface,eui,runner=subprocess.run):
     target=ssh_target(user,host)
     if action not in ('install','rollback'):raise SetupError('unknown action')
     if action=='install' and interface is None:
-        found=runner(['ssh',target,'for p in /sys/class/net/*; do n=${p##*/}; [ "$n" = lo ] && continue; [ -d "$p/wireless" ] && continue; [ "$(cat "$p/type")" = 1 ] && printf "%s\\n" "$n"; done'],check=True,stdout=subprocess.PIPE,universal_newlines=True)
-        choices=[x.strip() for x in found.stdout.splitlines() if re.fullmatch(r'[A-Za-z0-9_.-]{1,15}',x.strip())]
-        if not choices:raise SetupError('网关没有可选择的有线网口')
-        print('请选择直连电脑、没有接入共享网络的网关专用网口：')
-        for index,name in enumerate(choices,1):print('  {}. {}'.format(index,name))
-        answer=input('输入序号：').strip()
-        if not answer.isdigit() or not 1<=int(answer)<=len(choices):raise SetupError('未选择有效网口')
-        interface=choices[int(answer)-1]
-        if input('确认该网口只连接本机，不接入共享网络？输入 YES 继续：').strip()!='YES':raise SetupError('未确认专用网口')
+        print('正在连接网关。若提示输入密码，输入时屏幕不会显示字符，输完按回车。',flush=True)
+        command='printf "CONNECTION %s\\n" "$SSH_CONNECTION"; for p in /sys/class/net/*; do n=${p##*/}; [ "$n" = lo ] && continue; [ -d "$p/wireless" ] && continue; [ "$(cat "$p/type")" = 1 ] || continue; ip -o -4 addr show dev "$n" | awk -v n="$n" \'{print "ADDRESS " n " " $4}\'; done'
+        found=runner(['ssh',target,command],check=True,stdout=subprocess.PIPE,universal_newlines=True)
+        interface=choose_remote_interface(found.stdout,host)
     if action=='install' and (not isinstance(interface,str) or not re.fullmatch(r'[A-Za-z0-9_.-]{1,15}',interface)):raise SetupError('网口名格式无效')
     if not re.fullmatch(r'[0-9a-f]{16}',eui):raise SetupError('网关标识格式无效')
     token=uuid.uuid4().hex;remote='/tmp/ann-gateway-'+token
@@ -68,7 +85,7 @@ def remote_exec(user,host,action,interface,eui,runner=subprocess.run):
         with tarfile.open(str(archive),'w:gz') as tar:
             for path in sorted(directory.rglob('*')):
                 if path.is_file():tar.add(str(path),arcname=path.relative_to(directory).as_posix(),recursive=False)
-        print('正在连接网关；请按 SSH 提示输入密码。密码不会被保存。',flush=True)
+        print('请按提示输入网关密码；输入时不会显示字符，输完按回车。密码不会被保存。',flush=True)
         runner(['scp',str(archive),target+':'+remote+'.tar.gz'],check=True)
         command='mkdir -m 700 {r} && tar -xzf {r}.tar.gz -C {r} && sudo python3 {r}/linux_installer.py {action}'.format(r=remote,action=action)
         if action=='install':command+=' --package '+remote+' --interface '+interface+' --gateway-eui '+eui+' --dedicated'

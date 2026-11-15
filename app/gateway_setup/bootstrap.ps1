@@ -1,9 +1,11 @@
-﻿param([switch]$Elevated)
+﻿param([switch]$Elevated,[switch]$Rollback)
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
 if (-not $Elevated) {
     $script = '"' + $PSCommandPath + '"'
-    $proc = Start-Process -FilePath 'powershell.exe' -Verb RunAs -PassThru -Wait -ArgumentList @('-NoProfile','-ExecutionPolicy','Bypass','-File',$script,'-Elevated')
+    $arguments = @('-NoProfile','-ExecutionPolicy','Bypass','-File',$script,'-Elevated')
+    if ($Rollback) { $arguments += '-Rollback' }
+    $proc = Start-Process -FilePath 'powershell.exe' -Verb RunAs -PassThru -Wait -ArgumentList $arguments
     exit $proc.ExitCode
 }
 $stateDir = Join-Path $root 'data/gateway-setup'
@@ -60,22 +62,26 @@ try {
     $python = Join-Path $root 'runtime/python/python.exe'
     if (-not (Test-Path -LiteralPath $python)) { throw '交付包缺少运行环境。' }
     $adapters = @(Get-NetAdapter -Physical)
-    $choices = @($adapters | Where-Object { Test-DedicatedEthernetCandidate $_ })
+    $choices = @($adapters | Where-Object { (Test-DedicatedEthernetCandidate $_) -and -not (Get-NetRoute -InterfaceIndex $_.ifIndex -AddressFamily IPv4 -DestinationPrefix '0.0.0.0/0' -ErrorAction SilentlyContinue) })
     if ($choices.Count -eq 0) {
         Write-Host '未找到符合条件的已连接物理有线网口。检测到的物理网卡：'
         foreach ($adapter in $adapters) { Write-Host ('  {0}：{1}，介质 {2}' -f $adapter.Name,$adapter.Status,$adapter.PhysicalMediaType) }
         throw '请检查网线、网卡状态或驱动，然后重试。'
     }
-    Write-Host '请选择只连接网关、不接入共享网络的电脑有线网口：'
-    for ($i=0; $i -lt $choices.Count; $i++) { Write-Host ('{0}. {1}' -f ($i+1),$choices[$i].Name) }
-    $choice = Read-Host '输入序号'
-    $number = 0
-    if (-not [int]::TryParse($choice,[ref]$number) -or $number -lt 1 -or $number -gt $choices.Count) { throw '没有选择有效网口。' }
-    $selected = $choices[$number-1]
+    if ($choices.Count -eq 1) { $selected = $choices[0] } else {
+        Write-Host '检测到多个有线网口，请选择网线连接网关的网口：'
+        for ($i=0; $i -lt $choices.Count; $i++) { Write-Host ('{0}. {1}' -f ($i+1),$choices[$i].Name) }
+        $choice = Read-Host '输入序号'
+        $number = 0
+        if (-not [int]::TryParse($choice,[ref]$number) -or $number -lt 1 -or $number -gt $choices.Count) { throw '没有选择有效网口。' }
+        $selected = $choices[$number-1]
+    }
     if (Get-NetRoute -InterfaceIndex $selected.ifIndex -AddressFamily IPv4 -DestinationPrefix '0.0.0.0/0' -ErrorAction SilentlyContinue) { throw '该网口有默认路由，不能作为专用直连网口。' }
-    if ((Read-Host '确认网口仅连接网关、没有接入共享网络？输入 YES 继续') -cne 'YES') { throw '未确认专用网口。' }
-    $action = Read-Host '输入 1 初始化网关；输入 2 回滚初始化'
-    if ($action -eq '1') { $actionName='install' } elseif ($action -eq '2') { $actionName='rollback' } else { throw '未选择有效操作。' }
+    $actionName = if ($Rollback) { 'rollback' } else { 'install' }
+    $actionLabel = if ($Rollback) { '回滚' } else { '初始化' }
+    Write-Host ('电脑网口：{0}；准备{1}网关。' -f $selected.Name,$actionLabel)
+    $confirm = Read-Host '请确认网线直连网关、没有接入共享网络。按回车开始，输入 N 取消'
+    if ($null -eq $confirm -or $confirm -ne '') { throw '已取消操作。' }
     if ($actionName -eq 'install') {
         & $python -B (Join-Path $PSScriptRoot 'setup_gateway.py') --plan
         if ($LASTEXITCODE -ne 0) { throw '交付包尚未准备完成，未修改网卡。' }
