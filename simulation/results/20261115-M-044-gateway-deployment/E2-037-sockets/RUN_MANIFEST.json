@@ -1,0 +1,22 @@
+{
+  "source_sha256": "bba6273bc0e06ffc692ebd714914380a95625d1cf218bf08230d8f2eb12b46e0",
+  "task_id": "E2-037",
+  "limitations": [
+    "systemd fd passing, SO_BINDTODEVICE and broadcast reception not executed on Linux",
+    "Python 3.4 and ARM execution not tested",
+    "no physical gateway or network configuration accessed"
+  ],
+  "status": "passed",
+  "run_id": "20261115-05-socket-activation",
+  "command": [
+    "runtime/python/python.exe -X utf8 test_activation.py",
+    "runtime/python/python.exe -X utf8 -m unittest test_bind.Checks.test_no_interface_actual_loopback -v"
+  ],
+  "tests": [
+    "5 mocked descriptor validation/error tests",
+    "actual no-activation temporary loopback",
+    "Python 3.4 grammar"
+  ],
+  "processes": "test processes exited",
+  "finished_at": "2026-11-15T13:13:17.7090537+08:00"
+}

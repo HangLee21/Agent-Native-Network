@@ -1,0 +1,18 @@
+{
+  "offline_linux_tests": "6 passed",
+  "fake_windows_tests": [
+    "success",
+    "remote_failure",
+    "address_failure",
+    "identity_failure"
+  ],
+  "powershell_syntax": "passed",
+  "package_plan": "ready_for_review",
+  "sha256": {
+    "app/gateway_setup/linux_installer.py": "e351fd17f26dca38a8234fa7f07b6d2e0a426ef739b5c23a7c7c81f62a4e3c7d",
+    "app/gateway_setup/setup_gateway.py": "481be570d508ec97cb1032766bfd7020ca17d23056225bd90a9e241037a8d8c4",
+    "app/gateway_setup/bootstrap.ps1": "cea8d62579bbac9029e3536ccdeca512089d7f4456f4dfccdf37b8b1fe2dc179",
+    "SETUP_GATEWAY.cmd": "c00838d88828947453af9e7123764dfe416ab0c99715e96cfe531387b96600eb"
+  },
+  "physical_validation": "not performed"
+}

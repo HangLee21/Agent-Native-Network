@@ -1,5 +1,9 @@
 # 从这里开始
 
+2026-11-15 [M-044](coordination/tasks/M-044.md) 脚本离线交付已验收，生产 05d4ca6 已推送。首次用 SETUP_GATEWAY.cmd，日常用 START_STUDIO.cmd；真实网关与换电脑尚待现场验证。
+
+2026-11-15 当前 [M-044](coordination/tasks/M-044.md)：网关 DHCP/本地接收服务＋PC主动连接，E2-037/H-023/D-034/C-036 分工；脚本先完成，现场网络只读，不烧板。主卡路径以主仓 coordination/tasks/M-044.md 为准。
+
 当前追加M-039生产分支/一键部署：主卡coordination/tasks/M-039.md，独立worktree .worktrees/production。用户明天才接串口，今天仅离线软件/算法；不继续探测设备。研发主目录保留，生产代码冻结后同步。
 
 最新用户优先级为coordination/tasks/M-038.md：五板稳定业务和LoRa控制接收、无人机地面联调。各角色按新卡执行，停止自己的旧大矩阵，保留结果；H恢复台架并遵循P0先D后其余板。

@@ -1,0 +1,10 @@
+{
+  "test_results": "5 passed: socket stop and disable, address deletion, forwarder stop and restart; all retried successfully",
+  "python_3_4_grammar": "passed",
+  "sha256": {
+    "app/gateway_setup/linux_installer.py": "8bbc99077fc83ecc1158134d88e1219125e539ca4c57c0a9a056bbe705392d10",
+    "app/gateway_setup/setup_gateway.py": "481be570d508ec97cb1032766bfd7020ca17d23056225bd90a9e241037a8d8c4",
+    "app/gateway_setup/bootstrap.ps1": "cea8d62579bbac9029e3536ccdeca512089d7f4456f4dfccdf37b8b1fe2dc179",
+    "SETUP_GATEWAY.cmd": "c00838d88828947453af9e7123764dfe416ab0c99715e96cfe531387b96600eb"
+  }
+}

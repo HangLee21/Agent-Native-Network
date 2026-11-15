@@ -1,0 +1,123 @@
+{
+  "task_id": "M-044",
+  "created_at": "2026-11-15T13:21:29.062932+08:00",
+  "production_branch": "codex/production-deployment",
+  "production_commit": "05d4ca6cfe5ccdc6efc7a1be7a71528aa21804a6",
+  "evidence_kind": "Windows bundled Python real localhost services plus mocked Linux/Windows network and systemd operations",
+  "physical_gateway_tested": false,
+  "network_configuration_changed": false,
+  "limitations": [
+    "Python3.4 grammar and static API checks only; no ARM runtime",
+    "No actual DHCP, systemd215 socket inheritance, NIC isolation or reboot test",
+    "No real second computer or RF validation"
+  ],
+  "sources": [
+    {
+      "source": "simulation/outputs/E2-037/20261115-03-remote-final/check_launcher.py",
+      "artifact": "E2-037-remote/check_launcher.py",
+      "sha256": "8f0857df2d4821f1e6e1fa8a61bc292b7d3f46f9ab2522ef30851a4d51867bfb"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-03-remote-final/check_remote.py",
+      "artifact": "E2-037-remote/check_remote.py",
+      "sha256": "6d572ef32e734e347edcf7ddfd478d64fe82a6e9d5fe34ea9e502cb4162bf2d5"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-03-remote-final/compatibility.txt",
+      "artifact": "E2-037-remote/compatibility.txt",
+      "sha256": "28f43b66e313338ddd549141ccf559ca6bc495430275afd2935e37216d4d9cf5"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-03-remote-final/launcher-test.txt",
+      "artifact": "E2-037-remote/launcher-test.txt",
+      "sha256": "469a475c938fb923307c9297ebf0ae0d7c00d6b1c189263ac54cc321f08b4c08"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-03-remote-final/legacy-check.txt",
+      "artifact": "E2-037-remote/legacy-check.txt",
+      "sha256": "e77396487b6f6090268034e361c39af4fde7d6d48d88df5cd68f7fc2de780d89"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-03-remote-final/remote-tests.txt",
+      "artifact": "E2-037-remote/remote-tests.txt",
+      "sha256": "957e5de8ec37d502bc83b184a1f348a7e029e233225d4a73795ddf29cf8074df"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-03-remote-final/RUN_MANIFEST.json",
+      "artifact": "E2-037-remote/RUN_MANIFEST.json",
+      "sha256": "1a250a26fbfda31434429eea4887724c41174848e7e1d177f0327728f8765cdf"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-05-socket-activation/appliance-frozen.py",
+      "artifact": "E2-037-sockets/appliance-frozen.py",
+      "sha256": "bba6273bc0e06ffc692ebd714914380a95625d1cf218bf08230d8f2eb12b46e0"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-05-socket-activation/result.txt",
+      "artifact": "E2-037-sockets/result.txt",
+      "sha256": "ea9f20c029ba4d959e14ea60e137e7e27f76f62bcf5e55d34ecfbaa6984b4bca"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-05-socket-activation/RUN_MANIFEST.json",
+      "artifact": "E2-037-sockets/RUN_MANIFEST.json",
+      "sha256": "48483568dfd8a76ac6552676c708f690fdbfa59d69d82b3146763a2166f96159"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-05-socket-activation/test_activation.py",
+      "artifact": "E2-037-sockets/test_activation.py",
+      "sha256": "7f3f16debc213fa0f9ac06bf083a64f3e26e863e4865e43d13c8a91c50db4ce6"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-02-socket-activation/bootstrap-fixture.ps1",
+      "artifact": "H-023-installer/bootstrap-fixture.ps1",
+      "sha256": "2cb6239de087dcc4cd66c93bda17b97b0ec4e01f394bd41fd853b0e2f1dca048"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-02-socket-activation/RESULT.json",
+      "artifact": "H-023-installer/RESULT.json",
+      "sha256": "1b4c8353eda64b240821a3ccac6f7a873e729240d4704edb1740d0230e1042ef"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-02-socket-activation/RUN_MANIFEST.json",
+      "artifact": "H-023-installer/RUN_MANIFEST.json",
+      "sha256": "93a838e7187cb77cebd01e9997d2cf2f4966300dadec6baabaaf41a3f423448c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-02-socket-activation/test_bootstrap.ps1",
+      "artifact": "H-023-installer/test_bootstrap.ps1",
+      "sha256": "36fc51250b7677633cec6217eb4622e0eae3d29c94920d905152dc2e2c2f99a8"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-02-socket-activation/test_installer_final.py",
+      "artifact": "H-023-installer/test_installer_final.py",
+      "sha256": "71c01c9682dd32f812454b8275ebb12c124e2dc473cf6536843a2e04e84a380b"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-03-rollback-retry/RESULT.json",
+      "artifact": "H-023-rollback/RESULT.json",
+      "sha256": "89d3d5d18353e673e6d87b8903a332b03090b13380daa8530fb594cca7d1587a"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-03-rollback-retry/RUN_MANIFEST.json",
+      "artifact": "H-023-rollback/RUN_MANIFEST.json",
+      "sha256": "787a6bc5293929e703ba438962114ede6fe9a3e5f18521ee581f9b9f206f103d"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-03-rollback-retry/test_rollback_retry.py",
+      "artifact": "H-023-rollback/test_rollback_retry.py",
+      "sha256": "ad7af53b3cfdf5d95682dfaedfb2a7413fa6c8a18a5cccd6bc1391f3b39c3c96"
+    },
+    {
+      "source": "simulation/outputs/D-034/20261115-01-default-config/CHECK.json",
+      "artifact": "D-034-config/CHECK.json",
+      "sha256": "241d6571669cc0f09a259e7ecf10c734b51cd219383702580b856c08eded1a11"
+    },
+    {
+      "source": "simulation/outputs/D-034/20261115-01-default-config/RUN_MANIFEST.json",
+      "artifact": "D-034-config/RUN_MANIFEST.json",
+      "sha256": "233b8709fd60aeb513b37cad145555c7ec75be8a5fc0f4d5887577908931d0ba"
+    }
+  ],
+  "review": "coordination/reviews/C-036.md",
+  "acceptance": "offline script delivery accepted; physical deployment pending"
+}

@@ -1,5 +1,9 @@
 # 任务索引
 
+2026-11-15 [M-044](tasks/M-044.md) 脚本离线交付已验收，生产 05d4ca6 已推送。首次用 SETUP_GATEWAY.cmd，日常用 START_STUDIO.cmd；真实网关与换电脑尚待现场验证。
+
+2026-11-15 当前 [M-044](tasks/M-044.md)：网关 DHCP/本地接收服务＋PC主动连接，E2-037/H-023/D-034/C-036 分工；脚本先完成，现场网络只读，不烧板。主卡路径以主仓 coordination/tasks/M-044.md 为准。
+
 [M-043](tasks/M-043.md) Studio 实际启动修复，由既有 E2-036 实施，M 验收发布；不操作设备。
 
 [M-039](tasks/M-039.md) 生产分支与一键部署：[H-022](tasks/H-022.md)、[E2-036](tasks/E2-036.md)、[D-033](tasks/D-033.md)，E1-032追加数字ID/OLED，C-035追加部署增量。

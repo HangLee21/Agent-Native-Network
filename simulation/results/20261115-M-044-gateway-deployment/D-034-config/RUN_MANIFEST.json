@@ -1,0 +1,31 @@
+{
+  "template_only": false,
+  "task_id": "D-034",
+  "run_id": "20261115-01-default-config",
+  "started_at": null,
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network\\.worktrees\\production",
+  "git_commit": null,
+  "dirty_files_sha256": {
+    "README.md": "6dd1dd483f17f0401f54db3ceedbdbfaae7666af91e30b2543e9deb94b13cf0c",
+    "config/fleet.default.json": "0e62d03a12c2345e41e024163eb7ca1258071f2caa6f49463d0bb47d803b5471"
+  },
+  "command": "python read-only config and README checks",
+  "python_executable": null,
+  "dependency_snapshot": null,
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\D-034\\20261115-01-default-config",
+  "process_id": null,
+  "finished_at": "2026-11-15T04:49:08.248830+00:00",
+  "exit_code": 0,
+  "status": "passed",
+  "limitations": [
+    "Offline static checks, no real gateway or device.",
+    "Start time not reconstructed."
+  ],
+  "review_reference": null
+}

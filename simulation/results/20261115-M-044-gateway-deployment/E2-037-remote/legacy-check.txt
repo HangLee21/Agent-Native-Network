@@ -1,0 +1,1 @@
+explicit legacy_local selects legacy launcher path
