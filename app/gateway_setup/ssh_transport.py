@@ -17,13 +17,16 @@ ROOT=Path(__file__).resolve().parent
 class TransportError(RuntimeError):pass
 
 
-def close_bounded(client):
-    # Closing the underlying socket first also wakes a pending subsystem handshake.
-    try:
-        transport=client.get_transport()
-        if transport and transport.sock:transport.sock.close()
-    except Exception:pass
+def close_bounded(client,force=False):
+    def abort_socket():
+        try:
+            transport=client.get_transport()
+            if transport and transport.sock:transport.sock.close()
+        except Exception:pass
+    if force:abort_socket()
     worker=threading.Thread(target=client.close,daemon=True);worker.start();worker.join(2)
+    if worker.is_alive() and not force:
+        abort_socket();worker.join(.5)
 
 
 def bounded_call(client,operation,timeout,late_cleanup=None):
@@ -39,7 +42,7 @@ def bounded_call(client,operation,timeout,late_cleanup=None):
         finally:done.set()
     worker=threading.Thread(target=work,daemon=True);worker.start()
     if not done.wait(timeout):
-        cancelled.set();close_bounded(client)
+        cancelled.set();close_bounded(client,force=True)
         raise TransportError('网关文件传输超时，连接已关闭')
     if 'error' in state:raise state['error']
     return state.get('result')

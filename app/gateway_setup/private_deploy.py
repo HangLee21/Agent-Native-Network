@@ -39,14 +39,24 @@ def load_runtime():
 
 
 EXTRA_PREFLIGHT="""
+LC_ALL=C; export LC_ALL
 [ -e /lib/ld-linux-armhf.so.3 ] && echo LOADER_OK || echo LOADER_MISSING
 for n in sha256sum df awk grep sed sort; do command -v "$n" >/dev/null 2>&1 || printf 'MISSING %s\n' "$n"; done
-printf 'SPACE_OPT '; df -Pk /opt | awk 'NR==2 {print $4}'
-printf 'SPACE_TMP '; df -Pk /tmp | awk 'NR==2 {print $4}'
+opt=$(df -Pk /opt 2>/dev/null | awk 'NR==2 && NF>=6 && $4 ~ /^[0-9]+$/ {print $4}')
+space_for_stage() {
+  if [ ! -d "$1" ] || [ ! -w "$1" ]; then printf UNWRITABLE; return; fi
+  value=$(df -Pk "$1" 2>/dev/null | awk 'NR==2 && NF>=6 && $4 ~ /^[0-9]+$/ {print $4}')
+  printf '%s' "${value:-INVALID}"
+}
+tmp=$(space_for_stage /tmp)
+vartmp=$(space_for_stage /var/tmp)
+printf 'SPACE_OPT %s\n' "${opt:-INVALID}"
+printf 'SPACE_TMP %s\n' "${tmp:-INVALID}"
+printf 'SPACE_VARTMP %s\n' "${vartmp:-INVALID}"
 """
 
 
-def validate_target(text,minimum):
+def validate_target(text,minimum,tmp_minimum=None):
     lines=text.splitlines()
     if 'ARCH armv7l' not in lines or 'DPKG_ARCH armhf' not in lines or 'LOADER_OK' not in lines:raise DeployError('网关架构或 ARM 加载器不匹配')
     if not any(x.startswith('OS ') and 'Raspbian GNU/Linux 8' in x for x in lines):raise DeployError('网关系统版本不匹配')
@@ -56,10 +66,19 @@ def validate_target(text,minimum):
     if missing:raise DeployError('网关缺少基本工具：'+', '.join(missing))
     sudo_paths=[x[10:] for x in lines if x.startswith('SUDO_PATH ')]
     if len(sudo_paths)!=1 or not re.fullmatch(r'/[A-Za-z0-9_./+-]+',sudo_paths[0]):raise DeployError('无法确认网关管理员程序路径')
-    for prefix in ('SPACE_OPT ','SPACE_TMP '):
+    if tmp_minimum is None:tmp_minimum=minimum
+    def available(prefix):
         found=[x[len(prefix):] for x in lines if x.startswith(prefix)]
-        if len(found)!=1 or not found[0].isdigit() or int(found[0])*1024<minimum:raise DeployError('网关空间不足或无法确认：'+prefix.strip())
-    return sudo_paths[0]
+        return int(found[0])*1024 if len(found)==1 and found[0].isdigit() else None
+    opt=available('SPACE_OPT ')
+    if opt is None:raise DeployError('无法读取网关 /opt 可用空间（需要至少 {:.1f} MiB）'.format(minimum/1048576))
+    if opt<minimum:raise DeployError('网关 /opt 空间不足：可用 {:.1f} MiB，需要 {:.1f} MiB'.format(opt/1048576,minimum/1048576))
+    locations=[('/tmp',available('SPACE_TMP ')),('/var/tmp',available('SPACE_VARTMP '))]
+    for path,size in locations:
+        if size is not None and size>=tmp_minimum:return sudo_paths[0],path
+    details='；'.join(path+' '+('不可写或无法读取' if size is None else '可用 {:.1f} MiB'.format(size/1048576)) for path,size in locations)
+    if all(size is None for _,size in locations):raise DeployError('无法读取可写的网关暂存空间：'+details+'；需要 {:.1f} MiB'.format(tmp_minimum/1048576))
+    raise DeployError('网关暂存空间不足或不可用：'+details+'；需要 {:.1f} MiB'.format(tmp_minimum/1048576))
 
 
 ROOT_SCRIPT=r'''set -eu
@@ -104,14 +123,18 @@ def deploy(user,host,action,interface,eui,api):
             shutil.copyfile(ROOT/'app/gateway_setup/linux_installer.py',package/'linux_installer.py')
         archive=root/'service.tar.gz';archive.write_bytes(api.package_bytes(package))
         service_hash=hashlib.sha256(archive.read_bytes()).hexdigest()
+        # /tmp holds both compressed archives and the extracted service files;
+        # the much larger private runtime is unpacked only under /opt.
+        service_unpacked=sum(p.stat().st_size for p in package.rglob('*') if p.is_file())
+        tmp_minimum=runtime.stat().st_size+archive.stat().st_size+service_unpacked+8*1024*1024
         client,password=ssh.connect(host,user)
-        stage='/tmp/ann-gateway-'+uuid.uuid4().hex
-        remote_runtime=stage+'/runtime.tar.gz';remote_service=stage+'/service.tar.gz'
         created=False;sudo_started=False;finished=False
         try:
             text=ssh.readonly_command(client,api.PREFLIGHT+EXTRA_PREFLIGHT)
-            api.log_preflight(text)
-            sudo_path=validate_target(text,int(manifest['minimum_free_bytes']))
+            api.log_preflight(text+'\nSPACE_OPT_REQUIRED '+str(int(manifest['minimum_free_bytes']))+'\nSPACE_TMP_REQUIRED '+str(tmp_minimum))
+            sudo_path,stage_base=validate_target(text,int(manifest['minimum_free_bytes']),tmp_minimum)
+            stage=stage_base+'/ann-gateway-'+uuid.uuid4().hex
+            remote_runtime=stage+'/runtime.tar.gz';remote_service=stage+'/service.tar.gz'
             if action=='install' and interface is None:interface=api.choose_remote_interface(text,host)
             if interface is None:interface='eth0'
             if not re.fullmatch(r'[A-Za-z0-9_.-]{1,15}',interface):raise DeployError('网关网口无效')

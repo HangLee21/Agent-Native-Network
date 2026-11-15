@@ -45,7 +45,7 @@ def run_step(runner,stage,args,**kwargs):
 
 def log_preflight(output):
     if not LOG_FILE:return
-    allowed=('ARCH ','DPKG_ARCH ','OS ','PY_PATH ','PY_VERSION ','SUDO_PATH ','SYSTEMD_VERSION ','DNSMASQ_VERSION ','PKG ','MISSING ')
+    allowed=('ARCH ','DPKG_ARCH ','OS ','PY_PATH ','PY_VERSION ','SUDO_PATH ','SYSTEMD_VERSION ','DNSMASQ_VERSION ','PKG ','MISSING ','SPACE_OPT ','SPACE_TMP ','SPACE_VARTMP ','SPACE_OPT_REQUIRED ','SPACE_TMP_REQUIRED ')
     facts=[line for line in output.splitlines() if line.startswith(allowed) and len(line)<=200 and re.fullmatch(r'[A-Za-z0-9 ._+~:/()="-]+',line)]
     if not facts:return
     try:
