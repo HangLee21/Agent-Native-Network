@@ -40,7 +40,7 @@ def config(path):
   ids.add(i);macs.add(mac)
  g=c['gateway'];eui=g['eui']
  mode=g.get('mode','remote')
- if mode not in ('remote','legacy_local'):raise ValueError('invalid gateway mode')
+ if mode not in ('remote','legacy_local','node_serial'):raise ValueError('invalid gateway mode')
  for name in ('http_port','discovery_port'):
   v=g.get(name,8780 if name=='http_port' else 8781)
   if type(v) is not int or not 1024<=v<=65535:raise ValueError('invalid gateway '+name)
@@ -222,8 +222,20 @@ def launch_remote(c,release_root,m,run_dir,offline_server=None,fleet_path=None,h
   if offline_server:offline_server.shutdown();offline_server.server_close()
   session_dir=run_dir/('session-'+uuid.uuid4().hex[:12]);session_dir.mkdir(parents=True,exist_ok=False)
   values=dict(udp_port=g.get('udp_port',1680),topology_port=ports['topology_port'],studio_port=ports['studio_port'],gateway_ip=g['candidate_hosts'][0],gateway_eui=g['eui'].lower(),run_dir=str(session_dir),release_dir=str(release_root))
-  args=arguments(svc['studio_args'],values)+['--fleet',str(Path(fleet_path).resolve()),'--registry',str(ROOT/'data/registry.json'),'--production-output','--gateway-mode','remote','--gateway-eui',g['eui'].lower(),'--remote-http-port',str(g.get('http_port',8780)),'--discovery-port',str(g.get('discovery_port',8781))]
-  for host in g['candidate_hosts']:args+=['--candidate-host',host]
+  mode=g.get('mode','remote')
+  args=arguments(svc['studio_args'],values)+['--fleet',str(Path(fleet_path).resolve()),'--registry',str(ROOT/'data/registry.json'),'--production-output','--gateway-mode',mode]
+  if mode=='remote':
+   args+=['--gateway-eui',g['eui'].lower(),'--remote-http-port',str(g.get('http_port',8780)),'--discovery-port',str(g.get('discovery_port',8781))]
+   for host in g['candidate_hosts']:args+=['--candidate-host',host]
+  else:
+   matches=[n['mac'].strip().lower() for n in c['nodes'] if n['node_id']==1]
+   if len(matches)!=1:raise ValueError('节点1身份未配置')
+   args+=['--node-mac',matches[0]]
+   for key,flag in [('serial_usb_location','--serial-location'),('serial_port','--serial-port')]:
+    if g.get(key):args+=[flag,str(g[key])]
+   lease=Path(g.get('serial_lease_dir','data/node-serial-lease'))
+   if not lease.is_absolute():lease=ROOT/lease
+   args+=['--serial-lease-dir',str(lease.resolve())]
   if health:args+=['--recovery-file',str(health.path)]
   log=(run_dir/'studio.log').open('a',encoding='utf-8');child=start_child(release_root,svc['studio_module'],args,log);url=f"http://127.0.0.1:{ports['studio_port']}/";end=time.monotonic()+8;ready=False
   while time.monotonic()<end and child.poll() is None:
@@ -252,7 +264,7 @@ def launch_remote(c,release_root,m,run_dir,offline_server=None,fleet_path=None,h
 
 
 def launch(c,release_root,m,run_dir,offline_server=None,fleet_path=None,health=None):
- if c['gateway'].get('mode','remote')=='remote':return launch_remote(c,release_root,m,run_dir,offline_server,fleet_path,health)
+ if c['gateway'].get('mode','remote') in ('remote','node_serial'):return launch_remote(c,release_root,m,run_dir,offline_server,fleet_path,health)
  g=c['gateway'];ports=c['services'];available([ports['topology_port']] if offline_server else [ports['topology_port'],ports['studio_port']],g['udp_port']);svc=m['services'];children=[];logs=[]
  try:
   found=False;service_ready=False;reason='no gateway candidate'

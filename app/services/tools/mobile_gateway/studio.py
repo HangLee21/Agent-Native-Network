@@ -18,6 +18,7 @@ from .server import Gateway, Handler, ROOT
 from .state import State
 from .fleet_registry import merged_fleet, read_nodes
 from .remote import RemoteGateway
+from .node_serial import SerialTopology
 
 # Ethernet LoRa gateway source (tools/mid_baseline/gateway_probe/topology_server.py). Used
 # only when the serial A reader is idle or empty, so the same page can show our EoRa
@@ -161,7 +162,11 @@ class StudioHandler(Handler):
             except (ValueError,OSError) as exc:
                 return self.reply(503,{'error':'节点编号配置不可用，请联系交付人员检查 fleet 和 registry：'+str(exc)})
         if path=='/api/studio/status':
-            return self.reply(200,self.server.state.status())
+            value=self.server.state.status()
+            if isinstance(self.server.remote,SerialTopology):
+                value['live']['serial_opens']=1 if self.server.remote.serial_open else 0
+                value['live']['source']='node_serial_lora'
+            return self.reply(200,value)
         if path=='/api/v1/remote/health' and self.server.remote:
             self.server.remote.topology()
             return self.reply(200,self.server.remote.info)
@@ -201,8 +206,12 @@ def main():
     p.add_argument('--registry',type=Path,help='read-only runtime node registry')
     p.add_argument('--recovery-file',type=Path,help='read-only supervisor health state')
     p.add_argument('--topology-port',type=int,default=8780)
-    p.add_argument('--gateway-mode',choices=['remote','legacy_local'],default='legacy_local')
+    p.add_argument('--gateway-mode',choices=['remote','legacy_local','node_serial'],default='legacy_local')
     p.add_argument('--gateway-eui')
+    p.add_argument('--node-mac')
+    p.add_argument('--serial-location')
+    p.add_argument('--serial-port')
+    p.add_argument('--serial-lease-dir')
     p.add_argument('--candidate-host',action='append',default=[])
     p.add_argument('--remote-http-port',type=int,default=8780)
     p.add_argument('--discovery-port',type=int,default=8781)
@@ -223,7 +232,8 @@ def main():
     server.recovery_path=args.recovery_file or ROOT/'data/studio-recovery.json'
     server.gateway_topology=f'http://127.0.0.1:{args.topology_port}/api/v1/lora/topology'
     if args.gateway_mode=='remote' and not args.gateway_eui:p.error('remote gateway EUI required')
-    server.remote=RemoteGateway(args.gateway_eui,args.candidate_host,args.remote_http_port,args.discovery_port) if args.gateway_mode=='remote' else None
+    if args.gateway_mode=='node_serial' and not args.node_mac:p.error('节点1 MAC 必需')
+    server.remote=RemoteGateway(args.gateway_eui,args.candidate_host,args.remote_http_port,args.discovery_port) if args.gateway_mode=='remote' else SerialTopology(args.node_mac,args.serial_location,args.serial_port,args.serial_lease_dir) if args.gateway_mode=='node_serial' else None
     def halt(*_):
         threading.Thread(target=server.shutdown,daemon=True).start()
     for sig in (signal.SIGINT,signal.SIGTERM):
@@ -245,6 +255,7 @@ def main():
     finally:
         done.set()
         server.server_close()
+        if args.gateway_mode=='node_serial' and server.remote:server.remote.close()
         state.close()
 
 

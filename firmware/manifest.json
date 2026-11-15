@@ -39,13 +39,13 @@
   },
   "service_files_sha256": {
     "assets/mobile_gateway/fleet-model.js": "87c3e8a6a4757cddbebc0d0bb4afaf476d28b8486d51af1921abd7c14f2befbb",
-    "assets/mobile_gateway/index.html": "f00a81784d79b7ec9bc268e2d9da11ab1d2bd4d5c7b51cf758a33ca101b6c966",
-    "assets/mobile_gateway/lora-model.js": "a0cd0ee3536a7fa43d00ccac6cabefbd6d66303310fbcb40e0caa513765ca354",
-    "assets/mobile_gateway/map.css": "4f70c4abd744f6801193ee2338dbf2d84fda2da9cf74185f6a0bc2af842de209",
+    "assets/mobile_gateway/index.html": "295651fcc8f885736165f3d34acafe892215b832047346082a83e12e20416c26",
+    "assets/mobile_gateway/lora-model.js": "cfd97409735976653bbf04b6a71c82282832648a16c8b04a773938bdbe17786c",
+    "assets/mobile_gateway/map.css": "6df214ab4c799e54d7c11d00f420facb15c4849dba44cd9c65b781b53c984fd8",
     "assets/mobile_gateway/map.js": "af8b83f45156440a4e0b4ba8fb9f7ad6220803b453aa032913fddf857fc514fe",
     "assets/mobile_gateway/studio-model.js": "17ec1d7ff7ecb010eff9941ae05b5d0446efd48980675180a9d0e2644f5e49ea",
     "assets/mobile_gateway/studio.js": "9bfa67769ed9e9b7574af3e171ae66cfc2d919b903fdca3c704ac945f0bb9045",
-    "assets/mobile_gateway/view.js": "62879ed8fcc2bc6e1007623e6216a4700cb35879efafa37d841caf5f26dc2ad9",
+    "assets/mobile_gateway/view.js": "a6fb8499255ad6cb7cf205139542f21504fa27b22c04dce53cdfdac53c7aa139",
     "firmware/mid_baseline/field_agent/lora_ref/decoder.py": "dfd5e04b7b293284117739063db31b93cdd98734d289920cd06720ee58d17366",
     "tools/field_gateway/client.py": "0de3beae71e9da8a26d232104ffbc1d764ef6da5d93774c432b40819d1b35171",
     "tools/flight_link/appliance.py": "bba6273bc0e06ffc692ebd714914380a95625d1cf218bf08230d8f2eb12b46e0",
@@ -58,7 +58,8 @@
     "tools/mobile_gateway/remote.py": "4dabcb8869bb0c63dd8e95c386e409ea3c6e686cd68f083eb665cbc579d374bd",
     "tools/mobile_gateway/server.py": "980911208531c0c311931f984d0a5ee4b2a23500a65599ca9414471fc8599c56",
     "tools/mobile_gateway/state.py": "4f8d753e275fb4b8d11c3932a553dc349af6e7597407e2b8e530c3f3e14cbf79",
-    "tools/mobile_gateway/studio.py": "b4bbbd490a8d7b1e2a4c48633f8b9f4597f1906c3de7274fb43c38205cd24a2e"
+    "tools/mobile_gateway/studio.py": "d90ca938bc3b87324046de49a33dfea28b034c933b48cbae2ab4507b0ebbf2f1",
+    "tools/mobile_gateway/node_serial.py": "d0e28e0476e524ce8f50dbebc1a18b43565f8f3f9959dfe29c5aa4b70b778d0d"
   },
   "rollback_release": null,
   "validation_evidence": [],

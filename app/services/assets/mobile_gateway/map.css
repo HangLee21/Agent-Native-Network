@@ -15,7 +15,7 @@
 .relationChip{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:999px;padding:1px 8px;font-size:12px;background:#fff}
 .relationDot{width:8px;height:8px;border-radius:50%;display:inline-block;background:#8d9a9e}
 .nodeRow{position:relative}
-.nodeRow::before{content:";position:absolute;left:3px;top:8px;bottom:8px;width:3px;border-radius:2px;background:var(--node-state,transparent)}
+.nodeRow::before{content:"";position:absolute;left:3px;top:8px;bottom:8px;width:3px;border-radius:2px;background:var(--node-state,transparent)}
 .pill.warn{background:#fdf3e3;color:#8a5a12;border-color:#eccf9d}
 
 .legendChip{display:inline-flex;align-items:center;gap:6px;color:#4c666e}
@@ -23,3 +23,7 @@
 .legendDot{display:inline-block;width:9px;height:9px;border-radius:50%}
 
 .fleetBar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:#4d686a}.fleetBar input{max-width:235px;font-size:11px}.fleetBar .fleetError{color:#a33}
+
+.nodeRow.state-stale_report,.nodeRow.state-interrupted,.nodeRow.state-gateway_offline{background:#fff1ed;border:2px solid #b3261e}.nodeRow.state-stale_report .pill,.nodeRow.state-interrupted .pill,.nodeRow.state-gateway_offline .pill{background:#b3261e;color:white;font-weight:700}.nodeRow.state-never{background:#f4f5f5;border-style:dashed}.nodeRow.state-never .pill{background:#e5e8e8;color:#536468}
+
+.loraReportsDetails summary{cursor:pointer;color:#564278;font-weight:600}.loraReportsDetails[open]{margin-top:7px}
