@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "synthetic": true,
+  "cases": [
+    "gps_coordinate_preserved",
+    "selected_edge_details_and_label"
+  ],
+  "gps_x_before": "434.86051397566354",
+  "gps_x_after": "434.86051397566354",
+  "page_errors": []
+}

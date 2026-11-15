@@ -1,0 +1,168 @@
+{
+  "task_id": "M-054",
+  "date": "2026-11-15",
+  "production_base": "397cee9bc8d8e70c16873bb1f477ede5c257aa36",
+  "production_commit": "3d9765b689121a0dbbd54f9c09b8fe374e6653ae",
+  "review": "coordination/reviews/C-039.md",
+  "files": {
+    "D-037/20261115-01-layout/01-five.png": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/01-five.png",
+      "sha256": "67afa61ae634d6e009a1f0dc25d13a9ee8c50816e553c858a2b11792fc15f7d9"
+    },
+    "D-037/20261115-01-layout/02-sparse.png": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/02-sparse.png",
+      "sha256": "9b849f194b45efbf5870fd238f6645a886135e5bb53e1783c6b55aabcce68507"
+    },
+    "D-037/20261115-01-layout/03-dense-overview.png": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/03-dense-overview.png",
+      "sha256": "d863c6dca08c956811ee6a8acf7d5f223d1da6b4e67d1a344d4cc68024ae53cf"
+    },
+    "D-037/20261115-01-layout/04-dense-focused.png": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/04-dense-focused.png",
+      "sha256": "178ea1cb39ebeb18c51cc83dc9b776d3c4c24a032bf3b94218e1928eae3b26af"
+    },
+    "D-037/20261115-01-layout/05-dense-all.png": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/05-dense-all.png",
+      "sha256": "427958610a3d64b269d885356fca82d8b652358bfb4b8d65c2f3db2ffad0293f"
+    },
+    "D-037/20261115-01-layout/06-dynamic.png": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/06-dynamic.png",
+      "sha256": "cd1f844e0f55c9ac6f3f8f415807757d96270fd874b7a73b1fe12eb70d489aa8"
+    },
+    "D-037/20261115-01-layout/07-narrow.png": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/07-narrow.png",
+      "sha256": "6fcbbf5a0ce1282f0717ce4d89e2f527af23122c9f383af9a1648a9be64930c0"
+    },
+    "D-037/20261115-01-layout/check.py": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/check.py",
+      "sha256": "5e85b16f24931ff5e2660eff04128abc2a357c16288602a49c0b64a023ac7f8a"
+    },
+    "D-037/20261115-01-layout/PROCESS_END.json": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    "D-037/20261115-01-layout/RESULT.json": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/RESULT.json",
+      "sha256": "27d81381625df88dffb25206a955e7558e4010f1c0f5ebf5b6610c3b2318dcf5"
+    },
+    "D-037/20261115-01-layout/RUN_MANIFEST.json": {
+      "source": "simulation/outputs/D-037/20261115-01-layout/RUN_MANIFEST.json",
+      "sha256": "cacd2dc0f9370239068e77922fdd9c124481efe6445dc119787a8a1c02ced7a1"
+    },
+    "D-037/20261115-02-dynamic/check.py": {
+      "source": "simulation/outputs/D-037/20261115-02-dynamic/check.py",
+      "sha256": "1bf23522d44de82db415833f3b458ad5d5d99c78b47e68968afedcd6b9fb21e4"
+    },
+    "D-037/20261115-02-dynamic/dynamic-offline.png": {
+      "source": "simulation/outputs/D-037/20261115-02-dynamic/dynamic-offline.png",
+      "sha256": "bc782622267c3150fa744abb15bdf0d6e4205b9d89a6dee9d0bf9a531ad801a3"
+    },
+    "D-037/20261115-02-dynamic/PROCESS_END.json": {
+      "source": "simulation/outputs/D-037/20261115-02-dynamic/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    "D-037/20261115-02-dynamic/RESULT.json": {
+      "source": "simulation/outputs/D-037/20261115-02-dynamic/RESULT.json",
+      "sha256": "86367499f4a9c1bb8260528fdf8c7ae5fcd6c794893c59609878fec9f5d01f6c"
+    },
+    "D-037/20261115-02-dynamic/RUN_MANIFEST.json": {
+      "source": "simulation/outputs/D-037/20261115-02-dynamic/RUN_MANIFEST.json",
+      "sha256": "eb48bb78eebf1c5598a710383fb95fd1cd6fc258800dc00a781a399eb6ddb40d"
+    },
+    "D-037/20261115-03-search/check.py": {
+      "source": "simulation/outputs/D-037/20261115-03-search/check.py",
+      "sha256": "8c39fe83c61164656bea1f3dc8d8bf7f071be3e5ee42f11723ed0c09b46cb051"
+    },
+    "D-037/20261115-03-search/PROCESS_END.json": {
+      "source": "simulation/outputs/D-037/20261115-03-search/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    "D-037/20261115-03-search/RESULT.json": {
+      "source": "simulation/outputs/D-037/20261115-03-search/RESULT.json",
+      "sha256": "cf7e6a0f2b50421a305137246dbbe42ab37fe744f11212bb6e6ec917e0fce634"
+    },
+    "D-037/20261115-03-search/RUN_MANIFEST.json": {
+      "source": "simulation/outputs/D-037/20261115-03-search/RUN_MANIFEST.json",
+      "sha256": "14314ef0833e1112ca25017836ea71d289243028098c1131a0ca66843729d731"
+    },
+    "D-037/20261115-04-refresh/check.py": {
+      "source": "simulation/outputs/D-037/20261115-04-refresh/check.py",
+      "sha256": "65c9ab8e1d8b28e09d6295f84950b4db9ca3a7a68674fd5b5cac84e7740d8d39"
+    },
+    "D-037/20261115-04-refresh/PROCESS_END.json": {
+      "source": "simulation/outputs/D-037/20261115-04-refresh/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    "D-037/20261115-04-refresh/RESULT.json": {
+      "source": "simulation/outputs/D-037/20261115-04-refresh/RESULT.json",
+      "sha256": "84d7a5aeca6800bac2a080548c681b1dac80010dac3f2c34a254866866a21f0c"
+    },
+    "D-037/20261115-04-refresh/RUN_MANIFEST.json": {
+      "source": "simulation/outputs/D-037/20261115-04-refresh/RUN_MANIFEST.json",
+      "sha256": "c56f86648614f479e7a28c26e01b9683c24e4f1907571ec797ed9be59a915686"
+    },
+    "D-037/20261115-05-gps-detail/check.py": {
+      "source": "simulation/outputs/D-037/20261115-05-gps-detail/check.py",
+      "sha256": "344827afb01c9cc3d096fa780c47f52e12a8f29c8726163ee2ec6e8496b3514a"
+    },
+    "D-037/20261115-05-gps-detail/PROCESS_END.json": {
+      "source": "simulation/outputs/D-037/20261115-05-gps-detail/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    "D-037/20261115-05-gps-detail/RESULT.json": {
+      "source": "simulation/outputs/D-037/20261115-05-gps-detail/RESULT.json",
+      "sha256": "68531b60fcf0ef4d02aadd83e73d35e1df7378077515a0194d7824d4a35a26ba"
+    },
+    "D-037/20261115-05-gps-detail/RUN_MANIFEST.json": {
+      "source": "simulation/outputs/D-037/20261115-05-gps-detail/RUN_MANIFEST.json",
+      "sha256": "28d710a800c3fba5c2c15dbb7f5fec4b698b9780e441d708bbecbd25e7744fdb"
+    },
+    "D-037/20261115-06-edge-routing-final2/check.py": {
+      "source": "simulation/outputs/D-037/20261115-06-edge-routing-final2/check.py",
+      "sha256": "2890762d120ba354cc3db4a30609fa62c1b97ee0ab4cd2094e4d1282c85d0c36"
+    },
+    "D-037/20261115-06-edge-routing-final2/dense-focused.png": {
+      "source": "simulation/outputs/D-037/20261115-06-edge-routing-final2/dense-focused.png",
+      "sha256": "8ea6e9d74ae251bc75223aa2874766d55b0c73b6602c4470a216047cd217a6e6"
+    },
+    "D-037/20261115-06-edge-routing-final2/PROCESS_END.json": {
+      "source": "simulation/outputs/D-037/20261115-06-edge-routing-final2/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    "D-037/20261115-06-edge-routing-final2/RESULT.json": {
+      "source": "simulation/outputs/D-037/20261115-06-edge-routing-final2/RESULT.json",
+      "sha256": "c875753292cec8002b10c7f0ce782b509294fd2c8def7e8bad03a4ed291d3d4c"
+    },
+    "D-037/20261115-06-edge-routing-final2/RUN_MANIFEST.json": {
+      "source": "simulation/outputs/D-037/20261115-06-edge-routing-final2/RUN_MANIFEST.json",
+      "sha256": "ebe3dbf61da2278d8ec8eafc6a5b6ae387b36f78191e175323ee6e4bf0476bb3"
+    },
+    "D-037/20261115-06-edge-routing-final2/sparse.png": {
+      "source": "simulation/outputs/D-037/20261115-06-edge-routing-final2/sparse.png",
+      "sha256": "e5d998d618fbdf7be8ba08a6e84a8df18605484173852e6127097a930e44f6f4"
+    },
+    "review/D-037.md": {
+      "source": "coordination/tasks/D-037.md",
+      "sha256": "b4fe6eceb626e0c9a942ae72c1481abcca452008385fdd09d4ba2a32e1ca8617"
+    },
+    "review/C-039-task.md": {
+      "source": "coordination/tasks/C-039.md",
+      "sha256": "2faa50dc88e6c989f312c5a3a79c2881b6c71f0044fe993906c9625156210bc8"
+    },
+    "review/C-039-review.md": {
+      "source": "coordination/reviews/C-039.md",
+      "sha256": "0e4fcd63e603853642c41324880c50ae43d068f4f2725c2726e2e5e269468960"
+    }
+  },
+  "limitations": [
+    "All browser scenarios use synthetic fixtures; no 30-node RF measurement.",
+    "01-05 are historical pre-edge-routing evidence; final2 is the frozen incremental geometry evidence.",
+    "The 01/02 view.js hash was reconstructed by D for its documented one-line label-search change; not a runtime capture.",
+    "Timing values describe earlier host-browser fixtures, not final rendering benchmark or wireless performance.",
+    "Geometry collision checks sample paths; crossings and shared path segments may remain. Dense show-all deliberately uses simple lines.",
+    "Failed and intermediate geometry attempts remain unchanged under simulation/outputs/D-037/20261115-06-edge-routing and -final.",
+    "No hardware, gateway, network adapter, firmware or live service changes.",
+    "Final representative edge-click checks verify pair highlight and RSSI presence, not every detail direction/value field."
+  ],
+  "production_manifest_sha256": "bb7e57b1ed3fc60ee2ccd53552ee7465d799878db0ada57c76aba8de9f3039af"
+}

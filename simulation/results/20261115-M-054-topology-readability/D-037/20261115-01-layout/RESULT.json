@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "synthetic": true,
+  "cases": {
+    "01-five": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "nodes": 5,
+      "edges": 10,
+      "edgeLabels": 0,
+      "nodeTexts": 10,
+      "scope": "Wi-Fi 即时观测 · 动态关系布局 · 非地理位置，无距离含义 · 20 个实际方向 / 10 对连接 · 当前显示 10 对 · 点击节点查看一跳邻居",
+      "rows": 5
+    },
+    "02-sparse": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "nodes": 30,
+      "edges": 29,
+      "edgeLabels": 0,
+      "nodeTexts": 31,
+      "scope": "Wi-Fi 即时观测 · 动态关系布局 · 非地理位置，无距离含义 · 58 个实际方向 / 29 对连接 · 当前显示 29 对 · 点击节点查看一跳邻居",
+      "rows": 30
+    },
+    "03-dense-overview": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "nodes": 30,
+      "edges": 0,
+      "edgeLabels": 0,
+      "nodeTexts": 31,
+      "scope": "Wi-Fi 即时观测 · 动态关系布局 · 非地理位置，无距离含义 · 870 个实际方向 / 435 对连接 · 当前显示 0 对（隐藏不代表不存在） · 点击节点查看一跳邻居",
+      "rows": 30
+    },
+    "04-dense-focused": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "nodes": 30,
+      "edges": 29,
+      "edgeLabels": 0,
+      "nodeTexts": 32,
+      "scope": "Wi-Fi 即时观测 · 动态关系布局 · 非地理位置，无距离含义 · 870 个实际方向 / 435 对连接 · 当前显示 29 对（隐藏不代表不存在） · 点击节点查看一跳邻居",
+      "rows": 30
+    },
+    "05-dense-all": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "nodes": 30,
+      "edges": 435,
+      "edgeLabels": 0,
+      "nodeTexts": 32,
+      "scope": "Wi-Fi 即时观测 · 动态关系布局 · 非地理位置，无距离含义 · 870 个实际方向 / 435 对连接 · 当前显示 435 对 · 点击节点查看一跳邻居",
+      "rows": 30,
+      "switch_to_all_ms": 17.7
+    },
+    "06-dynamic": {
+      "viewport": [
+        1440,
+        900
+      ],
+      "nodes": 30,
+      "edges": 29,
+      "edgeLabels": 0,
+      "nodeTexts": 31,
+      "scope": "Wi-Fi 即时观测 · 动态关系布局 · 非地理位置，无距离含义 · 58 个实际方向 / 29 对连接 · 当前显示 29 对 · 点击节点查看一跳邻居",
+      "rows": 30
+    },
+    "source_switch": "passed",
+    "07-narrow": {
+      "viewport": [
+        700,
+        900
+      ],
+      "nodes": 30,
+      "edges": 0,
+      "edgeLabels": 0,
+      "nodeTexts": 31,
+      "scope": "Wi-Fi 即时观测 · 动态关系布局 · 非地理位置，无距离含义 · 870 个实际方向 / 435 对连接 · 当前显示 0 对（隐藏不代表不存在） · 点击节点查看一跳邻居",
+      "rows": 30
+    }
+  },
+  "page_errors": []
+}

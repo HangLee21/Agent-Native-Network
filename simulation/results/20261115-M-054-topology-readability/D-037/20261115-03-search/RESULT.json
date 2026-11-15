@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "synthetic": true,
+  "cases": [
+    "search_report_label_under_registered_number",
+    "source_change_label_search"
+  ],
+  "page_errors": []
+}
