@@ -1,5 +1,7 @@
 # 窗口登记
 
+M-052沿用既有D/E2/H/C独立聊天：D-035、E2-038、H-024、C-037。生产app/services/assets、后端/启动、现场/data配置分别独占；无新聊天或子代理，无定时任务。
+
 M-039生产worktree D:/Multi-Agent Network/.worktrees/production，分支codex/production-deployment，起点f304632；E2/H/D用新卡E2-036/H-022/D-033独占子目录，主卡仍在主目录。E1-032和E2-035研发候选保持主目录，冻结后M同步；C-035只读生产检查。明日接板前无硬件探测。
 
 M-038紧急交付沿用既有E1/E2/H/C聊天，新卡E1-032/E2-035/H-021/C-035；M-037比较暂后置，旧成果保留。H唯一操作串口/网关与现场服务，E1/E2仅新候选目录。实际派发回执见handoffs/M-038-dispatch.json。

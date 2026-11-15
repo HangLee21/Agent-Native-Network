@@ -1,0 +1,12 @@
+{
+  "port": "COM8",
+  "expected_node": "90:da:72:48:a4:f8",
+  "started_utc": "2026-11-15T07:49:03.054397+00:00",
+  "commands": [],
+  "config_written": false,
+  "flash_writes": 0,
+  "outcome": "failed",
+  "error_type": "SerialException",
+  "error": "could not open port 'COM8': PermissionError(13, '拒绝访问。', None, 5)",
+  "finished_utc": "2026-11-15T07:49:03.078666+00:00"
+}

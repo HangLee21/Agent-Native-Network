@@ -1,0 +1,28 @@
+{
+  "template_only": false,
+  "task_id": "M-052",
+  "run_id": "20261115-01-intake",
+  "started_at": "2026-11-15T15:48:15.393811+08:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "a7f2b006a2f0b591c34dd23fa111df928202fd1e",
+  "dirty_files_sha256": {},
+  "command": "Read-only source review and localhost Studio API inspection",
+  "python_executable": null,
+  "dependency_snapshot": null,
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\M-052\\20261115-01-intake",
+  "process_id": null,
+  "finished_at": null,
+  "exit_code": null,
+  "status": "intake_complete",
+  "limitations": [
+    "No physical node disconnect or RF measurements by M",
+    "Current API empty receiver does not reproduce earlier visible graph"
+  ],
+  "review_reference": null
+}

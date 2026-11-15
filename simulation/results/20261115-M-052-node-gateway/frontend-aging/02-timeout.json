@@ -1,0 +1,31 @@
+{
+  "banner": "节点 1 串口接收 · 网关已连接 · 在线 1 / 超时未见 1 / 观测中断 0 / 从未观测 1 · 超时阈值按上报周期计算",
+  "rows": [
+    "1网关接收端 · 不经 ESP-NOWLoRa 上行接收端，逐帧上报 RSSI/SNR该节点是接收端，不产生邻居快照",
+    "2LoRa 在线90:da:72:48:a5:ccLoRa 报告 #7 · 最后收到 fixture · 距今 206 ms位置另取原来源：无有效GPS",
+    "3超时未见90:da:72:48:a4:e0LoRa 报告 #7 · 最后收到 fixture · 距今 40.0 s位置另取原来源：无有效GPS",
+    "4从未观测90:da:72:48:a5:20尚无上报或邻居观测位置另取原来源：无有效GPS"
+  ],
+  "edges": [
+    {
+      "pair": "wifi:90:da:72:48:a4:f8/90:da:72:48:a5:cc",
+      "state": "oneway",
+      "stroke": "#aa7021"
+    },
+    {
+      "pair": "lora:90:da:72:48:a4:f8/90:da:72:48:a5:cc",
+      "state": "uplink",
+      "stroke": "#1f6f78"
+    },
+    {
+      "pair": "wifi:90:da:72:48:a4:e0/90:da:72:48:a4:f8",
+      "state": "historical",
+      "stroke": "#919b9e"
+    },
+    {
+      "pair": "lora:90:da:72:48:a4:e0/90:da:72:48:a4:f8",
+      "state": "historical",
+      "stroke": "#919b9e"
+    }
+  ]
+}

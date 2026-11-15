@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "cases": [
+    "normal",
+    "one_timeout",
+    "source_interrupted",
+    "recovered",
+    "api_failure_cached",
+    "pending_api_local_clock_timeout",
+    "pending_api_observation_interrupted"
+  ],
+  "page_errors": [],
+  "physical_devices": false
+}
