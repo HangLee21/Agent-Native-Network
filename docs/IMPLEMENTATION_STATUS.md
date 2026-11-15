@@ -1,5 +1,7 @@
 # 实现状态（代码级审计结果）
 
+2026-11-15 M-046：生产 c155295 已推送。网关初始化默认install，唯一符合条件的电脑有线口自动选；远端按目标IP、SSH_CONNECTION服务端地址和有线网口地址唯一匹配自动选。仅保留一次中文回车确认；null和非空输入取消，回滚经显式--rollback。密码说明提前且解释无回显，不保存密码。H少量交互/远端选择夹具与C窄审通过，真实SSH/安装/网络改变未执行。证据 simulation/results/20261115-M-046-simple-setup/。
+
 2026-11-15 M-045：修复初始化脚本错误使用不存在的 ifType 导致有线网口被过滤。生产 e036077 已推送；改读 InterfaceType，保持物理/已连接/有线条件。实际 Windows PowerShell 只读识别以太网 ifIndex20，并排除 WLAN；分类夹具通过，C增量审查无本机误判阻断。证据 simulation/results/20261115-M-045-ethernet-detection/。未运行网关初始化或修改网络。
 
 2026-11-15 M-044 脚本离线交付完成，生产 05d4ca6 已推送：新增 SETUP_GATEWAY.cmd 一次初始化/回滚，START_STUDIO 默认 remote，PC主动发现并核对网关、不绑定本机LoRa接收UDP。网关标准库接收服务采用systemd socket activation，限定专用接口、普通用户运行；DHCP不下发默认路由/DNS。E2真实本机回环、H假Linux/Windows及故障重试测试、C独立增量审查已完成。真实RHF/ARM/Python3.4、systemd215、DHCP、换电脑/断电/RF未实测，本轮未改变现场网络或烧板。证据 simulation/results/20261115-M-044-gateway-deployment/。
