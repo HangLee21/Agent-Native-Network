@@ -1,2 +1,0 @@
-{"elapsed_seconds": 0.1, "worker_pid": 123, "free_ram_bytes": 2147483648, "stop_reason": null}
-{"elapsed_seconds": 0.3, "worker_pid": 123, "free_ram_bytes": 2147483648, "stop_reason": "wall_timeout"}

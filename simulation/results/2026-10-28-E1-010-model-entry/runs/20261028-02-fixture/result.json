@@ -1,1 +1,0 @@
-{"actual_model_forwards":0,"backend":"fixture_scripted_not_model","calls":5,"completely_arrived":2,"consumed":1,"finished_nodes":["n0","n1"],"logical_time_s":0.5,"messages":2,"pending":0,"scripted_fixture":true,"status":"fixture_completed","wire_payload_bytes":411}

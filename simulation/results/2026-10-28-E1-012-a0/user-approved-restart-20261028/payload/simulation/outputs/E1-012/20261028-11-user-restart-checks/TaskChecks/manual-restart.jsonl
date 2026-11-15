@@ -1,5 +1,0 @@
-{"at":"2026-10-28T13:47:20.455250+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"old","task_id":"E1-012","timeout_s":180,"worker_id":1}
-{"actual_forward_started":false,"at":"2026-10-28T13:47:20.455250+00:00","event":"worker_finished","monitor_stop_reason":"low_system_ram","task_id":"E1-012","wall_seconds":33,"worker_id":1}
-{"at":"2026-10-28T13:47:20.455250+00:00","authority":"unit manual approval","event":"user_restart_authorized","task_id":"E1-012"}
-{"at":"2026-10-28T13:47:20.457257+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"new","task_id":"E1-012","timeout_s":180,"worker_id":2}
-{"actual_forward_started":false,"at":"2026-10-28T13:47:20.457257+00:00","event":"worker_finished","monitor_stop_reason":"low_system_ram","task_id":"E1-012","wall_seconds":10,"worker_id":2}

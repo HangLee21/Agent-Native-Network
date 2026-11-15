@@ -1,8 +1,0 @@
-[1/8] Building C object CMakeFiles/ann_core.dir/src/ann_log.c.obj
-[2/8] Building C object CMakeFiles/ann_c017_regressions.dir/host/c017_regressions.c.obj
-[3/8] Building C object CMakeFiles/ann_core.dir/src/ann.c.obj
-[4/8] Building C object CMakeFiles/ann_core.dir/src/ann_console.c.obj
-[5/8] Building C object CMakeFiles/ann_host.dir/host/main.c.obj
-[6/8] Linking C static library libann_core.a
-[7/8] Linking C executable ann_c017_regressions.exe
-[8/8] Linking C executable ann_host.exe

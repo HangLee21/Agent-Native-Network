@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "release_id": "v0.1.0-test",
+  "status": "candidate",
+  "source_commit": "a101f8e108be239dccc1a776f741ac1ecfa33163",
+  "protocol_version": "LRC2-LRA2-v1-FLW2-v1",
+  "config_schema_version": 1,
+  "firmware": {
+    "path": "mid_edge.bin",
+    "sha256": "2b21a39fc3134b1c2065449c73110d29b862e02fa3599fa845906e89756b729a",
+    "build_id": "mid-lora-ref-v1-8d42275b922e010425199b7ece430ac46ad2f3c523d5192fe72eaf651f100dfd",
+    "chip": "esp32s3",
+    "flash_offset": 65536,
+    "partition_layout_id": "esp32s3-4mb-ec0e898ecac01419a0a2323319074521d2a0c8842a45c8367ddd4706c47522a8",
+    "partition_table_path": "partition-table-4k.bin",
+    "partition_table_sha256": "ec0e898ecac01419a0a2323319074521d2a0c8842a45c8367ddd4706c47522a8"
+  },
+  "services": {
+    "gateway_module": "tools.flight_link.gateway",
+    "gateway_args": [
+      "--udp-host",
+      "0.0.0.0",
+      "--udp-port",
+      "{udp_port}",
+      "--http-port",
+      "{topology_port}",
+      "--gateway-ip",
+      "{gateway_ip}",
+      "--gateway-eui",
+      "{gateway_eui}"
+    ],
+    "studio_module": "tools.mobile_gateway.studio",
+    "studio_args": [
+      "--port",
+      "{studio_port}",
+      "--output",
+      "{run_dir}/studio"
+    ]
+  },
+  "service_files_sha256": {
+    "assets/mobile_gateway/fleet-model.js": "87c3e8a6a4757cddbebc0d0bb4afaf476d28b8486d51af1921abd7c14f2befbb",
+    "assets/mobile_gateway/index.html": "f00a81784d79b7ec9bc268e2d9da11ab1d2bd4d5c7b51cf758a33ca101b6c966",
+    "assets/mobile_gateway/lora-model.js": "a0cd0ee3536a7fa43d00ccac6cabefbd6d66303310fbcb40e0caa513765ca354",
+    "assets/mobile_gateway/map.css": "4f70c4abd744f6801193ee2338dbf2d84fda2da9cf74185f6a0bc2af842de209",
+    "assets/mobile_gateway/map.js": "af8b83f45156440a4e0b4ba8fb9f7ad6220803b453aa032913fddf857fc514fe",
+    "assets/mobile_gateway/studio-model.js": "17ec1d7ff7ecb010eff9941ae05b5d0446efd48980675180a9d0e2644f5e49ea",
+    "assets/mobile_gateway/studio.js": "9bfa67769ed9e9b7574af3e171ae66cfc2d919b903fdca3c704ac945f0bb9045",
+    "assets/mobile_gateway/view.js": "62879ed8fcc2bc6e1007623e6216a4700cb35879efafa37d841caf5f26dc2ad9",
+    "firmware/mid_baseline/field_agent/lora_ref/decoder.py": "dfd5e04b7b293284117739063db31b93cdd98734d289920cd06720ee58d17366",
+    "tools/field_gateway/client.py": "0de3beae71e9da8a26d232104ffbc1d764ef6da5d93774c432b40819d1b35171",
+    "tools/flight_link/archive.py": "a93bba53499149199927bec88910e95ef588488a30ed056901b04b25885eb01d",
+    "tools/flight_link/codec.py": "ec3debdd184f9b1f434f127e4a020407d079e7d95c5d98f403055e01193ab81d",
+    "tools/flight_link/gateway.py": "1702b772621bbc8591300a03b8804ae5b0d69b51c9220551f1ffa167bea2a93a",
+    "tools/mid_hardware/field_agent/wire_operator.py": "ab85c914456a99f76bb3233d41dac00074c91552dc80ad377f846939fd5a9a39",
+    "tools/mobile_gateway/fleet_registry.py": "004281bea0bf42489dfd67faac22743257cee409014271d60d8f6e7ac5033982",
+    "tools/mobile_gateway/server.py": "980911208531c0c311931f984d0a5ee4b2a23500a65599ca9414471fc8599c56",
+    "tools/mobile_gateway/state.py": "4f8d753e275fb4b8d11c3932a553dc349af6e7597407e2b8e530c3f3e14cbf79",
+    "tools/mobile_gateway/studio.py": "852ceb0c788e124cecec7e5f1099c28afc7f19f3404a8f3c7f49c4b43aa5ae02"
+  },
+  "rollback_release": null,
+  "validation_evidence": []
+}

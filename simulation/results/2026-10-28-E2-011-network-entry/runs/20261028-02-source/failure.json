@@ -1,4 +1,0 @@
-{
-  "type": "ValueError",
-  "message": "Archive contains link/device; stop rather than extract unsafely"
-}

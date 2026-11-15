@@ -1,9 +1,0 @@
-{
-  "historical_files_unchanged": 75,
-  "archive_files_verified": 143,
-  "network_probe_passed": 14,
-  "local_links_valid": true,
-  "review": "coordination/reviews/C-002.md",
-  "gzip_traces_verified": 63,
-  "index_bytes_verified": true
-}

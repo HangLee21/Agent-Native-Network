@@ -1,7 +1,0 @@
-cmake_minimum_required(VERSION 3.16)
-if(DEFINED IDF_TARGET AND NOT IDF_TARGET STREQUAL "esp32s3")
- message(FATAL_ERROR "This adapter is scoped to ESP32-S3")
-endif()
-set(IDF_TARGET "esp32s3" CACHE STRING "ANN target" FORCE)
-include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(ann_espnow)

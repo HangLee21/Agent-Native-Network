@@ -1,2 +1,0 @@
-{"at":"2026-10-28T13:49:38.900546+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":180,"worker_id":1}
-{"actual_forward_started":false,"at":"2026-10-28T13:49:38.901546+00:00","event":"worker_finished","monitor_stop_reason":"low_system_ram","task_id":"E1-012","wall_seconds":1,"worker_id":1}
