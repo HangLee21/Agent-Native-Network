@@ -194,7 +194,7 @@ def reuse_instance(path,expected_port):
 def launch(c,release_root,m,run_dir,offline_server=None,fleet_path=None,health=None):
  g=c['gateway'];ports=c['services'];available([ports['topology_port']] if offline_server else [ports['topology_port'],ports['studio_port']],g['udp_port']);svc=m['services'];children=[];logs=[]
  try:
-  found=False;reason='no gateway candidate'
+  found=False;service_ready=False;reason='no gateway candidate'
   while True:
    for host in g['candidate_hosts']:
     values=dict(udp_port=g['udp_port'],topology_port=ports['topology_port'],studio_port=ports['studio_port'],gateway_ip=host,gateway_eui=g['eui'].lower(),run_dir=str(run_dir),release_dir=str(release_root))
@@ -203,15 +203,20 @@ def launch(c,release_root,m,run_dir,offline_server=None,fleet_path=None,health=N
     if svc['gateway_module']=='tools.flight_link.gateway':gateway_args+=['--state-file',str(ROOT/'data/command-journal.json')]
     child=start_child(release_root,svc['gateway_module'],gateway_args,log);children.append(child)
     found,reason=discover(f"http://127.0.0.1:{ports['topology_port']}/api/v1/lora/topology",g['eui'],child)
-    if found:break
+    if child.poll() is None:
+     try:
+      gateway_state=get_json(f"http://127.0.0.1:{ports['topology_port']}/api/v1/lora/topology")
+      service_ready=gateway_state.get('schema')=='lora.topology.v1' and str(gateway_state.get('receiver',{}).get('gateway_id','')).lower()==g['eui'].lower()
+     except (OSError,ValueError,AttributeError):service_ready=False
+    if found or service_ready:break
     if child.poll() is None:child.terminate();child.wait(timeout=5)
     children.remove(child);log.close();logs.remove(log)
     if reason=='gateway service exited':return False,'网关服务退出，正在自动恢复。'
-   if found or offline_server is None:break
+   if found or service_ready or offline_server is None:break
    offline_server.reason='尚未收到匹配网关；请检查设备电源和连接，程序会自动重试。'
    if health:health.set('recovering','等待网关重新连接')
    time.sleep(2)
-  if not found:return False,reason
+  if not children:return False,reason
   if offline_server:
    offline_server.shutdown();offline_server.server_close()
   log=(run_dir/'studio.log').open('w',encoding='utf-8');logs.append(log)
@@ -228,9 +233,9 @@ def launch(c,release_root,m,run_dir,offline_server=None,fleet_path=None,health=N
     if ready:break
    except OSError:time.sleep(.2)
   if not ready:return False,'Studio failed to start; inspect studio.log'
-  if health:health.set('recovered' if health.had_recovery else 'online','网关已连接')
-  print(json.dumps(dict(state='online',url=url,reason=reason,logs=str(run_dir)),ensure_ascii=False),flush=True);webbrowser.open(url)
-  observed=True;next_check=time.monotonic()+2
+  if health:health.set(('recovered' if health.had_recovery else 'online') if found else 'recovering','网关已连接' if found else '等待网关连接')
+  print(json.dumps(dict(state='online' if found else 'recovering',url=url,reason=reason,logs=str(run_dir)),ensure_ascii=False),flush=True);webbrowser.open(url)
+  observed=found;next_check=time.monotonic()+2
   while all(child.poll() is None for child in children):
    if time.monotonic()>=next_check:
     try:
