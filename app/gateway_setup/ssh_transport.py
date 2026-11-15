@@ -81,8 +81,6 @@ def fingerprint(key):
 def connect(host,user,ask=input,secret=getpass.getpass,known_hosts=None,lib=None):
     lib=lib or load_ssh_library()
     known_hosts=Path(known_hosts) if known_hosts else Path.home()/'.ssh'/'known_hosts'
-    client=lib.SSHClient()
-    if known_hosts.is_file():client.load_host_keys(str(known_hosts))
     class ConfirmUnknown(lib.MissingHostKeyPolicy):
         def missing_host_key(self,owner,hostname,key):
             # An existing host, even with a different key type, must never be silently replaced.
@@ -93,14 +91,29 @@ def connect(host,user,ask=input,secret=getpass.getpass,known_hosts=None,lib=None
             known_hosts.parent.mkdir(parents=True,exist_ok=True)
             owner.get_host_keys().add(hostname,key.get_name(),key)
             owner.save_host_keys(str(known_hosts))
-    client.set_missing_host_key_policy(ConfirmUnknown())
-    print('请输入网关登录密码，输入时不会显示字符。',flush=True)
-    password=secret('网关密码：')
-    try:
-        client.connect(hostname=host,username=user,password=password,timeout=5,auth_timeout=30,banner_timeout=10,look_for_keys=False,allow_agent=False)
-    except Exception:
-        client.close();raise
-    return client,password
+    for attempt in range(1,4):
+        print('网关 {}，登录账户 {}。输入时密码不会显示；直接回车可取消。'.format(host,user),flush=True)
+        try:password=secret('网关密码：')
+        except (KeyboardInterrupt,EOFError):raise TransportError('已取消网关登录') from None
+        if not password:raise TransportError('已取消网关登录')
+        client=lib.SSHClient()
+        try:
+            if known_hosts.is_file():client.load_host_keys(str(known_hosts))
+            client.set_missing_host_key_policy(ConfirmUnknown())
+            client.connect(hostname=host,username=user,password=password,timeout=5,auth_timeout=30,banner_timeout=10,look_for_keys=False,allow_agent=False)
+            return client,password
+        except lib.BadAuthenticationType:
+            password=None;close_bounded(client)
+            raise TransportError('网关 {} 的账户 {} 不支持当前密码认证方式，请联系技术支持。'.format(host,user)) from None
+        except lib.AuthenticationException:
+            password=None;close_bounded(client)
+            print('网关 {} 拒绝了账户 {} 的认证（第 {} 次）。'.format(host,user,attempt),flush=True)
+            if attempt==3:raise TransportError('网关认证未通过，已停止；请核对账户信息或联系技术支持。') from None
+        except KeyboardInterrupt:
+            password=None;close_bounded(client)
+            raise TransportError('已取消网关登录') from None
+        except BaseException:
+            password=None;close_bounded(client);raise
 
 
 def upload_verified(client,local_file,remote_file,expected_sha256,timeout=180):
