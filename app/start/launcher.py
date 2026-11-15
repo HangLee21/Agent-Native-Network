@@ -151,10 +151,28 @@ class Offline(BaseHTTPRequestHandler):
  def log_message(self,*_):pass
 
 
+def open_studio_page(url):
+ print('Studio 地址（可点击或复制到浏览器）：'+url,flush=True)
+ try:
+  os.startfile(url)
+  print('已请求系统打开浏览器；若页面没有出现，请使用上面的地址。',flush=True)
+  return 'requested'
+ except (OSError,AttributeError) as exc:
+  print('系统浏览器调用未成功，正在尝试备用方式：'+str(exc),flush=True)
+ try:
+  if webbrowser.open(url,new=2):
+   print('已请求备用浏览器打开页面；若页面没有出现，请使用上面的地址。',flush=True)
+   return 'requested_fallback'
+ except Exception as exc:
+  print('备用浏览器调用未成功：'+str(exc),flush=True)
+ print('浏览器未能自动打开，请使用上面的地址。',flush=True)
+ return 'failed'
+
+
 def offline(port,reason,open_browser=True):
  server=ThreadingHTTPServer(('127.0.0.1',port),Offline);server.reason=reason
  print(json.dumps(dict(state='offline',reason=reason,url=f'http://127.0.0.1:{server.server_port}/'),ensure_ascii=False),flush=True)
- if open_browser:webbrowser.open(f'http://127.0.0.1:{server.server_port}/')
+ if open_browser:open_studio_page(f'http://127.0.0.1:{server.server_port}/')
  try:server.serve_forever()
  finally:server.server_close()
 
@@ -186,7 +204,7 @@ def reuse_instance(path,expected_port):
   try:
    v=json.loads(path.read_text(encoding='utf-8'));req=urllib.request.Request(f"http://127.0.0.1:{v['port']}/",headers={'X-Studio-Token':v['token']})
    with urllib.request.build_opener(urllib.request.ProxyHandler({})).open(req,timeout=.5) as r:info=json.load(r)
-   if info.get('schema')=='studio.instance.v1' and info.get('url')==f'http://127.0.0.1:{expected_port}/':webbrowser.open(info['url']);return True
+   if info.get('schema')=='studio.instance.v1' and info.get('url')==f'http://127.0.0.1:{expected_port}/':open_studio_page(info['url']);return True
   except (OSError,ValueError,KeyError,TypeError):pass
   time.sleep(.15)
  return False
@@ -234,7 +252,7 @@ def launch(c,release_root,m,run_dir,offline_server=None,fleet_path=None,health=N
    except OSError:time.sleep(.2)
   if not ready:return False,'Studio failed to start; inspect studio.log'
   if health:health.set(('recovered' if health.had_recovery else 'online') if found else 'recovering','网关已连接' if found else '等待网关连接')
-  print(json.dumps(dict(state='online' if found else 'recovering',url=url,reason=reason,logs=str(run_dir)),ensure_ascii=False),flush=True);webbrowser.open(url)
+  print(json.dumps(dict(state='online' if found else 'recovering',url=url,reason=reason,logs=str(run_dir)),ensure_ascii=False),flush=True);open_studio_page(url)
   observed=found;next_check=time.monotonic()+2
   while all(child.poll() is None for child in children):
    if time.monotonic()>=next_check:
@@ -289,7 +307,7 @@ def main():
  instance_file=local/'studio-instance.json';url=f"http://127.0.0.1:{c['services']['studio_port']}/"
  try:handle=lock(local/'studio.lock')
  except (OSError,RuntimeError) as e:
-  if reuse_instance(instance_file,c['services']['studio_port']):print('已打开正在运行的 Studio。');return 0
+  if reuse_instance(instance_file,c['services']['studio_port']):print('已连接到运行中的 Studio。',flush=True);return 0
   print('Studio 正在启动或无法访问，请稍后再次双击。',e,file=sys.stderr);return 1
  control=None
  try:
@@ -307,7 +325,7 @@ def main():
     try:
      server=ThreadingHTTPServer(('127.0.0.1',c['services']['studio_port']),Offline);server.reason='正在连接网关；请确认设备供电和连接，程序会自动重试。';server.health=health
      threading.Thread(target=server.serve_forever,daemon=True).start()
-     if not opened:webbrowser.open(url);opened=True
+     if not opened:open_studio_page(url);opened=True
      _,reason=launch(c,rr,m,run_dir,server,cfg,health)
     except (OSError,ValueError,RuntimeError) as e:reason='服务暂不可用，正在自动重试：'+str(e)
     finally:
