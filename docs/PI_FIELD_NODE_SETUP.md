@@ -20,11 +20,12 @@ EoRa 节点 ──USB 串口(460800, mid.serial.v1)──► 树莓派 ──WiF
 | 主机名 | `eora-air-01`、`eora-air-02`… | 之后靠 `<主机名>.local` 访问 |
 | 用户名 | `eora` | 统一身份 |
 | SSH | **启用**，密码认证 | 首次登录用；之后改成密钥 |
-| WiFi | **SSID + 密码 + 国家 `CN`** | 个人 WPA2 网络在这里一次配好 |
+| WiFi | 校园网在 Imager 里**配不了**，见下方说明 | 只有 WPA2 个人版能在这里设 |
 | 时区 | `Asia/Shanghai` | 日志对齐 |
 
-> **注意**：Imager 只能配 **WPA2 个人版**（如 `hli21`）。校园网 `Tsinghua-Secure` 是
-> **802.1X 企业认证**，Imager 不支持，必须开机后用 `pi_wifi_8021x.sh` 配置。
+> **注意**：本项目的校园网是 **`Tsinghua-Secure`（WPA2-Enterprise / PEAP-MSCHAPv2）**，
+> 认证用**校园网账号**（账号名，不是 SSID）。Imager 只能配 WPA2 个人版，配不了 802.1X，
+> 因此校园网必须在开机后用 `pi_wifi_8021x.sh` 配置。
 
 ## 3 开机后一次性配置
 
@@ -32,7 +33,7 @@ EoRa 节点 ──USB 串口(460800, mid.serial.v1)──► 树莓派 ──WiF
 scp pi_provision.sh eora@<ip>:~/
 ssh eora@<ip>
 sudo ~/pi_provision.sh eora-air-02            # 只配系统
-sudo ~/pi_provision.sh eora-air-02 hli21      # 同时配 WPA2 个人 WiFi（交互输入密码）
+sudo ~/pi_provision.sh eora-air-02 <wifi-ssid>  # 可选：WPA2 个人版 WiFi（交互输入密码）
 ```
 
 脚本做的事（幂等）：
