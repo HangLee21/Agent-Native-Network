@@ -104,9 +104,85 @@ Match Address 169.254.0.0/16
 | 密码 · 校园网 | ❌ 拒绝 |
 | 密码 · 直连网线 | ✅ **救命通道**（密钥丢失时插网线即可进入） |
 
-## 7 已知注意点
+## 7 机群管理（Tailscale + fleet）
+
+### 问题
+
+Pi 走校园网 DHCP，**地址每天变**；mDNS 被校园 WiFi 隔离，`eora-air-0X.local` 解析不到；
+校园网还过滤 ICMP，`ping` 不通不代表设备死了。三台就已经管不过来，几十台更不可能靠台账。
+
+实测三台的 WiFi 地址落在**三个不同网段**：
+
+```
+eora-air-01  183.173.46.234/21
+eora-air-02  183.173.100.29/21
+eora-air-03  101.5.13.81/21
+```
+
+### 方案：管理面与数据面分离
+
+```
+管理面  Tailscale  →  设备名 eora-air-NN，永久有效
+数据面  WiFi       →  上网、NTP、遥测回传；地址怎么变都不影响运维
+```
+
+### 入网（一次授权，之后零点击）
+
+在管理后台生成 **reusable auth key**（Ephemeral 关，避免离线设备被删除），然后：
+
+```bash
+sudo ~/eora/pi_enroll.sh eora-air-04 tskey-auth-xxxx
+```
+
+脚本做四件事：设主机名 → **强制 IPv4 优先** → 装包 → 用 key 入网。
+
+> ⚠️ **节点密钥默认约 180 天过期**。长期外场设备建议在后台逐台 **Disable key expiry**，
+> 或用 Tags 入网（带 tag 的设备不过期，但需要先配 ACL）。
+
+### 日常操作
+
+```powershell
+fleet status                 # 全队：节点/build/WiFi/网线/磁盘/温度/运行时长
+fleet update mid_edge.bin    # 全部刷同一版固件，逐台校验 + 失败回滚
+fleet run "df -h /"          # 批量执行
+fleet logs eora-air-02       # 看某台节点日志
+```
+
+`fleet update` 需要 `EORA_PASS` 环境变量（设备 sudo 密码）。
+
+### 远程刷节点（这是它存在的理由）
+
+节点挂在 Pi 的 USB 上，**所以 Pi 自己就能刷它**，不需要人去拔板子：
+
+```
+PC 编译一次 .bin → Tailscale 分发 → 每台 Pi 本地 esptool 刷自己的节点
+                                  → 读回 build_id 校验
+                                  → 不一致自动回滚上一版
+```
+
+实测（`eora-air-01`，A 板）：
+
+```
+flashing mid_edge.bin -> 0x10000
+node reports: e72eaf651f100dfd
+VERIFIED: node is running the image that was just flashed
+```
+
+## 8 踩过的坑（都已在脚本里处理）
+
+| 坑 | 现象 | 修法 |
+|---|---|---|
+| 校园网 IPv6 不通但 DNS 优先返回 AAAA | 装包、入网、`tailscale up` 全部挂住 | `/etc/gai.conf` 加强 `precedence ::ffff:0:0/96 100`，WiFi profile 可设 `ipv6.method disabled` |
+| 本机多网卡时 `255.255.255.255` 走错网卡 | 直连网线上的 Pi 收不到 DHCP OFFER | 同时发往链路广播 `169.254.255.255` |
+| DHCP 守护收到带主机名的 DISCOVER 就崩 | 日志停在半路，设备拿不到地址 | 补初始化；另加看门狗兜底 |
+| 硬断电后 ext4 在日志里留 NUL 字节 | `grep` 判定为二进制，节点信息空 | 用 `grep -a` |
+| 开串口会拉 DTR/RTS 复位 ESP32 | 探针读不到任何回复 | 打开前 `dtr=False, rts=False`，打开后等 2.5 s |
+| `node_reader` 独占串口 | 手工探针报 "multiple access on port" | 先 `systemctl stop node_reader` |
+
+## 9 已知注意点
 
 - **Pi 4 的 USB 总供电只有 1.2 A**，接节点没问题；接多个需带外部供电的 Hub。
 - 单独一个节点时 `route_request` 约 **107 次/分钟**（不停为不存在的邻居发 RREQ），
   这是单节点空转的正常表现，但在大规模下正是泛洪问题的来源。
 - 校园网 IP 会变、可能限制入站连接，**不要当控制链路**；外场应用 Pi 自建 AP 或 4G。
+- Tailscale 在校园网偶发掉线（NAT 映射超时），`systemctl restart tailscaled` 可恢复。
