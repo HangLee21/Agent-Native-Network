@@ -155,9 +155,14 @@ def main():
             if link is None:
                 link = open_node(args.port)
                 info = request(link, "info") or {}
+                # device_label / node_number are the names the fleet actually uses; recording
+                # them here lets display labels be rebuilt from data instead of a hand-written
+                # table that drifts every time the naming scheme changes.
                 writer.line({"t": int(time.time()), "session": "open", "port": args.port,
                              "node_id": info.get("node_id"), "build_id": info.get("build_id"),
                              "mode": info.get("mode"), "group": info.get("group"),
+                             "device_label": info.get("device_label"),
+                             "node_number": info.get("node_number"),
                              "lora_role": info.get("lora_ref_requested_role")})
                 last_rx = time.monotonic()
 
