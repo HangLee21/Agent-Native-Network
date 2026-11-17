@@ -71,11 +71,10 @@ STATUS_CMD = (
     'echo "wifi=$(ip -4 -o addr show wlan0 2>/dev/null | awk \'{print $4}\')"; '
     'echo "cable=$(ip -4 -o addr show eth0 2>/dev/null | awk \'{print $4}\')"; '
     'echo "reader=$(systemctl is-active node_reader)"; '
-    'echo "node=$(tail -1 ~/eora/logs/node_events.jsonl 2>/dev/null | python3 -c '
-    '"import sys,json;'
-    'd=json.loads(sys.stdin.read() or \'{}\');'
-    'print(d.get(\'node_id\',\'?\')+\' \'+(d.get(\'build_id\') or \'\')[-12:]+\' \'+d.get(\'mode\',\'?\'))" '
-    '2>/dev/null)"'
+    # `grep -a`: a hard power cut can leave NUL holes in an ext4 file, after which plain grep
+    # calls it binary and prints nothing.
+    'echo "node=$(grep -a -h \'"session":"open"\' ~/eora/logs/node_events.jsonl 2>/dev/null | tail -1 | grep -a -o \'"node_id":"[^"]*"\' | cut -d\'"\' -f4) '
+    '$(grep -a -h \'"session":"open"\' ~/eora/logs/node_events.jsonl 2>/dev/null | tail -1 | grep -a -o \'"build_id":"[^"]*"\' | cut -d\'"\' -f4 | tail -c 13)"'
 )
 
 
