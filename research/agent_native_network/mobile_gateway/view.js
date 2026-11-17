@@ -17,7 +17,14 @@
   const graphNodes=()=>isLoRa()?[...lora().nodes.values()].map(n=>({...model.nodes.get(n.id),...n})):[...model.nodes.values()];
   const age=x=>Number.isFinite(x)?x<1000?Math.round(x)+' ms':(x/1000).toFixed(1)+' s':'未知';
   const source=x=>({simulated:'模拟',fake:'模拟',fake_gps:'模拟 GPS',gpsd:'GPSD',gps:'真实 GPS',measured:'实测',unavailable:'不可用',host_model:'主机模型',board_field_agent:'板内发生器',actual_E2_fake_agent_function_processes:'E2 fake_agent 进程',E2_fake_agent_function_host_model:'E2 fake_agent（主机模型）'}[x]||x||'未提供');
-  const label=id=>model.nodes.get(M.clean(id))?.label||lora().labels.get(M.clean(id))||M.clean(id).slice(-8)||'未知';
+  // In the LoRa view the names come from the devices themselves (node_reader records each
+  // node's own number), so that source wins. The Wi-Fi view keeps using the state labels,
+  // which are the ones the field gateway publishes.
+  const label=id=>{
+    const clean=M.clean(id);
+    if(isLoRa()){const fromLoRa=lora().labels.get(clean);if(fromLoRa)return fromLoRa;}
+    return model.nodes.get(clean)?.label||lora().labels.get(clean)||clean.slice(-8)||'未知';
+  };
   const text=(id,value)=>$(id).textContent=value,now=()=>performance.now();
   function svg(tag,attrs={},content){const el=document.createElementNS(ns,tag);for(const [k,v]of Object.entries(attrs))el.setAttribute(k,v);if(content!==undefined)el.textContent=content;return el;}
   function html(tag,content,cls){const e=document.createElement(tag);e.textContent=content;if(cls)e.className=cls;return e;}
