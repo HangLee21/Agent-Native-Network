@@ -18,8 +18,11 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-GATEWAY_EUI = "b827ebFFFE32e2c1"
-GATEWAY_NAME = "RHF2S008"
+KNOWN_GATEWAYS = {"b827ebfffe32e2c1": "RHF2S008"}   # friendly names only; identity comes from the wire
+
+
+def log(*args):
+    print(*args, flush=True)
 
 
 def crc32(data):
@@ -47,6 +50,25 @@ class Topology:
         self.last_rx = None
         self.channel = None
         self.freq = None
+        # Learned from the PUSH_DATA header of whichever gateway is actually sending, so a
+        # replacement gateway needs no code change and the old one keeps working.
+        self.gateway_eui = None
+
+    def gateway_name(self, eui=None):
+        eui = (eui or self.gateway_eui or "").lower()
+        return KNOWN_GATEWAYS.get(eui, "gateway-" + eui[-8:] if eui else "gateway")
+
+    def note_gateway(self, eui):
+        """Called once per PUSH_DATA with the 8-byte EUI from the packet header."""
+        if not eui:
+            return
+        with self.lock:
+            if self.gateway_eui != eui:
+                if self.gateway_eui:
+                    log("gateway changed %s -> %s" % (self.gateway_eui, eui))
+                else:
+                    log("gateway %s (%s)" % (eui, self.gateway_name(eui)))
+                self.gateway_eui = eui
 
     def ingest(self, pkt):
         """One rxpk dict from the gateway."""
@@ -73,7 +95,7 @@ class Topology:
                 return
             observer = mac_text(raw[8:14])
             record = {
-                "gateway_id": GATEWAY_EUI,
+                "gateway_id": self.gateway_eui or "",
                 "gateway_boot": 0,
                 "report": {
                     "frame_schema": "LRN1",
@@ -117,7 +139,8 @@ class Topology:
     def snapshot(self):
         with self.lock:
             labels = dict(self.labels)
-            labels.setdefault(GATEWAY_EUI.lower(), GATEWAY_NAME)
+            if self.gateway_eui:
+                labels.setdefault(self.gateway_eui, self.gateway_name())
             now = time.time()
             rows = []
             for observer, rec in self.reports.items():
@@ -130,7 +153,7 @@ class Topology:
                 "labels": labels,
                 "receiver": {
                     "state": "receiving" if self.last_rx else "idle",
-                    "gateway_id": GATEWAY_EUI.lower(),
+                    "gateway_id": (self.gateway_eui or "").lower(),
                     "port": None,
                     "serial_open": False,
                     "last_rx_age_ms": int((now - self.last_rx) * 1000) if self.last_rx else None,
@@ -146,9 +169,39 @@ class Topology:
             }
 
 
+def claim_port(port):
+    """Refuse to start when another process already owns the UDP port.
+
+    With SO_REUSEADDR Windows lets a second socket bind the same UDP port, and the two then
+    race for incoming datagrams, so half the frames vanish with no error anywhere. Binding
+    once without SO_REUSEADDR makes that situation visible at startup instead.
+    """
+    probe = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        probe.bind(("0.0.0.0", port))
+    except OSError:
+        return False
+    finally:
+        probe.close()
+    return True
+
+
 def udp_loop(topology, port, stop):
+    if not claim_port(port):
+        log("udp/%d is already in use: another receiver would steal frames. "
+            "Stop it first, or pass --udp-port." % port)
+        stop.set()
+        return
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    # Windows turns the ICMP port-unreachable produced when a sender closes its socket into
+    # a ConnectionResetError on the *next* recvfrom, which silently eats the datagram that
+    # had actually arrived: the forwarder restarts, and the frame it just sent is lost.
+    if hasattr(socket, "SIO_UDP_CONNRESET"):
+        try:
+            sock.ioctl(socket.SIO_UDP_CONNRESET, False)
+        except (OSError, ValueError):
+            pass
     sock.bind(("0.0.0.0", port))
     sock.settimeout(0.5)
     while not stop.is_set():
@@ -162,6 +215,9 @@ def udp_loop(topology, port, stop):
         if mtype == 0:                                   # PUSH_DATA
             sock.sendto(bytes([version]) + token + bytes([1]), addr)
             if len(data) > 12:
+                # Bytes 4..12 are the gateway EUI: the Semtech UDP header carries it, so
+                # whichever gateway is on the link identifies itself. No hard-coded ID.
+                topology.note_gateway(data[4:12].hex())
                 try:
                     payload = json.loads(data[12:].decode("utf-8", "replace"))
                 except ValueError:
@@ -199,6 +255,12 @@ def main():
     ap.add_argument("--port", type=int, default=8780)
     ap.add_argument("--labels", help="JSON file mapping MAC to a display name")
     a = ap.parse_args()
+    # A receiver that does not own the UDP port is worse than no receiver: the page stays
+    # "empty" while frames are actually arriving somewhere else.
+    if not claim_port(a.udp_port):
+        print("udp/%d is already in use (another receiver or forwarder?). "
+              "Stop it, or pass --udp-port." % a.udp_port, flush=True)
+        return 1
     topology = Topology()
     if a.labels:
         topology.labels.update(json.loads(open(a.labels, encoding="utf-8").read()))
@@ -206,7 +268,7 @@ def main():
     threading.Thread(target=udp_loop, args=(topology, a.udp_port, stop), daemon=True).start()
     server = ThreadingHTTPServer(("127.0.0.1", a.port), handler_for(topology))
     print(json.dumps({"status": "ready", "http": f"http://127.0.0.1:{a.port}/api/v1/lora/topology",
-                      "udp": a.udp_port, "gateway": GATEWAY_EUI}), flush=True)
+                      "udp": a.udp_port, "identity": "learned from PUSH_DATA header"}), flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
