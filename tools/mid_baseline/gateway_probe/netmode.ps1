@@ -54,14 +54,24 @@ function Show-State {
     Write-Host ''
 }
 
+$script:Failures = @()
+
 function Clear-Static {
     # Remove every non-DHCP IPv4 address. The port must never keep a leftover from the
     # previous mode: that is exactly how the 10.0.0.0/24 route broke the proxy.
+    # Failures are collected instead of swallowed: run without an elevated shell, the old
+    # version printed a success-looking report while changing nothing at all.
     Get-NetIPAddress -InterfaceAlias $Interface -AddressFamily IPv4 -ErrorAction SilentlyContinue |
         Where-Object { $_.PrefixOrigin -ne 'Dhcp' } |
         ForEach-Object {
-            Write-Host ("   removing {0}/{1}" -f $_.IPAddress, $_.PrefixLength)
-            Remove-NetIPAddress -InterfaceAlias $Interface -IPAddress $_.IPAddress -Confirm:$false -ErrorAction SilentlyContinue
+            $addr = $_.IPAddress
+            Write-Host ("   removing {0}/{1}" -f $addr, $_.PrefixLength)
+            try {
+                Remove-NetIPAddress -InterfaceAlias $Interface -IPAddress $addr -Confirm:$false -ErrorAction Stop
+            } catch {
+                # Inside catch, $_ is the error record, so the address must be captured first.
+                $script:Failures += ("remove " + $addr + ": " + $_.Exception.Message)
+            }
         }
     Get-NetRoute -InterfaceAlias $Interface -DestinationPrefix '0.0.0.0/0' -ErrorAction SilentlyContinue |
         ForEach-Object {
@@ -83,6 +93,24 @@ switch ($Mode) {
         Set-DnsClientServerAddress -InterfaceAlias $Interface -ResetServerAddresses -ErrorAction SilentlyContinue
         ipconfig /renew "$Interface" | Out-Null
         Show-State
+
+        # Verify instead of assuming. Without this check a non-elevated run looks exactly
+        # like a successful one, and the wired port stays dead while reporting OK.
+        $left = @(Get-NetIPAddress -InterfaceAlias $Interface -AddressFamily IPv4 -ErrorAction SilentlyContinue |
+                  Where-Object { $_.PrefixOrigin -ne 'Dhcp' })
+        $dhcpOn = (Get-NetIPInterface -InterfaceAlias $Interface -AddressFamily IPv4 -ErrorAction SilentlyContinue).Dhcp
+        if ($left.Count -gt 0) {
+            Write-Host ("FAILED: {0} static address(es) still present - run this elevated." -f $left.Count) -ForegroundColor Red
+        }
+        if ("$dhcpOn" -ne 'Enabled') {
+            Write-Host 'FAILED: DHCP is still disabled - run this elevated.' -ForegroundColor Red
+        }
+        foreach ($f in $script:Failures) { Write-Host ("FAILED: " + $f) -ForegroundColor Red }
+        if ($left.Count -eq 0 -and "$dhcpOn" -eq 'Enabled') {
+            $leases = @(Get-NetIPAddress -InterfaceAlias $Interface -AddressFamily IPv4 -ErrorAction SilentlyContinue |
+                        Where-Object { $_.PrefixOrigin -eq 'Dhcp' }).Count
+            Write-Host ("OK: DHCP enabled, {0} lease address(es)" -f $leases) -ForegroundColor Green
+        }
         break
     }
 
