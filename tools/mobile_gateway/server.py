@@ -95,7 +95,7 @@ def parser():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--host', default='127.0.0.1')
     p.add_argument('--port', type=int, default=8790)
-    p.add_argument('--static-dir', type=Path, default=ROOT / 'research/agent_native_network/mobile_gateway')
+    p.add_argument('--static-dir', type=Path, default=ROOT / 'assets/mobile_gateway')
     p.add_argument('--output', required=True, type=Path, help='new capture directory')
     p.add_argument('--resume', action='store_true', help='resume only this gateway capture; never truncate it')
     p.add_argument('--offline-ms', type=int, default=30000)

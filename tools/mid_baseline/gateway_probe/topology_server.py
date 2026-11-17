@@ -18,6 +18,8 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
+GATEWAY_OBSERVE_S = 30      # a gateway silent this long is not observed
+
 KNOWN_GATEWAYS = {"b827ebfffe32e2c1": "RHF2S008", "a4f00fe57b830000": "E870L-470"}   # friendly names only; identity comes from the wire
 
 
@@ -53,6 +55,7 @@ class Topology:
         # Learned from the PUSH_DATA header of whichever gateway is actually sending, so a
         # replacement gateway needs no code change and the old one keeps working.
         self.gateway_eui = None
+        self.last_gateway = None   # any datagram, including PULL_DATA keepalives
 
     def gateway_name(self, eui=None):
         eui = (eui or self.gateway_eui or "").lower()
@@ -69,6 +72,7 @@ class Topology:
                 else:
                     log("gateway %s (%s)" % (eui, self.gateway_name(eui)))
                 self.gateway_eui = eui
+            self.last_gateway = time.time()
 
     def ingest(self, pkt):
         """One rxpk dict from the gateway."""
@@ -154,6 +158,13 @@ class Topology:
                 "receiver": {
                     "state": "receiving" if self.last_rx else "idle",
                     "gateway_id": (self.gateway_eui or "").lower(),
+                    # The viewer only uses a source when the gateway is provably talking to
+                    # us; without these fields it reports "receiving" but is never selected.
+                    "gateway_observed": bool(self.last_gateway
+                                              and (now - self.last_gateway) <= GATEWAY_OBSERVE_S),
+                    "gateway_last_pull_age_ms": int((now - self.last_gateway) * 1000)
+                                                 if self.last_gateway else None,
+                    "identity_verified": bool(self.gateway_eui),
                     "port": None,
                     "serial_open": False,
                     "last_rx_age_ms": int((now - self.last_rx) * 1000) if self.last_rx else None,

@@ -7,30 +7,28 @@
   let snapshotLoaded=false,snapshotError='',health=null,radioExpiry=null;
   let packetLog=S.createPacketLog(),selectedEdge='',timelineTruncated=false;
   let loraData=null,loraReadAt=0,loraError='',loraVersion=0,loraLoading=false;
-  let shownSource='wifi';const sourceViews=new Map();
+  let gatewaySeen=false,gatewayInterrupted=false,gatewayRecovery='正在连接网关';
+  let sourceState=null,sourceId=null,sourceEpoch=null,sourceRequest=0,sourceBusy=false;
+  let shownSource='wifi';const sourceViews=new Map();let manualKey='',manualPositions=new Map(),suppressClick=false;try{const v=localStorage.getItem('mobile.topology.source');if(['wifi','lora'].includes(v))$('topologySource').value=v;}catch(_){}shownSource=$('topologySource').value;
+  try{const mode=localStorage.getItem('mobile.layout.mode');if(['clear','manual','gps'].includes(mode))$('layoutMode').value=mode;}catch(_){}
   const isLoRa=()=>$('topologySource').value==='lora';
-  // Both sources are legitimate: a serial board relaying LRN1 snapshots, and the Ethernet
-  // LoRa gateway (RHF2S008) that receives the same frames directly.
-  const LORA_SOURCES=['lora_received_snapshot','gateway_udp_lrn1'];
-  const lora=()=>L.snapshot(loraData,Math.max(0,now()-loraReadAt));
+  let loraCache=null;const lora=()=>{const t=now(),bucket=Math.floor(t/1000),stale=!!loraError||!!loraData&&t-loraReadAt>6000;if(!loraCache||loraCache.data!==loraData||loraCache.bucket!==bucket||loraCache.stale!==stale||loraCache.fleet!==fleetLabels)loraCache={data:loraData,bucket,stale,fleet:fleetLabels,value:L.snapshot(loraData,Math.max(0,t-loraReadAt),[...fleetLabels.keys()],stale)};return loraCache.value;};
   const radioEdges=()=>isLoRa()?lora().edges:M.edges(model,now()).filter(e=>e.hasObservation!==false);
   const graphNodes=()=>isLoRa()?[...lora().nodes.values()].map(n=>({...model.nodes.get(n.id),...n})):[...model.nodes.values()];
   const age=x=>Number.isFinite(x)?x<1000?Math.round(x)+' ms':(x/1000).toFixed(1)+' s':'未知';
   const source=x=>({simulated:'模拟',fake:'模拟',fake_gps:'模拟 GPS',gpsd:'GPSD',gps:'真实 GPS',measured:'实测',unavailable:'不可用',host_model:'主机模型',board_field_agent:'板内发生器',actual_E2_fake_agent_function_processes:'E2 fake_agent 进程',E2_fake_agent_function_host_model:'E2 fake_agent（主机模型）'}[x]||x||'未提供');
-  // In the LoRa view the names come from the devices themselves (node_reader records each
-  // node's own number), so that source wins. The Wi-Fi view keeps using the state labels,
-  // which are the ones the field gateway publishes.
-  const label=id=>{
-    const clean=M.clean(id);
-    if(isLoRa()){const fromLoRa=lora().labels.get(clean);if(fromLoRa)return fromLoRa;}
-    return model.nodes.get(clean)?.label||lora().labels.get(clean)||clean.slice(-8)||'未知';
-  };
+  let fleetLabels=new Map(),fleetGeneration=0,nextFleetRead=0;
+  const label=id=>{const key=M.clean(id),registered=fleetLabels.get(key),reported=lora().labels.get(key)||model.nodes.get(key)?.label;return registered!==undefined?String(registered):typeof reported==='string'&&reported.trim()?reported.trim():FleetLabels.label(fleetLabels,id)??(key||'网关 / 未知');};
+  function fleetLoad(value){fleetLabels=FleetLabels.parse(value);$('fleetStatus').textContent='节点编号配置已加载 · '+fleetLabels.size+' 个';$('fleetStatus').classList.remove('fleetError');render();}
+  function fleetFail(error){fleetLabels=new Map();$('fleetStatus').textContent='节点编号暂不可用，正在自动重试；如持续无法恢复，请重新打开启动入口。原因：'+error;$('fleetStatus').classList.add('fleetError');render();}
+  async function fetchFleet(){const ticket=++fleetGeneration;try{const res=await fetch('/api/v1/fleet',{cache:'no-store',signal:AbortSignal.timeout(5000)});if(!res.ok)throw Error('HTTP '+res.status);const body=await res.json();if(ticket===fleetGeneration)fleetLoad(body);}catch(e){if(ticket===fleetGeneration)fleetFail(e.message);}}
   const text=(id,value)=>$(id).textContent=value,now=()=>performance.now();
   function svg(tag,attrs={},content){const el=document.createElementNS(ns,tag);for(const [k,v]of Object.entries(attrs))el.setAttribute(k,v);if(content!==undefined)el.textContent=content;return el;}
   function html(tag,content,cls){const e=document.createElement(tag);e.textContent=content;if(cls)e.className=cls;return e;}
+  let agingTimer=null;
   const sampleState=x=>({heard:'采样时单向听到',bidirectional:'采样时本端确认',lost:'采样时已失效'}[x]||'采样状态未知');
   const SAMPLE_COLOR={bidirectional:'#168269',heard:'#237fbe',lost:'#b3261e',unknown:'#a7b1b5'};
-  const radioInfo=e=>isLoRa()?{label:sampleState(e.state),color:SAMPLE_COLOR[e.state]||'#8d9a9e'}:S.edgeInfo(e);
+  const radioInfo=e=>isLoRa()?e.historical?{label:'历史记录 · 当前不可确认',color:'#919b9e'}:{label:sampleState(e.state),color:SAMPLE_COLOR[e.state]||'#8d9a9e'}:S.edgeInfo(e);
   // LoRa legend uses the same colours as the drawn links and node rings.
   function renderLoRaLegend(){
     const box=$('loraLegend');
@@ -49,18 +47,31 @@
   function renderLoRa(){
     const enabled=isLoRa(),data=lora();$('loraStatus').classList.toggle('hidden',!enabled);$('wifiLegend').classList.toggle('hidden',enabled);$('loraLegend').classList.toggle('hidden',!enabled);if(!enabled)return;
     renderLoRaLegend();
+    const counts={reported:0,stale_report:0,interrupted:0,never:0};for(const n of data.nodes.values())if(Object.hasOwn(counts,n.status))counts[n.status]++;
+    text('recoveryStatus',(data.receiver?.mode==='node_serial'?'节点 '+label(data.receiver.gateway_id)+' 串口接收 · ':'')+gatewayRecovery+` · 在线 ${counts.reported} / 超时未见 ${counts.stale_report} / 观测中断 ${counts.interrupted} / 从未观测 ${counts.never} · 超时阈值按上报周期计算`);
     const r=data.receiver,offline=['stale','unavailable','busy','error'].includes(r?.state)||!!loraError,stateName={idle:'未开始接收',connecting:'正在连接',receiving:'正在实收',stale:'暂未续收',unavailable:'接收器不可用',busy:'串口已占用',error:'读取异常'};
-    $('loraStatus').classList.toggle('warning',offline);text('loraTitle',loraError?'LoRa 来源暂时不可读取':r?`LoRa 接收器 ${r.gateway_id?label(r.gateway_id):'待识别'} · ${stateName[r.state]||'状态未提供'}`:loraLoading?'正在读取 LoRa 来源':'尚无 LoRa 接收器报告');
-    text('loraNote',(loraError?loraError+'；保留上次快照。':'')+(r?.error?r.error+'。':'')+`已取得 ${data.reports.length} 个报告者的最近快照。板间箭头为 ESP-NOW 邻居；LoRa 仅回传这些快照。位置、agent 和业务仍使用原来源。`);
+    $('loraStatus').classList.toggle('warning',offline);text('loraTitle',loraError?'LoRa 来源暂时不可读取':r?`LoRa 接收器 ${r.gateway_id?label(r.gateway_id):'待识别'} · ${r.gateway_observed===false?'等待网关连接':stateName[r.state]||'状态未提供'}`:loraLoading?'正在读取 LoRa 来源':'尚无 LoRa 接收器报告');
+    text('loraNote',(loraError?loraError+(loraData?'；保留上次快照。':'；等待当前来源快照。'):'')+(r?.error?r.error+'。':'')+`已取得 ${data.reports.length} 个报告者的最近快照。板间箭头为 ESP-NOW 邻居；LoRa 仅回传这些快照。位置、agent 和业务仍使用原来源。`);
     $('loraReports').replaceChildren();for(const item of data.reports){const p=item.report,g=item.gateway_id||r?.node_id||r?.gateway_id,b=html('button',`${label(item.id)} → ${g?label(g):'接收器未提供'} · LoRa RSSI ${Number.isFinite(item.lora?.rssi_dbm)?item.lora.rssi_dbm+' dBm':'未提供'} / SNR ${Number.isFinite(item.lora?.snr_db)?item.lora.snr_db+' dB':'未提供'}`,'loraReport');
       b.append(html('small',`报告 #${p.report_seq} · boot ${p.observer_boot} · PC 收报距今 ${age(item.age)} · 邻居 ${p.neighbors?.length||0}/${p.total_rows??'?'}${p.truncated?'（截断）':''}${p.nd_table_full?' · ND 表曾满':''}`));b.onclick=()=>choose(item.id);$('loraReports').append(b);
     }if(!data.reports.length)text('loraReports',offline?'接收器离线或不可读取；等待恢复，未从 Wi-Fi 补充邻居。':'尚未取得实际 LoRa 帧；等待报告，不用 Wi-Fi 邻居填充。');
   }
+  function showSources(data){
+    sourceState=data;const select=$('receiverSource'),old=data.selection==='manual'?data.preferred_source_id||'':'',items=data.sources;
+    select.replaceChildren(new Option('自动选择',''));for(const item of items){const selectable=item.verified===true&&item.capabilities?.receive===true,description=!item.verified?'未验证':item.capabilities?.receive!==true?'不支持接收':item.available===true?'可接收':'暂不可用';const opt=new Option(`${item.label||item.id} · ${description}`,item.id);opt.disabled=!selectable&&item.id!==old;select.add(opt);}select.value=old;select.disabled=sourceBusy;
+    const current=items.find(x=>x.id===data.selected_source_id),preferred=items.find(x=>x.id===data.preferred_source_id),mode=data.selection==='manual'?`手动优先：${preferred?.label||data.preferred_source_id||'未知'}${data.selected_source_id!==data.preferred_source_id?'（当前已回退）':''}`:'自动选择';text('sourceStatus',current?`${mode} · 当前：${current.label||current.id} · ${current.state||'状态未知'} · ${current.verified?'身份已验证':'身份未验证'}${current.capabilities?.reason?' · '+current.capabilities.reason:''}`:`${mode} · 当前没有可用的已验证来源`);
+  }
+  function validSources(x){return x&&x.schema==='lora.sources.v1'&&['auto','manual'].includes(x.selection)&&Array.isArray(x.sources)&&Number.isSafeInteger(x.selection_epoch)&&x.selection_epoch>=0;}
+  async function readSources(base){const response=await fetch(base+'/api/v1/lora/sources',{cache:'no-store',signal:AbortSignal.timeout(6000)});if(!response.ok)throw Error('来源列表 HTTP '+response.status);const value=await response.json();if(!validSources(value))throw Error('来源列表格式不匹配');return value;}
+  $('receiverSource').onchange=async()=>{if(sourceBusy)return;const requested=$('receiverSource').value||null,token=++sourceRequest;sourceBusy=true;$('receiverSource').disabled=true;text('sourceStatus','正在切换接收来源');loraVersion++;
+    try{const base=$('gateway').value.trim().replace(/\/$/,'');const response=await fetch(base+'/api/v1/lora/sources/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source_id:requested}),signal:AbortSignal.timeout(6000)});const value=await response.json();if(!response.ok)throw Error(value.error||('HTTP '+response.status));if(!validSources(value))throw Error('来源响应格式不匹配');if(token!==sourceRequest)return;sourceId=value.selected_source_id;sourceEpoch=value.selection_epoch;if($('layoutMode').value==='manual'){view=null;autoFit=true;zoom=1;}loraData=null;loraError='';loraReadAt=0;selectedEdge='';gatewaySeen=false;gatewayInterrupted=false;gatewayRecovery='正在连接接收来源';sourceBusy=false;showSources(value);render();await refreshLoRa();}
+    catch(e){if(token===sourceRequest){if(sourceState)showSources(sourceState);text('sourceStatus','来源切换未完成：'+e.message+'；不会自动重试切换');}}finally{if(token===sourceRequest){sourceBusy=false;$('receiverSource').disabled=false;}}
+  };
   async function refreshLoRa(){
     if(!isLoRa()||window.MobileStudio?.status?.mode==='demo')return;
     const token=++loraVersion,base=$('gateway').value.trim().replace(/\/$/,'');loraLoading=true;
-    try{const response=await fetch(base+'/api/v1/lora/topology',{cache:'no-store',signal:AbortSignal.timeout(6000)});if(!response.ok)throw Error('LoRa HTTP '+response.status);const data=await response.json();if(data.schema!=='lora.topology.v1'||!LORA_SOURCES.includes(data.source)||!Array.isArray(data.reports))throw Error('LoRa 来源响应格式不匹配');if(token!==loraVersion)return;loraData=data;loraReadAt=now();loraError='';}
-    catch(e){if(token!==loraVersion)return;loraError=e.message;}finally{if(token===loraVersion){loraLoading=false;if(isLoRa())render();}}
+    try{const before=await readSources(base);if(token!==loraVersion||sourceBusy)return;const response=await fetch(base+'/api/v1/lora/topology',{cache:'no-store',signal:AbortSignal.timeout(6000)});if(!response.ok)throw Error('LoRa HTTP '+response.status);const data=await response.json();const after=await readSources(base);if(token!==loraVersion||sourceBusy)return;if(before.selected_source_id!==after.selected_source_id||before.selection_epoch!==after.selection_epoch||data.source_id!==after.selected_source_id||data.selection_epoch!==after.selection_epoch){sourceId=after.selected_source_id;sourceEpoch=after.selection_epoch;if($('layoutMode').value==='manual'){view=null;autoFit=true;zoom=1;}loraData=null;loraReadAt=0;selectedEdge='';gatewaySeen=false;gatewayInterrupted=false;showSources(after);throw Error('来源读取期间发生切换，等待下一次读取');}if(sourceId!==after.selected_source_id||sourceEpoch!==after.selection_epoch){sourceId=after.selected_source_id;sourceEpoch=after.selection_epoch;if($('layoutMode').value==='manual'){view=null;autoFit=true;zoom=1;}loraData=null;loraReadAt=0;selectedEdge='';gatewaySeen=false;gatewayInterrupted=false;}showSources(after);if(data.schema!=='lora.topology.v1'||typeof data.source!=='string'||!data.source.trim()||!Array.isArray(data.reports))throw Error('LoRa 来源响应格式不匹配');if(token!==loraVersion)return;if(data.receiver?.gateway_observed===false&&!data.reports.length&&loraData?.reports?.length){const elapsed=Math.max(0,now()-loraReadAt);data.reports=loraData.reports.map(x=>({...x,pc_receive_age_ms:Number.isFinite(x.pc_receive_age_ms)?x.pc_receive_age_ms+elapsed:null}));if(!data.receiver.gateway_id)data.receiver.gateway_id=loraData.receiver?.gateway_id;}loraData=data;loraReadAt=now();loraError='';const observed=data.receiver?.gateway_observed;if(observed===true){gatewayRecovery=gatewaySeen&&gatewayInterrupted?'网关连接已恢复':'网关已连接';gatewaySeen=true;gatewayInterrupted=false;}else if(observed===false){gatewayInterrupted||=gatewaySeen;gatewayRecovery=gatewaySeen?'正在恢复网关连接':'正在连接网关';}else gatewayRecovery='网关连接状态未提供，继续读取';}
+    catch(e){if(token!==loraVersion)return;loraError=e.message;gatewayInterrupted||=gatewaySeen;gatewayRecovery=gatewaySeen?'正在恢复网关连接':'正在连接网关';}finally{if(token===loraVersion){loraLoading=false;if(isLoRa())render();}}
   }
   function renderLoRaEdge(edge,detailOpen){
     const i=edge.loraReport,p=i.report,r=edge.raw,detail=$('edgeDetail');
@@ -71,9 +82,9 @@
     const raw=document.createElement('details');raw.open=detailOpen;raw.append(html('summary','原始 LoRa 收报与邻居行'),html('pre',JSON.stringify({report:i,neighbor:r},null,2)));detail.append(raw);
   }
   function renderLoRaNodes(){
-    const data=lora(),nodes=graphNodes();text('statNodes',nodes.length);text('statLocated',nodes.filter(n=>M.positionState(n,now()).valid).length);text('statOffline','—');
+    const data=lora(),nodes=graphNodes();text('statNodesLabel',isLoRa()?'节点总数':'报告节点');text('statNodes',nodes.length);text('statLocated',nodes.filter(n=>M.positionState(n,now()).valid).length);text('statOffline',nodes.filter(n=>['stale_report','interrupted','gateway_offline'].includes(data.nodes.get(n.id)?.status)).length);
     $('nodeList').replaceChildren();$('unlocated').replaceChildren();
-    for(const n of nodes){const node=data.nodes.get(n.id),r=node?.report,pos=M.positionState(n,now()),status=node?.status||(r?'reported':'seen'),gw=status==='gateway',b=html('button','','nodeRow'+(selected===n.id?' selected':''));b.style.setProperty('--node-state',gw?'#1f6f78':status==='reported'?'#8056ad':status==='lost'?'#b3261e':'#aa7021');b.append(html('b',label(n.id)),html('span',gw?'网关':status==='reported'?'LoRa 在线':status==='lost'?'采样已失效':'仅被邻居看到','pill'+(gw?' gw':status==='reported'?'':status==='lost'?' off':' warn')),html('small',gw?'接收端 · 不经 ESP-NOW':n.id),html('small',gw?"LoRa 上行接收 5 个节点，逐帧上报 RSSI/SNR":r?`LoRa 报告 #${r.report.report_seq} · PC 收报距今 ${age(r.age)}`:'仅出现在 LoRa 邻居快照中'),html('small',gw?'该节点是接收端，不产生邻居快照':`位置另取原来源：${pos.valid?source(n.position?.source):pos.reason}`));b.onclick=()=>choose(n.id);$('nodeList').append(b);if(!pos.valid&&!gw)$('unlocated').append(html('div',label(n.id)+' · '+pos.reason));}
+    for(const n of nodes){const node=data.nodes.get(n.id),r=node?.report,pos=M.positionState(n,now()),status=node?.status||(r?'reported':'seen'),gw=status==='gateway'||status==='gateway_offline',b=html('button','','nodeRow state-'+status+(selected===n.id?' selected':''));b.style.setProperty('--node-state',gw?'#1f6f78':status==='reported'?'#8056ad':status==='lost'?'#b3261e':'#aa7021');b.append(html('b',label(n.id)),html('span',gw?(status==='gateway_offline'?'网关观测中断':'网关'):status==='reported'?'LoRa 在线':status==='lost'?'采样已失效':status==='stale_report'?'超时未见':status==='interrupted'?'观测中断':status==='never'?'从未观测':status==='seen_history'?'仅历史邻居观测':status==='report_unknown'?'报告状态未知':'仅被邻居看到','pill'+(gw?' gw':status==='reported'?'':status==='lost'?' off':' warn')),html('small',gw?(data.receiver?.mode==='node_serial'?'接收节点 · 仍参与 ESP-NOW':'网关接收端'):n.id),html('small',gw?'LoRa 上行接收端，逐帧上报 RSSI/SNR':r?`LoRa 报告 #${r.report.report_seq} · 最后收到 ${r.pc_received_at||'时间未提供'} · 距今 ${age(r.age)}`:status==='never'?'尚无上报或邻居观测':'仅出现在 LoRa 邻居快照中'),html('small',gw?(data.receiver?.mode==='node_serial'?'本接收入口不提供本板邻居快照':'网关不提供自身 Wi-Fi 邻居快照'):`位置另取原来源：${pos.valid?source(n.position?.source):pos.reason}`));b.dataset.id=n.id;b.onclick=()=>choose(n.id);$('nodeList').append(b);if(!pos.valid&&!gw)$('unlocated').append(html('div',label(n.id)+' · '+pos.reason));}
     if(!nodes.length)text('nodeList','尚无实际 LoRa 成员报告');if(!$('unlocated').children.length)text('unlocated',nodes.length?'成员沿用已有定位来源':'暂无 LoRa 成员');
     if(selected&&data.nodes.has(selected)){const r=data.nodes.get(selected).report,n=model.nodes.get(selected);text('detailTitle',label(selected)+' · LoRa 观测');text('detail',r?`报告者 ${selected}\nboot ${r.report.observer_boot} / report seq ${r.report.report_seq}\n源板采样钟 ${r.report.snapshot_at_ms} ms\nPC 收报 ${r.pc_received_at||'未提供'}\nPC 收报距今 ${age(r.age)}\n位置：${n?source(n.position?.source):'无原位置来源，使用非地理拓扑'}\n邻居快照 ${r.report.neighbors.length}/${r.report.total_rows}${r.report.truncated?'，已截断':''}`:`${selected}\n该成员仅见于其他报告者的邻居行，未收到它自己的 LoRa 报告。\n位置：${n?source(n.position?.source):'无原位置来源，使用非地理拓扑'}`);}
   }
@@ -85,28 +96,34 @@
     document.querySelector('.workspace').classList.toggle('staleSnapshot',!isLoRa()&&health.warning&&snapshotLoaded);
     if(!model.nodes.size)text('emptyMap',health.title);
   }
-  function choose(id){selected=id;render();}
+  function choose(id){if($('layoutMode').value==='clear'&&selected!==id){view=null;autoFit=true;zoom=1;}selected=id;render();}
   const edgeAge=e=>Number.isFinite(e.age)?age(e.age):Number.isFinite(e.ageUpperBound)?(Number.isFinite(e.ageLowerBound)?'≥ '+age(e.ageLowerBound)+'，':'')+'≤ '+age(e.ageUpperBound)+'（上界）':Number.isFinite(e.ageLowerBound)?'≥ '+age(e.ageLowerBound)+'（仅下界）':'未知';
   const edgeKey=e=>e.from+'/'+e.to;
   function chooseEdge(e){selectedEdge=edgeKey(e);selected=e.to;render();}
-  function bounds(points){if(!points.length)return{x:-300,y:-200,w:600,h:400};const xs=points.map(p=>p.x),ys=points.map(p=>p.y),w=Math.max(160,Math.max(...xs)-Math.min(...xs)),h=Math.max(120,Math.max(...ys)-Math.min(...ys));return{x:(Math.max(...xs)+Math.min(...xs))/2-w*.75,y:(Math.max(...ys)+Math.min(...ys))/2-h*.8,w:w*1.5,h:h*1.6};}
+  function bounds(points){if(!points.length)return{x:-300,y:-200,w:600,h:400};const xs=points.map(p=>p.x),ys=points.map(p=>p.y),w=Math.max(160,Math.max(...xs)-Math.min(...xs)),h=Math.max(120,Math.max(...ys)-Math.min(...ys)),pad=$('layoutMode').value==='clear'?1.15:1.5;return{x:(Math.max(...xs)+Math.min(...xs))/2-w*pad/2,y:(Math.max(...ys)+Math.min(...ys))/2-h*pad/2,w:w*pad,h:h*pad};}
+  function layoutNamespace(){return JSON.stringify([$('gateway').value.trim(),isLoRa()?'lora':'wifi',isLoRa()?sourceId:null]);}
+  function ensureManual(){
+    const key=layoutNamespace();if(key===manualKey)return;manualKey=key;manualPositions=new Map();
+    try{const obj=JSON.parse(localStorage.getItem('mobile.manual.'+key)||'{}');for(const [id,p]of Object.entries(obj))if(typeof id==='string'&&p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&Math.abs(p.x)<1e6&&Math.abs(p.y)<1e6)manualPositions.set(id,{x:p.x,y:p.y});}catch(_){}
+  }
+  function saveManual(){try{localStorage.setItem('mobile.manual.'+manualKey,JSON.stringify(Object.fromEntries(manualPositions)));}catch(_){}}
   function geometry(edges){
-    const nodes=graphNodes(),located=nodes.filter(n=>M.positionState(n,now()).valid),choice=$('layoutMode').value;
-    const next=choice==='topology'||choice==='auto'&&(!nodes.length||located.length!==nodes.length)||isLoRa()&&located.length!==nodes.length;
+    const nodes=graphNodes(),located=nodes.filter(n=>M.positionState(n,now()).valid),choice=$('layoutMode').value,next=choice!=='gps';
     if(next!==topology){topology=next;view=null;zoom=1;autoFit=true;}
     const world=new Map();
     if(topology){
-      const ids=[...nodes.map(n=>n.id),...edges.flatMap(e=>[e.from,e.to])];
-      const key=[...new Set(ids)].sort().join(',')+'|'+edges.map(e=>e.from+e.to+e.state).sort().join(',');
-      if(key!==layoutKey){logical=S.topology(ids,edges,logical);layoutKey=key;}
-      for(const [id,p]of logical)world.set(id,p);
+      const ids=[...new Set([...nodes.map(n=>n.id),...edges.flatMap(e=>[e.from,e.to])])],pairs=[...new Set(edges.map(e=>[e.from,e.to].sort().join('/')))].sort();
+      const key=layoutNamespace()+'|'+ids.slice().sort().join(',')+'|'+pairs.join(',')+'|'+(choice==='clear'?selected:'');
+      if(key!==layoutKey){logical=S.topology(ids,edges,choice==='clear'?selected:'');layoutKey=key;}
+      if(choice==='manual'){
+        ensureManual();for(const [id,p]of logical)if(!manualPositions.has(id)){let q={...p},i=0;while([...manualPositions.values()].some(v=>Math.hypot(v.x-q.x,v.y-q.y)<70)&&i<128){i++;q={x:p.x+(i%8)*85,y:p.y-Math.floor((i+7)/8)*85};}manualPositions.set(id,q);}for(const id of ids)if(manualPositions.has(id))world.set(id,manualPositions.get(id));
+      }else for(const [id,p]of logical)world.set(id,p);
     }else{
       if(!origin&&located.length)origin={lat:located.reduce((s,n)=>s+n.position.lat,0)/located.length,lon:located.reduce((s,n)=>s+n.position.lon,0)/located.length};
       if(origin)for(const n of located)world.set(n.id,M.project(n.position,origin));
     }
-    if(!view||autoFit)view=bounds([...world.values()]);const s=Math.min(850/view.w,450/view.h)*zoom,cx=view.x+view.w/2,cy=view.y+view.h/2;
-    const screen=p=>({x:480+(p.x-cx)*s,y:280-(p.y-cy)*s});
-    positions=new Map([...world].map(([id,p])=>[id,screen(p)]));
+    if(!view||autoFit&&!topology)view=bounds([...world.values()]);else if(autoFit&&topology&&[...world.values()].some(p=>p.x<view.x||p.x>view.x+view.w||p.y<view.y||p.y>view.y+view.h))view=bounds([...world.values()]);if(choice==='manual'&&world.size)autoFit=false;const s=Math.min(850/view.w,450/view.h)*zoom,cx=view.x+view.w/2,cy=view.y+view.h/2;
+    const screen=p=>({x:480+(p.x-cx)*s,y:280-(p.y-cy)*s});positions=new Map([...world].map(([id,p])=>[id,screen(p)]));
     return{s,cx,cy,screen,world:p=>({x:cx+(p.x-480)/s,y:cy-(p.y-280)/s})};
   }
   let tileKey='';
@@ -144,12 +161,12 @@
   }
   function renderRadio(edges){
     clearTimeout(radioExpiry);radioExpiry=null;$('linkLayer').replaceChildren();
-    const pairs=isLoRa()?L.pairs(edges):S.edgePairs(edges);
-    for(const pair of pairs){const a=positions.get(pair.a),b=positions.get(pair.b);if(!a||!b)continue;const shape=S.pairGeometry(a,b);
+    const pairs=isLoRa()?L.pairs(edges):S.edgePairs(edges),dense=pairs.length>30,visible=($('edgeMode').value==='all'||!dense?pairs:selected?pairs.filter(p=>p.a===selected||p.b===selected):[]).filter(p=>positions.has(p.a)&&positions.has(p.b));
+    const routes=[],avoid=visible.length<=80&&!($('layoutMode').value==='clear'&&selected);for(const pair of visible){const a=positions.get(pair.a),b=positions.get(pair.b);if(!a||!b)continue;const obstacles=avoid?[...positions].filter(([id])=>id!==pair.a&&id!==pair.b).map(([,p])=>p):[];const radius=positions.size>20?18:29,shape=avoid?S.pairGeometry(a,b,obstacles,routes,radius):S.pairGeometry(a,b,[],[],radius);if(avoid)routes.push(shape.samples);
       const adjacent=!selected||selected===pair.a||selected===pair.b,chosen=pair.directions.some(e=>selectedEdge===edgeKey(e));
       const attrs={...shape.attrs,stroke:pair.color,'stroke-width':chosen?4:adjacent?3:1.8,'stroke-dasharray':pair.dash,'marker-start':pair.ba?'url(#rfArrow)':'none','marker-end':pair.ab?'url(#rfArrow)':'none',opacity:adjacent?pair.state==='stale'?.55:1:.16,class:'mapLink',tabindex:0,role:'button','data-pair':pair.key,'data-directions':pair.directions.map(edgeKey).join(','),'data-pair-state':pair.state,'aria-label':`${label(pair.a)} ${pair.both?'↔':pair.ab?'→':'←'} ${label(pair.b)} · ${pair.label}`};
-      const el=svg(shape.tag,attrs),title=pair.directions.map(e=>`${label(e.from)} → ${label(e.to)} · ${edgeAge(e)} · RSSI ${e.rssi===null?'未提供':e.rssi+' dBm'}`).join('\n');el.append(svg('title',{},pair.label+'\n'+title));el.onclick=()=>chooseEdge(pair.ab||pair.ba);el.onkeydown=event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();chooseEdge(pair.ab||pair.ba);}};$('linkLayer').append(el);
-      if(adjacent){const name=pair.both?`${label(pair.a)}↔${label(pair.b)}`:pair.ab?`${label(pair.a)}→${label(pair.b)}`:`${label(pair.b)}→${label(pair.a)}`;$('linkLayer').append(svg('text',{x:shape.label.x,y:shape.label.y-3,'text-anchor':'middle','font-size':chosen?12:10,fill:pair.color,class:'edgeAgeLabel'},name+' · '+pair.label));}
+      const el=svg(shape.tag,attrs),hit=svg(shape.tag,{...shape.attrs,stroke:'transparent','stroke-width':10,'pointer-events':'stroke',class:'mapLinkHit','data-hit-pair':pair.key}),title=pair.directions.map(e=>`${label(e.from)} → ${label(e.to)} · ${edgeAge(e)} · RSSI ${e.rssi===null?'未提供':e.rssi+' dBm'}`).join('\n');el.append(svg('title',{},pair.label+'\n'+title));el.onclick=hit.onclick=()=>chooseEdge(pair.ab||pair.ba);el.onkeydown=event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();chooseEdge(pair.ab||pair.ba);}};$('linkLayer').append(hit,el);
+      if(chosen){const name=pair.both?`${label(pair.a)}↔${label(pair.b)}`:pair.ab?`${label(pair.a)}→${label(pair.b)}`:`${label(pair.b)}→${label(pair.a)}`;$('linkLayer').append(svg('text',{x:shape.label.x,y:shape.label.y-3,'text-anchor':'middle','font-size':chosen?12:10,fill:pair.color,class:'edgeAgeLabel'},name+' · '+pair.label));}
     }
     renderDirections(edges);
     const incoming=edges.filter(e=>e.to===selected),outgoing=edges.filter(e=>e.from===selected);
@@ -169,26 +186,26 @@
     for(const e of edges){const p=e.directEvidence;if(e.mutual&&Number.isFinite(e.mutualRemaining)&&e.mutualRemaining>0)deadlines.push(e.mutualRemaining);if(p?.valid&&Number.isFinite(p.seen_age_upper_bound_ms))deadlines.push((p.seen_limit_ms??12000)-p.seen_age_upper_bound_ms);if(p?.confirmed&&Number.isFinite(p.confirmation_age_upper_bound_ms))deadlines.push((p.confirmation_limit_ms??9000)-p.confirmation_age_upper_bound_ms);}
     const next=deadlines.filter(ms=>ms>0).sort((a,b)=>a-b)[0];
     if(!isLoRa()&&Number.isFinite(next)&&observing&&!document.hidden)radioExpiry=setTimeout(()=>{radioExpiry=null;if(observing&&!document.hidden)renderRadio(radioEdges());},Math.max(1,Math.ceil(next)+1));
-    return pairs;
+    return {pairs,visible};
   }
   function renderMap(edges){
     const g=geometry(edges),current=now();for(const id of ['gridLayer','linkLayer','nodeLayer','scaleLayer'])$(id).replaceChildren();
     drawTiles(g);const step=[10,20,50,100,200,500,1000,5000,10000].find(v=>v*g.s>=70)||50000;
     if(!topology){const min=g.world({x:0,y:580}),max=g.world({x:960,y:0});for(let x=Math.ceil(min.x/step)*step;x<=max.x;x+=step){const p=g.screen({x,y:0});$('gridLayer').append(svg('line',{x1:p.x,y1:0,x2:p.x,y2:580,stroke:'#cbdcdb','stroke-width':.7}));}for(let y=Math.ceil(min.y/step)*step;y<=max.y;y+=step){const p=g.screen({x:0,y});$('gridLayer').append(svg('line',{x1:0,y1:p.y,x2:960,y2:p.y,stroke:'#cbdcdb','stroke-width':.7}));}}
-    const pairs=renderRadio(edges);
-    for(const [id,p]of positions){const n=model.nodes.get(id),lr=isLoRa()?lora().nodes.get(id):null,active=isLoRa()?!!lr?.report:n&&M.online(n,current),group=svg('g',{class:'mapNode',tabindex:0,role:'button','data-node':id,'aria-label':`${label(id)} · ${isLoRa()?lr?.report?'LoRa 来源报告':'LoRa 快照邻居':n?active?'报告在线':'报告失联':'仅邻居观测'} · ${topology?'非地理拓扑位置':source(n?.position?.source)}`});
+    const {pairs,visible}=renderRadio(edges);
+    for(const [id,p]of positions){const nodeRadius=positions.size>20?15:25,n=model.nodes.get(id),lr=isLoRa()?lora().nodes.get(id):null,active=isLoRa()?lr?.status==='reported':n&&M.online(n,current),group=svg('g',{class:'mapNode',tabindex:0,role:'button','data-node':id,'aria-label':`${label(id)} · ${isLoRa()?lr?.report?'LoRa 来源报告':'LoRa 快照邻居':n?active?'报告在线':'报告失联':'仅邻居观测'} · ${topology?'非地理拓扑位置':source(n?.position?.source)}`});
       const nodeState=isLoRa()?(lr?.status||(lr?.report?'reported':'seen')):null;
       // The receiver is drawn as its own vertex: teal ring, square-ish emphasis below.
-      const ringColor=isLoRa()?(nodeState==='gateway'?'#1f6f78':nodeState==='reported'?'#8056ad':nodeState==='lost'?'#b3261e':'#aa7021'):(active?'#1c8270':'#8d9a9e');
-      group.append(svg('circle',{cx:p.x,cy:p.y,r:25,fill:active?'#fff':nodeState==='gateway'?'#e7f4f4':nodeState==='lost'?'#fdeceb':'#e6ebea',stroke:selected===id?'#153e46':ringColor,'stroke-width':selected===id?4:nodeState==='gateway'?3:2}),svg('text',{x:p.x,y:p.y+5,'text-anchor':'middle','font-size':label(id).length>5?12:17,'font-weight':700,fill:active?'#1a655b':'#7c8b90'},label(id)));
-      group.append(svg('text',{x:p.x,y:p.y+43,'text-anchor':'middle','font-size':11,fill:'#536e74'},isLoRa()?lr?.report?'LoRa #'+lr.report.report.report_seq+' · '+age(lr.report.age):'仅邻居快照':n?topology?M.online(n,current)?'报告在线':'报告失联':source(n.position?.source)+' · '+age(M.positionState(n,current).age):'仅邻居被观测'));
+      const ringColor=isLoRa()?(nodeState==='gateway'?'#1f6f78':nodeState==='reported'?'#8056ad':['lost','stale_report','interrupted','gateway_offline'].includes(nodeState)?'#b3261e':'#919b9e'):(active?'#1c8270':'#b3261e');
+      group.append(svg('circle',{cx:p.x,cy:p.y,r:nodeRadius,fill:active?'#fff':nodeState==='gateway'?'#e7f4f4':['lost','stale_report','interrupted','gateway_offline'].includes(nodeState)?'#fdeceb':'#e6ebea',stroke:selected===id?'#153e46':ringColor,'stroke-width':selected===id?4:['stale_report','interrupted','gateway_offline'].includes(nodeState)?3:nodeState==='gateway'?3:2}),svg('text',{x:p.x,y:p.y+5,'text-anchor':'middle','font-size':label(id).length>5?11:positions.size>20?14:17,'font-weight':700,fill:active?'#1a655b':'#7c8b90'},label(id)));
+      if(positions.size<=12||selected===id||isLoRa()&&['lost','stale_report','interrupted','gateway_offline'].includes(nodeState)||!isLoRa()&&n&&!active)group.append(svg('text',{x:p.x,y:p.y+43,'text-anchor':'middle','font-size':11,fill:['stale_report','interrupted','gateway_offline'].includes(nodeState)?'#b3261e':'#536e74','font-weight':['stale_report','interrupted','gateway_offline'].includes(nodeState)?'700':'400'},isLoRa()?lr?.report?({reported:'在线',stale_report:'超时未见',interrupted:'观测中断',report_unknown:'状态未知'}[lr.status]||'历史报告')+' · '+age(lr.report.age):lr?.status==='never'?'从未观测':lr?.status==='gateway'?(lora().receiver?.mode==='node_serial'?'节点接收端':'网关'):lr?.status==='gateway_offline'?'网关中断':lr?.status==='seen_history'?'历史邻居观测':'仅邻居快照':n?topology?M.online(n,current)?'报告在线':'报告失联':source(n.position?.source)+' · '+age(M.positionState(n,current).age):'仅邻居被观测'));
       const recent=[...model.events].reverse().find(e=>M.clean(e.reporter)===id&&['tx_submit','rx_relay','rx_local'].includes(e.event)&&Number.isFinite(e.received_ms)&&Math.max(0,(model.server?.now_ms??e.received_ms)-e.received_ms)<12000);if(recent)group.append(svg('text',{x:p.x,y:p.y-37,'text-anchor':'middle','font-size':12,'font-weight':700,fill:recent.event==='rx_local'?colors.green:colors.blue},({tx_submit:'TX 提交',rx_relay:'RELAY 收',rx_local:'RX 收到'})[recent.event]));
       const agent=n?.agent;if(active&&agent?.running===true)group.append(svg('circle',{cx:p.x+19,cy:p.y-18,r:5,fill:'#20a985'}));
       if(window.MobileStudio?.status?.mode==='live'&&window.MobileStudio?.pc?.entries?.some(e=>M.clean(e.node_id)===id&&e.connected===true))group.append(svg('text',{x:p.x,y:p.y+59,'text-anchor':'middle','font-size':10,fill:'#326eac'},'热点 IP 入口'));
-      group.onclick=()=>choose(id);group.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(id);}};$('nodeLayer').append(group);
+      group.onclick=()=>{if(!suppressClick)choose(id);};group.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(id);}};$('nodeLayer').append(group);
     }
-    $('emptyMap').classList.toggle('hidden',positions.size>0);text('emptyMap',isLoRa()&&!positions.size?loraError?'LoRa 来源不可读取':'等待实际 LoRa 邻居报告':!model.nodes.size?health?.title||'等待节点报告':topology?'尚无节点报告 · 等待接入':'尚无有效 GPS · 可切换动态拓扑查看节点');
-    text('mapScope',(isLoRa()?'LoRa 回传快照 · ':'Wi-Fi 即时观测 · ')+(topology?isLoRa()&&graphNodes().some(n=>!M.positionState(n,current).valid)?'动态关系布局 · 缺定位成员已回退，非地理位置':'动态关系布局 · 非地理位置，无距离含义':origin?`GPS 等米制投影 · 网格 ${step} m`:'等待有效 GPS')+` · ${edges.length} 个实际方向合为 ${pairs.length} 对连线 · 点节点突出相邻边`);
+    $('emptyMap').classList.toggle('hidden',positions.size>0);text('emptyMap',isLoRa()&&!positions.size?loraError?'LoRa 来源不可读取':'等待实际 LoRa 邻居报告':!model.nodes.size?health?.title||'等待节点报告':topology?'尚无节点报告 · 等待接入':'无有效 GPS · 未定位节点可在列表查看');
+    text('mapScope',(isLoRa()?'LoRa 回传快照 · ':'Wi-Fi 即时观测 · ')+(topology?$('layoutMode').value==='manual'?'手动布局 · 拖动节点；非地理位置':'清晰布局 · 按连接分簇；非地理位置':`GPS 等米制投影 · ${positions.size} 个有效定位 / ${graphNodes().length-positions.size} 个未定位（见列表）`)+` · ${edges.length} 个实际方向 / ${pairs.length} 对连接 · 当前显示 ${visible.length} 对${visible.length<pairs.length?'（隐藏不代表不存在）':''} · 点击节点查看一跳邻居`);
     if(!topology&&origin){const metres=[1,5,10,20,50,100,200,500,1000,5000,10000].filter(v=>v*g.s<=150).at(-1)||1,len=metres*g.s;$('scaleLayer').append(svg('path',{d:`M 36 537 V 545 H ${36+len} V 537`,stroke:'#284c50','stroke-width':2,fill:'none'}),svg('text',{x:36,y:563,'font-size':11,fill:'#284c50'},metres+' m'));}
     drawPacket();
   }
@@ -196,7 +213,7 @@
     const pc=window.MobileStudio?.pc,entries=pc?.entries||[],demo=window.MobileStudio?.status?.mode==='demo';
     text('entrySummary',demo?'软件演示隔离运行；无实板热点或 RF 测量':pc?`PC ${pc.pc_address||pc.pc_id||'身份未提供'} · 当前有效 IP 入口 ${entries.filter(e=>e.connected===true).map(e=>label(e.node_id)).join('、')||'无'}。热点连接不等于板间 RF 邻居。`:'热点入口状态尚未读取；不推测连接状态');
     $('agents').replaceChildren();for(const n of nodes){const a=n.agent||{},card=html('article','','agentCard'),counts=a.counters||n.counts||{};
-      card.append(html('strong',n.label||n.id),html('span',typeof a.running==='boolean'?a.running?'运行中':'已停止':'未报告运行状态','agentState'+(a.running===true?' running':'')));
+      card.append(html('strong',label(n.id)),html('span',typeof a.running==='boolean'?a.running?'运行中':'已停止':'未报告运行状态','agentState'+(a.running===true?' running':'')));
       card.append(html('small',`来源：${source(a.source)} · ${M.online(n,now())?'报告在线':'报告已失联，状态为上次记录'}`));
       if(Object.keys(counts).length)card.append(html('p',`源接纳 ${counts.source_admitted??'—'} · 源提交 ${counts.source_submitted??'—'} · 目的收件 ${counts.destination_received??'—'}\n中继接收 ${counts.relay_received??'—'} · 中继提交 ${counts.relay_submitted??'—'}`));
       else{const events=model.events.filter(e=>M.clean(e.reporter)===n.id),count=kind=>events.filter(e=>e.event===kind).length;card.append(html('p',`本页观测：TX 提交 ${count('tx_submit')} · RX 本地 ${count('rx_local')} · 中继收 ${count('rx_relay')}\n仅保留最近最多1000条事件，非累计交付率`));}
@@ -250,12 +267,17 @@
       const raw=document.createElement('details');raw.open=detailOpen;raw.append(html('summary','原始方向记录'),html('pre',JSON.stringify(edge.raw,null,2)));$('edgeDetail').append(raw);
     }else text('edgeDetail',selectedEdge?'该方向未列在当前快照，不能据此补造关系；请选择现有样本。':'点击图上的箭头或表格方向，查看实际 RSSI、年龄、观察者和互证依据。');
   }
+  function applyNodeFilter(){
+    const query=$('nodeSearch').value.trim().toLowerCase(),filter=$('nodeFilter').value,rows=[...$('nodeList').querySelectorAll('.nodeRow')];let shown=0;
+    for(const row of rows){const id=row.dataset.id||'',value=(row.textContent+' '+id+' '+(model.nodes.get(id)?.label||'')+' '+(lora().labels.get(id)||'')).toLowerCase(),problem=row.classList.contains('state-lost')||row.classList.contains('state-stale_report')||row.classList.contains('state-interrupted')||row.classList.contains('state-gateway_offline')||row.classList.contains('state-never')||!!row.querySelector('.pill.off'),online=row.classList.contains('state-reported')||(!row.className.includes('state-')&&!problem);const show=(!query||value.includes(query))&&(filter==='all'||filter==='problem'&&problem||filter==='online'&&online);row.hidden=!show;if(show)shown++;}
+    text('nodeCount',`显示 ${shown} / ${rows.length} · 仅筛选列表，图中节点不隐藏`);
+  }
   function render(){
     renderHealth();renderLoRa();
-    const nodes=[...model.nodes.values()],current=now(),edges=radioEdges();text('statNodes',nodes.length);text('statLocated',nodes.filter(n=>M.positionState(n,current).valid).length);text('statLinks',edges.length);text('statOffline',nodes.filter(n=>!M.online(n,current)).length);
-    $('nodeList').replaceChildren();$('unlocated').replaceChildren();for(const n of nodes){const active=M.online(n,current),pos=M.positionState(n,current),b=html('button','',`nodeRow${selected===n.id?' selected':''}`);b.append(html('b',n.label||n.id),html('span',active?'报告在线':'报告失联','pill'+(active?'':' off')),html('small',n.id),html('small',`GPS ${source(n.position?.source)} · ${pos.valid?age(pos.age):pos.reason} · 报告 ${age(M.reportAge(n,current))}`));b.onclick=()=>choose(n.id);$('nodeList').append(b);if(!pos.valid)$('unlocated').append(html('div',`${n.label||n.id} · ${pos.reason}`));}
+    const nodes=[...model.nodes.values()],current=now(),edges=radioEdges();text('statNodesLabel',isLoRa()?'节点总数':'报告节点');text('statNodes',nodes.length);text('statLocated',nodes.filter(n=>M.positionState(n,current).valid).length);text('statLinks',edges.length);text('statOffline',nodes.filter(n=>!M.online(n,current)).length);
+    $('nodeList').replaceChildren();$('unlocated').replaceChildren();for(const n of nodes){const active=M.online(n,current),pos=M.positionState(n,current),b=html('button','',`nodeRow${selected===n.id?' selected':''}`);b.append(html('b',label(n.id)),html('span',active?'报告在线':'报告失联','pill'+(active?'':' off')),html('small',n.id),html('small',`GPS ${source(n.position?.source)} · ${pos.valid?age(pos.age):pos.reason} · 报告 ${age(M.reportAge(n,current))}`));b.dataset.id=n.id;b.onclick=()=>choose(n.id);$('nodeList').append(b);if(!pos.valid)$('unlocated').append(html('div',`${label(n.id)} · ${pos.reason}`));}
     if(!nodes.length)text('nodeList','尚无实际节点报告');if(!$('unlocated').children.length)text('unlocated',nodes.length?'全部已定位':'暂无节点');
-    const n=model.nodes.get(selected);text('detailTitle',n?(n.label||n.id)+' · 来源与状态':'选择节点查看来源');text('detail',n?`${n.id}\nboot ${n.boot_id} · 报告实例 ${n.session_id}\nGPS ${source(n.position?.source)} · ${M.positionState(n,current).reason||age(M.positionState(n,current).age)}\n${n.position?'经纬度 '+n.position.lat+', '+n.position.lon+'\n':''}报告年龄 ${age(M.reportAge(n,current))}\n节点来源 ${n.source||'网关节点报告'}\n无线来源 ${[...new Set(edges.filter(e=>e.to===n.id).map(e=>source(e.rf_source)))].join('、')||'尚无邻居样本'}`:'节点、定位、agent 和无线链路各自保留来源；不从热点客户端关系生成 RF 边');
+    const n=model.nodes.get(selected);text('detailTitle',n?(label(n.id))+' · 来源与状态':'选择节点查看来源');text('detail',n?`${n.id}\nboot ${n.boot_id} · 报告实例 ${n.session_id}\nGPS ${source(n.position?.source)} · ${M.positionState(n,current).reason||age(M.positionState(n,current).age)}\n${n.position?'经纬度 '+n.position.lat+', '+n.position.lon+'\n':''}报告年龄 ${age(M.reportAge(n,current))}\n节点来源 ${n.source||'网关节点报告'}\n无线来源 ${[...new Set(edges.filter(e=>e.to===n.id).map(e=>source(e.rf_source)))].join('、')||'尚无邻居样本'}`:'节点、定位、agent 和无线链路各自保留来源；不从热点客户端关系生成 RF 边');
     const incoming=edges.filter(e=>e.to===selected),outgoing=edges.filter(e=>e.from===selected);
     if(!selected)text('neighborRelations','选中节点，突出相邻边，并查看“收到谁 / 谁收到我”');
     else{
@@ -270,6 +292,7 @@
       line('收到谁',incoming,e=>e.from);line('谁收到我',outgoing,e=>e.to);
     }
     if(isLoRa())renderLoRaNodes();
+    applyNodeFilter();
     text('sampleAgeTitle',isLoRa()?'源板采样时听到年龄':'连接证据年龄');
     renderAgents(nodes);renderPackets();renderTimeline();renderMap(edges);
   }
@@ -292,15 +315,16 @@
       render();document.dispatchEvent(new CustomEvent('mobilemapstate',{detail:state}));
     }catch(e){if(token!==version)return;snapshotError=e.message;renderHealth();renderRadio(radioEdges());text('connection','网关未连接');$('notice').classList.add('error');text('notice','读取失败：'+e.message+'。保留上次快照并继续重连；网关断开本身不表示无线节点失联。');}
   }
-  async function tick(){if(!observing||document.hidden||inFlight)return;inFlight=true;try{await window.MobileStudio?.ready;if(observing&&!document.hidden)await Promise.all([refresh(),refreshLoRa()]);}finally{inFlight=false;}if(observing&&!document.hidden)timer=setTimeout(tick,2000);}
-  function pause(){observing=false;version++;loraVersion++;clearTimeout(radioExpiry);radioExpiry=null;clearTimeout(timer);timer=null;$('live').classList.remove('on');text('live','继续现场观测');text('connection','已暂停，保留上次观测');$('map').pauseAnimations?.();}
-  function start(){observing=true;renderRadio(radioEdges());$('live').classList.add('on');text('live','暂停现场观测');$('map').unpauseAnimations?.();tick();}
+  async function tick(){if(!observing||document.hidden||inFlight)return;inFlight=true;try{await window.MobileStudio?.ready;if(observing&&!document.hidden)await Promise.all([refresh(),refreshLoRa(),...(Date.now()>=nextFleetRead?(nextFleetRead=Date.now()+10000,[fetchFleet()]):[])]);}finally{inFlight=false;}if(observing&&!document.hidden)timer=setTimeout(tick,2000);}
+  function pause(){clearInterval(agingTimer);agingTimer=null;observing=false;version++;loraVersion++;clearTimeout(radioExpiry);radioExpiry=null;clearTimeout(timer);timer=null;$('live').classList.remove('on');text('live','继续现场观测');text('connection','已暂停，保留上次观测');$('map').pauseAnimations?.();}
+  function start(){observing=true;if(!agingTimer)agingTimer=setInterval(()=>{if(observing&&!document.hidden&&isLoRa())render();},1000);renderRadio(radioEdges());$('live').classList.add('on');text('live','暂停现场观测');$('map').unpauseAnimations?.();tick();}
   $('refresh').onclick=()=>{if(!inFlight)Promise.all([refresh(),refreshLoRa()]);};$('live').onclick=()=>observing?pause():start();
-  $('topologySource').onchange=()=>{if(window.MobileStudio?.status?.mode==='demo')$('topologySource').value='wifi';
+  $('topologySource').onchange=()=>{if(window.MobileStudio?.status?.mode==='demo')$('topologySource').value='wifi';try{localStorage.setItem('mobile.topology.source',$('topologySource').value);}catch(_){}
     sourceViews.set(shownSource,{origin,view,zoom,autoFit,logical,layoutKey,selectedEdge,selected,topology});shownSource=$('topologySource').value;const saved=sourceViews.get(shownSource);
-    origin=saved?.origin||null;view=saved?.view||null;zoom=saved?.zoom||1;autoFit=saved?.autoFit??true;logical=saved?.logical||new Map();layoutKey=saved?.layoutKey||'';selectedEdge=saved?.selectedEdge||'';selected=saved?.selected||'';topology=saved?.topology??true;
+    origin=saved?.origin||null;view=saved?.view||null;zoom=saved?.zoom||1;autoFit=saved?.autoFit??true;logical=saved?.logical||new Map();layoutKey=saved?.layoutKey||'';selectedEdge=saved?.selectedEdge||'';selected=saved?.selected||'';topology=saved?.topology??true;if($('layoutMode').value==='manual'){view=null;autoFit=true;zoom=1;}
     loraVersion++;render();if(observing&&!document.hidden)refreshLoRa();};
-  $('layoutMode').onchange=()=>{view=null;autoFit=true;zoom=1;render();};$('fit').onclick=()=>{autoFit=true;view=null;zoom=1;render();};$('zoomIn').onclick=()=>{autoFit=false;zoom=Math.min(8,zoom*1.4);render();};$('zoomOut').onclick=()=>{autoFit=false;zoom=Math.max(.25,zoom/1.4);render();};$('tiles').onchange=render;$('eventFilter').onchange=renderTimeline;$('packetStateFilter').onchange=renderPackets;$('packetOverlay').onchange=()=>drawPacket();
+  $('edgeMode').onchange=render;$('nodeSearch').oninput=applyNodeFilter;$('nodeFilter').onchange=applyNodeFilter;$('clearNodeFilter').onclick=()=>{$('nodeSearch').value='';$('nodeFilter').value='all';applyNodeFilter();};
+  $('layoutMode').onchange=()=>{try{localStorage.setItem('mobile.layout.mode',$('layoutMode').value);}catch(_){}view=null;autoFit=true;zoom=1;layoutKey='';render();};$('resetLayout').onclick=()=>{if($('layoutMode').value==='manual'){ensureManual();manualPositions.clear();saveManual();}layoutKey='';view=null;autoFit=true;zoom=1;render();};$('fit').onclick=()=>{autoFit=true;view=null;zoom=1;render();};$('zoomIn').onclick=()=>{autoFit=false;zoom=Math.min(8,zoom*1.4);render();};$('zoomOut').onclick=()=>{autoFit=false;zoom=Math.max(.25,zoom/1.4);render();};$('tiles').onchange=render;$('eventFilter').onchange=renderTimeline;$('packetStateFilter').onchange=renderPackets;$('packetOverlay').onchange=()=>drawPacket();
   $('replayPacket').onclick=()=>{const p=packetRows.find(p=>p.key===selectedPacket);if(p){pendingAnimation=p.events;drawPacket(true);}};
   $('gateway').onchange=()=>{loraVersion++;loraData=null;loraError='';version++;clearTimeout(timer);timer=null;if(observing)tick();};
   document.addEventListener('studiohealth',renderHealth);
@@ -308,7 +332,16 @@
   document.addEventListener('studiogps',()=>{version++;loraVersion++;if(!observing||document.hidden)return;Promise.all([refresh(),refreshLoRa()]).catch(()=>{});});
   document.addEventListener('studiochanging',()=>{version++;clearTimeout(timer);timer=null;reset();instance=null;text('sourceBadge','正在切换，等待同一来源报告');render();});
   document.addEventListener('studiochange',()=>{const demo=window.MobileStudio?.status?.mode==='demo',loraOption=$('topologySource').querySelector('option[value="lora"]');if(demo)$('topologySource').value='wifi';if(loraOption)loraOption.disabled=demo;version++;reset();instance=null;clearTimeout(timer);timer=null;render();if(observing&&!document.hidden){if(inFlight)setTimeout(()=>{if(observing&&!document.hidden)tick();},100);else tick();}});
-  let drag=null;$('map').addEventListener('pointerdown',e=>{if(e.target.closest('.mapNode,.mapLink'))return;const rect=$('map').getBoundingClientRect(),g=geometry(radioEdges());autoFit=false;drag={x:e.clientX,y:e.clientY,view:{...view},factor:960/rect.width/g.s};$('map').setPointerCapture(e.pointerId);});$('map').addEventListener('pointermove',e=>{if(!drag)return;view={...drag.view,x:drag.view.x-(e.clientX-drag.x)*drag.factor,y:drag.view.y+(e.clientY-drag.y)*drag.factor};render();});$('map').addEventListener('pointerup',()=>drag=null);
-  document.addEventListener('visibilitychange',()=>{version++;loraVersion++;clearTimeout(timer);timer=null;if(document.hidden){clearTimeout(radioExpiry);radioExpiry=null;$('map').pauseAnimations?.();text('connection','页面隐藏，读取已暂停');}else if(observing){renderRadio(radioEdges());$('map').unpauseAnimations?.();tick();}});window.addEventListener('pagehide',pause);
+  let drag=null;const svgPoint=e=>{const pt=$('map').createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform($('map').getScreenCTM().inverse());};
+  $('map').addEventListener('pointerdown',e=>{
+    const node=e.target.closest('.mapNode');if(e.target.closest('.mapLink,.mapLinkHit'))return;const g=geometry(radioEdges()),start=g.world(svgPoint(e));
+    if(node){if($('layoutMode').value!=='manual')return;ensureManual();const id=node.dataset.node,p=manualPositions.get(id);if(!p)return;drag={kind:'node',id,start,p:{...p},g,x:e.clientX,y:e.clientY,moved:false};}
+    else drag={kind:'pan',start,view:{...view},g,x:e.clientX,y:e.clientY,moved:false};
+    $('map').setPointerCapture(e.pointerId);
+  });
+  $('map').addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(!drag.moved&&Math.hypot(dx,dy)<4)return;drag.moved=true;autoFit=false;const nowWorld=drag.g.world(svgPoint(e));if(drag.kind==='node')manualPositions.set(drag.id,{x:drag.p.x+nowWorld.x-drag.start.x,y:drag.p.y+nowWorld.y-drag.start.y});else view={...drag.view,x:drag.view.x-(nowWorld.x-drag.start.x),y:drag.view.y-(nowWorld.y-drag.start.y)};render();});
+  function finishDrag(){if(!drag)return;const done=drag;drag=null;if(done.moved){suppressClick=true;if(done.kind==='node')saveManual();setTimeout(()=>suppressClick=false,0);}else if(done.kind==='node')choose(done.id);}
+  $('map').addEventListener('pointerup',finishDrag);$('map').addEventListener('pointercancel',finishDrag);
+  document.addEventListener('visibilitychange',()=>{version++;loraVersion++;clearTimeout(timer);timer=null;if(document.hidden){clearInterval(agingTimer);agingTimer=null;clearTimeout(radioExpiry);radioExpiry=null;$('map').pauseAnimations?.();text('connection','页面隐藏，读取已暂停');}else if(observing){if(!agingTimer)agingTimer=setInterval(()=>{if(observing&&!document.hidden&&isLoRa())render();},1000);renderRadio(radioEdges());$('map').unpauseAnimations?.();tick();}});window.addEventListener('pagehide',pause);
   render();start();
 })();

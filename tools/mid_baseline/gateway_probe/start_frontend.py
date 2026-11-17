@@ -23,6 +23,7 @@ TOPOLOGY_PORT = 8780
 STUDIO_PORT = 8794
 UDP_PORT = 1680
 LABELS = ROOT / ".local" / "mid" / "pi" / "labels.json"
+FLEET = ROOT / "data" / "fleet.json"
 
 
 def http_json(port, path, timeout=4):
@@ -88,9 +89,16 @@ def main():
         stamp = time.strftime("%Y%m%d-%H%M%S") + "-frontend"
         output = args.output or str(ROOT / "simulation" / "outputs" / "H-019" / stamp)
         print("  starting Studio on %d (output %s)" % (STUDIO_PORT, output))
-        started.append(start_module(["-m", "tools.mobile_gateway.studio",
-                                     "--port", str(STUDIO_PORT), "--demo-port", "8795",
-                                     "--pc-port", "8791", "--output", output], "studio.out"))
+        studio_cmd = ["-m", "tools.mobile_gateway.studio",
+                      "--port", str(STUDIO_PORT), "--pc-port", "8791",
+                      "--output", output,
+                      # The merged Studio polls the local receiver's HTTP view instead of
+                      # opening the serial port, so the two never fight over hardware.
+                      "--gateway-mode", "legacy_local",
+                      "--topology-port", str(TOPOLOGY_PORT)]
+        if FLEET.is_file():
+            studio_cmd += ["--fleet", str(FLEET)]
+        started.append(start_module(studio_cmd, "studio.out"))
         if not wait_for(STUDIO_PORT, "/api/v1/lora/topology"):
             print("  Studio did not come up; see .local/mid/pi/studio.out")
             return 1

@@ -3,20 +3,20 @@
 const MobileStudioModel=(()=>{
   const mac=x=>String(x||'').trim().toLowerCase(),isMAC=x=>/^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$/.test(mac(x))||/^[0-9a-f]{16}$/.test(mac(x));
   const hash=x=>{let h=2166136261;for(const c of x)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;};
-  function topology(ids,edges,previous=new Map()){
-    const ordered=[...new Set(ids.map(mac).filter(isMAC))].sort().slice(0,128),points=new Map();
-    for(const id of ordered){const old=previous.get(id),h=hash(id);points.set(id,old?{...old}:{x:((h%997)/997-.5)*540,y:(((h>>>10)%991)/991-.5)*330});}
-    const links=edges.filter(e=>e.state!=='lost'&&points.has(e.from)&&points.has(e.to));
-    for(let iteration=0;iteration<75;iteration++){
-      const force=new Map(ordered.map(id=>[id,{x:0,y:0}]));
-      for(let i=0;i<ordered.length;i++)for(let j=i+1;j<ordered.length;j++){
-        const a=points.get(ordered[i]),b=points.get(ordered[j]);let dx=a.x-b.x,dy=a.y-b.y;if(Math.hypot(dx,dy)<.1){dx=1;dy=.7;}
-        const d=Math.max(18,Math.hypot(dx,dy)),strength=6500/(d*d),f=force.get(ordered[i]),g=force.get(ordered[j]);f.x+=dx/d*strength;f.y+=dy/d*strength;g.x-=dx/d*strength;g.y-=dy/d*strength;
-      }
-      for(const e of links){const a=points.get(e.from),b=points.get(e.to),dx=b.x-a.x,dy=b.y-a.y,d=Math.max(1,Math.hypot(dx,dy)),f=force.get(e.from),g=force.get(e.to),k=(d-145)*.013;f.x+=dx/d*k;f.y+=dy/d*k;g.x-=dx/d*k;g.y-=dy/d*k;}
-      for(const id of ordered){const p=points.get(id),f=force.get(id);p.x+=Math.max(-6,Math.min(6,f.x-p.x*.003));p.y+=Math.max(-6,Math.min(6,f.y-p.y*.003));}
+  function topology(ids,edges,focus=''){
+    const ordered=[...new Set(ids.map(mac).filter(id=>id.length>0&&id.length<=256))].sort().slice(0,128),adj=new Map(ordered.map(id=>[id,new Set()])),points=new Map();
+    for(const e of edges){if(e.from!==e.to&&adj.has(e.from)&&adj.has(e.to)){adj.get(e.from).add(e.to);adj.get(e.to).add(e.from);}}
+    const ring=(items,cx,cy,r)=>items.forEach((id,i)=>{const angle=-Math.PI/2+2*Math.PI*i/items.length;points.set(id,{x:cx+r*Math.cos(angle),y:cy+r*Math.sin(angle)});});
+    if(focus&&adj.has(focus)){
+      const neighbors=[...adj.get(focus)].sort(),others=ordered.filter(id=>id!==focus&&!adj.get(focus).has(id));points.set(focus,{x:0,y:0});
+      ring(neighbors,0,0,Math.max(130,neighbors.length*16));if(others.length)ring(others,0,0,Math.max(250,neighbors.length*16+150,others.length*16));return points;
     }
-    return points;
+    const seen=new Set(),groups=[];
+    for(const id of ordered){if(seen.has(id))continue;const queue=[id],group=[];seen.add(id);while(queue.length){const item=queue.shift();group.push(item);for(const next of [...adj.get(item)].sort())if(!seen.has(next)){seen.add(next);queue.push(next);}}groups.push(group);}
+    groups.sort((a,b)=>b.length-a.length||a[0].localeCompare(b[0]));
+    const connected=groups.filter(g=>g.length>1),isolated=groups.filter(g=>g.length===1).map(g=>g[0]),cols=Math.max(1,Math.ceil(Math.sqrt(connected.length))),gap=2*Math.max(150,...connected.map(g=>(g.length-1)*22))+100;
+    connected.forEach((group,i)=>{const cx=(i%cols)*gap,cy=-Math.floor(i/cols)*gap,hub=[...group].sort((a,b)=>adj.get(b).size-adj.get(a).size||a.localeCompare(b))[0],rest=group.filter(x=>x!==hub),radius=Math.max(150,rest.length*22);points.set(hub,{x:cx,y:cy});ring(rest,cx,cy,radius);});
+    const row=-Math.max(1,Math.ceil(connected.length/cols))*gap;isolated.forEach((id,i)=>points.set(id,{x:(i%8)*100,y:row-Math.floor(i/8)*100}));return points;
   }
   function packetKey(e){const b=e.origin_boot??e.boot;return isMAC(e.origin)&&isMAC(e.dst)&&Number.isInteger(b)&&b>0&&Number.isInteger(e.seq)&&e.seq>0?[mac(e.origin),b,e.seq,mac(e.dst)].join('/'):null;}
   function payload(hex){if(typeof hex!=='string'||!/^(?:[0-9a-f]{2}){0,160}$/i.test(hex))return null;try{return new TextDecoder('utf-8',{fatal:true}).decode(Uint8Array.from(hex.match(/../g)||[],x=>parseInt(x,16)));}catch{return null;}}
@@ -92,11 +92,25 @@ const MobileStudioModel=(()=>{
       return{...pair,ab:draw.find(e=>e.from===pair.a)||null,ba:draw.find(e=>e.from===pair.b)||null,directions,observedBoth:directions.length===2,both,state,...styles[state]};
     });
   }
-  function pairGeometry(a,b){
-    const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),ux=d?dx/d:1,uy=d?dy/d:0,px=-uy,py=ux;
-    if(d>=120)return{tag:'line',attrs:{x1:a.x+ux*40,y1:a.y+uy*40,x2:b.x-ux*40,y2:b.y-uy*40},label:{x:(a.x+b.x)/2+px*14,y:(a.y+b.y)/2+py*14}};
-    const spread=d<1?30:0,start={x:a.x+px*40-ux*spread,y:a.y+py*40-uy*spread},end={x:b.x+px*40+ux*spread,y:b.y+py*40+uy*spread};
-    return{tag:'path',attrs:{d:`M ${start.x} ${start.y} C ${start.x+px*90} ${start.y+py*90} ${end.x+px*90} ${end.y+py*90} ${end.x} ${end.y}`,fill:'none'},start,end,label:{x:(a.x+b.x)/2+px*120,y:(a.y+b.y)/2+py*120}};
+  function pairGeometry(a,b,obstacles=[],existing=[],clip=29){
+    // Search a bounded screen grid around node circles; this changes paths only,
+    // never physical GPS coordinates or the stable topology layout.
+    if(!obstacles.length&&!existing.length){const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,ux=dx/d,uy=dy/d,start={x:a.x+ux*clip,y:a.y+uy*clip},end={x:b.x-ux*clip,y:b.y-uy*clip};return{tag:'path',attrs:{d:`M ${start.x} ${start.y} L ${end.x} ${end.y}`,fill:'none'},label:{x:(a.x+b.x)/2,y:(a.y+b.y)/2-8},samples:[start,end]};}
+    const step=14,w=70,h=43,total=w*h,idx=(x,y)=>y*w+x,point=i=>({x:(i%w)*step,y:Math.floor(i/w)*step});
+    const nearest=p=>idx(Math.max(0,Math.min(w-1,Math.round(p.x/step))),Math.max(0,Math.min(h-1,Math.round(p.y/step))));
+    const start=nearest(a),end=nearest(b),blocked=new Uint8Array(total),crowd=new Uint16Array(total);
+    for(const p of obstacles){const x0=Math.max(0,Math.floor((p.x-34)/step)),x1=Math.min(w-1,Math.ceil((p.x+34)/step)),y0=Math.max(0,Math.floor((p.y-34)/step)),y1=Math.min(h-1,Math.ceil((p.y+34)/step));for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)if(Math.hypot(x*step-p.x,y*step-p.y)<34)blocked[idx(x,y)]=1;}
+    for(const line of existing)for(const p of line){const x=Math.round(p.x/step),y=Math.round(p.y/step);for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const xx=x+dx,yy=y+dy;if(xx>=0&&xx<w&&yy>=0&&yy<h)crowd[idx(xx,yy)]+=dx===0&&dy===0?3:1;}}
+    blocked[start]=blocked[end]=0;
+    const costs=new Float64Array(total);costs.fill(Infinity);const prev=new Int32Array(total);prev.fill(-1);const closed=new Uint8Array(total),heap=[];
+    const push=(id,score)=>{let i=heap.length;heap.push({id,score});while(i){const p=(i-1)>>1;if(heap[p].score<=score)break;heap[i]=heap[p];i=p;}heap[i]={id,score};};
+    const pop=()=>{const result=heap[0],last=heap.pop();if(heap.length){let i=0;while(true){let c=i*2+1;if(c>=heap.length)break;if(c+1<heap.length&&heap[c+1].score<heap[c].score)c++;if(heap[c].score>=last.score)break;heap[i]=heap[c];i=c;}heap[i]=last;}return result;};
+    const target=point(end),heuristic=id=>{const p=point(id);return Math.hypot(p.x-target.x,p.y-target.y)/step;};costs[start]=0;push(start,heuristic(start));
+    while(heap.length){const cur=pop().id;if(closed[cur])continue;closed[cur]=1;if(cur===end)break;const x=cur%w,y=Math.floor(cur/w);for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){if(!dx&&!dy)continue;const xx=x+dx,yy=y+dy;if(xx<0||xx>=w||yy<0||yy>=h)continue;const next=idx(xx,yy);if(blocked[next]||closed[next]||dx&&dy&&(blocked[idx(x+dx,y)]||blocked[idx(x,y+dy)]))continue;const cost=costs[cur]+(dx&&dy?1.414:1)+Math.min(crowd[next],8)*.08;if(cost<costs[next]){costs[next]=cost;prev[next]=cur;push(next,cost+heuristic(next));}}}
+    let raw=[];if(start===end)raw=[a,b];else if(prev[end]!==-1){for(let i=end;i!==-1;i=prev[i])raw.push(point(i));raw.reverse();raw=[a,...raw,b];}else raw=[a,b];
+    const trim=(items,center)=>{let i=1;while(i<items.length&&Math.hypot(items[i].x-center.x,items[i].y-center.y)<clip)i++;if(i===items.length)return items;const p=items[i-1],q=items[i],vx=q.x-p.x,vy=q.y-p.y;let lo=0,hi=1;for(let n=0;n<12;n++){const t=(lo+hi)/2;if(Math.hypot(p.x+vx*t-center.x,p.y+vy*t-center.y)<clip)lo=t;else hi=t;}return[{x:p.x+vx*hi,y:p.y+vy*hi},...items.slice(i)];};
+    raw=trim(raw,a);raw=trim(raw.reverse(),b).reverse();const simple=[];for(const p of raw){while(simple.length>1){const x=simple.at(-2),y=simple.at(-1);if(Math.abs((y.x-x.x)*(p.y-y.y)-(y.y-x.y)*(p.x-y.x))>.01)break;simple.pop();}simple.push(p);}
+    const middle=simple[Math.floor(simple.length/2)]||a;return{tag:'path',attrs:{d:simple.map((p,i)=>(i?'L ':'M ')+p.x+' '+p.y).join(' '),fill:'none'},label:{x:middle.x,y:middle.y-8},samples:raw};
   }
   function fieldHealth({studio=null,controller={},upstream={},nodeCount=0,edgeCount=0,snapshotLoaded=false,snapshotError='',external=false}={}){
     const item=(state,title,next,warning=false)=>({state,title,next,warning});
