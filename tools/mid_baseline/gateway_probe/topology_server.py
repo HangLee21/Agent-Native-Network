@@ -18,7 +18,7 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-KNOWN_GATEWAYS = {"b827ebfffe32e2c1": "RHF2S008"}   # friendly names only; identity comes from the wire
+KNOWN_GATEWAYS = {"b827ebfffe32e2c1": "RHF2S008", "a4f00fe57b830000": "E870L-470"}   # friendly names only; identity comes from the wire
 
 
 def log(*args):
