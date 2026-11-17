@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Switch the single Ethernet port between its three real uses.
 
