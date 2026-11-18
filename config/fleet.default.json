@@ -1,17 +1,4 @@
 {
   "schema_version": 1,
-  "nodes": [
-    {
-      "node_id": 1,
-      "mac": "90:da:72:48:a4:f8"
-    },
-    {
-      "node_id": 2,
-      "mac": "90:da:72:48:a5:cc"
-    },
-    {
-      "node_id": 3,
-      "mac": "90:da:72:48:a4:e0"
-    }
-  ]
+  "nodes": []
 }

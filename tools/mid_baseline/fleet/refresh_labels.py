@@ -26,6 +26,7 @@ SSH_USER = "eora"
 NAME_PREFIX = "eora-air-"
 
 DEFAULT_OUT = os.path.join(".local", "mid", "pi", "labels.json")
+DEFAULT_FLEET = os.path.join("data", "fleet.json")
 TOPOLOGY_URL = "http://127.0.0.1:8780/api/v1/lora/topology"
 
 
@@ -64,6 +65,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--field", choices=("device_label", "node_number"), default="device_label")
     parser.add_argument("--out", default=DEFAULT_OUT)
+    # The Studio needs a MAC -> node_id roster. Writing it from the same device reads keeps
+    # one source of truth: nothing is declared that was not actually heard.
+    parser.add_argument("--fleet", default=DEFAULT_FLEET,
+                        help="also write the Studio roster here (empty when nothing is online)")
     args = parser.parse_args()
 
     labels = {}
@@ -87,34 +92,50 @@ def main():
     found = devices()
     if not found:
         print("no %s* devices online" % NAME_PREFIX)
-        return 1
 
     def one(item):
         name, ip = item
         rec = last_session(ip)
         if not rec or not rec.get("node_id"):
-            return name, None
+            return name, None, None
         value = rec.get(args.field)
+        number = rec.get("node_number")
         if value is None:
-            return name, None
-        return rec["node_id"].lower(), str(value)
+            return name, None, number
+        return rec["node_id"].lower(), str(value), number
 
+    nodes = []
     with ThreadPoolExecutor(max_workers=8) as pool:
-        for key, value in pool.map(one, found):
+        for key, value, number in pool.map(one, found):
             if value:
                 labels[key] = value
                 print("  %-18s -> %s" % (key, value))
             else:
                 print("  %-18s -> (no %s in log yet)" % (key, args.field))
+            if key and type(number) is int and number > 0:
+                nodes.append({"node_id": number, "mac": key})
 
     tmp = args.out + ".tmp"
     with open(tmp, "w", encoding="utf-8") as fh:
         json.dump(labels, fh, indent=2, ensure_ascii=False, sort_keys=True)
     os.replace(tmp, args.out)
     print("\nwrote %d labels to %s" % (len(labels), args.out))
-    print("restart topology_server to pick them up, e.g.:")
+
+    if args.fleet:
+        roster = {"schema_version": 1, "nodes": sorted(nodes, key=lambda n: n["node_id"])}
+        os.makedirs(os.path.dirname(args.fleet) or ".", exist_ok=True)
+        tmp = args.fleet + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as fh:
+            json.dump(roster, fh, indent=2)
+        os.replace(tmp, args.fleet)
+        print("wrote %d node(s) to %s" % (len(nodes), args.fleet))
+        if not nodes:
+            print("  (empty roster: nothing is declared until a device actually reports)")
+
+    print("\nrestart these to pick the changes up:")
     print("  python -m tools.mid_baseline.gateway_probe.topology_server --udp-port 1680 "
           "--port 8780 --labels %s" % args.out)
+    print("  (or just re-run START_STUDIO.cmd)")
     return 0
 
 
