@@ -49,6 +49,37 @@ def tailscale_devices():
     return sorted(found)
 
 
+def tailscale_health():
+    """Return (state, self_ips) so a caller can tell "Tailscale is down" from "no devices".
+
+    BackendState drops to NoState and this machine loses its address whenever tailscaled
+    cannot reach the coordination server. Reporting that as "no devices online" sends the
+    operator to inspect the Pis, which is the wrong place; this has already cost hours.
+    """
+    out = subprocess.run([TAILSCALE, "status", "--json"], capture_output=True, text=True)
+    if out.returncode != 0:
+        return "error: " + (out.stderr or out.stdout or "").strip()[:120], []
+    try:
+        data = json.loads(out.stdout or "{}")
+    except ValueError:
+        return "unparseable status", []
+    return data.get("BackendState") or "unknown", data.get("TailscaleIPs") or []
+
+
+def require_tailscale():
+    """Print an actionable message and return False when this PC is off the tailnet."""
+    state, ips = tailscale_health()
+    if state == "Running" and ips:
+        return True
+    print("Tailscale is not connected on this computer (state: %s)." % state)
+    print("This is a network-app problem, not a device problem.")
+    print("Fix, in an Administrator PowerShell:")
+    print("    Restart-Service Tailscale")
+    print("then check:")
+    print("    tailscale status")
+    return False
+
+
 def ssh_target(name, ip):
     return "%s@%s" % (SSH_USER, ip or name)
 
@@ -81,9 +112,12 @@ STATUS_CMD = (
 
 
 def cmd_status(args):
+    if not require_tailscale():
+        return 2
     devices = tailscale_devices()
     if not devices:
-        print("no %s* devices in the tailnet" % NAME_PREFIX)
+        print("this computer is on the tailnet, but no %s* device is registered yet." % NAME_PREFIX)
+        print("A new card shows up here after its first boot finishes (2-5 minutes).")
         return 1
 
     def one(item):

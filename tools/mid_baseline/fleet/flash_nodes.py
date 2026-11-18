@@ -88,13 +88,14 @@ def main():
     say("== 1/4 fleet reachability")
     devices, err = tailscale_online()
     if devices is None:
-        say("   FAILED: %s" % err)
-        say("   Fix: open Tailscale and make sure it says Connected, or run")
-        say("        Restart-Service Tailscale   (as administrator)")
+        say("   FAILED: Tailscale is not connected on this computer")
+        say("   state  : %s" % err)
+        say("   This is a network-app problem, not a device problem.")
+        say("   Fix, in an Administrator PowerShell:  Restart-Service Tailscale")
         return 2
     if not devices:
-        say("   FAILED: no eora-air-* device is online")
-        say("   Fix: power the Raspberry Pi(s) and make sure they have network")
+        say("   FAILED: tailnet reachable, but no eora-air-* device is online")
+        say("   Fix: power the Raspberry Pi(s); a fresh card needs 2-5 minutes")
         return 2
     say("   online: %s" % ", ".join(devices))
 
