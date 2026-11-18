@@ -154,18 +154,40 @@ radio0_freq = 470600000   radio1_freq = 471400000
 
 ---
 
-## 6. 切换节点显示编号
+## 6. 节点编号：只听真话，不预声明
 
-编号来自设备自身（`node_number`，与 OLED 一致）。
+**界面上出现的每个节点都必须是真实收到的**——没连上就不显示。
+仓库里的 `config/fleet.default.json` 是**空名单**，不预填任何编号。
+
+> 之前这里预写了 1/2/3，导致一台设备都没连也显示 1 2 3。
+> 那是拿配置冒充事实，已废止。
+
+### 加新节点（一条命令，40 台也一样）
 
 ```powershell
 python tools\mid_baseline\fleet\refresh_labels.py --field node_number
-# 然后重启 topology_server（关掉 START_STUDIO 的窗口再重开即可）
 ```
 
-想用字母就换成 `--field device_label`。
+它会：
 
-> 未上线的板子读不到编号，会保留原值——**等 5 块板都上线后再刷一次**才整齐。
+1. 从 Tailscale 列出所有 `eora-air-*` 设备
+2. SSH 进每台，读该节点自己上报的 `node_number`（与 OLED 一致）
+3. 同时写两份文件
+   - `.local\mid\pi\labels.json` —— 给 topology_server 显示名字
+   - `data\fleet.json` —— 给 Studio 的编号表
+
+然后重跑 `START_STUDIO.cmd` 生效。
+
+### 为什么不能手写名单
+
+手写的 MAC → 编号表在 40 台规模下必然过期：换板、重烧、改编号都会让它和现实脱节，
+而且**未连接的节点会被当成已存在**显示出来——那是在骗自己。
+
+### 想改回字母
+
+```powershell
+python tools\mid_baseline\fleet\refresh_labels.py --field device_label
+```
 
 ---
 
