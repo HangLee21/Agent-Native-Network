@@ -111,6 +111,17 @@ def compose_identity(number, env, helpers):
         "WantedBy=multi-user.target",
         "EORA_UNIT",
         "systemctl enable eora-firstboot.service",
+        # One shot only. Leaving the hook in place would make every boot enter
+        # kernel-command-line.target and reboot again: an endless loop. Raspberry Pi's own
+        # firstrun removes its hook for exactly this reason.
+        "if [ -f /boot/firmware/cmdline.txt ]; then",
+        "  cp /boot/firmware/cmdline.txt /boot/firmware/cmdline.txt.eora-backup",
+        "  sed -i 's/ *systemd\\.run=[^ ]*//g;"
+        " s/ *systemd\\.run_success_action=[^ ]*//g;"
+        " s/ *systemd\\.unit=kernel-command-line\\.target//g'"
+        " /boot/firmware/cmdline.txt",
+        "fi",
+        'echo "cmdline hook removed; eora-firstboot.service will run on the next boot"',
         MARKER_END,
     ]
     return "\n".join(lines) + "\n"
@@ -259,15 +270,30 @@ def main():
     if firstrun.exists():
         say("== appending to existing firstrun.sh (Raspberry Pi Imager's own setup stays intact)")
     else:
-        say("== no firstrun.sh found; creating one and hooking it into cmdline.txt")
-        cmdline = boot / "cmdline.txt"
-        if not cmdline.exists():
-            say("   FAILED: %s looks empty (is this the boot partition?)" % boot)
-            return 2
-        hook = " systemd.run=/boot/firmware/firstrun.sh systemd.run_success_action=reboot"
-        line = cmdline.read_text(encoding="utf-8", errors="replace").strip()
-        if "systemd.run=" not in line:
-            cmdline.write_text(line + hook + "\n", encoding="utf-8")
+        say("== no firstrun.sh found; creating one")
+
+    # The cmdline hook is checked on every run, not only when firstrun.sh was missing:
+    # a card that already has the script (for example from an earlier attempt) must still
+    # get the hook, otherwise the script is never executed and the card looks inert.
+    cmdline = boot / "cmdline.txt"
+    if not cmdline.exists():
+        say("   FAILED: %s has no cmdline.txt (is this the boot partition?)" % boot)
+        return 2
+    # systemd only acts on systemd.run= when kernel-command-line.target is also pulled in.
+    # Without the third parameter the script silently never executes.
+    hook = (" systemd.run=/boot/firmware/firstrun.sh"
+            " systemd.run_success_action=reboot"
+            " systemd.unit=kernel-command-line.target")
+    line = cmdline.read_text(encoding="utf-8-sig", errors="replace").strip()
+    line = line.lstrip("\ufeff")   # a BOM here becomes garbage in the kernel cmdline
+    if "systemd.run=" not in line:
+        cmdline.write_text(line + hook + "\n", encoding="utf-8")
+        say("   cmdline.txt: systemd.run hook added")
+    elif "kernel-command-line.target" not in line:
+        cmdline.write_text(line + " systemd.unit=kernel-command-line.target\n", encoding="utf-8")
+        say("   cmdline.txt: added missing kernel-command-line.target")
+    else:
+        say("   cmdline.txt: hook already complete")
 
     helpers = {}
     for name in DEPLOY:
