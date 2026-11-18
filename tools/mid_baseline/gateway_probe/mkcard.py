@@ -220,6 +220,8 @@ def main():
                 say("  %s: %s" % (letter + ":", m.group(1) if m else "(not prepared)"))
         return 0
 
+    if args.check:
+        return 0 if not missing else 2
     if not args.card or args.number is None:
         parser.error("--card and --number are required unless --list/--check")
     if missing:
