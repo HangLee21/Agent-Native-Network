@@ -80,34 +80,59 @@ frames  : 1234   reports: 3
 
 ---
 
-## 3. 烧一个新的树莓派
+## 3. 烧树莓派（批量，不用一台台插网线）
 
-```powershell
-.\tools\mid_baseline\gateway_probe\netmode.ps1 pi        # 管理员
+**每台 Pi 不需要连电脑。** 身份写在 SD 卡里，插电后自己配置。
+
+### 一次性准备（只做一次）
+
+`.local\mid\pi\device.env`（**不进版本库**，放敏感信息）：
+
+```
+WIFI_SSID=Tsinghua-Secure
+WIFI_IDENTITY=hli21
+WIFI_PASSWORD=你的校园网密码
+TAILSCALE_AUTHKEY=tskey-auth-....     ← Reusable + Pre-approved，Ephemeral 关
 ```
 
-1. 用 Raspberry Pi Imager 烧 TF 卡（预先设好主机名、用户 `eora`、WiFi）
-2. 插卡上电，等 60–90 秒
-3. 找它的地址：`arp -a` 里看 `169.254.x.x`
-4. `ssh eora@169.254.x.x`
+### 每张卡
 
-### 入网（一次授权，之后零点击）
+1. **Raspberry Pi Imager** 写镜像：用户名 `eora`、开启 SSH、填入你的公钥
+2. 双击 **`MK_CARD.cmd`** → 输入盘符（如 `E:`）→ 输入编号（如 `7`）
+3. 卡插进 Pi，上电
 
-```bash
-sudo ~/eora/pi_enroll.sh eora-air-04 tskey-auth-xxxx
+**不需要网线，不需要知道 IP。** Pi 起来后自己完成：
+
+```
+设主机名 eora-air-07
+建 802.1X WiFi 配置（Imager 做不了这个）
+装 Tailscale + 用 auth key 入网
+装 pyserial / esptool
+部署 node_reader 与刷写工具，启动服务
+全部成功后自动 disable（下次开机零开销）
 ```
 
-> auth key 在 https://login.tailscale.com/admin/settings/keys 生成，
-> 记得勾 **Reusable** + **Pre-approved**，**Ephemeral 关**。
+失败不会静默：**每次开机重试**，日志在 `/var/log/eora-firstboot.log`。
 
-### 部署节点读取服务
+### 一次做多张
 
-把 `node_reader.py` / `node_reader.service` / `node_update.py` 推到 Pi 上（脚本会做），
-然后：
-
-```bash
-sudo systemctl enable --now node_reader
 ```
+MK_CARD.cmd   E:  7
+MK_CARD.cmd   F:  8
+MK_CARD.cmd   G:  9
+```
+
+`MK_CARD.cmd --list` 可以看哪些卡已经配好。
+
+### 之后
+
+```
+双击 FLEET_STATUS.cmd    ← 看它在不在、跑什么固件
+双击 FLASH_NODES.cmd     ← 给它的节点刷固件
+```
+
+> 为什么以前要插网线：镜像里没有 WiFi/Tailscale 配置，主机名和编号也得手工设。
+> 现在这两件事都写进卡里了，**网线只在排查故障时才用**。
 
 ---
 
