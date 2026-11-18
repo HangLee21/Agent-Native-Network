@@ -1,4 +1,4 @@
-/* LRN1 frame builder: capacity-bounded, value-ordered row selection. */
+/* LRN1 frame builder: capacity-bounded rows plus two optional health blocks. */
 #include <string.h>
 #include "lrn1_frame.h"
 
@@ -42,10 +42,45 @@ static void write_row(uint8_t* base, unsigned slot, const nd_peer* p, const mt_n
 	}
 }
 
+/* 24 bytes. Bytes 19..23 stay zero for future fields. */
+static void write_status(uint8_t* b, const lrn1_status* s) {
+	b[0] = s->reset_reason;
+	put(b + 1, s->supply_mv, 2);
+	b[3] = (uint8_t)s->die_temp_c;
+	b[4] = s->heap_free_kb;
+	b[5] = s->queue_depth;
+	b[6] = s->tx_drops;
+	b[7] = s->routes;
+	b[8] = (uint8_t)s->lora_tx_power_dbm;
+	b[9] = s->lora_sf;
+	b[10] = s->fault_flags;
+	b[11] = s->pi_flags;
+	b[12] = (uint8_t)s->pi_cpu_temp_c;
+	b[13] = s->pi_load_x10;
+	put(b + 14, s->pi_mem_free_mb, 2);
+	b[16] = (uint8_t)s->pi_wifi_rssi;
+	b[17] = s->serial_errors;
+	b[18] = s->battery_pct;
+}
+
+/* 20 bytes. Bytes 18..19 stay zero. */
+static void write_gps(uint8_t* b, const lrn1_gps* g) {
+	b[0] = g->flags;
+	put(b + 1, (uint32_t)g->lat_e7, 4);
+	put(b + 5, (uint32_t)g->lon_e7, 4);
+	put(b + 9, (uint16_t)g->alt_m, 2);
+	put(b + 11, g->speed_cms, 2);
+	put(b + 13, g->heading_cdeg, 2);
+	b[15] = g->sats;
+	b[16] = g->hdop_x10;
+	b[17] = g->vdop_x10;
+}
+
 unsigned lrn1_build(nd_node* n, mt_node* m, uint64_t now, int (*allowed)(mid_id),
-                    uint32_t node_number, uint8_t* data, unsigned cap, uint32_t seq,
-                    uint32_t period_ms, uint32_t* cursor, lrn1_result* out) {
-	unsigned max_rows = lrn1_capacity(cap);
+                    uint32_t node_number, const lrn1_status* st, const lrn1_gps* g,
+                    uint8_t* data, unsigned cap, uint32_t seq, uint32_t period_ms,
+                    uint32_t* cursor, lrn1_result* out) {
+	unsigned max_rows = lrn1_capacity(cap, st != 0, g != 0);
 	if (!data || !out || !max_rows) return 0;
 	memset(data, 0, cap);
 
@@ -82,7 +117,10 @@ unsigned lrn1_build(nd_node* n, mt_node* m, uint64_t now, int (*allowed)(mid_id)
 	memcpy(data, LRN1_MAGIC, 4);
 	data[4] = (uint8_t)LRN1_HEADER;
 	data[5] = (uint8_t)LRN1_ROW;
-	data[6] = n->full ? 2 : 0;
+	data[6] = (uint8_t)((rows < eligible ? LRN1_FLAG_TRUNCATED : 0u)
+	                        | (n->full ? LRN1_FLAG_TABLE_FULL : 0u));
+	if (st) data[6] |= LRN1_FLAG_STATUS;
+	if (g) data[6] |= LRN1_FLAG_GPS;
 	memcpy(data + 8, n->self.mac, 6);
 	put(data + 14, n->boot, 4);
 	put(data + 18, seq, 4);
@@ -90,25 +128,30 @@ unsigned lrn1_build(nd_node* n, mt_node* m, uint64_t now, int (*allowed)(mid_id)
 	put(data + 30, n->group, 4);
 	put(data + 36, period_ms, 4);      /* report period, as configured */
 	put(data + 40, 0, 4);              /* tx delay: stamped by lrn1_set_delay() */
-	/* Byte 35 was unused; it now carries the device number so the receiver can name a node
-	 * without any roster file. Out-of-range values fall back to 0 ("unassigned") instead of
-	 * wrapping, which would silently claim somebody else's number. */
+	/* Byte 35 carries the device number so the receiver can name a node without any roster
+	 * file. Out-of-range values become 0 ("unassigned") instead of wrapping, which would
+	 * silently claim somebody else's number. */
 	data[35] = (uint8_t)(node_number >= 1u && node_number <= 255u ? node_number : 0u);
 	data[7] = (uint8_t)rows;
 	data[34] = (uint8_t)(eligible > 255 ? 255 : eligible);
 
 	for (unsigned r = 0; r < rows; r++) write_row(data, r, &n->peers[chosen[r]], m, now);
 
-	unsigned len = (unsigned)(LRN1_HEADER + LRN1_ROW * rows + LRN1_CRC);
+	unsigned len = (unsigned)(LRN1_HEADER + LRN1_ROW * rows);
+	if (st) { write_status(data + len, st); len += LRN1_STATUS; }
+	if (g) { write_gps(data + len, g); len += LRN1_GPS; }
+	len += LRN1_CRC;
 	if (len > cap) return 0;
 	put(data + len - 4, crc32(data, len - 4), 4);
 	out->rows = rows;
+	out->has_status = st != 0;
+	out->has_gps = g != 0;
 	return len;
 }
 
 void lrn1_set_delay(uint8_t* data, unsigned len, uint32_t delay_ms) {
 	if (!data || len < LRN1_MIN_BYTES) return;
-	data[6] |= 4;
+	data[6] |= LRN1_FLAG_DELAY_SET;
 	put(data + 40, delay_ms, 4);
 	put(data + len - 4, crc32(data, len - 4), 4);
 }
@@ -116,3 +159,7 @@ void lrn1_set_delay(uint8_t* data, unsigned len, uint32_t delay_ms) {
 /* Weak default: host tests and any build without an application override report 0
  * (unassigned). The firmware defines the real one from its NVS-backed number. */
 __attribute__((weak)) uint32_t lrn1_node_number(void) { return 0u; }
+
+/* Weak defaults: everything unknown. The firmware provides real values. */
+__attribute__((weak)) void lrn1_platform_status(lrn1_status* s) { (void)s; }
+__attribute__((weak)) int lrn1_platform_gps(lrn1_gps* g) { (void)g; return 0; }

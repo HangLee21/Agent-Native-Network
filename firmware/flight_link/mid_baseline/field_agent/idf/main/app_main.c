@@ -1,5 +1,6 @@
 /* MID bounded candidate execution adapter, ESP-IDF 5.5.1. No ANN/ACK logic. */
 #include "mid.h"
+#include "lrn1_frame.h"
 #include "deployment.h"
 #include "neighbors.h"
 #include "source_route.h"
@@ -131,6 +132,19 @@ static void node_number_json(cJSON*j){
 /* Strong definition of the hook the LRN1 builder asks for: the node number travels in the
  * air so the gateway can name a node without any roster file or Pi being reachable. */
 uint32_t lrn1_node_number(void){return node_number;}
+/* Health that the node can answer on its own. Reset reason is what distinguishes "the bench
+ * lost power" from "the firmware died", and until now it only reached a serial log. */
+void lrn1_platform_status(lrn1_status* s){
+ if(!s)return;
+ esp_reset_reason_t r=esp_reset_reason();
+ s->reset_reason = r==ESP_RST_POWERON?LRN1_RST_POWERON
+                 : r==ESP_RST_BROWNOUT?LRN1_RST_BROWNOUT
+                 : (r==ESP_RST_TASK_WDT||r==ESP_RST_INT_WDT||r==ESP_RST_WDT)?LRN1_RST_WATCHDOG
+                 : r==ESP_RST_PANIC?LRN1_RST_PANIC
+                 : r==ESP_RST_SW?LRN1_RST_SOFTWARE:LRN1_RST_UNKNOWN;
+ { uint32_t kb=esp_get_free_heap_size()/1024u; s->heap_free_kb=(uint8_t)(kb>255u?255u:kb); }
+}
+
 static cJSON* event(const char*kind){cJSON*j=cJSON_CreateObject();cJSON_AddStringToObject(j,"schema","mid.serial.v1");cJSON_AddStringToObject(j,"event",kind);field_id(j,"node_id",self);cJSON_AddNumberToObject(j,"boot_id",boot);cJSON_AddStringToObject(j,"build_id",MID_BUILD_ID);cJSON_AddNumberToObject(j,"monotonic_ms",(double)millis());return j;}
 /* A host that stops reading the UART must never stall the mesh: puts() blocks once the
  * 4 KB TX ring is full, which starved the input queue and (before the overflow fix) could

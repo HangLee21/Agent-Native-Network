@@ -102,7 +102,11 @@ class Topology:
                 self.foreign += 1        # not our firmware: another node on this channel
                 return
             rows = raw[7]
-            if len(raw) != 48 + 20 * rows:
+            flags = raw[6]
+            has_status = bool(flags & 0x08)
+            has_gps = bool(flags & 0x10)
+            expect = 48 + 20 * rows + (24 if has_status else 0) + (20 if has_gps else 0)
+            if len(raw) != expect:
                 self.bad += 1
                 return
             if crc32(raw[:-4]) != struct.unpack("<I", raw[-4:])[0]:
@@ -159,6 +163,47 @@ class Topology:
                     "rf_age_ms": struct.unpack("<H", row[17:19])[0],
                     "wifi_channel": row[19],
                 })
+            offset = 44 + 20 * rows
+            if has_status:
+                b = offset
+                record["status"] = {
+                    "reset_reason": raw[b],
+                    "supply_mv": raw[b + 1] | (raw[b + 2] << 8),
+                    "die_temp_c": struct.unpack("<b", raw[b + 3:b + 4])[0],
+                    "heap_free_kb": raw[b + 4],
+                    "queue_depth": raw[b + 5],
+                    "tx_drops": raw[b + 6],
+                    "routes": raw[b + 7],
+                    "lora_tx_power_dbm": struct.unpack("<b", raw[b + 8:b + 9])[0],
+                    "lora_sf": raw[b + 9],
+                    "fault_flags": raw[b + 10],
+                    "pi_flags": raw[b + 11],
+                    "pi_cpu_temp_c": struct.unpack("<b", raw[b + 12:b + 13])[0],
+                    "pi_load_x10": raw[b + 13],
+                    "pi_mem_free_mb": raw[b + 14] | (raw[b + 15] << 8),
+                    "pi_wifi_rssi": struct.unpack("<b", raw[b + 16:b + 17])[0],
+                    "serial_errors": raw[b + 17],
+                    "battery_pct": raw[b + 18],
+                }
+                record["report"]["status"] = record["status"]
+                offset += 24
+            if has_gps:
+                b = offset
+                gflags = raw[b]
+                record["gps"] = {
+                    "flags": gflags,
+                    "valid": bool(gflags & 0x01),
+                    "fix_3d": bool(gflags & 0x02),
+                    "lat_e7": struct.unpack("<i", raw[b + 1:b + 5])[0],
+                    "lon_e7": struct.unpack("<i", raw[b + 5:b + 9])[0],
+                    "alt_m": struct.unpack("<h", raw[b + 9:b + 11])[0],
+                    "speed_cms": raw[b + 11] | (raw[b + 12] << 8),
+                    "heading_cdeg": raw[b + 13] | (raw[b + 14] << 8),
+                    "sats": raw[b + 15],
+                    "hdop_x10": raw[b + 16],
+                    "vdop_x10": raw[b + 17],
+                }
+                record["report"]["gps"] = record["gps"]
             self.reports[observer] = record
             self.lrn1 += 1
 

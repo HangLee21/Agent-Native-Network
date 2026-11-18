@@ -39,8 +39,14 @@ static void worker_progress_step(void){__atomic_fetch_add(&worker_progress,1,__A
 static uint32_t crc32(const uint8_t*p,unsigned n){uint32_t crc=0xffffffffu;while(n--){crc^=*p++;for(unsigned i=0;i<8;i++)crc=(crc>>1)^(0xedb88320u&(0u-(crc&1u)));}return ~crc;}
 #ifndef LREF_WORKER_TEST
 static uint32_t lrn1_cursor;
+/* Health rides along every Nth frame so neighbour rows stay full in dense clusters. */
+#define LRN1_STATUS_EVERY 5u
 static unsigned capture(nd_node*n,mt_node*m,uint64_t now,int(*allowed)(mid_id),uint8_t*data,uint32_t seq){
- lrn1_result res;unsigned len=lrn1_build(n,m,now,allowed,lrn1_node_number(),data,208,seq,cfg.period,&lrn1_cursor,&res);
+ lrn1_result res;lrn1_status st;lrn1_gps gps;const lrn1_status*pst=0;const lrn1_gps*pg=0;
+ nd_trim(n,now);
+ if(seq%LRN1_STATUS_EVERY==0u){memset(&st,0,sizeof st);lrn1_platform_status(&st);pst=&st;}
+ memset(&gps,0,sizeof gps);if(lrn1_platform_gps(&gps))pg=&gps;
+ unsigned len=lrn1_build(n,m,now,allowed,lrn1_node_number(),pst,pg,data,208,seq,cfg.period,&lrn1_cursor,&res);
  if(!len)__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);
  return len;
 }

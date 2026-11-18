@@ -32,3 +32,14 @@ int nd_receive(nd_node*n,mid_id source,const mid_packet*p,uint64_t now,mid_packe
  peer->state=echo;peer->seen=peer->ack=now;peer->confirmed=1;n->rx_ack++;return 0;
 invalid:n->rejected++;return -1;
 }
+
+/* Drop peers that have been silent past ND_EVICT_MS; their slot is worth more than their
+ * history once they are that stale. */
+void nd_trim(nd_node* n, uint64_t now) {
+	for (unsigned i = 0; i < ND_PEERS; i++) {
+		nd_peer* p = &n->peers[i];
+		if (!p->used) continue;
+		if (now > p->seen && now - p->seen < ND_EVICT_MS) continue;
+		memset(p, 0, sizeof(*p));
+	}
+}
