@@ -25,15 +25,17 @@
 - 网关 Ebyte E870-L 已配置为静态 192.168.137.11，转发到 192.168.137.10:1680
 - 三块节点已刷到 BUILD-20261118-lrn1-nodenumber，编号 1/2/3 从帧里解出
 
-你接手后的第一个任务：把第 4 台 Pi 接入机群
-背景：走 SD 卡首启自动化三次都失败（卡上零日志，机制未查明），不要再重复尝试。
-要求：用已经验证过的方法——把 PI4 网线接到电脑，
-      admin 运行 tools\mid_baseline\gateway_probe\netmode.ps1 pi（链路本地，无需 DHCP），
-      扫 169.254.x.x 找到它，SSH（用户 eora）进去手工配置：
-      主机名 eora-air-04、建 802.1X WiFi（PEAP/MSCHAPv2，账号 hli21）、
-      装 Tailscale 并入网、装 pyserial/esptool、部署 node_reader 服务。
-      配完拔线，网关插回，netmode.ps1 lab。
-成功标准：FLEET_STATUS.cmd 里出现 eora-air-04，且 node_reader 为 active。
+第一个任务：把 LRN1 状态块刷进三块板并验证
+背景：docs/LRN1_EXTENSION_DESIGN.md 已实现并提交（9c006a4），主机测试与 C/Python
+      交叉验证全部通过，镜像在 BUILD-20261118-lrn1-status/。但三台树莓派当时离线，
+      没有刷入实机。
+要求：FLASH_NODES.cmd 刷三块板，然后看网关收到的帧里 status 块是否出现
+      （每 5 帧一次），核对 reset_reason 与 heap_free_kb 是真实值而不是 0。
+      电压与芯片温度当前恒为 0，属已知未接入项，不要当成 bug。
+成功标准：三台节点 report.status 有值，且 reset_reason 与 Pi 侧重启记录一致。
+
+（PI4 做卡已由另一窗口用 4b19a97 解决，eora-air-04 已入网，不要重复：那条路的
+  根因是 cmdline.txt 的 i= 种子参数优先于 meta-data 的 instance-id。）
 
 验收标准（重要，之前吃过亏）
 - 不允许只验证"页面能显示"。必须验证状态转换：
@@ -42,7 +44,6 @@
 - 声称"已验证"之前，先确认你跑过的是真实路径，而不是合成数据。
 
 已知未解决问题（不要当成已完成）
-- 批量做卡（MK_CARD.cmd）在这张镜像上从未成功，首启脚本不执行。
 - 本机 Tailscale 会间歇性 NoState，需要管理员 Restart-Service Tailscale。
 - 网关转发器会偶发静默，重启可恢复（恢复需 90 秒以上）。
 ```
