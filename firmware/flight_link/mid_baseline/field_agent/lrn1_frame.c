@@ -43,8 +43,8 @@ static void write_row(uint8_t* base, unsigned slot, const nd_peer* p, const mt_n
 }
 
 unsigned lrn1_build(nd_node* n, mt_node* m, uint64_t now, int (*allowed)(mid_id),
-                    uint8_t* data, unsigned cap, uint32_t seq, uint32_t period_ms,
-                    uint32_t* cursor, lrn1_result* out) {
+                    uint32_t node_number, uint8_t* data, unsigned cap, uint32_t seq,
+                    uint32_t period_ms, uint32_t* cursor, lrn1_result* out) {
 	unsigned max_rows = lrn1_capacity(cap);
 	if (!data || !out || !max_rows) return 0;
 	memset(data, 0, cap);
@@ -90,6 +90,10 @@ unsigned lrn1_build(nd_node* n, mt_node* m, uint64_t now, int (*allowed)(mid_id)
 	put(data + 30, n->group, 4);
 	put(data + 36, period_ms, 4);      /* report period, as configured */
 	put(data + 40, 0, 4);              /* tx delay: stamped by lrn1_set_delay() */
+	/* Byte 35 was unused; it now carries the device number so the receiver can name a node
+	 * without any roster file. Out-of-range values fall back to 0 ("unassigned") instead of
+	 * wrapping, which would silently claim somebody else's number. */
+	data[35] = (uint8_t)(node_number >= 1u && node_number <= 255u ? node_number : 0u);
 	data[7] = (uint8_t)rows;
 	data[34] = (uint8_t)(eligible > 255 ? 255 : eligible);
 
@@ -108,3 +112,7 @@ void lrn1_set_delay(uint8_t* data, unsigned len, uint32_t delay_ms) {
 	put(data + 40, delay_ms, 4);
 	put(data + len - 4, crc32(data, len - 4), 4);
 }
+
+/* Weak default: host tests and any build without an application override report 0
+ * (unassigned). The firmware defines the real one from its NVS-backed number. */
+__attribute__((weak)) uint32_t lrn1_node_number(void) { return 0u; }

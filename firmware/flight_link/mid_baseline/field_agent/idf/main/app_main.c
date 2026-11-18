@@ -128,6 +128,9 @@ static void node_number_json(cJSON*j){
  field_id(j,"node_mac",self);if(node_number)cJSON_AddNumberToObject(j,"node_number",node_number);else cJSON_AddNullToObject(j,"node_number");
  cJSON_AddStringToObject(j,"node_number_source",node_number_source);cJSON_AddStringToObject(j,"node_number_schema","node.number.v1");
 }
+/* Strong definition of the hook the LRN1 builder asks for: the node number travels in the
+ * air so the gateway can name a node without any roster file or Pi being reachable. */
+uint32_t lrn1_node_number(void){return node_number;}
 static cJSON* event(const char*kind){cJSON*j=cJSON_CreateObject();cJSON_AddStringToObject(j,"schema","mid.serial.v1");cJSON_AddStringToObject(j,"event",kind);field_id(j,"node_id",self);cJSON_AddNumberToObject(j,"boot_id",boot);cJSON_AddStringToObject(j,"build_id",MID_BUILD_ID);cJSON_AddNumberToObject(j,"monotonic_ms",(double)millis());return j;}
 /* A host that stops reading the UART must never stall the mesh: puts() blocks once the
  * 4 KB TX ring is full, which starved the input queue and (before the overflow fix) could

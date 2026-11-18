@@ -40,7 +40,7 @@ static uint32_t crc32(const uint8_t*p,unsigned n){uint32_t crc=0xffffffffu;while
 #ifndef LREF_WORKER_TEST
 static uint32_t lrn1_cursor;
 static unsigned capture(nd_node*n,mt_node*m,uint64_t now,int(*allowed)(mid_id),uint8_t*data,uint32_t seq){
- lrn1_result res;unsigned len=lrn1_build(n,m,now,allowed,data,208,seq,cfg.period,&lrn1_cursor,&res);
+ lrn1_result res;unsigned len=lrn1_build(n,m,now,allowed,lrn1_node_number(),data,208,seq,cfg.period,&lrn1_cursor,&res);
  if(!len)__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);
  return len;
 }

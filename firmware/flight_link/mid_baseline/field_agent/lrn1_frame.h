@@ -28,6 +28,11 @@ typedef struct {
 
 /* Builds one frame into `data` (capacity `cap`).
  *
+ * `node_number` is the device's own display number (NVS-backed, set with node_id_set). It
+ * rides in header byte 35 so the gateway can learn "MAC -> number" from the air and no
+ * roster file has to be maintained. 0 means "not assigned"; values above 255 are clamped
+ * to 0 rather than truncated, so a mis-set number never collides with a real one.
+ *
  * Row selection, in order of value to the gateway:
  *   1. every neighbour whose state is not BIDIRECTIONAL (lost/heard) - topology changes,
  *   2. the rest round-robin from `*cursor`, so with more neighbours than rows each one is
@@ -36,8 +41,12 @@ typedef struct {
  * Returns the frame length, or 0 when it does not fit.
  */
 unsigned lrn1_build(nd_node* n, mt_node* m, uint64_t now, int (*allowed)(mid_id),
-                    uint8_t* data, unsigned cap, uint32_t seq, uint32_t period_ms,
-                    uint32_t* cursor, lrn1_result* out);
+                    uint32_t node_number, uint8_t* data, unsigned cap, uint32_t seq,
+                    uint32_t period_ms, uint32_t* cursor, lrn1_result* out);
+
+/* The device's node number, provided by the application. Weak default of 0 keeps this
+ * module host-testable and free of ESP-IDF/app dependencies. */
+uint32_t lrn1_node_number(void);
 
 /* Stamps the actual transmit delay (frame flag bit 2) and refreshes the CRC. Used right
  * before handing the frame to the radio, when the real wait is known. */

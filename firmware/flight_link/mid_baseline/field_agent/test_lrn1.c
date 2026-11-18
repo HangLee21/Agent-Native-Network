@@ -50,19 +50,20 @@ int main(void) {
 	memset(frame, 0xA5, sizeof(frame));            /* canary beyond the 208-byte capacity */
 	lrn1_result res;
 	uint32_t cursor = 0;
-	unsigned len = lrn1_build(&n, &m, now, NULL, frame, 208, 1, 10000, &cursor, &res);
+	unsigned len = lrn1_build(&n, &m, now, NULL, 7, frame, 208, 1, 10000, &cursor, &res);
 	CHECK(len == 208, "8 rows fill the 208-byte frame");
 	CHECK(res.rows == 8 && res.eligible == 8, "8 of 8 rows reported");
 	CHECK(memcmp(frame, "LRN1", 4) == 0 && frame[4] == 44 && frame[5] == 20, "header intact");
 	CHECK(frame[7] == 8 && frame[34] == 8, "row count and visible_rows agree");
-	CHECK((crc32(frame, len - 4)) == ((uint32_t)frame[len - 4] | ((uint32_t)frame[len - 3] << 8)
+	CHECK(frame[35] == 7, "node number 7 rides in header byte 35");
+CHECK((crc32(frame, len - 4)) == ((uint32_t)frame[len - 4] | ((uint32_t)frame[len - 3] << 8)
 	      | ((uint32_t)frame[len - 2] << 16) | ((uint32_t)frame[len - 1] << 24)), "CRC32 valid");
 
 	/* The bug this module replaces: 12 neighbours used to write past the buffer. */
 	for (unsigned i = 8; i < 12; i++) add_peer(&n, i, i + 1, 7 + i, now - 100, 1, now - 50);
 	memset(frame, 0xA5, sizeof(frame));
 	cursor = 0;
-	len = lrn1_build(&n, &m, now, NULL, frame, 208, 2, 10000, &cursor, &res);
+	len = lrn1_build(&n, &m, now, NULL, 7, frame, 208, 2, 10000, &cursor, &res);
 	CHECK(len == 208, "12 neighbours still produce a 208-byte frame");
 	CHECK(res.rows == 8 && res.eligible == 12, "truncated to 8 of 12");
 	CHECK(frame[7] == 8, "frame reports 8 rows, not 12");
@@ -75,7 +76,7 @@ int main(void) {
 	n.peers[10].ack = now - 10000;                  /* ack beyond 9 s -> heard, not bidirectional */
 	n.peers[11].ack = now - 10000;
 	cursor = 0;
-	len = lrn1_build(&n, &m, now, NULL, frame, 208, 3, 10000, &cursor, &res);
+	len = lrn1_build(&n, &m, now, NULL, 7, frame, 208, 3, 10000, &cursor, &res);
 	int saw_sick = 0;
 	for (unsigned r = 0; r < frame[7]; r++) {
 		const uint8_t* row = frame + 44 + 20 * r;
@@ -88,7 +89,7 @@ int main(void) {
 	int seen[32];
 	memset(seen, 0, sizeof(seen));
 	for (unsigned round = 0; round < 6; round++) {
-		len = lrn1_build(&n, &m, now, NULL, frame, 208, 100 + round, 10000, &cursor, &res);
+		len = lrn1_build(&n, &m, now, NULL, 7, frame, 208, 100 + round, 10000, &cursor, &res);
 		for (unsigned r = 0; r < frame[7]; r++) {
 			const uint8_t* row = frame + 44 + 20 * r;
 			for (unsigned i = 0; i < 12; i++)
@@ -101,16 +102,16 @@ int main(void) {
 
 	/* Filtering is honoured. */
 	for (unsigned i = 0; i < 12; i++) n.peers[i].seen = now - 100;
-	len = lrn1_build(&n, &m, now, NULL, frame, 208, 4, 10000, &cursor, &res);
+	len = lrn1_build(&n, &m, now, NULL, 7, frame, 208, 4, 10000, &cursor, &res);
 	CHECK(len > 0 && res.eligible == 12, "baseline still 12 eligible");
 
 	/* A too-small buffer is refused instead of overrunning. */
-	len = lrn1_build(&n, &m, now, NULL, frame, 40, 5, 10000, &cursor, &res);
+	len = lrn1_build(&n, &m, now, NULL, 7, frame, 40, 5, 10000, &cursor, &res);
 	CHECK(len == 0, "capacity below the minimum is refused");
 
 	/* Delay stamping keeps the CRC valid. */
 	memset(frame, 0xA5, sizeof(frame));
-	len = lrn1_build(&n, &m, now, NULL, frame, 208, 6, 25000, &cursor, &res);
+	len = lrn1_build(&n, &m, now, NULL, 7, frame, 208, 6, 25000, &cursor, &res);
 	lrn1_set_delay(frame, len, 42);
 	CHECK((frame[6] & 4) != 0, "delay flag set");
 	CHECK(frame[40] == 42, "delay value stamped");

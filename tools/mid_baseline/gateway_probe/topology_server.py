@@ -46,6 +46,7 @@ class Topology:
         self.lock = threading.Lock()
         self.reports = {}          # observer mac -> decoded record
         self.labels = {}
+        self.node_numbers = {}     # observer mac -> number learned from header byte 35
         self.frames = 0
         self.resets = 0        # recvfrom OSErrors recovered from
         self.lrn1 = 0
@@ -105,12 +106,18 @@ class Topology:
                 self.bad += 1
                 return
             observer = mac_text(raw[8:14])
+            # Header byte 35 carries the device's own number, so names are learned from the
+            # air and no roster file has to be maintained as the fleet grows.
+            number = raw[35]
+            if 1 <= number <= 255:
+                self.node_numbers[observer] = number
             record = {
                 "gateway_id": self.gateway_eui or "",
                 "gateway_boot": 0,
                 "report": {
                     "frame_schema": "LRN1",
                     "observer_id": observer,
+                    "node_number": number if 1 <= number <= 255 else None,
                     "observer_boot": struct.unpack("<I", raw[14:18])[0],
                     "report_seq": struct.unpack("<I", raw[18:22])[0],
                     "snapshot_at_ms": struct.unpack("<Q", raw[22:30])[0],
@@ -150,6 +157,9 @@ class Topology:
     def snapshot(self):
         with self.lock:
             labels = dict(self.labels)
+            # Learn from the wire, but never override a name a human put in the label file.
+            for mac, num in self.node_numbers.items():
+                labels.setdefault(mac, str(num))
             if self.gateway_eui:
                 labels.setdefault(self.gateway_eui, self.gateway_name())
             now = time.time()
