@@ -259,6 +259,70 @@ def install_cloud_init_hook(user_data, installer_name):
     return new
 
 
+
+
+def fix_network_config(boot, env):
+    """Rewrite the Wi-Fi entry as 802.1X.
+
+    Raspberry Pi Imager can only express a plain password, so its profile for an 802.1X
+    network (PEAP/MSCHAPv2 with an account name) can never authenticate. Writing the correct
+    auth block here means the device may get online even if our installer never runs.
+    """
+    path = boot / "network-config"
+    if not path.exists():
+        return False
+    try:
+        import yaml as _yaml
+    except ImportError:
+        return False
+    try:
+        data = _yaml.safe_load(path.read_text(encoding="utf-8-sig")) or {}
+    except Exception:
+        return False
+    ssid = env.get("WIFI_SSID")
+    identity = env.get("WIFI_IDENTITY")
+    password = env.get("WIFI_PASSWORD")
+    if not (ssid and identity and password):
+        return False
+    wifis = data.setdefault("network", {}).setdefault("wifis", {})
+    wlan = wifis.setdefault("wlan0", {})
+    wlan["dhcp4"] = True
+    wlan.setdefault("regulatory-domain", "CN")
+    wlan["optional"] = True
+    wlan["access-points"] = {ssid: {"auth": {
+        "key-management": "eap",
+        "method": "peap",
+        "identity": identity,
+        "password": password,
+        "phase2-auth": "mschapv2",
+    }}}
+    path.write_text(_yaml.safe_dump(data, sort_keys=False, allow_unicode=True), encoding="utf-8")
+    return True
+
+def bump_instance_id(boot, number):
+    """Give the card a new cloud-init instance id.
+
+    cloud-init runs its modules once per instance-id. A card that was booted before keeps
+    its old id, so an edited user-data (our runcmd entry) would never be executed: the device
+    boots, ignores the change and looks dead. Changing the id forces a fresh first boot.
+    """
+    meta = boot / "meta-data"
+    text = meta.read_text(encoding="utf-8-sig") if meta.exists() else ""
+    new_id = "eora-air-%02d-%d" % (number, int(__import__("time").time() * 1000))
+    if "instance-id:" in text:
+        lines = []
+        for line in text.splitlines():
+            if line.strip().startswith("instance-id:"):
+                lines.append("instance-id: " + new_id)
+            else:
+                lines.append(line)
+        text = "\n".join(lines) + "\n"
+    else:
+        text = (text.rstrip("\n") + "\n" if text else "") + "instance-id: " + new_id + "\n"
+    meta.write_text(text, encoding="utf-8")
+    return new_id
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--card", help="boot-partition drive letter, e.g. E:")
@@ -308,6 +372,12 @@ def main():
 
     user_data = boot / "user-data"
     new_ud = install_cloud_init_hook(user_data, INSTALLER_NAME)
+    # A brand-new instance id, otherwise cloud-init treats the card as already provisioned
+    # and silently skips the runcmd we just added.
+    new_id = bump_instance_id(boot, args.number)
+    say("== meta-data: instance-id -> %s (forces cloud-init to run again)" % new_id)
+    if fix_network_config(boot, env):
+        say("== network-config: Wi-Fi rewritten as 802.1X (PEAP/MSCHAPv2)")
     say("== user-data: runcmd entry installed (%d bytes)" % len(new_ud))
 
     helpers = {}
