@@ -111,18 +111,43 @@ sudo systemctl enable --now node_reader
 
 ---
 
-## 4. 给节点刷固件（不需要碰网线）
+## 4. 给节点刷固件（双击即可）
 
-节点挂在 Pi 的 USB 上，**Pi 自己就是烧录器**。
+**双击仓库根目录的 `FLASH_NODES.cmd`。**
 
-```powershell
-fleet status                       # 先看谁在线
-fleet update BUILD-xxx\images\mid_edge.bin
+它会按顺序做四件事，任何一步不满足都会直接说清楚原因：
+
+```
+== 1/4 fleet reachability     ← 检查 Tailscale 与在线的 Pi
+== 2/4 image                  ← 自动选 BUILD-* 里最新的 mid_edge.bin
+== 3/4 credential             ← 首次输入设备密码，之后记在 .local 里
+== 4/4 flashing               ← 逐台：停读取服务 → esptool → 校验 build_id → 重启服务
 ```
 
-它会对每台 Pi 执行：刷 `0x10000` → 读回 `build_id` 校验 → 不一致自动回滚 → 重启读取服务。
+### 它会自己修的东西
 
-> 需要 `EORA_PASS` 环境变量（设备 sudo 密码）。
+| 缺什么 | 结果 |
+|---|---|
+| Pi 上没有 `node_update.py` / `pi_node_probe.py` | **自动推送** |
+| Pi 上没装 `esptool` | **自动 pip 安装**（一次性，约 30 秒） |
+| 刷完 SSH 会话断开 | 只要出现 `VERIFIED` 就判成功，不误报 |
+
+### 为什么必须校验
+
+刷写后用 `info` 读回 `build_id` 比对，**不一致会自动回滚**到上一版。
+所以看到 `VERIFIED` 才是真的成功，不是"命令没报错"。
+
+### 只想刷一台
+
+```powershell
+.\FLASH_NODES.cmd --only eora-air-02
+```
+
+### 看有哪些镜像
+
+```powershell
+.\FLASH_NODES.cmd --list
+```
 
 ---
 

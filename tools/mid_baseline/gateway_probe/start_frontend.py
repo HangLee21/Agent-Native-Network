@@ -24,6 +24,30 @@ STUDIO_PORT = 8794
 UDP_PORT = 1680
 LABELS = ROOT / ".local" / "mid" / "pi" / "labels.json"
 FLEET = ROOT / "data" / "fleet.json"
+GATEWAY_IP = "192.168.137.11"   # static address configured on the Ebyte E870-L
+LAB_IP = "192.168.137.10"       # this PC on the lab subnet
+
+
+def port_open_on(host, port, timeout=1.5):
+    import socket
+    s = socket.socket()
+    s.settimeout(timeout)
+    try:
+        return s.connect_ex((host, port)) == 0
+    finally:
+        s.close()
+
+
+def gateway_nic_present():
+    """True when this machine holds the lab subnet address the gateway forwards to."""
+    try:
+        out = subprocess.run(
+            ["powershell", "-NoProfile", "-Command",
+             "(Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -eq '%s' }).IPAddress" % LAB_IP],
+            capture_output=True, text=True, timeout=20)
+        return LAB_IP in (out.stdout or "")
+    except Exception:
+        return False
 
 
 def http_json(port, path, timeout=4):
@@ -111,7 +135,22 @@ def main():
     print("  gateway : %s" % (topo.get("labels", {}).get(rx.get("gateway_id"), rx.get("gateway_id") or "-")))
     print("  frames  : %s   reports: %d" % (rx.get("frames"), len(topo.get("reports") or [])))
     if rx.get("state") != "receiving":
-        print("  WARNING: no frames yet - is the gateway forwarding to this PC on udp/%d?" % UDP_PORT)
+        # Diagnose instead of just warning: the three usual causes are checked in the order
+        # that used to waste the most time.
+        gw = port_open_on(GATEWAY_IP, 80)
+        nic = gateway_nic_present()
+        print("  no frames yet. Checks:")
+        print("    %s gateway %s reachable" % ("OK  " if gw else "FAIL", GATEWAY_IP))
+        print("    %s wired port configured for the lab subnet (%s)" % ("OK  " if nic else "FAIL", LAB_IP))
+        if not nic:
+            print("       -> run as administrator:  .\\tools\\mid_baseline\\gateway_probe\\netmode.ps1 lab")
+        if nic and not gw:
+            print("       -> gateway off, cable out, or still booting (takes ~60 s)")
+        if gw and nic:
+            print("       -> gateway reachable but silent: check its server_address is %s"
+                  " and serv_port_up is %d" % (LAB_IP, UDP_PORT))
+        if not (gw or nic):
+            pass
 
     url = "http://127.0.0.1:%d/" % STUDIO_PORT
     print("\n== open %s" % url)
