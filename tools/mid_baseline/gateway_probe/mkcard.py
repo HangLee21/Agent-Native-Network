@@ -128,9 +128,16 @@ FIRSTBOOT_TEMPLATE = r"""
 set -u
 HOST="$EORA_HOST"; NUMBER="$EORA_NUMBER"
 SSID="$EORA_SSID"; IDENTITY="$EORA_IDENTITY"; PASS="$EORA_WIFI_PASS"; AUTHKEY="$EORA_AUTHKEY"
-LOG=/var/log/eora-firstboot.log
+# Log to the FAT boot partition: putting the card back in the PC is then enough to read
+# what happened, which matters when forty devices have to be diagnosed without cables.
+LOG=/boot/firmware/eora-firstboot.log
+[ -d /boot/firmware ] && touch "$LOG" 2>/dev/null || LOG=/var/log/eora-firstboot.log
+
 exec >>"$LOG" 2>&1
 echo "== $(date -Is) firstboot start for $HOST"
+STATUS=/boot/firmware/eora-status.txt
+mark(){ echo "== $*" >> "$LOG"; echo "$(date -Is) $*" > "$STATUS" 2>/dev/null; }
+mark "1/5 start host=$HOST"
 
 if [ "$(hostname)" != "$HOST" ]; then
   hostnamectl set-hostname "$HOST"
@@ -146,7 +153,7 @@ grep -q '^precedence ::ffff:0:0/96' /etc/gai.conf 2>/dev/null || \
 # cloud-init creates the user; on a cold card this can still be in progress.
 for i in $(seq 1 120); do id eora >/dev/null 2>&1 && break; sleep 5; done
 if ! id eora >/dev/null 2>&1; then
-  echo "== user eora missing after 10 min; giving up this boot"
+  mark "FAILED: user eora missing after 10 min"
   exit 1
 fi
 
@@ -195,9 +202,9 @@ systemctl enable --now node_reader.service 2>/dev/null || true
 # Success criteria: we have a tailnet address and the reader is running.
 if tailscale ip -4 >/dev/null 2>&1 && systemctl is-active --quiet node_reader; then
   systemctl disable eora-firstboot.service >/dev/null 2>&1
-  echo "== $(date -Is) done; firstboot disabled"
+  mark "5/5 done, firstboot disabled"
 else
-  echo "== $(date -Is) incomplete; will retry on next boot"
+  mark "5/5 INCOMPLETE, will retry on next boot"
 fi
 """
 
