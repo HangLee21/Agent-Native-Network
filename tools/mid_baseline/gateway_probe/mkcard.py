@@ -97,7 +97,7 @@ def compose_identity(number, env, helpers):
         'cat > /etc/systemd/system/eora-firstboot.service <<\'EORA_UNIT\'',
         "[Unit]",
         "Description=EoRa first-boot identity (hostname, Wi-Fi, tailnet, node reader)",
-        "After=network-online.target",
+        "After=network-online.target cloud-init.service cloud-final.service",
         "Wants=network-online.target",
         "ConditionPathExists=/usr/local/sbin/eora-firstboot.sh",
         "",
@@ -143,12 +143,27 @@ grep -q '^precedence ::ffff:0:0/96' /etc/gai.conf 2>/dev/null || \
   echo 'precedence ::ffff:0:0/96  100' >> /etc/gai.conf
 
 # 802.1X cannot be expressed by Raspberry Pi Imager, so it is created here.
+# cloud-init creates the user; on a cold card this can still be in progress.
+for i in $(seq 1 120); do id eora >/dev/null 2>&1 && break; sleep 5; done
+if ! id eora >/dev/null 2>&1; then
+  echo "== user eora missing after 10 min; giving up this boot"
+  exit 1
+fi
+
 if [ -n "$SSID" ] && [ -n "$IDENTITY" ] && [ -n "$PASS" ]; then
+  # Raspberry Pi Imager writes a plain-password profile even for an 802.1X network, where
+  # it can never authenticate. Two profiles for the same SSID then fight over the radio.
+  for name in $(nmcli -t -f NAME,TYPE connection show 2>/dev/null | awk -F: '"$2=="802-11-wireless"{print $1}"'); do
+    [ "$name" = "wifi-$SSID" ] && continue
+    [ "$(nmcli -g 802-11-wireless.ssid connection show "$name" 2>/dev/null)" = "$SSID" ] && \
+      nmcli connection delete "$name" >/dev/null 2>&1 && echo "removed plain profile: $name"
+  done
   nmcli --terse --fields NAME connection show 2>/dev/null | grep -qx "wifi-$SSID" || {
     nmcli connection add type wifi con-name "wifi-$SSID" ifname wlan0 ssid "$SSID" \
       wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.phase2-auth mschapv2 \
       802-1x.identity "$IDENTITY" 802-1x.password "$PASS" \
-      ipv4.method auto ipv4.route-metric 100 2>/dev/null
+      ipv4.method auto ipv4.route-metric 100 \
+      connection.autoconnect yes connection.autoconnect-priority 20 2>/dev/null
   }
   nmcli connection up "wifi-$SSID" >/dev/null 2>&1
 fi
