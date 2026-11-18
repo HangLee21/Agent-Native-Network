@@ -87,13 +87,53 @@ def wait_for(port, path, seconds=25):
     return False
 
 
+def ensure_lab_mode(interactive=True):
+    """Put the wired port on the lab subnet, elevating once if needed.
+
+    Switching an interface address needs administrator rights, and the whole point of the
+    desktop shortcut is that nobody has to remember that. Returns True when the address is
+    present afterwards.
+    """
+    if gateway_nic_present():
+        return True
+    script = ROOT / "tools" / "mid_baseline" / "gateway_probe" / "netmode.ps1"
+    if not script.is_file():
+        print("  netmode.ps1 not found: %s" % script)
+        return False
+    print("  wired port is not on the lab subnet; switching (you will get one UAC prompt)")
+    inner = ("-NoProfile -ExecutionPolicy Bypass -File '%s' -Mode lab" % script)
+    try:
+        # Start-Process -Verb RunAs is what raises the UAC prompt from a non-elevated parent.
+        subprocess.run(["powershell", "-NoProfile", "-Command",
+                        "Start-Process powershell -Verb RunAs -Wait -ArgumentList %s"
+                        % json.dumps(inner).replace('"', "'")],
+                       timeout=180)
+    except Exception as exc:
+        print("  could not elevate: %s" % exc)
+    for _ in range(20):
+        if gateway_nic_present():
+            return True
+        time.sleep(1)
+    return False
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--no-browser", action="store_true")
     parser.add_argument("--output", default=None, help="Studio output dir (must not exist)")
+    parser.add_argument("--skip-lab", action="store_true", help="do not touch the network mode")
     args = parser.parse_args()
 
-    print("== checking services")
+    if not args.skip_lab:
+        print("== wired port")
+        if ensure_lab_mode():
+            print("  lab subnet ready (%s)" % LAB_IP)
+        else:
+            print("  FAILED: %s is still missing." % LAB_IP)
+            print("  Run as administrator:  .\\tools\\mid_baseline\\gateway_probe\\netmode.ps1 lab")
+            print("  Continuing anyway; the page will show no data until this is fixed.")
+
+    print("\n== checking services")
     started = []
 
     if not port_open(TOPOLOGY_PORT):
