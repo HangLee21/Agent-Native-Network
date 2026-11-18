@@ -182,7 +182,11 @@ class Topology:
                 "source": "gateway_udp_lrn1",
                 "labels": labels,
                 "receiver": {
-                    "state": "receiving" if self.last_rx else "idle",
+                    # A receiver that has not heard anything for the stale window must not keep claiming
+                    # "receiving": that made a dead forwarder look healthy for hours.
+                    "state": ("idle" if not self.last_rx else
+                              "receiving" if (now - self.last_rx) * 1000 <= STALE_AFTER_MS else
+                              "stale"),
                     "gateway_id": (self.gateway_eui or "").lower(),
                     # The viewer only uses a source when the gateway is provably talking to
                     # us; without these fields it reports "receiving" but is never selected.
