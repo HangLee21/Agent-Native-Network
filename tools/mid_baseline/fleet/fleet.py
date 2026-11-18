@@ -55,7 +55,9 @@ def ssh_target(name, ip):
 
 def run_ssh(target, command, timeout=60, stdin_text=None):
     args = ["ssh", "-T", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
-            "-o", "BatchMode=yes", "-i", KEY, "-o", "ConnectTimeout=15", target, command]
+            "-o", "BatchMode=yes", "-i", KEY, "-o", "ConnectTimeout=15",
+            "-o", "ServerAliveInterval=15", "-o", "ServerAliveCountMax=4",
+            target, command]
     try:
         proc = subprocess.run(args, capture_output=True, text=True, timeout=timeout,
                               input=stdin_text)
@@ -141,6 +143,44 @@ def cmd_push(args):
     return 0
 
 
+HELPER_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "gateway_probe")
+
+
+def _ensure_helper(target, name):
+    """Copy a helper script to the device when it is not there yet.
+
+    A stock Pi image only has the reader; the flasher and the serial probe are ours. Making
+    the update fail on their absence turned a one-command job into a debugging session.
+    """
+    present = run_ssh(target, "test -f ~/eora/%s && echo yes" % name, timeout=30)
+    if "yes" in (present[1] or ""):
+        return None
+    local = os.path.join(HELPER_DIR, name)
+    if not os.path.isfile(local):
+        return "missing locally: " + local
+    pushed = subprocess.run(
+        ["scp", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
+         "-o", "BatchMode=yes", "-i", KEY, local, "%s:/home/eora/eora/%s" % (target, name)],
+        capture_output=True, text=True)
+    if pushed.returncode != 0:
+        return "push %s failed: %s" % (name, (pushed.stderr or "").strip()[:120])
+    return None
+
+
+def _ensure_esptool(target):
+    """Install esptool on the device when it is absent, and say so only if that fails."""
+    probe = run_ssh(target, "python3 -c 'import esptool' 2>/dev/null && echo yes", timeout=40)
+    if "yes" in (probe[1] or ""):
+        return None
+    print("  %-14s installing esptool (one time, ~30 s)" % target.split("@")[0])
+    run_ssh(target, "python3 -m pip install --user --break-system-packages --quiet esptool 2>&1 | tail -n 3",
+            timeout=600)
+    again = run_ssh(target, "python3 -c 'import esptool;print(esptool.__version__)'", timeout=40)
+    if again[0] != 0:
+        return "esptool install failed: " + (again[1] or "").strip()[:150]
+    return None
+
+
 def cmd_update(args):
     image = os.path.abspath(args.image)
     if not os.path.isfile(image):
@@ -150,24 +190,44 @@ def cmd_update(args):
     devices = [d for d in tailscale_devices() if d[1]]
     if args.only:
         devices = [d for d in devices if d[0] in args.only]
+    if not devices:
+        raise SystemExit("no eora-air-* devices online; check `tailscale status`")
     base = os.path.basename(image)
     remote = "/home/eora/eora/%s" % base
 
     def one(item):
         name, ip = item
         target = ssh_target(name, ip)
+        # Self-heal first: a missing helper or a missing esptool used to surface as an empty
+        # "flash FAILED:" and cost an afternoon.
+        for helper in ("node_update.py", "pi_node_probe.py"):
+            err = _ensure_helper(target, helper)
+            if err:
+                return name, 1, err
+        err = _ensure_esptool(target)
+        if err:
+            return name, 1, err
         pushed = subprocess.run(
             ["scp", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
              "-o", "BatchMode=yes", "-i", KEY, image, "%s:%s" % (target, remote)],
             capture_output=True, text=True)
         if pushed.returncode != 0:
-            return name, 1, "push failed: " + pushed.stderr.strip()[:100]
+            return name, 1, "push failed: " + (pushed.stderr or "").strip()[:100]
         code, out = run_ssh(target,
                             "EORA_SUDO_PASS=%s python3 ~/eora/node_update.py %s"
                             % (json.dumps(SUDO_PASS), remote), timeout=args.timeout)
-        tail = [line for line in out.strip().splitlines() if "VERIFIED" in line
-                or "MISMATCH" in line or "FAILED" in line or "rollback" in line.lower()]
-        return name, code, (tail[-1] if tail else out.strip().splitlines()[-1][:100])
+        lines = [line for line in (out or "").strip().splitlines() if line.strip()]
+        # VERIFIED is the authority: the flash already happened and was proven by reading the
+        # node's build id. A dropped ssh session after that is not a failed update.
+        if any("VERIFIED" in line for line in lines):
+            code = 0
+        if code == 0:
+            note = next((l for l in lines if "VERIFIED" in l or "MISMATCH" in l),
+                        lines[-1][:120] if lines else "ok")
+            return name, code, note
+        # On failure the useful part is the block after the headline, not the headline.
+        detail = " | ".join(lines[-6:]) if lines else "no output"
+        return name, code, detail
 
     with ThreadPoolExecutor(max_workers=8) as pool:
         for name, code, note in pool.map(one, devices):
