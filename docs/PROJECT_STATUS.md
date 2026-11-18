@@ -1,5 +1,7 @@
 # 项目状态：目标与完成度
 
+2026-11-18 M-057 完成。做卡时自动携带此管理电脑的 Ed25519 公钥，Pi 首启按 eora 账户登记。校园 Wi-Fi 地址变化后沿用 ssh eora-air-NN。04 已实测按别名免密返回主机名，当前管理机 MagicDNS 已开；05/105/255 通过离线夹具，下一台新卡实际首启登录待验。
+
 2026-11-18 04 实机验收完成。04 免网线加入 Tailscale，经用户授权在 eora 账户登记现有机群公钥后，新建 SSH 连接免密成功。FLEET_STATUS.cmd 实际显示 eora-air-04 / active，wlan0 获 IPv4、cable 为空，读取会话记录板 MAC 90:da:72:48:a5:20、固件后缀 af651f100dfd。此次公钥登记发生在开机后，后续卡应在 Imager 的 eora 账户配置同一公钥。证据 simulation/results/20261118-M-056-pi04-fleet/SOURCE.json。
 
 2026-11-18 M-056 完成做卡工具修复及 04 实卡准备。04 卡已备份并写入，读回确认 NoCloud 实例号一致、主机名 eora-air-04、安装入口唯一，保留了用户、SSH 与原启动参数。04/05/06 编号复用经模拟夹具检查。免网线首启、无线入网及 node_reader active 待上机。

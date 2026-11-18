@@ -17,6 +17,7 @@ Diagnostics land in the FAT boot partition, so putting the card back in this PC 
 """
 import argparse
 import base64
+import binascii
 import os
 import re
 import sys
@@ -33,6 +34,7 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[3]
 HELPERS = Path(__file__).resolve().parent.parent / "gateway_probe"
 ENV_FILE = ROOT / ".local" / "mid" / "pi" / "device.env"
+FLEET_PUBLIC_KEY = Path.home() / ".ssh" / "id_ed25519_eora.pub"
 INSTALLER_NAME = "eora-firstboot.sh"
 MARKER = "# >>> eora identity >>>"
 RUNCMD_ARGS = "bash, /boot/firmware/" + INSTALLER_NAME
@@ -56,6 +58,64 @@ def load_env():
             key, value = line.split("=", 1)
             data[key.strip()] = value.strip()
     return data
+
+
+def load_fleet_public_key():
+    """Read and validate the single management Ed25519 public key."""
+    try:
+        text = FLEET_PUBLIC_KEY.read_text(encoding="utf-8").strip()
+        if "\n" in text or "\r" in text:
+            raise ValueError("expected one public key")
+        parts = text.split()
+        if len(parts) < 2 or parts[0] != "ssh-ed25519":
+            raise ValueError("expected an ssh-ed25519 public key")
+        blob = base64.b64decode(parts[1], validate=True)
+        if (len(blob) != 51 or blob[:4] != b"\x00\x00\x00\x0b"
+                or blob[4:15] != b"ssh-ed25519" or blob[15:19] != b"\x00\x00\x00\x20"):
+            raise ValueError("invalid Ed25519 key data")
+        return "ssh-ed25519 " + parts[1]
+    except (OSError, UnicodeError, ValueError, binascii.Error) as exc:
+        raise ValueError("无法读取有效的机群公钥 %s；请联系管理员恢复该公钥后重试，存储卡未修改。" % FLEET_PUBLIC_KEY) from exc
+
+
+KEY_INSTALLER = r'''#!/usr/bin/env python3
+import os
+import pwd
+import shlex
+import sys
+from pathlib import Path
+
+
+def install_authorized_key(home, key):
+    ssh_dir = Path(home) / ".ssh"
+    ssh_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
+    os.chmod(ssh_dir, 0o700)
+    authorized = ssh_dir / "authorized_keys"
+    existing = authorized.read_text(encoding="utf-8") if authorized.exists() else ""
+    key_type, key_data = key.split()
+    found = False
+    for line in existing.splitlines():
+        try:
+            fields = shlex.split(line, comments=True)
+        except ValueError:
+            continue
+        if fields[:2] == [key_type, key_data] or fields[1:3] == [key_type, key_data]:
+            found = True
+            break
+    if not found:
+        with authorized.open("a", encoding="utf-8") as stream:
+            if existing and not existing.endswith("\n"):
+                stream.write("\n")
+            stream.write(key + "\n")
+    os.chmod(authorized, 0o600)
+
+
+if __name__ == "__main__":
+    user = pwd.getpwnam("eora")
+    if os.geteuid() != user.pw_uid:
+        raise SystemExit("SSH key installation must run as eora")
+    install_authorized_key(user.pw_dir, sys.argv[1])
+'''
 
 
 def find_boot(card):
@@ -98,6 +158,7 @@ mark "2/6 hostname=$EORA_HOST"
 
 for i in $(seq 1 120); do id eora >/dev/null 2>&1 && break; sleep 5; done
 id eora >/dev/null 2>&1 || { mark "FAILED: user eora missing"; exit 1; }
+runuser -u eora -- python3 /usr/local/lib/eora/install_fleet_key.py "$(cat /etc/eora/fleet.pub)" || { mark "FAILED: SSH public key installation"; exit 1; }
 getent group dialout >/dev/null || { mark "FAILED: dialout group missing"; exit 1; }
 usermod -a -G dialout eora
 
@@ -186,7 +247,7 @@ WantedBy=multi-user.target
 """
 
 
-def compose_installer(number, env, helpers):
+def compose_installer(number, env, helpers, fleet_public_key):
     """The script cloud-init runs: drop the payload, install the unit, start it once."""
     host = "eora-air-%02d" % number
     lines = [
@@ -209,6 +270,10 @@ def compose_installer(number, env, helpers):
         "EORA_AUTHKEY=%s" % shq(env.get("TAILSCALE_AUTHKEY", "")),
         "EORA_ID",
         "chmod 600 /etc/eora/identity.env",
+        "printf '%s\\n' " + shq(fleet_public_key) + " > /etc/eora/fleet.pub",
+        "printf '%s' " + shq(base64.b64encode(KEY_INSTALLER.encode('utf-8')).decode()) + " | base64 -d > /usr/local/lib/eora/install_fleet_key.py",
+        "chmod 755 /usr/local/lib/eora",
+        "chmod 644 /usr/local/lib/eora/install_fleet_key.py",
         "",
         "# The logic is base64 on purpose: no nested quotes or heredocs to get wrong.",
     ]
@@ -233,6 +298,7 @@ def compose_installer(number, env, helpers):
         "EORA_UNIT",
         "systemctl daemon-reload",
         "systemctl enable eora-firstboot.service",
+        "runuser -u eora -- python3 /usr/local/lib/eora/install_fleet_key.py \"$(cat /etc/eora/fleet.pub)\"",
         "systemctl start --no-block eora-firstboot.service",
         "echo \"== $(date -Is) installer done for " + host + "\"",
     ]
@@ -383,6 +449,12 @@ def main():
     else:
         say("   all four keys present")
     if args.check:
+        try:
+            load_fleet_public_key()
+        except ValueError as exc:
+            say(str(exc))
+            return 2
+        say("   fleet public key valid")
         return 0 if not missing else 2
 
     if args.list:
@@ -400,6 +472,12 @@ def main():
         return 2
     if not (1 <= args.number <= 255):
         parser.error("--number must be 1..255 (it travels in one frame byte)")
+
+    try:
+        fleet_public_key = load_fleet_public_key()
+    except ValueError as exc:
+        say(str(exc))
+        return 2
 
     boot = find_boot(args.card)
     if not boot:
@@ -431,7 +509,7 @@ def main():
         new_id = bump_instance_id(stage, args.number)
         if (stage / "network-config").exists() and not fix_network_config(stage, env):
             raise SystemExit("无法检查或更新 Wi-Fi 配置；未修改存储卡")
-        (stage / INSTALLER_NAME).write_text(compose_installer(args.number, env, helpers),encoding="utf-8",newline="\n")
+        (stage / INSTALLER_NAME).write_text(compose_installer(args.number, env, helpers, fleet_public_key),encoding="utf-8",newline="\n")
         # Preserve originals on the card before any change; failures restore from these bytes.
         backup = boot / ("eora-backup-" + uuid.uuid4().hex)
         backup.mkdir()

@@ -95,6 +95,8 @@ WIFI_PASSWORD=你的校园网密码
 TAILSCALE_AUTHKEY=tskey-auth-....     ← Reusable + Pre-approved，Ephemeral 关
 ```
 
+制卡电脑还需要已有机群管理公钥 `%USERPROFILE%\.ssh\id_ed25519_eora.pub`，以及与之配套的 SSH 别名配置和私钥。公钥缺失或格式错误时，制卡会停止且不修改卡；请联系管理员恢复，勿复制或提供私钥。
+
 ### 每张卡
 
 1. **Raspberry Pi Imager** 写镜像：用户名 `eora`、开启 SSH、填入你的公钥
@@ -105,6 +107,7 @@ Pi 首次启动后会尝试完成以下步骤：
 
 ```
 设主机名 eora-air-07
+给 eora 账户登记机群管理公钥，保留已有 SSH 授权
 建 802.1X WiFi 配置（Imager 做不了这个）
 装 Tailscale + 用 auth key 入网
 装 pyserial / esptool
@@ -123,6 +126,8 @@ MK_CARD.cmd   G:  9
 ```
 
 `MK_CARD.cmd --list` 可以看哪些卡已经配好。
+
+节点入网且本机的别名和名称解析已配置后，可按编号登录，例如 `ssh eora-air-05` 或 `ssh eora-air-105`。新节点首次入网和名称解析仍需在现场验证。
 
 ### 之后
 
