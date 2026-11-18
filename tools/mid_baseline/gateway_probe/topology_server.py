@@ -12,6 +12,7 @@ import argparse
 import base64
 import binascii
 import json
+import os
 import socket
 import struct
 import threading
@@ -46,6 +47,7 @@ class Topology:
         self.reports = {}          # observer mac -> decoded record
         self.labels = {}
         self.frames = 0
+        self.resets = 0        # recvfrom OSErrors recovered from
         self.lrn1 = 0
         self.foreign = 0
         self.bad = 0
@@ -60,6 +62,11 @@ class Topology:
     def gateway_name(self, eui=None):
         eui = (eui or self.gateway_eui or "").lower()
         return KNOWN_GATEWAYS.get(eui, "gateway-" + eui[-8:] if eui else "gateway")
+
+    def note_reset(self):
+        """Count a socket reset so a flapping link is visible instead of silent."""
+        with self.lock:
+            self.resets += 1
 
     def note_gateway(self, eui):
         """Called once per PUSH_DATA with the 8-byte EUI from the packet header."""
@@ -174,6 +181,7 @@ class Topology:
                     "lrn1_frames": self.lrn1,
                     "foreign_frames": self.foreign,
                     "bad_frames": self.bad,
+                    "socket_resets": self.resets,
                 },
                 "reports": rows,
                 "evidence": "decoded from gateway PUSH_DATA; CRC32 verified per frame",
@@ -206,12 +214,13 @@ def udp_loop(topology, port, stop):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     # Windows turns the ICMP port-unreachable produced when a sender closes its socket into
-    # a ConnectionResetError on the *next* recvfrom, which silently eats the datagram that
-    # had actually arrived: the forwarder restarts, and the frame it just sent is lost.
-    if hasattr(socket, "SIO_UDP_CONNRESET"):
+    # a ConnectionResetError on the *next* recvfrom. `socket.SIO_UDP_CONNRESET` does not
+    # exist in every Python build, so the constant is spelled out; relying on hasattr()
+    # silently disabled this guard and let one reset kill the receive thread for good.
+    if os.name == "nt":
         try:
-            sock.ioctl(socket.SIO_UDP_CONNRESET, False)
-        except (OSError, ValueError):
+            sock.ioctl(0x9800000C, False)
+        except (OSError, ValueError, AttributeError):
             pass
     sock.bind(("0.0.0.0", port))
     sock.settimeout(0.5)
@@ -219,6 +228,13 @@ def udp_loop(topology, port, stop):
         try:
             data, addr = sock.recvfrom(65535)
         except socket.timeout:
+            continue
+        except OSError:
+            # A single reset must never end reception: the gateway keeps forwarding and we
+            # would go deaf while still reporting a healthy "listening" state.
+            if stop.is_set():
+                break
+            topology.note_reset()
             continue
         if len(data) < 4:
             continue
