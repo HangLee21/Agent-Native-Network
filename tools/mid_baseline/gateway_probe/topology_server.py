@@ -19,6 +19,7 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
+LRN1_STATES = ("lost", "heard", "bidirectional")
 STALE_AFTER_MS = 30000         # a node silent this long is shown as stale
 GATEWAY_OBSERVE_S = 30      # a gateway silent this long is not observed
 
@@ -147,7 +148,9 @@ class Topology:
                 record["report"]["neighbors"].append({
                     "peer_id": mac_text(row[0:6]),
                     "peer_boot": struct.unpack("<I", row[6:10])[0],
-                    "state": row[10],
+                    # The viewer compares this field against the strings below, so emitting the raw
+                    # byte silently disabled every lost/mutual classification.
+                    "state": LRN1_STATES[row[10]] if row[10] < len(LRN1_STATES) else "unknown",
                     "valid": row[11],
                     "seen_age_ms": struct.unpack("<H", row[12:14])[0],
                     "ack_age_ms": struct.unpack("<H", row[14:16])[0],
