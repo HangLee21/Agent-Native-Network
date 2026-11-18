@@ -82,7 +82,7 @@ frames  : 1234   reports: 3
 
 ## 3. 烧树莓派（批量，不用一台台插网线）
 
-**每台 Pi 不需要连电脑。** 身份写在 SD 卡里，插电后自己配置。
+身份写在 SD 卡里；首次启动依赖可用的校园网和 Tailscale。免网线流程需要在目标设备上实际验证。
 
 ### 一次性准备（只做一次）
 
@@ -101,7 +101,7 @@ TAILSCALE_AUTHKEY=tskey-auth-....     ← Reusable + Pre-approved，Ephemeral �
 2. 双击 **`MK_CARD.cmd`** → 输入盘符（如 `E:`）→ 输入编号（如 `7`）
 3. 卡插进 Pi，上电
 
-**不需要网线，不需要知道 IP。** Pi 起来后自己完成：
+Pi 首次启动后会尝试完成以下步骤：
 
 ```
 设主机名 eora-air-07
@@ -112,7 +112,7 @@ TAILSCALE_AUTHKEY=tskey-auth-....     ← Reusable + Pre-approved，Ephemeral �
 全部成功后自动 disable（下次开机零开销）
 ```
 
-失败不会静默：**每次开机重试**，日志在 `/var/log/eora-firstboot.log`。
+制卡时会保存原文件到卡内的 `eora-backup-*` 目录，并同步 NoCloud 实例号；不要删除备份。若中途失败，可插回电脑检查卡内 `eora-install.log`、`eora-firstboot.log` 和 `eora-status.txt`；服务未完成时会在后续启动重试。日志不存在也可能表示首次启动流程未运行，不能视为成功。
 
 ### 一次做多张
 

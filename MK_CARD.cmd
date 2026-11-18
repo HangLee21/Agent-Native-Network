@@ -10,6 +10,8 @@ echo ============================================
 echo  Prepare one SD card (identity for one Pi)
 echo ============================================
 echo.
+if /i "%~1"=="--check" goto passthrough
+if /i "%~1"=="--list" goto passthrough
 echo Reminder: write the image with Raspberry Pi Imager FIRST
 echo   (user eora, SSH on, your public key), then run this.
 echo.
@@ -26,8 +28,11 @@ if not "%~2"=="" (
 )
 
 echo.
-"%PYEXE%" -X utf8 tools\mid_baseline\gateway_probe\mkcard.py --card "%CARD%" --number %NUM%
+"%PYEXE%" -X utf8 tools\mid_baseline\gateway_probe\mkcard.py --card "%CARD%" --number "%NUM%"
 set "result=%errorlevel%"
 echo.
 pause
 exit /b %result%
+:passthrough
+"%PYEXE%" -X utf8 tools\mid_baseline\gateway_probe\mkcard.py %1
+exit /b %errorlevel%
