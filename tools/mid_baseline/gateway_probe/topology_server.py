@@ -19,6 +19,7 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
+STALE_AFTER_MS = 30000         # a node silent this long is shown as stale
 GATEWAY_OBSERVE_S = 30      # a gateway silent this long is not observed
 
 KNOWN_GATEWAYS = {"b827ebfffe32e2c1": "RHF2S008", "a4f00fe57b830000": "E870L-470"}   # friendly names only; identity comes from the wire
@@ -53,6 +54,7 @@ class Topology:
         self.foreign = 0
         self.bad = 0
         self.last_rx = None
+        self.last_rx_by = {}     # observer mac -> last frame time
         self.channel = None
         self.freq = None
         # Learned from the PUSH_DATA header of whichever gateway is actually sending, so a
@@ -106,6 +108,9 @@ class Topology:
                 self.bad += 1
                 return
             observer = mac_text(raw[8:14])
+            # Age must be per observer: a single global timestamp makes a dead node
+            # look as fresh as whichever node transmitted most recently.
+            self.last_rx_by[observer] = time.time()
             # Header byte 35 carries the device's own number, so names are learned from the
             # air and no roster file has to be maintained as the fleet grows.
             number = raw[35]
@@ -166,7 +171,8 @@ class Topology:
             rows = []
             for observer, rec in self.reports.items():
                 item = json.loads(json.dumps(rec))
-                item["pc_receive_age_ms"] = int((now - self.last_rx) * 1000) if self.last_rx else 0
+                seen = self.last_rx_by.get(observer)
+                item["pc_receive_age_ms"] = int((now - seen) * 1000) if seen else 0
                 rows.append(item)
             return {
                 "schema": "lora.topology.v1",
@@ -182,6 +188,7 @@ class Topology:
                     "gateway_last_pull_age_ms": int((now - self.last_gateway) * 1000)
                                                  if self.last_gateway else None,
                     "identity_verified": bool(self.gateway_eui),
+                    "recent_threshold_ms": STALE_AFTER_MS,
                     "port": None,
                     "serial_open": False,
                     "last_rx_age_ms": int((now - self.last_rx) * 1000) if self.last_rx else None,
