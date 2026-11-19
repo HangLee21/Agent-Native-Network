@@ -87,6 +87,35 @@ def wait_for(port, path, seconds=25):
     return False
 
 
+def run_netmode_script(script, script_args, *, elevate=True, timeout=180):
+    """Run a PowerShell script through Start-Process and return its exit status.
+
+    The command text is fixed. Paths and arguments travel through the environment,
+    then Windows command-line quoting is applied once to the child argument string.
+    """
+    child_args = ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(script)] + list(script_args)
+    env = os.environ.copy()
+    env["EORA_CHILD_PS_ARGS"] = subprocess.list2cmdline(child_args)
+    env["EORA_CHILD_PS_ELEVATE"] = "1" if elevate else "0"
+    command = r'''
+$ErrorActionPreference = 'Stop'
+[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+try {
+    $options = @{FilePath='powershell.exe'; ArgumentList=$env:EORA_CHILD_PS_ARGS;
+                 PassThru=$true; Wait=$true; WindowStyle='Hidden'; ErrorAction='Stop'}
+    if ($env:EORA_CHILD_PS_ELEVATE -eq '1') { $options.Verb = 'RunAs' }
+    $child = Start-Process @options
+    exit $child.ExitCode
+} catch {
+    [Console]::Error.WriteLine($_.Exception.Message)
+    exit 125
+}
+'''
+    return subprocess.run(["powershell.exe", "-NoProfile", "-Command", command],
+                          env=env, capture_output=True, text=True, encoding="utf-8",
+                          errors="replace", timeout=timeout)
+
+
 def ensure_lab_mode(interactive=True):
     """Put the wired port on the lab subnet, elevating once if needed.
 
@@ -101,15 +130,15 @@ def ensure_lab_mode(interactive=True):
         print("  netmode.ps1 not found: %s" % script)
         return False
     print("  wired port is not on the lab subnet; switching (you will get one UAC prompt)")
-    inner = ("-NoProfile -ExecutionPolicy Bypass -File '%s' -Mode lab" % script)
     try:
-        # Start-Process -Verb RunAs is what raises the UAC prompt from a non-elevated parent.
-        subprocess.run(["powershell", "-NoProfile", "-Command",
-                        "Start-Process powershell -Verb RunAs -Wait -ArgumentList %s"
-                        % json.dumps(inner).replace('"', "'")],
-                       timeout=180)
+        result = run_netmode_script(script, ["-Mode", "lab"])
+        if result.returncode:
+            print("  network setup exited with code %s: %s" %
+                  (result.returncode, (result.stderr or result.stdout or "no details").strip()))
+            return False
     except Exception as exc:
         print("  could not elevate: %s" % exc)
+        return False
     for _ in range(20):
         if gateway_nic_present():
             return True
