@@ -61,6 +61,32 @@ len = 44 + 20*rows + (24 if status) + (20 if gps) + 4
 > `pi_*` 字段由 Pi 通过串口周期喂给节点（新增一条 `edgestat` 命令），节点存住，
 > 下次组帧时带上。Pi 掉线时 `pi_flags.bit0=0`，前端立刻能看出"边缘没了但节点还在"。
 
+
+---
+
+## 2.5 实现状态（重要：格式有位置 ≠ 现在有数据）
+
+帧**格式**已经支持下面全部字段，但当前固件只填了两个。看数据时必须分清：
+
+| 字段 | 现在有值 | 缺什么 |
+|---|---|---|
+| 
+eset_reason | **✅ 真实值** | — |
+| heap_free_kb | **✅ 真实值** | — |
+| supply_mv | ❌ 恒为 0 | 需要 lr11xx_system_get_vbat()，并解决从工作线程访问射频上下文 |
+| die_temp_c | ❌ 恒为 0 | 需要启用 	emperature_sensor 驱动 |
+| queue_depth / 	x_drops | ❌ 恒为 0 | 需要从 runtime/peer_manager 暴露计数 |
+| 
+outes | ❌ 恒为 0 | 需要读 source_route 表长度 |
+| lora_tx_power_dbm / lora_sf | ❌ 恒为 0 | 从 lref_config 读取即可，改动很小 |
+| ault_flags | ❌ 恒为 0 | 需要累计型故障计数器 |
+| pi_*（7 个字段） | ❌ 恒为 0 | 需要新增 Pi→节点 串口命令（如 edgestat）+ Pi 侧发送服务 |
+| attery_pct | ❌ 恒为 0 | 需要电池采样电路 |
+| GPS 块全部字段 | ❌ 恒为 0 | 需要定位源（飞控或 GNSS 模块） |
+
+发送节奏：状态块**每 5 帧带一次**，10 s 周期下即 **50 s 一个采样点**。
+需要更高分辨率时可以改 LRN1_STATUS_EVERY，代价是邻居行变少。
+
 ---
 
 ## 3. GPS 块（20 字节，**预留**）
