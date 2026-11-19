@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "synthetic": true,
+  "cases": [
+    "live_overlay_present",
+    "inflight_live_response_isolated",
+    "mutual_partial_lost_event_navigation",
+    "truncated_absence_no_event",
+    "return_live_restores_overlay"
+  ],
+  "errors": []
+}

@@ -1,5 +1,7 @@
 # 固件版本沿革（field_agent）
 
+2026-11-19 M-060。Studio 拓扑图改用直线和短弧线。回放同一帧的前后对照见 `simulation/results/20261119-M060-studio-links/`。
+
 2026-11-19 M-059。修复 Windows 在仓库路径含空格时启动网卡配置脚本失败的问题。Windows PowerShell 实测带空格和单引号的测试路径，并验证子进程退出码。
 
 2026-11-19 M-058。Studio 新增 LoRa 观测记录、时间轴和事件跳转，接入 LRN1 扩展状态与 GPS 详情。接收端新增上行报告窗口统计。本项交付在电脑端生效。 证据位于 `simulation/results/20261119-M058-studio-replay/`。

@@ -1,5 +1,7 @@
 # 当前摘要
 
+M-060 拓扑连线已交付。D-040 调整几何，C-045 完成复核。
+
 M-059 已验收。Windows Studio 启动器支持带空格的项目路径，E2-041 通过 Windows 子进程测试，C-044 完成核对。
 
 2026-11-19 M-058 已验收。Studio 支持 LoRa 拓扑记录、时间轴回放、节点超时和链路变化定位、上行报告质量与 LRN1 状态/GPS。E2-040、D-039 和 C-043 收口。验收记录见 `simulation/results/20261119-M058-studio-replay/SOURCE.json`。现场移动与实际 GPS 待测。

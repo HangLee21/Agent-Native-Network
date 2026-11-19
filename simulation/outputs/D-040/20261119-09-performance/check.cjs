@@ -1,0 +1,4 @@
+const fs=require('fs'),vm=require('vm'),{performance}=require('perf_hooks');const ctx={};vm.createContext(ctx);vm.runInContext(fs.readFileSync('research/agent_native_network/mobile_gateway/studio-model.js','utf8')+'\nthis.S=MobileStudioModel',ctx);
+const pts=Array.from({length:30},(_,i)=>({x:480+300*Math.cos(i*Math.PI/15),y:280+200*Math.sin(i*Math.PI/15)})),edges=[];for(let i=0;i<30;i++)for(let j=i+1;j<30&&edges.length<80;j++)edges.push([i,j]);
+function run(){const t=performance.now();for(const [i,j]of edges)ctx.S.pairGeometry(pts[i],pts[j],pts.filter((_,k)=>k!==i&&k!==j),[],18);return +(performance.now()-t).toFixed(2)}
+run();const ms=run();fs.writeFileSync('simulation/outputs/D-040/20261119-09-performance/RESULT.json',JSON.stringify({synthetic:true,edges:80,same_endpoint_only_ms:ms,note:'one warmed host JS geometry pass; no device or RF'},null,2));
