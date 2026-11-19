@@ -225,8 +225,27 @@ wlan_ip=$(ip -4 -o addr show wlan0 2>/dev/null | awk '{print $4}' || true)
 [ -n "$wlan_ip" ] || { mark "FAILED: wlan0 has no IPv4 address"; exit 1; }
 mark "4/6 network up: $wlan_ip"
 
+# A Pi has no RTC: until NTP catches up its clock can lag the repositories' signing time, and
+# apt then rejects every signature with "Not live until ...". That is exactly what happened on
+# card 05: the Tailscale install failed with an unsigned-repository error even though the Wi-Fi
+# was fine. Wait for a synced clock before touching any repository.
+mark "4a/6 waiting for a synchronised clock"
+timedatectl set-ntp true >/dev/null 2>&1 || true
+for i in $(seq 1 60); do
+  [ "$(timedatectl show -p NTPSynchronized --value 2>/dev/null)" = "yes" ] && break
+  sleep 5
+done
+mark "4a/6 clock: $(date -Is) synced=$(timedatectl show -p NTPSynchronized --value 2>/dev/null)"
+
 if ! command -v tailscale >/dev/null 2>&1; then
-  curl -fsSL https://tailscale.com/install.sh | sh || { mark "FAILED: tailscale installation"; exit 1; }
+  # Retry: even after the clock wait, a lagging signature window can still bite once.
+for attempt in 1 2 3; do
+  curl -fsSL https://tailscale.com/install.sh | sh && break
+  mark "WARN: tailscale install attempt $attempt failed"
+  sleep 15
+  timedatectl set-ntp true >/dev/null 2>&1 || true
+done
+command -v tailscale >/dev/null 2>&1 || { mark "FAILED: tailscale installation"; exit 1; }
 fi
 if command -v tailscale >/dev/null 2>&1 && [ -n "$EORA_AUTHKEY" ]; then
   tailscale up --auth-key="$EORA_AUTHKEY" --hostname="$EORA_HOST" --accept-dns=false || { mark "FAILED: tailscale connection"; exit 1; }
@@ -239,7 +258,7 @@ fi
 PIP_SYSTEM_FLAG=()
 if python3 -m pip help install > /tmp/eora-pip-help.txt && grep -q -- '--break-system-packages' /tmp/eora-pip-help.txt; then PIP_SYSTEM_FLAG=(--break-system-packages); fi
 rm -f /tmp/eora-pip-help.txt
-python3 -m pip install "${PIP_SYSTEM_FLAG[@]}" --quiet pyserial==3.5 esptool==4.13.0 || { mark "FAILED: Python dependencies"; exit 1; }
+python3 -m pip install "${PIP_SYSTEM_FLAG[@]}" --quiet pyserial==3.5 esptool==5.6.0 || { mark "FAILED: Python dependencies"; exit 1; }
 runuser -u eora -- python3 -c "import serial, esptool" || { mark "FAILED: service Python imports"; exit 1; }
 install -d -o eora -g eora /home/eora/eora /home/eora/eora/logs
 for f in node_reader.py node_update.py pi_node_probe.py; do
@@ -548,6 +567,17 @@ def main():
     if not cmdline.exists():
         say("   FAILED: %s has no cmdline.txt (is this the boot partition?)" % boot)
         return 2
+
+    # A card that already booted tells us why it failed; surface that before overwriting it,
+    # otherwise the evidence is lost and the next attempt starts blind.
+    previous = boot / "eora-status.txt"
+    if previous.is_file():
+        text = previous.read_text(encoding="utf-8", errors="replace").strip()
+        if text:
+            say("== previous boot on this card said:")
+            for line in text.splitlines()[-3:]:
+                say("   " + line)
+            say("   (card will be re-prepared; that history is overwritten)")
 
     if yaml is None:
         say("需要 PyYAML；未修改存储卡")
