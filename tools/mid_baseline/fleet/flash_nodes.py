@@ -61,6 +61,13 @@ def read_password():
         value = PASS_FILE.read_text(encoding="utf-8").strip()
         if value:
             return value, str(PASS_FILE)
+    # Never block on a prompt when there is no terminal: a redirected or backgrounded run
+    # used to hang here forever with no output, which looks exactly like a stuck flash.
+    if not sys.stdin.isatty():
+        raise SystemExit(
+            "\n没有终端可输入 sudo 密码。二选一：\n"
+            "  1) 设置环境变量 EORA_PASS 后重跑\n"
+            "  2) 直接在终端里运行一次，密码会缓存到 %s" % PASS_FILE)
     say("Device sudo password (stored in %s for next time):" % PASS_FILE)
     value = getpass.getpass("  password: ").strip()
     if value:

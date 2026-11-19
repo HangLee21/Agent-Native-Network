@@ -62,21 +62,53 @@ def read_build_id(node):
     return info.get("build_id")
 
 
+def esptool_major():
+    """Major version of the esptool this Python will run.
+
+    esptool 5 renamed the CLI: `write_flash` became `write-flash`, and option values like
+    `default_reset` became `default-reset`. A fleet can easily be mixed (some Pis had 5.x
+    installed by hand, others ship 4.13), so the spelling is chosen per device rather than
+    hardcoded. Guessing wrong shows up as "invalid choice" and the flash never starts.
+    """
+    try:
+        out = subprocess.run([sys.executable, "-m", "esptool", "version"],
+                             capture_output=True, text=True, timeout=30)
+        text = (out.stdout or "") + (out.stderr or "")
+        match = re.search(r"(\d+)\.\d+", text)
+        return int(match.group(1)) if match else 4
+    except Exception:
+        return 4
+
+
 def flash(image):
-    for command in (["write-flash"], ["write_flash"]):
+    # esptool 5 renamed the CLI wholesale: the subcommand, the option values and the option
+    # names all switched from snake_case to kebab-case. A mixed fleet (some Pis carry 5.6,
+    # others the stock 4.13) therefore needs the WHOLE argument set to follow the detected
+    # version: handing "--flash-mode" to 4.13 makes it parse "dio" as the flash address.
+    sets = [
+        {"sub": "write-flash", "before": "default-reset", "after": "hard-reset",
+         "mode": "--flash-mode", "freq": "--flash-freq", "size": "--flash-size"},
+        {"sub": "write_flash", "before": "default_reset", "after": "hard_reset",
+         "mode": "--flash_mode", "freq": "--flash_freq", "size": "--flash_size"},
+    ]
+    if esptool_major() < 5:
+        sets.reverse()
+    last = ""
+    for v in sets:
         proc = subprocess.run(
             [sys.executable, "-m", "esptool", "--chip", "esp32s3", "--port", PORT,
-             "--baud", "460800", "--before", "default-reset", "--after", "hard-reset"]
-            + command + ["--flash-mode", "dio", "--flash-freq", "40m",
-                         "--flash-size", "4MB", FLASH_OFFSET, str(image)],
+             "--baud", "460800", "--before", v["before"], "--after", v["after"],
+             v["sub"], v["mode"], "dio", v["freq"], "40m", v["size"], "4MB",
+             FLASH_OFFSET, str(image)],
             capture_output=True, text=True)
         output = (proc.stdout or "") + (proc.stderr or "")
+        last = output
         if proc.returncode == 0:
             return True, output
         if "invalid choice" in output or "unrecognized" in output:
             continue
         return False, output
-    return False, "esptool rejected both write-flash and write_flash"
+    return False, "esptool rejected both CLI spellings:\n" + last
 
 
 def main():

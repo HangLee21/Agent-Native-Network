@@ -181,14 +181,13 @@ HELPER_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "gat
 
 
 def _ensure_helper(target, name):
-    """Copy a helper script to the device when it is not there yet.
+    """Copy a helper script to the device, every time.
 
-    A stock Pi image only has the reader; the flasher and the serial probe are ours. Making
-    the update fail on their absence turned a one-command job into a debugging session.
+    It used to skip the copy when the file already existed, which silently pinned every Pi
+    to whatever version was pushed first: fixing a bug in node_update.py changed nothing on
+    a device that already had the file. These scripts are a few KB, so always syncing is
+    cheap and keeps the whole fleet on the code that is actually in the repository.
     """
-    present = run_ssh(target, "test -f ~/eora/%s && echo yes" % name, timeout=30)
-    if "yes" in (present[1] or ""):
-        return None
     local = os.path.join(HELPER_DIR, name)
     if not os.path.isfile(local):
         return "missing locally: " + local
