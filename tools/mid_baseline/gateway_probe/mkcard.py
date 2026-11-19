@@ -130,6 +130,35 @@ def find_boot(card):
     return None
 
 
+
+def normalise_card(text):
+    """Accept F, f:, F:\ and F:/ alike.
+
+    The prompt asks for "a letter", so people type "F" or "f" and the old code turned that
+    into the relative path "F", which never matches a drive and reported "not a mounted
+    card" even though the card was sitting right there.
+    """
+    s = str(text or "").strip().strip('"').strip("'")
+    if not s:
+        return ""
+    s = s.replace("/", "\\").rstrip("\\")
+    if len(s) == 1 and s.isalpha():
+        s += ":"
+    if len(s) == 2 and s[0].isalpha() and s[1] == ":":
+        s = s[0].upper() + ":"
+    return s
+
+
+def detect_cards():
+    """Every mounted Raspberry Pi boot partition, as (letter, path, already_prepared)."""
+    found = []
+    for letter in "DEFGHIJKLMNOPQRSTUVWXYZ":
+        boot = find_boot(letter + ":")
+        if boot and (boot / "cmdline.txt").exists():
+            found.append((letter + ":", boot, (boot / INSTALLER_NAME).exists()))
+    return found
+
+
 def shq(value):
     return "'" + str(value).replace("'", "'\\''") + "'"
 
@@ -436,6 +465,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--card", help="boot-partition drive letter, e.g. E:")
     parser.add_argument("--number", type=int, help="node number for this card")
+    parser.add_argument("--auto", action="store_true",
+                        help="pick the only mounted card instead of naming a letter")
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
@@ -466,8 +497,8 @@ def main():
                 say("  %s: %s" % (letter + ":", m.group(1) if m else "(prepared)"))
         return 0
 
-    if not args.card or args.number is None:
-        parser.error("--card and --number are required unless --list/--check")
+    if (not args.card and not args.auto) or args.number is None:
+        parser.error("--card/--auto and --number are required unless --list/--check")
     if missing:
         return 2
     if not (1 <= args.number <= 255):
@@ -479,10 +510,30 @@ def main():
         say(str(exc))
         return 2
 
-    boot = find_boot(args.card)
+    boot = None
+    if args.card:
+        boot = find_boot(normalise_card(args.card))
+        if not boot:
+            say("   %s is not a mounted card" % args.card)
     if not boot:
-        say("   FAILED: %s is not a mounted card" % args.card)
-        return 2
+        cards = detect_cards()
+        fresh = [c for c in cards if not c[2]]
+        if len(fresh) == 1:
+            boot = fresh[0][1]
+            say("   自动选中未准备的卡 %s" % fresh[0][0])
+        elif len(cards) == 1:
+            boot = cards[0][1]
+            say("   自动选中 %s（已准备过，将改写身份）" % cards[0][0])
+        elif not cards:
+            say("   FAILED: 没检测到任何树莓派启动分区。请确认卡已插入，"
+                "或先别急着拔卡——读卡器刚插入时盘符可能还在枚举。")
+            return 2
+        else:
+            say("   FAILED: 检测到多张卡，请显式指定盘符：")
+            for letter, _path, prepared in cards:
+                say("      %s  %s" % (letter, "已准备" if prepared else "未准备"))
+            return 2
+    say("   目标卡：%s" % boot)
     cmdline = boot / "cmdline.txt"
     if not cmdline.exists():
         say("   FAILED: %s has no cmdline.txt (is this the boot partition?)" % boot)

@@ -19,7 +19,7 @@ echo.
 if not "%~1"=="" (
   set "CARD=%~1"
 ) else (
-  set /p "CARD=Card letter (e.g. E:): "
+  set /p "CARD=Card letter (Enter = auto-detect, e.g. F): "
 )
 if not "%~2"=="" (
   set "NUM=%~2"
@@ -28,7 +28,11 @@ if not "%~2"=="" (
 )
 
 echo.
-"%PYEXE%" -X utf8 tools\mid_baseline\gateway_probe\mkcard.py --card "%CARD%" --number "%NUM%"
+if "%CARD%"=="" (
+  "%PYEXE%" -X utf8 tools\mid_baseline\gateway_probe\mkcard.py --auto --number "%NUM%"
+) else (
+  "%PYEXE%" -X utf8 tools\mid_baseline\gateway_probe\mkcard.py --card "%CARD%" --number "%NUM%"
+)
 set "result=%errorlevel%"
 echo.
 pause
