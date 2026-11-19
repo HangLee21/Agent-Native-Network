@@ -27,6 +27,11 @@ KNOWN_HOSTS = os.path.join(os.environ.get("TEMP", "/tmp"), "pi_known_hosts")
 SSH_USER = "eora"
 NAME_PREFIX = "eora-air-"
 SUDO_PASS = os.environ.get("EORA_PASS", "")
+# One version across the fleet: esptool 5 renamed its whole CLI (write_flash -> write-flash,
+# --flash_mode -> --flash-mode, default_reset -> default-reset), so a mixed fleet makes any
+# fixed spelling wrong for somebody. Pin one version; node_update.py still keeps a fallback
+# for devices where the install cannot happen.
+ESPTOOL_VERSION = "5.6.0"
 
 
 def tailscale_devices():
@@ -201,16 +206,31 @@ def _ensure_helper(target, name):
 
 
 def _ensure_esptool(target):
-    """Install esptool on the device when it is absent, and say so only if that fails."""
-    probe = run_ssh(target, "python3 -c 'import esptool' 2>/dev/null && echo yes", timeout=40)
-    if "yes" in (probe[1] or ""):
+    """Make every device run the SAME esptool version, installing or upgrading as needed.
+
+    esptool 5 renamed its whole CLI (write_flash -> write-flash, --flash_mode -> --flash-mode,
+    default_reset -> default-reset). A fleet where one Pi has 4.13 and the rest have 5.6 means
+    whatever spelling the tool uses is wrong for somebody. Pinning one version removes that
+    whole class of failure; the flash command still keeps a fallback for devices where the
+    install cannot happen (no pip, no network).
+    """
+    want = ESPTOOL_VERSION
+    probe = run_ssh(target, "python3 -c 'import esptool;print(esptool.__version__)'", timeout=40)
+    have = (probe[1] or "").strip().splitlines()
+    have = have[-1].strip() if have else ""
+    if probe[0] == 0 and have == want:
         return None
-    print("  %-14s installing esptool (one time, ~30 s)" % target.split("@")[0])
-    run_ssh(target, "python3 -m pip install --user --break-system-packages --quiet esptool 2>&1 | tail -n 3",
-            timeout=600)
+    print("  %-14s esptool %s -> %s (one time, ~40 s)"
+          % (target.split("@")[0], have or "absent", want))
+    run_ssh(target,
+            "python3 -m pip install --user --break-system-packages --quiet esptool==%s 2>&1 | tail -n 3"
+            % want, timeout=900)
     again = run_ssh(target, "python3 -c 'import esptool;print(esptool.__version__)'", timeout=40)
-    if again[0] != 0:
-        return "esptool install failed: " + (again[1] or "").strip()[:150]
+    got = (again[1] or "").strip().splitlines()
+    got = got[-1].strip() if got else ""
+    if got != want:
+        # Not fatal: node_update.py falls back to the other CLI spelling.
+        return "esptool is %s, wanted %s (flash will try both spellings)" % (got or "unknown", want)
     return None
 
 

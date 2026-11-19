@@ -489,12 +489,22 @@ def main():
         return 0 if not missing else 2
 
     if args.list:
+        seen = 0
         for letter in "DEFGHIJKLMNOPQRSTUVWXYZ":
             boot = find_boot(letter + ":")
-            if boot and (boot / INSTALLER_NAME).exists():
+            if not boot or not (boot / "cmdline.txt").exists():
+                continue
+            seen += 1
+            if (boot / INSTALLER_NAME).exists():
                 text = (boot / INSTALLER_NAME).read_text(encoding="utf-8", errors="replace")
                 m = re.search(r"EORA_HOST='(eora-air-\d+)'", text)
                 say("  %s: %s" % (letter + ":", m.group(1) if m else "(prepared)"))
+            else:
+                say("  %s: (empty card, ready to prepare)" % (letter + ":"))
+        if not seen:
+            # Printing nothing looked identical to the tool being broken.
+            say("  没有检测到存储卡：读卡器里没有卡，或卡还没被系统挂载出来。")
+            say("  插卡后等两三秒再跑；或者用 `--auto` 让工具自己找。")
         return 0
 
     if (not args.card and not args.auto) or args.number is None:
