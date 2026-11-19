@@ -1,0 +1,8 @@
+gateway 0000000000000001 (gateway-00000001)
+gateway changed 0000000000000001 -> 0000000000000002
+test_new_gateway_pull_clears_old_observations (__main__.Check.test_new_gateway_pull_clears_old_observations) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK

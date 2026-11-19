@@ -4,6 +4,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 data/
+studio-replay*.sqlite3*
 simulation/outputs/
 
 # Local board bindings and generated ESP-IDF build state.

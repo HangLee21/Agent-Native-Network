@@ -11,6 +11,7 @@ and ignored instead of being shown as ours.
 import argparse
 import base64
 import binascii
+import collections
 import json
 import os
 import socket
@@ -47,6 +48,8 @@ class Topology:
     def __init__(self):
         self.lock = threading.Lock()
         self.reports = {}          # observer mac -> decoded record
+        self.retired_boots = {}    # observer mac -> previously observed boots
+        self.uplink_samples = {}   # bounded accepted sequence and receive-time samples
         self.labels = {}
         self.node_numbers = {}     # observer mac -> number learned from header byte 35
         self.frames = 0
@@ -80,6 +83,18 @@ class Topology:
             if self.gateway_eui != eui:
                 if self.gateway_eui:
                     log("gateway changed %s -> %s" % (self.gateway_eui, eui))
+                    # Reports and reception timestamps belong to the old gateway.
+                    # PULL_DATA alone can announce a replacement before it forwards
+                    # its first frame, so clear observations at identity change.
+                    self.reports.clear()
+                    self.retired_boots.clear()
+                    self.uplink_samples.clear()
+                    self.last_rx_by.clear()
+                    self.node_numbers.clear()
+                    self.last_rx = None
+                    self.channel = None
+                    self.freq = None
+                    self.frames = self.lrn1 = self.foreign = self.bad = 0
                 else:
                     log("gateway %s (%s)" % (eui, self.gateway_name(eui)))
                 self.gateway_eui = eui
@@ -95,9 +110,6 @@ class Topology:
             return
         with self.lock:
             self.frames += 1
-            self.last_rx = time.time()
-            self.channel = pkt.get("chan")
-            self.freq = pkt.get("freq")
             if len(raw) < 48 or raw[:4] != b"LRN1" or raw[4] != 44 or raw[5] != 20:
                 self.foreign += 1        # not our firmware: another node on this channel
                 return
@@ -113,6 +125,29 @@ class Topology:
                 self.bad += 1
                 return
             observer = mac_text(raw[8:14])
+            boot = struct.unpack("<I", raw[14:18])[0]
+            seq = struct.unpack("<I", raw[18:22])[0]
+            snapshot_ms = struct.unpack("<Q", raw[22:30])[0]
+            if not boot or not seq:
+                self.bad += 1
+                return
+            previous = self.reports.get(observer)
+            retired = self.retired_boots.get(observer, set())
+            if boot in retired:
+                return
+            if previous:
+                old = previous['report']
+                if boot == old['observer_boot']:
+                    if not 0 < ((seq - old['report_seq']) % 0xffffffff) < 0x80000000 or snapshot_ms < old['snapshot_at_ms']:
+                        return
+                else:
+                    if len(retired) >= 256:
+                        return
+                    self.retired_boots.setdefault(observer, set()).add(old['observer_boot'])
+                    self.uplink_samples.pop(observer, None)
+            self.last_rx = time.time()
+            self.channel = pkt.get("chan")
+            self.freq = pkt.get("freq")
             # Age must be per observer: a single global timestamp makes a dead node
             # look as fresh as whichever node transmitted most recently.
             self.last_rx_by[observer] = time.time()
@@ -204,7 +239,21 @@ class Topology:
                     "vdop_x10": raw[b + 17],
                 }
                 record["report"]["gps"] = record["gps"]
+            previous = self.reports.get(observer)
+            same_boot = previous and previous['report']['observer_boot'] == record['report']['observer_boot']
+            for block, present in (('status', has_status), ('gps', has_gps)):
+                stamp = block + '_received_at_ms'
+                if present:
+                    record[stamp] = int(self.last_rx_by[observer] * 1000)
+                elif same_boot and block in previous:
+                    record[block] = previous[block]
+                    record['report'][block] = previous[block]
+                    record[stamp] = previous[stamp]
+                else:
+                    record['report'][block] = None
+                    record[stamp] = None
             self.reports[observer] = record
+            self.uplink_samples.setdefault(observer, collections.deque(maxlen=20)).append((seq, time.monotonic()))
             self.lrn1 += 1
 
     def snapshot(self):
@@ -221,6 +270,19 @@ class Topology:
                 item = json.loads(json.dumps(rec))
                 seen = self.last_rx_by.get(observer)
                 item["pc_receive_age_ms"] = int((now - seen) * 1000) if seen else 0
+                for block in ('status', 'gps'):
+                    stamp = item.get(block + '_received_at_ms')
+                    item[block + '_age_ms'] = max(0, int(now * 1000) - stamp) if stamp is not None else None
+                samples = self.uplink_samples.get(observer, ())
+                quality = {'samples': len(samples), 'sequence_span': 1 if len(samples) == 1 else None, 'observed_fraction': None,
+                           'last_interval_ms': None, 'max_interval_ms': None}
+                if len(samples) >= 2:
+                    steps = [(samples[i][0] - samples[i-1][0]) % 0xffffffff for i in range(1, len(samples))]
+                    intervals = [max(0, int((samples[i][1] - samples[i-1][1]) * 1000)) for i in range(1, len(samples))]
+                    span = 1 + sum(steps)
+                    quality.update(sequence_span=span, observed_fraction=len(samples)/span,
+                                   last_interval_ms=intervals[-1], max_interval_ms=max(intervals))
+                item['uplink_quality'] = quality
                 rows.append(item)
             return {
                 "schema": "lora.topology.v1",
@@ -322,6 +384,8 @@ def udp_loop(topology, port, stop):
                     topology.ingest(pkt)
         elif mtype == 2:                                 # PULL_DATA
             sock.sendto(bytes([version]) + token + bytes([4]), addr)
+            if len(data) >= 12:
+                topology.note_gateway(data[4:12].hex())
     sock.close()
 
 

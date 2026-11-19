@@ -1,0 +1,40 @@
+{
+  "template_only": false,
+  "task_id": "D-039",
+  "run_id": "20261119-19-final",
+  "started_at": null,
+  "finished_at": null,
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "14ad4864b52bf5a62f95d072b620405fc7eca241",
+  "dirty_files_sha256": {
+    "research/agent_native_network/mobile_gateway/index.html": "374d85d4dcb98404c97773c532c78c336dd7303a5d00bd4a7c47d9447b730186",
+    "research/agent_native_network/mobile_gateway/view.js": "d9f6ee48b4b73afb58ca49d3c8af667c9c6b880eede9358779c19b25fca7c82f",
+    "research/agent_native_network/mobile_gateway/lora-model.js": "b29a07fb5add65eb77b51b945a7eaf2f48f7d1c9232c709be06071b63f234987",
+    "research/agent_native_network/mobile_gateway/map.js": "11dd2bbe7e0742a90e07e52ee240b1046c579d2be114600228ff51a6fed62864",
+    "research/agent_native_network/mobile_gateway/studio-model.js": "ec8ee28b021c4b8b13093c4663dc15d17339387f2736c7ffe89a01fe144aa8f9",
+    "research/agent_native_network/mobile_gateway/map.css": "0b848304d929be21d6dcb3c6a86ec33dbd5e118e5598bd50acf2cd335867e2b1",
+    "docs/OPERATING_GUIDE.md": "e8f821033fc9587e10b76e3499e7a60a990eb20a59067e42544bb58aa4eeb82b",
+    "check.py": "b34828eb93513e5f2223ff94c68e8fec8a6f05b7fa4e1a11ead80fb8c02ae399"
+  },
+  "command": "python -X utf8 simulation/outputs/D-039/20261119-19-final/check.py",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "browser": "local Chrome headless"
+  },
+  "upstream_commit": "9c006a4",
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": "30 nodes 65 frames synthetic browser",
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\D-039\\20261119-19-final",
+  "process_id": null,
+  "exit_code": 0,
+  "status": "passed",
+  "limitations": [
+    "synthetic loopback fixture; not hardware, RF or real E2 backend integration",
+    "event index capped at 10000, RSSI trend limited to current page",
+    "GPS age missing falls back to report arrival lower bound"
+  ],
+  "review_reference": null
+}

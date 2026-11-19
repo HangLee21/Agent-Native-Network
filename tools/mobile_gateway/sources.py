@@ -23,6 +23,9 @@ class AsyncSnapshot:
   elapsed=max(0,int((self.clock()-at)*1000))
   for row in value.get('reports',[]):
    if type(row.get('pc_receive_age_ms')) is int:row['pc_receive_age_ms']+=elapsed
+   for block in ('status','gps'):
+    key=block+'_age_ms'
+    if type(row.get(key)) is int:row[key]+=elapsed
    report=row.get('report')
    if isinstance(report,dict) and type(report.get('pc_receive_age_ms')) is int:report['pc_receive_age_ms']+=elapsed
   if failed or elapsed>3000:

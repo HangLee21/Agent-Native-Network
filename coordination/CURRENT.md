@@ -1,5 +1,7 @@
 # 当前摘要
 
+2026-11-19 M-058 已验收。Studio 支持 LoRa 拓扑记录、时间轴回放、节点超时和链路变化定位、上行报告质量与 LRN1 状态/GPS。E2-040、D-039 和 C-043 收口。验收记录见 `simulation/results/20261119-M058-studio-replay/SOURCE.json`。现场移动与实际 GPS 待测。
+
 2026-11-18 M-057 完成。做卡时自动携带此管理电脑的 Ed25519 公钥，Pi 首启按 eora 账户登记。校园 Wi-Fi 地址变化后沿用 ssh eora-air-NN。04 已实测按别名免密返回主机名，当前管理机 MagicDNS 已开；05/105/255 通过离线夹具，下一台新卡实际首启登录待验。
 
 M-057 后续 Pi 沿用 ssh eora-air-NN，Tailscale 名称寻址；做卡自动给 eora 账户登记本机现有机群公钥。 H-027 实施，C-042 终审。

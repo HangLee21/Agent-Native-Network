@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "evidence": "archived RF payloads, controlled local UDP timing; not a new physical movement",
+  "source": "simulation\\results\\20261113-H019-gateway-eora-link\\lrn1_samples.jsonl",
+  "sha256": "87ebbc8c72c633d081f8f5c3bd4b8f611693a22569ee56dbd4c5905ab33c38ec",
+  "reports_received": 5,
+  "sample_count": 45,
+  "sampling_span_ms": 44619,
+  "first_stale_ms": 1795072163942,
+  "restored_observer": "90:da:72:48:a4:e0",
+  "final_lora": {
+    "rssi_dbm": -45,
+    "snr_db": 10.8,
+    "frequency_hz": 470500000,
+    "channel": 5,
+    "datarate": "SF7BW125"
+  },
+  "final_age_ms": 3600,
+  "endpoint": "e6bd91ab19364f0f90b330290ba3a1dd"
+}

@@ -1,0 +1,33 @@
+{
+  "dependency_snapshot": "host Python",
+  "status": "review",
+  "upstream_commit": "98bb339",
+  "worktree": "D:\\Multi-Agent Network",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "output_directory": "simulation/outputs/E2-040/20261119-04-gateway-switch",
+  "started_at": null,
+  "config_file": null,
+  "process_id": null,
+  "run_id": "20261119-04-gateway-switch",
+  "git_commit": "8166e65b14ef7a98f32559c1805dae8a980d987d",
+  "command": "python -X utf8 check_gateway_switch.py",
+  "data_and_weights_sha256": {},
+  "timezone": "Asia/Shanghai",
+  "exit_code": 0,
+  "budget": "one source identity switch test",
+  "template_only": false,
+  "limitations": [
+    "Synthetic gateway identities and LRN1 frame; no physical receiver",
+    "Legacy-local reports cleared on EUI change; historical recordings are unaffected"
+  ],
+  "review_reference": "coordination/tasks/E2-040.md",
+  "finished_at": "2026-11-19T15:14:12.2391482+08:00",
+  "seeds": [],
+  "task_id": "E2-040",
+  "dirty_files_sha256": {
+    "tools/mobile_gateway/replay.py": "48c8286394ccec480e4f06b0e25d6d4c2cdaa8f11ea05b6a4c99873672b04be8",
+    "tools/mid_baseline/gateway_probe/topology_server.py": "50eb0d755c4a8490dfbd2511063b06d8243227c2cddf7aad6b470864a27800e6",
+    ".gitignore": "a53621da17c742782e1c65319b74bd33cb916b5670a8cb86eb8e5234ea6fcc48",
+    "tools/mobile_gateway/studio.py": "25ee0de91c85c073314dec779757e2f639ddf9e4362afafa7b711535138a9061"
+  }
+}

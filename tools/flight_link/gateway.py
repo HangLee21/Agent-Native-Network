@@ -99,7 +99,13 @@ class Gateway:
       if len(retired)>=256:raise ValueError('retired boot capacity reached')
       retired.add(old['boot'])
      if not old and len(self.nodes)>=64:raise ValueError('node capacity reached')
-     self.nodes[node]=dict(boot=boot,seq=seq,report=report,received=now,lora={k:packet.get(k) for k in ('rssi','lsnr','freq','chan','datr')});self.stats['reports']+=1
+     blocks={}
+     for name in ('status','gps'):
+      if report.get(name) is not None:
+       blocks[name]=(now,int(time.time()*1000))
+      elif old and old['boot']==boot and old['report'].get(name) is not None:
+       report[name]=copy.deepcopy(old['report'][name]);blocks[name]=old['blocks'][name]
+     self.nodes[node]=dict(boot=boot,seq=seq,report=report,received=now,blocks=blocks,lora={k:packet.get(k) for k in ('rssi','lsnr','freq','chan','datr')});self.stats['reports']+=1
     return
    if self.ack_decoder is None:self.stats['unknown_payload']+=1;return
    ack=self.ack_decoder(data)
@@ -120,7 +126,10 @@ class Gateway:
     report=copy.deepcopy(v['report']);age=max(0,int((now-v['received'])*1000));report.update(pc_receive_age_ms=age,transport_age_ms=None)
     for r in report['neighbors']:
      r['gateway_elapsed_ms']=age;r['age_is_lower_bound']=True
-    reports.append(dict(gateway_id=self.eui,gateway_boot=0,report=report,lora=v['lora'],pc_receive_age_ms=age))
+    row=dict(gateway_id=self.eui,gateway_boot=0,report=report,lora=v['lora'],pc_receive_age_ms=age)
+    for name in ('status','gps'):
+     block=v.get('blocks',{}).get(name);row[name+'_received_at_ms']=block[1] if block else None;row[name+'_age_ms']=max(0,int((now-block[0])*1000)) if block else None
+    reports.append(row)
    latest=min((r['pc_receive_age_ms'] for r in reports),default=None)
    receiver_state='idle' if latest is None else 'receiving' if latest<=30000 else 'stale'
    pull_age=max(0,int((now-self.pull['time'])*1000)) if self.pull else None

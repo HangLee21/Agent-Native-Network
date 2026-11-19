@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "requests": [
+    [
+      0,
+      30
+    ],
+    [
+      30,
+      30
+    ],
+    [
+      0,
+      30
+    ],
+    [
+      30,
+      30
+    ],
+    [
+      60,
+      30
+    ]
+  ],
+  "synthetic": true,
+  "play_interval_ms": 1083.33,
+  "errors": []
+}

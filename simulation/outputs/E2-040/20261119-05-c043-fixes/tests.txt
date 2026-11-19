@@ -1,0 +1,25 @@
+test_cache_age_interruption_recovery_recorded (__main__.Checks.test_cache_age_interruption_recovery_recorded) ... ok
+test_legacy_reorder_duplicate_retired_and_wrap (__main__.Checks.test_legacy_reorder_duplicate_retired_and_wrap) ... ERROR
+test_udp_sparse_blocks_and_boot (__main__.Checks.test_udp_sparse_blocks_and_boot) ... ok
+
+======================================================================
+ERROR: test_legacy_reorder_duplicate_retired_and_wrap (__main__.Checks.test_legacy_reorder_duplicate_retired_and_wrap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Multi-Agent Network\simulation\outputs\E2-040\20261119-05-c043-fixes\check_fixes.py", line 17, in test_legacy_reorder_duplicate_retired_and_wrap
+    w=Topology();w.ingest(packet(report_seq=4294967295));w.ingest(packet(report_seq=0,snapshot_at_ms=11));self.assertEqual(w.snapshot()['reports'][0]['report']['report_seq'],0)
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Multi-Agent Network\simulation\outputs\E2-040\20261119-05-c043-fixes\check_fixes.py", line 11, in packet
+    data=encode_frame(dict(base,**changes));return {'data':base64.b64encode(data).decode(),'size':len(data),'stat':1,'freq':470.5}
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Multi-Agent Network\firmware\mid_baseline\field_agent\lora_ref\decoder.py", line 173, in encode_frame
+    decode_frame(result)  # Same canonical and bound checks for encoding.
+    ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Multi-Agent Network\firmware\mid_baseline\field_agent\lora_ref\decoder.py", line 45, in decode_frame
+    raise ValueError('LRN1 identity/period')
+ValueError: LRN1 identity/period
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.079s
+
+FAILED (errors=1)
