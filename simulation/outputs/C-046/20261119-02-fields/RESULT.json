@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "session": "2a502f6f47f5426197f6b803f2762a5e",
+  "frame": 43,
+  "source_sha256": "7221d02bccb95fb06b3eddf6eb6c9cad9371accbc3f4ece19e93f2f0b2553fdd",
+  "frontend_sha256": {
+    "view.js": "ed07534e6893345c9029a4685c0846ac2a186c87567e436ab8a7bb9b0379323e",
+    "index.html": "bfc36bbe4dfb4d58f8d060c36d0e69cc56ecd2957828fcdc0788605bdd137188",
+    "lora-model.js": "bf2ef7627da46ef8c3b420b30462c3e14a18a11607739dc0a787e21f197a6cb8",
+    "map.css": "dd93514509642359f69cadaac692dc74dcbaffe694cfcdd6d748513f61a765a5"
+  },
+  "lora_summary": "上行信道\nCH 5\n频率\n470.500 MHz\n接收信号\n-45 dBm\n信噪比\n10.8 dB\n距上次上报\n1.9 s\n历史采样 · 48:a4:e0",
+  "wifi_detail": "48:a6:98 → 48:a4:e0 · 采样时本端确认\n\nWi-Fi 发送方 90:da:72:48:a6:98\nWi-Fi 接收报告者 90:da:72:48:a4:e0\nWi-Fi 信道：11\nWi-Fi RSSI：-46 dBm\n源板采样时最近听到：874 ms\n源板采样时 ACK 年龄：874 ms\n源板采样时 RF 帧年龄：357 ms\n源板本地采样钟：3630286 ms\n报告 boot 8754597 / seq 362；对端 boot 1301372061\n上报周期 10.0 s · 本板发前延迟 1 ms\n\nLoRa 回传 48:a4:e0 → RHF2S008\nLoRa 信道：5 · 频率：470500000 Hz\nLoRa 接收 RSSI：-45 dBm / SNR：10.8 dB\n网关 boot 0 / rx seq undefined\n网关本地接收钟：undefined ms\nPC 收报：未提供 · 距今 1.9 s\n读取会话：未提供\n邻居表 4/4 · 未截断\n\nWi-Fi RSSI 趋势（本页去重样本，dBm）：-44 → -46\n\n这是源板采样当时的状态；不以 LoRa 到达时间续期 Wi-Fi 9 秒互证。源板与网关本地钟不跨机相减。位置、业务收发仍来自原 Wi-Fi 观测。\n原始 LoRa 收报与邻居行",
+  "errors": []
+}

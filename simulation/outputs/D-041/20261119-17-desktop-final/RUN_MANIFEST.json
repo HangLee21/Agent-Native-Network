@@ -1,0 +1,39 @@
+{
+  "template_only": false,
+  "task_id": "D-041",
+  "run_id": "20261119-17-desktop-final",
+  "started_at": null,
+  "finished_at": null,
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "e87773aaf20f828d2afb9599e19064943eaec620",
+  "dirty_files_sha256": {
+    "research/agent_native_network/mobile_gateway/index.html": "bfc36bbe4dfb4d58f8d060c36d0e69cc56ecd2957828fcdc0788605bdd137188",
+    "research/agent_native_network/mobile_gateway/view.js": "30b922a0ed1fce6869114a4b174a7a2286bdf4077fe774c89ae9d0af5fe0eacc",
+    "research/agent_native_network/mobile_gateway/lora-model.js": "bf2ef7627da46ef8c3b420b30462c3e14a18a11607739dc0a787e21f197a6cb8",
+    "research/agent_native_network/mobile_gateway/map.css": "dd93514509642359f69cadaac692dc74dcbaffe694cfcdd6d748513f61a765a5",
+    "research/agent_native_network/mobile_gateway/studio-model.js": "781c6a94142862af251a2594c6b65e9877d36c9e1e4a6c98f69ecf4984d86721",
+    "docs/OPERATING_GUIDE.md": "9304771450514bbbd90e378c7b65842e3d6638045705084c33cba30ce96531d8",
+    "capture.py": "6c3853430ef108db63d6a802cfb17cd9db03573e544978013fb3fb696a801c0d"
+  },
+  "command": "python -X utf8 simulation\\outputs\\D-041\\20261119-17-desktop-final\\capture.py",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "browser": "local Chrome headless"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {
+    "historical-controlled.sqlite3": "7221d02bccb95fb06b3eddf6eb6c9cad9371accbc3f4ece19e93f2f0b2553fdd"
+  },
+  "config_file": null,
+  "seeds": [],
+  "budget": "isolated UI verification",
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\D-041\\20261119-17-desktop-final",
+  "process_id": null,
+  "exit_code": 0,
+  "status": "passed",
+  "limitations": [
+    "Studio uses a copy of previously recorded RF data; no new RF measurement"
+  ],
+  "review_reference": null
+}

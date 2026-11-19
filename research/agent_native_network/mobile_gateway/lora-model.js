@@ -19,7 +19,9 @@ const MobileLoRaModel=(()=>{
     }
     for(const item of data?.reports||[]){
       const r=item.report;if(!r||r.frame_schema!=='LRN1'||!valid(r.observer_id))continue;
-      const id=clean(r.observer_id),receivedAge=number(item.pc_receive_age_ms),entry={...item,report:r,id,age:receivedAge===null?null:Math.max(0,receivedAge+elapsed)};
+      const id=clean(r.observer_id),receivedAge=number(item.pc_receive_age_ms),raw=item.lora||{};
+      const lora={...raw,rssi_dbm:raw.rssi_dbm??raw.rssi??null,snr_db:raw.snr_db??raw.lsnr??null,channel:raw.channel??raw.chan??null,frequency_hz:Number.isFinite(raw.frequency_hz)&&raw.frequency_hz>0?raw.frequency_hz:Number.isFinite(raw.freq)&&raw.freq>0?Math.round(raw.freq*1000000):null};
+      const entry={...item,lora,report:r,id,age:receivedAge===null?null:Math.max(0,receivedAge+elapsed)};
       reports.push(entry);member(id,item.label);nodes.get(id).report=entry;
       for(const row of r.neighbors||[]){
         if(!valid(row.peer_id)||clean(row.peer_id)===id)continue;

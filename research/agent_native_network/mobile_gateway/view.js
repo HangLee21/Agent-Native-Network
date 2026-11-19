@@ -6,7 +6,7 @@
   let origin=null,view=null,zoom=1,autoFit=true,logical=new Map(),layoutKey='',packetRows=[],selectedPacket='',positions=new Map(),topology=true,animated=new Set(),pendingAnimation=[];
   let snapshotLoaded=false,snapshotError='',health=null,radioExpiry=null;
   let packetLog=S.createPacketLog(),selectedEdge='',timelineTruncated=false;
-  let loraData=null,loraReadAt=0,loraError='',loraVersion=0,loraLoading=false,replayFrames=null,replayTimer=null,replayId=null,replayTotal=0,replayOffset=0,replayRequestSeq=0,replayPlaying=false,replayDisplayed=0;
+  let loraData=null,loraReadAt=0,loraError='',loraVersion=0,loraLoading=false,replayFrames=null,replayTimer=null,replayId=null,replayTotal=0,replayOffset=0,replayRequestSeq=0,replayPlaying=false,replayDisplayed=0,replayTimestamp=null;
   let gatewaySeen=false,gatewayInterrupted=false,gatewayRecovery='正在连接网关';
   let sourceState=null,sourceId=null,sourceEpoch=null,sourceRequest=0,sourceBusy=false;
   let shownSource='wifi';const sourceViews=new Map();let manualKey='',manualPositions=new Map(),suppressClick=false;try{const v=localStorage.getItem('mobile.topology.source');if(['wifi','lora'].includes(v))$('topologySource').value=v;}catch(_){}shownSource=$('topologySource').value;
@@ -45,15 +45,24 @@
     }
   }
   function renderLoRa(){
-    const enabled=isLoRa(),data=lora();$('loraStatus').classList.toggle('hidden',!enabled);$('wifiLegend').classList.toggle('hidden',enabled);$('loraLegend').classList.toggle('hidden',!enabled);if(!enabled)return;
+    const enabled=isLoRa(),data=lora();$('loraStatus').classList.toggle('hidden',!enabled);$('wifiLegend').classList.toggle('hidden',enabled);$('loraLegend').classList.toggle('hidden',!enabled);$('chartLegendLora').classList.toggle('hidden',!enabled);$('chartLegendWifi').classList.toggle('hidden',enabled);if(!enabled)return;
     renderLoRaLegend();
     const counts={reported:0,stale_report:0,interrupted:0,never:0};for(const n of data.nodes.values())if(Object.hasOwn(counts,n.status))counts[n.status]++;
     text('recoveryStatus',(data.receiver?.mode==='node_serial'?'节点 '+label(data.receiver.gateway_id)+' 串口接收 · ':'')+gatewayRecovery+` · 在线 ${counts.reported} / 超时未见 ${counts.stale_report} / 观测中断 ${counts.interrupted} / 从未观测 ${counts.never} · 超时阈值按上报周期计算`);
+    const newest=data.reports.slice().filter(x=>Number.isFinite(x.age)).sort((a,b)=>a.age-b.age)[0],radio=newest?.lora;
+    const summary=$('uplinkSummary');summary.replaceChildren();
+    if(radio){
+      const grid=html('dl','','uplinkGrid');
+      for(const [name,value] of [['上行信道',radio.channel!=null?'CH '+radio.channel:'未提供'],['频率',Number.isFinite(radio.frequency_hz)?(radio.frequency_hz/1000000).toFixed(3)+' MHz':'未提供'],['接收信号',Number.isFinite(radio.rssi_dbm)?radio.rssi_dbm+' dBm':'未提供'],['信噪比',Number.isFinite(radio.snr_db)?radio.snr_db+' dB':'未提供'],['距上次上报',age(newest.age)]]){
+        const cell=html('div','');cell.append(html('dt',name),html('dd',value));grid.append(cell);
+      }
+      summary.append(grid,html('small',(replayFrames?'历史采样 · ':'接收来源 · ')+label(newest.id)));
+    }else summary.append(html('span','LoRa 上行：尚无报告'));
     const r=data.receiver,offline=['stale','unavailable','busy','error'].includes(r?.state)||!!loraError,stateName={idle:'未开始接收',connecting:'正在连接',receiving:'正在实收',stale:'暂未续收',unavailable:'接收器不可用',busy:'串口已占用',error:'读取异常'};
-    $('loraStatus').classList.toggle('warning',offline);text('loraTitle',loraError?'LoRa 来源暂时不可读取':r?`LoRa 接收器 ${r.gateway_id?label(r.gateway_id):'待识别'} · ${r.gateway_observed===false?'等待网关连接':stateName[r.state]||'状态未提供'}`:loraLoading?'正在读取 LoRa 来源':'尚无 LoRa 接收器报告');
+    $('loraStatus').classList.toggle('warning',offline);text('loraTitle',replayFrames?`历史接收器 ${r?.gateway_id?label(r.gateway_id):'未提供'} · 采样时 ${stateName[r?.state]||'状态未知'}`:loraError?'LoRa 来源暂时不可读取':r?`LoRa 接收器 ${r.gateway_id?label(r.gateway_id):'待识别'} · ${r.gateway_observed===false?'等待网关连接':stateName[r.state]||'状态未提供'}`:loraLoading?'正在读取 LoRa 来源':'尚无 LoRa 接收器报告');
     text('loraNote',(loraError?loraError+(loraData?'；保留上次快照。':'；等待当前来源快照。'):'')+(r?.error?r.error+'。':'')+`已取得 ${data.reports.length} 个报告者的最近快照。板间箭头为 ESP-NOW 邻居；LoRa 仅回传这些快照。位置、agent 和业务仍使用原来源。`);
     $('loraReports').replaceChildren();for(const item of data.reports){const p=item.report,g=item.gateway_id||r?.node_id||r?.gateway_id,b=html('button',`${label(item.id)} → ${g?label(g):'接收器未提供'} · LoRa RSSI ${Number.isFinite(item.lora?.rssi_dbm)?item.lora.rssi_dbm+' dBm':'未提供'} / SNR ${Number.isFinite(item.lora?.snr_db)?item.lora.snr_db+' dB':'未提供'}`,'loraReport');
-      b.append(html('small',`报告 #${p.report_seq} · boot ${p.observer_boot} · PC 收报距今 ${age(item.age)} · 邻居 ${p.neighbors?.length||0}/${p.total_rows??'?'}${p.truncated?'（截断）':''}${p.nd_table_full?' · ND 表曾满':''}`));b.onclick=()=>choose(item.id);$('loraReports').append(b);
+      b.append(html('small',`报告 #${p.report_seq??'未提供'} · boot ${p.observer_boot??'未提供'} · PC 收报距今 ${age(item.age)} · 邻居 ${p.neighbors?.length||0}/${p.total_rows??'?'}${p.truncated?'（截断）':''}${p.nd_table_full?' · ND 表曾满':''}`));b.onclick=()=>choose(item.id);$('loraReports').append(b);
     }if(!data.reports.length)text('loraReports',offline?'接收器离线或不可读取；等待恢复，未从 Wi-Fi 补充邻居。':'尚未取得实际 LoRa 帧；等待报告，不用 Wi-Fi 邻居填充。');
   }
   function showSources(data){
@@ -77,8 +86,8 @@
     const i=edge.loraReport,p=i.report,r=edge.raw,detail=$('edgeDetail');
     if(edge.kind==='lora_uplink'){detail.append(html('strong',`${label(edge.from)} → ${label(edge.to)} · LoRa 上行`),html('p',`接收 RSSI ${Number.isFinite(i.lora?.rssi_dbm)?i.lora.rssi_dbm+' dBm':'未提供'} · SNR ${Number.isFinite(i.lora?.snr_db)?i.lora.snr_db+' dB':'未提供'} · 信道 ${i.lora?.channel??'未提供'} · 频率 ${i.lora?.frequency_hz??'未提供'} Hz · 收报年龄 ${age(i.age)}`));if(replayFrames){const seen=new Set(),values=[];for(const f of replayFrames.slice(0,Math.max(0,replayDisplayed-replayOffset)+1)){if(f.topology?.source_id!==loraData?.source_id||f.topology?.selection_epoch!==loraData?.selection_epoch)continue;for(const item of f.topology?.reports||[]){const r=item.report,key=r?.observer_boot+'/'+r?.report_seq;if(r?.observer_id===i.id&&!seen.has(key)&&Number.isFinite(item.lora?.rssi_dbm)){seen.add(key);values.push(item.lora.rssi_dbm);}}}detail.append(html('small',values.length?'本页去重 RSSI 趋势（dBm）：'+values.slice(-20).join(' → '):'本页无可用 RSSI 趋势'));}return;}
     detail.append(html('strong',`${label(edge.from)} → ${label(edge.to)} · ${sampleState(edge.state)}`));
-    detail.append(html('p',`Wi-Fi 发送方 ${edge.from}\nWi-Fi 接收报告者 ${edge.to}\nWi-Fi 信道：${p.wifi_channel??'未提供'}\nWi-Fi RSSI：${edge.rssi===null?'未提供':edge.rssi+' dBm'}\n源板采样时最近听到：${age(r.seen_age_ms)}${r.seen_age_ms>=12000?'（裁顶下界）':''}\n源板采样时 ACK 年龄：${age(r.ack_age_ms)}${r.ack_age_ms>=9000?'（裁顶下界）':''}\n源板采样时 RF 帧年龄：${age(r.rf_age_ms)}${r.rf_age_ms>=12000?'（裁顶下界）':''}\n源板本地采样钟：${p.snapshot_at_ms} ms\n报告 boot ${p.observer_boot} / seq ${p.report_seq}；对端 boot ${r.peer_boot}\n上报周期 ${age(p.report_period_ms)} · 本板发前延迟 ${age(p.tx_delay_ms)}`));
-    detail.append(html('p',`LoRa 回传 ${label(i.id)} → ${label(i.gateway_id)}\nLoRa 信道：${i.lora?.channel??'未提供'} · 频率：${i.lora?.frequency_hz??'未提供'} Hz\nLoRa 接收 RSSI：${Number.isFinite(i.lora?.rssi_dbm)?i.lora.rssi_dbm+' dBm':'未提供'} / SNR：${Number.isFinite(i.lora?.snr_db)?i.lora.snr_db+' dB':'未提供'}\n网关 boot ${i.gateway_boot} / rx seq ${i.rx_seq}\n网关本地接收钟：${i.received_at_ms} ms\nPC 收报：${i.pc_received_at||'未提供'} · 距今 ${age(i.age)}\n读取会话：${i.reader_session||'未提供'}\n邻居表 ${p.neighbors.length}/${p.total_rows} · ${p.truncated?'已截断':'未截断'}${p.nd_table_full?' · ND 表曾满':''}`));
+    detail.append(html('p',`Wi-Fi 发送方 ${edge.from}\nWi-Fi 接收报告者 ${edge.to}\nWi-Fi 信道：${r.wifi_channel??p.wifi_channel??'未提供'}\nWi-Fi RSSI：${edge.rssi===null?'未提供':edge.rssi+' dBm'}\n源板采样时最近听到：${age(r.seen_age_ms)}${r.seen_age_ms>=12000?'（裁顶下界）':''}\n源板采样时 ACK 年龄：${age(r.ack_age_ms)}${r.ack_age_ms>=9000?'（裁顶下界）':''}\n源板采样时 RF 帧年龄：${age(r.rf_age_ms)}${r.rf_age_ms>=12000?'（裁顶下界）':''}\n源板本地采样钟：${p.snapshot_at_ms??'未提供'} ms\n报告 boot ${p.observer_boot??'未提供'} / seq ${p.report_seq??'未提供'}；对端 boot ${r.peer_boot??'未提供'}\n上报周期 ${age(p.report_period_ms)} · 本板发前延迟 ${age(p.tx_delay_ms)}`));
+    detail.append(html('p',`LoRa 回传 ${label(i.id)} → ${label(i.gateway_id)}\nLoRa 信道：${i.lora?.channel??'未提供'} · 频率：${i.lora?.frequency_hz??'未提供'} Hz\nLoRa 接收 RSSI：${Number.isFinite(i.lora?.rssi_dbm)?i.lora.rssi_dbm+' dBm':'未提供'} / SNR：${Number.isFinite(i.lora?.snr_db)?i.lora.snr_db+' dB':'未提供'}\n网关 boot ${i.gateway_boot??'未提供'} / rx seq ${i.rx_seq??'未提供'}\n网关本地接收钟：${i.received_at_ms??'未提供'} ms\nPC 收报：${i.pc_received_at??'未提供'} · 距今 ${age(i.age)}\n读取会话：${i.reader_session??'未提供'}\n邻居表 ${p.neighbors.length}/${p.total_rows??'未提供'} · ${p.truncated?'已截断':'未截断'}${p.nd_table_full?' · ND 表曾满':''}`));
     if(replayFrames){const seen=new Set(),values=[];for(const f of replayFrames.slice(0,Math.max(0,replayDisplayed-replayOffset)+1)){if(f.topology?.source_id!==loraData?.source_id||f.topology?.selection_epoch!==loraData?.selection_epoch)continue;for(const item of f.topology?.reports||[]){const report=item.report,key=report?.observer_boot+'/'+report?.report_seq,row=report?.neighbors?.find(x=>x.peer_id===edge.from);if(report?.observer_id===edge.to&&!seen.has(key)&&Number.isFinite(row?.rssi_dbm)){seen.add(key);values.push(row.rssi_dbm);}}}detail.append(html('p',values.length?'Wi-Fi RSSI 趋势（本页去重样本，dBm）：'+values.slice(-20).join(' → '):'本页无可用 Wi-Fi RSSI 趋势'));}
     detail.append(html('small','这是源板采样当时的状态；不以 LoRa 到达时间续期 Wi-Fi 9 秒互证。源板与网关本地钟不跨机相减。位置、业务收发仍来自原 Wi-Fi 观测。'));
     const raw=document.createElement('details');raw.open=detailOpen;raw.append(html('summary','原始 LoRa 收报与邻居行'),html('pre',JSON.stringify({report:i,neighbor:r},null,2)));detail.append(raw);
@@ -260,7 +269,7 @@
     if(edge){
       const info=S.edgeInfo(edge),p=edge.directEvidence;$('edgeDetail').append(html('strong',`${label(edge.from)} → ${label(edge.to)} · ${info.label}`));
       $('edgeDetail').append(html('p',`发送方 ${edge.from}\n接收报告者 ${edge.to}\n连接证据年龄：${edgeAge(edge)}\n连接新鲜度：${edge.sampleFreshness}\n互证：${edge.mutual?'网关确认双方即时证据当前有效':'无当前双向互证，不能补另一方向'}`));
-      if(p)$('edgeDetail').append(html('p',`即时邻居快照：匹配本次查询和双方启动身份\n观察者 boot：${p.observer_boot}\n样本所带对端 boot：${p.peer_boot??'未提供'}\n最近听到年龄界限：${Number.isFinite(p.seen_age_upper_bound_ms)?'≤ '+age(p.seen_age_upper_bound_ms):Number.isFinite(p.seen_age_lower_bound_ms)?'≥ '+age(p.seen_age_lower_bound_ms):'未知'} / 限制 ${age(p.seen_limit_ms??12000)}\n双向确认年龄界限：${Number.isFinite(p.confirmation_age_upper_bound_ms)?'≤ '+age(p.confirmation_age_upper_bound_ms):Number.isFinite(p.confirmation_age_lower_bound_ms)?'≥ '+age(p.confirmation_age_lower_bound_ms):'未知'} / 限制 ${age(p.confirmation_limit_ms??9000)}\n本向有效：${p.valid?'是':'否'}；本向确认：${p.confirmed?'是':'否'}；启动身份校验：${p.epoch_verified?'通过':'未通过'}\n查询 RTT 上界：${age(p.rtt_upper_bound_ms)}\n即时查询收报：${Number.isFinite(p.received_ms)?new Date(p.received_ms).toLocaleTimeString('zh-CN'):'未提供'}`));
+      if(p)$('edgeDetail').append(html('p',`即时邻居快照：匹配本次查询和双方启动身份\n观察者 boot：${p.observer_boot??'未提供'}\n样本所带对端 boot：${p.peer_boot??'未提供'}\n最近听到年龄界限：${Number.isFinite(p.seen_age_upper_bound_ms)?'≤ '+age(p.seen_age_upper_bound_ms):Number.isFinite(p.seen_age_lower_bound_ms)?'≥ '+age(p.seen_age_lower_bound_ms):'未知'} / 限制 ${age(p.seen_limit_ms??12000)}\n双向确认年龄界限：${Number.isFinite(p.confirmation_age_upper_bound_ms)?'≤ '+age(p.confirmation_age_upper_bound_ms):Number.isFinite(p.confirmation_age_lower_bound_ms)?'≥ '+age(p.confirmation_age_lower_bound_ms):'未知'} / 限制 ${age(p.confirmation_limit_ms??9000)}\n本向有效：${p.valid?'是':'否'}；本向确认：${p.confirmed?'是':'否'}；启动身份校验：${p.epoch_verified?'通过':'未通过'}\n查询 RTT 上界：${age(p.rtt_upper_bound_ms)}\n即时查询收报：${Number.isFinite(p.received_ms)?new Date(p.received_ms).toLocaleTimeString('zh-CN'):'未提供'}`));
       else $('edgeDetail').append(html('p',`观察者 boot：${edge.raw.observer_boot??'未提供'}\n样本所带对端 boot：${edge.raw.peer_boot??'未提供'}\n样本报告序号：${edge.raw.sample_report_seq??'未提供'}\n样本报告锚点：${Number.isFinite(edge.raw.sample_received_ms)?new Date(edge.raw.sample_received_ms).toLocaleTimeString('zh-CN'):'未提供'}`));
       const rssiAge=Number.isFinite(edge.rssiAge)?age(edge.rssiAge):Number.isFinite(edge.rssiUpperBound)?(Number.isFinite(edge.rssiLowerBound)?'≥ '+age(edge.rssiLowerBound)+'，':'')+'≤ '+age(edge.rssiUpperBound)+'（上界）':Number.isFinite(edge.rssiLowerBound)?'≥ '+age(edge.rssiLowerBound)+'（仅下界）':'未知';
       $('edgeDetail').append(html('p',`接收 RSSI：${edge.rssi===null?'':edge.rssi+' dBm'}\nRSSI 来源：${source(edge.rf_source)}\nRSSI 独立样本年龄：${rssiAge}\nRSSI 旧样本失效原因：${edge.raw.invalidated_reason??'无明示'}`));
@@ -276,7 +285,7 @@
     text('nodeCount',`显示 ${shown} / ${rows.length} · 仅筛选列表，图中节点不隐藏`);
   }
   function render(){
-    if(replayFrames)text('sourceStatus','历史来源：'+(loraData?.source_id??'未提供'));$('fieldHealth').classList.toggle('hidden',!!replayFrames);document.querySelector('.businessPanel').classList.toggle('hidden',!!replayFrames);$('timeline').closest('section').classList.toggle('hidden',!!replayFrames);$('topologySource').disabled=!!replayFrames;$('receiverSource').disabled=!!replayFrames;$('gateway').disabled=!!replayFrames;renderHealth();renderLoRa();
+    if(replayFrames)text('sourceStatus','历史来源：'+(loraData?.source_id??'未提供'));$('fieldHealth').classList.toggle('hidden',!!replayFrames);document.querySelector('.businessPanel').classList.toggle('hidden',!!replayFrames);document.querySelector('.businessPanel').closest('.auxiliary').classList.toggle('hidden',!!replayFrames);$('timeline').closest('section').classList.toggle('hidden',!!replayFrames);$('timeline').closest('.auxiliary').classList.toggle('hidden',!!replayFrames);$('topologySource').disabled=!!replayFrames;$('receiverSource').disabled=!!replayFrames;$('gateway').disabled=!!replayFrames;renderHealth();renderLoRa();
     const nodes=[...model.nodes.values()],current=now(),edges=radioEdges();text('statNodesLabel',isLoRa()?'节点总数':'报告节点');text('statNodes',nodes.length);text('statLocated',nodes.filter(n=>M.positionState(n,current).valid).length);text('statLinks',edges.length);text('statOffline',nodes.filter(n=>!M.online(n,current)).length);
     $('nodeList').replaceChildren();$('unlocated').replaceChildren();for(const n of nodes){const active=M.online(n,current),pos=M.positionState(n,current),b=html('button','',`nodeRow${selected===n.id?' selected':''}`);b.append(html('b',label(n.id)),html('span',active?'报告在线':'报告失联','pill'+(active?'':' off')),html('small',n.id),html('small',`GPS ${source(n.position?.source)} · ${pos.valid?age(pos.age):pos.reason} · 报告 ${age(M.reportAge(n,current))}`));b.dataset.id=n.id;b.onclick=()=>choose(n.id);$('nodeList').append(b);if(!pos.valid)$('unlocated').append(html('div',`${label(n.id)} · ${pos.reason}`));}
     if(!nodes.length)text('nodeList','尚无实际节点报告');if(!$('unlocated').children.length)text('unlocated',nodes.length?'全部已定位':'暂无节点');
@@ -355,7 +364,7 @@
       if(Number.isFinite(previous)&&Number.isFinite(frame.t_ms))
         await new Promise(resolve=>{replayTimer=setTimeout(resolve,Math.max(0,Math.min(2147483647,frame.t_ms-previous)));});
       if(ticket!==replayRequestSeq||id!==replayId)return;
-      replayDisplayed=i;loraData=frame.topology;loraReadAt=now();loraError='';loraCache=null;gatewayRecovery='历史快照';
+      replayDisplayed=i;replayTimestamp=frame.t_ms;loraData=frame.topology;loraReadAt=now();loraError='';loraCache=null;gatewayRecovery='历史快照';
       text('replayStatus','历史观测 · 第 '+(i+1)+' / '+replayTotal+' 帧 · '+new Date(frame.t_ms).toLocaleString('zh-CN')+' · 空快照不代表断链');
       render();return frame;
     }catch(e){
@@ -443,7 +452,15 @@
       text('replayStatus',`事件索引完成 · ${count} 项（上限10000；中断及缺行不判断链）`);
     }catch(e){text('replayStatus','事件索引失败：'+e.message);}
   };
-  $('replayLive').onclick=()=>{clearTimeout(replayTimer);replayTimer=null;replayPlaying=false;replayRequestSeq++;replayId=null;replayFrames=null;loraData=null;loraCache=null;text('replayPlay','播放');text('replayStatus','正在恢复实时观测');render();refreshLoRa();};listReplay();
+  $('replayLive').onclick=()=>{
+    clearTimeout(replayTimer);replayTimer=null;replayPlaying=false;replayRequestSeq++;
+    version++;loraVersion++;replayId=null;replayFrames=null;loraData=null;loraCache=null;loraError='';sourceEpoch=null;
+    gatewayRecovery='正在连接接收来源';text('sourceStatus','等待新的实时来源');text('replayPlay','播放');
+    text('replayStatus','正在恢复实时观测');text('connection','实时 · 等待新数据');
+    if(!observing)start();else{clearTimeout(timer);timer=null;if(!inFlight)tick();}
+    render();refreshLoRa();
+  };
+  listReplay();
   $('refresh').onclick=()=>{if(!inFlight)Promise.all([refresh(),refreshLoRa()]);};$('live').onclick=()=>observing?pause():start();
   $('topologySource').onchange=()=>{if(window.MobileStudio?.status?.mode==='demo')$('topologySource').value='wifi';try{localStorage.setItem('mobile.topology.source',$('topologySource').value);}catch(_){}
     sourceViews.set(shownSource,{origin,view,zoom,autoFit,logical,layoutKey,selectedEdge,selected,topology});shownSource=$('topologySource').value;const saved=sourceViews.get(shownSource);
@@ -469,5 +486,13 @@
   function finishDrag(){if(!drag)return;const done=drag;drag=null;if(done.moved){suppressClick=true;if(done.kind==='node')saveManual();setTimeout(()=>suppressClick=false,0);}else if(done.kind==='node')choose(done.id);}
   $('map').addEventListener('pointerup',finishDrag);$('map').addEventListener('pointercancel',finishDrag);
   document.addEventListener('visibilitychange',()=>{version++;loraVersion++;clearTimeout(timer);timer=null;if(document.hidden){clearInterval(agingTimer);agingTimer=null;clearTimeout(radioExpiry);radioExpiry=null;$('map').pauseAnimations?.();text('connection','页面隐藏，读取已暂停');}else if(observing){if(!agingTimer)agingTimer=setInterval(()=>{if(observing&&!document.hidden&&isLoRa())render();},1000);renderRadio(radioEdges());$('map').unpauseAnimations?.();tick();}});window.addEventListener('pagehide',pause);
-  render();start();
+  function syncContext(){
+    text('contextMode',replayFrames?'历史回放':observing?'实时观测':'观测已暂停');
+    text('contextTime',replayFrames&&Number.isFinite(replayTimestamp)?(matchMedia('(max-width:600px)').matches?new Date(replayTimestamp).toLocaleTimeString('zh-CN'):'第 '+(replayDisplayed+1)+' / '+replayTotal+' 帧 · '+new Date(replayTimestamp).toLocaleString('zh-CN')):$('connection').textContent);
+    document.querySelector('.liveTools').classList.toggle('hidden',!!replayFrames);
+    $('contextMode').dataset.mode=replayFrames?'history':observing?'live':'paused';
+  }
+  new MutationObserver(syncContext).observe($('replayStatus'),{childList:true,subtree:true,characterData:true});
+  new MutationObserver(syncContext).observe($('connection'),{childList:true,subtree:true,characterData:true});
+  render();start();syncContext();
 })();

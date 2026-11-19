@@ -1,5 +1,7 @@
 # 实现状态（代码级审计结果）
 
+2026-11-19 M-061。Studio 将播放控件贴在画布下方，右侧显示 LoRa 接收信道、频率、RSSI、SNR 与收报年龄。板间 Wi-Fi 的信道和信号取自选中方向的邻居行。 验收目录为 `simulation/results/20261119-M061-studio-workbench/`。
+
 2026-11-19 M-060。Studio 拓扑图改用直线和短弧线。回放同一帧的前后对照见 `simulation/results/20261119-M060-studio-links/`。
 
 2026-11-19 M-059。修复 Windows 在仓库路径含空格时启动网卡配置脚本失败的问题。Windows PowerShell 实测带空格和单引号的测试路径，并验证子进程退出码。
