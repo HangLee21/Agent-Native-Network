@@ -19,6 +19,8 @@ static QueueHandle_t settings,frames,events;
 /* Factory default only. A board that already has a saved lr_ref/cfg keeps its
  * saved frequency until lora_ref_config explicitly changes it, so moving the
  * default to 470 MHz does not silently retune deployed boards. */
+/* Published by the worker (it owns SPI) and read by the frame builder. */
+static volatile uint16_t health_vbat_mv;static volatile int16_t health_temp_c=-128;
 static lref_config cfg={.magic=0x3146524c,.period=10000,.jitter=250,.frequency=470000000,.bw=125000,.sf=7,.cr=5,.preamble=8,.sync=18,.start=1};
 static mid_id identity;static uint32_t own_boot,generation,applied_version,sequence,rx_sequence;
 static uint64_t due;
@@ -78,7 +80,7 @@ static void worker(void*unused){
     if(delay>UINT32_MAX){__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);continue;}
     lrn1_set_delay(e.frame.bytes,job.len,(uint32_t)delay);
     __atomic_fetch_add(&attempted,1,__ATOMIC_RELAXED);int r=lref_port_tx(e.frame.bytes,e.frame.len,&e.toa);e.result=r?-1:0;if(r)__atomic_store_n(&running,-1,__ATOMIC_RELEASE);
-    if(!r){fc_report_sent(&control,job.seq,ms());__atomic_fetch_add(&submitted,1,__ATOMIC_RELAXED);emit_event(&e);uint64_t stop=ms()+e.toa+1500;int done=0;while(ms()<stop){done=lref_port_tx_done();worker_progress_step();if(done)break;vTaskDelay(pdMS_TO_TICKS(5)+1);}e.done=ms();e.result=done==1?1:done<0?-1:2;if(done==1){__atomic_fetch_add(&completed,1,__ATOMIC_RELAXED);if(lref_port_listen())__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}else{lref_port_off();__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}}
+    if(!r){lref_port_health((uint16_t*)&health_vbat_mv,(int16_t*)&health_temp_c);fc_report_sent(&control,job.seq,ms());__atomic_fetch_add(&submitted,1,__ATOMIC_RELAXED);emit_event(&e);uint64_t stop=ms()+e.toa+1500;int done=0;while(ms()<stop){done=lref_port_tx_done();worker_progress_step();if(done)break;vTaskDelay(pdMS_TO_TICKS(5)+1);}e.done=ms();e.result=done==1?1:done<0?-1:2;if(done==1){__atomic_fetch_add(&completed,1,__ATOMIC_RELAXED);if(lref_port_listen())__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}else{lref_port_off();__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}}
     emit_event(&e);
    }}
   if(__atomic_load_n(&running,__ATOMIC_ACQUIRE)==-1&&current.role&&applied_generation){
@@ -134,3 +136,11 @@ cJSON*lora_ref_tick(nd_node*n,mt_node*m,uint64_t now,int(*allowed)(mid_id)){
  return j;
 }
 #endif
+
+/* Values the frame builder can read without touching the radio. */
+void lora_ref_health(uint16_t* vbat_mv, int16_t* temp_c, int32_t* tx_power_dbm, uint8_t* sf) {
+	if (vbat_mv) *vbat_mv = __atomic_load_n(&health_vbat_mv, __ATOMIC_RELAXED);
+	if (temp_c) *temp_c = __atomic_load_n(&health_temp_c, __ATOMIC_RELAXED);
+	if (tx_power_dbm) *tx_power_dbm = cfg.power;
+	if (sf) *sf = (uint8_t)cfg.sf;
+}

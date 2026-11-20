@@ -143,7 +143,22 @@ void lrn1_platform_status(lrn1_status* s){
                  : r==ESP_RST_PANIC?LRN1_RST_PANIC
                  : r==ESP_RST_SW?LRN1_RST_SOFTWARE:LRN1_RST_UNKNOWN;
  { uint32_t kb=esp_get_free_heap_size()/1024u; s->heap_free_kb=(uint8_t)(kb>255u?255u:kb); }
- s->wifi_channel=channel;	/* the ESP-NOW channel this mesh actually runs on */
+ /* The ESP-NOW channel the mesh actually runs on. The driver does not report a per-packet
+  * channel for ESP-NOW, so this is the only reliable channel value we have. */
+ s->wifi_channel=channel;
+ /* Routing health: an operator asking "is the mesh keeping up" wants these three. */
+ { unsigned used=0;for(unsigned i=0;i<SR_ROUTES;i++)if(router.routes[i].used)used++;
+   s->routes=(uint8_t)(used>255u?255u:used); }
+ { uint32_t q=router.count; s->queue_depth=(uint8_t)(q>255u?255u:q); }
+ { uint32_t d=router.overflows; s->tx_drops=(uint8_t)(d>255u?255u:d); }
+ /* Supply and die temperature come from the radio itself (worker sampled them). */
+ { uint16_t mv=0;int16_t tc=-128;int32_t pwr=0;uint8_t sf=0;
+   lora_ref_health(&mv,&tc,&pwr,&sf);
+   s->supply_mv=mv; s->die_temp_c=(int8_t)tc; s->lora_sf=sf;
+   s->lora_tx_power_dbm=(int8_t)(pwr<-128?(-128):(pwr>127?127:pwr)); }
+ /* Cumulative-style flags: brownout at boot, and a neighbour table that is full right now. */
+ s->fault_flags=(uint8_t)((s->reset_reason==LRN1_RST_BROWNOUT?LRN1_FAULT_UNDERVOLTAGE:0u)
+                        | (neighbors.full?LRN1_FAULT_TABLE_FULL:0u));
 }
 
 static cJSON* event(const char*kind){cJSON*j=cJSON_CreateObject();cJSON_AddStringToObject(j,"schema","mid.serial.v1");cJSON_AddStringToObject(j,"event",kind);field_id(j,"node_id",self);cJSON_AddNumberToObject(j,"boot_id",boot);cJSON_AddStringToObject(j,"build_id",MID_BUILD_ID);cJSON_AddNumberToObject(j,"monotonic_ms",(double)millis());return j;}

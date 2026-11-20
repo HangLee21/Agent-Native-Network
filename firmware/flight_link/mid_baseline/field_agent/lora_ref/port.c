@@ -101,3 +101,34 @@ int lref_port_tx(const uint8_t*bytes,unsigned len,uint32_t*toa){
 }
 /* Worker polls completion without busy-waiting and owns all SPI operations. */
 int lref_port_tx_done(void){lr11xx_system_irq_mask_t irq;if(!active)return -1;CHECK(lr11xx_system_get_irq_status(NULL,&irq));if(irq&LR11XX_SYSTEM_IRQ_TX_DONE){CHECK(lr11xx_system_clear_irq_status(NULL,irq));return 1;}if(irq&LR11XX_SYSTEM_IRQ_TIMEOUT)return -1;return 0;}
+
+/* Worker-only. The LR1121 measures its own supply rail and die temperature, so no extra
+ * hardware is needed for the two values that decide "overheating or undervoltage". */
+int lref_port_health(uint16_t* vbat_mv, int16_t* temp_c) {
+	uint8_t raw = 0;
+	uint16_t t = 0;
+	if (!active) return 0;
+	if (vbat_mv) {
+		if (lr11xx_system_get_vbat(NULL, &raw) == LR11XX_STATUS_OK) {
+			/* Datasheet: Vbat = (5 * raw / 255 - 1) * Vana, Vana typ. 1.35 V. */
+			int32_t mv = (6750 * (int32_t)raw) / 255 - 1350;
+			if (mv < 0) mv = 0;
+			if (mv > 6000) mv = 6000;
+			*vbat_mv = (uint16_t)mv;
+		} else {
+			*vbat_mv = 0;
+		}
+	}
+	if (temp_c) {
+		if (lr11xx_system_get_temp(NULL, &t) == LR11XX_STATUS_OK) {
+			/* Datasheet: T = (raw/2047 * Vana - Vbe25) * 1000/VbeSlope + 25 */
+			float c = ((float)(t & 0x7FFu) / 2047.0f * 1.35f - 0.7295f) * (1000.0f / -1.7f) + 25.0f;
+			if (c < -40.0f) c = -40.0f;
+			if (c > 125.0f) c = 125.0f;
+			*temp_c = (int16_t)c;
+		} else {
+			*temp_c = -128;
+		}
+	}
+	return 1;
+}

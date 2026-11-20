@@ -12,5 +12,7 @@ int lref_port_listen(void);
 int lref_port_tx(const uint8_t*,unsigned,uint32_t*);
 int lref_port_tx_done(void);
 uint32_t lref_toa(const lref_config*,unsigned);
+/* Worker-only: returns the radio's own supply voltage and die temperature. */
+int lref_port_health(uint16_t* vbat_mv,int16_t* temp_c);
 extern uint32_t lref_chip_fw,lref_chip_type,lref_chip_errors;
 #endif
