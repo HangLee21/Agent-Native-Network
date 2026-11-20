@@ -87,6 +87,13 @@ def wait_for(port, path, seconds=25):
     return False
 
 
+def receiver_worker_status(value):
+    if not isinstance(value, dict) or value.get('schema') != 'lora.topology.v1' or value.get('source') != 'gateway_udp_lrn1' or not isinstance(value.get('receiver'), dict):
+        return 'unknown'
+    state = value['receiver'].get('worker_state')
+    return state if state in ('starting', 'running', 'recovering', 'stopped') else 'legacy' if state is None else 'unknown'
+
+
 def run_netmode_script(script, script_args, *, elevate=True, timeout=180):
     """Run a PowerShell script through Start-Process and return its exit status.
 
@@ -176,7 +183,12 @@ def main():
             print("  topology_server did not come up; see .local/mid/pi/topology.out")
             return 1
     else:
-        print("  topology_server already up on %d" % TOPOLOGY_PORT)
+        existing = http_json(TOPOLOGY_PORT, "/api/v1/lora/topology")
+        state = receiver_worker_status(existing)
+        if state == 'unknown':
+            print("  port %d is occupied by an unrecognized service; leaving it untouched" % TOPOLOGY_PORT)
+            return 1
+        print("  topology_server already up on %d (worker: %s)" % (TOPOLOGY_PORT, state))
 
     if not port_open(STUDIO_PORT):
         stamp = time.strftime("%Y%m%d-%H%M%S") + "-frontend"
@@ -200,10 +212,21 @@ def main():
 
     topo = http_json(TOPOLOGY_PORT, "/api/v1/lora/topology") or {}
     rx = topo.get("receiver") or {}
+    worker = receiver_worker_status(topo)
+    if worker in ('starting', 'recovering'):
+        print("  receiver worker is %s: %s" % (worker, rx.get('worker_error') or 'waiting for UDP socket'))
+    elif worker == 'stopped':
+        print("  receiver worker stopped; inspect topology.out; no process was terminated")
+    elif worker == 'legacy':
+        print("  receiver worker health not provided by this older service")
     print("\n== state")
     print("  gateway : %s" % (topo.get("labels", {}).get(rx.get("gateway_id"), rx.get("gateway_id") or "-")))
     print("  frames  : %s   reports: %d" % (rx.get("frames"), len(topo.get("reports") or [])))
-    if rx.get("state") != "receiving":
+    if worker in ('starting', 'recovering', 'stopped', 'unknown'):
+        print("  receiver health is not ready; waiting for the local receiver before diagnosing gateway traffic")
+    elif rx.get('gateway_observed') is True and rx.get('state') != 'receiving':
+        print("  gateway heartbeat is healthy; waiting for new node reports")
+    elif rx.get("state") != "receiving":
         # Diagnose instead of just warning: the three usual causes are checked in the order
         # that used to waste the most time.
         gw = port_open_on(GATEWAY_IP, 80)

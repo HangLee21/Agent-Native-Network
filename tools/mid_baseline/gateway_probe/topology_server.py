@@ -88,6 +88,12 @@ class Topology:
         self.node_numbers = {}     # observer mac -> number learned from header byte 35
         self.frames = 0
         self.resets = 0        # recvfrom OSErrors recovered from
+        self.worker_state = 'starting'
+        self.worker_error = None
+        self.last_worker_error = None
+        self.last_ack_error = None
+        self.worker_restarts = 0
+        self.ack_errors = 0
         # Downlink: where the gateway last spoke to us, plus the commands we sent and the
         # receipts that came back.
         self.gateway_addr = None
@@ -107,7 +113,8 @@ class Topology:
 
     def note_addr(self, addr):
         """Remember where the gateway is so a command can be sent back on this socket."""
-        self.gateway_addr = addr
+        with self.lock:
+            self.gateway_addr = addr
 
     def note_command(self, entry):
         self.commands.append(entry)
@@ -366,7 +373,7 @@ class Topology:
                     "gateway_id": (self.gateway_eui or "").lower(),
                     # The viewer only uses a source when the gateway is provably talking to
                     # us; without these fields it reports "receiving" but is never selected.
-                    "gateway_observed": bool(self.last_gateway
+                    "gateway_observed": bool(self.worker_state == 'running' and self.last_gateway
                                               and (now - self.last_gateway) <= GATEWAY_OBSERVE_S),
                     "gateway_last_pull_age_ms": int((now - self.last_gateway) * 1000)
                                                  if self.last_gateway else None,
@@ -382,6 +389,12 @@ class Topology:
                     "foreign_frames": self.foreign,
                     "bad_frames": self.bad,
                     "socket_resets": self.resets,
+                    "worker_state": self.worker_state,
+                    "worker_error": self.worker_error,
+                    "last_worker_error": self.last_worker_error,
+                    "last_ack_error": self.last_ack_error,
+                    "worker_restarts": self.worker_restarts,
+                    "ack_errors": self.ack_errors,
                 },
                 "reports": rows,
                 "evidence": "decoded from gateway PUSH_DATA; CRC32 verified per frame",
@@ -405,62 +418,114 @@ def claim_port(port):
     return True
 
 
-def udp_loop(topology, port, stop):
-    if not claim_port(port):
-        log("udp/%d is already in use: another receiver would steal frames. "
-            "Stop it first, or pass --udp-port." % port)
-        stop.set()
-        return
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    # Windows turns the ICMP port-unreachable produced when a sender closes its socket into
-    # a ConnectionResetError on the *next* recvfrom. `socket.SIO_UDP_CONNRESET` does not
-    # exist in every Python build, so the constant is spelled out; relying on hasattr()
-    # silently disabled this guard and let one reset kill the receive thread for good.
-    if os.name == "nt":
-        try:
-            sock.ioctl(0x9800000C, False)
-        except (OSError, ValueError, AttributeError):
-            pass
-    sock.bind(("0.0.0.0", port))
-    sock.settimeout(0.5)
-    # The HTTP thread needs this same socket: replying on the address the gateway used is the
-    # only option, because the gateway only accepts downlink from the server it talks to.
-    topology.sock = sock
+def udp_loop(topology, port, stop, *, socket_factory=None):
+    """Own the UDP socket, rebuilding it after errors without restarting HTTP."""
+    delay = 0.25
     while not stop.is_set():
+        sock = None
         try:
-            data, addr = sock.recvfrom(65535)
-        except socket.timeout:
-            continue
-        except OSError:
-            # A single reset must never end reception: the gateway keeps forwarding and we
-            # would go deaf while still reporting a healthy "listening" state.
-            if stop.is_set():
-                break
-            topology.note_reset()
-            continue
-        if len(data) < 4:
-            continue
-        version, token, mtype = data[0], data[1:3], data[3]
-        if mtype == 0:                                   # PUSH_DATA
-            topology.note_addr(addr)
-            sock.sendto(bytes([version]) + token + bytes([1]), addr)
-            if len(data) > 12:
-                # Bytes 4..12 are the gateway EUI: the Semtech UDP header carries it, so
-                # whichever gateway is on the link identifies itself. No hard-coded ID.
-                topology.note_gateway(data[4:12].hex())
+            sock = (socket_factory or socket.socket)(socket.AF_INET, socket.SOCK_DGRAM)
+            # Exclusive bind: never share traffic with an unrelated listener.
+            if os.name == "nt" and hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+            if os.name == "nt":
                 try:
-                    payload = json.loads(data[12:].decode("utf-8", "replace"))
-                except ValueError:
+                    sock.ioctl(0x9800000C, False)
+                except (OSError, ValueError, AttributeError):
+                    pass
+            sock.bind(("0.0.0.0", port))
+            sock.settimeout(0.5)
+            with topology.lock:
+                topology.sock = sock
+                topology.worker_state = 'running'
+                topology.worker_error = None
+            while not stop.is_set():
+                try:
+                    data, addr = sock.recvfrom(65535)
+                except socket.timeout:
                     continue
-                for pkt in payload.get("rxpk") or []:
-                    topology.ingest(pkt)
-        elif mtype == 2:                                 # PULL_DATA
-            topology.note_addr(addr)
-            sock.sendto(bytes([version]) + token + bytes([4]), addr)
-            if len(data) >= 12:
-                topology.note_gateway(data[4:12].hex())
-    sock.close()
+                delay = 0.25
+                if len(data) < 4:
+                    continue
+                version, token, mtype = data[0], data[1:3], data[3]
+                if mtype not in (0, 2):
+                    continue
+                topology.note_addr(addr)
+                try:
+                    sock.sendto(bytes([version]) + token + bytes([1 if mtype == 0 else 4]), addr)
+                except OSError as exc:
+                    # The received datagram remains valid even if its ACK cannot leave.
+                    with topology.lock:
+                        topology.ack_errors += 1
+                        topology.last_ack_error = '%s: %s' % (type(exc).__name__, exc)
+                if len(data) >= 12:
+                    topology.note_gateway(data[4:12].hex())
+                if mtype == 0 and len(data) > 12:
+                    try:
+                        payload = json.loads(data[12:].decode('utf-8', 'replace'))
+                        packets = payload.get('rxpk') or []
+                        if not isinstance(packets, list):
+                            continue
+                        for packet in packets:
+                            if isinstance(packet, dict):
+                                topology.ingest(packet)
+                    except (ValueError, TypeError, AttributeError):
+                        continue
+        except Exception as exc:
+            if not stop.is_set():
+                with topology.lock:
+                    topology.resets += 1
+                    topology.worker_restarts += 1
+                    topology.worker_state = 'recovering'
+                    topology.worker_error = '%s: %s' % (type(exc).__name__, exc)
+                    topology.last_worker_error = topology.worker_error
+                    topology.last_gateway = None
+                log('UDP receiver recovering: %s' % exc)
+        finally:
+            with topology.lock:
+                if topology.sock is sock:
+                    topology.sock = None
+                topology.gateway_addr = None
+                if stop.is_set():
+                    topology.worker_state = 'stopped'
+            if sock is not None:
+                try:
+                    sock.close()
+                except OSError:
+                    pass
+        if not stop.is_set():
+            stop.wait(delay)
+            delay = min(delay * 2, 5.0)
+    with topology.lock:
+        topology.worker_state = 'stopped'
+        topology.sock = None
+        topology.gateway_addr = None
+
+
+def supervise_udp(topology, port, stop, *, worker_fn=udp_loop):
+    """Restart an unexpectedly terminated worker; never restart on silence."""
+    delay = 0.25
+    while not stop.is_set():
+        worker = threading.Thread(target=worker_fn, args=(topology, port, stop), daemon=True)
+        worker.start()
+        while worker.is_alive() and not stop.is_set():
+            worker.join(0.5)
+        if stop.is_set():
+            worker.join(3)
+            break
+        with topology.lock:
+            topology.worker_state = 'recovering'
+            topology.worker_restarts += 1
+            topology.worker_error = 'UDP worker exited unexpectedly'
+            topology.last_worker_error = topology.worker_error
+            topology.last_gateway = None
+            topology.sock = None
+            topology.gateway_addr = None
+        log('UDP worker exited unexpectedly; restarting')
+        stop.wait(delay)
+        delay = min(delay * 2, 5.0)
+    with topology.lock:
+        topology.worker_state = 'stopped'
 
 
 def send_command(topology, target, target_boot, report_seq, operation, value=0,
@@ -470,8 +535,6 @@ def send_command(topology, target, target_boot, report_seq, operation, value=0,
     Returns a dict describing what was sent. The gateway must have spoken to us at least once
     so its address is known; otherwise there is nowhere to send the PULL_RESP.
     """
-    if topology.gateway_addr is None or topology.sock is None:
-        raise RuntimeError("网关还没联系过本机：先等它发来一帧/PULL_DATA，再下发命令")
     cmd_id = int.from_bytes(os.urandom(8), "big") or 1
     frame = build_command(target, target_boot, report_seq, operation, value, ttl_ms, cmd_id)
     txpk = {
@@ -481,12 +544,16 @@ def send_command(topology, target, target_boot, report_seq, operation, value=0,
     }
     body = json.dumps({"txpk": txpk}, separators=(",", ":")).encode("ascii")
     packet = bytes([2]) + b"\x00\x00" + bytes([3]) + body     # PULL_RESP
-    topology.sock.sendto(packet, topology.gateway_addr)
+    with topology.lock:
+        if topology.worker_state != 'running' or topology.gateway_addr is None or topology.sock is None:
+            raise RuntimeError("接收服务未就绪或网关尚未联系本机，不能下发命令")
+        addr = topology.gateway_addr
+        topology.sock.sendto(packet, addr)
     entry = {
         "cmd_id": "%016x" % cmd_id, "target": target, "target_boot": target_boot,
         "report_seq": report_seq, "operation": operation, "value": value,
         "ttl_ms": ttl_ms, "frame_hex": frame.hex(), "sent_at_ms": int(time.time() * 1000),
-        "gateway": topology.gateway_addr[0], "state": "sent", "receipt": None,
+        "gateway": addr[0], "state": "sent", "receipt": None,
     }
     topology.note_command(entry)
     return entry
@@ -568,22 +635,23 @@ def main():
     a = ap.parse_args()
     # A receiver that does not own the UDP port is worse than no receiver: the page stays
     # "empty" while frames are actually arriving somewhere else.
-    if not claim_port(a.udp_port):
-        print("udp/%d is already in use (another receiver or forwarder?). "
-              "Stop it, or pass --udp-port." % a.udp_port, flush=True)
-        return 1
     topology = Topology()
     if a.labels:
         topology.labels.update(json.loads(open(a.labels, encoding="utf-8").read()))
     stop = threading.Event()
-    threading.Thread(target=udp_loop, args=(topology, a.udp_port, stop), daemon=True).start()
     server = ThreadingHTTPServer(("127.0.0.1", a.port), handler_for(topology))
+    worker = threading.Thread(target=supervise_udp, args=(topology, a.udp_port, stop), daemon=True)
+    worker.start()
     print(json.dumps({"status": "ready", "http": f"http://127.0.0.1:{a.port}/api/v1/lora/topology",
                       "udp": a.udp_port, "identity": "learned from PUSH_DATA header"}), flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
+        pass
+    finally:
         stop.set()
+        server.server_close()
+        worker.join(3)
 
 
 if __name__ == "__main__":

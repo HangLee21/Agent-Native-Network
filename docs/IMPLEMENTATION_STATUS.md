@@ -1,5 +1,7 @@
 # 实现状态（代码级审计结果）
 
+2026-11-20 M-063。接收器对 ACK 发送异常计数，套接字或工作线程异常时关闭旧套接字后退避重建；静默不触发重启。Studio 使用独立的接收线程健康、网关心跳、节点报告时间。本机故障注入回归位于 tests/mid_baseline/test_gateway_recovery.py。
+
 2026-11-20 M-062。Studio 将网关接收 SF、带宽、编码率和接收射频链与节点 LRN1 状态块分开展示。只有新采集时原始报告带有的字段才能写入录制。 见 `simulation/results/20261120-M062-lora-radio/`。
 
 2026-11-19 M-061。Studio 将播放控件贴在画布下方，右侧显示 LoRa 接收信道、频率、RSSI、SNR 与收报年龄。板间 Wi-Fi 的信道和信号取自选中方向的邻居行。 验收目录为 `simulation/results/20261119-M061-studio-workbench/`。

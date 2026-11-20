@@ -67,6 +67,8 @@ main { max-width: none; padding: 10px 22px; }
 .workspace > aside .stats > div { min-width: 0; }
 .workspace > aside .loraStatus { display: block !important; background: #fff !important; border: 1px solid var(--border) !important; border-radius: 9px !important; margin: 0 0 10px !important; padding: 10px 12px !important; }
 .workspace > aside .loraStatus.hidden { display: none !important; }
+.loraStatus #receiverWorkerStatus { padding: 4px 7px; border-radius: 5px; background: #eef5f3; color: #315e55; }
+.loraStatus #receiverWorkerStatus[data-state="starting"], .loraStatus #receiverWorkerStatus[data-state="recovering"], .loraStatus #receiverWorkerStatus[data-state="stopped"], .loraStatus #receiverWorkerStatus[data-state="unknown"] { background: #fff1df; color: #854c20; }
 .workspace > aside .loraExtra { margin-top: 6px; }
 .mapCard, .panel { border-radius: 9px; }
 .mapTop { padding: 8px 12px 5px; align-items: center; }

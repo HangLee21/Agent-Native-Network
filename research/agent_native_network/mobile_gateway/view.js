@@ -48,7 +48,12 @@
     const enabled=isLoRa(),data=lora();$('loraStatus').classList.toggle('hidden',!enabled);$('wifiLegend').classList.toggle('hidden',enabled);$('loraLegend').classList.toggle('hidden',!enabled);$('chartLegendLora').classList.toggle('hidden',!enabled);$('chartLegendWifi').classList.toggle('hidden',enabled);if(!enabled)return;
     renderLoRaLegend();
     const counts={reported:0,stale_report:0,interrupted:0,never:0};for(const n of data.nodes.values())if(Object.hasOwn(counts,n.status))counts[n.status]++;
-    text('recoveryStatus',(data.receiver?.mode==='node_serial'?'节点 '+label(data.receiver.gateway_id)+' 串口接收 · ':'')+gatewayRecovery+` · 在线 ${counts.reported} / 超时未见 ${counts.stale_report} / 观测中断 ${counts.interrupted} / 从未观测 ${counts.never} · 超时阈值按上报周期计算`);
+    const worker=data.receiver?.worker_state,localUnreachable=data.receiver?.local_receiver_unreachable===true,workerProblem=['starting','recovering','stopped'].includes(worker),workerUnknown=!replayFrames&&(!!loraError||!!loraData&&now()-loraReadAt>6000||!localUnreachable&&loraData?.control?.reason==='接收来源未响应');
+    const gatewayText=localUnreachable&&!workerUnknown?'本机接收服务未响应':workerUnknown&&(worker||localUnreachable)?'网关当前状态未知':workerProblem?'接收线程未就绪，网关心跳当前不可确认':worker==='running'&&data.receiver?.gateway_observed===false?'网关心跳未观测到或已超时':gatewayRecovery;
+    text('recoveryStatus',(data.receiver?.mode==='node_serial'?'节点 '+label(data.receiver.gateway_id)+' 串口接收 · ':'')+gatewayText+` · 在线 ${counts.reported} / 超时未见 ${counts.stale_report} / 观测中断 ${counts.interrupted} / 从未观测 ${counts.never} · 超时阈值按上报周期计算`);
+    const workerLabels={running:'接收线程运行中',starting:'接收线程启动中',recovering:'接收线程恢复中',stopped:'接收线程已停止'};
+    const workerStatus=$('receiverWorkerStatus');workerStatus.classList.toggle('hidden',!worker&&!localUnreachable);workerStatus.dataset.state=workerUnknown||localUnreachable?'unknown':worker;
+    if(worker||localUnreachable)text('receiverWorkerStatus',(replayFrames?'历史快照 · ':'')+(workerUnknown?'接收线程当前状态未知 · 来源读取失败或快照过期':localUnreachable?'本机接收服务未响应':workerLabels[worker]||'接收线程状态未知'));
     const serialConfig=data.receiver?.mode==='node_serial';
     const newest=data.reports.slice().filter(x=>Number.isFinite(x.age)).sort((a,b)=>a.age-b.age)[0],radio=newest?.lora;
     const summary=$('uplinkSummary');summary.replaceChildren();
@@ -59,8 +64,9 @@
       }
       summary.append(grid,html('small',(replayFrames?'历史采样 · ':'接收来源 · ')+label(newest.id)+(serialConfig?' · 接收节点配置':' · 网关逐帧元数据')));
     }else summary.append(html('span','LoRa 上行：尚无报告'));
-    const r=data.receiver,offline=['stale','unavailable','busy','error'].includes(r?.state)||!!loraError,stateName={idle:'未开始接收',connecting:'正在连接',receiving:'正在实收',stale:'暂未续收',unavailable:'接收器不可用',busy:'串口已占用',error:'读取异常'};
-    $('loraStatus').classList.toggle('warning',offline);text('loraTitle',replayFrames?`历史接收器 ${r?.gateway_id?label(r.gateway_id):'未提供'} · 采样时 ${stateName[r?.state]||'状态未知'}`:loraError?'LoRa 来源暂时不可读取':r?`LoRa 接收器 ${r.gateway_id?label(r.gateway_id):'待识别'} · ${r.gateway_observed===false?'等待网关连接':stateName[r.state]||'状态未提供'}`:loraLoading?'正在读取 LoRa 来源':'尚无 LoRa 接收器报告');
+    const r=data.receiver,offline=['stale','unavailable','busy','error'].includes(r?.state)||!!loraError||workerProblem||localUnreachable,stateName={idle:'未开始接收',connecting:'正在连接',receiving:'正在实收',stale:'暂未续收',unavailable:'接收器不可用',busy:'串口已占用',error:'读取异常'};
+    const waitingForReports=!replayFrames&&!workerUnknown&&!localUnreachable&&worker==='running'&&r?.gateway_observed===true&&['idle','receiving','stale'].includes(r.state)&&loraData?.reports?.length===data.reports.length&&data.reports.every(item=>Number.isFinite(item.age)&&data.nodes.get(item.id)?.status==='stale_report');
+    $('loraStatus').classList.toggle('warning',offline);text('loraTitle',replayFrames?`历史接收器 ${r?.gateway_id?label(r.gateway_id):'未提供'} · 采样时 ${localUnreachable?'本机接收服务未响应':workerProblem?workerLabels[worker]:stateName[r?.state]||'状态未知'}`:loraError?'LoRa 来源暂时不可读取':r?`LoRa 接收器 ${r.gateway_id?label(r.gateway_id):'待识别'} · ${workerUnknown&&(worker||localUnreachable)?'状态未知':localUnreachable?'本机接收服务未响应':workerProblem?workerLabels[worker]:waitingForReports?'网关在线，等待节点上报':r.gateway_observed===false?'等待网关连接':stateName[r.state]||'状态未提供'}`:loraLoading?'正在读取 LoRa 来源':'尚无 LoRa 接收器报告');
     text('loraNote',(loraError?loraError+(loraData?'；保留上次快照。':'；等待当前来源快照。'):'')+(r?.error?r.error+'。':'')+`已取得 ${data.reports.length} 个报告者的最近快照。板间箭头为 ESP-NOW 邻居；LoRa 仅回传这些快照。位置、agent 和业务仍使用原来源。`);
     $('loraReports').replaceChildren();for(const item of data.reports){const p=item.report,g=item.gateway_id||r?.node_id||r?.gateway_id,b=html('button',`${label(item.id)} → ${g?label(g):'接收器未提供'} · LoRa RSSI ${Number.isFinite(item.lora?.rssi_dbm)?item.lora.rssi_dbm+' dBm':'未提供'} / SNR ${Number.isFinite(item.lora?.snr_db)?item.lora.snr_db+' dB':'未提供'}`,'loraReport');
       b.append(html('small',`报告 #${p.report_seq??'未提供'} · boot ${p.observer_boot??'未提供'} · PC 收报距今 ${age(item.age)} · 邻居 ${p.neighbors?.length||0}/${p.total_rows??'?'}${p.truncated?'（截断）':''}${p.nd_table_full?' · ND 表曾满':''}`));b.onclick=()=>choose(item.id);$('loraReports').append(b);

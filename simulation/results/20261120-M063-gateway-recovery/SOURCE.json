@@ -1,0 +1,51 @@
+{
+  "task": "M-063",
+  "review": "coordination/reviews/C-048.md",
+  "accepted_files": {
+    "tools/mid_baseline/gateway_probe/topology_server.py": "adae68f638b6c08284f71ce08904b0ccec69eb4fabe0c61566ef54d067ef1677",
+    "tools/mid_baseline/gateway_probe/start_frontend.py": "01eefc123cde6b7e485100eb4e55e16595c27d9b50217aef1971e794e9485d61",
+    "tools/mobile_gateway/sources.py": "136b3ebde1ce3f20537f78d88bc7dc8106f4ea499f14bb77e91f4f96465123a0",
+    "research/agent_native_network/mobile_gateway/view.js": "6ad938c0157affe40db4a95fdfe3516690cd280f3b4f41cd7e62d4c131ddadf2",
+    "research/agent_native_network/mobile_gateway/index.html": "72732d5311e4720a5ba1fe5bfc8dcd4d5e4a3b70518b4c8813cff03443e37ff9",
+    "research/agent_native_network/mobile_gateway/map.css": "d2b3781b884f58ccbb789329564cfe77fc1cf753869593468aae1631c69f9481",
+    "docs/OPERATING_GUIDE.md": "6ffd1319a945054604ed18d82484e6e5213bcf05277f4826066adc4cf561ab36",
+    "tests/mid_baseline/test_gateway_recovery.py": "3bb6ba57e3e3761674dae1895727515db91230f22d85249ece96f6d983c24ad1",
+    "tests/mid_baseline/test_start_diagnostics.py": "f311b0ab876287e42d8e7fa653b7db8e7f27c54f2b0371f431d54ae118dc1730"
+  },
+  "sources": {
+    "simulation/outputs/M-063/20261120-164921-integration/receiver-live-1.json": "6a84e77a51aa04fb84b44de5e4caddb031f01acc00f0d1074b460a398cee6a4a",
+    "simulation/outputs/M-063/20261120-164921-integration/receiver-live-2.json": "a25ba214288ae3bcb17b1075245302a76fec3abb2e88760603d601c1ef9a7959",
+    "simulation/outputs/M-063/20261120-164921-integration/receiver-live-3.json": "528c9fc75bd7b5e8d0b0ab6072d82e28d698af0c8fc0f68e73d64e5441f29f53",
+    "simulation/outputs/M-063/20261120-164921-integration/receiver-live-4.json": "4618ca49a4624a2e93d4237e1e592f22b9bb7e56b5a71e326e4ba3dc62d2b717",
+    "simulation/outputs/M-063/20261120-164921-integration/receiver-live-5.json": "9d11ab32fc496e78f89917beaa027029ab46efb284fa735894b58f408cf4ec43",
+    "simulation/outputs/M-063/20261120-164921-integration/receiver-live-6.json": "d52ddbe44f2f4bb6e515c1dfadb9c86825503e6b8fdc05850a52b9131160cdd5",
+    "simulation/outputs/M-063/20261120-164921-integration/receiver-live-7.json": "a318212535156163fdd435d28e1d20b79bdd788ebb9452cc231033550ba771ff",
+    "simulation/outputs/M-063/20261120-164921-integration/receiver-live-8.json": "5280c760d4b37ee38c95524fea042280e220e2191d504b13fe19ba7b6bc6421e",
+    "simulation/outputs/M-063/20261120-164921-integration/studio-final-1.json": "78b70fec94a4c304ae2d76e8773d49140e059760be23f5c8c1bbc6bbf706fb98",
+    "simulation/outputs/M-063/20261120-164921-integration/live-final-browser.json": "c0c300eea594e05872c5c1b42a0a5a5096ed36a977b0dcd679ec15053326f98a",
+    "simulation/outputs/M-063/20261120-164921-integration/launcher-live.txt": "46213e7dfbbd3d47affa7dc9671e35a781b6d5c731d0d34efc6e5460e84f6de4",
+    "simulation/outputs/M-063/20261120-164921-integration/live-final-browser.png": "9e42af888891a387427525ebefa1151e9f36740016bc07b3b4164dccf93260b8",
+    "simulation/outputs/M-gateway-recovery/20261120-164057/topology-before.log": "3decccef37ce71dcffb61b016d16bf2f8a7880b05116e85aa894d814f9085a45",
+    "simulation/outputs/M-063/20261120-164921-integration/RUN_MANIFEST.json": "7d19a7396b5dec648c6f97c36ae361a038321213632a805963abfcec09024ff8",
+    "simulation/outputs/E2-043/20261120-02-udp-recovery/launcher-tests.txt": "e4d5d3c40ac524e9b35b76ae39c4521db1625839175bd5ffa46fd798718add35",
+    "simulation/outputs/E2-043/20261120-02-udp-recovery/RUN_MANIFEST.json": "008a92be2ebf5398af4580a571f74c5119a303d5616c0e427fc5dc4fcf5c55b1",
+    "simulation/outputs/E2-043/20261120-02-udp-recovery/tests.txt": "eafd600818749047c139bfc1c3a8b8829e9e25ecc19aa8c27c0e7f9fee2038f7",
+    "simulation/outputs/E2-043/20261120-03-worker-supervision/tests.txt": "3e7d4986c5bbc13c346c55c90c4dc4a2eee39984dd6451f3fb958fe4edb8d044",
+    "simulation/outputs/E2-043/20261120-05-portable-test/RUN_MANIFEST.json": "0dbef4e82549db8c75baa548e14c759d80718a829d303c306d79aaf5bf0ad2c5",
+    "simulation/outputs/E2-043/20261120-05-portable-test/tests.txt": "b56ee1eb4f406ca4b0b5b98c6cd88495980eade2d68c551fc623b1ce5abf3a08",
+    "simulation/outputs/E2-043/20261120-07-local-http/RUN_MANIFEST.json": "ae375a58dba11a6dfe29b2d12631d44c621bceb993befd84aa32bd1def66dd68",
+    "simulation/outputs/E2-043/20261120-07-local-http/tests.txt": "9e91902f1c5201f7ded8a1e8e363cea22e408d75361840528c88d3d66902dbeb",
+    "simulation/outputs/E2-043/20261120-08-start-diagnostics/RUN_MANIFEST.json": "260637df630c2dfdf7369f410bb68c889a458dec424eed66631b9d21f3030885",
+    "simulation/outputs/E2-043/20261120-08-start-diagnostics/tests.txt": "a389ea71cc6118ba28ee5cabac7312edaeb9ba03a710c81e27cebf61be8f2814",
+    "simulation/outputs/D-043/20261120-04-unreachable-final/RESULT.json": "7a62a71d4a93be7e9cfd26fd701d2cbb4ae3d34bf08a2ad3c880b68fb9db371c",
+    "simulation/outputs/D-043/20261120-04-unreachable-final/RUN_MANIFEST.json": "2d3d8291d557655e55949638c5d75ab709fa7594d626f3fdefec641901eebd0d",
+    "simulation/outputs/D-043/20261120-05-worker-final/RESULT.json": "311fc815ebc416330066363464de4462fc25f6ad2229b06b68becd8423afbd43",
+    "simulation/outputs/D-043/20261120-05-worker-final/RUN_MANIFEST.json": "521b8c8c543ef84fdb91d92cb182a394e44ffcf09af745d0947957d47072e5aa",
+    "simulation/outputs/D-043/20261120-07-gateway-title/RESULT.json": "8f8ddd2a22671c11f7ebb9dce7cf5dce5e2ae0faab26c45225c91ee1a40b925a",
+    "simulation/outputs/D-043/20261120-07-gateway-title/RUN_MANIFEST.json": "5ecd9548489a46c18e7e5643ae1c266f53f7f7a3cc146044f58104ee609c0c02"
+  },
+  "limitations": [
+    "Nodes powered off per operator. No post-update physical node frames or real sleep/wake verification.",
+    "Edge dump-dom yielded no DOM. Final live UI was observed with headless Chrome."
+  ]
+}

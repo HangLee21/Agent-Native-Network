@@ -4,22 +4,24 @@ from tools.flight_link.gateway import Gateway as UdpGateway
 
 class AsyncSnapshot:
  """Poll a potentially slow adapter without holding the source-manager lock."""
- def __init__(self,adapter,clock=time.monotonic):
-  self.adapter=adapter;self.clock=clock;self.lock=threading.Lock();self.stop=threading.Event();self.cached=None;self.at=None;self.failed=False
+ def __init__(self,adapter,clock=time.monotonic,local_receiver=False):
+  self.adapter=adapter;self.clock=clock;self.lock=threading.Lock();self.stop=threading.Event();self.cached=None;self.at=None;self.failed=False;self.local_receiver=local_receiver;self.request_failed=None
   self.thread=threading.Thread(target=self._run,daemon=True);self.thread.start()
  def _run(self):
   while not self.stop.is_set():
    try:
     value=self.adapter.topology()
     if not isinstance(value,dict) or value.get('schema')!='lora.topology.v1':raise ValueError('无效拓扑')
-    with self.lock:self.cached=copy.deepcopy(value);self.at=self.clock();self.failed=False
-   except Exception:
-    with self.lock:self.failed=True
+    with self.lock:self.cached=copy.deepcopy(value);self.at=self.clock();self.failed=False;self.request_failed=False
+   except Exception as exc:
+    with self.lock:self.failed=True;self.request_failed=True if isinstance(exc,OSError) else None
    self.stop.wait(1)
  def topology(self):
   with self.lock:
-   value=copy.deepcopy(self.cached);at=self.at;failed=self.failed
-  if value is None:return {'schema':'lora.topology.v1','source':'unavailable','receiver':{'state':'connecting','gateway_observed':False},'reports':[],'labels':{},'control':{'enabled':False,'reason':'等待接收来源'}}
+   value=copy.deepcopy(self.cached);at=self.at;failed=self.failed;request_failed=self.request_failed
+  if value is None:value={'schema':'lora.topology.v1','source':'unavailable','receiver':{'state':'connecting','gateway_observed':False},'reports':[],'labels':{},'control':{'enabled':False,'reason':'等待接收来源'}}
+  if self.local_receiver and request_failed is not None:value.setdefault('receiver',{})['local_receiver_unreachable']=request_failed
+  if at is None:return value
   elapsed=max(0,int((self.clock()-at)*1000))
   for row in value.get('reports',[]):
    if type(row.get('pc_receive_age_ms')) is int:row['pc_receive_age_ms']+=elapsed
@@ -30,6 +32,8 @@ class AsyncSnapshot:
    if isinstance(report,dict) and type(report.get('pc_receive_age_ms')) is int:report['pc_receive_age_ms']+=elapsed
   if failed or elapsed>3000:
    value.setdefault('receiver',{}).update(state='unavailable',gateway_observed=False)
+   value['receiver'].pop('worker_state',None)
+   if not failed:value['receiver'].pop('local_receiver_unreachable',None)
    value['control']={'enabled':False,'reason':'接收来源未响应'}
   return value
  def close(self):
@@ -46,7 +50,7 @@ class Sources:
     self.error=str(exc)
     if self.sock:self.sock.close();self.sock=None
  def add(self,kind,adapter,label):
-  if kind in ('http','legacy'):adapter=AsyncSnapshot(adapter,clock=self.clock)
+  if kind in ('http','legacy'):adapter=AsyncSnapshot(adapter,clock=self.clock,local_receiver=(kind=='legacy'))
   with self.lock:self.entries[kind+':configured']={'kind':kind,'adapter':adapter,'label':label}
  def add_serial(self,mac,adapter):
   with self.lock:self.entries['serial:'+mac]={'kind':'serial','adapter':adapter,'label':'串口节点 '+mac}
@@ -112,6 +116,14 @@ class Sources:
   with self.lock:
    _,snapshots=self._all()
    value=snapshots.get(self.selected,{'schema':'lora.topology.v1','source':'unavailable','receiver':{'gateway_id':None,'state':'unavailable','gateway_observed':False},'reports':[],'labels':{},'control':{'enabled':False,'reason':'没有可用来源'}})
+   if self.selected is None:
+    # Surface local receiver health without selecting or asserting an identity.
+    local=snapshots.get('legacy:configured',{}).get('receiver',{})
+    if type(local.get('local_receiver_unreachable')) is bool:
+     value['receiver']['local_receiver_unreachable']=local['local_receiver_unreachable']
+    if local.get('state')!='unavailable' and local.get('worker_state') in ('starting','running','recovering','stopped'):
+     for key in ('worker_state','worker_error','last_worker_error','last_ack_error','worker_restarts','ack_errors'):
+      if key in local:value['receiver'][key]=local[key]
    value['source_id']=self.selected;value['selection_epoch']=self.selection_epoch;return value
  @property
  def info(self):
