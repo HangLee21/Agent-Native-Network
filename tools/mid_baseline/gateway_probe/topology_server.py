@@ -179,6 +179,8 @@ class Topology:
                     "frequency_hz": int(round(float(pkt.get("freq", 0)) * 1e6)),
                     "channel": pkt.get("chan"),
                     "datarate": pkt.get("datr"),
+                    "coding_rate": pkt.get("codr"),
+                    "rf_chain": pkt.get("rfch"),
                 },
                 "pc_receive_age_ms": 0,
             }
@@ -192,11 +194,11 @@ class Topology:
                     "state": LRN1_STATES[row[10]] if row[10] < len(LRN1_STATES) else "unknown",
                     "valid": row[11],
                     "seen_age_ms": struct.unpack("<H", row[12:14])[0],
-                    "ack_age_ms": struct.unpack("<H", row[14:16])[0],
+                    "ack_age_ms": struct.unpack("<H", row[14:16])[0] if row[11] & 0x01 else None,
                     "wifi_rssi_dbm": struct.unpack("b", row[16:17])[0] if row[11] & 0x02 else None,
                     "rssi_dbm": struct.unpack("b", row[16:17])[0] if row[11] & 0x02 else None,
-                    "rf_age_ms": struct.unpack("<H", row[17:19])[0],
-                    "wifi_channel": row[19],
+                    "rf_age_ms": struct.unpack("<H", row[17:19])[0] if row[11] & 0x04 else None,
+                    "wifi_channel": row[19] if row[11] & 0x08 else None,
                 })
             offset = 44 + 20 * rows
             if has_status:

@@ -1,5 +1,7 @@
 # 项目状态：目标与完成度
 
+2026-11-20 M-062。Studio 将网关接收 SF、带宽、编码率和接收射频链与节点 LRN1 状态块分开展示。只有新采集时原始报告带有的字段才能写入录制。 见 `simulation/results/20261120-M062-lora-radio/`。
+
 2026-11-19 M-061。Studio 已将实时观测、观测暂停和历史回放放入固定顶栏。操作员可边看拓扑边播放、定位事件，并从旧记录一键切回现场。 验收目录为 `simulation/results/20261119-M061-studio-workbench/`。
 
 2026-11-19 M-060。Studio 拓扑图改用直线和短弧线。回放同一帧的前后对照见 `simulation/results/20261119-M060-studio-links/`。

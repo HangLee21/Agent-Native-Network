@@ -105,7 +105,7 @@ class Gateway:
        blocks[name]=(now,int(time.time()*1000))
       elif old and old['boot']==boot and old['report'].get(name) is not None:
        report[name]=copy.deepcopy(old['report'][name]);blocks[name]=old['blocks'][name]
-     self.nodes[node]=dict(boot=boot,seq=seq,report=report,received=now,blocks=blocks,lora={k:packet.get(k) for k in ('rssi','lsnr','freq','chan','datr')});self.stats['reports']+=1
+     self.nodes[node]=dict(boot=boot,seq=seq,report=report,received=now,blocks=blocks,lora={k:packet.get(k) for k in ('rssi','lsnr','freq','chan','datr','codr','rfch')});self.stats['reports']+=1
     return
    if self.ack_decoder is None:self.stats['unknown_payload']+=1;return
    ack=self.ack_decoder(data)

@@ -1,5 +1,7 @@
 # 固件版本沿革（field_agent）
 
+2026-11-20 M-062。Studio 将网关接收 SF、带宽、编码率和接收射频链与节点 LRN1 状态块分开展示。只有新采集时原始报告带有的字段才能写入录制。 见 `simulation/results/20261120-M062-lora-radio/`。
+
 2026-11-19 M-061。电脑端 Studio 重新组织了拓扑、信道信息和实验回放，修复先暂停再回放时返回按钮未恢复更新的问题。 验收目录为 `simulation/results/20261119-M061-studio-workbench/`。
 
 2026-11-19 M-060。Studio 拓扑图改用直线和短弧线。回放同一帧的前后对照见 `simulation/results/20261119-M060-studio-links/`。
