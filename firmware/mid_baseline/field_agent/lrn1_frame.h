@@ -66,6 +66,10 @@ typedef struct {
 	int8_t pi_wifi_rssi;
 	uint8_t serial_errors;
 	uint8_t battery_pct;    /* 0 = unknown */
+	/* The node's own ESP-NOW channel. Per-neighbour channels come from the driver and are
+	 * not reported by every IDF build, so the value the mesh actually runs on is what the
+	 * receiver needs: it explains why nodes stop hearing each other. */
+	uint8_t wifi_channel;   /* 1..14, 0 = unknown */
 } lrn1_status;
 
 #define LRN1_RST_UNKNOWN 0u

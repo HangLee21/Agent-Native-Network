@@ -18,6 +18,7 @@ import socket
 import struct
 import threading
 import time
+import zlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 LRN1_STATES = ("lost", "heard", "bidirectional")
@@ -44,6 +45,39 @@ def mac_text(raw):
     return ":".join("%02x" % b for b in raw)
 
 
+# ---------------------------------------------------------------- downlink (LRC2 / LRA2)
+# The uplink is receiver-only by nature, but the same socket can carry commands back: the
+# gateway's address is learned from the datagrams it sends, and a Semtech PULL_RESP (type 3)
+# with a `txpk` body makes it transmit. The node answers with an LRA2 receipt over the air,
+# which we match back to the command by its 8-byte id.
+LRC2 = struct.Struct("<4sBBH6sHIIQIIII")
+
+
+def build_command(target, target_boot, report_seq, operation, value, ttl_ms, cmd_id):
+    """Encode one LRC2 command: it must anchor to a report the node actually sent."""
+    op = {"echo": 1, "status": 2}.get(operation)
+    if op is None:
+        raise ValueError("operation must be echo or status")
+    raw = LRC2.pack(b"LRC2", 1, op, 48, bytes.fromhex(target.replace(":", "")), 0,
+                    target_boot, report_seq, cmd_id, ttl_ms, value, 0, 0)
+    return raw[:-4] + struct.pack("<I", zlib.crc32(raw[:-4]))
+
+
+def decode_receipt(raw):
+    (magic, version, op, length, mac, flags, boot, seq, ident, status, value, uptime,
+     crc) = LRC2.unpack(raw)
+    if magic != b"LRA2" or version != 1 or length != 48:
+        raise ValueError("not an LRA2 receipt")
+    if crc != zlib.crc32(raw[:-4]):
+        raise ValueError("LRA2 CRC")
+    return {
+        "target": mac_text(mac), "target_boot": boot, "report_seq": seq,
+        "cmd_id": "%016x" % ident, "operation": "echo" if op == 1 else "status",
+        "executed": status == 2, "status": status, "value": value,
+        "uptime_ms": uptime, "duplicate": bool(flags & 1),
+    }
+
+
 class Topology:
     def __init__(self):
         self.lock = threading.Lock()
@@ -54,6 +88,11 @@ class Topology:
         self.node_numbers = {}     # observer mac -> number learned from header byte 35
         self.frames = 0
         self.resets = 0        # recvfrom OSErrors recovered from
+        # Downlink: where the gateway last spoke to us, plus the commands we sent and the
+        # receipts that came back.
+        self.gateway_addr = None
+        self.sock = None
+        self.commands = []
         self.lrn1 = 0
         self.foreign = 0
         self.bad = 0
@@ -65,6 +104,24 @@ class Topology:
         # replacement gateway needs no code change and the old one keeps working.
         self.gateway_eui = None
         self.last_gateway = None   # any datagram, including PULL_DATA keepalives
+
+    def note_addr(self, addr):
+        """Remember where the gateway is so a command can be sent back on this socket."""
+        self.gateway_addr = addr
+
+    def note_command(self, entry):
+        self.commands.append(entry)
+        del self.commands[:-64]
+
+    def claim_receipt(self, receipt):
+        """Match an LRA2 to the command that produced it."""
+        for entry in reversed(self.commands):
+            if entry["cmd_id"] == receipt["cmd_id"]:
+                entry["receipt"] = receipt
+                entry["state"] = "executed" if receipt["executed"] else "rejected"
+                return entry
+        return None
+
 
     def gateway_name(self, eui=None):
         eui = (eui or self.gateway_eui or "").lower()
@@ -110,6 +167,15 @@ class Topology:
             return
         with self.lock:
             self.frames += 1
+            if raw[:4] == b"LRA2" and len(raw) == 48:
+                # A command receipt travels over the same radio path as the reports.
+                try:
+                    receipt = decode_receipt(raw)
+                except ValueError:
+                    self.bad += 1
+                    return
+                self.claim_receipt(receipt)
+                return
             if len(raw) < 48 or raw[:4] != b"LRN1" or raw[4] != 44 or raw[5] != 20:
                 self.foreign += 1        # not our firmware: another node on this channel
                 return
@@ -221,6 +287,7 @@ class Topology:
                     "pi_wifi_rssi": struct.unpack("<b", raw[b + 16:b + 17])[0],
                     "serial_errors": raw[b + 17],
                     "battery_pct": raw[b + 18],
+                    "wifi_channel": raw[b + 19] or None,
                 }
                 record["report"]["status"] = record["status"]
                 offset += 24
@@ -357,6 +424,9 @@ def udp_loop(topology, port, stop):
             pass
     sock.bind(("0.0.0.0", port))
     sock.settimeout(0.5)
+    # The HTTP thread needs this same socket: replying on the address the gateway used is the
+    # only option, because the gateway only accepts downlink from the server it talks to.
+    topology.sock = sock
     while not stop.is_set():
         try:
             data, addr = sock.recvfrom(65535)
@@ -373,6 +443,7 @@ def udp_loop(topology, port, stop):
             continue
         version, token, mtype = data[0], data[1:3], data[3]
         if mtype == 0:                                   # PUSH_DATA
+            topology.note_addr(addr)
             sock.sendto(bytes([version]) + token + bytes([1]), addr)
             if len(data) > 12:
                 # Bytes 4..12 are the gateway EUI: the Semtech UDP header carries it, so
@@ -385,15 +456,66 @@ def udp_loop(topology, port, stop):
                 for pkt in payload.get("rxpk") or []:
                     topology.ingest(pkt)
         elif mtype == 2:                                 # PULL_DATA
+            topology.note_addr(addr)
             sock.sendto(bytes([version]) + token + bytes([4]), addr)
             if len(data) >= 12:
                 topology.note_gateway(data[4:12].hex())
     sock.close()
 
 
+def send_command(topology, target, target_boot, report_seq, operation, value=0,
+                 ttl_ms=10000, freq_hz=470500000, datr="SF7BW125"):
+    """Transmit one LRC2 command through the gateway.
+
+    Returns a dict describing what was sent. The gateway must have spoken to us at least once
+    so its address is known; otherwise there is nowhere to send the PULL_RESP.
+    """
+    if topology.gateway_addr is None or topology.sock is None:
+        raise RuntimeError("网关还没联系过本机：先等它发来一帧/PULL_DATA，再下发命令")
+    cmd_id = int.from_bytes(os.urandom(8), "big") or 1
+    frame = build_command(target, target_boot, report_seq, operation, value, ttl_ms, cmd_id)
+    txpk = {
+        "imme": True, "freq": freq_hz / 1e6, "powe": 14, "modu": "LORA",
+        "datr": datr, "codr": "4/5", "size": len(frame),
+        "data": base64.b64encode(frame).decode("ascii"),
+    }
+    body = json.dumps({"txpk": txpk}, separators=(",", ":")).encode("ascii")
+    packet = bytes([2]) + b"\x00\x00" + bytes([3]) + body     # PULL_RESP
+    topology.sock.sendto(packet, topology.gateway_addr)
+    entry = {
+        "cmd_id": "%016x" % cmd_id, "target": target, "target_boot": target_boot,
+        "report_seq": report_seq, "operation": operation, "value": value,
+        "ttl_ms": ttl_ms, "frame_hex": frame.hex(), "sent_at_ms": int(time.time() * 1000),
+        "gateway": topology.gateway_addr[0], "state": "sent", "receipt": None,
+    }
+    topology.note_command(entry)
+    return entry
+
+
+def _read_json(handler):
+    length = int(handler.headers.get("Content-Length") or 0)
+    if not length:
+        return {}
+    return json.loads(handler.rfile.read(length).decode("utf-8"))
+
+
+
 def handler_for(topology):
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self):                                # noqa: N802 - stdlib naming
+            if self.path.split("?")[0] == "/api/v1/lora/commands":
+                body = json.dumps({
+                    "schema": "lora.commands.v1",
+                    "gateway_addr": ("%s:%d" % topology.gateway_addr)
+                                    if topology.gateway_addr else None,
+                    "commands": list(reversed(topology.commands))[:20],
+                }, ensure_ascii=False).encode("utf-8")
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
             if self.path.split("?")[0] in ("/api/v1/lora/topology", "/"):
                 body = json.dumps(topology.snapshot(), ensure_ascii=False).encode("utf-8")
                 self.send_response(200)
@@ -404,6 +526,33 @@ def handler_for(topology):
             else:
                 self.send_response(404)
                 self.end_headers()
+
+        def do_POST(self):                               # noqa: N802 - stdlib naming
+            if self.path.split("?")[0] != "/api/v1/lora/command":
+                self.send_response(404)
+                self.end_headers()
+                return
+            try:
+                body = _read_json(self)
+                entry = send_command(
+                    topology,
+                    target=body["target"],
+                    target_boot=int(body["target_boot"]),
+                    report_seq=int(body["report_seq"]),
+                    operation=body.get("operation", "echo"),
+                    value=int(body.get("value", 0)),
+                    ttl_ms=int(body.get("ttl_ms", 10000)),
+                )
+                payload = json.dumps({"ok": True, "command": entry}, ensure_ascii=False).encode("utf-8")
+                code = 200
+            except Exception as exc:
+                payload = json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False).encode("utf-8")
+                code = 400
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(payload)))
+            self.end_headers()
+            self.wfile.write(payload)
 
         def log_message(self, *args):                    # keep the console quiet
             pass

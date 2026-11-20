@@ -87,7 +87,8 @@ def decode_frame(data: bytes) -> dict:
             pi_cpu_temp_c=struct.unpack_from('<b', data, b + 12)[0],
             pi_load_x10=data[b + 13], pi_mem_free_mb=data[b + 14] | (data[b + 15] << 8),
             pi_wifi_rssi=struct.unpack_from('<b', data, b + 16)[0],
-            serial_errors=data[b + 17], battery_pct=data[b + 18])
+            serial_errors=data[b + 17], battery_pct=data[b + 18],
+            wifi_channel=data[b + 19] or None)
     if has_gps:
         b = 44 + 20 * count + (24 if has_status else 0)
         gflags = data[b]
@@ -137,7 +138,7 @@ def encode_frame(report: dict) -> bytes:
         def _u8(v): return max(0, min(255, int(v or 0)))
         def _i8(v): return max(-128, min(127, int(v or 0)))
         def _u16(v): return max(0, min(65535, int(v or 0)))
-        raw.extend(struct.pack('<BHbBBBBbBBBbBHbBB',
+        raw.extend(struct.pack('<BHbBBBBbBBBbBHbBBB',
                                _u8(status.get('reset_reason')),
                                _u16(status.get('supply_mv')),
                                _i8(status.get('die_temp_c')),
@@ -154,8 +155,9 @@ def encode_frame(report: dict) -> bytes:
                                _u16(status.get('pi_mem_free_mb')),
                                _i8(status.get('pi_wifi_rssi')),
                                _u8(status.get('serial_errors')),
-                               _u8(status.get('battery_pct'))))
-        raw.extend(b'\x00' * 5)   # block is 24 bytes; 19 carry data
+                               _u8(status.get('battery_pct')),
+                               _u8(status.get('wifi_channel'))))
+        raw.extend(b'\x00' * 4)   # block is 24 bytes; 20 carry data
     if gps is not None:
         raw.extend(struct.pack('<Bii hHHBBB',
                                gps.get('flags', 0) & 0xFF,

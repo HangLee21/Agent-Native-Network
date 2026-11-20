@@ -42,7 +42,7 @@ static void write_row(uint8_t* base, unsigned slot, const nd_peer* p, const mt_n
 	}
 }
 
-/* 24 bytes. Bytes 19..23 stay zero for future fields. */
+/* 24 bytes. Bytes 20..23 stay zero for future fields. */
 static void write_status(uint8_t* b, const lrn1_status* s) {
 	b[0] = s->reset_reason;
 	put(b + 1, s->supply_mv, 2);
@@ -61,6 +61,7 @@ static void write_status(uint8_t* b, const lrn1_status* s) {
 	b[16] = (uint8_t)s->pi_wifi_rssi;
 	b[17] = s->serial_errors;
 	b[18] = s->battery_pct;
+	b[19] = s->wifi_channel;	/* first of the reserved bytes */
 }
 
 /* 20 bytes. Bytes 18..19 stay zero. */

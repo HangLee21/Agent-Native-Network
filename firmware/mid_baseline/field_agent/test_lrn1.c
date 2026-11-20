@@ -140,6 +140,7 @@ CHECK((crc32(frame, len - 4)) == ((uint32_t)frame[len - 4] | ((uint32_t)frame[le
 	st.pi_wifi_rssi = -61;
 	st.serial_errors = 1;
 	st.battery_pct = 88;
+	st.wifi_channel = 6;
 
 	cursor = 0;
 	len = lrn1_build(&n, &m, now, NULL, 7, &st, NULL, frame, 208, 7, 10000, &cursor, &res);
@@ -156,6 +157,7 @@ CHECK((crc32(frame, len - 4)) == ((uint32_t)frame[len - 4] | ((uint32_t)frame[le
 		CHECK(b[11] == (LRN1_PI_ALIVE | LRN1_PI_NETWORK), "pi flags round-trip");
 		CHECK((b[14] | (b[15] << 8)) == 1024, "pi free memory round-trips");
 		CHECK(b[18] == 88, "battery percent round-trips");
+		CHECK(b[19] == 6, "wifi_channel round-trips");
 	}
 	CHECK((crc32(frame, len - 4)) == ((uint32_t)frame[len - 4] | ((uint32_t)frame[len - 3] << 8)
 	      | ((uint32_t)frame[len - 2] << 16) | ((uint32_t)frame[len - 1] << 24)),

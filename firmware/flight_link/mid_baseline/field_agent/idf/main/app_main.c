@@ -143,6 +143,7 @@ void lrn1_platform_status(lrn1_status* s){
                  : r==ESP_RST_PANIC?LRN1_RST_PANIC
                  : r==ESP_RST_SW?LRN1_RST_SOFTWARE:LRN1_RST_UNKNOWN;
  { uint32_t kb=esp_get_free_heap_size()/1024u; s->heap_free_kb=(uint8_t)(kb>255u?255u:kb); }
+ s->wifi_channel=channel;	/* the ESP-NOW channel this mesh actually runs on */
 }
 
 static cJSON* event(const char*kind){cJSON*j=cJSON_CreateObject();cJSON_AddStringToObject(j,"schema","mid.serial.v1");cJSON_AddStringToObject(j,"event",kind);field_id(j,"node_id",self);cJSON_AddNumberToObject(j,"boot_id",boot);cJSON_AddStringToObject(j,"build_id",MID_BUILD_ID);cJSON_AddNumberToObject(j,"monotonic_ms",(double)millis());return j;}
