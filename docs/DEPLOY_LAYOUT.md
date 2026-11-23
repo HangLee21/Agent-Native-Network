@@ -154,3 +154,116 @@ python tools\release\sync_to_deploy.py --deploy .local\wt-deploy --check
 frames=21  bad=0  reports=5
 编号 1/2/3/4/5，邻居各 4 个，status_age_ms 21–33 s
 ```
+
+---
+
+## 八、密码登录策略（有意为之的取舍）
+
+现有 5 块板与以后新做的卡，**密码登录全局可用**（覆盖了 1 号原有的加固策略）。
+这是明确的选择，不是遗漏。
+
+### 历史情况
+
+1 号上有一个更早的加固文件：
+
+```ini
+# /etc/ssh/sshd_config.d/10-eora.conf
+PubkeyAuthentication yes
+PasswordAuthentication no           # 全局禁止密码
+Match Address 169.254.0.0/16
+    PasswordAuthentication yes      # 仅网线直连时允许
+```
+
+含义：密码只能在“人蹲在设备旁边插网线”时用，必须物理接触。
+
+### 现在的做法
+
+`00-eora-password.conf` 写入 `PasswordAuthentication yes`。
+sshd 对同名指令取**首个生效值**，目录按文件名字典序 Include，`00-` 永远最先，
+因此覆盖了 `10-eora.conf` 的 `no`。
+
+### 影响
+
+| | 之前 | 现在 |
+|---|---|---|
+| 密码登录来源 | 仅网线直连（169.254） | **任何来源**（tailnet / WiFi / 公网若可达） |
+| 拿到密码的人 | 需物理接触设备 | 远程即可登录 |
+| 私钥登录 | 仍需（未改动） | 仍需 |
+
+**原因**：第二位运维走 Tailscale（100.x.x.x），不属于 169.254/16，
+在旧策略下会被拒绝（`Permission denied (publickey)` 就是这么来的）。
+
+### 如需收紧
+
+改用只允许 tailnet 与直连网线：
+
+```ini
+# /etc/ssh/sshd_config.d/00-eora-password.conf
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+Match Address 100.64.0.0/10,169.254.0.0/16
+    PasswordAuthentication yes
+    KbdInteractiveAuthentication yes
+```
+
+验证方式：`sshd -T -C addr=100.64.0.1 | grep -i passwordauthentication` 应为 yes，
+`sshd -T -C addr=8.8.8.8` 应为 no。
+
+### 回退到最初状态
+
+删除 `00-eora-password.conf` 并 `systemctl reload ssh` 即可，`10-eora.conf` 一直未被修改。
+
+### 相关实现
+
+- `app/services/tools/fleet/enable_ssh_password.py`（对已有设备打开）
+- `app/services/tools/gateway_probe/mkcard.py` 的安装器逻辑（新卡首启自动写入）
+
+两者都写 `00-` 前缀，并清理历史遗留的 `20-eora-password.conf`。
+
+---
+
+## 九、网关候选地址与失败切换
+
+`config/fleet.default.json` 的 `gateway.candidate_hosts` 是**有序列表**，
+`RemoteGateway` 按列表顺序尝试：
+
+1. 先集中在当前首选上试，连续失败 `retries`（默认 3）次后，切到列表中的下一个；
+2. 切换时同一次轮询内会再给新候选一次机会，不必多等一整轮；
+3. 一旦某个候选成功，就把它固定为首选并清零失败计数；
+4. `receiver`/`info` 里会回报当前使用的 `host`，便于判断连的是哪台。
+
+现场换网关只需改 `candidate_hosts`（可写多个）。`mode` 说明：
+
+| mode | 含义 | 适用 |
+|---|---|---|
+| `remote` | 网关**自身**提供 HTTP 拓扑接口（8780） | RHF2S008 一类带 Web 服务的网关 |
+| `legacy_local` | 网关只发 UDP，由本机接收器解析 | E870-L 一类纯透传网关 |
+
+`legacy_local` 下启动器会自己拉起接收器，不需要额外脚本。
+
+---
+
+## 十、两个仓库里同名但实现不同的启动脚本
+
+仓库根有三个同名 `.cmd`，**两个仓库的版本不同**。这不是疏漏，是两种运行形态的必然差异；
+改之前先看这张表。
+
+| 脚本 | 开发仓库（baseline） | 交付仓库（deploy） |
+|---|---|---|
+| `START_STUDIO.cmd` | 跑开发前端 `tools/mid_baseline/gateway_probe/start_frontend.py` | 跑打包启动器 `runtime\python app\start\launcher.py` |
+| `FLASH_NODES.cmd` | **远程**机群刷板（`fleet/flash_nodes.py`） | **本机 USB** 串口刷写台（`app/flash/`） |
+| `SITE_FLASH.cmd` | 自带菜单 + 直接调 `flash_nodes.py` | 菜单 → 转调 `FLASH_REMOTE.cmd` |
+
+### 为什么不能统一
+
+- `START_STUDIO.cmd` 的目标不同：一个是开发树里的脚本，一个是随包运行时。
+  交付包必须用 `runtime\python`，否则现场没有开发环境的 Python。
+- `FLASH_NODES.cmd` **同名但含义相反**：开发树里指远程机群，交付包里指本机 USB。
+  这正是交付包额外提供 `FLASH_REMOTE.cmd`（远程）的原因，避免和本机刷写混淆。
+- `SITE_FLASH.cmd` 是同一行为的两种写法：两边最终都调用 `flash_nodes.py`，
+  只是交付版把菜单逻辑摊到了 `FLASH_REMOTE.cmd` 里。**改刷板逻辑时两边都要动。**
+
+### 迁移时怎么处理
+
+`sync_to_deploy.py` **刻意不包含**这三个文件（它们不在 `PAIRS` 里）。
+如果确实需要改它们，请分别修改，并在这张表里说明原因。
