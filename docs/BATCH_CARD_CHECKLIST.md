@@ -190,3 +190,65 @@ fleet.py group --group 2 --channel 6 --only eora-air-06 ... eora-air-20
 | 开发者 key 硬拦截 | ✅ 已实现 |
 | Wi-Fi 两种认证 | ✅ 已实现 |
 | **15 张卡实做** | ❌ 未做（等现场 WiFi 与运维 tailnet key） |
+
+---
+
+## 九、做卡端到底要填什么（权威清单）
+
+代码里只读 **7 个环境变量**，其余全部自动生成。
+
+### 9.1 每批填一次（写进 `site.env`）
+
+| 键 | 是否必填 | 示例 | 说明 |
+|---|:--:|---|---|
+| `WIFI_SSID` | **✅ 必填** | `SiteRemoteWiFi` | 现场 WiFi 名称 |
+| `WIFI_AUTH` | 建议填 | `psk` 或 `eap` | 不填默认 `eap` |
+| `WIFI_PASSWORD` | **✅ 必填** | `******` | WiFi 密码 |
+| `WIFI_IDENTITY` | 仅 `eap` 必填 | `hli21` | 802.1X 账号；`psk` 留空 |
+| `TAILSCALE_AUTHKEY` | 需要远程管理就填 | `tskey-auth-…` | 留空 = 不装 Tailscale |
+| `SSH_PASSWORD` | 可选 | `******` | 填了就设密码并开密码登录 |
+| `SSH_ALLOW_PASSWORD` | 可选 | `yes` | 只开登录开关，不改密码 |
+
+### 9.2 每张卡填一次（命令行）
+
+| 参数 | 必填 | 说明 |
+|---|:--:|---|
+| `--number N` | ✅（单张） | 节点编号 1–255，**不能重号** |
+| `--from N --count M` | ✅（批量） | 批量时的起始编号与张数 |
+
+### 9.3 不用填（自动生成）
+
+| 项 | 怎么来的 |
+|---|---|
+| hostname | `eora-air-<编号>` |
+| `instance-id` / `i=` | 自动生成 UUID，两处同时改写 |
+| 管理公钥 | 来自 `fleet.pub`（可多行） |
+| WiFi 连接配置 | 由 `WIFI_AUTH` 决定写 psk 还是 eap |
+| 备份目录 | 自动生成 `eora-backup-<uuid>` |
+
+### 9.4 最小可用模板（远程 15 张）
+
+```ini
+# site-remote.env —— 只改这四行
+WIFI_SSID=现场WiFi名称
+WIFI_AUTH=psk
+WIFI_PASSWORD=现场WiFi密码
+TAILSCALE_AUTHKEY=运维自己生成的一次性key
+```
+
+```powershell
+mkcard.py --batch --from 6 --count 15 --env site-remote.env
+```
+
+需要第二个人能用密码登录时，加一行：
+
+```ini
+SSH_PASSWORD=现场统一口令
+```
+
+### 9.5 需要另外放好的文件（不是填表）
+
+| 文件 | 谁提供 |
+|---|---|
+| `fleet.pub` | 开发侧（可含多把公钥，一行一把） |
+| Imager 写好的基础卡 | 运维 |
