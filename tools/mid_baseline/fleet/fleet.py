@@ -191,11 +191,67 @@ def pick(args, devices):
     return devices
 
 
+def sudo_password():
+    """The Pi's sudo password: EORA_PASS first, then the cached file."""
+    value = (os.environ.get("EORA_PASS") or "").strip()
+    if value:
+        return value
+    path = os.path.join(ROOT, ".local", "mid", "pi", "sudo_pass.txt")
+    if os.path.isfile(path):
+        with open(path, encoding="utf-8-sig") as stream:
+            return stream.read().strip()
+    return ""
+
+
 def ssh_target(name, ip):
     return "%s@%s" % (SSH_USER, ip or name)
 
 
+def _askpass_path():
+    """A tiny program that prints the password, for SSH_ASKPASS.
+
+    Windows OpenSSH has no sshpass. It does honour SSH_ASKPASS_REQUIRE=force, so a one-line
+    script is enough to let an operator who only has a password run the fleet tools.
+    """
+    path = os.path.join(os.environ.get("TEMP", "/tmp"), "eora-askpass.cmd" if os.name == "nt"
+                        else "eora-askpass.sh")
+    if os.name == "nt":
+        body = "@echo off\r\necho %EORA_SSH_PASSWORD%\r\n"
+    else:
+        body = "#!/bin/sh\nprintf '%s\\n' \"$EORA_SSH_PASSWORD\"\n"
+    with open(path, "w", encoding="utf-8", newline="") as stream:
+        stream.write(body)
+    if os.name != "nt":
+        os.chmod(path, 0o700)
+    return path
+
+
+def password_mode():
+    """True when this machine has no usable key but was given a password."""
+    return not os.path.isfile(KEY) and bool((os.environ.get("EORA_SSH_PASSWORD") or "").strip())
+
+
+def run_ssh_password(target, command, timeout=60):
+    env = dict(os.environ)
+    env["SSH_ASKPASS"] = _askpass_path()
+    env["SSH_ASKPASS_REQUIRE"] = "force"
+    env.setdefault("DISPLAY", ":0")
+    args = ["ssh", "-T", "-o", "StrictHostKeyChecking=no",
+            "-o", "UserKnownHostsFile=" + KNOWN_HOSTS, "-o", "PubkeyAuthentication=no",
+            "-o", "PreferredAuthentications=password,keyboard-interactive",
+            "-o", "NumberOfPasswordPrompts=1", "-o", "ConnectTimeout=15",
+            target, command]
+    try:
+        proc = subprocess.run(args, capture_output=True, text=True, timeout=timeout,
+                              env=env, stdin=subprocess.DEVNULL)
+        return proc.returncode, (proc.stdout or "") + (proc.stderr or "")
+    except subprocess.TimeoutExpired:
+        return 12, "timeout after %ss" % timeout
+
+
 def run_ssh(target, command, timeout=60, stdin_text=None):
+    if password_mode() and stdin_text is None:
+        return run_ssh_password(target, command, timeout)
     args = ["ssh", "-T", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
             "-o", "BatchMode=yes", "-i", KEY, "-o", "ConnectTimeout=15",
             "-o", "ServerAliveInterval=15", "-o", "ServerAliveCountMax=4",
