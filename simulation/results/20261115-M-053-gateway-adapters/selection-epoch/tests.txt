@@ -1,6 +1,0 @@
-test_selection_epoch_is_bound_to_snapshot (__main__.TestEpoch.test_selection_epoch_is_bound_to_snapshot) ... ok
-
-----------------------------------------------------------------------
-Ran 1 test in 0.000s
-
-OK

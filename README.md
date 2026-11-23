@@ -111,42 +111,78 @@ ESP-NOW 只有同组才互相可见；LoRa 上行不受分组影响（帧头带 
 
 ---
 
-## 六、目录结构
+## 六、目录结构（只留运行所需）
 
 ```
 app/
   flash/            本机 USB 刷写台（FLASH_NODES.cmd 使用）
   gateway_setup/    网关部署向导（SETUP_GATEWAY.cmd 使用）
   services/
-    assets/mobile_gateway/   前端资源
-    tools/mobile_gateway/    前端后端
-    tools/fleet/             机群管理：刷板、分组、做卡包生成      ← 新增
-    tools/gateway_probe/     做卡、Pi 侧 helper、接收器            ← 新增
-  start/launcher.py  打包版启动器
-firmware/            打包固件（mid_edge.bin + manifest）
-runtime/             随包 Python 与网关运行时
-docs/                全部文档
-config/              示例配置（fleet 主机表、分组表）
-BUILD-*/             固件构建产物
+    assets/mobile_gateway/   前端资源（新版）
+    tools/mobile_gateway/    前端后端（新版）
+    tools/flight_link/       LoRa 网关服务
+    tools/fleet/             机群：刷板、分组、做卡包生成      ← 新增
+    tools/gateway_probe/     做卡、Pi 侧 helper                 ← 新增
+  start/launcher.py  打包版启动器（发布清单校验 + 硬件探测）
+firmware/            mid_edge.bin + manifest.json + 分区表
+runtime/             随包 Windows Python 与网关运行时
+config/              fleet.default.json（现场默认配置）+ 两个示例
+docs/                9 份现场文档
+tools/
+  mid_baseline/gateway_probe/   接收器（topology_server + start_frontend）
+  release/                      发布清单刷新与校验
+fleet.pub            管理公钥（做卡时写进每张卡；私钥不在仓库）
 ```
+
+### 有意不在包里的
+
+| 不在 | 原因 |
+|---|---|
+| `simulation/` | 本地仿真，现场不跑 |
+| `tests/` | 开发测试 |
+| `BUILD-*/` 构建记录 | 交付用 `firmware/mid_edge.bin` |
+| `firmware/flight_link/`、`tools/flight_link/` 源码 | 打包位置已有 `app/services/tools/flight_link/` |
+| 开发侧 fleet / probe 副本 | 只用 `app/services/tools/` 那一份 |
+| `coordination/`、周报、交接文档 | 开发过程记录 |
 
 ---
 
-## 七、常用命令（命令行等价）
+## 七、改完代码后必须做的一件事
+
+`app/start/launcher.py` 用 `firmware/manifest.json` 冻结 `app/services` 下每个
+`.py / .js / .css / .html / .json` 的 SHA256。**哈希不符或有未登记文件就拒绝启动。**
+
+```powershell
+python tools\release\refresh_release_manifest.py   # 改完 app/services 后重算
+python tools\release\verify_release.py              # 等价校验启动器的检查
+```
+
+不启动硬件也能验证整包：
+
+```powershell
+runtime\python\python.exe -X utf8 app\start\launcher.py --dry-run
+```
+
+期望输出 `"release_ready": true`。
+
+---
+
+## 八、常用命令（命令行等价）
 
 | 双击 | 等价命令 |
 |---|---|
-| `SETUP_SITE.cmd` | `python app\services\tools\fleet\write_site_env.py site.env` |
-| `MK_CARDS.cmd` | `python app\services\tools\gateway_probe\mkcard.py --batch --from 6 --count 15` |
-| `SITE_STATUS.cmd` | `python app\services\tools\fleet\fleet.py status` |
-| `SITE_FLASH.cmd 2` | `python app\services\tools\fleet\flash_nodes.py --group 2` |
-| `SITE_GROUP.cmd 2 6` | `python app\services\tools\fleet\fleet.py group --group 2 --channel 6` |
+| `SETUP_SITE.cmd` | `runtime\python\python.exe app\services\tools\fleet\write_site_env.py site.env` |
+| `MK_CARDS.cmd` | `runtime\python\python.exe app\services\tools\gateway_probe\mkcard.py --batch --from 6 --count 15` |
+| `SITE_STATUS.cmd` | `... app\services\tools\fleet\fleet.py status` |
+| `FLASH_REMOTE.cmd` | `... app\services\tools\fleet\flash_nodes.py` |
+| `SITE_GROUP.cmd 2 6` | `... app\services\tools\fleet\fleet.py group --group 2 --channel 6` |
 
 密码从 `site.env` 自动读取，**不需要手工设置环境变量**。
+镜像默认取 `firmware/mid_edge.bin`。
 
 ---
 
-## 八、文档
+## 九、文档
 
 | 文档 | 内容 |
 |---|---|
@@ -158,6 +194,7 @@ BUILD-*/             固件构建产物
 | [docs/DEV_PROD_SPLIT.md](docs/DEV_PROD_SPLIT.md) | 开发/生产解耦与生产包内容 |
 | [docs/FLEET_GROUPS.md](docs/FLEET_GROUPS.md) | 两个 group 的隔离与信道 |
 | [docs/BATCH_CARD_CHECKLIST.md](docs/BATCH_CARD_CHECKLIST.md) | 批量做卡准备清单 |
+| [docs/LRN1_FRAME.md](docs/LRN1_FRAME.md) | LoRa 上行帧结构（协作方可查） |
 
 ---
 

@@ -1,6 +1,0 @@
-gpg: Signature made Thu Apr 15 19:30:14 2021    
-gpg:                using RSA key A0DA38D0D76E8B5D638872819165938D90FDDD2E
-gpg: Good signature from "Mike Thompson (Raspberry Pi Debian armhf ARMv6+VFP) <mpthompson@gmail.com>" [unknown]
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: A0DA 38D0 D76E 8B5D 6388  7281 9165 938D 90FD DD2E

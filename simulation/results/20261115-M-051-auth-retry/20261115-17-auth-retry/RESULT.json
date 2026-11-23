@@ -1,5 +1,0 @@
-{
-  "tests": "4 mocked cases passed: retry new connection, limit, cancel/network/host, unsupported auth",
-  "actual_authentication": "not attempted",
-  "sha256": "d7d61f77cbf30570e56f6583b7deb390431e7ad94554b48b9733b69cb6a1d0cc"
-}

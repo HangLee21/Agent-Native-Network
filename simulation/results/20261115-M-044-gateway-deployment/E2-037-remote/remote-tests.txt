@@ -1,7 +1,0 @@
-test_real_appliance_discovery_receive_restart (__main__.Checks.test_real_appliance_discovery_receive_restart) ... ok
-test_wrong_nonce_and_unreachable (__main__.Checks.test_wrong_nonce_and_unreachable) ... ok
-
-----------------------------------------------------------------------
-Ran 2 tests in 7.662s
-
-OK

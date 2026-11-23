@@ -1,9 +1,0 @@
-{
-  "tests": "5 passed: one SSH, failure gate and valid mocked shell path, tar timestamps, factual log privacy, preflight parser",
-  "shell": "full generated shell syntax passed local Git Bash",
-  "missing_runtime": "not solved; matching offline dependency package not yet established",
-  "files": {
-    "app/gateway_setup/setup_gateway.py": "e752daa9a5d9d7701b9042aea93e5d6b8da96d8b2208993f790b217a6d7b5cc0",
-    "README.md": "718bfc820e17066ee257881ba14baa96ac0b47f325c58347cf776c80c9e0f235"
-  }
-}

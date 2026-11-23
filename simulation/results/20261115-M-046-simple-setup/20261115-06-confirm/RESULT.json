@@ -1,9 +1,0 @@
-{
-  "passed": [
-    "single explicit empty input",
-    "multiple selection",
-    "cancel N",
-    "null input cancels without mutation"
-  ],
-  "bootstrap_sha256": "4589d46ddcef05c3e631e24529d5f47ca65461a960e9c59c9a8173cd099eefca"
-}

@@ -1,7 +1,0 @@
-test_port_drift_and_new_mac_isolated (__main__.Tests.test_port_drift_and_new_mac_isolated) ... ok
-test_unconfigured_non1_rx_and_tx_capability (__main__.Tests.test_unconfigured_non1_rx_and_tx_capability) ... ok
-
-----------------------------------------------------------------------
-Ran 2 tests in 0.266s
-
-OK

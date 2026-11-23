@@ -1,8 +1,0 @@
-test_historical_rxpk_both_paths_and_missing_zero (__main__.Checks.test_historical_rxpk_both_paths_and_missing_zero) ... ok
-test_neighbor_valid_bits (__main__.Checks.test_neighbor_valid_bits) ... ok
-test_old_record_unchanged (__main__.Checks.test_old_record_unchanged) ... ok
-
-----------------------------------------------------------------------
-Ran 3 tests in 0.061s
-
-OK
