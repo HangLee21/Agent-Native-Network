@@ -254,14 +254,24 @@ def main():
     p.add_argument('--stop-file',type=Path)
     args=p.parse_args()
     out=args.output.resolve()
-    fleet_path=args.fleet or (ROOT/'data/fleet.json' if (ROOT/'data/fleet.json').is_file() else ROOT/'config/fleet.default.json')
+    # ROOT is app/services inside the delivery package and the repository root in the dev
+    # tree, so try both places instead of assuming one layout.
+    def _first(*paths):
+        for candidate in paths:
+            if candidate.is_file():return candidate
+        return paths[-1]
+    fleet_path=args.fleet or _first(ROOT/'data/fleet.json',ROOT/'config/fleet.default.json',ROOT.parent.parent/'config/fleet.default.json')
     try:
         read_nodes(fleet_path)
     except (OSError,ValueError,KeyError,TypeError) as exc:
         p.error('fleet configuration invalid: '+str(exc))
     out.mkdir(parents=True,exist_ok=False)
     state=Studio(out,args.pc_port)
-    server=Gateway(('127.0.0.1',args.port),state,ROOT/'research/agent_native_network/mobile_gateway')
+    # Assets live under research/ in the development tree and next to the service code in
+    # the delivery package; pick whichever exists.
+    static_dir=ROOT/'research/agent_native_network/mobile_gateway'
+    if not static_dir.is_dir():static_dir=ROOT/'assets/mobile_gateway'
+    server=Gateway(('127.0.0.1',args.port),state,static_dir)
     server.RequestHandlerClass=StudioHandler
     server.fleet_path=fleet_path
     server.registry_path=args.registry or ROOT/'data/registry.json'
