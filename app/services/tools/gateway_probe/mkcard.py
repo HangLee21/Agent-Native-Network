@@ -603,8 +603,15 @@ def wait_for_card(previous=None, timeout_s=900):
     """Wait until a mounted, unprepared card appears (and is not the one we just wrote)."""
     import time as _time
     deadline = _time.time() + timeout_s
+    announced = set()
     while _time.time() < deadline:
         cards = detect_cards()
+        # A prepared card is skipped on purpose (it already carries a node identity), but
+        # saying so avoids the operator thinking the tool is stuck on a card it can see.
+        for letter, _, prepared in cards:
+            if prepared and letter not in announced:
+                announced.add(letter)
+                say("   注意：%s 已经做过卡，--batch 会跳过它；要做新卡请插新的空白卡。" % letter)
         fresh = [c for c in cards if not c[2]]
         if fresh:
             boot = fresh[0][1]
@@ -690,7 +697,11 @@ def main():
     # fleet to that account. Production must pass --env with the site's own file.
     env_path = Path(_LAST_ENV_FILE).resolve() if _LAST_ENV_FILE else ENV_FILE.resolve()
     inside_checkout = (ROOT / ".local").resolve() in env_path.parents
-    if env.get("TAILSCALE_AUTHKEY") and inside_checkout and not args.i_know_this_is_the_dev_key:
+    # Read-only modes must not be blocked by the key guard: --list only inspects drives and
+    # --check is the diagnostic the guard itself points operators at.
+    if (env.get("TAILSCALE_AUTHKEY") and inside_checkout
+            and not args.i_know_this_is_the_dev_key
+            and not args.list and not args.check):
         raise SystemExit(
             "拒绝写入：这份 Tailscale 授权来自仓库内的开发配置，会泄露开发者个人账号。\n"
             "  正确的做法：  --env D:\\ops\\site.env   （里面放现场自己的 TAILSCALE_AUTHKEY）\n"

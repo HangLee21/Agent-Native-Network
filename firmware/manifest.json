@@ -59,7 +59,7 @@
     "tools/flight_link/codec.py": "ec3debdd184f9b1f434f127e4a020407d079e7d95c5d98f403055e01193ab81d",
     "tools/flight_link/compat_decoder.py": "d918d918f9582dde6be0a400944e88dbca62e25c492b19869d1d24cb47b51c9e",
     "tools/flight_link/gateway.py": "a16ae0797918ef0bde673597c69e799fecef16ece4f30ae59f82adaacd6ea143",
-    "tools/gateway_probe/mkcard.py": "9fb08c327ae79e1ede9d21c4851204f7501a0b6f52c526c25d312f75743c678b",
+    "tools/gateway_probe/mkcard.py": "50b6b4495b2a1a9685914f541b5048f4c5aab580201a5313d2438250b5c84608",
     "tools/gateway_probe/node_reader.py": "f6e9822bee47980d9adeba932ee92e7d68c1abf31f976c686e314253a8c3aac2",
     "tools/gateway_probe/node_update.py": "faf8f41199c0cd8a13d7823d56d6d1c462e646cd9364e6b02c4f8689a82fb4aa",
     "tools/gateway_probe/pi_node_probe.py": "9e313d825f93702bc540127c029605bf9a612e65203cb3ae552dec4f0bcfd09e",
