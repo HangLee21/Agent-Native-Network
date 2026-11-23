@@ -47,6 +47,7 @@ PAIRS = tuple(
     ("tools/flight_link/archive.py", "app/services/tools/flight_link/archive.py", True),
     ("tools/release/refresh_release_manifest.py", "tools/release/refresh_release_manifest.py", True),
     ("tools/release/verify_release.py", "tools/release/verify_release.py", True),
+    ("tools/release/check_decoder_parity.py", "tools/release/check_decoder_parity.py", True),
 )
 
 BASE = pathlib.Path(__file__).resolve().parents[2]
