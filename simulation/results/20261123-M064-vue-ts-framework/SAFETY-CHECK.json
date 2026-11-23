@@ -1,0 +1,27 @@
+{
+  "source_commit": "ab12ebf17d553187d0c95b0b4c05341c1c9ebe1f",
+  "sync_tool_exit": 2,
+  "sync_check_only": true,
+  "target_writes": false,
+  "sync_plan_counts": {
+    "add": 1,
+    "update": 2,
+    "unchanged": 347,
+    "conflicts": 0
+  },
+  "protected_paths_unchanged_in_m064_commits": [
+    "START_STUDIO.cmd",
+    "FLASH_NODES.cmd",
+    "SETUP_GATEWAY.cmd",
+    "MK_CARDS.cmd",
+    "tools/mobile_gateway",
+    "research/agent_native_network/mobile_gateway",
+    "tools/mid_baseline",
+    "firmware",
+    "config",
+    "deploy",
+    "data"
+  ],
+  "deploy_refs_unchanged": true,
+  "control_head_and_worktree_unchanged": true
+}

@@ -1,0 +1,5 @@
+# Preserve evidence copies; whitespace in captured warning output is not source lint.
+*.log -text -whitespace
+*.json text eol=lf
+*.md text eol=lf
+*.png binary

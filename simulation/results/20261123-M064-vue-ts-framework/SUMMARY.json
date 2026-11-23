@@ -1,0 +1,37 @@
+{
+  "schema": "baseline.frontend.validation.v1",
+  "task_id": "M-064",
+  "finished_at": "2026-11-23T17:10:09.419926+08:00",
+  "implementation_commit": "ab12ebf17d553187d0c95b0b4c05341c1c9ebe1f",
+  "upstream_commit": "bdadc989decf4d383b49dff2def4aa1aa0aa59b5",
+  "raw_run_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\M-064\\20261123-165227286-framework",
+  "framework_import_files": 349,
+  "frontend_tests": {
+    "files": 59,
+    "passed": 450
+  },
+  "type_check": "passed",
+  "production_build": "passed (platform/studio/mock-studio)",
+  "native_network_tests": 18,
+  "sync_protection_tests": 13,
+  "browser_checks": 21,
+  "browser_page_errors": [],
+  "browser_unexpected_requests": [],
+  "browser_synthetic_only": true,
+  "hardware_access": false,
+  "lh_check": {
+    "add": 1,
+    "update": 2,
+    "unchanged": 347,
+    "conflicts": 0
+  },
+  "control_target_writes": false,
+  "deploy": "FROZEN; refs and working trees not modified",
+  "legacy_engineering": "Retained; full Vue parity NOT claimed",
+  "independent_C_review": "not performed; implementation/self-tests only",
+  "failed_attempts_preserved_in_raw_run": [
+    "frontend-regression-build.log (PowerShell stderr termination)",
+    "sync-tool-tests.log (portable line-ending fixture assertion)"
+  ],
+  "log_copy_note": "Curated logs are UTF-8/LF derived copies; original raw run files and initial RUN_MANIFEST remain unchanged."
+}

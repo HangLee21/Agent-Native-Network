@@ -1,0 +1,30 @@
+
+> uav-platform-frontend@0.1.0 test:network-mock
+> node --test ../scripts/network-studio/mock.test.mjs ../scripts/network-studio/gateway-relay.test.mjs
+
+✔ reader startup does not contact anything and a permitted read is GET-only (52.3246ms)
+✔ cross-origin, missing opt-in and forged Host requests never reach upstream (16.0284ms)
+✔ POST and all flight/source/recording/serial endpoints are rejected before forwarding (22.1107ms)
+✔ credential URLs, unsupported schemes, duplicate parameters and query targets are rejected (5.0789ms)
+✔ browser cookies and authorization never reach the gateway (6.0876ms)
+✔ redirects are not followed and never silently change a configured target (3.4072ms)
+✔ invalid JSON, oversized responses and upstream errors remain explicit failures (48.2048ms)
+✔ normalized capabilities and replay are read-only allowed resources (5.4111ms)
+✔ all fixtures are synthetic and include no default physical bindings (11.9205ms)
+✔ capabilities and snapshots carry source identity and instance (37.5156ms)
+✔ unknown state and external-origin writes fail without side effects (16.0782ms)
+✔ source changes increment epoch and never keep old-source nodes (6.5871ms)
+✔ scenarios provide explicit empty and interrupted observations (13.007ms)
+✔ recordings and replay are in-memory snapshots, not flight actions (13.6735ms)
+✔ bounded single-field JSON and valid content type are mandatory (5.9264ms)
+✔ preflight is restricted to exact loopback origins without wildcard (2.0938ms)
+✔ malformed replay escapes cannot crash the mock server (3.3763ms)
+✔ no non-network API, hardware or flight endpoint is exposed (5.6201ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 413.7818
