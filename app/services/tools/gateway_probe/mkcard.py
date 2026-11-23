@@ -265,8 +265,9 @@ fi
 [ "$EORA_SSH_ALLOW_PASS" = "yes" ] && allow_pass=1
 if [ "$allow_pass" = "1" ]; then
   install -d -m 755 /etc/ssh/sshd_config.d
+  rm -f /etc/ssh/sshd_config.d/20-eora-password.conf
   printf 'PasswordAuthentication yes\nKbdInteractiveAuthentication yes\n' \
-    > /etc/ssh/sshd_config.d/20-eora-password.conf
+    > /etc/ssh/sshd_config.d/00-eora-password.conf
   systemctl reload ssh 2>/dev/null || systemctl restart ssh || { mark "FAILED: ssh reload"; exit 1; }
   mark "2c/6 ssh password login enabled"
 fi
