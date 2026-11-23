@@ -98,3 +98,5 @@ python -B tools/release/sync_frontend.py --target D:\ControlSystem --apply
 完整证据见 [本轮验证记录](../simulation/results/20261123-M064-vue-ts-framework/README.md)。原 lh 来源文件仅有两处迁入适配：浏览器检查增加任务输出目录和安全控制台编码；一个测试文件移除上游 EOF 空白行（已补跑该文件 5 测试），不改 UI/测试逻辑。均列在来源清单。
 
 **这些是框架导入与软件自测，不是 C 独立审计、无线/设备验收、完整工程 UI 移植或生产发布许可。** 验证用 Mock/静态服务器已经结束；本地 real-only 预览使用 10518，默认断开，不启动 Mock，不主动连接原采集器。
+
+19:47 已 fast-forward 集成到原 baseline 分支；主目录重新独立安装依赖并再次通过完整 450 测试、类型与构建。主目录预览 `/studio.html` 已在新 Edge 上下文验证零后端读取；后续编辑 `D:\Multi-Agent Network\frontend` 与该预览是同一份源码，不再使用隔离 worktree 的预览。集成瞬间 17 份未提交文件原字节保持，后续只更新本轮授权的协调材料，其余 16 份工程卡仍保持原字节。补充证据见 [主目录集成复核](../simulation/results/20261123-M064-vue-ts-framework/integration/README.md)。

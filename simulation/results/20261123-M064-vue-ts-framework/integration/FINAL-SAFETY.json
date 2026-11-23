@@ -1,0 +1,20 @@
+{
+  "foreign_dirty_cards_preserved": 16,
+  "protected_engineering_paths_unchanged": [
+    "START_STUDIO.cmd",
+    "FLASH_NODES.cmd",
+    "SETUP_GATEWAY.cmd",
+    "MK_CARDS.cmd",
+    "tools/mobile_gateway",
+    "research/agent_native_network/mobile_gateway",
+    "tools/mid_baseline",
+    "firmware",
+    "config",
+    "deploy",
+    "data"
+  ],
+  "deploy_refs_unchanged": true,
+  "control_head_and_worktree_unchanged": true,
+  "hardware_access": false,
+  "main_preview": "http://127.0.0.1:10518/studio.html"
+}

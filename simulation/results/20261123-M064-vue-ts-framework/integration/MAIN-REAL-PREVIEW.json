@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-11-23T19:51:00.403037+08:00",
+  "source_root": "D:\\Multi-Agent Network",
+  "git_commit": "3b843aff2cef36fcc7c6f813d13f7c45577f663b",
+  "url": "http://127.0.0.1:10518/studio.html",
+  "real_only": true,
+  "default_disconnected": true,
+  "backend_reads": 0,
+  "page_errors": [],
+  "unexpected_requests": [],
+  "mock_and_static_test_listeners": false,
+  "hardware_access": false
+}

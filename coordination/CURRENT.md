@@ -1,6 +1,6 @@
 # 当前摘要
 
-2026-11-23 [M-064](tasks/M-064.md) running：用户明确先将 ControlSystem/lh（bdadc98）Vue+TS 框架迁入 baseline，后续以 baseline 开发。当前会话获授权在新隔离 worktree 实施，不替代旧角色身份；保留主目录其他未提交工程成果与现场进程。**deploy 本轮冻结，不迁移/修改/推送；旧 Studio 工程入口保留，不能把框架导入称为全部工程 UI 已迁完。** 写入范围与验收见主卡。
+2026-11-23 [M-064](tasks/M-064.md) review：lh（bdadc98）完整 Vue+TS 框架已从隔离 worktree fast-forward 迁入 baseline，[frontend](../frontend/) 为后续开发源。主目录再次通过 450 测试/类型/构建；另有 18 Node、13 同步保护、21 合成浏览器验证。主目录 real-only 预览 10518 默认断开、零后端读取；其余 16 份工程卡保持原字节。[迁移/保留能力清单](../docs/BASELINE_FRONTEND_MIGRATION.md)。**deploy 冻结，Control/lh 不反写，旧工程入口保留；尚未完整移植旧工程 UI，也未做 C 独立审查/生产验收。** 本轮执行方式为用户明确特批，不自动改变旧窗口默认分工。
 
 M-063 已完成并更新现场接收器与 Studio。故障注入通过，E870L 连续真实心跳与零节点提示已在正式页面验证。节点断电，本次未做上电节点或真实休眠复测。证据 simulation/results/20261120-M063-gateway-recovery/。
 

@@ -1,6 +1,6 @@
 # 窗口登记
 
-2026-11-23 M-064：用户明确授权当前迁移会话在 `D:\Multi-Agent Network\.worktrees\vue-ts-baseline`（任务分支 `codex/baseline-vue-ts-20261123`）直接实施 lh→baseline 第一阶段；本轮不沿用/冒充下表旧角色窗口，不发跨聊天消息、不启动代替旧窗口的子代理。范围见 [M-064](tasks/M-064.md)，deploy 冻结，其他 dirty 文件及原角色预留范围保留。
+2026-11-23 M-064：用户明确授权当前迁移会话在 `D:\Multi-Agent Network\.worktrees\vue-ts-baseline`（任务分支 `codex/baseline-vue-ts-20261123`）直接实施 lh→baseline 第一阶段；本轮不沿用/冒充下表旧角色窗口，不发跨聊天消息、不启动代替旧窗口的子代理。范围见 [M-064](tasks/M-064.md)。现已快进集成 baseline 主目录并自测交 review；后续主目录 frontend 为开发源，隔离 worktree 保留来源快照、不作默认预览。当前仅保留主目录 real-only 10518 预览；deploy 冻结、Control/lh 不反写，其他 dirty 文件及原角色预留范围保留，未冒充 C 独立审查。
 
 M-063 已收口。E2-043 本机网关接收自愈，D-043 工作台状态，C-048 独立审查，M 本机上线。
 
