@@ -16,13 +16,28 @@ import argparse
 import getpass
 import json
 import os
+import pathlib
 import shutil
 import subprocess
 import sys
+
+def _detect_root(start):
+    """Find the checkout root from any packaging layout.
+
+    These tools live at tools/mid_baseline/fleet in the development tree and at
+    app/services/tools/fleet in the deploy packaging, so counting parent directories
+    is unreliable; look for something that only exists at the root instead.
+    """
+    start = pathlib.Path(start)
+    for candidate in [start] + list(start.parents):
+        if (candidate / ".git").exists() or (candidate / "START_STUDIO.cmd").exists():
+            return str(candidate)
+    return str(start)
+
 from concurrent.futures import ThreadPoolExecutor
 
 TAILSCALE = shutil.which("tailscale") or r"C:\Program Files\Tailscale\tailscale.exe"
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+ROOT = _detect_root(os.path.dirname(os.path.abspath(__file__)))
 KEY = os.path.expanduser(r"~/.ssh/id_ed25519_eora")
 KNOWN_HOSTS = os.path.join(os.environ.get("TEMP", "/tmp"), "pi_known_hosts")
 SSH_USER = "eora"

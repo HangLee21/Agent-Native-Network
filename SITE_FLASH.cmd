@@ -9,6 +9,7 @@ if not exist "%PYEXE%" set "PYEXE=python"
 set "FLEETDIR="
 if exist "%~dp0fleet\flash_nodes.py" set "FLEETDIR=%~dp0fleet"
 if exist "%~dp0tools\mid_baseline\fleet\flash_nodes.py" set "FLEETDIR=%~dp0tools\mid_baseline\fleet"
+if exist "%~dp0app\services\tools\fleet\flash_nodes.py" set "FLEETDIR=%~dp0app\services\tools\fleet"
 
 if not exist "%~dp0site.env" (
   echo 还没有 site.env，请先双击 SETUP_SITE.cmd

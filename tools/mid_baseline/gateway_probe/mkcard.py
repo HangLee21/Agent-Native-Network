@@ -74,9 +74,15 @@ def load_env(path=None):
     else:
         # Operators keep one file and reuse it for every card. Look for site.env next to the
         # tool and at the kit root before falling back to the developer's .local file.
+        # Walk up from this file: the tool lives in gateway_probe/ and the operator keeps
+        # one site.env at the package root, which may be 1-4 levels above depending on layout.
         here = Path(__file__).resolve().parent
-        candidates = [here / "site.env", here.parent / "site.env"]
-        source = next((c for c in candidates if c.is_file()), ENV_FILE)
+        source = ENV_FILE
+        for depth in range(0, min(5, len(here.parents))):
+            candidate = here.parents[depth] / "site.env"
+            if candidate.is_file():
+                source = candidate
+                break
     if source.is_file():
         # utf-8-sig: PowerShell and Notepad write a BOM, which would otherwise become part
         # of the first key and look like a missing setting.

@@ -19,8 +19,21 @@ import pathlib
 import shutil
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parents[3]
-PROBE = ROOT / "tools" / "mid_baseline" / "gateway_probe"
+def _repo_root(start):
+    """Walk up to the checkout root, whatever the packaging layout is.
+
+    This file lives at tools/mid_baseline/fleet in the development tree and at
+    app/services/tools/fleet in the deploy packaging, so a fixed ../.. count breaks.
+    """
+    start = pathlib.Path(start)
+    for candidate in [start] + list(start.parents):
+        if (candidate / ".git").exists() or (candidate / "START_STUDIO.cmd").exists():
+            return candidate
+    return start
+
+
+ROOT = _repo_root(pathlib.Path(__file__).resolve().parent)
+PROBE = pathlib.Path(__file__).resolve().parent.parent / "gateway_probe"
 HELPERS = ("node_reader.py", "node_update.py", "pi_node_probe.py",
            "node_reader.service", "set_group.py")
 SIMPLE_CMDS = ("SETUP_SITE.cmd", "MK_CARDS.cmd", "SITE_STATUS.cmd",

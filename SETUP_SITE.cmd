@@ -9,10 +9,12 @@ if not exist "%PYEXE%" set "PYEXE=python"
 set "FLEETDIR="
 if exist "%~dp0fleet\write_site_env.py" set "FLEETDIR=%~dp0fleet"
 if exist "%~dp0tools\mid_baseline\fleet\write_site_env.py" set "FLEETDIR=%~dp0tools\mid_baseline\fleet"
+if exist "%~dp0app\services\tools\fleet\write_site_env.py" set "FLEETDIR=%~dp0app\services\tools\fleet"
 
 set "PROBE="
 if exist "%~dp0gateway_probe\mkcard.py" set "PROBE=%~dp0gateway_probe"
 if exist "%~dp0tools\mid_baseline\gateway_probe\mkcard.py" set "PROBE=%~dp0tools\mid_baseline\gateway_probe"
+if exist "%~dp0app\services\tools\gateway_probe\mkcard.py" set "PROBE=%~dp0app\services\tools\gateway_probe"
 
 echo ============================================
 echo  设置现场配置（只需做一次）

@@ -9,6 +9,7 @@ if not exist "%PYEXE%" set "PYEXE=python"
 set "PROBE="
 if exist "%~dp0gateway_probe\mkcard.py" set "PROBE=%~dp0gateway_probe"
 if exist "%~dp0tools\mid_baseline\gateway_probe\mkcard.py" set "PROBE=%~dp0tools\mid_baseline\gateway_probe"
+if exist "%~dp0app\services\tools\gateway_probe\mkcard.py" set "PROBE=%~dp0app\services\tools\gateway_probe"
 
 echo ============================================
 echo  批量做卡（自动编号，写完提示换下一张）

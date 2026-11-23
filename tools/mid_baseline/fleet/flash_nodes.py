@@ -13,11 +13,26 @@ import argparse
 import getpass
 import glob
 import os
+import pathlib
 import subprocess
 import sys
+
+def _detect_root(start):
+    """Find the checkout root from any packaging layout.
+
+    These tools live at tools/mid_baseline/fleet in the development tree and at
+    app/services/tools/fleet in the deploy packaging, so counting parent directories
+    is unreliable; look for something that only exists at the root instead.
+    """
+    start = pathlib.Path(start)
+    for candidate in [start] + list(start.parents):
+        if (candidate / ".git").exists() or (candidate / "START_STUDIO.cmd").exists():
+            return str(candidate)
+    return str(start)
+
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(_detect_root(Path(__file__).resolve().parent))
 FLEET = Path(__file__).resolve().parent / "fleet.py"
 PASS_FILE = ROOT / ".local" / "mid" / "pi" / "sudo_pass.txt"
 TAILSCALE = r"C:\Program Files\Tailscale\tailscale.exe"
