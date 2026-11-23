@@ -152,6 +152,45 @@ def require_tailscale():
     return False
 
 
+def group_map():
+    """name -> group number, from config/fleet.groups.json (optional).
+
+    Groups are two independent meshes: local boards and deployed boards must not discover or
+    route through each other. The group is a runtime setting stored in the node's NVS, so
+    moving a board between groups never needs a reflash.
+    """
+    path = os.path.join(ROOT, "config", "fleet.groups.json")
+    if not os.path.isfile(path):
+        return {}
+    try:
+        data = json.loads(open(path, encoding="utf-8-sig").read())
+    except ValueError:
+        return {}
+    out = {}
+    for node in data.get("nodes") or []:
+        if not isinstance(node, dict):
+            continue
+        name = (node.get("name") or "").strip()
+        try:
+            out[name] = int(node.get("group"))
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
+def pick(args, devices):
+    """Apply --only and --group filters to a [(name, ip)] list."""
+    if getattr(args, "only", None):
+        devices = [d for d in devices if d[0] in args.only]
+    wanted = getattr(args, "group", None)
+    if wanted is not None:
+        table = group_map()
+        devices = [d for d in devices if table.get(d[0]) == wanted]
+        if not devices:
+            raise SystemExit("no device is in group %s; fill config/fleet.groups.json" % wanted)
+    return devices
+
+
 def ssh_target(name, ip):
     return "%s@%s" % (SSH_USER, ip or name)
 
@@ -223,9 +262,7 @@ def cmd_status(args):
 
 
 def cmd_run(args):
-    devices = [d for d in devices_all() if d[1]]
-    if args.only:
-        devices = [d for d in devices if d[0] in args.only]
+    devices = pick(args, [d for d in devices_all() if d[1]])
     if SUDO_PASS:
         prefix = "printf '%s\\n' %s | sudo -S " % ("%s", json.dumps(SUDO_PASS))
     else:
@@ -312,9 +349,7 @@ def cmd_update(args):
         raise SystemExit("image not found: " + image)
     if not SUDO_PASS:
         raise SystemExit("set EORA_PASS to the device sudo password for unattended updates")
-    devices = [d for d in devices_all() if d[1]]
-    if args.only:
-        devices = [d for d in devices if d[0] in args.only]
+    devices = pick(args, [d for d in devices_all() if d[1]])
     if not devices:
         raise SystemExit("no eora-air-* devices online; check `tailscale status`")
     base = os.path.basename(image)
@@ -371,6 +406,50 @@ def cmd_logs(args):
     return code
 
 
+def cmd_group(args):
+    """Set the mesh group and Wi-Fi channel on each selected node, over its Pi.
+
+    Runs entirely through the Pi: stop node_reader (it owns the serial port), push the tiny
+    setter, run it, restart the reader. The node keeps the value in NVS across reboots.
+    """
+    if not require_tailscale():
+        return 2
+    devices = pick(args, [d for d in devices_all() if d[1]])
+    if not devices:
+        raise SystemExit("no device selected")
+    local = os.path.join(HELPER_DIR, "set_group.py")
+    if not os.path.isfile(local):
+        raise SystemExit("missing helper: " + local)
+    remote = "/tmp/eora-set-group.py"
+
+    def one(item):
+        name, ip = item
+        target = ssh_target(name, ip)
+        if not SUDO_PASS:
+            return name, "set EORA_PASS to the device sudo password"
+        stop = run_ssh(target, "printf '%s\\n' %s | sudo -S systemctl stop node_reader"
+                       % (json.dumps(SUDO_PASS)), timeout=60)
+        try:
+            pushed = subprocess.run(
+                ["scp", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
+                 "-o", "BatchMode=yes", "-i", KEY, local, "%s:%s" % (target, remote)],
+                capture_output=True, text=True)
+            if pushed.returncode != 0:
+                return name, "push failed: " + (pushed.stderr or "").strip()[:90]
+            code, out = run_ssh(
+                target, "cd ~/eora && python3 %s %d %d" % (remote, args.group, args.channel),
+                timeout=90)
+            return name, (out or "").strip().splitlines()[-1][:160]
+        finally:
+            run_ssh(target, "printf '%s\\n' %s | sudo -S systemctl start node_reader"
+                    % (json.dumps(SUDO_PASS)), timeout=60)
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        for name, result in pool.map(one, devices):
+            print("%-14s %s" % (name, result))
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -380,6 +459,7 @@ def main():
     p_run = sub.add_parser("run", help="run a command on every device")
     p_run.add_argument("command")
     p_run.add_argument("--only", nargs="*")
+    p_run.add_argument("--group", type=int, help="only devices in this mesh group")
     p_run.add_argument("--timeout", type=int, default=120)
     p_run.set_defaults(func=cmd_run)
 
@@ -390,8 +470,15 @@ def main():
     p_upd = sub.add_parser("update", help="flash every node from an image")
     p_upd.add_argument("image")
     p_upd.add_argument("--only", nargs="*")
+    p_upd.add_argument("--group", type=int, help="only devices in this mesh group")
     p_upd.add_argument("--timeout", type=int, default=300)
     p_upd.set_defaults(func=cmd_update)
+
+    p_grp = sub.add_parser("group", help="set the mesh group and Wi-Fi channel on devices")
+    p_grp.add_argument("--group", type=int, required=True)
+    p_grp.add_argument("--channel", type=int, required=True)
+    p_grp.add_argument("--only", nargs="*")
+    p_grp.set_defaults(func=cmd_group)
 
     p_logs = sub.add_parser("logs", help="tail one device's node events")
     p_logs.add_argument("device")
