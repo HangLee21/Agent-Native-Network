@@ -107,7 +107,15 @@ def main():
     args = parser.parse_args()
 
     if args.list:
-        for p in sorted(glob.glob(str(ROOT / "BUILD-*" / "images" / "mid_edge.bin"))):
+        # The delivery package ships one image at firmware/mid_edge.bin and has no BUILD-*
+        # directories, so listing only build records printed nothing at all.
+        found = sorted(glob.glob(str(ROOT / "BUILD-*" / "images" / "mid_edge.bin")))
+        packaged = ROOT / "firmware" / "mid_edge.bin"
+        if not found and packaged.is_file():
+            found = [str(packaged)]
+        if not found:
+            say("  没有可用镜像（既没有 BUILD-*/images/mid_edge.bin，也没有 firmware/mid_edge.bin）")
+        for p in found:
             say("  %s  %d bytes" % (p, os.path.getsize(p)))
         return 0
 

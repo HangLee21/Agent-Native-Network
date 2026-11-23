@@ -243,27 +243,42 @@ Match Address 100.64.0.0/10,169.254.0.0/16
 
 ---
 
-## 十、两个仓库里同名但实现不同的启动脚本
+## 十、启动脚本：两棵树里逐字节相同
 
-仓库根有三个同名 `.cmd`，**两个仓库的版本不同**。这不是疏漏，是两种运行形态的必然差异；
-改之前先看这张表。
+仓库根的启动脚本**不再是两套实现**。同一个文件靠运行时自检决定走哪条路，
+所以两棵树里内容完全一致，不存在“改了这边忘了那边”的问题。
 
-| 脚本 | 开发仓库（baseline） | 交付仓库（deploy） |
-|---|---|---|
-| `START_STUDIO.cmd` | 跑开发前端 `tools/mid_baseline/gateway_probe/start_frontend.py` | 跑打包启动器 `runtime\python app\start\launcher.py` |
-| `FLASH_NODES.cmd` | **远程**机群刷板（`fleet/flash_nodes.py`） | **本机 USB** 串口刷写台（`app/flash/`） |
-| `SITE_FLASH.cmd` | 自带菜单 + 直接调 `flash_nodes.py` | 菜单 → 转调 `FLASH_REMOTE.cmd` |
+| 脚本 | 在两棵树里做什么 |
+|---|---|
+| `START_STUDIO.cmd` | 有 `app\start\launcher.py` 就走打包启动器（`runtime\python`）；否则走开发前端 `start_frontend.py` |
+| `FLASH_NODES.cmd` | **只做本机 USB 刷写**（`app\flash`）。开发树没有这套，会明确提示改用 `FLASH_REMOTE.cmd` |
+| `FLASH_REMOTE.cmd` | **远程机群刷板**，自动在 `fleet\`、`tools\mid_baseline\fleet\`、`app\services\tools\fleet\` 中找 `flash_nodes.py` |
+| `SITE_FLASH.cmd` | 菜单 → 转调 `FLASH_REMOTE.cmd`（同一实现） |
 
-### 为什么不能统一
+### 自检开关
 
-- `START_STUDIO.cmd` 的目标不同：一个是开发树里的脚本，一个是随包运行时。
-  交付包必须用 `runtime\python`，否则现场没有开发环境的 Python。
-- `FLASH_NODES.cmd` **同名但含义相反**：开发树里指远程机群，交付包里指本机 USB。
-  这正是交付包额外提供 `FLASH_REMOTE.cmd`（远程）的原因，避免和本机刷写混淆。
-- `SITE_FLASH.cmd` 是同一行为的两种写法：两边最终都调用 `flash_nodes.py`，
-  只是交付版把菜单逻辑摊到了 `FLASH_REMOTE.cmd` 里。**改刷板逻辑时两边都要动。**
+每个脚本都支持 `--which`，只打印“会走哪条路”然后退出，不会真的启动或刷写：
 
-### 迁移时怎么处理
+```powershell
+START_STUDIO.cmd --which
+FLASH_NODES.cmd  --which
+FLASH_REMOTE.cmd --which
+```
 
-`sync_to_deploy.py` **刻意不包含**这三个文件（它们不在 `PAIRS` 里）。
-如果确实需要改它们，请分别修改，并在这张表里说明原因。
+输出示例（交付包）：
+
+```
+mode=packaged  target=app\start\launcher.py   found=yes
+python=<包内 runtime 路径>
+kind=local-usb target=app\flash\flash_nodes.py found=yes
+kind=remote    fleetdir=<包内 app\services\tools\fleet>
+```
+
+开发树里 `FLASH_NODES.cmd --which` 会显示 `found=no`，这就是它给出提示的原因。
+
+### 为什么这样能避免遗忘
+
+- 四个文件在 `git` 里是**同一份内容**，改一边必然改两边（否则一次提交就看得见）。
+- 行为差异由**检测到的事实**决定（有没有 `runtime\python`、有没有 `app\flash`），
+  而不是靠人记住“这个仓库里 FLASH_NODES 是远程”。
+- `--which` 让任何人都能在十秒内确认现场走的是哪条路。
