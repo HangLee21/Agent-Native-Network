@@ -255,7 +255,7 @@ def main():
     args=p.parse_args()
     out=args.output.resolve()
     # ROOT is app/services inside the delivery package and the repository root in the dev
-    # tree, so try both places instead of assuming one.
+    # tree, so try both places instead of assuming one layout.
     def _first(*paths):
         for candidate in paths:
             if candidate.is_file():return candidate
@@ -267,8 +267,8 @@ def main():
         p.error('fleet configuration invalid: '+str(exc))
     out.mkdir(parents=True,exist_ok=False)
     state=Studio(out,args.pc_port)
-    # Static assets sit next to the service code inside the delivery package, and under
-    # research/ in the development tree: pick whichever exists so the same module works in both.
+    # Assets live under research/ in the development tree and next to the service code in
+    # the delivery package; pick whichever exists.
     static_dir=ROOT/'research/agent_native_network/mobile_gateway'
     if not static_dir.is_dir():static_dir=ROOT/'assets/mobile_gateway'
     server=Gateway(('127.0.0.1',args.port),state,static_dir)
