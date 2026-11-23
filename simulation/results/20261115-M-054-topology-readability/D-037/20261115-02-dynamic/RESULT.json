@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "synthetic": true,
+  "cases": [
+    "join_new_node",
+    "existing_node_offline_and_incident_links_removed",
+    "stable_existing_position",
+    "offline_red"
+  ],
+  "before_xy": [
+    "267.21217105263156",
+    "420.625"
+  ],
+  "after_xy": [
+    "267.21217105263156",
+    "420.625"
+  ],
+  "page_errors": []
+}

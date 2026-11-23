@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "synthetic": true,
+  "results": {
+    "clusters": {
+      "count": 30,
+      "scope": "Wi-Fi 即时观测 · 清晰布局 · 按连接分簇；非地理位置 · 52 个实际方向 / 26 对连接 · 当前显示 26 对 · 点击节点查看一跳邻居"
+    },
+    "manual_drag_screen_before": [
+      516.0905189514159,
+      292.66968973260225
+    ],
+    "manual_drag_screen_after": [
+      579.2489051818847,
+      324.2488828478366
+    ],
+    "manual_other_unchanged": true,
+    "persisted": true,
+    "gps_partial": true,
+    "source_isolation": true,
+    "reset": true
+  },
+  "page_errors": []
+}

@@ -1,0 +1,33 @@
+{
+  "seeds": [],
+  "status": "review",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "git_commit": "14ad4864b52bf5a62f95d072b620405fc7eca241",
+  "command": "python -X utf8 simulation/outputs/E2-040/20261119-01-replay/check.py",
+  "template_only": false,
+  "task_id": "E2-040",
+  "exit_code": 0,
+  "config_file": null,
+  "review_reference": "coordination/tasks/E2-040.md",
+  "finished_at": "2026-11-19T15:06:25.6294209+08:00",
+  "dependency_snapshot": "host Python",
+  "run_id": "20261119-01-replay",
+  "upstream_commit": "98bb339",
+  "started_at": null,
+  "output_directory": "simulation/outputs/E2-040/20261119-01-replay",
+  "dirty_files_sha256": {
+    "tools/mobile_gateway/replay.py": "39c2d9bf6e3e8a1b3ba0c92297e17f6c3ff33750e0677272fcd5b4306413f70c",
+    "tools/mobile_gateway/studio.py": "f0dd2c45fa578ae5a91f57c389ab25adb511c559ae64dd5a1d9f469b860b840f",
+    "tools/mid_baseline/gateway_probe/topology_server.py": "5ed43c782b93b1074f3e5ce65b7e4cab77729105743ac90871bb511cfc8770c0"
+  },
+  "timezone": "Asia/Shanghai",
+  "budget": "three focused synthetic checks",
+  "process_id": null,
+  "limitations": [
+    "No physical hardware or live service",
+    "No production START_STUDIO end-to-end validation",
+    "GPS block and HTTP route integration not independently tested"
+  ],
+  "data_and_weights_sha256": {},
+  "worktree": "D:\\Multi-Agent Network"
+}

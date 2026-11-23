@@ -1,0 +1,20 @@
+[Unit]
+Description=EoRa node serial reader (bounded local log)
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=eora
+Group=eora
+WorkingDirectory=/home/eora/eora
+ExecStart=/usr/bin/python3 /home/eora/eora/node_reader.py --out /home/eora/eora/logs
+# The reader keeps its own bounded file; keep stdout out of the journal so a busy
+# node cannot fill /var/log instead. Errors still go to the journal.
+StandardOutput=null
+StandardError=journal
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

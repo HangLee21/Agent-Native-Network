@@ -1,0 +1,282 @@
+[
+  {
+    "observer_id": "90:da:72:48:a5:cc",
+    "report_seq": 107,
+    "gateway_id": "90:da:72:48:a4:f8",
+    "gateway_boot": 2469683011,
+    "rx_seq": 58,
+    "received_at_ms": 1053065,
+    "frame_hex": "4c524e312c14040490da7248a5cc2b794d776b00000059381000000000001f0000000400102700000900000090da7248a52013699c7c020f12090d0ec52f000b90da7248a4f8435f3493020f2e08500ebc2f000b90da7248a6983b64f158020f4908de0dbe99010b90da7248a4e0a9042b3d020fb909240ed34b000b142da0b5",
+    "report": {
+      "frame_schema": "LRN1",
+      "observer_id": "90:da:72:48:a5:cc",
+      "observer_boot": 2001565995,
+      "report_seq": 107,
+      "snapshot_at_ms": 1063001,
+      "wifi_group": 31,
+      "report_period_ms": 10000,
+      "tx_delay_ms": 9,
+      "total_rows": 4,
+      "truncated": false,
+      "nd_table_full": false,
+      "neighbors": [
+        {
+          "peer_id": "90:da:72:48:a5:20",
+          "peer_boot": 2090625299,
+          "state": "bidirectional",
+          "seen_age_ms": 2322,
+          "ack_age_ms": 3597,
+          "rssi_dbm": -59,
+          "rf_age_ms": 47,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a4:f8",
+          "peer_boot": 2469683011,
+          "state": "bidirectional",
+          "seen_age_ms": 2094,
+          "ack_age_ms": 3664,
+          "rssi_dbm": -68,
+          "rf_age_ms": 47,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a6:98",
+          "peer_boot": 1492214843,
+          "state": "bidirectional",
+          "seen_age_ms": 2121,
+          "ack_age_ms": 3550,
+          "rssi_dbm": -66,
+          "rf_age_ms": 409,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a4:e0",
+          "peer_boot": 1026229417,
+          "state": "bidirectional",
+          "seen_age_ms": 2489,
+          "ack_age_ms": 3620,
+          "rssi_dbm": -45,
+          "rf_age_ms": 75,
+          "channel": 11,
+          "rf_source": "measured"
+        }
+      ],
+      "transport_age_ms": null,
+      "evidence": "state_at_source_snapshot"
+    }
+  },
+  {
+    "observer_id": "90:da:72:48:a5:20",
+    "report_seq": 107,
+    "gateway_id": "90:da:72:48:a4:f8",
+    "gateway_boot": 2469683011,
+    "rx_seq": 59,
+    "received_at_ms": 1055576,
+    "frame_hex": "4c524e312c14040490da7248a52013699c7c6b0000003b361000000000001f0000000400102700000b00000090da7248a6983b64f158020f15083808d24f000b90da7248a5cc2b794d77020f78052608c5d1000b90da7248a4f8435f3493020f7e072508c4df000b90da7248a4e0a9042b3d020f16081608e050000bd73814c9",
+    "report": {
+      "frame_schema": "LRN1",
+      "observer_id": "90:da:72:48:a5:20",
+      "observer_boot": 2090625299,
+      "report_seq": 107,
+      "snapshot_at_ms": 1062459,
+      "wifi_group": 31,
+      "report_period_ms": 10000,
+      "tx_delay_ms": 11,
+      "total_rows": 4,
+      "truncated": false,
+      "nd_table_full": false,
+      "neighbors": [
+        {
+          "peer_id": "90:da:72:48:a6:98",
+          "peer_boot": 1492214843,
+          "state": "bidirectional",
+          "seen_age_ms": 2069,
+          "ack_age_ms": 2104,
+          "rssi_dbm": -46,
+          "rf_age_ms": 79,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a5:cc",
+          "peer_boot": 2001565995,
+          "state": "bidirectional",
+          "seen_age_ms": 1400,
+          "ack_age_ms": 2086,
+          "rssi_dbm": -59,
+          "rf_age_ms": 209,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a4:f8",
+          "peer_boot": 2469683011,
+          "state": "bidirectional",
+          "seen_age_ms": 1918,
+          "ack_age_ms": 2085,
+          "rssi_dbm": -60,
+          "rf_age_ms": 223,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a4:e0",
+          "peer_boot": 1026229417,
+          "state": "bidirectional",
+          "seen_age_ms": 2070,
+          "ack_age_ms": 2070,
+          "rssi_dbm": -32,
+          "rf_age_ms": 80,
+          "channel": 11,
+          "rf_source": "measured"
+        }
+      ],
+      "transport_age_ms": null,
+      "evidence": "state_at_source_snapshot"
+    }
+  },
+  {
+    "observer_id": "90:da:72:48:a6:98",
+    "report_seq": 106,
+    "gateway_id": "90:da:72:48:a4:f8",
+    "gateway_boot": 2469683011,
+    "rx_seq": 60,
+    "received_at_ms": 1056115,
+    "frame_hex": "4c524e312c14040490da7248a6983b64f1586a0000000a2f1000000000001f0000000400102700000200000090da7248a52013699c7c020f6302d609d463020b90da7248a5cc2b794d77020f61006100bf61000b90da7248a4f8435f3493020f9009f909ab17000b90da7248a4e0a9042b3d020fc901da09d234000b9ebb107f",
+    "report": {
+      "frame_schema": "LRN1",
+      "observer_id": "90:da:72:48:a6:98",
+      "observer_boot": 1492214843,
+      "report_seq": 106,
+      "snapshot_at_ms": 1060618,
+      "wifi_group": 31,
+      "report_period_ms": 10000,
+      "tx_delay_ms": 2,
+      "total_rows": 4,
+      "truncated": false,
+      "nd_table_full": false,
+      "neighbors": [
+        {
+          "peer_id": "90:da:72:48:a5:20",
+          "peer_boot": 2090625299,
+          "state": "bidirectional",
+          "seen_age_ms": 611,
+          "ack_age_ms": 2518,
+          "rssi_dbm": -44,
+          "rf_age_ms": 611,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a5:cc",
+          "peer_boot": 2001565995,
+          "state": "bidirectional",
+          "seen_age_ms": 97,
+          "ack_age_ms": 97,
+          "rssi_dbm": -65,
+          "rf_age_ms": 97,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a4:f8",
+          "peer_boot": 2469683011,
+          "state": "bidirectional",
+          "seen_age_ms": 2448,
+          "ack_age_ms": 2553,
+          "rssi_dbm": -85,
+          "rf_age_ms": 23,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a4:e0",
+          "peer_boot": 1026229417,
+          "state": "bidirectional",
+          "seen_age_ms": 457,
+          "ack_age_ms": 2522,
+          "rssi_dbm": -46,
+          "rf_age_ms": 52,
+          "channel": 11,
+          "rf_source": "measured"
+        }
+      ],
+      "transport_age_ms": null,
+      "evidence": "state_at_source_snapshot"
+    }
+  },
+  {
+    "observer_id": "90:da:72:48:a4:e0",
+    "report_seq": 106,
+    "gateway_id": "90:da:72:48:a4:f8",
+    "gateway_boot": 2469683011,
+    "rx_seq": 61,
+    "received_at_ms": 1059460,
+    "frame_hex": "4c524e312c14040490da7248a4e0a9042b3d6a000000c7321000000000001f0000000400102700000000000090da7248a52013699c7c020f8c038c03d7c2000b90da7248a4f8435f3493020f90018b03cba7000b90da7248a6983b64f158020f0703a603d1a7000b90da7248a5cc2b794d77020ffc027703d35e000bdab6ae07",
+    "report": {
+      "frame_schema": "LRN1",
+      "observer_id": "90:da:72:48:a4:e0",
+      "observer_boot": 1026229417,
+      "report_seq": 106,
+      "snapshot_at_ms": 1061575,
+      "wifi_group": 31,
+      "report_period_ms": 10000,
+      "tx_delay_ms": 0,
+      "total_rows": 4,
+      "truncated": false,
+      "nd_table_full": false,
+      "neighbors": [
+        {
+          "peer_id": "90:da:72:48:a5:20",
+          "peer_boot": 2090625299,
+          "state": "bidirectional",
+          "seen_age_ms": 908,
+          "ack_age_ms": 908,
+          "rssi_dbm": -41,
+          "rf_age_ms": 194,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a4:f8",
+          "peer_boot": 2469683011,
+          "state": "bidirectional",
+          "seen_age_ms": 400,
+          "ack_age_ms": 907,
+          "rssi_dbm": -53,
+          "rf_age_ms": 167,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a6:98",
+          "peer_boot": 1492214843,
+          "state": "bidirectional",
+          "seen_age_ms": 775,
+          "ack_age_ms": 934,
+          "rssi_dbm": -47,
+          "rf_age_ms": 167,
+          "channel": 11,
+          "rf_source": "measured"
+        },
+        {
+          "peer_id": "90:da:72:48:a5:cc",
+          "peer_boot": 2001565995,
+          "state": "bidirectional",
+          "seen_age_ms": 764,
+          "ack_age_ms": 887,
+          "rssi_dbm": -45,
+          "rf_age_ms": 94,
+          "channel": 11,
+          "rf_source": "measured"
+        }
+      ],
+      "transport_age_ms": null,
+      "evidence": "state_at_source_snapshot"
+    }
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "synthetic": true,
+  "edges": 80,
+  "same_endpoint_only_ms": 14.31,
+  "note": "one warmed host JS geometry pass; no device or RF"
+}

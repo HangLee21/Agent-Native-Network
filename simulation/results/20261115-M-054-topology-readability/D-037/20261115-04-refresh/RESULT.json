@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "synthetic": true,
+  "cases": [
+    "sparse_to_dense_refresh"
+  ],
+  "refresh_click_to_dom_ms": 158.19,
+  "note": "includes browser interaction and loopback fixture; not network or RF performance",
+  "page_errors": []
+}

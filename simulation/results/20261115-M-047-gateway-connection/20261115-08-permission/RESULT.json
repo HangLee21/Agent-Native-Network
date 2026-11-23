@@ -1,0 +1,9 @@
+{
+  "probe": "Windows access denied; no diagnostic network measurement",
+  "after": "Interface 20 DHCP Enabled; only 169.254.173.200; no temporary IP; pending snapshot archived after verification",
+  "logging_fix": "5 mocked cases passed, nonzero stage marked failed",
+  "files": {
+    "app/gateway_setup/bootstrap.ps1": "e2f0a3c3a2bda250aa805710ccb46f379ee436f11845a1790f59d7dbc22a34a1",
+    "app/gateway_setup/setup_gateway.py": "5d69cc7e3008e667423d29d1038322402a6859b6714b67ca6b34ee8a428ec1ea"
+  }
+}

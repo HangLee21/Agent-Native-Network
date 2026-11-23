@@ -1,0 +1,55 @@
+{
+  "simulation/outputs/E2-043/20261120-02-udp-recovery/launcher-tests.txt": "\ntest_states_and_unrelated_port (__main__.Check.test_states_and_unrelated_port) ... ok\n== checking services\n  port 8780 is occupied by an unrecognized service; leaving it untouched\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n",
+  "simulation/outputs/E2-043/20261120-02-udp-recovery/tests.txt": "gateway b827ebfffe32e2c1 (RHF2S008)\nUDP receiver recovering: [Errno 10051] injected fatal receive\ntest_isolated_real_udp_http_recovery (__main__.Check.test_isolated_real_udp_http_recovery) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 2.181s\n\nOK\n",
+  "simulation/outputs/E2-043/20261120-03-worker-supervision/tests.txt": "gateway b827ebfffe32e2c1 (RHF2S008)\nUDP worker exited unexpectedly; restarting\ntest_dead_thread_restarted_and_healthy_silence_does_not_restart (__main__.Check.test_dead_thread_restarted_and_healthy_silence_does_not_restart) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 2.362s\n\nOK\n",
+  "simulation/outputs/E2-043/20261120-05-portable-test/tests.txt": "gateway b827ebfffe32e2c1 (RHF2S008)\nUDP receiver recovering: [Errno 10051] injected receive failure\nUDP worker exited unexpectedly; restarting\ntest_ack_failure_receive_rebuild_and_worker_exit (test_gateway_recovery.RecoveryTests.test_ack_failure_receive_rebuild_and_worker_exit) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 3.227s\n\nOK\n",
+  "simulation/outputs/E2-043/20261120-07-local-http/tests.txt": "test_other_adapters_no_flag (__main__.Check.test_other_adapters_no_flag) ... ok\ntest_pending_failure_and_recovery (__main__.Check.test_pending_failure_and_recovery) ... ok\ntest_selected_legacy_failure_does_not_assert_worker (__main__.Check.test_selected_legacy_failure_does_not_assert_worker) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 3.013s\n\nOK\n",
+  "simulation/outputs/E2-043/20261120-08-start-diagnostics/tests.txt": "test_observed_gateway_without_node_frames (test_start_diagnostics.StartupDiagnostics.test_observed_gateway_without_node_frames) ... ok\ntest_receiver_failure_has_priority (test_start_diagnostics.StartupDiagnostics.test_receiver_failure_has_priority) ... ok\ntest_unobserved_gateway_can_show_existing_advice (test_start_diagnostics.StartupDiagnostics.test_unobserved_gateway_can_show_existing_advice) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.028s\n\nOK\n",
+  "simulation/outputs/D-043/20261120-04-unreachable-final/RESULT.json": {
+    "status": "passed",
+    "cases": [
+      "initial snapshot pending no false failure",
+      "unreachable no selected source",
+      "selected source unreachable with cached failure reason",
+      "recovered worker without heartbeat",
+      "subsequent service failure",
+      "legacy field absent"
+    ],
+    "synthetic": true,
+    "errors": []
+  },
+  "simulation/outputs/D-043/20261120-05-worker-final/RESULT.json": {
+    "status": "passed",
+    "cases": [
+      "running and heartbeat",
+      "running without heartbeat",
+      "recovering",
+      "stopped",
+      "starting",
+      "individual node timeout",
+      "legacy missing field",
+      "failed source unknown",
+      "cached upstream unavailable",
+      "historical state"
+    ],
+    "synthetic": true,
+    "errors": []
+  },
+  "simulation/outputs/D-043/20261120-07-gateway-title/RESULT.json": {
+    "status": "passed",
+    "cases": [
+      "fresh heartbeat no reports",
+      "fresh heartbeat stale reports",
+      "fresh node report",
+      "unknown report age not assumed stale",
+      "missing heartbeat",
+      "recovering worker",
+      "legacy source",
+      "upstream snapshot unavailable",
+      "frontend source failure",
+      "historical snapshot"
+    ],
+    "synthetic": true,
+    "errors": []
+  }
+}

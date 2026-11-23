@@ -1,0 +1,31 @@
+{
+  "template_only": false,
+  "task_id": "H-025",
+  "run_id": "20261115-04-http-check",
+  "started_at": null,
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network\\.worktrees\\production",
+  "git_commit": "93a203db0692604d829aa3cb48d9c706c131e053",
+  "dirty_files_sha256": {},
+  "command": "check_adapter.py Checks.test_existing_http_identity_and_disconnect -v",
+  "python_executable": null,
+  "dependency_snapshot": null,
+  "upstream_commit": null,
+  "data_and_weights_sha256": {
+    ".worktrees/production/app/services/tools/mobile_gateway/remote.py": "ce1018d096e04c59177f088d41c94b5c94b4ce571a6a3f698af09daf6c2dba80",
+    "simulation/outputs/E2-039/20261115-04-adapter/check_adapter.py": "b981e72a289bb562a8999fe0cccbb40409ba80df9b409947442a0a93310bbda9"
+  },
+  "config_file": null,
+  "seeds": [],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\H-025\\20261115-04-http-check",
+  "process_id": null,
+  "finished_at": "2026-11-15T16:34:29.410995+08:00",
+  "exit_code": 0,
+  "status": "completed",
+  "limitations": [
+    "Mocked HTTP response, not deployed gateway or real HTTP network",
+    "No device, serial, network configuration or RF operation"
+  ],
+  "review_reference": "coordination/tasks/H-025.md"
+}

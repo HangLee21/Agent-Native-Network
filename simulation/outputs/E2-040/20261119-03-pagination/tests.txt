@@ -1,0 +1,6 @@
+test_sql_paging_and_http (__main__.Checks.test_sql_paging_and_http) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.284s
+
+OK

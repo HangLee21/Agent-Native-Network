@@ -1,0 +1,5 @@
+{
+  "actual": "real Ethernet index 20 selected; WLAN excluded",
+  "fixtures": "USB wired selected; virtual, disconnected, wifi excluded",
+  "bootstrap_sha256": "8c0d5a904a5a31397a380577d226db6b1628c71eb7b5c6830d3a5d67399198f7"
+}

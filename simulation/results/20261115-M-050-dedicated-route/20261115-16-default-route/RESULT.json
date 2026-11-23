@@ -1,0 +1,5 @@
+{
+  "tests": "3 passed: confirmation required; existing route preserved; isolated DHCP options",
+  "default_route": "read and record only; no route mutation",
+  "sha256": "59b9d759219b55ba0ac6d58be4a79b61c30b53e503e7ecd1db98a37e12eff454"
+}

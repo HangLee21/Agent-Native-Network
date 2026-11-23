@@ -1,0 +1,12 @@
+﻿{"time":"2026-11-15T15:08:45","component":"bootstrap","stage":"start","status":"started"}
+{"time":"2026-11-15T15:08:49","component":"bootstrap","stage":"confirmation","status":"completed"}
+{"time":"2026-11-15T15:08:49","component":"bootstrap","stage":"package_check","status":"completed","exit_code":0}
+{"time":"2026-11-15T15:08:53","component":"bootstrap","stage":"temporary_address","status":"completed"}
+{"time":"2026-11-15T15:08:53","component":"bootstrap","stage":"remote_setup","status":"started"}
+{"time": "2026-11-15T15:08:53", "component": "setup", "stage": "private_deploy", "status": "started"}
+{"time": "2026-11-15T15:09:06", "component": "setup", "stage": "preflight_facts", "facts": ["ARCH armv7l", "DPKG_ARCH armhf", "OS \"Raspbian GNU/Linux 8 (jessie)\"", "MISSING dnsmasq", "SUDO_PATH /usr/bin/sudo", "SYSTEMD_VERSION systemd 215", "PKG libc6 2.19-18+deb8u7 install ok installed", "PKG python3  unknown ok not-installed", "PKG systemd 215-17+deb8u6 install ok installed", "MISSING python3", "SPACE_OPT 2501068", "SPACE_TMP 93752", "SPACE_VARTMP 30720", "SPACE_OPT_REQUIRED 134217728", "SPACE_TMP_REQUIRED 17221644"]}
+{"time": "2026-11-15T15:09:17", "component": "setup", "stage": "private_deploy", "status": "failed", "error_type": "TransportError"}
+{"time": "2026-11-15T15:09:17", "component": "setup", "stage": "setup", "status": "failed", "error_type": "SetupError"}
+{"time":"2026-11-15T15:09:17","component":"bootstrap","stage":"remote_setup","status":"failed","exit_code":1}
+{"time":"2026-11-15T15:09:17","component":"bootstrap","stage":"local_restore","status":"completed"}
+{"time":"2026-11-15T15:09:17","component":"bootstrap","stage":"remote_setup","status":"failed","error_type":"RuntimeException"}

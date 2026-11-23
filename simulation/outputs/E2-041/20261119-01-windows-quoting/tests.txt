@@ -1,0 +1,9 @@
+test_failure_returns_without_polling (__main__.Checks.test_failure_returns_without_polling) ... ok
+test_real_start_process_paths_and_exit (__main__.Checks.test_real_start_process_paths_and_exit) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 3.144s
+
+OK
+  wired port is not on the lab subnet; switching (you will get one UAC prompt)
+  network setup exited with code 23: failed

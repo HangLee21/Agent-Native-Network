@@ -1,0 +1,41 @@
+{
+  "node_id": "90:da:72:48:a4:f8",
+  "node_number": 1,
+  "port": "COM8",
+  "usb_location": "1-1",
+  "boot_id": 2469683011,
+  "build_id": "mid-lora-ref-v1-8d42275b922e010425199b7ece430ac46ad2f3c523d5192fe72eaf651f100dfd",
+  "before_role": "tx",
+  "after_role": "rx",
+  "worker_state": 1,
+  "requested_generation": 2,
+  "applied_generation": 2,
+  "start_on_boot": true,
+  "frequency_hz": 470500000,
+  "sf": 7,
+  "bandwidth_hz": 125000,
+  "coding_rate": 5,
+  "sync_word": 52,
+  "preamble_symbols": 8,
+  "rx_frames_immediately_after": 0,
+  "configuration_command": "lora_ref_config role=rx",
+  "flash_writes": 0,
+  "evidence_scope": "nonce-correlated serial responses; reception not yet established",
+  "recorded_at": "2026-11-15T15:53:58.397331+08:00",
+  "capture": {
+    "duration_seconds": 25,
+    "actual_received_frames": 11,
+    "unique_sources": 4,
+    "source_counts": {
+      "90:da:72:48:a5:cc": 3,
+      "90:da:72:48:a5:20": 3,
+      "90:da:72:48:a6:98": 3,
+      "90:da:72:48:a4:e0": 2
+    },
+    "sample_file": "four-source-frame-samples.json",
+    "sample_count": 4,
+    "decode_errors": 0,
+    "latest_rx_seq": 68,
+    "scope": "single bounded reception, no delivery-rate inference"
+  }
+}

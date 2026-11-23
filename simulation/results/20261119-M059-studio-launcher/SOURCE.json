@@ -1,0 +1,10 @@
+{
+  "task": "M-059",
+  "files": {
+    "simulation/outputs/E2-041/20261119-01-windows-quoting/check_windows.py": "89603a1397d3497edc50e1f1aa6a0f34e49ffe9e598860fdad0634b922676128",
+    "simulation/outputs/E2-041/20261119-01-windows-quoting/RUN_MANIFEST.json": "1b8a47d296fb71697ae1b23767f324a2d0c352fca73a8f8b3c9b4e0dc928685a",
+    "simulation/outputs/E2-041/20261119-01-windows-quoting/tests.txt": "f3a9cb680e7036bd5a9acf6f0b22ffe966d49b6ca4e90d4c773b69f09d5c4b81"
+  },
+  "review": "coordination/reviews/C-044.md",
+  "scope": "Windows PowerShell Start-Process integration using harmless, non-elevated scripts; real UAC and NIC reconfiguration untested."
+}

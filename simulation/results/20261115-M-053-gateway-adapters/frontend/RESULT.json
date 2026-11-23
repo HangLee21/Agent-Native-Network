@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "cases": [
+    "01-auto",
+    "02-manual",
+    "03-fallback",
+    "04-recovery",
+    "05-timeout",
+    "06-interrupted",
+    "07-auto-restored"
+  ],
+  "page_errors": [],
+  "physical_devices": false
+}

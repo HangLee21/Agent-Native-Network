@@ -1,0 +1,44 @@
+{
+  "captured_utc": "2026-11-15T08:06:31.596995+00:00",
+  "source": "lora_received_snapshot",
+  "receiver": {
+    "mode": "node_serial",
+    "gateway_id": "90:da:72:48:a4:f8",
+    "gateway_observed": true,
+    "serial_open": true,
+    "state": "receiving",
+    "last_rx_age_ms": 3766,
+    "error": null,
+    "identity_verified": true
+  },
+  "reports": [
+    {
+      "id": "90:da:72:48:a5:cc",
+      "observer_boot": 2001565995,
+      "report_seq": 175,
+      "age_ms": 8046,
+      "state": "recent"
+    },
+    {
+      "id": "90:da:72:48:a6:98",
+      "observer_boot": 1492214843,
+      "report_seq": 174,
+      "age_ms": 5328,
+      "state": "recent"
+    },
+    {
+      "id": "90:da:72:48:a4:e0",
+      "observer_boot": 1026229417,
+      "report_seq": 174,
+      "age_ms": 4281,
+      "state": "recent"
+    },
+    {
+      "id": "90:da:72:48:a5:20",
+      "observer_boot": 2090625299,
+      "report_seq": 175,
+      "age_ms": 3766,
+      "state": "recent"
+    }
+  ]
+}

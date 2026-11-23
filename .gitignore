@@ -1,6 +1,39 @@
+# Operator delivery tree: only what a site actually runs.
 /data/
 /logs/
 /.local/
 __pycache__/
 *.pyc
 *.pyo
+*.py[cod]
+
+# Development-only artefacts that may exist in a checkout but are never published.
+.venv/
+/.worktrees/
+.pytest_cache/
+data/
+studio-replay*.sqlite3*
+simulation/outputs/
+
+# Local board bindings and generated ESP-IDF build state.
+/hardware/eora_hub_400tb/bindings.local.json
+/hardware/eora_hub_400tb/bench.local.json
+/firmware/agent_native/idf/build/
+/firmware/agent_native/idf/sdkconfig
+/firmware/agent_native/idf/sdkconfig.old
+
+# Local SDKs and hardware tools used while developing a device.
+/.local/espnow/
+/.local/mid/
+
+# Site secrets and per-machine operator settings must never be committed.
+site.env
+*.site.env
+
+# Generated ESP-IDF debug output inside build archives: the flashable image, the
+# build record and the checksums are kept; the ELF/MAP are reproducible from them.
+BUILD-*/mid_edge.elf
+BUILD-*/mid_edge.map
+
+# 56 MB generated dataset for the simulation demo; regenerate with its scripts.
+/research/agent_native_network/mid_simulation_demo/viewer-data.json

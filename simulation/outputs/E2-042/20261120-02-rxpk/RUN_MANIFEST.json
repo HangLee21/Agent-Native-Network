@@ -1,0 +1,34 @@
+{
+  "dirty_files_sha256": {
+    "tools/flight_link/gateway.py": "a16ae0797918ef0bde673597c69e799fecef16ece4f30ae59f82adaacd6ea143",
+    "tools/mid_baseline/gateway_probe/topology_server.py": "fecfd6262f8ac5864326cd53720d82ffa0485eba54889acf396af28f9b584796"
+  },
+  "config_file": null,
+  "dependency_snapshot": "host Python",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "budget": "three targeted synthetic and historical fixture tests",
+  "run_id": "20261120-02-rxpk",
+  "data_and_weights_sha256": {
+    "simulation/outputs/H-025/20261115-02-legacy-fixture/push-data.bin": "10ef9eb7b5a0a4c799f77b7d3811009386f02d1acfae51e365fb2270a4f4e1af"
+  },
+  "timezone": "Asia/Shanghai",
+  "command": "python -X utf8 check_rxpk.py",
+  "exit_code": 0,
+  "template_only": false,
+  "worktree": "D:\\Multi-Agent Network",
+  "task_id": "E2-042",
+  "output_directory": "simulation/outputs/E2-042/20261120-02-rxpk",
+  "status": "review",
+  "finished_at": "2026-11-20T10:08:37.4580497+08:00",
+  "git_commit": "4cd280a973a388138c67f7030162c4e75f5d25c3",
+  "limitations": [
+    "Historical LRN1 rxpk with synthetic UDP envelope; no new RF observation",
+    "rfch was absent in sample; rfch=0 was synthetically added",
+    "No live hardware or frontend rendering"
+  ],
+  "process_id": null,
+  "seeds": [],
+  "upstream_commit": null,
+  "started_at": null,
+  "review_reference": "coordination/tasks/E2-042.md"
+}

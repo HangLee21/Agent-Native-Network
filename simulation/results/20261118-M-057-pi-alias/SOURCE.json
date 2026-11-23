@@ -1,0 +1,19 @@
+{
+  "task": "M-057",
+  "observations": [
+    "Current PC: MagicDNS enabled, name eora-air-04 resolved to 100.101.0.110. Batch-mode ssh eora-air-04 hostname returned eora-air-04.",
+    "04 used its previously enrolled key. New-card enrollment verified offline only.",
+    "MK_CARD.cmd --check succeeded with the local fleet configuration."
+  ],
+  "files": {
+    "test_fleet_key.py": {
+      "source": "simulation/outputs/H-027/20261118-fixture/test_fleet_key.py",
+      "sha256": "5592de1e4bea47f366542dd1af48be904be41c809dab64cc558317fb02e45b15"
+    },
+    "RUN_MANIFEST.json": {
+      "source": "simulation/outputs/H-027/20261118-fixture/RUN_MANIFEST.json",
+      "sha256": "72c8b69fea98916b24a208d2eb342c746ba739a2fa8f7fbc15a79ec65fa68f42"
+    }
+  },
+  "review": "coordination/reviews/C-042.md"
+}

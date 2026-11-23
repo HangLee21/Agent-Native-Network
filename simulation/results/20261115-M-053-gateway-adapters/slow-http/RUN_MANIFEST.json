@@ -1,0 +1,35 @@
+{
+  "timezone": "Asia/Shanghai",
+  "git_commit": "93a203db0692604d829aa3cb48d9c706c131e053",
+  "worktree": "D:\\Multi-Agent Network\\.worktrees\\production",
+  "output_directory": "simulation/outputs/E2-039/20261115-07-slow-http-isolation",
+  "upstream_commit": "93a203db0692604d829aa3cb48d9c706c131e053",
+  "seeds": [],
+  "task_id": "E2-039",
+  "command": "runtime/python/python.exe -X utf8 check_isolation.py",
+  "budget": "one HTTP stall isolation and loopback ACK check",
+  "dependency_snapshot": "bundled runtime",
+  "config_file": null,
+  "status": "review",
+  "dirty_files_sha256": {
+    "app/services/tools/mobile_gateway/node_serial.py": "2e0227ca5625bb6eab2aca8f291321c153a9a4300629b891c47b8c2bc28694be",
+    "app/start/launcher.py": "7a05552ddb8bb8e33dc401969b95ead2883c485ce5b39bed0e2cc5cfcc3e471c",
+    "app/services/tools/mobile_gateway/remote.py": "ce1018d096e04c59177f088d41c94b5c94b4ce571a6a3f698af09daf6c2dba80",
+    "app/services/tools/mobile_gateway/studio.py": "7e802037d1b2b9014bc95c3b9feef90b600d307885d30ba44b0a9621869ec941",
+    "app/services/tools/mobile_gateway/serial_discovery.py": "4a08dad41de40ef0dd4b5bafcf38be2abe09d492aaa4c1bfed7fa3954cbf6173",
+    "app/services/tools/mobile_gateway/sources.py": "a18927bdd1aabdcfc391e752aa05be7c68395393e03a129be63b76b863244421"
+  },
+  "started_at": null,
+  "run_id": "20261115-07-slow-http-isolation",
+  "review_reference": "coordination/tasks/E2-039.md",
+  "limitations": [
+    "Blocked HTTP and serial source simulated; UDP local loopback, no physical device",
+    "HTTP cache expires to unavailable after three seconds without completed refresh"
+  ],
+  "python_executable": "runtime/python/python.exe",
+  "data_and_weights_sha256": {},
+  "template_only": false,
+  "finished_at": "2026-11-15T16:33:19.9949636+08:00",
+  "exit_code": 0,
+  "process_id": null
+}

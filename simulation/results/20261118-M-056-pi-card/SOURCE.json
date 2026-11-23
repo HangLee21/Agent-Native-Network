@@ -1,0 +1,34 @@
+{
+  "task": "M-056",
+  "base": "f2e38eb",
+  "files": {
+    "test_mkcard.py": {
+      "source": "simulation/outputs/H-026/20261118-01-fixture/test_mkcard.py",
+      "sha256": "facb7da0e137b9bde7734a5758dc161ceb82a8b0ffb1bd1424c1dab4bb83a47e"
+    },
+    "RUN_MANIFEST.json": {
+      "source": "simulation/outputs/H-026/20261118-01-fixture/RUN_MANIFEST.json",
+      "sha256": "dfde2a79f1c621035de9a03eff5007f58612e38e19884efe51a78c714b07df3f"
+    }
+  },
+  "review": "coordination/reviews/C-041.md",
+  "actual_card": {
+    "disk_bytes": 63864569856,
+    "boot_partition_bytes": 536870912,
+    "node": 4,
+    "readback_passed": [
+      "original_cmd_sha",
+      "cmdline_single",
+      "instance_match",
+      "boot_args_preserved",
+      "hostname",
+      "imager_user_ssh_preserved",
+      "installer_once",
+      "installer_04",
+      "asynchronous_start",
+      "wifi"
+    ],
+    "verification": "Compared files on F: after successful mkcard.py --card F: --number 4. On-card backup present."
+  },
+  "scope": "Real card preparation and readback; power-on and radio not tested. 05/06 are synthetic fixtures."
+}

@@ -1,0 +1,7 @@
+test_location_priority_ambiguity_and_mac_rejection (__main__.Checks.test_location_priority_ambiguity_and_mac_rejection) ... ok
+test_studio_actual_worker_explicit_nonch340_port_beyond_first_eight (__main__.Checks.test_studio_actual_worker_explicit_nonch340_port_beyond_first_eight) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.414s
+
+OK

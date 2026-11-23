@@ -1,0 +1,271 @@
+{
+  "task": "M-052",
+  "status": "accepted_limited",
+  "sources": [
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/01-normal.json",
+      "adopted": "frontend-final/01-normal.json",
+      "sha256": "02a9997da09b76f92ce9a6a37013cfba679b37a5ae05b6635678b2f245fc2ce7"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/01-normal.png",
+      "adopted": "frontend-final/01-normal.png",
+      "sha256": "8fae7d05a1a86b16f5d56fd2d916462d0ffce946b8610a2a12445644b5316db1"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/02-timeout.json",
+      "adopted": "frontend-final/02-timeout.json",
+      "sha256": "c406f1edb84c7de69bb928032b1bdc8dcdc2c0309967c32982480d477e118c0e"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/02-timeout.png",
+      "adopted": "frontend-final/02-timeout.png",
+      "sha256": "d3f5423b41b156f6af2d9628527f638062f20a1a952f54b93f5ad0b1f7534454"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/03-interrupted.json",
+      "adopted": "frontend-final/03-interrupted.json",
+      "sha256": "a7bf348b1c1dc1d4bbae823350608a2ba9f2f4b43dd1ece27ab15fac6056ba2d"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/03-interrupted.png",
+      "adopted": "frontend-final/03-interrupted.png",
+      "sha256": "5909ec15c1d3bcac074052646b1c8abdf46d023eed92fdc04b091c7a0d5e159d"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/check.py",
+      "adopted": "frontend-final/check.py",
+      "sha256": "f6aeb794352e2d2855a5019bb58d99638a909e460b4ae0bc7f761fd9d33b2a8c"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/PROCESS_END.json",
+      "adopted": "frontend-final/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/RESULT.json",
+      "adopted": "frontend-final/RESULT.json",
+      "sha256": "adf1932e5375576e89c455210d4e154db29794b53c05df199dfe8462f108ae16"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-07-map-final/RUN_MANIFEST.json",
+      "adopted": "frontend-final/RUN_MANIFEST.json",
+      "sha256": "1a9ccacffddd749f3fb4f51c4547be6caa4c0875cd4529655d59d752230b3f97"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/01-normal.json",
+      "adopted": "frontend-aging/01-normal.json",
+      "sha256": "c6889d79848393601c9fb385b38fe7f910f95108aedf9aadf24f38056708a369"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/01-normal.png",
+      "adopted": "frontend-aging/01-normal.png",
+      "sha256": "e29d771d70d28bfa4706b40d6e6f83e2349df67afb0e1f3ad9130500b7bf95bc"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/02-timeout.json",
+      "adopted": "frontend-aging/02-timeout.json",
+      "sha256": "72db239f273abc1d14726da2a7ffe9ab2e16ffe17dc1dff8515e2328e222a5c8"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/02-timeout.png",
+      "adopted": "frontend-aging/02-timeout.png",
+      "sha256": "60f08db4ed633399ffead24a34d0766b2be757f47d02f099bfefe0390552d0bf"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/03-interrupted.json",
+      "adopted": "frontend-aging/03-interrupted.json",
+      "sha256": "11ad75d0ba838655e57d75d4298af6911b97bb6c3425cdfde66d26c3a694c922"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/03-interrupted.png",
+      "adopted": "frontend-aging/03-interrupted.png",
+      "sha256": "112460c3fdadc46bfd8dc403d86ed52bfe51dd90b91646c731c8cff50e7076a4"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/04-recovered.json",
+      "adopted": "frontend-aging/04-recovered.json",
+      "sha256": "a423a26990d0b283f19c93579a8b7d98bce5e11faaefed01e1964a9f5bccbb4f"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/04-recovered.png",
+      "adopted": "frontend-aging/04-recovered.png",
+      "sha256": "75579c17e0aa587af9a2074dfb9d3891a8817d38bbc256d0bbb74c933df6c29b"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/05-http-failure.json",
+      "adopted": "frontend-aging/05-http-failure.json",
+      "sha256": "1c03e52ce457fbb6eec0bdeeccecff375f15d30812496446267bbb0743e49736"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/05-http-failure.png",
+      "adopted": "frontend-aging/05-http-failure.png",
+      "sha256": "bb9bded2ed89258254ac7413ed844f438a55619b011b893bff2272766d3d1796"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/06-local-timeout.json",
+      "adopted": "frontend-aging/06-local-timeout.json",
+      "sha256": "375187d64add98a1dd0cbcd7abe67f55739c7595b344dd8871a0ce7d87a36cfa"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/06-local-timeout.png",
+      "adopted": "frontend-aging/06-local-timeout.png",
+      "sha256": "aecf0c67b8fb262997063b555913bf8fff03cd325a48b9e9f80aa4883f5218bf"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/07-hung-api-interrupted.json",
+      "adopted": "frontend-aging/07-hung-api-interrupted.json",
+      "sha256": "f3c02f53dc396d76c63ddca2ac7718a6122219a7bd68704dccadd1af6c5e8952"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/07-hung-api-interrupted.png",
+      "adopted": "frontend-aging/07-hung-api-interrupted.png",
+      "sha256": "313343f4d071d586f75aa0ae2adcf9d5abb0585663d2b2c61284a38696433028"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/check.py",
+      "adopted": "frontend-aging/check.py",
+      "sha256": "02ff7b15a5808058bf551f31a8453ab42cfb7cf9553bdf13da349a3cd603543b"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/PROCESS_END.json",
+      "adopted": "frontend-aging/PROCESS_END.json",
+      "sha256": "6edd391d5d917abc342d91f7406b9dd67aebd6ce135d614433a87fdae8fb2511"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/RESULT.json",
+      "adopted": "frontend-aging/RESULT.json",
+      "sha256": "6af35ee509533946de802050b4e2faa638985f6bee3a2e5c5c6b6f47da0b9292"
+    },
+    {
+      "source": "simulation/outputs/D-035/20261115-04-aging/RUN_MANIFEST.json",
+      "adopted": "frontend-aging/RUN_MANIFEST.json",
+      "sha256": "b65689d946d5dfdfa9a9603ba500acc240d39983c99d0f44b431a1e3ecdfdf33"
+    },
+    {
+      "source": "simulation/outputs/E2-038/20261115-04-node-serial/launcher-selftest.txt",
+      "adopted": "receiver-tests/launcher-selftest.txt",
+      "sha256": "7aee8e17a7e40193a8608ab0345b16b5b44351a9d5df2c2ad8dd7169dc1a3d47"
+    },
+    {
+      "source": "simulation/outputs/E2-038/20261115-04-node-serial/tests.txt",
+      "adopted": "receiver-tests/tests.txt",
+      "sha256": "12c5824b0d794c5ba7d2a07a30410cb8593262ec721eb162688ea56f6fdf7d9b"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/capture_rx_child.py",
+      "adopted": "hardware-reception/capture_rx_child.py",
+      "sha256": "15398512c7d47d821bbd6405d28fa9307317350fee8548f017c8f13f0d0a9ae3"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/four-source-frame-samples.json",
+      "adopted": "hardware-reception/four-source-frame-samples.json",
+      "sha256": "7d4104b6810c40fc6811c49d98ea36fe3c5a7db083a87a1c30ff836c3b738354"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/hold_lease.py",
+      "adopted": "hardware-reception/hold_lease.py",
+      "sha256": "7ddc5d802a6a16b3d6a1a0ea81e6151bd3d4e52eed6fe3ff2f31f723c3b497a9"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/identity-status.json",
+      "adopted": "hardware-reception/identity-status.json",
+      "sha256": "b5af227f3a909c1176323d6d6345388adc2e7b869f0f33801f732d01851c1caa"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/original-config.json",
+      "adopted": "hardware-reception/original-config.json",
+      "sha256": "b2591948b667eae7f42c79f1f4c4185272090acaa02e2161ccb4bd3ecd48755c"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/read_child.py",
+      "adopted": "hardware-reception/read_child.py",
+      "sha256": "4b0f1cc81e493c0ef65493eb975c7e352dbf55d6fcdace52023cf77a6e1804c2"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/read_node.py",
+      "adopted": "hardware-reception/read_node.py",
+      "sha256": "1d49e74739fa9b8668a8ad541276f4d07388e32eed35ee1562d7e4cea9507180"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/RESULT.json",
+      "adopted": "hardware-reception/RESULT.json",
+      "sha256": "48c3abae4499adbda7643d47d1f4f32df474ddcd8be7c97c962183981399eb4c"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/RUN_MANIFEST.json",
+      "adopted": "hardware-reception/RUN_MANIFEST.json",
+      "sha256": "b4745acef3fe6621ed0a3a245ccdfeb91a1eac3018fe62ae36714f5c7ac66b13"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-01-node1/set_rx_child.py",
+      "adopted": "hardware-reception/set_rx_child.py",
+      "sha256": "4fa755b69888fad001ee030e95d85cc9694fc61ad7d08945ecf67ca81e7fdaaf"
+    },
+    {
+      "source": "simulation/outputs/M-052/20261115-01-intake/findings.json",
+      "adopted": "intake/findings.json",
+      "sha256": "e9b9e11edfd48db180629fc50e8bc01e10d6360bfeaad14c542c1674628a53cd"
+    },
+    {
+      "source": "simulation/outputs/M-052/20261115-01-intake/RUN_MANIFEST.json",
+      "adopted": "intake/RUN_MANIFEST.json",
+      "sha256": "09182000bf479cf29da08276c2d95d9ee2cbee4f567756ea111d25922d61b38b"
+    },
+    {
+      "source": "simulation/outputs/E2-038/20261115-03-node-serial/check_serial.py",
+      "adopted": "receiver-tests/check_serial.py",
+      "sha256": "e01ade2031692e39565f5e8ac273274e601c29d0c4a266118a4035985647ca0c"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-02-studio/fleet-before.json",
+      "adopted": "formal-service/fleet-before.json",
+      "sha256": "032142a7152ca178f4f7acac479c27150f40f32a0601ca5e34d550728d9ddda0"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-02-studio/fleet-candidate.json",
+      "adopted": "formal-service/fleet-candidate.json",
+      "sha256": "bb25a6443fb5e657877c12f1b42ba18efee430eea900728ff16fb33a2d02b061"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-02-studio/fleet-final.json",
+      "adopted": "formal-service/fleet-final.json",
+      "sha256": "480a7a5efe4340c645853568c1e9cc94953eaf439572caf78a28ad103a41a416"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-02-studio/live-snapshot.json",
+      "adopted": "formal-service/live-snapshot.json",
+      "sha256": "0200bb631a9cf228452aa01394c6b6dca042e3e671144944a3e6f231c70e0f11"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-02-studio/RUN_MANIFEST.json",
+      "adopted": "formal-service/RUN_MANIFEST.json",
+      "sha256": "9db4789c4e24564b04679c9d3fe10a30b3628b85d8da78186812662aef1c1404"
+    },
+    {
+      "source": "simulation/outputs/H-024/20261115-02-studio/source-sha256.txt",
+      "adopted": "formal-service/source-sha256.txt",
+      "sha256": "41a77318ddf6c00736e0ae955497e96ddbf5544325709b8808c12b1d20bae15f"
+    },
+    {
+      "source": "simulation/outputs/M-052/20261115-02-live-api/RUN_MANIFEST.json",
+      "adopted": "live-acceptance/RUN_MANIFEST.json",
+      "sha256": "467232af7dd033b97efcf6be1bc594f0b52068a661b86912c05db6469dfb92d6"
+    },
+    {
+      "source": "simulation/outputs/M-052/20261115-02-live-api/snapshot.json",
+      "adopted": "live-acceptance/snapshot.json",
+      "sha256": "091d7a98c76cc768b5cb060eae9034f7a9b818243a5fb978021d7adbe0a24fd1"
+    }
+  ],
+  "limitations": [
+    "UI timeout/interruption/recovery evidence uses labelled synthetic HTTP fixtures; final appearance separately rendered",
+    "Physical node1 received 11 frames from four sources in 25 seconds; four representative raw frames retained; not a PDR measurement",
+    "Formal Studio API confirmed four real recent reports; physical unplug/replug recovery not performed",
+    "Remote gateway is disconnected; no new physical RHF regression"
+  ],
+  "review_reference": "coordination/reviews/C-037.md",
+  "implementation_worktree": ".worktrees/production",
+  "base_commit": "d83f9dd",
+  "production_commit": "93a203d"
+}

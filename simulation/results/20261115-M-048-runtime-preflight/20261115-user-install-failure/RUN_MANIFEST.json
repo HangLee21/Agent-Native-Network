@@ -1,0 +1,28 @@
+{
+  "template_only": false,
+  "task_id": "M-048",
+  "run_id": "20261115-user-install-failure",
+  "started_at": null,
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "4d5d022",
+  "dirty_files_sha256": {},
+  "command": null,
+  "python_executable": null,
+  "dependency_snapshot": null,
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\M-048\\20261115-user-install-failure",
+  "process_id": null,
+  "finished_at": null,
+  "exit_code": null,
+  "status": "recorded_user_failure",
+  "limitations": [
+    "User performed installation attempt; M only read and preserved the resulting stage log.",
+    "No new gateway operation in this record."
+  ],
+  "review_reference": "coordination/tasks/M-048.md"
+}

@@ -1,0 +1,56 @@
+{
+  "task": "M-048",
+  "production_commit": "f81dbf6",
+  "sources": [
+    {
+      "source": "simulation/outputs/M-048/20261115-user-install-failure/FINDING.json",
+      "file": "20261115-user-install-failure/FINDING.json",
+      "sha256": "484ecb56743752600b397245bb6c5921c61901a2a1045d23736ad17c35af9da4"
+    },
+    {
+      "source": "simulation/outputs/M-048/20261115-user-install-failure/RUN_MANIFEST.json",
+      "file": "20261115-user-install-failure/RUN_MANIFEST.json",
+      "sha256": "dace18c1b0d6f805cf436a1c36377bbf191e3303eecbb13c61a6bf24bf3e7e78"
+    },
+    {
+      "source": "simulation/outputs/M-048/20261115-user-install-failure/setup-stages.jsonl",
+      "file": "20261115-user-install-failure/setup-stages.jsonl",
+      "sha256": "5a0a84f18795c428861058c02d916ed9287e72255b785f0cbb8dddaf2c495d7c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-10-preflight/remote-syntax-fixture.sh",
+      "file": "20261115-10-preflight/remote-syntax-fixture.sh",
+      "sha256": "84a04ea13e20632794d588f907a4ea88c9dda3f48d1dfd310ac7d85c48d0a797"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-10-preflight/RESULT.json",
+      "file": "20261115-10-preflight/RESULT.json",
+      "sha256": "554cdc8b89b9f23bf424bbd78ae91f4614514887f1ebc12d0e4d7d6d95f4e82c"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-10-preflight/RUN_MANIFEST.json",
+      "file": "20261115-10-preflight/RUN_MANIFEST.json",
+      "sha256": "07278fd04f95527904afaa49ba7fc8961a7100f4d175805308ef199ea650711a"
+    },
+    {
+      "source": "simulation/outputs/H-023/20261115-10-preflight/test_preflight.py",
+      "file": "20261115-10-preflight/test_preflight.py",
+      "sha256": "4cb228d1abfdbab5e53ef3a13c98e8b5fbb32e1f1a50771032ae9a91bdec2ce4"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-06-dependency-analysis/DEPENDENCY_ANALYSIS.md",
+      "file": "20261115-06-dependency-analysis/DEPENDENCY_ANALYSIS.md",
+      "sha256": "1fe4df583069795a7197cba2a62d72be56c3196a50180e1d3fc96d8de14de9de"
+    },
+    {
+      "source": "simulation/outputs/E2-037/20261115-06-dependency-analysis/RUN_MANIFEST.json",
+      "file": "20261115-06-dependency-analysis/RUN_MANIFEST.json",
+      "sha256": "d6b82ba0a32714a6373bf34b1d3b585f29864517c5e89c90fa63116d4d5476a0"
+    }
+  ],
+  "limitations": [
+    "User SSH/upload succeeded but sudo could not find python3; installer did not start.",
+    "Single-session changes tested in host/mocked shell environments, not actual gateway.",
+    "Missing target runtime dependency bundle remains pending actual preflight facts."
+  ]
+}

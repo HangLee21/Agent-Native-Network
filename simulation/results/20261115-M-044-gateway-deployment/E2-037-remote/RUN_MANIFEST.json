@@ -1,0 +1,35 @@
+{
+  "dirty_files_sha256": {
+    "app/services/tools/flight_link/compat_decoder.py": "092a5cf1ce234b393cb378e2f38b8f6b7ae3de118c0c7fd0e94bc34ae878a417",
+    "app/services/tools/mobile_gateway/remote.py": "4dabcb8869bb0c63dd8e95c386e409ea3c6e686cd68f083eb665cbc579d374bd",
+    "app/start/launcher.py": "ec341482f3ae3b3c0d2c18d8c64ce3e26819ab31d23610e66b7e1a0c59c4feec",
+    "app/services/tools/flight_link/appliance.py": "d1b571d6d7b15912bee26582bba9db02cfa4b0b9ca87f7eb36ce6de76db8bbd8",
+    "app/services/tools/mobile_gateway/studio.py": "b4bbbd490a8d7b1e2a4c48633f8b9f4597f1906c3de7274fb43c38205cd24a2e"
+  },
+  "processes": "temporary processes exited",
+  "task_id": "E2-037",
+  "seeds": [],
+  "budget": {
+    "workers": 1
+  },
+  "python_executable": "D:\\Multi-Agent Network\\.worktrees\\production\\runtime\\python\\python.exe",
+  "run_id": "20261115-03-remote-final",
+  "limitations": [
+    "Python 3.4 grammar only; tested runtime Python 3.11 on Windows",
+    "no physical gateway ARM DHCP actual Ethernet serial or RF",
+    "Studio discovery fixture uses loopback broadcast override; multi-interface discovery not verified on physical networks",
+    "legacy fallback branch check only",
+    "EUI identifies device but does not cryptographically authenticate gateway"
+  ],
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-037\\20261115-03-remote-final",
+  "command": [
+    "runtime/python/python.exe -X utf8 check_remote.py",
+    "runtime/python/python.exe -X utf8 check_launcher.py",
+    "Python 3.4 grammar check",
+    "explicit legacy branch check"
+  ],
+  "finished_at": "2026-11-15T13:03:02.9941597+08:00",
+  "config_file": "synthetic temporary config",
+  "status": "passed",
+  "git_commit": "222dce366c689eb56dcec0dd1ebfb429b8328044"
+}

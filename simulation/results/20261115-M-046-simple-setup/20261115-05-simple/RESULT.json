@@ -1,0 +1,12 @@
+{
+  "console": "3 passed: unique, multiple, cancel",
+  "remote": "3 passed: unique matching SSH local IP, ambiguity, no blind selection",
+  "real_adapter": "read-only Ethernet 20 selected; WLAN excluded",
+  "package_plan": "passed",
+  "files": {
+    "app/gateway_setup/bootstrap.ps1": "c76a81bc996ac6f5827c96fed128f5628e6729de41754ed8f41ea21d25fb0f92",
+    "app/gateway_setup/setup_gateway.py": "211d16bb904561c8d4f187d2a011fbbbcc4096880154b16261bf08c57531c80a",
+    "SETUP_GATEWAY.cmd": "955f5843dd6071ce20f9a779bfa6dc4186480eaba9ad47eccc90ed027bf3bbdf",
+    "README.md": "53ab8133d443847a54797112b950dedc448f002b9a9277793490032fe3340795"
+  }
+}

@@ -1,0 +1,9 @@
+﻿{"time":"2026-11-15T13:56:29","component":"bootstrap","stage":"start","status":"started"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"confirmation","status":"completed"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"package_check","status":"completed","exit_code":0}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"temporary_address","status":"completed"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"remote_setup","status":"started"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"remote_setup","status":"completed","exit_code":0}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"local_restore","status":"completed"}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"dhcp_renew","status":"completed","exit_code":0}
+{"time":"2026-11-15T13:56:30","component":"bootstrap","stage":"finish","status":"completed","exit_code":0}

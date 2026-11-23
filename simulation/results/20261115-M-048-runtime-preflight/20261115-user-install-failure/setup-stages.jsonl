@@ -1,0 +1,17 @@
+﻿{"time":"2026-11-15T14:13:58","component":"bootstrap","stage":"start","status":"started"}
+{"time":"2026-11-15T14:14:05","component":"bootstrap","stage":"confirmation","status":"completed"}
+{"time":"2026-11-15T14:14:06","component":"bootstrap","stage":"package_check","status":"completed","exit_code":0}
+{"time":"2026-11-15T14:14:10","component":"bootstrap","stage":"temporary_address","status":"completed"}
+{"time":"2026-11-15T14:14:10","component":"bootstrap","stage":"remote_setup","status":"started"}
+{"time": "2026-11-15T14:14:10", "component": "setup", "stage": "ssh_enumerate", "status": "started"}
+{"time": "2026-11-15T14:15:00", "component": "setup", "stage": "ssh_enumerate", "status": "completed", "exit_code": 0}
+{"time": "2026-11-15T14:15:00", "component": "setup", "stage": "interface_selection", "status": "started"}
+{"time": "2026-11-15T14:15:00", "component": "setup", "stage": "interface_selection", "status": "completed"}
+{"time": "2026-11-15T14:15:00", "component": "setup", "stage": "scp_upload", "status": "started"}
+{"time": "2026-11-15T14:15:15", "component": "setup", "stage": "scp_upload", "status": "completed", "exit_code": 0}
+{"time": "2026-11-15T14:15:15", "component": "setup", "stage": "ssh_install", "status": "started"}
+{"time": "2026-11-15T14:15:55", "component": "setup", "stage": "ssh_install", "status": "failed", "exit_code": 1, "error_type": "CalledProcessError"}
+{"time": "2026-11-15T14:15:55", "component": "setup", "stage": "setup", "status": "failed", "exit_code": 1, "error_type": "CalledProcessError"}
+{"time":"2026-11-15T14:15:55","component":"bootstrap","stage":"remote_setup","status":"failed","exit_code":1}
+{"time":"2026-11-15T14:15:56","component":"bootstrap","stage":"local_restore","status":"completed"}
+{"time":"2026-11-15T14:15:56","component":"bootstrap","stage":"remote_setup","status":"failed","error_type":"RuntimeException"}

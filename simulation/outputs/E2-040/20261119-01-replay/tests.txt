@@ -1,0 +1,9 @@
+gateway b827ebfffe32e2c1 (RHF2S008)
+test_old_and_sparse_status (__main__.T.test_old_and_sparse_status) ... ok
+test_pull_heartbeat_with_no_lrn1 (__main__.T.test_pull_heartbeat_with_no_lrn1) ... ok
+test_reopen_and_observation_transitions (__main__.T.test_reopen_and_observation_transitions) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.071s
+
+OK

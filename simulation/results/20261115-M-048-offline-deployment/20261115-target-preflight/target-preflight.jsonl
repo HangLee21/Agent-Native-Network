@@ -1,0 +1,21 @@
+﻿{"time":"2026-11-15T14:28:06","component":"bootstrap","stage":"start","status":"started"}
+{"time":"2026-11-15T14:28:11","component":"bootstrap","stage":"confirmation","status":"completed"}
+{"time":"2026-11-15T14:28:11","component":"bootstrap","stage":"package_check","status":"completed","exit_code":0}
+{"time":"2026-11-15T14:28:15","component":"bootstrap","stage":"temporary_address","status":"completed"}
+{"time":"2026-11-15T14:28:15","component":"bootstrap","stage":"remote_setup","status":"started"}
+{"time": "2026-11-15T14:28:15", "component": "setup", "stage": "ssh_session", "status": "started"}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["ARCH armv7l"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["DPKG_ARCH armhf"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["OS \"Raspbian GNU/Linux 8 (jessie)\""]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["MISSING dnsmasq"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["SUDO_PATH /usr/bin/sudo"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["SYSTEMD_VERSION systemd 215"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["PKG libc6 2.19-18+deb8u7 install ok installed"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["PKG python3  unknown ok not-installed"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["PKG systemd 215-17+deb8u6 install ok installed"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "preflight_facts", "facts": ["MISSING python3"]}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "ssh_session", "status": "failed", "exit_code": 20}
+{"time": "2026-11-15T14:28:36", "component": "setup", "stage": "setup", "status": "failed", "exit_code": 20, "error_type": "CalledProcessError"}
+{"time":"2026-11-15T14:28:36","component":"bootstrap","stage":"remote_setup","status":"failed","exit_code":1}
+{"time":"2026-11-15T14:28:36","component":"bootstrap","stage":"local_restore","status":"completed"}
+{"time":"2026-11-15T14:28:36","component":"bootstrap","stage":"remote_setup","status":"failed","error_type":"RuntimeException"}

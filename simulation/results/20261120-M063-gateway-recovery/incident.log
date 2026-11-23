@@ -1,0 +1,11 @@
+{"status": "ready", "http": "http://127.0.0.1:8780/api/v1/lora/topology", "udp": 1680, "identity": "learned from PUSH_DATA header"}
+gateway a4f00fe57b830000 (E870L-470)
+Exception in thread Thread-1 (udp_loop):
+Traceback (most recent call last):
+  File "C:\environment\python3.11\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\environment\python3.11\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "D:\Multi-Agent Network\tools\mid_baseline\gateway_probe\topology_server.py", line 447, in udp_loop
+    sock.sendto(bytes([version]) + token + bytes([1]), addr)
+OSError: [WinError 10051] 向一个无法连接的网络尝试了一个套接字操作。

@@ -1,0 +1,29 @@
+{
+  "template_only": false,
+  "task_id": "M-058",
+  "run_id": "20261119-150447-direct-rx",
+  "started_at": "2026-11-19T15:04:47.587847+08:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "14ad4864b52bf5a62f95d072b620405fc7eca241",
+  "dirty_files_sha256": {
+    "tools/mid_baseline/gateway_probe/topology_server.py": "5ed43c782b93b1074f3e5ce65b7e4cab77729105743ac90871bb511cfc8770c0"
+  },
+  "command": "topology_server.udp_loop(topology,1680,stop), 8 x 5 s snapshots",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": null,
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\M-058\\20261119-150447-direct-rx",
+  "process_id": null,
+  "finished_at": "2026-11-19T15:05:28.117202+08:00",
+  "exit_code": null,
+  "status": "no_observed_LRN1",
+  "limitations": [
+    "Bench observation only; no movement or forced disconnect."
+  ],
+  "review_reference": null
+}
