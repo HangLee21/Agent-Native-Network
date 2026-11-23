@@ -46,12 +46,19 @@ def say(msg=""):
     print(msg, flush=True)
 
 
-def load_env():
+def load_env(path=None):
+    """Read the operator settings.
+
+    The default is this checkout's .local file, which is a developer convenience. A production
+    site must be able to point at ITS OWN file (its Wi-Fi, its tailnet or none), so --env
+    overrides the path and nothing site-specific has to live in the repository.
+    """
     data = {}
-    if ENV_FILE.is_file():
+    source = Path(path) if path else ENV_FILE
+    if source.is_file():
         # utf-8-sig: PowerShell and Notepad write a BOM, which would otherwise become part
         # of the first key and look like a missing setting.
-        for line in ENV_FILE.read_text(encoding="utf-8-sig").splitlines():
+        for line in source.read_text(encoding="utf-8-sig").splitlines():
             line = line.strip()
             if not line or line.startswith("#") or "=" not in line:
                 continue
@@ -194,7 +201,7 @@ usermod -a -G dialout eora
 grep -q '^precedence ::ffff:0:0/96' /etc/gai.conf 2>/dev/null || \
   echo 'precedence ::ffff:0:0/96  100' >> /etc/gai.conf
 
-if [ -n "$EORA_SSID" ] && [ -n "$EORA_IDENTITY" ] && [ -n "$EORA_WIFI_PASS" ]; then
+if [ -n "$EORA_SSID" ] && [ -n "$EORA_WIFI_PASS" ]; then
   # Raspberry Pi Imager writes a plain-password profile even for an 802.1X network, where it
   # can never authenticate. Two profiles for one SSID then fight over the radio.
   for name in $(nmcli -t -f NAME,TYPE connection show 2>/dev/null | awk -F: '$2=="802-11-wireless"{print $1}'); do
@@ -202,13 +209,24 @@ if [ -n "$EORA_SSID" ] && [ -n "$EORA_IDENTITY" ] && [ -n "$EORA_WIFI_PASS" ]; t
     [ "$(nmcli -g 802-11-wireless.ssid connection show "$name" 2>/dev/null)" = "$EORA_SSID" ] && \
       nmcli connection delete "$name" >/dev/null 2>&1 && echo "removed plain profile: $name"
   done
-  nmcli --terse --fields NAME connection show 2>/dev/null | grep -qx "wifi-$EORA_SSID" || {
-    nmcli connection add type wifi con-name "wifi-$EORA_SSID" ifname wlan0 ssid "$EORA_SSID" \
-      wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.phase2-auth mschapv2 \
-      802-1x.identity "$EORA_IDENTITY" 802-1x.password "$EORA_WIFI_PASS" \
-      ipv4.method auto ipv4.route-metric 100 \
-      connection.autoconnect yes connection.autoconnect-priority 20 2>/dev/null
-  }
+  if [ "$EORA_WIFI_AUTH" = "psk" ]; then
+    # Plain WPA2/WPA3-PSK (office, home router, phone hotspot). No identity, no 802.1X.
+    nmcli --terse --fields NAME connection show 2>/dev/null | grep -qx "wifi-$EORA_SSID" || {
+      nmcli connection add type wifi con-name "wifi-$EORA_SSID" ifname wlan0 ssid "$EORA_SSID" \
+        wifi-sec.key-mgmt wpa-psk wifi-sec.psk "$EORA_WIFI_PASS" \
+        ipv4.method auto ipv4.route-metric 100 \
+        connection.autoconnect yes connection.autoconnect-priority 20 2>/dev/null
+    }
+  else
+    [ -n "$EORA_IDENTITY" ] || { mark "FAILED: 802.1X needs EORA_IDENTITY"; exit 1; }
+    nmcli --terse --fields NAME connection show 2>/dev/null | grep -qx "wifi-$EORA_SSID" || {
+      nmcli connection add type wifi con-name "wifi-$EORA_SSID" ifname wlan0 ssid "$EORA_SSID" \
+        wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.phase2-auth mschapv2 \
+        802-1x.identity "$EORA_IDENTITY" 802-1x.password "$EORA_WIFI_PASS" \
+        ipv4.method auto ipv4.route-metric 100 \
+        connection.autoconnect yes connection.autoconnect-priority 20 2>/dev/null
+    }
+  fi
   if ! wifi_error=$(nmcli connection up "wifi-$EORA_SSID" 2>&1); then
     wifi_error=${wifi_error//"$EORA_WIFI_PASS"/[redacted]}
     wifi_error=${wifi_error//"$EORA_IDENTITY"/[redacted]}
@@ -237,20 +255,25 @@ for i in $(seq 1 60); do
 done
 mark "4a/6 clock: $(date -Is) synced=$(timedatectl show -p NTPSynchronized --value 2>/dev/null)"
 
-if ! command -v tailscale >/dev/null 2>&1; then
-  # Retry: even after the clock wait, a lagging signature window can still bite once.
-for attempt in 1 2 3; do
-  curl -fsSL https://tailscale.com/install.sh | sh && break
-  mark "WARN: tailscale install attempt $attempt failed"
-  sleep 15
-  timedatectl set-ntp true >/dev/null 2>&1 || true
-done
-command -v tailscale >/dev/null 2>&1 || { mark "FAILED: tailscale installation"; exit 1; }
-fi
-if command -v tailscale >/dev/null 2>&1 && [ -n "$EORA_AUTHKEY" ]; then
+# Tailscale is the management overlay, not a hard requirement. A production site may run its
+# own tailnet (key supplied in device.env), or no overlay at all and reach the Pis over the
+# local network. With an empty key we install nothing and the card still completes.
+if [ -n "$EORA_AUTHKEY" ]; then
+  if ! command -v tailscale >/dev/null 2>&1; then
+    # Retry: even after the clock wait, a lagging signature window can still bite once.
+    for attempt in 1 2 3; do
+      curl -fsSL https://tailscale.com/install.sh | sh && break
+      mark "WARN: tailscale install attempt $attempt failed"
+      sleep 15
+      timedatectl set-ntp true >/dev/null 2>&1 || true
+    done
+    command -v tailscale >/dev/null 2>&1 || { mark "FAILED: tailscale installation"; exit 1; }
+  fi
   tailscale up --auth-key="$EORA_AUTHKEY" --hostname="$EORA_HOST" --accept-dns=false || { mark "FAILED: tailscale connection"; exit 1; }
+  mark "5/6 tailscale: $(tailscale ip -4 2>/dev/null | head -1)"
+else
+  mark "5/6 tailscale: skipped (no EORA_AUTHKEY; management over the local network)"
 fi
-mark "5/6 tailscale: $(tailscale ip -4 2>/dev/null | head -1)"
 
 if ! python3 -m pip --version >/dev/null 2>&1; then
   DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip || { mark "FAILED: python3-pip installation"; exit 1; }
@@ -270,11 +293,13 @@ install -m 644 /usr/local/lib/eora/eora-node-reader.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now node_reader.service || { mark "FAILED: node_reader start"; exit 1; }
 
-if tailscale ip -4 >/dev/null 2>&1 && systemctl is-active --quiet node_reader; then
+overlay_ok=1
+[ -n "$EORA_AUTHKEY" ] && { tailscale ip -4 >/dev/null 2>&1 || overlay_ok=0; }
+if [ "$overlay_ok" = "1" ] && systemctl is-active --quiet node_reader; then
   systemctl disable eora-firstboot.service >/dev/null 2>&1
-  mark "6/6 DONE host=$EORA_HOST tailnet=$(tailscale ip -4 2>/dev/null | head -1)"
+  mark "6/6 DONE host=$EORA_HOST overlay=$(tailscale ip -4 2>/dev/null | head -1 || echo none) ip=$(hostname -I | awk '{print $1}')"
 else
-  mark "6/6 INCOMPLETE tailscale=$(tailscale ip -4 2>/dev/null | head -1) reader=$(systemctl is-active node_reader)"
+  mark "6/6 INCOMPLETE overlay=$(tailscale ip -4 2>/dev/null | head -1 || echo none) reader=$(systemctl is-active node_reader)"
 fi
 """
 
@@ -313,6 +338,9 @@ def compose_installer(number, env, helpers, fleet_public_key):
         "EORA_HOST=%s" % shq(host),
         "EORA_NUMBER=%d" % number,
         "EORA_SSID=%s" % shq(env.get("WIFI_SSID", "")),
+        # Authentication scheme travels with the card: enterprise 802.1X (campus) needs an
+        # identity, a plain WPA2-PSK network (office/hotspot) must not send one at all.
+        "EORA_WIFI_AUTH=%s" % shq((env.get("WIFI_AUTH") or "eap").strip().lower()),
         "EORA_IDENTITY=%s" % shq(env.get("WIFI_IDENTITY", "")),
         "EORA_WIFI_PASS=%s" % shq(env.get("WIFI_PASSWORD", "")),
         "EORA_AUTHKEY=%s" % shq(env.get("TAILSCALE_AUTHKEY", "")),
@@ -422,7 +450,12 @@ def fix_network_config(boot, env):
     ssid = env.get("WIFI_SSID")
     identity = env.get("WIFI_IDENTITY")
     password = env.get("WIFI_PASSWORD")
-    if not (ssid and identity and password):
+    auth = (env.get("WIFI_AUTH") or "eap").strip().lower()
+    if auth not in ("eap", "psk"):
+        auth = "eap"
+    if not (ssid and password):
+        return False
+    if auth == "eap" and not identity:
         return False
     if not isinstance(data, dict):
         return False
@@ -438,14 +471,19 @@ def fix_network_config(boot, env):
     ap = aps.setdefault(ssid, {})
     if not isinstance(ap, dict):
         return False
-    ap.pop("password", None)
-    ap["auth"] = {
-        "key-management": "eap",
-        "method": "peap",
-        "identity": identity,
-        "password": password,
-        "phase2-auth": "mschapv2",
-    }
+    ap.pop("auth", None)
+    if auth == "psk":
+        # Office / home router / phone hotspot: netplan expresses this as a plain password.
+        ap["password"] = password
+    else:
+        ap.pop("password", None)
+        ap["auth"] = {
+            "key-management": "eap",
+            "method": "peap",
+            "identity": identity,
+            "password": password,
+            "phase2-auth": "mschapv2",
+        }
     path.write_text(_yaml.safe_dump(data, sort_keys=False, allow_unicode=True), encoding="utf-8")
     return True
 
@@ -486,18 +524,29 @@ def main():
     parser.add_argument("--number", type=int, help="node number for this card")
     parser.add_argument("--auto", action="store_true",
                         help="pick the only mounted card instead of naming a letter")
+    parser.add_argument("--env", help="operator settings file (default: .local/mid/pi/device.env)")
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
-    env = load_env()
-    missing = [k for k in ("WIFI_SSID", "WIFI_IDENTITY", "WIFI_PASSWORD", "TAILSCALE_AUTHKEY")
-               if not env.get(k)]
-    say("== secrets file: %s" % ENV_FILE)
+    env = load_env(args.env)
+    # Tailscale is optional: a production site may use its own tailnet, a plain LAN, or no
+    # overlay at all. Requiring a key here forced the operator's personal account into every
+    # card, which is exactly what a customer deployment cannot accept.
+    auth = (env.get("WIFI_AUTH") or "eap").strip().lower()
+    required = ["WIFI_SSID", "WIFI_PASSWORD"]
+    if auth != "psk":
+        required.append("WIFI_IDENTITY")
+    missing = [k for k in required if not env.get(k)]
+    if not env.get("TAILSCALE_AUTHKEY"):
+        say("   NOTE: 没有 TAILSCALE_AUTHKEY —— 卡片将不装 Tailscale（走局域网/mDNS）")
+    say("== secrets file: %s" % (args.env or ENV_FILE))
     if missing:
         say("   MISSING: %s" % ", ".join(missing))
     else:
-        say("   all four keys present")
+        say("   required keys present (auth=%s, tailscale=%s)"
+            % ((env.get("WIFI_AUTH") or "eap").strip().lower(),
+               "on" if env.get("TAILSCALE_AUTHKEY") else "off"))
     if args.check:
         try:
             load_fleet_public_key()

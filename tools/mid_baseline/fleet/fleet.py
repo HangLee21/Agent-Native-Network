@@ -22,6 +22,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 
 TAILSCALE = shutil.which("tailscale") or r"C:\Program Files\Tailscale\tailscale.exe"
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 KEY = os.path.expanduser(r"~/.ssh/id_ed25519_eora")
 KNOWN_HOSTS = os.path.join(os.environ.get("TEMP", "/tmp"), "pi_known_hosts")
 SSH_USER = "eora"
@@ -52,6 +53,47 @@ def tailscale_devices():
         ip = next((x for x in ips if ":" not in x), ips[0] if ips else None)
         found.append((name, ip))
     return sorted(found)
+
+
+def static_devices():
+    """Read the operator's own host list: config/fleet.hosts.json.
+
+    Not every deployment can join one person's tailnet. A production site either runs its own
+    tailnet (then this list is empty) or has a plain network where the Pis are reachable by
+    name or address. Keeping the addresses in a file the operator owns means the fleet tools
+    work in both cases without a code change.
+    """
+    path = os.path.join(ROOT, "config", "fleet.hosts.json")
+    if not os.path.isfile(path):
+        return []
+    try:
+        data = json.loads(open(path, encoding="utf-8-sig").read())
+    except ValueError:
+        return []
+    out = []
+    for node in data.get("nodes") or []:
+        if not isinstance(node, dict):
+            continue
+        name = (node.get("name") or "").strip()
+        address = (node.get("address") or "").strip() or None
+        if name.startswith(NAME_PREFIX):
+            out.append((name, address))
+    return sorted(out)
+
+
+def devices_all():
+    """Every device we can reach: tailnet first, then the operator's static list."""
+    merged = {}
+    try:
+        state, _ = tailscale_health()
+        if state == "Running":
+            for name, ip in tailscale_devices():
+                merged[name] = ip
+    except SystemExit:
+        pass
+    for name, address in static_devices():
+        merged.setdefault(name, address)
+    return sorted(merged.items())
 
 
 def tailscale_health():
@@ -119,7 +161,7 @@ STATUS_CMD = (
 def cmd_status(args):
     if not require_tailscale():
         return 2
-    devices = tailscale_devices()
+    devices = devices_all()
     if not devices:
         print("this computer is on the tailnet, but no %s* device is registered yet." % NAME_PREFIX)
         print("A new card shows up here after its first boot finishes (2-5 minutes).")
@@ -151,7 +193,7 @@ def cmd_status(args):
 
 
 def cmd_run(args):
-    devices = [d for d in tailscale_devices() if d[1]]
+    devices = [d for d in devices_all() if d[1]]
     if args.only:
         devices = [d for d in devices if d[0] in args.only]
     if SUDO_PASS:
@@ -172,7 +214,7 @@ def cmd_push(args):
     image = os.path.abspath(args.image)
     if not os.path.isfile(image):
         raise SystemExit("image not found: " + image)
-    devices = [d for d in tailscale_devices() if d[1]]
+    devices = [d for d in devices_all() if d[1]]
     for name, ip in devices:
         target = "%s:%s" % (ssh_target(name, ip), "/home/eora/eora/%s" % os.path.basename(image))
         proc = subprocess.run(["scp", "-o", "StrictHostKeyChecking=no",
@@ -240,7 +282,7 @@ def cmd_update(args):
         raise SystemExit("image not found: " + image)
     if not SUDO_PASS:
         raise SystemExit("set EORA_PASS to the device sudo password for unattended updates")
-    devices = [d for d in tailscale_devices() if d[1]]
+    devices = [d for d in devices_all() if d[1]]
     if args.only:
         devices = [d for d in devices if d[0] in args.only]
     if not devices:
@@ -289,7 +331,7 @@ def cmd_update(args):
 
 
 def cmd_logs(args):
-    devices = dict(tailscale_devices())
+    devices = dict(devices_all())
     ip = devices.get(args.device)
     if not ip:
         raise SystemExit("unknown or offline device: " + args.device)
