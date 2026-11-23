@@ -34,7 +34,12 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[3]
 HELPERS = Path(__file__).resolve().parent.parent / "gateway_probe"
 ENV_FILE = ROOT / ".local" / "mid" / "pi" / "device.env"
-FLEET_PUBLIC_KEY = Path.home() / ".ssh" / "id_ed25519_eora.pub"
+# The public key that is baked into every card. Production kits ship this file next to the
+# tool, because the person making cards never needs the matching PRIVATE key: only the
+# developer who later updates the fleet over SSH needs that.
+FLEET_PUBLIC_KEY = Path(__file__).resolve().parent / "fleet.pub"
+if not FLEET_PUBLIC_KEY.is_file():
+    FLEET_PUBLIC_KEY = Path.home() / ".ssh" / "id_ed25519_eora.pub"
 INSTALLER_NAME = "eora-firstboot.sh"
 MARKER = "# >>> eora identity >>>"
 RUNCMD_ARGS = "bash, /boot/firmware/" + INSTALLER_NAME
@@ -67,10 +72,17 @@ def load_env(path=None):
     return data
 
 
+_PUBLIC_KEY_OVERRIDE = None
+
+
+def _public_key_path():
+    return Path(_PUBLIC_KEY_OVERRIDE) if _PUBLIC_KEY_OVERRIDE else FLEET_PUBLIC_KEY
+
+
 def load_fleet_public_key():
     """Read and validate the single management Ed25519 public key."""
     try:
-        text = FLEET_PUBLIC_KEY.read_text(encoding="utf-8").strip()
+        text = _public_key_path().read_text(encoding="utf-8").strip()
         if "\n" in text or "\r" in text:
             raise ValueError("expected one public key")
         parts = text.split()
@@ -82,7 +94,7 @@ def load_fleet_public_key():
             raise ValueError("invalid Ed25519 key data")
         return "ssh-ed25519 " + parts[1]
     except (OSError, UnicodeError, ValueError, binascii.Error) as exc:
-        raise ValueError("无法读取有效的机群公钥 %s；请联系管理员恢复该公钥后重试，存储卡未修改。" % FLEET_PUBLIC_KEY) from exc
+        raise ValueError("无法读取有效的机群公钥 %s；请联系管理员恢复该公钥后重试，存储卡未修改。" % _public_key_path()) from exc
 
 
 KEY_INSTALLER = r'''#!/usr/bin/env python3
@@ -587,6 +599,7 @@ def main():
     parser.add_argument("--auto", action="store_true",
                         help="pick the only mounted card instead of naming a letter")
     parser.add_argument("--env", help="operator settings file (default: .local/mid/pi/device.env)")
+    parser.add_argument("--public-key", help="management public key to bake into the card")
     parser.add_argument("--i-know-this-is-the-dev-key", action="store_true",
                         help="allow the developer key that lives inside this checkout")
     parser.add_argument("--batch", action="store_true",
@@ -597,6 +610,9 @@ def main():
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
+    global _PUBLIC_KEY_OVERRIDE
+    if args.public_key:
+        _PUBLIC_KEY_OVERRIDE = args.public_key
 
     env = load_env(args.env)
 
