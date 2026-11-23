@@ -260,6 +260,7 @@ python fleet\fleet.py update <镜像> --group 2
 
 | 文档 | 内容 |
 |---|---|
+| **[SITE_OPERATOR_RUNBOOK.md](SITE_OPERATOR_RUNBOOK.md)** | **现场同事的逐步操作单（做卡 + 批量刷板）** |
 | [CARD_CONTENTS.md](CARD_CONTENTS.md) | 卡上到底写了什么（逐项、含大小） |
 | [BATCH_CARD_CHECKLIST.md](BATCH_CARD_CHECKLIST.md) | 批量做卡准备与检查清单 |
 | [CARD_PROVISIONING_MODES.md](CARD_PROVISIONING_MODES.md) | WiFi 两种认证、Tailscale 三种模式、两台刷板机 |
