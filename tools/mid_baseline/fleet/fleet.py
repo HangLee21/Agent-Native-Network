@@ -264,6 +264,20 @@ def sudo_password():
     return ""
 
 
+# Everything below uses SUDO_PASS. Resolve it once, environment first then the cached
+# file; only the environment variable counted before, so `fleet.py update` and
+# `fleet.py group` failed whenever the password was cached (the normal case).
+SUDO_PASS = sudo_password()
+
+
+def sudo_command(command):
+    """Run a shell command through sudo with the cached password."""
+    if not SUDO_PASS:
+        raise SystemExit('missing sudo password: set EORA_PASS or .local/mid/pi/sudo_pass.txt')
+    prefix = "printf '%s\n' %s | sudo -S "
+    return prefix % ("%s", json.dumps(SUDO_PASS)) + command
+
+
 def ssh_target(name, ip):
     return "%s@%s" % (SSH_USER, ip or name)
 
@@ -588,24 +602,18 @@ def cmd_group(args):
     def one(item):
         name, ip = item
         target = ssh_target(name, ip)
-        if not SUDO_PASS:
-            return name, "set EORA_PASS to the device sudo password"
-        stop = run_ssh(target, "printf '%s\\n' %s | sudo -S systemctl stop node_reader"
-                       % (json.dumps(SUDO_PASS)), timeout=60)
+        run_ssh(target, sudo_command('systemctl stop node_reader'), timeout=60)
         try:
-            pushed = subprocess.run(
-                ["scp", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
-                 "-o", "BatchMode=yes", "-i", KEY, local, "%s:%s" % (target, remote)],
-                capture_output=True, text=True)
-            if pushed.returncode != 0:
-                return name, "push failed: " + (pushed.stderr or "").strip()[:90]
+            code, out = push_file(local, "%s:%s" % (target, remote))
+            if code != 0:
+                return name, "push failed: " + (out or "").strip()[:90]
             code, out = run_ssh(
-                target, "cd ~/eora && python3 %s %d %d" % (remote, args.group, args.channel),
+                target, "cd ~/eora && PYTHONPATH=$HOME/eora python3 %s %d %d"
+                % (remote, args.group, args.channel),
                 timeout=90)
             return name, (out or "").strip().splitlines()[-1][:160]
         finally:
-            run_ssh(target, "printf '%s\\n' %s | sudo -S systemctl start node_reader"
-                    % (json.dumps(SUDO_PASS)), timeout=60)
+            run_ssh(target, sudo_command('systemctl start node_reader'), timeout=60)
 
     with ThreadPoolExecutor(max_workers=8) as pool:
         for name, result in pool.map(one, devices):
