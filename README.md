@@ -159,19 +159,47 @@ BUILD-*/             固件构建产物
 
 ## 九、与开发分支的关系
 
-本分支由 `codex/baseline-reproduction-20261023` 合并而来，但**只保留可运行的部分**：
+本分支由 `codex/baseline-reproduction-20261023` **合并**（merge commit）而来。
+合并策略是：**现场要用的能力并进来，交付形态一个字节都不动。**
 
-| 保留 | 说明 |
+### 9.1 并进来的
+
+| 内容 | 位置 |
 |---|---|
-| 做卡、机群、接收器工具 | 新增在 `app/services/tools/` |
+| 做卡与机群工具 | `app/services/tools/fleet/`、`app/services/tools/gateway_probe/`（12 个文件） |
+| 一键脚本 | 仓库根 `SETUP_SITE.cmd`、`MK_CARDS.cmd`、`SITE_*.cmd`、`START_RECEIVER.cmd` |
+| 接收器 | `tools/mid_baseline/gateway_probe/topology_server.py`（打包版原本缺失） |
 | 文档 | `docs/` |
-| 固件源码 | 打包位置 `app/services/firmware/mid_baseline/`（未重复引入开发树） |
-| 仿真、协调记录、构建记录 | **不发布**（不属于现场交付） |
+| 开发树 | `tools/`、`simulation/`、`tests/`、固件源码 `firmware/`（合并带入，运行不依赖） |
 
-**合并后未删除、未修改任何原有交付文件**；`START_STUDIO.cmd`、`FLASH_NODES.cmd`、
-`SETUP_GATEWAY.cmd`、`app/flash/`、`app/gateway_setup/`、`app/start/`、
-`app/services/assets/`、`app/services/tools/mobile_gateway/`、`runtime/`、`firmware/`
-均与合并前**逐字节一致**。
+### 9.2 保留原样的（逐字节一致）
+
+`START_STUDIO.cmd`、`FLASH_NODES.cmd`、`SETUP_GATEWAY.cmd`、`app/flash/`、
+`app/gateway_setup/`、`app/start/`、`app/services/assets/`、
+`app/services/tools/mobile_gateway/`、`app/services/firmware/`、`runtime/`、`firmware/`。
+
+验证方式：与合并前提交 `d27bb3e` 比对，`app/` 下**无任何修改、无任何删除**，
+只有 12 个新增文件；三个启动脚本的 SHA256 与合并前一致。
+
+### 9.3 有意没并的
+
+| 内容 | 原因 |
+|---|---|
+| `coordination/` | 开发过程记录，不属于交付 |
+| `CHANGELOG.md`、`START_HERE.md`、`docs/IMPLEMENTATION_STATUS.md`、`docs/PROJECT_STATUS.md` | 同上 |
+| `firmware/mid_baseline/field_agent/` 开发树 | 打包位置已有 `app/services/firmware/mid_baseline/`，避免两份源码 |
+| baseline 的前端改动 | 见 9.4 |
+
+### 9.4 前端：保留打包版
+
+合并时 git 的改名检测会把 baseline 里 `research/.../mobile_gateway/` 的改动
+带到打包路径 `app/services/assets/mobile_gateway/`。这些改动**未在本包验证过**，
+因此已回退为原版：
+
+- `app/services/assets/mobile_gateway/lora-model.js`
+- `app/services/firmware/mid_baseline/field_agent/lora_ref/decoder.py`
+
+需要这些改进时，请在开发分支验证后单独提交。
 
 ---
 
