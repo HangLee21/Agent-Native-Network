@@ -35,8 +35,12 @@ def build_remote(sudo_pass, new_password, allow_only):
                      % ("%s", shlex.quote(new_password)))
     inner += [
         "install -d -m 755 /etc/ssh/sshd_config.d",
+        # sshd takes the FIRST value it sees, and includes sshd_config.d in lexical order.
+        # An older hardening drop-in (10-eora.conf) sets PasswordAuthentication no, so our
+        # file has to sort before it; 00- is the only name that always wins.
+        "rm -f /etc/ssh/sshd_config.d/20-eora-password.conf",
         "printf 'PasswordAuthentication yes\\nKbdInteractiveAuthentication yes\\n'"
-        " > /etc/ssh/sshd_config.d/20-eora-password.conf",
+        " > /etc/ssh/sshd_config.d/00-eora-password.conf",
         "systemctl reload ssh 2>/dev/null || systemctl restart ssh",
         "sshd -T 2>/dev/null | grep -i '^passwordauthentication' || echo NO_SSHD_T_FIELD",
         "passwd -S eora 2>/dev/null || true",
