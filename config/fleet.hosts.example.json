@@ -1,0 +1,7 @@
+﻿{
+  "_comment": "Optional: reach the Pis without Tailscale. Leave this file absent to use the tailnet only.",
+  "nodes": [
+    {"name": "eora-air-01", "address": "192.168.1.21"},
+    {"name": "eora-air-02", "address": "192.168.1.22"}
+  ]
+}

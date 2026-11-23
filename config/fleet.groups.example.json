@@ -1,0 +1,12 @@
+﻿{
+  "_comment": "Which mesh group each board belongs to. Group is stored in the node NVS; changing it does NOT need a reflash.",
+  "nodes": [
+    {"name": "eora-air-01", "group": 1},
+    {"name": "eora-air-02", "group": 1},
+    {"name": "eora-air-03", "group": 1},
+    {"name": "eora-air-04", "group": 1},
+    {"name": "eora-air-05", "group": 1},
+    {"name": "eora-air-06", "group": 2},
+    {"name": "eora-air-07", "group": 2}
+  ]
+}
