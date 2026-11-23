@@ -133,3 +133,80 @@ python tools\mid_baseline\fleet\make_production_kit.py --out D:\handoff\prod-kit
 | 生产包的实际交付 | 等你确认号段与现场 WiFi |
 | 15 张卡实做 | 等现场配置 |
 | 编号冲突检查 | 可加：做卡前扫 `fleet.groups.json` 与在线节点，发现重号拒绝写卡 |
+
+---
+
+## 九、修订：**两个人都有刷板权限**，并且允许密码登录
+
+前面的"生产只做卡"不再是唯一形态。现在的实际需求是：
+
+| 能力 | 开发（你） | 运维（同事） |
+|---|---|---|
+| 做卡 | ✅ | ✅ |
+| **刷板** | ✅ | ✅ |
+| Tailscale | ✅ | ✅（同一组织 tailnet） |
+| SSH 私钥 | ✅ | 可选——**也可以用密码登录** |
+| 编译固件 / 前端 | ✅ | ❌ |
+
+### 9.1 两把公钥同时写进卡
+
+`fleet.pub` 现在可以放**多行**，一行一把公钥：
+
+```
+ssh-ed25519 AAAAC3...  you@dev
+ssh-ed25519 AAAAC3...  ops@site
+```
+
+做卡时会全部装进 `eora` 的 `authorized_keys`，两台机器都能登录。
+格式校验逐行进行，任何一行不合格就整体拒绝（不会写半套）。
+
+### 9.2 允许密码登录（可选，强度自定）
+
+在 `site.env` 里加：
+
+```ini
+SSH_PASSWORD=现场统一的口令
+```
+
+卡片首次启动时会：
+
+```
+printf 'eora:%s\n' "$EORA_SSH_PASS" | chpasswd          # 设置 eora 的密码
+写 /etc/ssh/sshd_config.d/20-eora-password.conf:
+    PasswordAuthentication yes
+    KbdInteractiveAuthentication yes
+systemctl reload ssh
+```
+
+同时在 cloud-init 里把 `ssh_pwauth` 强制为 `true`
+（因为 Imager 选"仅公钥"时会写 `false`，会覆盖我们的设置）。
+
+**只开密码、不设密码**也可以：
+
+```ini
+SSH_ALLOW_PASSWORD=yes
+```
+
+（适用于 Imager 阶段已经设过密码的情况。）
+
+### 9.3 包形态
+
+```powershell
+# 只做卡
+python tools\mid_baseline\fleet\make_production_kit.py --out D:\handoff\card-kit
+
+# 做卡 + 刷板（两个人都要用）
+python tools\mid_baseline\fleet\make_production_kit.py --out D:\handoff\full-kit --with-flash
+```
+
+`--with-flash` 会额外带上 `fleet/`、`FLASH_NODES.cmd`、`FLEET_STATUS.cmd`、
+`config/*.example.json`，共 16 个文件、约 90 KB，**仍然不含私钥**。
+
+### 9.4 安全提醒
+
+| 风险 | 建议 |
+|---|---|
+| 密码登录可被暴力破解 | 用长口令；必要时只在内网开放 |
+| 卡片上带明文密码 | 首启成功后删掉 `/etc/eora/identity.env` |
+| 两把公钥都在卡上 | 任一私钥泄露即等于该机群全部可登录 → 定期换钥 |
+| 建议 | 能只用公钥的场景就别开密码；密码作为**备用通道** |

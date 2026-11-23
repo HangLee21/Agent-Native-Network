@@ -36,7 +36,13 @@ WIFI_PASSWORD=替换成现场密码
 # 由运维在【自己的】Tailscale 组织后台生成，建议一次性、24 小时过期。
 # 留空则卡片不装 Tailscale，只能在同一局域网内访问。
 TAILSCALE_AUTHKEY=
+
+# --- SSH 登录方式（两种都支持）---
+# 公钥由 fleet.pub 提供；设置下面的密码后，卡片会同时开启密码登录。
+# 另一位运维如果不想带私钥，就靠这个密码登录。
+SSH_PASSWORD=
 """
+
 
 README = """# 生产做卡工具（只需做卡）
 
@@ -102,7 +108,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True, help="target directory (must be empty or absent)")
     ap.add_argument("--public-key", default=str(pathlib.Path.home() / ".ssh" / "id_ed25519_eora.pub"),
-                    help="management public key to ship")
+                    help="management public key file to ship (one key per line)")
+    ap.add_argument("--with-flash", action="store_true",
+                    help="also ship the fleet/flash tools (both operators may flash)")
     args = ap.parse_args()
 
     out = pathlib.Path(args.out)
@@ -117,12 +125,22 @@ def main():
         raise SystemExit("不是 ed25519 公钥：%s" % pub)
 
     (out / "gateway_probe").mkdir(parents=True, exist_ok=True)
+    (out / "fleet").mkdir(parents=True, exist_ok=True)
     shutil.copy2(ROOT / "MK_CARD.cmd", out / "MK_CARD.cmd")
     shutil.copy2(PROBE / "mkcard.py", out / "gateway_probe" / "mkcard.py")
     for name in HELPERS:
         shutil.copy2(PROBE / name, out / "gateway_probe" / name)
+    if args.with_flash:
+        for name in ("fleet.py", "flash_nodes.py", "refresh_labels.py"):
+            shutil.copy2(ROOT / "tools" / "mid_baseline" / "fleet" / name, out / "fleet" / name)
+        for name in ("FLEET_STATUS.cmd", "FLASH_NODES.cmd"):
+            shutil.copy2(ROOT / name, out / name)
+        (out / "config").mkdir(exist_ok=True)
+        for name in ("fleet.hosts.example.json", "fleet.groups.example.json"):
+            shutil.copy2(ROOT / "config" / name, out / "config" / name)
+        print("   + fleet/flash tools included")
     (out / "fleet.pub").write_text(text + "\n", encoding="utf-8")
-    (out / "site.env.example").write_text(SITE_ENV, encoding="utf-8")
+    (out / "site.env.example").write_text(SITE_ENV, encoding="utf-8-sig")
     (out / "README.md").write_text(README, encoding="utf-8")
 
     print("production kit -> %s" % out)

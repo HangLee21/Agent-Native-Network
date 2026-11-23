@@ -37,9 +37,16 @@ ENV_FILE = ROOT / ".local" / "mid" / "pi" / "device.env"
 # The public key that is baked into every card. Production kits ship this file next to the
 # tool, because the person making cards never needs the matching PRIVATE key: only the
 # developer who later updates the fleet over SSH needs that.
-FLEET_PUBLIC_KEY = Path(__file__).resolve().parent / "fleet.pub"
-if not FLEET_PUBLIC_KEY.is_file():
-    FLEET_PUBLIC_KEY = Path.home() / ".ssh" / "id_ed25519_eora.pub"
+def _default_public_key():
+    here = Path(__file__).resolve().parent
+    for candidate in (here / "fleet.pub", here.parent / "fleet.pub",
+                      Path.home() / ".ssh" / "id_ed25519_eora.pub"):
+        if candidate.is_file():
+            return candidate
+    return Path.home() / ".ssh" / "id_ed25519_eora.pub"
+
+
+FLEET_PUBLIC_KEY = _default_public_key()
 INSTALLER_NAME = "eora-firstboot.sh"
 MARKER = "# >>> eora identity >>>"
 RUNCMD_ARGS = "bash, /boot/firmware/" + INSTALLER_NAME
@@ -82,17 +89,23 @@ def _public_key_path():
 def load_fleet_public_key():
     """Read and validate the single management Ed25519 public key."""
     try:
-        text = _public_key_path().read_text(encoding="utf-8").strip()
-        if "\n" in text or "\r" in text:
-            raise ValueError("expected one public key")
-        parts = text.split()
-        if len(parts) < 2 or parts[0] != "ssh-ed25519":
-            raise ValueError("expected an ssh-ed25519 public key")
-        blob = base64.b64decode(parts[1], validate=True)
-        if (len(blob) != 51 or blob[:4] != b"\x00\x00\x00\x0b"
-                or blob[4:15] != b"ssh-ed25519" or blob[15:19] != b"\x00\x00\x00\x20"):
-            raise ValueError("invalid Ed25519 key data")
-        return "ssh-ed25519 " + parts[1]
+        raw = _public_key_path().read_text(encoding="utf-8").replace("\r", "")
+        keys = []
+        for line in raw.splitlines():
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            parts = line.split()
+            if len(parts) < 2 or parts[0] != "ssh-ed25519":
+                raise ValueError("expected an ssh-ed25519 public key")
+            blob = base64.b64decode(parts[1], validate=True)
+            if (len(blob) != 51 or blob[:4] != b"\x00\x00\x00\x0b"
+                    or blob[4:15] != b"ssh-ed25519" or blob[15:19] != b"\x00\x00\x00\x20"):
+                raise ValueError("invalid Ed25519 key data")
+            keys.append("ssh-ed25519 " + parts[1])
+        if not keys:
+            raise ValueError("the public key file is empty")
+        return "\n".join(keys)
     except (OSError, UnicodeError, ValueError, binascii.Error) as exc:
         raise ValueError("无法读取有效的机群公钥 %s；请联系管理员恢复该公钥后重试，存储卡未修改。" % _public_key_path()) from exc
 
@@ -133,7 +146,16 @@ if __name__ == "__main__":
     user = pwd.getpwnam("eora")
     if os.geteuid() != user.pw_uid:
         raise SystemExit("SSH key installation must run as eora")
-    install_authorized_key(user.pw_dir, sys.argv[1])
+    # One key per line: two operators must both be able to log in.
+    installed = 0
+    for line in sys.argv[1].splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        install_authorized_key(user.pw_dir, line)
+        installed += 1
+    if not installed:
+        raise SystemExit("no usable public key given")
 '''
 
 
@@ -209,6 +231,22 @@ id eora >/dev/null 2>&1 || { mark "FAILED: user eora missing"; exit 1; }
 runuser -u eora -- python3 /usr/local/lib/eora/install_fleet_key.py "$(cat /etc/eora/fleet.pub)" || { mark "FAILED: SSH public key installation"; exit 1; }
 getent group dialout >/dev/null || { mark "FAILED: dialout group missing"; exit 1; }
 usermod -a -G dialout eora
+
+# Password login is opt-in: the second operator may not want to carry a key at all.
+allow_pass=0
+if [ -n "$EORA_SSH_PASS" ]; then
+  printf 'eora:%s\n' "$EORA_SSH_PASS" | chpasswd || { mark "FAILED: set eora password"; exit 1; }
+  allow_pass=1
+  mark "2b/6 eora password set"
+fi
+[ "$EORA_SSH_ALLOW_PASS" = "yes" ] && allow_pass=1
+if [ "$allow_pass" = "1" ]; then
+  install -d -m 755 /etc/ssh/sshd_config.d
+  printf 'PasswordAuthentication yes\nKbdInteractiveAuthentication yes\n' \
+    > /etc/ssh/sshd_config.d/20-eora-password.conf
+  systemctl reload ssh 2>/dev/null || systemctl restart ssh || { mark "FAILED: ssh reload"; exit 1; }
+  mark "2c/6 ssh password login enabled"
+fi
 
 grep -q '^precedence ::ffff:0:0/96' /etc/gai.conf 2>/dev/null || \
   echo 'precedence ::ffff:0:0/96  100' >> /etc/gai.conf
@@ -356,6 +394,10 @@ def compose_installer(number, env, helpers, fleet_public_key):
         "EORA_IDENTITY=%s" % shq(env.get("WIFI_IDENTITY", "")),
         "EORA_WIFI_PASS=%s" % shq(env.get("WIFI_PASSWORD", "")),
         "EORA_AUTHKEY=%s" % shq(env.get("TAILSCALE_AUTHKEY", "")),
+        # Two operators must both be able to log in, and the second one may prefer a
+        # password over carrying a private key. Empty means key-only.
+        "EORA_SSH_PASS=%s" % shq(env.get("SSH_PASSWORD", "")),
+        "EORA_SSH_ALLOW_PASS=%s" % shq(env.get("SSH_ALLOW_PASSWORD", "")),
         "EORA_ID",
         "chmod 600 /etc/eora/identity.env",
         "printf '%s\\n' " + shq(fleet_public_key) + " > /etc/eora/fleet.pub",
@@ -407,7 +449,7 @@ def strip_cmdline_hook(cmdline):
     return False
 
 
-def install_cloud_init_hook(user_data, installer_name):
+def install_cloud_init_hook(user_data, installer_name, env=None):
     """Make cloud-init run our installer on first boot."""
     header = "#cloud-config\n"
     text = user_data.read_text(encoding="utf-8-sig") if user_data.exists() else header
@@ -429,6 +471,10 @@ def install_cloud_init_hook(user_data, installer_name):
         cmds.append(entry)
         data["hostname"] = "eora-air-%02d" % _ACTIVE_NUMBER
         data["preserve_hostname"] = False
+        # Raspberry Pi Imager writes ssh_pwauth: false when the operator picks "key only".
+        # If this card is meant to allow a password, override that decision here.
+        if str((env or {}).get("SSH_PASSWORD") or "").strip():
+            data["ssh_pwauth"] = True
         data["runcmd"] = cmds
         dumped = yaml.safe_dump(data, sort_keys=False, allow_unicode=True,
                                 default_flow_style=None)
@@ -560,7 +606,7 @@ def write_card(boot, number, env, helpers, fleet_public_key):
             source = boot / name
             if source.exists(): shutil.copy2(source, stage / name)
         strip_cmdline_hook(stage / "cmdline.txt")
-        install_cloud_init_hook(stage / "user-data", INSTALLER_NAME)
+        install_cloud_init_hook(stage / "user-data", INSTALLER_NAME, env)
         new_id = bump_instance_id(stage, number)
         if (stage / "network-config").exists() and not fix_network_config(stage, env):
             raise SystemExit("无法检查或更新 Wi-Fi 配置；未修改存储卡")

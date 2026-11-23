@@ -293,3 +293,38 @@ fleet.py update BUILD-xxx/images/mid_edge.bin --only eora-air-06 eora-air-07 eor
 # 刷板机 B
 fleet.py update BUILD-xxx/images/mid_edge.bin --only eora-air-13 eora-air-14 eora-air-15 eora-air-16 eora-air-17 eora-air-18 eora-air-19 eora-air-20
 ```
+
+---
+
+## 九、SSH：多把公钥 + 可选密码登录
+
+### 9.1 `fleet.pub` 支持多行
+
+一行一把公钥，做卡时全部装进 `authorized_keys`：
+
+```
+ssh-ed25519 AAAAC3...  you@dev
+ssh-ed25519 AAAAC3...  ops@site
+```
+
+### 9.2 开启密码登录
+
+```ini
+SSH_PASSWORD=现场统一口令        # 设置密码并开启密码登录
+# 或
+SSH_ALLOW_PASSWORD=yes          # 只开启登录开关，不改密码
+```
+
+卡片首启会写 `sshd_config.d/20-eora-password.conf` 并 reload ssh，
+同时把 cloud-init 的 `ssh_pwauth` 强制为 `true`（覆盖 Imager 的"仅公钥"）。
+
+### 9.3 公钥文件的查找顺序
+
+```
+--public-key 指定的路径
+  → 工具同目录 fleet.pub
+  → 上一级目录 fleet.pub（生产包布局）
+  → ~/.ssh/id_ed25519_eora.pub
+```
+
+报错时会**打印实际使用的路径**，不会再指向错误的文件。
