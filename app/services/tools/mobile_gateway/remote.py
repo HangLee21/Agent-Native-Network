@@ -10,8 +10,8 @@ def get_json(url):
  with urllib.request.build_opener(urllib.request.ProxyHandler({})).open(url,timeout=.7) as response:return json.load(response)
 
 class RemoteGateway:
- def __init__(self,eui,candidates,http_port=8780,discovery_port=8781,broadcast='255.255.255.255'):
-  self.eui=eui.lower();self.candidates=[x for x in candidates if private_ip(x)];self.http_port=http_port;self.discovery_port=discovery_port;self.broadcast=broadcast;self.lock=threading.Lock();self.last_at=0;self.cached=None;self.last_good=None;self.good_at=0;self.info={'state':'connecting'}
+ def __init__(self,eui,candidates,http_port=8780,discovery_port=8781,broadcast='255.255.255.255',retries=3):
+  self.eui=eui.lower();self.candidates=[x for x in candidates if private_ip(x)];self.http_port=http_port;self.discovery_port=discovery_port;self.broadcast=broadcast;self.lock=threading.Lock();self.index=0;self.failures=0;self.retries=retries;self.host=None;self.last_at=0;self.cached=None;self.last_good=None;self.good_at=0;self.info={'state':'connecting'}
  def discover(self):
   nonce=secrets.token_hex(16);sockets=[]
   # Bind a separate broadcast socket to each local private IPv4 interface; a
@@ -42,22 +42,40 @@ class RemoteGateway:
   finally:
    for sock in sockets:sock.close()
   return None
+ def _probe(self,host,port):
+  base='http://%s:%d'%(host,port)
+  try:
+   identity=get_json(base+'/api/v1/appliance')
+   if identity.get('schema')!='ann.gateway.appliance.v1' or identity.get('gateway_eui')!=self.eui or identity.get('api_version')!=1 or identity.get('ready') is not True:return None
+   topo=get_json(base+'/api/v1/lora/topology')
+   if topo.get('schema')!='lora.topology.v1' or topo.get('receiver',{}).get('gateway_id')!=self.eui:return None
+   return topo
+  except (OSError,ValueError,AttributeError):return None
  def topology(self):
   with self.lock:
    now=time.monotonic()
    if now-self.last_at<1 and self.cached is not None:return self.cached
-   selected=self.discover();targets=([selected] if selected else [])+[(x,self.http_port) for x in self.candidates];seen=set()
-   for host,port in targets:
-    if (host,port) in seen:continue
-    seen.add((host,port));base='http://%s:%d'%(host,port)
-    try:
-     identity=get_json(base+'/api/v1/appliance')
-     if identity.get('schema')!='ann.gateway.appliance.v1' or identity.get('gateway_eui')!=self.eui or identity.get('api_version')!=1 or identity.get('ready') is not True:continue
-     topo=get_json(base+'/api/v1/lora/topology')
-     if topo.get('schema')!='lora.topology.v1' or topo.get('receiver',{}).get('gateway_id')!=self.eui:continue
-     self.info={'state':'connected','gateway_observed':topo['receiver'].get('gateway_observed') is True};self.cached=topo;self.last_at=time.monotonic();self.last_good=copy.deepcopy(topo);self.good_at=self.last_at;return topo
-    except (OSError,ValueError,AttributeError):continue
-   self.info={'state':'unavailable','gateway_observed':False};now=time.monotonic()
+   selected=self.discover();ordered=[];seen=set()
+   for host,port in ([selected] if selected else [])+[(x,self.http_port) for x in self.candidates]:
+    if host is None or (host,port) in seen:continue
+    seen.add((host,port));ordered.append((host,port))
+   # Sticky failover: keep using the host that last worked; only after `retries`
+   # consecutive failures move on to the next entry in the configured order.
+   topo=None
+   if ordered:
+    n=len(ordered);idx=self.index%n
+    topo=self._probe(ordered[idx][0],ordered[idx][1])
+    if topo is not None:self.failures=0;self.index=idx;self.host=ordered[idx][0]
+    else:
+     self.failures+=1
+     if self.failures>=self.retries:self.index=(idx+1)%n;self.failures=0
+     if n>1:
+      alt=self.index%n;topo=self._probe(ordered[alt][0],ordered[alt][1])
+      if topo is not None:self.failures=0;self.index=alt;self.host=ordered[alt][0]
+   if topo is not None:
+    self.info={'state':'connected','gateway_observed':topo['receiver'].get('gateway_observed') is True,'host':self.host}
+    self.cached=topo;self.last_at=time.monotonic();self.last_good=copy.deepcopy(topo);self.good_at=self.last_at;return topo
+   self.info={'state':'unavailable','gateway_observed':False,'host':self.host};now=time.monotonic()
    self.cached=copy.deepcopy(self.last_good) if self.last_good else {'schema':'lora.topology.v1','source':'gateway_udp_lrn1','labels':{},'reports':[],'receiver':{'gateway_id':self.eui}}
    elapsed=max(0,int((now-self.good_at)*1000)) if self.last_good else 0
    for row in self.cached.get('reports',[]):

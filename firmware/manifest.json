@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "release_id": "v0.1.0-test",
+  "release_id": "v0.2.0-20261123",
   "status": "candidate",
-  "source_commit": "a101f8e108be239dccc1a776f741ac1ecfa33163",
+  "source_commit": "78c83aa78383a83076d3eab032d4fc4a1a00688c",
   "protocol_version": "LRC2-LRA2-v1-FLW2-v1",
   "config_schema_version": 1,
   "firmware": {
@@ -57,7 +57,7 @@
     "tools/flight_link/appliance.py": "bba6273bc0e06ffc692ebd714914380a95625d1cf218bf08230d8f2eb12b46e0",
     "tools/flight_link/archive.py": "a93bba53499149199927bec88910e95ef588488a30ed056901b04b25885eb01d",
     "tools/flight_link/codec.py": "ec3debdd184f9b1f434f127e4a020407d079e7d95c5d98f403055e01193ab81d",
-    "tools/flight_link/compat_decoder.py": "d918d918f9582dde6be0a400944e88dbca62e25c492b19869d1d24cb47b51c9e",
+    "tools/flight_link/compat_decoder.py": "e4a941e3c985b1bacf12802377a3b8f3432ffca17b230b1bdf7dbe12c795a905",
     "tools/flight_link/gateway.py": "a16ae0797918ef0bde673597c69e799fecef16ece4f30ae59f82adaacd6ea143",
     "tools/gateway_probe/mkcard.py": "1cac19920de3e1f3266e7cf65632e3f4d966b7fb9180bafb3e02fecdfef9a848",
     "tools/gateway_probe/node_reader.py": "f6e9822bee47980d9adeba932ee92e7d68c1abf31f976c686e314253a8c3aac2",
@@ -67,7 +67,7 @@
     "tools/mid_hardware/field_agent/wire_operator.py": "ab85c914456a99f76bb3233d41dac00074c91552dc80ad377f846939fd5a9a39",
     "tools/mobile_gateway/fleet_registry.py": "004281bea0bf42489dfd67faac22743257cee409014271d60d8f6e7ac5033982",
     "tools/mobile_gateway/node_serial.py": "2e0227ca5625bb6eab2aca8f291321c153a9a4300629b891c47b8c2bc28694be",
-    "tools/mobile_gateway/remote.py": "ce1018d096e04c59177f088d41c94b5c94b4ce571a6a3f698af09daf6c2dba80",
+    "tools/mobile_gateway/remote.py": "a8adc5ffb249c610e2fcf0c76377e3eb4ac490cac7602ca444ad673ae109e8ba",
     "tools/mobile_gateway/replay.py": "057973edf16f46f9f3d7a97b28ed622ed560b6a511026df3824199ded826fe47",
     "tools/mobile_gateway/serial_discovery.py": "0ab690bb4581e1d5c71d0ba93438b2f227d6ac84974da00b0858fa23553d8c5e",
     "tools/mobile_gateway/server.py": "aad8d166fd7eeab52e78ab7056adbdef074a1f685303d4a89786934d7288bc7a",

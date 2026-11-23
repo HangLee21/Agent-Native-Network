@@ -10,6 +10,8 @@ read when their flag is set, so an old frame produces exactly the old report plu
 node_number=0.
 """
 import struct,zlib
+# node_number: 0 means the original firmware did not fill the field, so it is
+# reported as None to match the host decoder.
 HEADER=struct.Struct('<4sBBBB6sIIQIBBII')
 ROW=struct.Struct('<6sIBBHHbHB')
 STATUS=struct.Struct('<BHbBBBBbBBBbBHbBBB')
@@ -78,4 +80,4 @@ def decode_frame(data):
  body=44+ROW.size*count
  status=_status(data[body:body+STATUS_BYTES]) if flags & 8 else None
  gps=_gps(data[body+(STATUS_BYTES if flags & 8 else 0):body+(STATUS_BYTES if flags & 8 else 0)+GPS_BYTES]) if flags & 16 else None
- return dict(frame_schema='LRN1', observer_id=observer, observer_boot=boot, report_seq=seq, snapshot_at_ms=stamp, wifi_group=group, node_number=node_number, report_period_ms=period, tx_delay_ms=delay if flags & 4 else None, total_rows=total, truncated=bool(flags & 1), nd_table_full=bool(flags & 2), neighbors=rows, status=status, gps=gps, transport_age_ms=None, evidence='state_at_source_snapshot')
+ return dict(frame_schema='LRN1', observer_id=observer, observer_boot=boot, report_seq=seq, snapshot_at_ms=stamp, wifi_group=group, node_number=node_number or None, report_period_ms=period, tx_delay_ms=delay if flags & 4 else None, total_rows=total, truncated=bool(flags & 1), nd_table_full=bool(flags & 2), neighbors=rows, status=status, gps=gps, transport_age_ms=None, evidence='state_at_source_snapshot')

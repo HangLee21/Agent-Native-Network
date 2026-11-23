@@ -29,14 +29,9 @@
    优先来源中断时会回退，恢复后重新优先。
 3. 显示"超时未见"或"观测中断"时，先查电源与连接，系统会继续尝试恢复。
 
-**如果打包版拿不到数据**（例如旧网关只往 `192.168.137.10:1680` 发 UDP），
-可以用基线分支带来的接收器：
-
-```
-START_RECEIVER.cmd        ← UDP 1680 -> HTTP 8780，供前端轮询
-```
-
-这是**独立入口**，不影响 `START_STUDIO.cmd` 的行为。
+**接收器已内置**：当 `config/fleet.default.json` 的 `gateway.mode` 为
+`legacy_local` 时，`START_STUDIO.cmd` 会自己拉起 UDP 1680 -> HTTP 8780 的接收器，
+不需要额外脚本。旧网关只往 `192.168.137.10:1680` 发 UDP 的场景走的就是这条路径。
 
 ---
 
@@ -210,7 +205,7 @@ runtime\python\python.exe -X utf8 app\start\launcher.py --dry-run
 | **前端** | `app/services/assets/mobile_gateway/`（8 个） | 取 baseline 最新版，与 baseline **字节一致** |
 | **前端后端** | `app/services/tools/mobile_gateway/`（9 个） | 取 baseline 最新版，补回 `replay.py` |
 | 做卡与机群工具 | `app/services/tools/fleet/`、`gateway_probe/`（12 个） | 新增 |
-| 一键脚本 | `SETUP_SITE.cmd`、`MK_CARDS.cmd`、`SITE_*.cmd`、`FLASH_REMOTE.cmd`、`START_RECEIVER.cmd` | 新增 |
+| 一键脚本 | `SETUP_SITE.cmd`、`MK_CARDS.cmd`、`SITE_*.cmd`、`FLASH_REMOTE.cmd` | 新增 |
 | 接收器 | `tools/mid_baseline/gateway_probe/topology_server.py` | 打包版原本缺失 |
 | 文档 | `docs/` | 新增 |
 | 维护脚本 | `tools/release/`（刷新与校验发布清单） | 新增 |
