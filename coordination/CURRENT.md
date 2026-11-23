@@ -1,5 +1,7 @@
 # 当前摘要
 
+2026-11-23 [M-064](tasks/M-064.md) running：用户明确先将 ControlSystem/lh（bdadc98）Vue+TS 框架迁入 baseline，后续以 baseline 开发。当前会话获授权在新隔离 worktree 实施，不替代旧角色身份；保留主目录其他未提交工程成果与现场进程。**deploy 本轮冻结，不迁移/修改/推送；旧 Studio 工程入口保留，不能把框架导入称为全部工程 UI 已迁完。** 写入范围与验收见主卡。
+
 M-063 已完成并更新现场接收器与 Studio。故障注入通过，E870L 连续真实心跳与零节点提示已在正式页面验证。节点断电，本次未做上电节点或真实休眠复测。证据 simulation/results/20261120-M063-gateway-recovery/。
 
 M-062 LoRa 信道扩展信息已交付。E2-042、D-042 和 C-047 已收口。

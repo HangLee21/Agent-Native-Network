@@ -1,5 +1,7 @@
 # 任务索引
 
+[M-064](tasks/M-064.md) running：lh Vue+TS 框架先迁入 baseline，当前会话按用户明确授权隔离实施；后续 baseline 单源开发，deploy 冻结，保留原工程入口与其他窗口成果。
+
 [M-063](tasks/M-063.md) 网关自动恢复已交付。实施 [E2-043](tasks/E2-043.md)、[D-043](tasks/D-043.md)，窄审 [C-048](tasks/C-048.md)。
 
 M-062 LoRa 信道扩展信息已交付。E2-042、D-042 和 C-047 已收口。

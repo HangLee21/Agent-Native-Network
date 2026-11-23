@@ -1,5 +1,7 @@
 # 窗口登记
 
+2026-11-23 M-064：用户明确授权当前迁移会话在 `D:\Multi-Agent Network\.worktrees\vue-ts-baseline`（任务分支 `codex/baseline-vue-ts-20261123`）直接实施 lh→baseline 第一阶段；本轮不沿用/冒充下表旧角色窗口，不发跨聊天消息、不启动代替旧窗口的子代理。范围见 [M-064](tasks/M-064.md)，deploy 冻结，其他 dirty 文件及原角色预留范围保留。
+
 M-063 已收口。E2-043 本机网关接收自愈，D-043 工作台状态，C-048 独立审查，M 本机上线。
 
 M-061 Studio 工作台已验收，D-041 和 C-046 收口。
