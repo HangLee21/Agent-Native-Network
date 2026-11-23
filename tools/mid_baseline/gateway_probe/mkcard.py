@@ -518,6 +518,68 @@ def bump_instance_id(boot, number):
     return new_id
 
 
+def wait_for_card(previous=None, timeout_s=900):
+    """Wait until a mounted, unprepared card appears (and is not the one we just wrote)."""
+    import time as _time
+    deadline = _time.time() + timeout_s
+    while _time.time() < deadline:
+        cards = detect_cards()
+        fresh = [c for c in cards if not c[2]]
+        if fresh:
+            boot = fresh[0][1]
+            if previous is None or boot.resolve() != previous.resolve():
+                return boot
+        _time.sleep(2)
+    return None
+
+
+
+def write_card(boot, number, env, helpers, fleet_public_key):
+    """Prepare one mounted card: stage, verify, back up, then replace atomically.
+
+    Shared by the single-card path and --batch, so the two can never drift apart.
+    """
+    global _ACTIVE_NUMBER
+    _ACTIVE_NUMBER = number
+    names = ["cmdline.txt", "user-data", "meta-data", "network-config", INSTALLER_NAME]
+    with tempfile.TemporaryDirectory(prefix="eora-card-") as td:
+        stage = Path(td)
+        for name in names:
+            source = boot / name
+            if source.exists(): shutil.copy2(source, stage / name)
+        strip_cmdline_hook(stage / "cmdline.txt")
+        install_cloud_init_hook(stage / "user-data", INSTALLER_NAME)
+        new_id = bump_instance_id(stage, number)
+        if (stage / "network-config").exists() and not fix_network_config(stage, env):
+            raise SystemExit("无法检查或更新 Wi-Fi 配置；未修改存储卡")
+        (stage / INSTALLER_NAME).write_text(compose_installer(number, env, helpers, fleet_public_key),encoding="utf-8",newline="\n")
+        # Preserve originals on the card before any change; failures restore from these bytes.
+        backup = boot / ("eora-backup-" + uuid.uuid4().hex)
+        backup.mkdir()
+        originals = {}
+        for name in names:
+            f=boot/name
+            originals[name]=f.read_bytes() if f.exists() else None
+            if originals[name] is not None:(backup/name).write_bytes(originals[name])
+        try:
+            for name in names:
+                src=stage/name
+                if not src.exists():continue
+                dst=boot/name;tmp=boot/(name+".eora-tmp")
+                with tmp.open("wb") as stream:stream.write(src.read_bytes());stream.flush();os.fsync(stream.fileno())
+                os.replace(tmp,dst)
+        except Exception:
+            for name,data in originals.items():
+                dst=boot/name
+                if data is None:
+                    if dst.exists():dst.unlink()
+                else:dst.write_bytes(data)
+            raise
+    say("已准备节点 %d；实例号已同步。" % number)
+    say("原文件保存在卡内 " + backup.name + "；启动后查看 eora-install.log 和 eora-firstboot.log。")
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--card", help="boot-partition drive letter, e.g. E:")
@@ -527,6 +589,11 @@ def main():
     parser.add_argument("--env", help="operator settings file (default: .local/mid/pi/device.env)")
     parser.add_argument("--i-know-this-is-the-dev-key", action="store_true",
                         help="allow the developer key that lives inside this checkout")
+    parser.add_argument("--batch", action="store_true",
+                        help="keep going: wait for each new card, number it, ask for the next")
+    parser.add_argument("--from", dest="first", type=int,
+                        help="first node number for --batch (default: one more than --number)")
+    parser.add_argument("--count", type=int, default=1, help="how many cards to prepare in --batch")
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
@@ -603,6 +670,41 @@ def main():
         say(str(exc))
         return 2
 
+    if args.batch:
+        first = args.first if args.first is not None else (args.number or 1)
+        last = first + max(1, args.count) - 1
+        try:
+            fleet_public_key = load_fleet_public_key()
+        except ValueError as exc:
+            say(str(exc))
+            return 2
+        if yaml is None:
+            say("需要 PyYAML；未修改存储卡")
+            return 2
+        helpers = {}
+        for name in DEPLOY + (SERVICE,):
+            helper_path = HELPERS / name
+            if not helper_path.is_file():
+                raise SystemExit("缺少必要文件：" + name)
+            helpers["eora-node-reader.service" if name == SERVICE else name] = \
+                helper_path.read_text(encoding="utf-8")
+        done = 0
+        for number in range(first, last + 1):
+            say("\n== waiting for card #%d (of %d..%d) ..." % (number, first, last))
+            boot = wait_for_card()
+            if boot is None:
+                say("   no card appeared within 15 minutes; stopping at #%d" % number)
+                break
+            previous = boot
+            write_card(boot, number, env, helpers, fleet_public_key)
+            done += 1
+            say("== #%d done on %s. 拔卡，换下一张。" % (number, boot))
+            while detect_cards() and any(c[1].resolve() == boot.resolve() for c in detect_cards()):
+                import time as _time
+                _time.sleep(2)
+        say("\n== batch finished: %d card(s) prepared" % done)
+        return 0
+
     boot = None
     if args.card:
         boot = find_boot(normalise_card(args.card))
@@ -651,46 +753,7 @@ def main():
         path = HELPERS / name
         if not path.is_file(): raise SystemExit("缺少必要文件：" + name)
         helpers["eora-node-reader.service" if name == SERVICE else name] = path.read_text(encoding="utf-8")
-    global _ACTIVE_NUMBER
-    _ACTIVE_NUMBER = args.number
-    names = ["cmdline.txt", "user-data", "meta-data", "network-config", INSTALLER_NAME]
-    with tempfile.TemporaryDirectory(prefix="eora-card-") as td:
-        stage = Path(td)
-        for name in names:
-            source = boot / name
-            if source.exists(): shutil.copy2(source, stage / name)
-        strip_cmdline_hook(stage / "cmdline.txt")
-        install_cloud_init_hook(stage / "user-data", INSTALLER_NAME)
-        new_id = bump_instance_id(stage, args.number)
-        if (stage / "network-config").exists() and not fix_network_config(stage, env):
-            raise SystemExit("无法检查或更新 Wi-Fi 配置；未修改存储卡")
-        (stage / INSTALLER_NAME).write_text(compose_installer(args.number, env, helpers, fleet_public_key),encoding="utf-8",newline="\n")
-        # Preserve originals on the card before any change; failures restore from these bytes.
-        backup = boot / ("eora-backup-" + uuid.uuid4().hex)
-        backup.mkdir()
-        originals = {}
-        for name in names:
-            f=boot/name
-            originals[name]=f.read_bytes() if f.exists() else None
-            if originals[name] is not None:(backup/name).write_bytes(originals[name])
-        try:
-            for name in names:
-                src=stage/name
-                if not src.exists():continue
-                dst=boot/name;tmp=boot/(name+".eora-tmp")
-                with tmp.open("wb") as stream:stream.write(src.read_bytes());stream.flush();os.fsync(stream.fileno())
-                os.replace(tmp,dst)
-        except Exception:
-            for name,data in originals.items():
-                dst=boot/name
-                if data is None:
-                    if dst.exists():dst.unlink()
-                else:dst.write_bytes(data)
-            raise
-    say("已准备节点 %d；实例号已同步。" % args.number)
-    say("原文件保存在卡内 " + backup.name + "；启动后查看 eora-install.log 和 eora-firstboot.log。")
-    return 0
-
+    return write_card(boot, args.number, env, helpers, fleet_public_key)
 
 if __name__ == "__main__":
     sys.exit(main())
