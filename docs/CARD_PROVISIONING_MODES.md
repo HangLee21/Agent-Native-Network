@@ -241,3 +241,55 @@ transport: local network via config/fleet.hosts.json (no remote flashing)
 
 **每张卡一个一次性 key**（Tailscale 后台把 auth key 设为 non-reusable）：
 卡片丢失或回收时只吊销那一个 key，不会影响其它节点。
+
+---
+
+## 八、两台刷板机怎么办
+
+### 结论：**必须同一个 tailnet，但不必共用同一个账号**
+
+只有"在同一个 tailnet 里"才能互相看见、也才能看见卡片。
+同一个 tailnet **不等于**同一个账号——三种做法：
+
+| 做法 | 账号 | 适用 | 代价 |
+|---|---|---|---|
+| **A. 组织 tailnet + 各自账号**（推荐） | 两人各用自己的身份 | 团队 / 生产 | 需要建组织（免费档也支持） |
+| B. 同一账号在两台登录 | 共用 | 临时 / 单人两机 | 凭证共享、审计弱 |
+| C. 节点共享 node sharing | 各自 tailnet | 跨组织临时协作 | ACL 复杂，不推荐做主方案 |
+
+**推荐 A**：在 Tailscale 里建一个组织（org），把两个操作员都邀请进去；
+各自用**自己的账号**登录，设备与卡片都在这个组织的 tailnet 里。
+这样既满足"同一 tailnet"，又不需要任何人交出账号密码。
+
+> 开发者本人的个人 tailnet **不能**用于生产——做卡工具已经硬拦截。
+
+### 每台刷板机各自需要准备（不能共享的部分）
+
+| 项 | 为什么 |
+|---|---|
+| **同一把 SSH 私钥** `~/.ssh/id_ed25519_eora` | 卡片里装的是那把**公钥**；换一把私钥就连不上 |
+| `EORA_PASS` 环境变量或 `.local/mid/pi/sudo_pass.txt` | 刷板要在 Pi 上停/起 node_reader |
+| Python + ssh/scp | 基础工具 |
+
+`known_hosts` 是每台机器各自临时生成的，不需要同步。
+
+### 两台同时操作时的纪律
+
+代码里**没有跨机互斥**（没有分布式锁）。因此：
+
+| 规则 | 说明 |
+|---|---|
+| **同一台设备不要被两台同时刷** | 会互相打断，结果不可预期 |
+| 用 `--only` 明确分工 | 例：A 机刷 06–12，B 机刷 13–20 |
+| **编号必须事先分配** | 编号写在卡上，没有中央登记；两台各自做卡前先约定号段 |
+| 不要同时改同一台的 group | 两次 `discover_config` 会互相覆盖 |
+
+示例分工：
+
+```powershell
+# 刷板机 A
+fleet.py update BUILD-xxx/images/mid_edge.bin --only eora-air-06 eora-air-07 eora-air-08 eora-air-09 eora-air-10 eora-air-11 eora-air-12
+
+# 刷板机 B
+fleet.py update BUILD-xxx/images/mid_edge.bin --only eora-air-13 eora-air-14 eora-air-15 eora-air-16 eora-air-17 eora-air-18 eora-air-19 eora-air-20
+```
