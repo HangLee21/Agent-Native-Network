@@ -25,6 +25,7 @@ def _repo_root(start):
     This file lives at tools/mid_baseline/fleet in the development tree and at
     app/services/tools/fleet in the deploy packaging, so a fixed ../.. count breaks.
     """
+    start = pathlib.Path(start)
     for candidate in [start] + list(start.parents):
         if (candidate / ".git").exists() or (candidate / "START_STUDIO.cmd").exists():
             return candidate

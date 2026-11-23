@@ -78,7 +78,7 @@ def load_env(path=None):
         # one site.env at the package root, which may be 1-4 levels above depending on layout.
         here = Path(__file__).resolve().parent
         source = ENV_FILE
-        for depth in range(0, 5):
+        for depth in range(0, min(5, len(here.parents))):
             candidate = here.parents[depth] / "site.env"
             if candidate.is_file():
                 source = candidate
