@@ -49,7 +49,7 @@
     "firmware/mid_baseline/field_agent/lora_ref/decoder.py": "c5998ce6ef24c676824308576390595c283bf6ec2d56b638b794d82fd84d2c80",
     "tools/field_gateway/client.py": "0de3beae71e9da8a26d232104ffbc1d764ef6da5d93774c432b40819d1b35171",
     "tools/fleet/enable_ssh_password.py": "c0252d004b19eb78b34cb61a09b144325399ef31c6f6d0cd0f3bf90735908487",
-    "tools/fleet/flash_nodes.py": "331b11144ad5458e3be80befc9f0364efb369f31d81b73ef84888862c1c61b5d",
+    "tools/fleet/flash_nodes.py": "eb6cc891b98b1a701626e5337e4df9e4b1522abc45d5cc92cc95bd42ee2cf4ca",
     "tools/fleet/fleet.py": "780cb46575a2792fdc44785abd24f4ebe69e595f3803c71f57258861eb4ca9f9",
     "tools/fleet/make_production_kit.py": "0ad25f66d2c54cde0392a071392f9a1178ab5456d6b74f10b78d9116609bbc8e",
     "tools/fleet/refresh_labels.py": "a63fd3bb5b72bf2974b5944d0f3757a7dc93619c9d3ca71d004f8007940136aa",

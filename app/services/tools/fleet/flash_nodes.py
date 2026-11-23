@@ -145,8 +145,10 @@ def main():
     cmd = [sys.executable, "-X", "utf8", str(FLEET), "update", image]
     if args.group is not None:
         cmd += ["--group", str(args.group)]
-    for name in args.only:
-        cmd += ["--only", name]
+    # fleet.py takes --only as a single nargs="*" list; repeating the flag lets the last
+    # occurrence win, which silently flashed just one device out of several.
+    if args.only:
+        cmd += ["--only"] + list(args.only)
     proc = subprocess.run(cmd, env=env, text=True)
     say()
     if proc.returncode == 0:
