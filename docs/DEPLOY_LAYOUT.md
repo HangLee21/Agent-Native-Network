@@ -240,3 +240,30 @@ Match Address 100.64.0.0/10,169.254.0.0/16
 | `legacy_local` | 网关只发 UDP，由本机接收器解析 | E870-L 一类纯透传网关 |
 
 `legacy_local` 下启动器会自己拉起接收器，不需要额外脚本。
+
+---
+
+## 十、两个仓库里同名但实现不同的启动脚本
+
+仓库根有三个同名 `.cmd`，**两个仓库的版本不同**。这不是疏漏，是两种运行形态的必然差异；
+改之前先看这张表。
+
+| 脚本 | 开发仓库（baseline） | 交付仓库（deploy） |
+|---|---|---|
+| `START_STUDIO.cmd` | 跑开发前端 `tools/mid_baseline/gateway_probe/start_frontend.py` | 跑打包启动器 `runtime\python app\start\launcher.py` |
+| `FLASH_NODES.cmd` | **远程**机群刷板（`fleet/flash_nodes.py`） | **本机 USB** 串口刷写台（`app/flash/`） |
+| `SITE_FLASH.cmd` | 自带菜单 + 直接调 `flash_nodes.py` | 菜单 → 转调 `FLASH_REMOTE.cmd` |
+
+### 为什么不能统一
+
+- `START_STUDIO.cmd` 的目标不同：一个是开发树里的脚本，一个是随包运行时。
+  交付包必须用 `runtime\python`，否则现场没有开发环境的 Python。
+- `FLASH_NODES.cmd` **同名但含义相反**：开发树里指远程机群，交付包里指本机 USB。
+  这正是交付包额外提供 `FLASH_REMOTE.cmd`（远程）的原因，避免和本机刷写混淆。
+- `SITE_FLASH.cmd` 是同一行为的两种写法：两边最终都调用 `flash_nodes.py`，
+  只是交付版把菜单逻辑摊到了 `FLASH_REMOTE.cmd` 里。**改刷板逻辑时两边都要动。**
+
+### 迁移时怎么处理
+
+`sync_to_deploy.py` **刻意不包含**这三个文件（它们不在 `PAIRS` 里）。
+如果确实需要改它们，请分别修改，并在这张表里说明原因。
