@@ -37,15 +37,24 @@ def main(argv):
             node.ask("stop", timeout=4)
         except TimeoutError:
             pass  # already idle is fine
-        reply = node.ask("discover_config", timeout=6,
-                         extra={"group": group, "channel": channel, "autostart": True})
+        # The fleet runs the source-routing profile, whose configuration command is
+        # route_config; discover_config belongs to the legacy neighbour-table profile and
+        # is rejected there (the reply came back ok=false with the group unchanged).
+        # Try the routing profile first and fall back, so one build works for both.
+        args = {"group": group, "channel": channel, "autostart": True}
+        reply = node.ask("route_config", timeout=6, extra=args)
+        chosen = "route_config"
+        if not reply.get("ok"):
+            fallback = node.ask("discover_config", timeout=6, extra=args)
+            if fallback.get("ok"):
+                reply, chosen = fallback, "discover_config"
         info = node.ask("info", timeout=6)
     finally:
         node.close()
 
     ok = bool(reply.get("ok"))
     print(json.dumps({
-        "ok": ok, "why": reply.get("why"),
+        "ok": ok, "why": reply.get("why"), "command_used": chosen,
         "group_requested": group, "channel_requested": channel,
         "group_reported": info.get("group"), "channel_reported": info.get("channel"),
         "mode": info.get("mode"), "node_id": info.get("node_id"),
