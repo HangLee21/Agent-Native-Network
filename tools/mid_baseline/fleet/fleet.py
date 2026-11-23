@@ -36,8 +36,15 @@ ESPTOOL_VERSION = "5.6.0"
 
 
 def tailscale_devices():
-    """Return [(name, ip)] for every online device whose name matches the fleet prefix."""
-    out = subprocess.run([TAILSCALE, "status", "--json"], capture_output=True, text=True)
+    """Return [(name, ip)] for every online device whose name matches the fleet prefix.
+
+    A machine that never installed Tailscale is a supported deployment (management over the
+    local network), so a missing binary is "no tailnet devices", not a crash.
+    """
+    try:
+        out = subprocess.run([TAILSCALE, "status", "--json"], capture_output=True, text=True)
+    except (FileNotFoundError, OSError):
+        return []
     if out.returncode != 0:
         raise SystemExit("tailscale status failed: " + (out.stderr or "").strip())
     data = json.loads(out.stdout or "{}")
@@ -103,7 +110,10 @@ def tailscale_health():
     cannot reach the coordination server. Reporting that as "no devices online" sends the
     operator to inspect the Pis, which is the wrong place; this has already cost hours.
     """
-    out = subprocess.run([TAILSCALE, "status", "--json"], capture_output=True, text=True)
+    try:
+        out = subprocess.run([TAILSCALE, "status", "--json"], capture_output=True, text=True)
+    except (FileNotFoundError, OSError):
+        return "not-installed", []
     if out.returncode != 0:
         return "error: " + (out.stderr or out.stdout or "").strip()[:120], []
     try:
@@ -114,9 +124,24 @@ def tailscale_health():
 
 
 def require_tailscale():
-    """Print an actionable message and return False when this PC is off the tailnet."""
+    """Gate the fleet on a usable transport, not specifically on Tailscale.
+
+    Three deployments exist: the operator's own tailnet, a plain LAN with a static host list,
+    and this development setup. Only the tailnet case needs Tailscale on this computer, so the
+    check passes when a static list is configured or when Tailscale is simply not installed.
+    """
     state, ips = tailscale_health()
     if state == "Running" and ips:
+        return True
+    if state == "not-installed":
+        if static_devices():
+            return True
+        print("This computer has no Tailscale, and no config/fleet.hosts.json is configured.")
+        print("Either install Tailscale, or list the devices:")
+        print("    copy config\\fleet.hosts.example.json config\\fleet.hosts.json   # then edit")
+        return False
+    if static_devices():
+        print("Tailscale is %s; using config/fleet.hosts.json instead." % state)
         return True
     print("Tailscale is not connected on this computer (state: %s)." % state)
     print("This is a network-app problem, not a device problem.")
