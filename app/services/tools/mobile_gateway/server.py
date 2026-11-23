@@ -44,7 +44,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         url = urlsplit(self.path)
         if url.path == '/health':
-            return self.reply(200, dict(status='ok', role='observation_only', gateway_instance=self.server.state.instance))
+            return self.reply(200, dict(status='ok', role='observation_only', gateway_instance=getattr(self.server.state,'session',None)))
         if url.path == '/api/v1/state':
             return self.reply(200, self.server.state.snapshot())
         if url.path == '/api/v1/timeline':

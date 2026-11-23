@@ -70,7 +70,7 @@
     "tools/mobile_gateway/remote.py": "ce1018d096e04c59177f088d41c94b5c94b4ce571a6a3f698af09daf6c2dba80",
     "tools/mobile_gateway/replay.py": "057973edf16f46f9f3d7a97b28ed622ed560b6a511026df3824199ded826fe47",
     "tools/mobile_gateway/serial_discovery.py": "0ab690bb4581e1d5c71d0ba93438b2f227d6ac84974da00b0858fa23553d8c5e",
-    "tools/mobile_gateway/server.py": "1e28508466d79e02964c3ba8b39f11ddf67ed5202d377e9b340f33adb218878b",
+    "tools/mobile_gateway/server.py": "aad8d166fd7eeab52e78ab7056adbdef074a1f685303d4a89786934d7288bc7a",
     "tools/mobile_gateway/sources.py": "136b3ebde1ce3f20537f78d88bc7dc8106f4ea499f14bb77e91f4f96465123a0",
     "tools/mobile_gateway/state.py": "bbd7198f3d36acfc8f8bc4afe8947b21afca66de3e97b25e1797163ef05f0b74",
     "tools/mobile_gateway/studio.py": "a3957cd6cdc40461671e55eb8aefbd1f9c5469ae7ebdb1f7605a6ee228d3241d"
