@@ -1,0 +1,9 @@
+{
+  "schema": "network.config.v2",
+  "enabled": false,
+  "mode": "server",
+  "profiles": {
+    "server": { "apiBaseUrl": "", "protocol": "network-v1" },
+    "gateway": { "apiBaseUrl": "http://127.0.0.1:8794", "protocol": "lora-v1" }
+  }
+}

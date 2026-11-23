@@ -1,0 +1,9 @@
+{
+  "schema": "network.config.v2",
+  "enabled": false,
+  "mode": "server",
+  "profiles": {
+    "server": { "apiBaseUrl": "/__network_mock", "protocol": "network-v1" },
+    "gateway": { "apiBaseUrl": "", "protocol": "network-v1" }
+  }
+}

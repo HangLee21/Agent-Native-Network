@@ -1,5 +1,7 @@
 # 从这里开始
 
+2026-11-23 [M-064](coordination/tasks/M-064.md)：先将 lh 的完整 Vue+TS 框架迁入 [frontend](frontend/)，以后在 baseline 开发。[新真实入口](START_NETWORK_STUDIO.cmd) 与 [独立 Mock 入口](START_NETWORK_DEMO.cmd) 分开，详见 [迁移/功能保留清单](docs/BASELINE_FRONTEND_MIGRATION.md)。**deploy 暂不迁移；原工程默认入口 START_STUDIO 与采集、来源、持久记录回放、做卡刷写等工具均保留。** 新框架不等于全部工程功能已移植。
+
 2026-11-19 M-061。Studio 的实时和回放操作见 `docs/OPERATING_GUIDE.md`，前端入口仍为根目录 `START_STUDIO.cmd`。
 
 2026-11-19 M-058 已验收。Studio 支持 LoRa 拓扑记录、时间轴回放、节点超时和链路变化定位、上行报告质量与 LRN1 状态/GPS。E2-040、D-039 和 C-043 收口。验收记录见 `simulation/results/20261119-M058-studio-replay/SOURCE.json`。现场移动与实际 GPS 待测。

@@ -1,0 +1,399 @@
+/*
+ * Shared building blocks of the settings page sections (ui-design.md §2.4). Everything is scoped under
+ * .settings-page and uses the theme tokens, so the dark and the outdoor theme both work.
+ */
+
+/* ---------- cards ---------- */
+.settings-page .s-card {
+  padding: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.settings-page .s-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.settings-page .s-card-head h2 {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--fs-lg);
+}
+.settings-page .s-card-desc {
+  margin: -8px 0 0;
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+}
+.settings-page .s-sub {
+  margin: 4px 0 0;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text-dim);
+}
+.settings-page .s-note {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+}
+.settings-page .s-warn-line {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--warn);
+}
+.settings-page .inline-icon {
+  vertical-align: -3px;
+}
+
+/* ---------- badges ---------- */
+.settings-page .s-badge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  white-space: nowrap;
+  background: var(--panel-3);
+  color: var(--text-dim);
+}
+.settings-page .s-badge.warn {
+  background: color-mix(in srgb, var(--warn) 18%, transparent);
+  color: var(--warn);
+}
+.settings-page .s-badge.ok {
+  background: color-mix(in srgb, var(--ok) 18%, transparent);
+  color: var(--ok);
+}
+
+/* ---------- fields ---------- */
+.settings-page .s-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sp-3) var(--sp-4);
+}
+.settings-page .s-grid.narrow {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+.settings-page .s-grid.wide {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.settings-page .s-field {
+  min-width: 0;
+}
+.settings-page .s-field > .s-label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+.settings-page .s-label.changed::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--warn);
+  vertical-align: 1px;
+}
+.settings-page .s-field > .s-input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-md);
+  color: var(--text);
+}
+.settings-page .s-num {
+  width: 120px;
+  min-width: 0;
+}
+.settings-page .s-text {
+  width: 100%;
+}
+.settings-page .s-unit {
+  font-size: var(--fs-sm);
+  color: var(--text-dim);
+}
+.settings-page .s-field > .s-hint,
+.settings-page .s-hint {
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+}
+.settings-page .input.changed {
+  border-color: var(--warn);
+}
+.settings-page .input.changed:focus {
+  border-color: var(--warn);
+  box-shadow: 0 0 0 1px var(--warn);
+}
+.settings-page .input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- switch (a native checkbox, visually a switch) ---------- */
+.settings-page .sw {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 32px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+.settings-page .sw input {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+.settings-page .sw-track {
+  flex: none;
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  border: 1px solid var(--border);
+  background: var(--panel-3);
+  transition: background 0.12s, border-color 0.12s;
+}
+.settings-page .sw-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  transition: transform 0.12s, background 0.12s;
+}
+.settings-page .sw input:checked + .sw-track {
+  border-color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 28%, var(--panel-2));
+}
+.settings-page .sw input:checked + .sw-track .sw-knob {
+  transform: translateX(18px);
+  background: var(--ok);
+}
+.settings-page .sw input:focus-visible + .sw-track {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.settings-page .sw:has(input:disabled) {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- radio cards (native radios) ---------- */
+.settings-page .radio-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--sp-2);
+}
+.settings-page .radio-cards.stack {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+}
+.settings-page .radio-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+}
+.settings-page .radio-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+}
+.settings-page .radio-card:has(input:checked) {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--panel-2));
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.settings-page .radio-card:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.settings-page .radio-card input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+}
+.settings-page .rc-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+}
+.settings-page .rc-text b {
+  font-size: var(--fs-md);
+  color: var(--text);
+}
+.settings-page .rc-line {
+  font-size: var(--fs-sm);
+  color: var(--text-dim);
+}
+.settings-page .rc-line b {
+  color: var(--text);
+}
+
+/* ---------- segmented control (native radios) ---------- */
+.settings-page .seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.settings-page .seg-opt {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: var(--fs-sm);
+  background: var(--panel-2);
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+}
+.settings-page .seg-opt + .seg-opt {
+  border-left: 1px solid var(--border);
+}
+.settings-page .seg-opt input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+.settings-page .seg-opt:hover {
+  color: var(--text);
+}
+.settings-page .seg-opt:has(input:checked) {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+.settings-page .seg-opt.auto:has(input:checked) {
+  background: var(--warn);
+  color: var(--bg);
+}
+.settings-page .seg-opt:has(input:focus-visible) {
+  outline: 2px solid var(--text);
+  outline-offset: -3px;
+}
+
+/* ---------- maps ---------- */
+.settings-page .s-map {
+  position: relative;
+  height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  /* keeps Leaflet's own z-indexes inside the map, below the sticky save bar */
+  isolation: isolate;
+}
+.settings-page .s-map.changed {
+  border-color: var(--warn);
+}
+.settings-page .s-map.drawing {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.settings-page .s-map.drawing .leaflet-container {
+  cursor: crosshair;
+}
+.settings-page .s-map-chip {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 1000;
+  max-width: calc(100% - 24px);
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  pointer-events: none;
+}
+.settings-page .s-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: var(--fs-xs);
+  color: var(--text-dim);
+}
+.settings-page .s-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.settings-page .lg-ref {
+  display: inline-block;
+  width: 18px;
+  border-top: 2px dashed var(--zone);
+}
+.settings-page .lg-area {
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  border: 2px solid var(--zone);
+  background: color-mix(in srgb, var(--zone) 15%, transparent);
+}
+
+/* ---------- read-only lists and code ---------- */
+.settings-page .s-dl {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 10px var(--sp-4);
+  margin: 0;
+  font-size: var(--fs-sm);
+}
+.settings-page .s-dl dt {
+  color: var(--text-dim);
+}
+.settings-page .s-dl dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.settings-page .s-code {
+  display: block;
+  font-family: var(--font-num);
+  font-size: var(--fs-xs);
+  background: var(--panel-2);
+  padding: 6px 10px;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 520px) {
+  .settings-page .s-dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+  .settings-page .s-dl dd {
+    margin-bottom: var(--sp-2);
+  }
+}

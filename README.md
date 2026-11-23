@@ -6,6 +6,10 @@
 
 本机多窗口协作从[START_HERE](START_HERE.md)进入；实际执行范围与验收以[CURRENT](coordination/CURRENT.md)和主任务卡为准。
 
+## 新前端开发源：Vue + TypeScript（2026-11-23）
+
+ControlSystem/lh 的新版完整前端已迁入 [frontend](frontend/)，以后在 baseline 开发；新入口 [START_NETWORK_STUDIO.cmd](START_NETWORK_STUDIO.cmd) 只启动真实工作区，[START_NETWORK_DEMO.cmd](START_NETWORK_DEMO.cmd) 为独立模拟入口。框架来源、运行与回传 lh 规则见 [迁移说明](docs/BASELINE_FRONTEND_MIGRATION.md)。**本阶段 deploy 冻结；原 [START_STUDIO.cmd](START_STUDIO.cmd) 和所有工程工具保留，不把框架导入当作旧工程 UI 全量迁完。**
+
 ## 工程线：固件与自组网
 
 | 内容 | 文档 |

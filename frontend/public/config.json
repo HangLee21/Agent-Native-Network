@@ -1,0 +1,53 @@
+{
+  "apiBaseUrl": "http://localhost:8080",
+  "wsUrl": "ws://localhost:8080/ws/telemetry",
+  "map": {
+    "apiKey": "",
+    "defaultBaseMap": "gaode-street",
+    "baseMaps": [
+      {
+        "id": "gaode-street",
+        "label": "高德 普通地图",
+        "coordSys": "GCJ02",
+        "tiles": [
+          {
+            "url": "https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}",
+            "subdomains": "1234",
+            "maxZoom": 18,
+            "attribution": "© 高德地图"
+          }
+        ]
+      },
+      {
+        "id": "gaode-satellite",
+        "label": "高德 卫星图",
+        "coordSys": "GCJ02",
+        "tiles": [
+          {
+            "url": "https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}",
+            "subdomains": "1234",
+            "maxZoom": 18,
+            "attribution": "© 高德地图"
+          },
+          {
+            "url": "https://webst0{s}.is.autonavi.com/appmaptile?style=8&x={x}&y={y}&z={z}",
+            "subdomains": "1234",
+            "maxZoom": 18
+          }
+        ]
+      },
+      {
+        "id": "osm",
+        "label": "OpenStreetMap",
+        "coordSys": "WGS84",
+        "tiles": [
+          {
+            "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            "maxZoom": 19,
+            "attribution": "© OpenStreetMap contributors"
+          }
+        ]
+      }
+    ]
+  }
+}

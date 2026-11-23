@@ -1,0 +1,1780 @@
+{
+  "schema": "baseline.frontend.import.v1",
+  "task_id": "M-064",
+  "imported_at": "2026-11-23T16:52:28.605045+08:00",
+  "upstream_repository": "git@github.com:haimol/ControlSystem.git",
+  "upstream_branch": "lh",
+  "upstream_commit": "bdadc989decf4d383b49dff2def4aa1aa0aa59b5",
+  "baseline_authority": "After this import, develop these paths in baseline; sync reviewed changes back to lh.",
+  "deploy_status": "FROZEN - not migrated or modified by M-064",
+  "source_paths": [
+    "frontend/",
+    "scripts/network-studio/",
+    "START_NETWORK_STUDIO.cmd",
+    "START_NETWORK_DEMO.cmd"
+  ],
+  "excluded": [
+    "node_modules",
+    "dist",
+    "backend",
+    "machine-local environment files",
+    "field recordings and logs"
+  ],
+  "post_import_adjustments": [
+    {
+      "path": "scripts/network-studio/browser_check.py",
+      "reason": "Allow explicit task evidence directory and ASCII console JSON; browser data checks unchanged."
+    },
+    {
+      "path": "frontend/src/__tests__/joint-replay.spec.ts",
+      "reason": "Remove one upstream blank line at EOF to pass baseline whitespace checks; no test logic changed."
+    }
+  ],
+  "files": [
+    {
+      "path": "START_NETWORK_DEMO.cmd",
+      "sha256": "822a18893bda52e2b7a1f7f278343022103e415f799ceba6f5a9fa3534ac4999",
+      "bytes": 462
+    },
+    {
+      "path": "START_NETWORK_STUDIO.cmd",
+      "sha256": "29519fc4b56cbb25244ad3f0a5a4fd5cdaa93fbbd7b2ae8aa1331c72a9b91d90",
+      "bytes": 428
+    },
+    {
+      "path": "frontend/.gitignore",
+      "sha256": "e76f740fd05d8eb245ec29a196e61531314e41b696104fec1b4b9027dfb3f2da",
+      "bytes": 52
+    },
+    {
+      "path": "frontend/env.d.ts",
+      "sha256": "424faf9241dd699dda995b367ed36665732da1e6ec1f33b2fd40394488ecac92",
+      "bytes": 39
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "bb40674ea5c63a71960d0e718cb9c590c2cef9905e8a7a78381db9080779fb72",
+      "bytes": 571
+    },
+    {
+      "path": "frontend/mock-studio.html",
+      "sha256": "d501a49c1b136248b46259ea6a1eb6723d52715adbe6ff9ddd8911d95bb7ceda",
+      "bytes": 524
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "04e9bcd1a4848efbb169598336a4fc8d121e4e80ad15415e91bcfc7d9909770d",
+      "bytes": 126988
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "f270b84fb1da5eb24223ea1b4349503245780cf39d1b2b28fe84f6179956c001",
+      "bytes": 1291
+    },
+    {
+      "path": "frontend/public/apple-touch-icon.png",
+      "sha256": "e2cc657adc6775053d893df9b2abea21b7dd7efb1b7ae9973ea970367a5f7ad1",
+      "bytes": 3095
+    },
+    {
+      "path": "frontend/public/config.json",
+      "sha256": "d67442b9adbdc48f7bcfae7e1ec39a68058be6e17afdf3340266d760e62b8804",
+      "bytes": 1488
+    },
+    {
+      "path": "frontend/public/embonet-icon-32.png",
+      "sha256": "b35e3187153d9a783cae251a5be583e0a90b3c6d88502904090b5d81569779b1",
+      "bytes": 916
+    },
+    {
+      "path": "frontend/public/embonet-icon.svg",
+      "sha256": "3f843efb6ce28d6f3494b21c08f144214634175e70beddec5023469c8ed1aa4a",
+      "bytes": 1568
+    },
+    {
+      "path": "frontend/public/network-config.json",
+      "sha256": "c19336beb97bae733642e71e41b160ebbe31b1aaf39c8c395365c08981e466a3",
+      "bytes": 248
+    },
+    {
+      "path": "frontend/public/network-mock-config.json",
+      "sha256": "c24cf0971863764417c8cd974387328a656601d1c0f2b50b38bd61a033af4ef2",
+      "bytes": 245
+    },
+    {
+      "path": "frontend/scripts/i18n-conflicts.mjs",
+      "sha256": "14f286fedd3fa296a42d397632d2a3b08614c629de681c1f72be50d385797f0b",
+      "bytes": 1774
+    },
+    {
+      "path": "frontend/scripts/i18n-scan.mjs",
+      "sha256": "2135984b886c5aadc792864c51cde49fa6a748dab426f68e8d295cb3023283ba",
+      "bytes": 5556
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "sha256": "196efeeb5e1e946755253cd35f6875d9e190de5747a5a0672fbeda7d60f1a859",
+      "bytes": 2729
+    },
+    {
+      "path": "frontend/src/NetworkStudioApp.vue",
+      "sha256": "27ebe633b129f0283fb13eed40e5c89316486642725f4a3990c7f20af5ddaf74",
+      "bytes": 3597
+    },
+    {
+      "path": "frontend/src/__tests__/control.spec.ts",
+      "sha256": "ffbb99592f8c584f43d15080db8954ae5c9e36e1e1e4b98fe792f3aea37e15ed",
+      "bytes": 5956
+    },
+    {
+      "path": "frontend/src/__tests__/coord.spec.ts",
+      "sha256": "e422684f564564931d49ce1bf3be190557f12a1495aa69adf3cd1518ef31c54e",
+      "bytes": 2021
+    },
+    {
+      "path": "frontend/src/__tests__/demo-no-fix.spec.ts",
+      "sha256": "c4ec609b48d7c7c069599e2399fc4287745c6cb9b719a94650855a33281218ae",
+      "bytes": 3267
+    },
+    {
+      "path": "frontend/src/__tests__/device-messages.spec.ts",
+      "sha256": "ce0c02e7665d0c7a8d24c5f544fbb708468d4a909c6d23f206e9daa19ac2f408",
+      "bytes": 2155
+    },
+    {
+      "path": "frontend/src/__tests__/dog-dual-heading.spec.ts",
+      "sha256": "248b62ec22ac1662f72ac51795cfcedbaf726d63c72fbc286fa798fa73d94146",
+      "bytes": 1305
+    },
+    {
+      "path": "frontend/src/__tests__/dog-flow.spec.ts",
+      "sha256": "5ed24dbd6baf0df09c1163287dc890647be733fed74fa48153278d8903151924",
+      "bytes": 6074
+    },
+    {
+      "path": "frontend/src/__tests__/dog-holdpad.spec.ts",
+      "sha256": "5a342ce903626928fbded10e9d92b3dc6969190ef63d1f575fc28c43d0b5850f",
+      "bytes": 2820
+    },
+    {
+      "path": "frontend/src/__tests__/dog-lite3-info.spec.ts",
+      "sha256": "be36831c30cf787d3bcc15be1723779e3fed1ef5abbcb0732f62a71ad5571c78",
+      "bytes": 10798
+    },
+    {
+      "path": "frontend/src/__tests__/dog-live-video.spec.ts",
+      "sha256": "abf9a9ca12eb17b796e509a171a17581211e42176540e09cd0d9172944a8cae3",
+      "bytes": 2874
+    },
+    {
+      "path": "frontend/src/__tests__/dog-nav-card.spec.ts",
+      "sha256": "a8fcd6c19423dd74ec6aee514506c5cd5d3e73c3c2b570a26167ea7bef0cced0",
+      "bytes": 29271
+    },
+    {
+      "path": "frontend/src/__tests__/dog-nav-map.spec.ts",
+      "sha256": "437a23425286c9264bd109cbb1d988f8c66b9ba339f69000e7cc93430b0bb974",
+      "bytes": 10836
+    },
+    {
+      "path": "frontend/src/__tests__/dog-nav-store.spec.ts",
+      "sha256": "46b379ddfeba2d135fd205e580b6852da5e9c5348c3932cb868e717bf897265b",
+      "bytes": 17902
+    },
+    {
+      "path": "frontend/src/__tests__/dog-replay-routes.spec.ts",
+      "sha256": "beb122e584b44970a9c1b177334865c57ca60257c3d355830e2589add0566ee3",
+      "bytes": 4578
+    },
+    {
+      "path": "frontend/src/__tests__/dog-store.spec.ts",
+      "sha256": "87fc828eed1b5d4e29af8f5ae64798b31c0112b9e527d52fa8fd3702a96ae93b",
+      "bytes": 6960
+    },
+    {
+      "path": "frontend/src/__tests__/dogv2-depth-front.spec.ts",
+      "sha256": "36694d33162dbc648a33f25e08c1a9a477e528158684757f60906cf42994e9e2",
+      "bytes": 5356
+    },
+    {
+      "path": "frontend/src/__tests__/dogv2-map.spec.ts",
+      "sha256": "1b6470e339abbc98a4902f9c4f32da86bc7f7ee5bca67e343b1a444131fc5884",
+      "bytes": 5569
+    },
+    {
+      "path": "frontend/src/__tests__/dogv2-store.spec.ts",
+      "sha256": "64d4bdb2002aabac43ee4cc39576ece8f34fe22aab58f8be0b6b18c393eb7e9e",
+      "bytes": 5221
+    },
+    {
+      "path": "frontend/src/__tests__/editor.spec.ts",
+      "sha256": "e34d8b7125e22f2fa2799457439a57ba06b7afc34c57a1fa3b14a61d386bf9f4",
+      "bytes": 10501
+    },
+    {
+      "path": "frontend/src/__tests__/execution.spec.ts",
+      "sha256": "85b94651d419eba8b7b588462533352e48cf5834f101bef1913586f2747dd00f",
+      "bytes": 4691
+    },
+    {
+      "path": "frontend/src/__tests__/fixtures/network.ts",
+      "sha256": "2df1b23f5fc18eb9ca5f712bc7c839e5e2ace44ecfbb53d87b1b297952957af3",
+      "bytes": 2047
+    },
+    {
+      "path": "frontend/src/__tests__/fleet.spec.ts",
+      "sha256": "c94acc768ad9352c4ec31b7a6106540c505d71af1e1a2934c2f884995b57944f",
+      "bytes": 6022
+    },
+    {
+      "path": "frontend/src/__tests__/history-video.spec.ts",
+      "sha256": "b59be6b7f9d77b070eee2e291faf9f7efe27165cecb743154267cbed5aadc628",
+      "bytes": 7982
+    },
+    {
+      "path": "frontend/src/__tests__/http-api.spec.ts",
+      "sha256": "42278ed465fdf05a8cbbfb96db9aafb6e54e0d366ba9b3c782be5ef7658e05d2",
+      "bytes": 899
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-audience.spec.ts",
+      "sha256": "9bfd222e7c54088e93305abb7deb180f37c98d6049ad4d789557a0f8ff344931",
+      "bytes": 1104
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-backend-dogs-demo.spec.ts",
+      "sha256": "ecfd589a3e9c75f55a4167117178fa4dd2a8aa72617791f328fd9fc6d8c5e9ee",
+      "bytes": 7577
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-backend-platform.spec.ts",
+      "sha256": "c8e75432802b4bc9be3f94ca333fad494e22894304910b2c610756876606ba15",
+      "bytes": 9258
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-backend-targets-history.spec.ts",
+      "sha256": "c30a2c4aef1579edb77e6e283fdc76f86eaebcb2ffd356e2a5ce9c210ca3aee4",
+      "bytes": 6580
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-control.spec.ts",
+      "sha256": "7b300ad8653f368759f6976b719c0f8f64cd449d636bbb63802e85ea5dab15d5",
+      "bytes": 1419
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-dog.spec.ts",
+      "sha256": "37509509352bd0899774babdd934801ede4f434508d9d8ef4904bea5e3edeea2",
+      "bytes": 4808
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-history.spec.ts",
+      "sha256": "7fbf2d95e91b9b1ff68b0df528771f75a4be2939a3450eb15e278779378ef72b",
+      "bytes": 1736
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-manual-dogv2.spec.ts",
+      "sha256": "16809673a3eeaaefedf1c06d0041ec6526a9aefd283daac38d7c6dcede7544bf",
+      "bytes": 3999
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-monitor.spec.ts",
+      "sha256": "74eb191ef0a43944c61145580dc9d416b078afba099c2499506495a246f47a71",
+      "bytes": 1979
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-route.spec.ts",
+      "sha256": "353410c13035be31a3cb97863cb5a92b8671a9b5bcf1c16197c74c3422506289",
+      "bytes": 1142
+    },
+    {
+      "path": "frontend/src/__tests__/i18n-settings.spec.ts",
+      "sha256": "97222cb4146b458e44a0f7fc08c5758a6548187b6e80f47c210980fc2be0b469",
+      "bytes": 1969
+    },
+    {
+      "path": "frontend/src/__tests__/i18n.spec.ts",
+      "sha256": "71073c04ba930d7909b270fa6dce30a5982145082f68053afe35914d748875df",
+      "bytes": 3433
+    },
+    {
+      "path": "frontend/src/__tests__/import.spec.ts",
+      "sha256": "48c43684d1b8a368831bb10f4218c9521b76b38f6efc0e038d5bac256a1d33ca",
+      "bytes": 1291
+    },
+    {
+      "path": "frontend/src/__tests__/joint-replay.spec.ts",
+      "sha256": "8943198b13c089f8bba05efa6446451f74bcf0d4a3ff9ed67922554f227dcc8a",
+      "bytes": 8586
+    },
+    {
+      "path": "frontend/src/__tests__/layers.spec.ts",
+      "sha256": "7129109d3b182650f07f7911c810ca7cab3a6182ae230dbc8b6a59ee64aedd8c",
+      "bytes": 3274
+    },
+    {
+      "path": "frontend/src/__tests__/manual.spec.ts",
+      "sha256": "f963edd83f52be663f2bac357a9054a9368231291992abd24988fa25b93fc4df",
+      "bytes": 5509
+    },
+    {
+      "path": "frontend/src/__tests__/map-canvas.spec.ts",
+      "sha256": "8ad1d5a0c46fef83ae352a8994fd8bf9ee4a307200d8b7bb7ff34d94a38cf289",
+      "bytes": 6332
+    },
+    {
+      "path": "frontend/src/__tests__/monitor-fleet-panel.spec.ts",
+      "sha256": "ff287f997a141590370bedd4bc50660ddd620e7d5a1bdaf7f39fcab1f9a5dd58",
+      "bytes": 10587
+    },
+    {
+      "path": "frontend/src/__tests__/monitor-panel.spec.ts",
+      "sha256": "0df1991fdfbfc7154d87a9bb06997332a8c78b153a6114bbbf5db3a4c45834e5",
+      "bytes": 15151
+    },
+    {
+      "path": "frontend/src/__tests__/monitor-stage.spec.ts",
+      "sha256": "9df84538284fad58f6e0ce17d3a41f86ad23d069c14582af1327320bccfc68d0",
+      "bytes": 8883
+    },
+    {
+      "path": "frontend/src/__tests__/network-api.spec.ts",
+      "sha256": "26c75dfde88fbe605e2443e4115db19e3397ed79bde59f8bb8cd8f32ad3bb86e",
+      "bytes": 8250
+    },
+    {
+      "path": "frontend/src/__tests__/network-connections.spec.ts",
+      "sha256": "485fa5d5ecbd65e11ce5da38740f78371938520e8ec87c306d471a557da07461",
+      "bytes": 9348
+    },
+    {
+      "path": "frontend/src/__tests__/network-gateway.spec.ts",
+      "sha256": "97330068156bbf215b5999489ca0574aa1b9205cee9bb2614ff5eee2097653a3",
+      "bytes": 6212
+    },
+    {
+      "path": "frontend/src/__tests__/network-model.spec.ts",
+      "sha256": "326afda3d4d9fbbeda281cb07134b554c3ae04b888c7a38291df512fe5dd5d7a",
+      "bytes": 6760
+    },
+    {
+      "path": "frontend/src/__tests__/network-store.spec.ts",
+      "sha256": "1efd983f690f92803fe393e0847c8888e3d5a3756e709f7b3abe1fab5d168b74",
+      "bytes": 6911
+    },
+    {
+      "path": "frontend/src/__tests__/network-view.spec.ts",
+      "sha256": "9ae8ac0236b1a6214c4ee5532ef534983b9fa5c4498b4688160f652d30533da7",
+      "bytes": 5775
+    },
+    {
+      "path": "frontend/src/__tests__/records-dogs.spec.ts",
+      "sha256": "86d4516ea69bdc842faa335833110d11aff1b31b983517d42c9a392397de4e86",
+      "bytes": 9676
+    },
+    {
+      "path": "frontend/src/__tests__/replay.spec.ts",
+      "sha256": "342e39577dd181c82914efc56637d40116402cfa0a6ddf7198aa20bff0b7d95d",
+      "bytes": 5114
+    },
+    {
+      "path": "frontend/src/__tests__/runtime-config.spec.ts",
+      "sha256": "077bac974126532818a2b277776b80a0e96ce17d9e99d14fa5ddf581bfb7138c",
+      "bytes": 2461
+    },
+    {
+      "path": "frontend/src/__tests__/safety.spec.ts",
+      "sha256": "17800439ba50aa6e93c2ce10851d3d6aa785f9bb631a8ac0165ca7e88f42b511",
+      "bytes": 1741
+    },
+    {
+      "path": "frontend/src/__tests__/settings.spec.ts",
+      "sha256": "29c39df26339b9dfac1ca68879ca1015c2881e302201d7bd17850837333c835c",
+      "bytes": 10445
+    },
+    {
+      "path": "frontend/src/__tests__/setup-i18n.ts",
+      "sha256": "c818a3560a3f26b88a57f5f18d9845c6878aa4292584dbbd39eede855d5781e7",
+      "bytes": 310
+    },
+    {
+      "path": "frontend/src/__tests__/targets.spec.ts",
+      "sha256": "45aba43a31690b395d18614fcec707a892bb83fb90872db2bdde245848291969",
+      "bytes": 9002
+    },
+    {
+      "path": "frontend/src/__tests__/telemetry-store.spec.ts",
+      "sha256": "4b81ceff3e72c8eb5a0e55b4d7b561441aa65155fd09d4d0a321ff5f9ea18026",
+      "bytes": 3744
+    },
+    {
+      "path": "frontend/src/__tests__/testDrone.ts",
+      "sha256": "b7f11979c131b8d1a2325a29776400174368f8c633fe19407eab9f9eba23e5e6",
+      "bytes": 1304
+    },
+    {
+      "path": "frontend/src/__tests__/video.spec.ts",
+      "sha256": "afac1d203b3d4c40b5a57418e37789fe484aa4d2458770fb2b522b3d0f8c7bb2",
+      "bytes": 13371
+    },
+    {
+      "path": "frontend/src/__tests__/watch-engine.spec.ts",
+      "sha256": "1e05d840037df40b09dc561aa0394e4dbaab273786e0dc1bb67b4741fd9e2a39",
+      "bytes": 3441
+    },
+    {
+      "path": "frontend/src/__tests__/watch-model.spec.ts",
+      "sha256": "cedb4752674f9637e4f773fcfd6ab770c9ffac912744629cff313100b07220dd",
+      "bytes": 5404
+    },
+    {
+      "path": "frontend/src/__tests__/watch-settings.spec.ts",
+      "sha256": "faf9115e7a2f84b48341b0bc6fb895aebf96f092b164d4b39c8d1120c4ba9418",
+      "bytes": 2481
+    },
+    {
+      "path": "frontend/src/api/control.ts",
+      "sha256": "af488754e19fbd0b61099b9e638cbf4bf6ad8ac341cd478b5d08a72748656a53",
+      "bytes": 4126
+    },
+    {
+      "path": "frontend/src/api/deviceMessages.ts",
+      "sha256": "1bf8f6772ef2ec8a2c628c41edca66dfc222850267d927322f93459a179d9117",
+      "bytes": 883
+    },
+    {
+      "path": "frontend/src/api/dog.ts",
+      "sha256": "df3905b3bbe70aecf4b49df364230f095f3a616af8dc02b837f1e3196098bfc0",
+      "bytes": 6144
+    },
+    {
+      "path": "frontend/src/api/dogRecords.ts",
+      "sha256": "0583a08e0e7a8782a5d852d6c36aaec6a2e44cd6b6cdcbc258853b7b27e4ebec",
+      "bytes": 4876
+    },
+    {
+      "path": "frontend/src/api/dogv2.ts",
+      "sha256": "7afb1c63279401320d2f52f1264415c81b9f898b43592142f8692d5bfae2ce1e",
+      "bytes": 12967
+    },
+    {
+      "path": "frontend/src/api/drone.ts",
+      "sha256": "542ee6e222e12c2c097d99178faf619d3a510ac5fb92be289dd0fe444bd55e08",
+      "bytes": 345
+    },
+    {
+      "path": "frontend/src/api/drones.ts",
+      "sha256": "e7c860cf6d5b6988be9f667560dea064bd8eeff193dbdafa609b42fe30902a63",
+      "bytes": 2053
+    },
+    {
+      "path": "frontend/src/api/execution.ts",
+      "sha256": "170904aac27ad3cab3da7db425b49afcf45e38d13a4613617909cd0238fe45da",
+      "bytes": 2843
+    },
+    {
+      "path": "frontend/src/api/history.ts",
+      "sha256": "401407627e29c449e724b00d51c015cdb8fc63af4031c94b16725380f08daa26",
+      "bytes": 8067
+    },
+    {
+      "path": "frontend/src/api/http.ts",
+      "sha256": "abe762849621a9cdfeeabc609519cba137a9e732027f6d36359896e741f27e7f",
+      "bytes": 1923
+    },
+    {
+      "path": "frontend/src/api/importer.ts",
+      "sha256": "9aa7a0975f4fd35ef77fa11dbd62033b94e5e0fd5dd2a7b466a14f96013525e1",
+      "bytes": 1039
+    },
+    {
+      "path": "frontend/src/api/live.ts",
+      "sha256": "c73c3aa78bc72dd502c6dccb5cbacc6a34b75ed163ee1b4549cafd8bb64870a0",
+      "bytes": 2507
+    },
+    {
+      "path": "frontend/src/api/manual.ts",
+      "sha256": "be5b002e2453d952fe31362d886e8afa3eec5c21cf67c4b8949b993a9ebcd136",
+      "bytes": 877
+    },
+    {
+      "path": "frontend/src/api/routes.ts",
+      "sha256": "11e7bf48f6b8c93f5ee5f1ff280c051ca3ba0eea31446ac9724818bd5189b766",
+      "bytes": 2860
+    },
+    {
+      "path": "frontend/src/api/safety.ts",
+      "sha256": "3295e56521e05fc742c9a9819326c8068efc9d3d5d2d636607802408781d112f",
+      "bytes": 1465
+    },
+    {
+      "path": "frontend/src/api/targets.ts",
+      "sha256": "a8ef0942db6c18f169271481c7c3c8482405ba2a49f21610fa72732910f01145",
+      "bytes": 6548
+    },
+    {
+      "path": "frontend/src/api/types.ts",
+      "sha256": "18929d6d22db31d7da2e53b2f53881b92a536a2c265430ffdf1727abac4113bc",
+      "bytes": 1829
+    },
+    {
+      "path": "frontend/src/api/watch.ts",
+      "sha256": "c52d547908314980b0b7e21509aa9ece1f0aba4341dd6581e52152390a48930d",
+      "bytes": 1656
+    },
+    {
+      "path": "frontend/src/assets/brand/README.md",
+      "sha256": "4796052a3e0b337b8bbb867866de6acd963888cf9d5c99f0cd133d948a0ffe2a",
+      "bytes": 1546
+    },
+    {
+      "path": "frontend/src/assets/brand/embonet-lockup-color.svg",
+      "sha256": "8fb122db6f2aecca3f9bea8fe132b2e554dfddda10fd40d87c045f3fbb4a2423",
+      "bytes": 9477
+    },
+    {
+      "path": "frontend/src/assets/brand/embonet-lockup-mono.svg",
+      "sha256": "bb6def05bf1bb99714b42b7e9ab64c349ab3a9e192bd0d86629d8b956a299b8f",
+      "bytes": 9477
+    },
+    {
+      "path": "frontend/src/assets/brand/embonet-lockup-monorev.svg",
+      "sha256": "2f246d279364f78361fc0af195763e4b862355a6b80311e0bc53e8b3011168b9",
+      "bytes": 9477
+    },
+    {
+      "path": "frontend/src/assets/brand/embonet-lockup-reverse.svg",
+      "sha256": "dbf1813b2d75511128b266310fe31f2a521c99909fdb17b549b7126bba4fada6",
+      "bytes": 9477
+    },
+    {
+      "path": "frontend/src/assets/brand/embonet-mark-color.svg",
+      "sha256": "d8d7cd16debd80088938511748bd1410b067e822a3eb708396635c9e47ea9b26",
+      "bytes": 9240
+    },
+    {
+      "path": "frontend/src/assets/brand/embonet-mark-mono.svg",
+      "sha256": "956bcf5f1d2229dbe22599ad6ece7120ff1b33b8b34b5ed57167b7c03fac2bc2",
+      "bytes": 9240
+    },
+    {
+      "path": "frontend/src/assets/brand/embonet-mark-monorev.svg",
+      "sha256": "f79b637a02914768de616d5c1c10b99a2b6736c236c31623377c34c8bfa296fb",
+      "bytes": 9240
+    },
+    {
+      "path": "frontend/src/assets/brand/embonet-mark-reverse.svg",
+      "sha256": "a0d86d4c0c42b2ba0d950f81db11f2c9ed2d3208ec05c4e911deba1f8358844f",
+      "bytes": 9240
+    },
+    {
+      "path": "frontend/src/assets/fonts/Poppins-OFL.txt",
+      "sha256": "7ead84d605fd0ae70cb262281875d052ac7264ddd6bdeda1e44133275c3dacfd",
+      "bytes": 6268
+    },
+    {
+      "path": "frontend/src/assets/fonts/poppins-latin-400-normal.woff2",
+      "sha256": "7d93459d86585bfcdbb7e0376056226adb25821ee54b96236fe2123e9560929f",
+      "bytes": 7884
+    },
+    {
+      "path": "frontend/src/components/common/AppIcon.vue",
+      "sha256": "83d9154990b0b31833111861a4b9ff50af144007907c805d5aaec5324e17e8c2",
+      "bytes": 5279
+    },
+    {
+      "path": "frontend/src/components/common/ConfirmDialog.vue",
+      "sha256": "e873357af94fb7acada525770e2830e1398f634bd17159c39222427acb36249b",
+      "bytes": 2227
+    },
+    {
+      "path": "frontend/src/components/common/DroneScope.vue",
+      "sha256": "62bff80e239804fadd5a8f1fa18492f15968918e571e7d9c143551f3f7ca38f4",
+      "bytes": 299
+    },
+    {
+      "path": "frontend/src/components/common/EmptyState.vue",
+      "sha256": "d416677ad32fb0da751dd15a401b4ce0adb3f17faff1c758b049e47cb9d476d9",
+      "bytes": 871
+    },
+    {
+      "path": "frontend/src/components/common/ToastHost.vue",
+      "sha256": "e30e69a22876095b6ccfe2311bef3fe7390c7edb56b74ac5a169950931b56ac8",
+      "bytes": 1674
+    },
+    {
+      "path": "frontend/src/components/control/CommandLog.vue",
+      "sha256": "dd4479bcca38acf5bbd48a1bc0afd21c7454b4d831e8dc02f0fd1ae61e50ace7",
+      "bytes": 1554
+    },
+    {
+      "path": "frontend/src/components/control/CommandStatus.vue",
+      "sha256": "6cdee45a06778e9d6a5422f5c43d27cd153b6ef9a50d17209cfa587655d38a44",
+      "bytes": 2139
+    },
+    {
+      "path": "frontend/src/components/control/DangerZone.vue",
+      "sha256": "9df02fc1a9b308f17b7d0b0ae2a926ec3b9c731bd806f7d93f3aadd44742d4c5",
+      "bytes": 4571
+    },
+    {
+      "path": "frontend/src/components/control/GimbalPad.vue",
+      "sha256": "f0c60bb8cecdccaeeae6967523350557083f6378dea3f71752ab0036bbd4b289",
+      "bytes": 7093
+    },
+    {
+      "path": "frontend/src/components/control/HoldButton.vue",
+      "sha256": "b9dc45a898ad1f5217818214463211f1ce4e2c94d36eaad7491011e0924567be",
+      "bytes": 2420
+    },
+    {
+      "path": "frontend/src/components/control/StickControlOverlay.vue",
+      "sha256": "1feca9f9f4124e54726a3a44eb5ca4730998d9ec855e7d56b79ba2179056482e",
+      "bytes": 7504
+    },
+    {
+      "path": "frontend/src/components/control/TakeoffDialog.vue",
+      "sha256": "e926d134afe845004264a19185a98474cf94896fae63bbfacb474da06f3af324",
+      "bytes": 5382
+    },
+    {
+      "path": "frontend/src/components/control/TargetDialog.vue",
+      "sha256": "3644fe33aa2b554375086401e3b99bd6a12252feb0b606ed5b394669f7f96a28",
+      "bytes": 3119
+    },
+    {
+      "path": "frontend/src/components/control/VirtualStick.vue",
+      "sha256": "9d3200bd0f8926d3729f6c338f6817a00e0e87ca3880a02356c6f68d04577b8c",
+      "bytes": 2739
+    },
+    {
+      "path": "frontend/src/components/dog/Btn2.vue",
+      "sha256": "12f88167e1682a5631b5492ad0415611317692f1011b9e7f69b4853a33d89476",
+      "bytes": 778
+    },
+    {
+      "path": "frontend/src/components/dog/CommandRow.vue",
+      "sha256": "4fbf635587d446af64f4f63cb811c1274eaa3ce8471ca926943dc4acdf8b91bb",
+      "bytes": 2910
+    },
+    {
+      "path": "frontend/src/components/dog/DogChips.vue",
+      "sha256": "19cb4c60cf8d9537b146f247672a978c0f9f518f56c1a4b6cfa68a5490506a5e",
+      "bytes": 2162
+    },
+    {
+      "path": "frontend/src/components/dog/DogDrawer.vue",
+      "sha256": "b4bf8a230881d068c1c7157c68fec030b7b6027a1492e3e1a33dd5a779208222",
+      "bytes": 5102
+    },
+    {
+      "path": "frontend/src/components/dog/DogIcon.vue",
+      "sha256": "46f91d2e1af088412a2dca10db13d12c03e3a5b0bedee41faf7ecaa1ef9d0f79",
+      "bytes": 493
+    },
+    {
+      "path": "frontend/src/components/dog/DogMain.vue",
+      "sha256": "c23422efbd8cc97eeedf4b948a2bce3da8eb06db4584254dad499525958ad4a4",
+      "bytes": 16142
+    },
+    {
+      "path": "frontend/src/components/dog/DogNavConfirm.vue",
+      "sha256": "ec34a8da541282ac7e21619df6d91a23a68c0d9974d44c6ee45ad788bceaad67",
+      "bytes": 12853
+    },
+    {
+      "path": "frontend/src/components/dog/DogPanel.vue",
+      "sha256": "797ca1d1fe5733b4f5ee3c6d10a493d1ce648aa5a872cd552ccdf3a7b9487124",
+      "bytes": 7766
+    },
+    {
+      "path": "frontend/src/components/dog/DogSafety.vue",
+      "sha256": "874907366090c676982f4f72961cc03f22198528d3c75eb56400693dc54dcb39",
+      "bytes": 10511
+    },
+    {
+      "path": "frontend/src/components/dog/DogSection.vue",
+      "sha256": "33931be3e5aabc78451a618b36eacc6deb7c6d6af49173b692967387dccbe7d9",
+      "bytes": 2620
+    },
+    {
+      "path": "frontend/src/components/dog/DogThumb.vue",
+      "sha256": "6b63615f10d4cca3b22c28ea5a9b6912946d4f11be0051eca236f43fd1cf92b0",
+      "bytes": 2883
+    },
+    {
+      "path": "frontend/src/components/dog/FlowBar.vue",
+      "sha256": "692c82b560189c213a77e9fbaba61f4f99784747f057733f653d7bb47ea783d9",
+      "bytes": 1323
+    },
+    {
+      "path": "frontend/src/components/dog/HoldPad.vue",
+      "sha256": "adef92efac115b8d6f320a461c5328b41867cdff620657ece04562f52ec18ae1",
+      "bytes": 17793
+    },
+    {
+      "path": "frontend/src/components/dog/Lite3Body.vue",
+      "sha256": "8ef49d602c4b4c92b60cfa5c53db33a679467bc54767a3ef3c814fc1d654e610",
+      "bytes": 13433
+    },
+    {
+      "path": "frontend/src/components/dog/Lite3Nav.vue",
+      "sha256": "0feea95a6fad5281e7afbef9cae8fdaaf498898bf013debeb7a510fd0b0e9c72",
+      "bytes": 24665
+    },
+    {
+      "path": "frontend/src/components/dog/ManualContent.vue",
+      "sha256": "f7e6019d74f0860904a84b637bd88b0d7be4d87ab9f358b61ae9c64c30f0904e",
+      "bytes": 5375
+    },
+    {
+      "path": "frontend/src/components/dog/NextBar.vue",
+      "sha256": "c186d5bc03acf3e6755772297c81a9e0ecdaca04666707704ac3b1ebc1274d54",
+      "bytes": 1933
+    },
+    {
+      "path": "frontend/src/components/dog/S10Body.vue",
+      "sha256": "5c249af85e1efde9043412c3ca727358f9626c9d04867a82f594bff2748aaf1c",
+      "bytes": 44024
+    },
+    {
+      "path": "frontend/src/components/dog/Step.vue",
+      "sha256": "420b8a50f93f527d13d362b2c8658ebcaa83899937edb64cb93c0d15185b36ca",
+      "bytes": 1943
+    },
+    {
+      "path": "frontend/src/components/dog/dogFlow.ts",
+      "sha256": "583a63774fa0c6cbabb905ed6e90d355b6303512a55c0aaf1778cf2304948189",
+      "bytes": 16502
+    },
+    {
+      "path": "frontend/src/components/dog/dogNav.ts",
+      "sha256": "af45dbfd386bc59ff40634090aff0eed2a69cca537f5bbc18fa97081bf1c4bf4",
+      "bytes": 11660
+    },
+    {
+      "path": "frontend/src/components/dog/lite3Info.ts",
+      "sha256": "0674e5cffd00e4e27cfead50a83f10232622363c82afed3a946200f72f1e0ce1",
+      "bytes": 16683
+    },
+    {
+      "path": "frontend/src/components/dog/manualHtml.en.ts",
+      "sha256": "b68d2ef2bd15cdeed25a83cff7607f6ffd46769e5be9f68cdcc99adc8f3df98a",
+      "bytes": 62667
+    },
+    {
+      "path": "frontend/src/components/dog/manualHtml.ts",
+      "sha256": "e966dede694dc9ce02694acec3cc109cdf45a925265c420ac5ee10a085419a4c",
+      "bytes": 54042
+    },
+    {
+      "path": "frontend/src/components/dog/s10Grasp.ts",
+      "sha256": "04c7ce19900cf530e7f9c9d727d721fd8f72ffe737e674a66035e9362ed1a7a4",
+      "bytes": 1240
+    },
+    {
+      "path": "frontend/src/components/dog/useDogActions.ts",
+      "sha256": "a9398b3648e7a20fb93897889e894b59ab05995c8f391bb5c2a10e26120840b3",
+      "bytes": 4685
+    },
+    {
+      "path": "frontend/src/components/dog/waitCommand.ts",
+      "sha256": "4e2772e655ca516e2216eb1dab2690b287b2a48c4e224f05ac3591374ec22651",
+      "bytes": 790
+    },
+    {
+      "path": "frontend/src/components/dogv2/Dog2Video.vue",
+      "sha256": "c3c2b7185146d885d7570766a08b249df59cea7b7f1b7c344559c147db118f05",
+      "bytes": 4468
+    },
+    {
+      "path": "frontend/src/components/dogv2/depthFront.ts",
+      "sha256": "dc3b8ed5c6fdc6c402e8135cb6d458de39ddabf48fbdbabf2a36662c9da40672",
+      "bytes": 2311
+    },
+    {
+      "path": "frontend/src/components/drone/DeviceMessages.vue",
+      "sha256": "7349cdef3439b73591fd197553fa1620032ff1c047e97cf4569e150935b7c4e5",
+      "bytes": 3897
+    },
+    {
+      "path": "frontend/src/components/drone/DroneInfoPanel.vue",
+      "sha256": "c91df15c3a2740ed8ad4f9a370dca13afded1b4db663b5f771c40bc2d91cc9e4",
+      "bytes": 2953
+    },
+    {
+      "path": "frontend/src/components/drone/MiniTelemetry.vue",
+      "sha256": "f1ce7181940c8c9341e7437b7ee493bd4e4a2d593ab02e31c3be2511009738cb",
+      "bytes": 1447
+    },
+    {
+      "path": "frontend/src/components/drone/infoFields.ts",
+      "sha256": "b1db08c57e2584f389c6cd246081ea6a1f5840dce6274f45bcafb85d54640dfe",
+      "bytes": 9073
+    },
+    {
+      "path": "frontend/src/components/history/HistorySettingsCard.vue",
+      "sha256": "387d4fd53a149c800551595b2a1de4b484698d1f178d010201059b443a629ab0",
+      "bytes": 3862
+    },
+    {
+      "path": "frontend/src/components/history/JointReplayOverlays.vue",
+      "sha256": "7774e4dc337e6aacdf55bdd4efcce716ec19a296c420d46bee8e9166f41667d7",
+      "bytes": 8970
+    },
+    {
+      "path": "frontend/src/components/history/JointSidePanel.vue",
+      "sha256": "b6fce08c6392de5e5437ca65cc7a9454f63578574b2b87e32d9bae49bf388359",
+      "bytes": 8752
+    },
+    {
+      "path": "frontend/src/components/history/JointTimeline.vue",
+      "sha256": "d4ca201345936595ef06933c2ee3966f29513e8a53f0d380db078c2e2d45d87c",
+      "bytes": 12148
+    },
+    {
+      "path": "frontend/src/components/history/ReplayOverlays.vue",
+      "sha256": "e99983843ffa2c698e369b44f6e1a71ca9a17fb1bfd2935c7d205999694af0ab",
+      "bytes": 7960
+    },
+    {
+      "path": "frontend/src/components/history/ReplaySidePanel.vue",
+      "sha256": "f962cff7c91d9a8cd2d8e36d1b726b1c71795807e6e769a5a0117413a48ae931",
+      "bytes": 8674
+    },
+    {
+      "path": "frontend/src/components/history/ReplayTimeline.vue",
+      "sha256": "6b69e09061e610fb92b0639f4225abfeefad3c3b582b5444d4a3f156775aaea8",
+      "bytes": 8628
+    },
+    {
+      "path": "frontend/src/components/history/SaveRouteDialog.vue",
+      "sha256": "460ae1836beef30be3cce972e1322fcdbd8717dda00b65b001ccf715290e5be4",
+      "bytes": 3714
+    },
+    {
+      "path": "frontend/src/components/history/TrackThumb.vue",
+      "sha256": "ffbf92b1567ed2daa7a5c1c91cd973236c7cb8ee7687bb41a778fabe3386f969",
+      "bytes": 1843
+    },
+    {
+      "path": "frontend/src/components/layout/AlertBanner.vue",
+      "sha256": "0d5e88a83534110854695a84b16596d719e399c0a2d87e66b76c648f1d793aff",
+      "bytes": 6886
+    },
+    {
+      "path": "frontend/src/components/layout/DroneChips.vue",
+      "sha256": "3d2b27c2dfa3c29e9729ca81baac1145c98b240e18bc61ea8694a00c7e67b0a0",
+      "bytes": 3124
+    },
+    {
+      "path": "frontend/src/components/layout/LinkChips.vue",
+      "sha256": "89db922af6f4237890b1a84acf60306e458138d96fef883c258950e3fe1277f7",
+      "bytes": 4297
+    },
+    {
+      "path": "frontend/src/components/layout/StatusBar.vue",
+      "sha256": "105a969fa57a1565f26af90465df9e7a541e24edc74000c5a91f26780b1cfd6f",
+      "bytes": 6357
+    },
+    {
+      "path": "frontend/src/components/library/ImportDialog.vue",
+      "sha256": "7d80afef7674ee4aead05f9082bc6bd6624ff3a120ce74d945a8aaad313e4fb5",
+      "bytes": 6083
+    },
+    {
+      "path": "frontend/src/components/library/RouteList.vue",
+      "sha256": "f5a3e0d28691da56894e97604ba873c46187c32e67a5d328e2d4ecf565ce0c08",
+      "bytes": 11933
+    },
+    {
+      "path": "frontend/src/components/map/DogNavLayer.vue",
+      "sha256": "1c5ae4c3e3349ae560506edb7d6db15d7f6f0e3ffbfd245e8a01f2684f4e6f19",
+      "bytes": 6234
+    },
+    {
+      "path": "frontend/src/components/map/DogRouteEditLayer.vue",
+      "sha256": "1a9c6f26d05036275e8fc2e6ed4c1b7ec5afd12bf9bcc2be1a18c9eca17af677",
+      "bytes": 2601
+    },
+    {
+      "path": "frontend/src/components/map/DogV2Layer.vue",
+      "sha256": "f549621f08ef5850415fdea275e7d2e4b2401b2ed8573e8d761544f20aa94b0a",
+      "bytes": 6510
+    },
+    {
+      "path": "frontend/src/components/map/DroneMarker.vue",
+      "sha256": "7daea66d8d704324a0ddbc011adc883604566f76a57fca75fcbb8d98700330a5",
+      "bytes": 3888
+    },
+    {
+      "path": "frontend/src/components/map/FleetLayers.vue",
+      "sha256": "5bdb095801d5519b8bf983c9b3e43ff3642c50525a86a71a480e3c18c8da407b",
+      "bytes": 3152
+    },
+    {
+      "path": "frontend/src/components/map/LayerPanel.vue",
+      "sha256": "f9842b7823aa4af351a3c44d038752d71e10ad27373956f2a0cc0229582b3c07",
+      "bytes": 3713
+    },
+    {
+      "path": "frontend/src/components/map/MapCanvas.vue",
+      "sha256": "752ab1459cca94bff1588ea6daedeb849228f34c281d4bb3f6ea193024cbfb2f",
+      "bytes": 6771
+    },
+    {
+      "path": "frontend/src/components/map/MapOverlays.vue",
+      "sha256": "1fc7f4a6f302e8c0049e1730df29ca4bb0ec58d4a3fc16205886382a704959a8",
+      "bytes": 7404
+    },
+    {
+      "path": "frontend/src/components/map/RouteEditLayer.vue",
+      "sha256": "28eb12564b57ffe5956ea616527b8f7acdf10f59c59a59d3c8440e02613d85ae",
+      "bytes": 2328
+    },
+    {
+      "path": "frontend/src/components/map/RouteOverlayLayer.vue",
+      "sha256": "48857581ea648953de7bda1de0860789e1af96172b88999f63af102765b4b004",
+      "bytes": 2583
+    },
+    {
+      "path": "frontend/src/components/map/ZoneEditLayer.vue",
+      "sha256": "59f8092bfd593248ca6c9eb893885f09b75c368e6056bc3e5de5c8800765843d",
+      "bytes": 1779
+    },
+    {
+      "path": "frontend/src/components/map/mapContext.ts",
+      "sha256": "b08e38a3cbacf07c2f158781b65fb2afbd2f9f678dd27131738dc76f102e6428",
+      "bytes": 628
+    },
+    {
+      "path": "frontend/src/components/monitor/ActivityBar.vue",
+      "sha256": "24ce6312eb131c9f3b58b9ffe045b241ecc8eb9a93b5c6b2f79a40738f710522",
+      "bytes": 5731
+    },
+    {
+      "path": "frontend/src/components/monitor/FleetCard.vue",
+      "sha256": "49356f7127084e0c3ceb6f774a8ceb98aa0752235f792ab5f9ff0b902fbd8c29",
+      "bytes": 13321
+    },
+    {
+      "path": "frontend/src/components/monitor/HeightLimitControl.vue",
+      "sha256": "5d084f3398dbd552c8e5bb12e3a8567bbcf40cf6efb5521904166ae2d9bb1295",
+      "bytes": 2567
+    },
+    {
+      "path": "frontend/src/components/monitor/MonitorRail.vue",
+      "sha256": "727bc389c27d9cb9c4e2c01307d86ebb343c1af2f8319bef3a5a4e10221cb619",
+      "bytes": 2808
+    },
+    {
+      "path": "frontend/src/components/monitor/PanelHeader.vue",
+      "sha256": "03f132fbe63748bee5801cf0af86de4c0745200912b5315c43014fb94644d646",
+      "bytes": 10124
+    },
+    {
+      "path": "frontend/src/components/monitor/PhaseBar.vue",
+      "sha256": "c0f665e52a6fea5487d927915c98c7b67e5baec41949a0490a415de491832142",
+      "bytes": 1864
+    },
+    {
+      "path": "frontend/src/components/monitor/RailDrone.vue",
+      "sha256": "a69b065d9d0248ef7e4fcf88c8d137b5a7a18da2c4a59f1dd9a1e54646c37977",
+      "bytes": 7636
+    },
+    {
+      "path": "frontend/src/components/monitor/SafetyFooter.vue",
+      "sha256": "39b0f0a46815028e014a72ebefd49dbfbd3b59d39041c90dbdfbd00bfb90767b",
+      "bytes": 12358
+    },
+    {
+      "path": "frontend/src/components/monitor/TaskArea.vue",
+      "sha256": "b2a8e63eeb4c4ad8e6f5c297596cbb63864225e9e9729a7fe2beda9edddec8f5",
+      "bytes": 2807
+    },
+    {
+      "path": "frontend/src/components/monitor/TaskBar.vue",
+      "sha256": "3d4dcfcfc0a72c962a4b789a57541b82f580a00592abced333e6db2ec13392b5",
+      "bytes": 5258
+    },
+    {
+      "path": "frontend/src/components/monitor/TaskCardShell.vue",
+      "sha256": "d22ca4899734325a92c039a3589bb0be2d58320a376a902267aeeab304aeeb06",
+      "bytes": 2221
+    },
+    {
+      "path": "frontend/src/components/monitor/tasks/AiTask.vue",
+      "sha256": "b8904299e09c5da9f5c1f8114eaf80181ab15d7abb1ad8cc9718d35da92cbd56",
+      "bytes": 2204
+    },
+    {
+      "path": "frontend/src/components/monitor/tasks/FlyToTask.vue",
+      "sha256": "1f78c623e99d2ce48bae470ae349db73c0c35c945a8407a044bfcd5c7131669e",
+      "bytes": 2605
+    },
+    {
+      "path": "frontend/src/components/monitor/tasks/OrbitTask.vue",
+      "sha256": "49307de0f13470c7927a80f87ad80dd78880a178eb0430d85b6f79f4158e4812",
+      "bytes": 3450
+    },
+    {
+      "path": "frontend/src/components/monitor/tasks/PreflightCard.vue",
+      "sha256": "55d39118df24086a4c34186889d915b6d0e638fb37447bc25d9dcb4bdd6e58d4",
+      "bytes": 3610
+    },
+    {
+      "path": "frontend/src/components/monitor/tasks/ReturnHomeCard.vue",
+      "sha256": "62696534ab50fad39049f58903d452f6ee0473a1ef76e600120ebf5ea50ef3c8",
+      "bytes": 1378
+    },
+    {
+      "path": "frontend/src/components/monitor/tasks/RouteTask.vue",
+      "sha256": "2362e996c1dced5824cfb68df9f13b117bd8b6f2afdb460ac59e26b2618b4270",
+      "bytes": 3359
+    },
+    {
+      "path": "frontend/src/components/monitor/tasks/StickTask.vue",
+      "sha256": "82c5750df6fbf702191322878a02387d61babf47b4d72c3148802af070979e98",
+      "bytes": 2752
+    },
+    {
+      "path": "frontend/src/components/monitor/tasks/TargetTask.vue",
+      "sha256": "4753fb58174a57d049af6692fe9c98f92511b836b6f3247b621ac5b3b5d095b1",
+      "bytes": 751
+    },
+    {
+      "path": "frontend/src/components/network/NetworkTopology.vue",
+      "sha256": "75644dbd2952fe6d402b7e3afb7b7930e51a7148ffcaaeeeb9000a65a7d0de10",
+      "bytes": 14598
+    },
+    {
+      "path": "frontend/src/components/route/ChainRouteDialog.vue",
+      "sha256": "72c7a27c743c03fe2aec47bf54c837b90ef46c5b22748bc27aa2028cf8de78b8",
+      "bytes": 8558
+    },
+    {
+      "path": "frontend/src/components/route/ExecuteDialog.vue",
+      "sha256": "5c31150014fc427d10720de3d7c1dbae845570bdc7f79f7d94d9b84db4017b8b",
+      "bytes": 9273
+    },
+    {
+      "path": "frontend/src/components/route/ExecutionProgress.vue",
+      "sha256": "53d4cc2f1237f77d9ebdb45ed1c7e68a86829e4db719d6c84815559d22ae8ddc",
+      "bytes": 4989
+    },
+    {
+      "path": "frontend/src/components/route/OverlayPicker.vue",
+      "sha256": "820a751e35f0462dde1540ee4e0214334026ec1ba412dcc9f72105f5ae53fbb3",
+      "bytes": 3038
+    },
+    {
+      "path": "frontend/src/components/route/RouteEditor.vue",
+      "sha256": "06966f10d62e2f35358391baa6fab23e05ab2dd1d0556773dc5352c080f4f345",
+      "bytes": 18603
+    },
+    {
+      "path": "frontend/src/components/route/SafetyReport.vue",
+      "sha256": "93ae44179d749a8638883fde64bed5a3c8dae9352d86c852ac9d8af2889044ce",
+      "bytes": 2124
+    },
+    {
+      "path": "frontend/src/components/route/SyncDialog.vue",
+      "sha256": "fa0f32936e5077d3a8592e89174280e74e05d8ec4c04184fceac4c11ca250dc5",
+      "bytes": 3270
+    },
+    {
+      "path": "frontend/src/components/route/WaypointForm.vue",
+      "sha256": "909e6bb2dde1de106750c244e5fed6f2ae51a9a046d2d752b314c71069677e42",
+      "bytes": 7670
+    },
+    {
+      "path": "frontend/src/components/settings/DevicesSection.vue",
+      "sha256": "e37bde57b91ef206e44a213c1c324f5d953bca12345537738ff0ffa24d4fdd42",
+      "bytes": 10192
+    },
+    {
+      "path": "frontend/src/components/settings/DogNavSettingsCard.vue",
+      "sha256": "58aac3633c9ad34949762edb35ab3ada3d821c9be3dbb38c5ef48540ecca7101",
+      "bytes": 8039
+    },
+    {
+      "path": "frontend/src/components/settings/SafeZoneRefLayer.vue",
+      "sha256": "d585b2737eae82eb1ebfba261116419252effdc18da6e88a51855fbb3ecff9f2",
+      "bytes": 1067
+    },
+    {
+      "path": "frontend/src/components/settings/SafetySection.vue",
+      "sha256": "fbcd8a8ade343107b3bcbc57ffb245cb2d30e4c88ddd2f69a500d5524be394f9",
+      "bytes": 9017
+    },
+    {
+      "path": "frontend/src/components/settings/SaveBar.vue",
+      "sha256": "9c860bea7f61fb383660e57130f689a7759242803b2ed7147739550ac8552835",
+      "bytes": 2170
+    },
+    {
+      "path": "frontend/src/components/settings/SystemSection.vue",
+      "sha256": "cfed5f774ca94ce117d590be4a60c494d410f9ab9ffc1833fcf13e7aa57a55b1",
+      "bytes": 4236
+    },
+    {
+      "path": "frontend/src/components/settings/WatchSettingsCard.vue",
+      "sha256": "642ae23f3159baeaf4aa4a9ca4fa0e69a4e63e6ed2e3ce070cc3132c01dad050",
+      "bytes": 4979
+    },
+    {
+      "path": "frontend/src/components/settings/settings.css",
+      "sha256": "6511c4463b5b24e6544d2213ae5361afdc58f78aedb43fe7382ba10b8bb42ea5",
+      "bytes": 9279
+    },
+    {
+      "path": "frontend/src/components/settings/useHistorySettings.ts",
+      "sha256": "5b88b8fcce4d98fdb771e2e672a43fa31469a57d8932ba67185af57f0e1ef490",
+      "bytes": 1571
+    },
+    {
+      "path": "frontend/src/components/settings/useSafetySettings.ts",
+      "sha256": "05cff7769b1d90896a54953d8a96ae27c25916347b4924091934ed6e41e1d0a8",
+      "bytes": 4957
+    },
+    {
+      "path": "frontend/src/components/settings/useTargetSettings.ts",
+      "sha256": "b46beeb1fb66d76ac66423ed8bce56b3c25fa8a255b48228d6f7b7ce719e78db",
+      "bytes": 6381
+    },
+    {
+      "path": "frontend/src/components/settings/useWatchSettings.ts",
+      "sha256": "0577946ecaaeffac0c274b49b42aec4048865c7262643bb62be0fa17cf653295",
+      "bytes": 1210
+    },
+    {
+      "path": "frontend/src/components/target/AiAutoBar.vue",
+      "sha256": "efbffa7fe64b7dd60f71494a6059788b4a3a8dd0c42f6cb22c4465e26852226b",
+      "bytes": 4562
+    },
+    {
+      "path": "frontend/src/components/target/TargetCard.vue",
+      "sha256": "e1b96be04676a8e9a27b8eb851c575f9ee11d4ed18e7bcb14632372cf0902752",
+      "bytes": 13380
+    },
+    {
+      "path": "frontend/src/components/target/TargetPanel.vue",
+      "sha256": "e450857a82d5da9cfd3fcc2d2f9ed3f4635172feea30854f94d2266516354666",
+      "bytes": 4443
+    },
+    {
+      "path": "frontend/src/components/target/TargetSelectOverlay.vue",
+      "sha256": "06a07d511109887ad4ebc0c1785f799fbba33393004ba2902a2769b900ad3dca",
+      "bytes": 4579
+    },
+    {
+      "path": "frontend/src/components/target/TargetSettingsCard.vue",
+      "sha256": "7f737997482f2c511d2cc587dc25bc3d5be18bdf530379ddc8e2e1a317d41183",
+      "bytes": 14085
+    },
+    {
+      "path": "frontend/src/components/video/CameraRail.vue",
+      "sha256": "689706320867fb77a78b7505202367f190434a14a9cd31c967c4f21d8cfef65e",
+      "bytes": 12250
+    },
+    {
+      "path": "frontend/src/components/video/FlightHud.vue",
+      "sha256": "47b1dd9830ada16691889e74735c72cbc1166ca7f3bf6f0776fad4589384eb61",
+      "bytes": 3448
+    },
+    {
+      "path": "frontend/src/components/video/MockFeed.vue",
+      "sha256": "f9f3122a5e618eb39f746fcfeeae46ebf2230a1ed0455e612fabc7ec6ef3cb8d",
+      "bytes": 5886
+    },
+    {
+      "path": "frontend/src/components/video/VideoPanel.vue",
+      "sha256": "fa3448b81e2b02c42b2c3d5a4984ac69ea6fe6705affed3b79df47570321e619",
+      "bytes": 12695
+    },
+    {
+      "path": "frontend/src/composables/useDrone.ts",
+      "sha256": "62897552dba0117765b7ec0df4005c2f2d22896ead7cd95860dc948ea11cf489",
+      "bytes": 960
+    },
+    {
+      "path": "frontend/src/composables/useFlightActions.ts",
+      "sha256": "30ddf5ef028445e58ba223fd0935775860765024dfdd52e8bb5243e6e46a0720",
+      "bytes": 2237
+    },
+    {
+      "path": "frontend/src/composables/useFlightPhase.ts",
+      "sha256": "8adea9d8fe51151568ff3fbfd860433fc1ecb117eb906bd6e2e99e1f64bd037a",
+      "bytes": 6626
+    },
+    {
+      "path": "frontend/src/composables/useRouteSafety.ts",
+      "sha256": "be04b0ae84c5ed3c6964ae483c832346764ee1ef391779be0655880fe597e397",
+      "bytes": 1750
+    },
+    {
+      "path": "frontend/src/config/runtime.ts",
+      "sha256": "ac7c3deb8b08d671f3dbaf8b8278ff8db3eab778e4d085d627d59dfc74c29c8a",
+      "bytes": 4928
+    },
+    {
+      "path": "frontend/src/i18n/backend/dogs-demo.ts",
+      "sha256": "a0a4189293b0ad925dd65174f7dff2b1c829b03efd82ccafdd45cb1be7c3e6d9",
+      "bytes": 42112
+    },
+    {
+      "path": "frontend/src/i18n/backend/platform.ts",
+      "sha256": "0783cd2f1495066b9318db61f4e6c9ffcf04ece8a50c7bf95639119b2989116e",
+      "bytes": 42848
+    },
+    {
+      "path": "frontend/src/i18n/backend/targets-history.ts",
+      "sha256": "9a408f9f08c9ae72e4db6d05c7e6fa1f6bed82e99e22c7bbfcf1af0865156cc8",
+      "bytes": 28876
+    },
+    {
+      "path": "frontend/src/i18n/en/context.ts",
+      "sha256": "c73c934dd07055c09246ad28533bc82aa139ae662c5130f3f5d9f9aff14f55e0",
+      "bytes": 1222
+    },
+    {
+      "path": "frontend/src/i18n/en/control.ts",
+      "sha256": "67ea6345f9675efda916c285438c685d36b50eeb2863f624b5eb3f4664877cf9",
+      "bytes": 21715
+    },
+    {
+      "path": "frontend/src/i18n/en/core.ts",
+      "sha256": "715d263feb2213aabac910f19772531b8ae043e051ce602d0475520cce9c0b11",
+      "bytes": 7896
+    },
+    {
+      "path": "frontend/src/i18n/en/demo.ts",
+      "sha256": "430ef8b8dbe8d72e1233b102c0940c56a50a4e3852e826951dbfd34851b465d5",
+      "bytes": 13997
+    },
+    {
+      "path": "frontend/src/i18n/en/dog.ts",
+      "sha256": "674a57b8cec40c5144cc65735d5a0ecb0ef60002e92345dbfea2dbe1b9bb6f1e",
+      "bytes": 49340
+    },
+    {
+      "path": "frontend/src/i18n/en/dogv2.ts",
+      "sha256": "eca2327f83e085dcbd52f76b4a775e4f317f0ee1d86c739fc59926361f2b30e9",
+      "bytes": 21020
+    },
+    {
+      "path": "frontend/src/i18n/en/history.ts",
+      "sha256": "7c1b4e28e396db8cd64e1a1a7d68ec0c078e1390193c521e27e84eb530e47a2e",
+      "bytes": 18281
+    },
+    {
+      "path": "frontend/src/i18n/en/manual.ts",
+      "sha256": "c83d8417d58d4db6d4d8e9ac4bbed5d386412c93c0b3297eab0dc8ce727c5b1f",
+      "bytes": 359
+    },
+    {
+      "path": "frontend/src/i18n/en/monitor.ts",
+      "sha256": "f479101b81af2f13b8cf35c2e4fb4c8107b81e88332045b4f4628c5dfb6c4ea1",
+      "bytes": 21711
+    },
+    {
+      "path": "frontend/src/i18n/en/network.ts",
+      "sha256": "6a55641654c5b2487e8bf92356aa9ff55a95733cc02c06eff38891c2d7970193",
+      "bytes": 11125
+    },
+    {
+      "path": "frontend/src/i18n/en/route.ts",
+      "sha256": "49001f58f12c2539fc29dc07fed06b4727204ba9011a6098d3db1ce074d09ad8",
+      "bytes": 21841
+    },
+    {
+      "path": "frontend/src/i18n/en/settings.ts",
+      "sha256": "32aab82cc02d01e96c688874ca6564d04aa84ce8327572c94e6071f980fbbd6f",
+      "bytes": 22215
+    },
+    {
+      "path": "frontend/src/i18n/en/watch.ts",
+      "sha256": "16f384d63a86dc2feaf2240cc44e446b8989d32b34777cd872c2c658cd33c776",
+      "bytes": 10537
+    },
+    {
+      "path": "frontend/src/i18n/index.ts",
+      "sha256": "af465d4deeb5e3525f1a030e033e348b3c39183a940e6f9caba99b8b7cec7a5d",
+      "bytes": 9175
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "sha256": "db8ef14f042bf2003c5e468276ee3cf26ae61de910eb9217187522b59ff0a621",
+      "bytes": 739
+    },
+    {
+      "path": "frontend/src/mock-studio.ts",
+      "sha256": "ce5d46ddb53821ea743cf387a705b76e2e7408f5ec3f9fc5736166fd48aa8ceb",
+      "bytes": 168
+    },
+    {
+      "path": "frontend/src/mountStudio.ts",
+      "sha256": "ecd5d4285ddd9b7457f7c56d28db4260530afb42d47a13e1beefdeff515d0875",
+      "bytes": 450
+    },
+    {
+      "path": "frontend/src/network/api.ts",
+      "sha256": "528516b8b1705b02584287783ce193d71c4ac51f7b7a7646658b9f3378695913",
+      "bytes": 6815
+    },
+    {
+      "path": "frontend/src/network/config.ts",
+      "sha256": "ef66d9630942739ae8a61c31f7c19c18bdcb0ee87cede11a8cadb4c72bd6dd76",
+      "bytes": 2905
+    },
+    {
+      "path": "frontend/src/network/gateway.ts",
+      "sha256": "f501302b337440b26937e54279d7e795fc64431cde8c50a0366c1031f7006b3f",
+      "bytes": 7305
+    },
+    {
+      "path": "frontend/src/network/model.ts",
+      "sha256": "17769ea45d7f9d23d2f40500ce2697b6d68db5546f9d435d77663ed1f12d8c60",
+      "bytes": 8077
+    },
+    {
+      "path": "frontend/src/network/presentation.ts",
+      "sha256": "f98bd532788a9c827754cb7f98f0333dbe516b1494d154ad936dbfb854e83dac",
+      "bytes": 1154
+    },
+    {
+      "path": "frontend/src/network/types.ts",
+      "sha256": "d83c934c0625091c4844de91cc1b1f465bdbf580f5d2afc69bbbe98ed26cbcdb",
+      "bytes": 2813
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "sha256": "e71d89d0300fbcc9b0259a03886346236afd45c12ffba1142158a86427f98831",
+      "bytes": 2616
+    },
+    {
+      "path": "frontend/src/services/manualSocket.ts",
+      "sha256": "a5931c5faed1de22a90770c14578084e5f2bc35ad38001235cc68d31060e389f",
+      "bytes": 1968
+    },
+    {
+      "path": "frontend/src/services/ws.ts",
+      "sha256": "41701fe013b88998174a801fee543fb393a0715b12a9319655616286a85016c2",
+      "bytes": 2799
+    },
+    {
+      "path": "frontend/src/stores/confirm.ts",
+      "sha256": "705146bbee30654cc9ef806bb2c7ed18be915b60a762c25d3fe1186c7dd727d3",
+      "bytes": 942
+    },
+    {
+      "path": "frontend/src/stores/control.ts",
+      "sha256": "46c95ccc420e4a24a56a3cfa86e55d3d2fae9767ac232644dd16732be59ad171",
+      "bytes": 4224
+    },
+    {
+      "path": "frontend/src/stores/deviceMessages.ts",
+      "sha256": "5e4960685e645c77ecbcb36d5b2f2491c2bf6929428398e8c914d3231be695b1",
+      "bytes": 1650
+    },
+    {
+      "path": "frontend/src/stores/dog.ts",
+      "sha256": "c8726b69e15cfcbc2ae3be380823d212422a7a8aeb1be7c0d992b2a63d84abcb",
+      "bytes": 31974
+    },
+    {
+      "path": "frontend/src/stores/dogv2.ts",
+      "sha256": "c96a72e0905a782800feec1f0a68f3851f1ab80133cafe2b72c1de810848094e",
+      "bytes": 18149
+    },
+    {
+      "path": "frontend/src/stores/droneStores.ts",
+      "sha256": "bd7a3447eb59ea2a39f78848e2e0d32a5e7590a37678263fd06a3ce1485530e8",
+      "bytes": 901
+    },
+    {
+      "path": "frontend/src/stores/editor.ts",
+      "sha256": "6ef2e08115781233c69eb7151531296e711d1399592884e8c5f66cc898fb4ffb",
+      "bytes": 11327
+    },
+    {
+      "path": "frontend/src/stores/execution.ts",
+      "sha256": "7c8bbfa2a26f8bbe15ee8ab9e83f8dec7a0c02cf88ce9ac89d00233e44b83615",
+      "bytes": 3910
+    },
+    {
+      "path": "frontend/src/stores/fleet.ts",
+      "sha256": "1b8bf282a3fe538961a41228a63be291d40f2a8ae780bcb57e47d4c9cc702b33",
+      "bytes": 4390
+    },
+    {
+      "path": "frontend/src/stores/history.ts",
+      "sha256": "f2eecae2fa38e9e2b70fb36e616a7ea1e19c151e135a5a31e3fea725567d88e0",
+      "bytes": 1397
+    },
+    {
+      "path": "frontend/src/stores/layers.ts",
+      "sha256": "39bd4e4871767c274c21c930deded83d0bcded5e461f40302ae39016dc13c7dd",
+      "bytes": 4436
+    },
+    {
+      "path": "frontend/src/stores/live.ts",
+      "sha256": "f7dc249800891daee6c5f045bd13913bcba319afca80c49724838c35c7bbdf74",
+      "bytes": 725
+    },
+    {
+      "path": "frontend/src/stores/manual.ts",
+      "sha256": "be111eecb53c17d68c1cd5b84fad342b655e864c7ee93f52421af5b7e250ba86",
+      "bytes": 1420
+    },
+    {
+      "path": "frontend/src/stores/network.ts",
+      "sha256": "a4ed1151f3a8a86f629152bca6f8978d54b858960f5385e018dbf26739ebf3eb",
+      "bytes": 13716
+    },
+    {
+      "path": "frontend/src/stores/overlays.ts",
+      "sha256": "c2be2665d4bcc78d80602e69a3616404c517099c16c60b97f3a0e47e66c5a8cb",
+      "bytes": 2490
+    },
+    {
+      "path": "frontend/src/stores/perDrone.ts",
+      "sha256": "5f7d94f051a0d12b0f709d73d4fb7672026d5007b809f52243c9c09b37f238f2",
+      "bytes": 824
+    },
+    {
+      "path": "frontend/src/stores/routeOverlays.ts",
+      "sha256": "38404033b254be0c602fa65c19066d2dab36bb24bc2a13679883dc0c6cba79b4",
+      "bytes": 2732
+    },
+    {
+      "path": "frontend/src/stores/routes.ts",
+      "sha256": "5fdc868b510d653a6c78460fee7c362321a593104319ff06b213e263d2da6f3b",
+      "bytes": 1072
+    },
+    {
+      "path": "frontend/src/stores/safety.ts",
+      "sha256": "4deeb3fec6beb71283e7a7314174993a2658434f47e23a6e1e7b40a6e7248a07",
+      "bytes": 1168
+    },
+    {
+      "path": "frontend/src/stores/system.ts",
+      "sha256": "7c40a46985bf941e72177b233df6334f05eacffcb225defaf7a4c3724406dbf4",
+      "bytes": 1571
+    },
+    {
+      "path": "frontend/src/stores/targets.ts",
+      "sha256": "25261843283c4d0549a0211819afc1b667ec3db5ecaea8a810c3ea043707b259",
+      "bytes": 7851
+    },
+    {
+      "path": "frontend/src/stores/tasks.ts",
+      "sha256": "3e469e40beabf0d26a3da90e7edbbd3969a40ca93a5bcd486f513ee8d52074f7",
+      "bytes": 12075
+    },
+    {
+      "path": "frontend/src/stores/telemetry.ts",
+      "sha256": "4eb5d4e5e1d64e1edceb9f8462b8a99e0437282e5ed3822b9647540821a3fd21",
+      "bytes": 4573
+    },
+    {
+      "path": "frontend/src/stores/toast.ts",
+      "sha256": "e3ba6e73b6c9a0d690a8905b855167eefc5e6ab3bd77fcf33e3298a9219f38bb",
+      "bytes": 854
+    },
+    {
+      "path": "frontend/src/studio.ts",
+      "sha256": "bc48f954a5616403c28e561041bcd864be897109d79e4af00c50124713bec3c4",
+      "bytes": 71
+    },
+    {
+      "path": "frontend/src/styles/base.css",
+      "sha256": "cd00fd5f9a60899750e93815c311973a24a0c0ba470944520ff2f58ed38bb7a8",
+      "bytes": 4704
+    },
+    {
+      "path": "frontend/src/styles/tokens.css",
+      "sha256": "465b4cc5eb0ac6a0148990942c0826813d1bc1a9e0d176f54ad1e5855bbd3eb6",
+      "bytes": 1660
+    },
+    {
+      "path": "frontend/src/utils/bgTicker.ts",
+      "sha256": "eb60d9fdcc383353640acb9407a57d7be244a03e828236240b4fad3ca301d136",
+      "bytes": 1398
+    },
+    {
+      "path": "frontend/src/utils/coord.ts",
+      "sha256": "93de8fadf325e5ed3e290b15620830394702a55a42ce428e9ae776fbca59c281",
+      "bytes": 2950
+    },
+    {
+      "path": "frontend/src/utils/format.ts",
+      "sha256": "18052baacfd88a8b68c43ba4c3efd47cc1d7203dbebd163978af5d5b0911cb59",
+      "bytes": 2686
+    },
+    {
+      "path": "frontend/src/utils/geo.ts",
+      "sha256": "d7ab72357b41b29d6c5c5fdc26e3b318d240fa5bfd908054c7ccf174b0f25e01",
+      "bytes": 1112
+    },
+    {
+      "path": "frontend/src/utils/jointReplay.ts",
+      "sha256": "94ff398d247d3676c4e97a44e89b930d7e56ccb297eea9752827a0016c009a6e",
+      "bytes": 12807
+    },
+    {
+      "path": "frontend/src/utils/records.ts",
+      "sha256": "c9d88db581cff6f3f95b322737ebb78c67858e03236184bcdb6f0cbd610b1fa4",
+      "bytes": 1076
+    },
+    {
+      "path": "frontend/src/utils/replay.ts",
+      "sha256": "f4b961431b37df54d1137543e5524599de3f956eaf3c26843bf1d25a2187f589",
+      "bytes": 12683
+    },
+    {
+      "path": "frontend/src/utils/videoCoords.ts",
+      "sha256": "f2358f7b01c7eeebf7bbe991d1c69aa77f31da2a3b75d0b4b9d1f296aa9dbf1b",
+      "bytes": 2174
+    },
+    {
+      "path": "frontend/src/views/HistoryView.vue",
+      "sha256": "2e8003b365352ecb293645bb31dd9286dfab62be411f12cb3f63692a6c225613",
+      "bytes": 26941
+    },
+    {
+      "path": "frontend/src/views/JointReplayView.vue",
+      "sha256": "d93ccf12cd9d9fe81e0cb4319e5eab19095be4399961f8e09bdc877873f3299f",
+      "bytes": 22072
+    },
+    {
+      "path": "frontend/src/views/MonitorView.vue",
+      "sha256": "7ff8710045ac0b36c492185a0a4f20d28bc01c75684bb79f4f7470b3bf4bc2cb",
+      "bytes": 33106
+    },
+    {
+      "path": "frontend/src/views/NetworkView.vue",
+      "sha256": "a49b69711570fd039c4de984af46fbfafe49263649526f761bd6bb69488a6732",
+      "bytes": 38856
+    },
+    {
+      "path": "frontend/src/views/PlanView.vue",
+      "sha256": "8010a4f5d9c2f789d0c7ae147aca7e7796689523df7bfb7f82971163ea776b88",
+      "bytes": 9654
+    },
+    {
+      "path": "frontend/src/views/ReplayView.vue",
+      "sha256": "a7298caed5d59e773335e2cbd9242008d0b6e33fc09c7af941e38c6fbab2af63",
+      "bytes": 24144
+    },
+    {
+      "path": "frontend/src/views/SettingsView.vue",
+      "sha256": "d661a800b85e4f01c62453aa37ff94e6e086e515065cbd9105cfe366596b92da",
+      "bytes": 15397
+    },
+    {
+      "path": "frontend/src/views/WatchView.vue",
+      "sha256": "3aa6d67d2dd42669a8d3802e1e2ac0b042388eee36aac36c5a0d129111e35d0f",
+      "bytes": 23669
+    },
+    {
+      "path": "frontend/src/views/demo/DemoCommLog.vue",
+      "sha256": "67f83a95d7dafde67baac57a7c0a543682783c6c5969a4192cb7873f3d716aaa",
+      "bytes": 4197
+    },
+    {
+      "path": "frontend/src/views/demo/DemoConsoleView.vue",
+      "sha256": "04e941522566967bc50e62446f64bdd5ec92ed08be96dc2ccfc28a382a6bb297",
+      "bytes": 31741
+    },
+    {
+      "path": "frontend/src/views/demo/DemoMap.vue",
+      "sha256": "ec876489dc60def336229c4f5b1240587f1f329c62fceb34f7c87ad6e751a891",
+      "bytes": 4264
+    },
+    {
+      "path": "frontend/src/views/demo/DemoMapLayers.vue",
+      "sha256": "b2e931795f7e19b14e8f82e0851685193bde45569fe612b4c2c2e98fd7b33b5b",
+      "bytes": 17341
+    },
+    {
+      "path": "frontend/src/views/demo/DemoSemanticMap.vue",
+      "sha256": "1ab475c25781d2837cae773345109c0e2569ca4c11885deaa52dba767d3934e5",
+      "bytes": 4118
+    },
+    {
+      "path": "frontend/src/views/demo/DemoShowView.vue",
+      "sha256": "a650e3bdf7a42e5756f9659c80c8702181baec63a4b38773ade780791867a91e",
+      "bytes": 13318
+    },
+    {
+      "path": "frontend/src/views/demo/DemoStageBar.vue",
+      "sha256": "690d1802321443e63d429491651d5932a9fd1c1b7a8c83cbfae80e8048a57a69",
+      "bytes": 2606
+    },
+    {
+      "path": "frontend/src/views/demo/DemoVideo.vue",
+      "sha256": "ffe0bcce6bcacb1e1d3c2fcd6505a557983375a75b5cbd0e9e6cc4b50dba0739",
+      "bytes": 15304
+    },
+    {
+      "path": "frontend/src/views/demo/demoApi.ts",
+      "sha256": "4b8b806d72337c6a57ed44a645abf40459abbdc9fa51ae08d3a8cd897ba41695",
+      "bytes": 9708
+    },
+    {
+      "path": "frontend/src/views/demo/demoDefaults.ts",
+      "sha256": "1e4ea235dfdc5732a462efde24107a359b1b10da70a79f3d52e61132e2a928a5",
+      "bytes": 203
+    },
+    {
+      "path": "frontend/src/views/demo/demoGeo.ts",
+      "sha256": "0d1471085631781095eb351bd6bcfa9e8a5ac6de1cc5d9691d63cc821771e289",
+      "bytes": 2939
+    },
+    {
+      "path": "frontend/src/views/demo/useDemoStore.ts",
+      "sha256": "85914499e89680d9c09ca29047a6d9933c8bc9c2a609095dc832a368f42021d2",
+      "bytes": 6299
+    },
+    {
+      "path": "frontend/src/views/dog/ManualView.vue",
+      "sha256": "6114a2b3410630470be5ce597a421921913709477694db5d56e4fc7523c25f64",
+      "bytes": 550
+    },
+    {
+      "path": "frontend/src/views/dogv2/DogV2View.vue",
+      "sha256": "f3c02bfc9e7dd6ef099de325cd90355219bb32d0afa411774d86fde6040b7a96",
+      "bytes": 23606
+    },
+    {
+      "path": "frontend/src/views/watch/GroupThumb.vue",
+      "sha256": "8131602a873f133194eccf2467b379c102f09c6738f30149ff622ae13d3b7ee5",
+      "bytes": 2043
+    },
+    {
+      "path": "frontend/src/views/watch/WatchCards.vue",
+      "sha256": "635822f7b4fc75caa911912e5cdd3eecdc114a8a8adbb638fa9df615fa4b7f2e",
+      "bytes": 20447
+    },
+    {
+      "path": "frontend/src/views/watch/WatchDogVideo.vue",
+      "sha256": "80b38692bc43ee92bd8f863107eb151fd626b17b7f8873be7c4844c0813011e5",
+      "bytes": 7031
+    },
+    {
+      "path": "frontend/src/views/watch/WatchMap.vue",
+      "sha256": "fe13622e0ce9e43cd4c4bc0f463709f8e3c5f126e84dbcad038ccb7313300915",
+      "bytes": 13033
+    },
+    {
+      "path": "frontend/src/views/watch/WatchTimeline.vue",
+      "sha256": "2ee0579778185f2656395e6845f43b3a81a925ef14fc5ba72a740b5be24d6a9f",
+      "bytes": 10465
+    },
+    {
+      "path": "frontend/src/views/watch/WatchVideo.vue",
+      "sha256": "5362cafc9ed552f56dec6659b714bdc377af918a98830ac00172cbb98e81a41d",
+      "bytes": 13652
+    },
+    {
+      "path": "frontend/src/views/watch/clock.ts",
+      "sha256": "b5d4ebfa31b8384cae4e321aeb127e8525c664abe34c1e9be033ff7ca36896f4",
+      "bytes": 1540
+    },
+    {
+      "path": "frontend/src/views/watch/engine.ts",
+      "sha256": "fbaf0915c302fb5b411aba2fec79f8f838e7a155cb1d2381c17493bb9102939b",
+      "bytes": 29849
+    },
+    {
+      "path": "frontend/src/views/watch/mapScene.ts",
+      "sha256": "492c9ea9d7645a0d0100cd1f1f41ce92cd73f28077b23f179ee12ce8645953a2",
+      "bytes": 39289
+    },
+    {
+      "path": "frontend/src/views/watch/model.ts",
+      "sha256": "e19c4d29403d6beb80c62410861094ddb6aa5e3c546974b95c79143f383ecaff",
+      "bytes": 29776
+    },
+    {
+      "path": "frontend/src/views/watch/timeline.ts",
+      "sha256": "5f8c0b56e8ec7ebd0a2c429775b5f596cf9cffa8d19852f3deec7182c6417fdf",
+      "bytes": 20518
+    },
+    {
+      "path": "frontend/studio.html",
+      "sha256": "ee1a593d0d59ee8009526a906f3fd995f39a6c2c41d7fd4b72d9d8e69f9b7f07",
+      "bytes": 468
+    },
+    {
+      "path": "frontend/tsconfig.app.json",
+      "sha256": "75d8a9e8a7b917cedfcbfc8a2525177784c9786cee1eefde26fb92285808c337",
+      "bytes": 612
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "sha256": "9f87e62f78524a00698d5ca3df2859104c8fb2e0b6166c3ded6f395fe35e1e3a",
+      "bytes": 205
+    },
+    {
+      "path": "frontend/tsconfig.node.json",
+      "sha256": "289223a1d6d579fc6691cc405f3c841085d54bc6212a885d86204491914a04da",
+      "bytes": 1032
+    },
+    {
+      "path": "frontend/tsconfig.vitest.json",
+      "sha256": "f7e285714cdd8199ef60b61ae7ed8d3c7f0ca14a6db1dad53441e1534cfadeff",
+      "bytes": 686
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "sha256": "0b2e9aa13566112e0df5028db4741139d24c9548e34eb7d78a46d57a606a9517",
+      "bytes": 2411
+    },
+    {
+      "path": "frontend/vitest.config.ts",
+      "sha256": "3c9aba47df8a642783733f0103e9d96f43ec2080a514e3261c1ba9d61791ed83",
+      "bytes": 451
+    },
+    {
+      "path": "scripts/network-studio/browser_check.py",
+      "sha256": "f417d241a31e26f0e02fa822009f1460d9fff107e3af13965503ef8fd0a54123",
+      "bytes": 23668
+    },
+    {
+      "path": "scripts/network-studio/dev.mjs",
+      "sha256": "783d7f68458257b88501a9a586bcfb029b4b5e40567559a265948702f0582545",
+      "bytes": 2223
+    },
+    {
+      "path": "scripts/network-studio/gateway-relay.mjs",
+      "sha256": "751f0149e839b18b8e4a46a112e5b1a2beaa3751d535c843fbbb2c8fa8380dc8",
+      "bytes": 3320
+    },
+    {
+      "path": "scripts/network-studio/gateway-relay.test.mjs",
+      "sha256": "f01f299fc261a04e19cfea1f39a5716dfab45d6d2077ded252dcfaa13aac44c5",
+      "bytes": 5904
+    },
+    {
+      "path": "scripts/network-studio/live_browser_check.py",
+      "sha256": "94fa20622d63d68f0e7ccc0240e862baa974bf99146fbffc7b3236706416abf3",
+      "bytes": 5713
+    },
+    {
+      "path": "scripts/network-studio/live_check.py",
+      "sha256": "9560720b4f8d79ed6433a23f6eb0577515e2e87aa8ae23b51d0a64bae3943db1",
+      "bytes": 8967
+    },
+    {
+      "path": "scripts/network-studio/mock.mjs",
+      "sha256": "43ed6b28d5316662304b3bf9dd0913f6252c9c44404c4d03260dd43a7a873cfc",
+      "bytes": 10308
+    },
+    {
+      "path": "scripts/network-studio/mock.test.mjs",
+      "sha256": "9d032682822febb0b87e8df31a80789bb566513abba185fa4a544a44c62f17ee",
+      "bytes": 5628
+    }
+  ]
+}
