@@ -1,8 +1,9 @@
 # EoRa 现场交付包
 
-**打包分支 `codex/production-deployment`。**
-基线分支的前端、后端、做卡与机群工具已并入本分支（**推新版**），
-只把运行方式适配到原来的打包形态（`runtime\python` + `app\start\launcher.py`）。
+**打包分支 `codex/production-deployment`，发布标识 `v0.2.0-20261123`。**
+
+开发分支（`codex/baseline-reproduction-20261023`）的前端、后端、做卡与机群工具已并入本分支，
+运行方式仍适配原来的打包形态（`runtime\python` + `app\start\launcher.py`）。
 
 ---
 
@@ -10,28 +11,43 @@
 
 | 我要做什么 | 双击 | 说明 |
 |---|---|---|
-| **看实时拓扑 / 收数据** | `START_STUDIO.cmd` | 打包版前端（`runtime\python` + `app\start\launcher.py`） |
+| **看实时拓扑 / 收数据** | `START_STUDIO.cmd` | 打包启动器（`runtime\python` + `app\start\launcher.py`） |
 | **给新卡写入身份** | `SETUP_SITE.cmd` → `MK_CARDS.cmd` | 先配置一次，再批量做卡 |
 | **跨网络刷固件** | `SITE_STATUS.cmd` → `FLASH_REMOTE.cmd` | 走 Tailscale，可跨网络 |
-| **本机 USB 直连刷写** | `FLASH_NODES.cmd` | 串口直连，原来的刷写台 |
+| **本机 USB 直连刷写** | `FLASH_NODES.cmd` | 串口直连，交付包自带的刷写台 |
 | **部署一台新网关** | `SETUP_GATEWAY.cmd` | 网关安装向导 |
 
-> **两个刷写入口不要混用**：
-> `FLASH_NODES.cmd` = 本机 USB 直连；`FLASH_REMOTE.cmd` = 跨网络机群。
-> `SITE_FLASH.cmd` 是 `FLASH_REMOTE.cmd` 的引导菜单版（选组/选设备），实现是同一个。
+> **两个刷写入口不要混用**：`FLASH_NODES.cmd` = 本机 USB；`FLASH_REMOTE.cmd` = 跨网络机群。
+> `SITE_FLASH.cmd` 是 `FLASH_REMOTE.cmd` 的菜单版（选组/选设备），实现是同一个。
+
+**不确定某个脚本会走哪条路？加 `--which` 只查询不执行：**
+
+```powershell
+START_STUDIO.cmd --which
+FLASH_NODES.cmd  --which
+FLASH_REMOTE.cmd --which
+```
 
 ---
 
 ## 二、看数据
 
 1. 给设备和接收源通电，按实际接线连到电脑，双击 `START_STUDIO.cmd`。
-2. 在 LoRa 页面"接收来源"选择自动或手动。页面分别显示手动优先来源和当前实际来源；
+2. 在 LoRa 页面“接收来源”选择自动或手动。页面分别显示手动优先来源和当前实际来源；
    优先来源中断时会回退，恢复后重新优先。
-3. 显示"超时未见"或"观测中断"时，先查电源与连接，系统会继续尝试恢复。
+3. 显示“超时未见”或“观测中断”时，先查电源与连接，系统会继续尝试恢复。
 
-**接收器已内置**：当 `config/fleet.default.json` 的 `gateway.mode` 为
-`legacy_local` 时，`START_STUDIO.cmd` 会自己拉起 UDP 1680 -> HTTP 8780 的接收器，
-不需要额外脚本。旧网关只往 `192.168.137.10:1680` 发 UDP 的场景走的就是这条路径。
+**接收器已内置**：当 `config/fleet.default.json` 的 `gateway.mode` 为 `legacy_local` 时，
+`START_STUDIO.cmd` 会自己拉起 UDP 1680 → HTTP 8780 的接收器，不需要额外脚本。
+
+两种网关模式：
+
+| mode | 含义 | 适用 |
+|---|---|---|
+| `remote` | 网关**自身**提供 HTTP 拓扑接口（8780） | RHF2S008 一类带 Web 服务的网关 |
+| `legacy_local` | 网关只发 UDP，由本机接收器解析 | E870-L 一类纯透传网关 |
+
+`candidate_hosts` 是**有序列表**：同一个候选连续失败 3 次后自动切到下一个，成功即固定。
 
 ---
 
@@ -54,6 +70,9 @@ required keys present (auth=psk, tailscale=on)
 fleet public key valid
 ```
 
+> 想做**生产卡**就要用现场自己的 `site.env`（他们的 WiFi + 他们生成的一次性 key）。
+> 从仓库 `.local` 的开发配置做卡会被工具直接拒绝，防止开发者账号外泄。
+
 ### 2. 批量做卡
 
 双击 `MK_CARDS.cmd`，输入起始编号与数量（默认 6 / 15），然后**一张一张插卡**：
@@ -66,17 +85,20 @@ fleet public key valid
 
 单张：`MK_CARDS.cmd 6 1`
 
-**编号规则**：1–255，不能重号。调试卡与生产卡要事先分号段。
+**编号规则**：1–255，不能重号。调试卡（1–5）与生产卡要事先分号段。
+已经做过的卡会被 `--batch` 跳过并提示，不会误改编号。
 
 ### 3. 首启检查
 
 卡插到树莓派上电，2–5 分钟后拔回来看 `/boot/firmware/eora-status.txt`：
 
 ```
-6/6 DONE host=eora-air-06 overlay=100.x.x.x ip=192.168.x.x
+6/6 DONE host=eora-air-06 overlay=100.x.x.x ip=183.173.x.x
 ```
 
 失败会写 `FAILED: <哪一步>`。
+
+> 新卡首启要装依赖与 Tailscale，网络会抖动几分钟。**等 `6/6 DONE` 再远程操作。**
 
 ---
 
@@ -84,12 +106,16 @@ fleet public key valid
 
 ```powershell
 SITE_STATUS.cmd          # 先看有哪几台在线；第一行应为 transport: tailnet
-SITE_FLASH.cmd           # 选 1=本地组 2=远程组 3=全部 4=单台
+FLASH_REMOTE.cmd --list  # 看会用哪个镜像
+FLASH_REMOTE.cmd         # 刷全部；或 --group 2 / --only eora-air-06
+SITE_FLASH.cmd           # 菜单版：1=本地组 2=远程组 3=全部 4=单台
 ```
 
 刷完再跑一次 `SITE_STATUS.cmd`，确认 build 列一致。
 
-**原 `FLASH_NODES.cmd` 未改动**，仍然只做本机串口刷写。
+- 镜像默认取 `firmware/mid_edge.bin`（交付包不带构建记录）。
+- 每台必须出现 `VERIFIED` 才算成功。
+- **`FLASH_NODES.cmd` 只做本机 USB 串口刷写**，与远程刷板无关。
 
 ---
 
@@ -99,10 +125,15 @@ SITE_FLASH.cmd           # 选 1=本地组 2=远程组 3=全部 4=单台
 SITE_GROUP.cmd           # 组号 + WiFi 信道
 ```
 
-- 本地组 = group 1 / 信道 1
-- 远程组 = group 2 / 信道 6
+| 组 | group | 建议信道 |
+|---|---|---|
+| 本地（现有 5 块） | 1 | 11（实测在用） |
+| 远程（15 块） | 2 | 6（与本地错开） |
 
 ESP-NOW 只有同组才互相可见；LoRa 上行不受分组影响（帧头带 `wifi_group` 标签）。
+
+> 改 group 会切换整张网格的配置：**必须整组一次改完**，分批改会出现两半互不可见。
+> 命令返回里的 `group_reported` 才是实际值，只看 `ok` 不够。
 
 ---
 
@@ -115,9 +146,9 @@ app/
   services/
     assets/mobile_gateway/   前端资源（新版）
     tools/mobile_gateway/    前端后端（新版）
-    tools/flight_link/       LoRa 网关服务
-    tools/fleet/             机群：刷板、分组、做卡包生成      ← 新增
-    tools/gateway_probe/     做卡、Pi 侧 helper                 ← 新增
+    tools/flight_link/       LoRa 网关服务 + ARM 端的 3.4 解码器副本
+    tools/fleet/             机群：刷板、分组、做卡包生成
+    tools/gateway_probe/     做卡、Pi 侧 helper
   start/launcher.py  打包版启动器（发布清单校验 + 硬件探测）
 firmware/            mid_edge.bin + manifest.json + 分区表
 runtime/             随包 Windows Python 与网关运行时
@@ -125,7 +156,7 @@ config/              fleet.default.json（现场默认配置）+ 两个示例
 docs/                9 份现场文档
 tools/
   mid_baseline/gateway_probe/   接收器（topology_server + start_frontend）
-  release/                      发布清单刷新与校验
+  release/                      发布清单刷新/校验、解码器一致性检查、迁移脚本
 fleet.pub            管理公钥（做卡时写进每张卡；私钥不在仓库）
 ```
 
@@ -133,8 +164,7 @@ fleet.pub            管理公钥（做卡时写进每张卡；私钥不在仓�
 
 | 不在 | 原因 |
 |---|---|
-| `simulation/` | 本地仿真，现场不跑 |
-| `tests/` | 开发测试 |
+| `simulation/`、`tests/` | 本地仿真与开发测试，现场不跑 |
 | `BUILD-*/` 构建记录 | 交付用 `firmware/mid_edge.bin` |
 | `firmware/flight_link/`、`tools/flight_link/` 源码 | 打包位置已有 `app/services/tools/flight_link/` |
 | 开发侧 fleet / probe 副本 | 只用 `app/services/tools/` 那一份 |
@@ -142,23 +172,36 @@ fleet.pub            管理公钥（做卡时写进每张卡；私钥不在仓�
 
 ---
 
-## 七、改完代码后必须做的一件事
+## 七、改完代码后必做的三件事
+
+### 1. 重算发布清单（改了 `app/services` 下任何文件）
 
 `app/start/launcher.py` 用 `firmware/manifest.json` 冻结 `app/services` 下每个
 `.py / .js / .css / .html / .json` 的 SHA256。**哈希不符或有未登记文件就拒绝启动。**
 
 ```powershell
-python tools\release\refresh_release_manifest.py   # 改完 app/services 后重算
-python tools\release\verify_release.py              # 等价校验启动器的检查
+python tools\release\refresh_release_manifest.py
+python tools\release\verify_release.py
 ```
 
-不启动硬件也能验证整包：
+### 2. 不启动硬件也能验证整包
 
 ```powershell
 runtime\python\python.exe -X utf8 app\start\launcher.py --dry-run
 ```
 
 期望输出 `"release_ready": true`。
+
+### 3. ARM 端解码器副本一致性
+
+`app/services/tools/flight_link/compat_decoder.py` 是 ARM 网关（Python 3.4）用的手工副本，
+与 `app/services/firmware/.../lora_ref/decoder.py` 是两份实现：
+
+```powershell
+python tools\release\check_decoder_parity.py --deploy .
+```
+
+必须 `7/7 一致`。它已经抓到过一次真实漂移（旧帧的 `node_number` 一个返回 `None`、一个返回 `0`）。
 
 ---
 
@@ -167,13 +210,13 @@ runtime\python\python.exe -X utf8 app\start\launcher.py --dry-run
 | 双击 | 等价命令 |
 |---|---|
 | `SETUP_SITE.cmd` | `runtime\python\python.exe app\services\tools\fleet\write_site_env.py site.env` |
-| `MK_CARDS.cmd` | `runtime\python\python.exe app\services\tools\gateway_probe\mkcard.py --batch --from 6 --count 15` |
+| `MK_CARDS.cmd` | `... app\services\tools\gateway_probe\mkcard.py --batch --from 6 --count 15` |
 | `SITE_STATUS.cmd` | `... app\services\tools\fleet\fleet.py status` |
 | `FLASH_REMOTE.cmd` | `... app\services\tools\fleet\flash_nodes.py` |
 | `SITE_GROUP.cmd 2 6` | `... app\services\tools\fleet\fleet.py group --group 2 --channel 6` |
 
-密码从 `site.env` 自动读取，**不需要手工设置环境变量**。
-镜像默认取 `firmware/mid_edge.bin`。
+密码从 `site.env` 自动读取，**不需要手工设置环境变量**；
+没有私钥的机器会自动改走密码通道（Windows OpenSSH 的 `SSH_ASKPASS`，不需要额外工具）。
 
 ---
 
@@ -183,7 +226,7 @@ runtime\python\python.exe -X utf8 app\start\launcher.py --dry-run
 |---|---|
 | [docs/SITE_OPERATOR_RUNBOOK.md](docs/SITE_OPERATOR_RUNBOOK.md) | 现场同事的双击式操作单 |
 | [docs/OPERATOR_HANDBOOK.md](docs/OPERATOR_HANDBOOK.md) | 两人分工、配置字段、命令速查、故障表 |
-| [docs/DEPLOY_LAYOUT.md](docs/DEPLOY_LAYOUT.md) | 本仓库路径与开发仓库的对照 |
+| [docs/DEPLOY_LAYOUT.md](docs/DEPLOY_LAYOUT.md) | 路径对照、改代码流程、密码策略、启动脚本说明 |
 | [docs/CARD_CONTENTS.md](docs/CARD_CONTENTS.md) | 卡上写了什么（逐项） |
 | [docs/CARD_PROVISIONING_MODES.md](docs/CARD_PROVISIONING_MODES.md) | WiFi 两种认证、Tailscale 三种模式 |
 | [docs/DEV_PROD_SPLIT.md](docs/DEV_PROD_SPLIT.md) | 开发/生产解耦与生产包内容 |
@@ -193,67 +236,38 @@ runtime\python\python.exe -X utf8 app\start\launcher.py --dry-run
 
 ---
 
-## 九、与开发分支的关系
+## 十、与开发分支的关系
 
-本分支由 `codex/baseline-reproduction-20261023` **合并**（merge commit）而来。
-合并策略是：**现场要用的能力并进来，交付形态一个字节都不动。**
+本分支由 `codex/baseline-reproduction-20261023` **合并**而来，之后所有代码改动都走
+**「改 baseline → 迁移到 deploy」** 一条路，不再直接改本仓库源码。
 
-### 9.1 并进来的（推新版）
+### 10.1 迁移方式
 
-| 内容 | 位置 | 说明 |
-|---|---|---|
-| **前端** | `app/services/assets/mobile_gateway/`（8 个） | 取 baseline 最新版，与 baseline **字节一致** |
-| **前端后端** | `app/services/tools/mobile_gateway/`（9 个） | 取 baseline 最新版，补回 `replay.py` |
-| 做卡与机群工具 | `app/services/tools/fleet/`、`gateway_probe/`（12 个） | 新增 |
-| 一键脚本 | `SETUP_SITE.cmd`、`MK_CARDS.cmd`、`SITE_*.cmd`、`FLASH_REMOTE.cmd` | 新增 |
-| 接收器 | `tools/mid_baseline/gateway_probe/topology_server.py` | 打包版原本缺失 |
-| 文档 | `docs/` | 新增 |
-| 维护脚本 | `tools/release/`（刷新与校验发布清单） | 新增 |
-| 开发树 | `tools/`、`simulation/`、`tests/`、固件源码 `firmware/` | 合并带入，运行不依赖 |
-
-### 9.2 为适配打包形态所做的改动（仅两处）
-
-新代码假设自己在开发树里，打包后路径不同，因此改了两处**路径解析**，逻辑不变：
-
-| 文件 | 改动 |
-|---|---|
-| `app/services/tools/mobile_gateway/studio.py` | 前端资源目录：先试 `research/...`，不存在则用 `ROOT/assets/mobile_gateway` |
-| 同上 | fleet 配置：依次试 `app/services/data`、`app/services/config`、**仓库根 `config/`** |
-
-### 9.3 发布清单必须同步（关键）
-
-`app/start/launcher.py` 用 `firmware/manifest.json` 里的 `service_files_sha256`
-冻结 `app/services` 下每一个 `.py/.js/.css/.html/.json`；**哈希不符或有未登记文件就拒绝启动**。
-
-本次替换 13 个、新增 12 个文件后，清单已重算为 36 条，并做了等价校验：
-
-```
-python tools\release\verify_release.py
-   PASS: release manifest matches the tree
+```powershell
+# 在开发仓库里
+python tools\release\sync_to_deploy.py --deploy <deploy 路径> --check   # 先看差哪些
+python tools\release\sync_to_deploy.py --deploy <deploy 路径>           # 同步
 ```
 
-**以后凡是改 `app/services` 下的文件，都必须再跑一次：**
+对应关系（39 个文件）写死在 `sync_to_deploy.py` 的 `PAIRS` 里。同步后必须重算发布清单。
 
-```
-python tools\release\refresh_release_manifest.py
-python tools\release\verify_release.py
-```
-
-### 9.4 保留原样的
-
-`START_STUDIO.cmd`、`FLASH_NODES.cmd`、`SETUP_GATEWAY.cmd`、`app/start/launcher.py`、
-`app/flash/`、`app/gateway_setup/`、`app/services/firmware/`、`runtime/`、`firmware/`。
-
-这些是"适配原来硬件"的部分：启动器仍用 `runtime\python` 拉起
-`app/services/tools/mobile_gateway/studio.py`（现在指向的是新版代码与新版前端）。
-
-### 9.5 有意没并的
+### 10.2 允许本仓库单独存在的东西
 
 | 内容 | 原因 |
 |---|---|
-| `coordination/` | 开发过程记录，不属于交付 |
-| `CHANGELOG.md`、`START_HERE.md`、`docs/IMPLEMENTATION_STATUS.md`、`docs/PROJECT_STATUS.md` | 同上 |
-| `firmware/mid_baseline/field_agent/` 开发树 | 打包位置已有 `app/services/firmware/mid_baseline/`，避免两份源码 |
+| `app/start/launcher.py`、`app/flash/`、`app/gateway_setup/` | 打包/硬件适配层，开发仓库没有 |
+| `app/services/tools/flight_link/compat_decoder.py` | ARM 运行时（Python 3.4）副本 |
+| `firmware/manifest.json` | 由脚本生成，不手改 |
+| `config/fleet.default.json` | 现场默认配置（节点表、网关、分组） |
+| 根目录 `*.cmd` | 交付入口（内容与开发仓库**完全相同**，靠运行时自检分流） |
+| `docs/` 子集、`README.md` | 交付文档 |
+
+### 10.3 验证两边一致
+
+```powershell
+python tools\release\sync_to_deploy.py --deploy <deploy 路径> --check
+# 输出“两边一致。”才算迁移完成
+```
 
 ---
 
