@@ -38,9 +38,14 @@ ENV_FILE = ROOT / ".local" / "mid" / "pi" / "device.env"
 # tool, because the person making cards never needs the matching PRIVATE key: only the
 # developer who later updates the fleet over SSH needs that.
 def _default_public_key():
+    """Find the management public key: next to the tool, up the tree, then ~/.ssh.
+
+    The key sits at the package root in a delivery kit, while this file lives several
+    levels down (app/services/tools/gateway_probe), so walk up instead of assuming a depth.
+    """
     here = Path(__file__).resolve().parent
-    for candidate in (here / "fleet.pub", here.parent / "fleet.pub",
-                      Path.home() / ".ssh" / "id_ed25519_eora.pub"):
+    for depth in range(0, min(6, len(here.parents))):
+        candidate = here.parents[depth] / "fleet.pub"
         if candidate.is_file():
             return candidate
     return Path.home() / ".ssh" / "id_ed25519_eora.pub"

@@ -60,13 +60,16 @@ def tailscale_online():
 
 
 def newest_image():
+    """Newest build record, else the single image the delivery package ships."""
+    packaged = ROOT / "firmware" / "mid_edge.bin"
     candidates = sorted(
         glob.glob(str(ROOT / "BUILD-*" / "images" / "mid_edge.bin")),
-        key=lambda p: os.path.getmtime(p),
-        reverse=True,
-    )
-    return candidates[0] if candidates else None
-
+        key=os.path.getmtime, reverse=True)
+    if candidates:
+        return candidates[0]
+    if packaged.is_file():
+        return str(packaged)
+    return None
 
 def read_password():
     env = os.environ.get("EORA_PASS")
@@ -97,7 +100,7 @@ def read_password():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("image", nargs="?", help="firmware .bin (default: newest BUILD-*)")
+    parser.add_argument("image", nargs="?", help="firmware .bin (default: newest BUILD-*, else firmware/mid_edge.bin)")
     parser.add_argument("--list", action="store_true", help="show available images and exit")
     parser.add_argument("--only", action="append", default=[], help="flash only this device")
     parser.add_argument("--group", type=int, help="flash only devices in this mesh group")
@@ -125,7 +128,7 @@ def main():
     say("== 2/4 image")
     image = args.image or newest_image()
     if not image or not os.path.isfile(image):
-        say("   FAILED: no image found (looked for BUILD-*/images/mid_edge.bin)")
+        say("   FAILED: no image found (looked for BUILD-*/images/mid_edge.bin or firmware/mid_edge.bin)")
         return 2
     say("   %s (%d bytes)" % (image, os.path.getsize(image)))
 
