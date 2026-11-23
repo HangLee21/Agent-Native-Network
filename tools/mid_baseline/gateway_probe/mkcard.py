@@ -58,6 +58,9 @@ def say(msg=""):
     print(msg, flush=True)
 
 
+_LAST_ENV_FILE = None
+
+
 def load_env(path=None):
     """Read the operator settings.
 
@@ -66,7 +69,14 @@ def load_env(path=None):
     overrides the path and nothing site-specific has to live in the repository.
     """
     data = {}
-    source = Path(path) if path else ENV_FILE
+    if path:
+        source = Path(path)
+    else:
+        # Operators keep one file and reuse it for every card. Look for site.env next to the
+        # tool and at the kit root before falling back to the developer's .local file.
+        here = Path(__file__).resolve().parent
+        candidates = [here / "site.env", here.parent / "site.env"]
+        source = next((c for c in candidates if c.is_file()), ENV_FILE)
     if source.is_file():
         # utf-8-sig: PowerShell and Notepad write a BOM, which would otherwise become part
         # of the first key and look like a missing setting.
@@ -76,6 +86,8 @@ def load_env(path=None):
                 continue
             key, value = line.split("=", 1)
             data[key.strip()] = value.strip()
+    global _LAST_ENV_FILE
+    _LAST_ENV_FILE = source
     return data
 
 
@@ -665,7 +677,7 @@ def main():
     # Never bake THIS checkout's Tailscale key into a card that leaves the lab: that key
     # belongs to a personal tailnet, and a production card carrying it would hand the whole
     # fleet to that account. Production must pass --env with the site's own file.
-    env_path = Path(args.env).resolve() if args.env else ENV_FILE.resolve()
+    env_path = Path(_LAST_ENV_FILE).resolve() if _LAST_ENV_FILE else ENV_FILE.resolve()
     inside_checkout = (ROOT / ".local").resolve() in env_path.parents
     if env.get("TAILSCALE_AUTHKEY") and inside_checkout and not args.i_know_this_is_the_dev_key:
         raise SystemExit(
@@ -682,7 +694,7 @@ def main():
     missing = [k for k in required if not env.get(k)]
     if not env.get("TAILSCALE_AUTHKEY"):
         say("   NOTE: 没有 TAILSCALE_AUTHKEY —— 卡片将不装 Tailscale（走局域网/mDNS）")
-    say("== secrets file: %s" % (args.env or ENV_FILE))
+    say("== secrets file: %s" % (_LAST_ENV_FILE or ENV_FILE))
     if inside_checkout:
         say("   WARNING: 这是仓库内的开发配置，不要用于生产卡")
     if missing:

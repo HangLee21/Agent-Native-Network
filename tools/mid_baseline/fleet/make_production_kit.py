@@ -21,7 +21,10 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 PROBE = ROOT / "tools" / "mid_baseline" / "gateway_probe"
-HELPERS = ("node_reader.py", "node_update.py", "pi_node_probe.py", "node_reader.service")
+HELPERS = ("node_reader.py", "node_update.py", "pi_node_probe.py",
+           "node_reader.service", "set_group.py")
+SIMPLE_CMDS = ("SETUP_SITE.cmd", "MK_CARDS.cmd", "SITE_STATUS.cmd",
+               "SITE_FLASH.cmd", "SITE_GROUP.cmd")
 
 SITE_ENV = """# 现场配置：做卡工具会写进每一张卡，然后从这台机器上删除也不会影响已做好的卡。
 # 复制成 site.env 后填好，再运行 MK_CARD.cmd。
@@ -58,19 +61,15 @@ README = """# 生产做卡工具（只需做卡）
 
 ## 二、做卡
 
-单张：
+按顺序双击三个文件，不需要敲命令：
 
 ```
-MK_CARD.cmd
-  回车 = 自动找卡
-  输入编号（例如 6）
+1) SETUP_SITE.cmd     ← 只需做一次，问几项，生成 site.env
+2) 用 Imager 把基础镜像写到每张卡（用户名 eora，SSH 打开）
+3) MK_CARDS.cmd       ← 问起始编号和张数，然后一张张插卡，自动编号
 ```
 
-批量（自动编号、自动等下一张）：
-
-```
-python mkcard.py --batch --from 6 --count 15 --env site.env
-```
+单张也可以：`MK_CARDS.cmd 6 1`（编号 6，只做一张）。
 
 ## 三、编号规则
 
@@ -126,7 +125,10 @@ def main():
 
     (out / "gateway_probe").mkdir(parents=True, exist_ok=True)
     (out / "fleet").mkdir(parents=True, exist_ok=True)
-    shutil.copy2(ROOT / "MK_CARD.cmd", out / "MK_CARD.cmd")
+    # Layout-agnostic launchers: they find python, the tools and site.env by themselves,
+    # so the operator only ever double-clicks a name.
+    for name in SIMPLE_CMDS:
+        shutil.copy2(ROOT / name, out / name)
     shutil.copy2(PROBE / "mkcard.py", out / "gateway_probe" / "mkcard.py")
     for name in HELPERS:
         shutil.copy2(PROBE / name, out / "gateway_probe" / name)

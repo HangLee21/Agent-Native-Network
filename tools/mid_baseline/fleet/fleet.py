@@ -191,9 +191,55 @@ def pick(args, devices):
     return devices
 
 
+def site_env_path():
+    """Locate the operator's site.env: explicit override, then the kit root."""
+    override = (os.environ.get("EORA_SITE_ENV") or "").strip()
+    here = os.path.dirname(os.path.abspath(__file__))
+    candidates = []
+    if override:
+        candidates.append(override)
+    candidates += [os.path.join(here, "..", "site.env"), os.path.join(ROOT, "site.env")]
+    for path in candidates:
+        if os.path.isfile(path):
+            return os.path.abspath(path)
+    return None
+
+
+def site_setting(key):
+    """One value from site.env; empty when the file or the key is absent."""
+    path = site_env_path()
+    if not path:
+        return ""
+    try:
+        with open(path, encoding="utf-8-sig") as stream:
+            for line in stream:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                name, _, value = line.partition("=")
+                if name.strip() == key:
+                    return value.strip().strip('"').strip("'")
+    except OSError:
+        return ""
+    return ""
+
+
+def ssh_password():
+    """SSH password: environment first, then site.env.
+
+    The operator should not have to remember to export two variables before every command,
+    so the file they already fill in for card making is the single source of truth.
+    """
+    return ((os.environ.get("EORA_SSH_PASSWORD") or "").strip()
+            or site_setting("SSH_PASSWORD"))
+
+
 def sudo_password():
     """The Pi's sudo password: EORA_PASS first, then the cached file."""
     value = (os.environ.get("EORA_PASS") or "").strip()
+    if value:
+        return value
+    value = site_setting("SSH_PASSWORD")
     if value:
         return value
     path = os.path.join(ROOT, ".local", "mid", "pi", "sudo_pass.txt")
@@ -273,11 +319,12 @@ def password_mode():
         return True
     if forced == "key":
         return False
-    return not os.path.isfile(KEY) and bool((os.environ.get("EORA_SSH_PASSWORD") or "").strip())
+    return not os.path.isfile(KEY) and bool(ssh_password())
 
 
 def run_ssh_password(target, command, timeout=60, stdin_text=None):
     env = dict(os.environ)
+    env["EORA_SSH_PASSWORD"] = ssh_password()
     env["SSH_ASKPASS"] = _askpass_path()
     env["SSH_ASKPASS_REQUIRE"] = "force"
     env.setdefault("DISPLAY", ":0")
@@ -511,7 +558,11 @@ def cmd_group(args):
     """
     if not require_tailscale():
         return 2
-    devices = pick(args, [d for d in devices_all() if d[1]])
+    # --group here is the group we are ASSIGNING, so it must not filter the device list.
+    # Only --only selects devices; without it every reachable device is configured.
+    devices = [d for d in devices_all() if d[1]]
+    if getattr(args, "only", None):
+        devices = [d for d in devices if d[0] in args.only]
     if not devices:
         raise SystemExit("no device selected")
     local = os.path.join(HELPER_DIR, "set_group.py")

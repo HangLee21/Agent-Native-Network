@@ -85,6 +85,7 @@ def main():
     parser.add_argument("image", nargs="?", help="firmware .bin (default: newest BUILD-*)")
     parser.add_argument("--list", action="store_true", help="show available images and exit")
     parser.add_argument("--only", action="append", default=[], help="flash only this device")
+    parser.add_argument("--group", type=int, help="flash only devices in this mesh group")
     args = parser.parse_args()
 
     if args.list:
@@ -124,6 +125,8 @@ def main():
     env = dict(os.environ)
     env["EORA_PASS"] = password
     cmd = [sys.executable, "-X", "utf8", str(FLEET), "update", image]
+    if args.group is not None:
+        cmd += ["--group", str(args.group)]
     for name in args.only:
         cmd += ["--only", name]
     proc = subprocess.run(cmd, env=env, text=True)
