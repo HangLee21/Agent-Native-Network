@@ -19,9 +19,21 @@ const MobileLoRaModel=(()=>{
     }
     for(const item of data?.reports||[]){
       const r=item.report;if(!r||r.frame_schema!=='LRN1'||!valid(r.observer_id))continue;
-      const id=clean(r.observer_id),receivedAge=number(item.pc_receive_age_ms),entry={...item,report:r,id,age:receivedAge===null?null:Math.max(0,receivedAge+elapsed)};
+      const id=clean(r.observer_id),receivedAge=number(item.pc_receive_age_ms),raw=item.lora||{};
+      const datarate=typeof (raw.datarate??raw.datr)==='string'?(raw.datarate??raw.datr):null;
+      const parsed=datarate?.match(/^SF(5|6|7|8|9|10|11|12)BW(125|250|500)$/i),cr=raw.coding_rate??raw.codr;
+      const lora={...raw,rssi_dbm:raw.rssi_dbm??raw.rssi??null,snr_db:raw.snr_db??raw.lsnr??null,
+        channel:raw.channel??raw.chan??null,frequency_hz:Number.isFinite(raw.frequency_hz)&&raw.frequency_hz>0?raw.frequency_hz:Number.isFinite(raw.freq)&&raw.freq>0?Math.round(raw.freq*1000000):null,
+        datarate,sf:Number.isInteger(raw.sf)&&raw.sf>=5&&raw.sf<=12?raw.sf:parsed?Number(parsed[1]):null,
+        bandwidth_hz:Number.isFinite(raw.bandwidth_hz)&&raw.bandwidth_hz>0?raw.bandwidth_hz:parsed?Number(parsed[2])*1000:null,
+        coding_rate:typeof cr==='string'&&/^4\/[5-8]$/.test(cr)?cr:Number.isInteger(cr)&&cr>=5&&cr<=8?'4/'+cr:null,rf_chain:raw.rf_chain??raw.rfch??null};
+      const entry={...item,lora,report:r,id,age:receivedAge===null?null:Math.max(0,receivedAge+elapsed)};
       reports.push(entry);member(id,item.label);nodes.get(id).report=entry;
-      for(const row of r.neighbors||[]){
+      for(const original of r.neighbors||[]){
+        const bits=Number.isInteger(original.valid)?original.valid:Number.isInteger(original.valid_flags)?original.valid_flags:null;
+        const present=bit=>bits===null||(bits&bit)!==0;
+        const channel=original.wifi_channel??original.channel??null;
+        const row={...original,state:original.state==='bidirectional'&&!present(1)?'unknown':original.state,ack_age_ms:present(1)?original.ack_age_ms??null:null,rssi_dbm:present(2)?original.rssi_dbm??original.wifi_rssi_dbm??null:null,rf_age_ms:present(4)?original.rf_age_ms??null:null,wifi_channel:present(8)&&Number.isInteger(channel)&&channel>0?channel:null};
         if(!valid(row.peer_id)||clean(row.peer_id)===id)continue;
         const peer=clean(row.peer_id);member(peer,row.label);
         edges.push({from:peer,to:id,state:row.state,age:number(row.seen_age_ms),ageLowerBound:null,ageUpperBound:null,rssi:number(row.rssi_dbm),rssiAge:number(row.rf_age_ms),sampleFreshness:'unknown',sampleStale:false,observerStale:false,hasObservation:true,mutual:false,rf_source:'LoRa回传的 ESP-NOW 采样',raw:row,loraReport:entry});

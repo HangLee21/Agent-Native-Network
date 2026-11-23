@@ -1,20 +1,24 @@
 # EoRa 现场交付包
 
 **打包分支 `codex/production-deployment`。**
-基线分支的做卡、机群、接收器能力已并入本分支；**原有启动脚本与打包结构保持不变。**
+基线分支的前端、后端、做卡与机群工具已并入本分支（**推新版**），
+只把运行方式适配到原来的打包形态（`runtime\python` + `app\start\launcher.py`）。
 
 ---
 
-## 一、四个入口，按你要做的事选一个
+## 一、五个入口，按你要做的事选一个
 
 | 我要做什么 | 双击 | 说明 |
 |---|---|---|
 | **看实时拓扑 / 收数据** | `START_STUDIO.cmd` | 打包版前端（`runtime\python` + `app\start\launcher.py`） |
 | **给新卡写入身份** | `SETUP_SITE.cmd` → `MK_CARDS.cmd` | 先配置一次，再批量做卡 |
-| **跨网络刷固件** | `SITE_STATUS.cmd` → `SITE_FLASH.cmd` | 走 Tailscale，可跨网络 |
+| **跨网络刷固件** | `SITE_STATUS.cmd` → `FLASH_REMOTE.cmd` | 走 Tailscale，可跨网络 |
+| **本机 USB 直连刷写** | `FLASH_NODES.cmd` | 串口直连，原来的刷写台 |
 | **部署一台新网关** | `SETUP_GATEWAY.cmd` | 网关安装向导 |
 
-> `FLASH_NODES.cmd` 是**本机 USB 刷写台**（串口直连），不要和跨网络的 `SITE_FLASH.cmd` 混用。
+> **两个刷写入口不要混用**：
+> `FLASH_NODES.cmd` = 本机 USB 直连；`FLASH_REMOTE.cmd` = 跨网络机群。
+> `SITE_FLASH.cmd` 是 `FLASH_REMOTE.cmd` 的引导菜单版（选组/选设备），实现是同一个。
 
 ---
 
@@ -162,44 +166,62 @@ BUILD-*/             固件构建产物
 本分支由 `codex/baseline-reproduction-20261023` **合并**（merge commit）而来。
 合并策略是：**现场要用的能力并进来，交付形态一个字节都不动。**
 
-### 9.1 并进来的
+### 9.1 并进来的（推新版）
 
-| 内容 | 位置 |
+| 内容 | 位置 | 说明 |
+|---|---|---|
+| **前端** | `app/services/assets/mobile_gateway/`（8 个） | 取 baseline 最新版，与 baseline **字节一致** |
+| **前端后端** | `app/services/tools/mobile_gateway/`（9 个） | 取 baseline 最新版，补回 `replay.py` |
+| 做卡与机群工具 | `app/services/tools/fleet/`、`gateway_probe/`（12 个） | 新增 |
+| 一键脚本 | `SETUP_SITE.cmd`、`MK_CARDS.cmd`、`SITE_*.cmd`、`FLASH_REMOTE.cmd`、`START_RECEIVER.cmd` | 新增 |
+| 接收器 | `tools/mid_baseline/gateway_probe/topology_server.py` | 打包版原本缺失 |
+| 文档 | `docs/` | 新增 |
+| 维护脚本 | `tools/release/`（刷新与校验发布清单） | 新增 |
+| 开发树 | `tools/`、`simulation/`、`tests/`、固件源码 `firmware/` | 合并带入，运行不依赖 |
+
+### 9.2 为适配打包形态所做的改动（仅两处）
+
+新代码假设自己在开发树里，打包后路径不同，因此改了两处**路径解析**，逻辑不变：
+
+| 文件 | 改动 |
 |---|---|
-| 做卡与机群工具 | `app/services/tools/fleet/`、`app/services/tools/gateway_probe/`（12 个文件） |
-| 一键脚本 | 仓库根 `SETUP_SITE.cmd`、`MK_CARDS.cmd`、`SITE_*.cmd`、`START_RECEIVER.cmd` |
-| 接收器 | `tools/mid_baseline/gateway_probe/topology_server.py`（打包版原本缺失） |
-| 文档 | `docs/` |
-| 开发树 | `tools/`、`simulation/`、`tests/`、固件源码 `firmware/`（合并带入，运行不依赖） |
+| `app/services/tools/mobile_gateway/studio.py` | 前端资源目录：先试 `research/...`，不存在则用 `ROOT/assets/mobile_gateway` |
+| 同上 | fleet 配置：依次试 `app/services/data`、`app/services/config`、**仓库根 `config/`** |
 
-### 9.2 保留原样的（逐字节一致）
+### 9.3 发布清单必须同步（关键）
 
-`START_STUDIO.cmd`、`FLASH_NODES.cmd`、`SETUP_GATEWAY.cmd`、`app/flash/`、
-`app/gateway_setup/`、`app/start/`、`app/services/assets/`、
-`app/services/tools/mobile_gateway/`、`app/services/firmware/`、`runtime/`、`firmware/`。
+`app/start/launcher.py` 用 `firmware/manifest.json` 里的 `service_files_sha256`
+冻结 `app/services` 下每一个 `.py/.js/.css/.html/.json`；**哈希不符或有未登记文件就拒绝启动**。
 
-验证方式：与合并前提交 `d27bb3e` 比对，`app/` 下**无任何修改、无任何删除**，
-只有 12 个新增文件；三个启动脚本的 SHA256 与合并前一致。
+本次替换 13 个、新增 12 个文件后，清单已重算为 36 条，并做了等价校验：
 
-### 9.3 有意没并的
+```
+python tools\release\verify_release.py
+   PASS: release manifest matches the tree
+```
+
+**以后凡是改 `app/services` 下的文件，都必须再跑一次：**
+
+```
+python tools\release\refresh_release_manifest.py
+python tools\release\verify_release.py
+```
+
+### 9.4 保留原样的
+
+`START_STUDIO.cmd`、`FLASH_NODES.cmd`、`SETUP_GATEWAY.cmd`、`app/start/launcher.py`、
+`app/flash/`、`app/gateway_setup/`、`app/services/firmware/`、`runtime/`、`firmware/`。
+
+这些是"适配原来硬件"的部分：启动器仍用 `runtime\python` 拉起
+`app/services/tools/mobile_gateway/studio.py`（现在指向的是新版代码与新版前端）。
+
+### 9.5 有意没并的
 
 | 内容 | 原因 |
 |---|---|
 | `coordination/` | 开发过程记录，不属于交付 |
 | `CHANGELOG.md`、`START_HERE.md`、`docs/IMPLEMENTATION_STATUS.md`、`docs/PROJECT_STATUS.md` | 同上 |
 | `firmware/mid_baseline/field_agent/` 开发树 | 打包位置已有 `app/services/firmware/mid_baseline/`，避免两份源码 |
-| baseline 的前端改动 | 见 9.4 |
-
-### 9.4 前端：保留打包版
-
-合并时 git 的改名检测会把 baseline 里 `research/.../mobile_gateway/` 的改动
-带到打包路径 `app/services/assets/mobile_gateway/`。这些改动**未在本包验证过**，
-因此已回退为原版：
-
-- `app/services/assets/mobile_gateway/lora-model.js`
-- `app/services/firmware/mid_baseline/field_agent/lora_ref/decoder.py`
-
-需要这些改进时，请在开发分支验证后单独提交。
 
 ---
 

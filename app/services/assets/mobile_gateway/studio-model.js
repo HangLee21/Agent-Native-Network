@@ -93,24 +93,30 @@ const MobileStudioModel=(()=>{
     });
   }
   function pairGeometry(a,b,obstacles=[],existing=[],clip=29){
-    // Search a bounded screen grid around node circles; this changes paths only,
-    // never physical GPS coordinates or the stable topology layout.
-    if(!obstacles.length&&!existing.length){const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,ux=dx/d,uy=dy/d,start={x:a.x+ux*clip,y:a.y+uy*clip},end={x:b.x-ux*clip,y:b.y-uy*clip};return{tag:'path',attrs:{d:`M ${start.x} ${start.y} L ${end.x} ${end.y}`,fill:'none'},label:{x:(a.x+b.x)/2,y:(a.y+b.y)/2-8},samples:[start,end]};}
-    const step=14,w=70,h=43,total=w*h,idx=(x,y)=>y*w+x,point=i=>({x:(i%w)*step,y:Math.floor(i/w)*step});
-    const nearest=p=>idx(Math.max(0,Math.min(w-1,Math.round(p.x/step))),Math.max(0,Math.min(h-1,Math.round(p.y/step))));
-    const start=nearest(a),end=nearest(b),blocked=new Uint8Array(total),crowd=new Uint16Array(total);
-    for(const p of obstacles){const x0=Math.max(0,Math.floor((p.x-34)/step)),x1=Math.min(w-1,Math.ceil((p.x+34)/step)),y0=Math.max(0,Math.floor((p.y-34)/step)),y1=Math.min(h-1,Math.ceil((p.y+34)/step));for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)if(Math.hypot(x*step-p.x,y*step-p.y)<34)blocked[idx(x,y)]=1;}
-    for(const line of existing)for(const p of line){const x=Math.round(p.x/step),y=Math.round(p.y/step);for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const xx=x+dx,yy=y+dy;if(xx>=0&&xx<w&&yy>=0&&yy<h)crowd[idx(xx,yy)]+=dx===0&&dy===0?3:1;}}
-    blocked[start]=blocked[end]=0;
-    const costs=new Float64Array(total);costs.fill(Infinity);const prev=new Int32Array(total);prev.fill(-1);const closed=new Uint8Array(total),heap=[];
-    const push=(id,score)=>{let i=heap.length;heap.push({id,score});while(i){const p=(i-1)>>1;if(heap[p].score<=score)break;heap[i]=heap[p];i=p;}heap[i]={id,score};};
-    const pop=()=>{const result=heap[0],last=heap.pop();if(heap.length){let i=0;while(true){let c=i*2+1;if(c>=heap.length)break;if(c+1<heap.length&&heap[c+1].score<heap[c].score)c++;if(heap[c].score>=last.score)break;heap[i]=heap[c];i=c;}heap[i]=last;}return result;};
-    const target=point(end),heuristic=id=>{const p=point(id);return Math.hypot(p.x-target.x,p.y-target.y)/step;};costs[start]=0;push(start,heuristic(start));
-    while(heap.length){const cur=pop().id;if(closed[cur])continue;closed[cur]=1;if(cur===end)break;const x=cur%w,y=Math.floor(cur/w);for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){if(!dx&&!dy)continue;const xx=x+dx,yy=y+dy;if(xx<0||xx>=w||yy<0||yy>=h)continue;const next=idx(xx,yy);if(blocked[next]||closed[next]||dx&&dy&&(blocked[idx(x+dx,y)]||blocked[idx(x,y+dy)]))continue;const cost=costs[cur]+(dx&&dy?1.414:1)+Math.min(crowd[next],8)*.08;if(cost<costs[next]){costs[next]=cost;prev[next]=cur;push(next,cost+heuristic(next));}}}
-    let raw=[];if(start===end)raw=[a,b];else if(prev[end]!==-1){for(let i=end;i!==-1;i=prev[i])raw.push(point(i));raw.reverse();raw=[a,...raw,b];}else raw=[a,b];
-    const trim=(items,center)=>{let i=1;while(i<items.length&&Math.hypot(items[i].x-center.x,items[i].y-center.y)<clip)i++;if(i===items.length)return items;const p=items[i-1],q=items[i],vx=q.x-p.x,vy=q.y-p.y;let lo=0,hi=1;for(let n=0;n<12;n++){const t=(lo+hi)/2;if(Math.hypot(p.x+vx*t-center.x,p.y+vy*t-center.y)<clip)lo=t;else hi=t;}return[{x:p.x+vx*hi,y:p.y+vy*hi},...items.slice(i)];};
-    raw=trim(raw,a);raw=trim(raw.reverse(),b).reverse();const simple=[];for(const p of raw){while(simple.length>1){const x=simple.at(-2),y=simple.at(-1);if(Math.abs((y.x-x.x)*(p.y-y.y)-(y.y-x.y)*(p.x-y.x))>.01)break;simple.pop();}simple.push(p);}
-    const middle=simple[Math.floor(simple.length/2)]||a;return{tag:'path',attrs:{d:simple.map((p,i)=>(i?'L ':'M ')+p.x+' '+p.y).join(' '),fill:'none'},label:{x:middle.x,y:middle.y-8},samples:raw};
+    const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,px=-dy/d,py=dx/d;
+    const radius=Math.min(clip,d*.42),clearance=clip+5;
+    const offsets=[0,22,-22,40,-40,65,-65,95,-95,135,-135,185,-185];
+    let best=null;
+    for(const offset of offsets){
+      const control={x:(a.x+b.x)/2+px*offset,y:(a.y+b.y)/2+py*offset};
+      const ax=control.x-a.x,ay=control.y-a.y,bx=control.x-b.x,by=control.y-b.y;
+      const al=Math.hypot(ax,ay)||1,bl=Math.hypot(bx,by)||1;
+      const start={x:a.x+ax/al*radius,y:a.y+ay/al*radius},end={x:b.x+bx/bl*radius,y:b.y+by/bl*radius};
+      const point=t=>({x:(1-t)*(1-t)*start.x+2*(1-t)*t*control.x+t*t*end.x,y:(1-t)*(1-t)*start.y+2*(1-t)*t*control.y+t*t*end.y});
+      const samples=Array.from({length:33},(_,i)=>point(i/32));let collision=0,overlap=0;
+      for(const p of samples.slice(1,-1)){
+        for(const node of obstacles){const dx=p.x-node.x,dy=p.y-node.y,d2=dx*dx+dy*dy;if(d2<clearance*clearance)collision+=(clearance-Math.sqrt(d2))**2;}
+        if(Math.hypot(p.x-a.x,p.y-a.y)>radius+12&&Math.hypot(p.x-b.x,p.y-b.y)>radius+12){
+          for(const line of existing.slice(-24))if(line.some(q=>Math.hypot(p.x-q.x,p.y-q.y)<7)){overlap++;break;}
+        }
+      }
+      const score=collision*1000+Math.max(0,overlap-2)*8+Math.abs(offset)*.08;
+      if(!best||score<best.score)best={score,offset,start,end,control,samples};
+      if(score===0)break;
+    }
+    const {start,end,control,offset,samples}=best,mid=samples[16];
+    const dPath=offset===0?`M ${start.x} ${start.y} L ${end.x} ${end.y}`:`M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`;
+    return{tag:'path',attrs:{d:dPath,fill:'none'},label:{x:mid.x+px*10,y:mid.y+py*10},samples};
   }
   function fieldHealth({studio=null,controller={},upstream={},nodeCount=0,edgeCount=0,snapshotLoaded=false,snapshotError='',external=false}={}){
     const item=(state,title,next,warning=false)=>({state,title,next,warning});
