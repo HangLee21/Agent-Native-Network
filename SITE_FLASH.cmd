@@ -3,16 +3,11 @@ setlocal enabledelayedexpansion
 cd /d "%~dp0"
 chcp 65001 >nul
 
-rem 引导式版本：问一组，然后转调 FLASH_REMOTE.cmd（同一个实现，避免两套逻辑漂移）。
-
-if not exist "%~dp0site.env" (
-  echo 还没有 site.env，请先双击 SETUP_SITE.cmd
-  pause
-  exit /b 1
-)
+rem 引导菜单版：选组/选设备后转调 FLASH_REMOTE.cmd（同一个实现，避免两套逻辑）。
+rem 两棵树里内容一致；site.env 只影响密码，缺了也能用（fleet 会读环境变量）。
 
 echo ============================================
-echo  批量刷固件
+echo  批量刷固件（远程）
 echo ============================================
 echo.
 echo   1 = 本地组   (group 1)
@@ -34,4 +29,4 @@ if "%WHICH%"=="4" (
 
 echo.
 echo 刷完再用 SITE_STATUS.cmd 看 build 是否一致。
-pause
+if "%~1"=="" pause
