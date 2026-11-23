@@ -742,12 +742,21 @@ def main():
             say("  插卡后等两三秒再跑；或者用 `--auto` 让工具自己找。")
         return 0
 
-    if (not args.card and not args.auto) or args.number is None:
-        parser.error("--card/--auto and --number are required unless --list/--check")
-    if missing:
-        return 2
-    if not (1 <= args.number <= 255):
-        parser.error("--number must be 1..255 (it travels in one frame byte)")
+    # --batch waits for cards itself and numbers them from --from, so it needs neither
+    # --card nor --number; requiring them made the documented batch command unusable.
+    if args.batch:
+        first = args.first if args.first is not None else (args.number or 1)
+        if not 1 <= first <= 255 or not 1 <= first + max(1, args.count) - 1 <= 255:
+            parser.error("--from/--count must stay within 1..255")
+        if missing:
+            return 2
+    else:
+        if (not args.card and not args.auto) or args.number is None:
+            parser.error("--card/--auto and --number are required unless --list/--check")
+        if missing:
+            return 2
+        if not (1 <= args.number <= 255):
+            parser.error("--number must be 1..255 (it travels in one frame byte)")
 
     try:
         fleet_public_key = load_fleet_public_key()
