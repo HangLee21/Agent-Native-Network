@@ -226,12 +226,57 @@ def _askpass_path():
     return path
 
 
+def run_scp_password(local, remote_spec, timeout=180):
+    """scp through the same password channel ssh uses.
+
+    scp performs its own authentication, so pushing a helper or a firmware image needs the
+    same SSH_ASKPASS treatment as run_ssh. Without this, "flash with a password" would fail
+    at the very first file push even though plain commands worked.
+    """
+    env = dict(os.environ)
+    env["SSH_ASKPASS"] = _askpass_path()
+    env["SSH_ASKPASS_REQUIRE"] = "force"
+    env.setdefault("DISPLAY", ":0")
+    args = ["scp", "-o", "StrictHostKeyChecking=no",
+            "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
+            "-o", "PubkeyAuthentication=no",
+            "-o", "PreferredAuthentications=password,keyboard-interactive",
+            "-o", "NumberOfPasswordPrompts=1", "-o", "ConnectTimeout=15",
+            local, remote_spec]
+    try:
+        proc = subprocess.run(args, capture_output=True, text=True, timeout=timeout,
+                              env=env, stdin=subprocess.DEVNULL)
+        return proc.returncode, (proc.stdout or "") + (proc.stderr or "")
+    except subprocess.TimeoutExpired:
+        return 12, "scp timeout after %ss" % timeout
+
+
+def push_file(local, remote_spec, timeout=180):
+    """Copy one file to a device, choosing the transport that this machine can use."""
+    if password_mode():
+        return run_scp_password(local, remote_spec, timeout)
+    proc = subprocess.run(
+        ["scp", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
+         "-o", "BatchMode=yes", "-i", KEY, local, remote_spec],
+        capture_output=True, text=True, timeout=timeout)
+    return proc.returncode, (proc.stdout or "") + (proc.stderr or "")
+
+
 def password_mode():
-    """True when this machine has no usable key but was given a password."""
+    """True when this machine must log in with a password instead of a key.
+
+    Automatic by default: no private key file plus EORA_SSH_PASSWORD set. EORA_SSH_TRANSPORT
+    makes it explicit ("password" / "key") for an operator who wants no guessing.
+    """
+    forced = (os.environ.get("EORA_SSH_TRANSPORT") or "").strip().lower()
+    if forced == "password":
+        return True
+    if forced == "key":
+        return False
     return not os.path.isfile(KEY) and bool((os.environ.get("EORA_SSH_PASSWORD") or "").strip())
 
 
-def run_ssh_password(target, command, timeout=60):
+def run_ssh_password(target, command, timeout=60, stdin_text=None):
     env = dict(os.environ)
     env["SSH_ASKPASS"] = _askpass_path()
     env["SSH_ASKPASS_REQUIRE"] = "force"
@@ -242,16 +287,17 @@ def run_ssh_password(target, command, timeout=60):
             "-o", "NumberOfPasswordPrompts=1", "-o", "ConnectTimeout=15",
             target, command]
     try:
-        proc = subprocess.run(args, capture_output=True, text=True, timeout=timeout,
-                              env=env, stdin=subprocess.DEVNULL)
+        proc = subprocess.run(args, capture_output=True, text=True, timeout=timeout, env=env,
+                              input=stdin_text if stdin_text is not None else None,
+                              stdin=subprocess.DEVNULL if stdin_text is None else None)
         return proc.returncode, (proc.stdout or "") + (proc.stderr or "")
     except subprocess.TimeoutExpired:
         return 12, "timeout after %ss" % timeout
 
 
 def run_ssh(target, command, timeout=60, stdin_text=None):
-    if password_mode() and stdin_text is None:
-        return run_ssh_password(target, command, timeout)
+    if password_mode():
+        return run_ssh_password(target, command, timeout, stdin_text)
     args = ["ssh", "-T", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
             "-o", "BatchMode=yes", "-i", KEY, "-o", "ConnectTimeout=15",
             "-o", "ServerAliveInterval=15", "-o", "ServerAliveCountMax=4",
@@ -340,10 +386,8 @@ def cmd_push(args):
     devices = [d for d in devices_all() if d[1]]
     for name, ip in devices:
         target = "%s:%s" % (ssh_target(name, ip), "/home/eora/eora/%s" % os.path.basename(image))
-        proc = subprocess.run(["scp", "-o", "StrictHostKeyChecking=no",
-                               "-o", "UserKnownHostsFile=" + KNOWN_HOSTS, "-o", "BatchMode=yes",
-                               "-i", KEY, image, target], capture_output=True, text=True)
-        print("%-14s %s" % (name, "pushed" if proc.returncode == 0 else proc.stderr.strip()[:80]))
+        code, out = push_file(image, target)
+        print("%-14s %s" % (name, "pushed" if code == 0 else (out or "").strip()[:80]))
     return 0
 
 
@@ -361,12 +405,9 @@ def _ensure_helper(target, name):
     local = os.path.join(HELPER_DIR, name)
     if not os.path.isfile(local):
         return "missing locally: " + local
-    pushed = subprocess.run(
-        ["scp", "-o", "StrictHostKeyChecking=no", "-o", "UserKnownHostsFile=" + KNOWN_HOSTS,
-         "-o", "BatchMode=yes", "-i", KEY, local, "%s:/home/eora/eora/%s" % (target, name)],
-        capture_output=True, text=True)
-    if pushed.returncode != 0:
-        return "push %s failed: %s" % (name, (pushed.stderr or "").strip()[:120])
+    code, out = push_file(local, "%s:/home/eora/eora/%s" % (target, name))
+    if code != 0:
+        return "push %s failed: %s" % (name, (out or "").strip()[:120])
     return None
 
 

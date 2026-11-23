@@ -56,6 +56,25 @@ $env:EORA_PASS         = '同一口令'        # 用于 Pi 上的 sudo
 > 工具检测到**没有私钥且有 `EORA_SSH_PASSWORD`** 时，会自动改走密码通道
 > （用 Windows OpenSSH 的 `SSH_ASKPASS`，不需要 sshpass / paramiko）。
 
+想显式指定、不靠推断：
+
+```powershell
+$env:EORA_SSH_TRANSPORT = 'password'      # 或 'key'
+```
+
+### 2.4 密码通道覆盖哪些操作
+
+| 操作 | 走密码通道 | 说明 |
+|---|:--:|---|
+| `fleet.py status` | ✅ | 每条命令都经 `run_ssh` |
+| `fleet.py run "..."` | ✅ | 同上 |
+| `fleet.py update <镜像>` | ✅ | 先 scp 推 helper（`push_file`），再远程执行 |
+| `fleet.py push <镜像>` | ✅ | scp 走密码通道 |
+| `fleet.py group` | ✅ | 停/起 node_reader + 串口命令 |
+| `fleet.py logs` | ✅ | |
+| `FLASH_NODES.cmd` | ✅ | 它转调 `fleet.py update`，并保留父进程环境变量 |
+| 做卡 `MK_CARD.cmd` | — | 纯本机操作，与 SSH 无关 |
+
 ---
 
 ## 三、做卡（两人都能做）
