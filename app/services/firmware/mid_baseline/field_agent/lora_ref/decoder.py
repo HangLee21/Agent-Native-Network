@@ -9,8 +9,13 @@ import zlib
 
 HEADER = struct.Struct('<4sBBBB6sIIQIBBII')
 ROW = struct.Struct('<6sIBBHHbHB')
+STATUS = struct.Struct('<BHbBBBBbBBBbBHbBBB')
+GPS = struct.Struct('<BiiHHhBBB2s')
 MAX_ROWS = 8
 MAX_FRAME = 208
+# Extended frames may carry a fixed status block (flag bit 3) and a GPS block (flag bit 4).
+STATUS_BYTES = 24
+GPS_BYTES = 20
 
 
 def _mac(raw: bytes) -> str:
@@ -36,13 +41,16 @@ def decode_frame(data: bytes) -> dict:
         raise ValueError('LRN1 frame length')
     (magic, hlen, rlen, flags, count, mac, boot, seq, stamp, group,
      total, reserved, period, delay) = HEADER.unpack_from(data)
-    if magic != b'LRN1' or hlen != 44 or rlen != 20 or flags & ~7 or reserved:
-        raise ValueError('LRN1 header/version/reserved')
+    # Byte 35 is `reserved` in the original firmware and the node number in current
+    # firmware; both are valid, so a non-zero value is not an error any more.
+    if magic != b'LRN1' or hlen != 44 or rlen != 20 or flags & ~0x1F:
+        raise ValueError('LRN1 header/version/flags')
     if not boot or not seq or not group or not 1000 <= period <= 3600000:
         raise ValueError('LRN1 identity/period')
     if not count <= total <= MAX_ROWS or bool(flags & 1) != (count < total):
         raise ValueError('LRN1 row/truncation declaration')
-    if len(data) != 48 + ROW.size * count:
+    extra = (STATUS_BYTES if flags & 8 else 0) + (GPS_BYTES if flags & 16 else 0)
+    if len(data) != 48 + ROW.size * count + extra:
         raise ValueError('LRN1 exact frame length')
     if struct.unpack_from('<I', data, len(data)-4)[0] != zlib.crc32(data[:-4]):
         raise ValueError('LRN1 CRC32')
@@ -69,11 +77,30 @@ def decode_frame(data: bytes) -> dict:
                          rf_age_ms=age if valid & 4 else None,
                          channel=channel if valid & 8 else None,
                          rf_source='measured' if valid & 2 else 'unavailable'))
+    body = 44 + ROW.size * count
+    status = None
+    if flags & 8:
+        v = STATUS.unpack_from(data, body)
+        status = dict(reset_reason=v[0], supply_mv=v[1], die_temp_c=v[2], heap_free_kb=v[3],
+                      queue_depth=v[4], tx_drops=v[5], routes=v[6], lora_tx_power_dbm=v[7],
+                      lora_sf=v[8], fault_flags=v[9], pi_flags=v[10], pi_cpu_temp_c=v[11],
+                      pi_load_x10=v[12], pi_mem_free_mb=v[13], pi_wifi_rssi=v[14],
+                      serial_errors=v[15], battery_pct=v[16], wifi_channel=v[17])
+        body += STATUS_BYTES
+    gps = None
+    if flags & 16:
+        v = GPS.unpack_from(data, body)
+        g = v[0]
+        gps = dict(flags=g, lat_e7=v[1] if g & 1 else None, lon_e7=v[2] if g & 1 else None,
+                   alt_m=v[3] if g & 2 else None, speed_cms=v[4] if g & 2 else None,
+                   heading_cdeg=v[5] if g & 2 else None, sats=v[6], hdop=v[7], vdop=v[8])
     return dict(frame_schema='LRN1', observer_id=observer, observer_boot=boot,
                 report_seq=seq, snapshot_at_ms=stamp, wifi_group=group,
-                report_period_ms=period, tx_delay_ms=delay if flags & 4 else None,
+                node_number=reserved, report_period_ms=period,
+                tx_delay_ms=delay if flags & 4 else None,
                 total_rows=total, truncated=bool(flags & 1), nd_table_full=bool(flags & 2),
-                neighbors=rows, transport_age_ms=None, evidence='state_at_source_snapshot')
+                neighbors=rows, status=status, gps=gps,
+                transport_age_ms=None, evidence='state_at_source_snapshot')
 
 
 def encode_frame(report: dict) -> bytes:
