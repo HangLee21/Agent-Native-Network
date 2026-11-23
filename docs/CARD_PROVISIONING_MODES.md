@@ -6,6 +6,49 @@
 
 ---
 
+## 零、设计约束（这三条是硬要求）
+
+### ① 只有"刷板机"需要 Tailscale
+
+```
+刷板机（运维的笔记本）   ← 装 Tailscale，加入【运维自己的】tailnet
+        │  SSH over tailnet
+        ├── eora-air-01 … 05   ← 卡片里带【运维自己生成的】auth key
+        │
+LoRa 网关（E870-L）      ← 不装、不加入、不需要 Tailscale
+        │  以太网 UDP
+        └── 刷板机（接收 + 显示）
+```
+
+**跨网络远程刷板 = 刷板机在 tailnet 里 + 卡片在同一个 tailnet 里。**
+两者只要在同一个 tailnet，物理位置无关。
+
+**LoRa 网关从来不需要 Tailscale**：它只有一根网线，向指定 IP:端口发 UDP。
+代码里也已确认：`topology_server.py` / `start_frontend.py` / `node_reader.py` /
+`node_update.py` / `pi_node_probe.py` **零处引用 Tailscale**。
+
+### ② 生产卡绝不能带出开发者的账号
+
+代码里已加**硬拦截**（`mkcard.py`）：
+
+```
+拒绝写入：这份 Tailscale 授权来自仓库内的开发配置，会泄露开发者个人账号。
+  正确的做法：  --env D:\ops\site.env   （里面放现场自己的 TAILSCALE_AUTHKEY）
+  仅当这是自用的调试卡时，才加 --i-know-this-is-the-dev-key
+```
+
+判定规则：`device.env` 位于**本仓库 `.local/` 内**且含 `TAILSCALE_AUTHKEY` → 拒绝，
+除非显式加 `--i-know-this-is-the-dev-key`。
+
+> 所以：**生产环境必须用 `--env` 指向现场文件**，开发者的 key 一步也带不出去。
+
+### ③ 打包时不得包含 `.local/`
+
+`.local/` 里有开发者的 WiFi 口令与 Tailscale key（已被 gitignore）。
+推到 deploy 的打包脚本必须显式排除它——详见 `docs/PORT_TO_DEPLOY_PLAN.md` 风险 5。
+
+---
+
 ## 一、配置文件：`device.env`
 
 默认路径 `.local/mid/pi/device.env`（不进版本库）。
@@ -174,3 +217,27 @@ WIFI_AUTH=eap
 
 编号与卡的对应关系只存在于**卡上**，不需要维护中央名单；
 开机后编号随 LRN1 帧上传，前端从空口解出。
+
+---
+
+## 七、远程刷板的前提（跨网络）
+
+| 前提 | 说明 |
+|---|---|
+| 刷板机装 Tailscale 并登录**运维的**账号 | 只有这一台机器需要 |
+| 卡片的 TAILSCALE_AUTHKEY 来自**同一个** tailnet | 用 --env 指向现场文件 |
+| 刷板机能 SSH 到 eora-air-* | leet.py status 的 	ransport: 行会显示 	ailnet |
+| 网关不需要任何改动 | 它只走以太网 UDP |
+
+leet.py status 会先打印一行当前传输方式：
+
+`
+transport: tailnet (remote flashing works across networks)
+transport: local network via config/fleet.hosts.json (no remote flashing)
+`
+
+**第二种情况不能远程刷板**——纯局域网模式能看数据、能本地 SSH，
+但人在外地时够不到设备。跨网络刷板必须走 tailnet。
+
+**每张卡一个一次性 key**（Tailscale 后台把 auth key 设为 non-reusable）：
+卡片丢失或回收时只吊销那一个 key，不会影响其它节点。

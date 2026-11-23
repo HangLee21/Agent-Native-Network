@@ -525,11 +525,24 @@ def main():
     parser.add_argument("--auto", action="store_true",
                         help="pick the only mounted card instead of naming a letter")
     parser.add_argument("--env", help="operator settings file (default: .local/mid/pi/device.env)")
+    parser.add_argument("--i-know-this-is-the-dev-key", action="store_true",
+                        help="allow the developer key that lives inside this checkout")
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
     env = load_env(args.env)
+
+    # Never bake THIS checkout's Tailscale key into a card that leaves the lab: that key
+    # belongs to a personal tailnet, and a production card carrying it would hand the whole
+    # fleet to that account. Production must pass --env with the site's own file.
+    env_path = Path(args.env).resolve() if args.env else ENV_FILE.resolve()
+    inside_checkout = (ROOT / ".local").resolve() in env_path.parents
+    if env.get("TAILSCALE_AUTHKEY") and inside_checkout and not args.i_know_this_is_the_dev_key:
+        raise SystemExit(
+            "拒绝写入：这份 Tailscale 授权来自仓库内的开发配置，会泄露开发者个人账号。\n"
+            "  正确的做法：  --env D:\\ops\\site.env   （里面放现场自己的 TAILSCALE_AUTHKEY）\n"
+            "  仅当这是自用的调试卡时，才加 --i-know-this-is-the-dev-key")
     # Tailscale is optional: a production site may use its own tailnet, a plain LAN, or no
     # overlay at all. Requiring a key here forced the operator's personal account into every
     # card, which is exactly what a customer deployment cannot accept.
@@ -541,6 +554,8 @@ def main():
     if not env.get("TAILSCALE_AUTHKEY"):
         say("   NOTE: 没有 TAILSCALE_AUTHKEY —— 卡片将不装 Tailscale（走局域网/mDNS）")
     say("== secrets file: %s" % (args.env or ENV_FILE))
+    if inside_checkout:
+        say("   WARNING: 这是仓库内的开发配置，不要用于生产卡")
     if missing:
         say("   MISSING: %s" % ", ".join(missing))
     else:

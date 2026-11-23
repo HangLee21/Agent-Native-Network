@@ -202,6 +202,11 @@ def cmd_status(args):
         fields = dict(line.split("=", 1) for line in out.strip().splitlines() if "=" in line)
         return name, fields
 
+    state, _ = tailscale_health()
+    if state == "Running":
+        print("transport: tailnet (remote flashing works across networks)")
+    elif static_devices():
+        print("transport: local network via config/fleet.hosts.json (no remote flashing)")
     print("%-14s %-6s %-22s %-16s %-16s %s" %
           ("device", "rdr", "node / build / mode", "wifi", "cable", "disk/temp/uptime"))
     print("-" * 110)
