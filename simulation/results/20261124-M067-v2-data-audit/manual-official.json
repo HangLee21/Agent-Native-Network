@@ -1,0 +1,22 @@
+{
+  "url": "https://data.mendeley.com/public-api/datasets/bn6n2639xh/files?folder_id=root&version=2",
+  "release": "10.17632/bn6n2639xh.2",
+  "file": {
+    "filename": "guidemanual.pdf",
+    "id": "04188510-d373-4f4b-902a-6811ccd7e2d9",
+    "content_details": {
+      "id": "a968162b-b229-45fe-858d-988b3af29bcd",
+      "sha256_hash": "ef6fd3d837f1aec49dbe140691bd682934a2eee8b121fcc79f8122a9dab6bda6",
+      "content_type": "application/pdf",
+      "size": 3898472,
+      "created_date": "2025-04-29T13:54:22.042Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/04188510-d373-4f4b-902a-6811ccd7e2d9/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/04188510-d373-4f4b-902a-6811ccd7e2d9/file_viewed",
+      "download_expiry_time": "2126-11-24T08:02:53.134819326Z"
+    },
+    "size": 3898472,
+    "last_modified_date": "2025-04-29T13:54:22.042Z",
+    "status": "COMPLETED"
+  },
+  "local_sha256": "ef6fd3d837f1aec49dbe140691bd682934a2eee8b121fcc79f8122a9dab6bda6"
+}

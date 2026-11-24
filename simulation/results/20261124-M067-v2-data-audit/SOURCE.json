@@ -1,0 +1,54 @@
+{
+  "task": "M-067",
+  "phase": 0,
+  "dataset": "10.17632/bn6n2639xh.2",
+  "source_url": "https://data.mendeley.com/datasets/bn6n2639xh/2",
+  "category": "published ray-tracing data; local integrity and query checks",
+  "limitations": [
+    "relative time 0..599",
+    "unidentified repeated numerical floor retained",
+    "no air-to-air propagation measurements"
+  ],
+  "files": [
+    {
+      "path": "manual-official.json",
+      "source": "simulation/outputs/M-067/20261124-01-official-manual/source.json",
+      "sha256": "d70cd62f993b93827d2fde95f388beed8bc394cff153cbbf28f1694f846771f3"
+    },
+    {
+      "path": "independent-access-checks.json",
+      "source": "simulation/outputs/C-051/20261124-01-phase0/result.json",
+      "sha256": "ba2c18b4930dbcf72b711fb57a4a95fa838a08057dec2037160e5fc651746cf5"
+    },
+    {
+      "path": "independent-manifest.json",
+      "source": "simulation/outputs/C-051/20261124-01-phase0/RUN_MANIFEST.json",
+      "sha256": "172a93ef44e22428376de339b688f8013df7d99419263156b1f86d95d8668285"
+    },
+    {
+      "path": "array-audit.json",
+      "source": "simulation/outputs/E2-044/20261124-01-v2-audit/array-audit.json",
+      "sha256": "596b189b8ad56bf09f70e6ab632c704c5294590a06daa1130bab2e0c9c81d75e"
+    },
+    {
+      "path": "file-integrity.json",
+      "source": "simulation/outputs/E2-044/20261124-01-v2-audit/file-integrity.json",
+      "sha256": "eef604567865df3e34fe42cef22aea9fd6050abadea3d20326c48cf4395763a9"
+    },
+    {
+      "path": "v2-official-files.json",
+      "source": "simulation/outputs/E2-044/20261124-01-v2-audit/v2-official-files.json",
+      "sha256": "934895e5ad40f006330c4b1cdb343b7e57948eaf81bf32b3d172aa84229a8c27"
+    },
+    {
+      "path": "v2-spatiotemporal-grid.png",
+      "source": "simulation/outputs/E2-044/20261124-01-v2-audit/v2-spatiotemporal-grid.png",
+      "sha256": "fc2268f1ef3ecbfb57b24fe6a35de1c352c48c661cf593cd278f81d58d7ef935"
+    },
+    {
+      "path": "data_ready.json",
+      "source": "data/field_feasibility_v2/data_ready.json",
+      "sha256": "52a4f6a5d8f72503ef02edb5a78ce565bed937ddae3ba494fa52f020de0ae4a0"
+    }
+  ]
+}

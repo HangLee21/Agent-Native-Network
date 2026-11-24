@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Dynamic_SEM_1.25km_h25m_2.45GHz_600s.mat",
+    "id": "6967b04b-365c-40b8-9e2b-ddf8d4ffd06c",
+    "size": 272507837,
+    "expected_size": 272507837,
+    "sha256": "12f48c9da5ae1e555b1f5cbd7b95e2e04b99ccfa38d1a39c6cf08ee797a3d102",
+    "published_sha256": "12f48c9da5ae1e555b1f5cbd7b95e2e04b99ccfa38d1a39c6cf08ee797a3d102",
+    "verified": true
+  },
+  {
+    "name": "Dynamic_SEM_1.25km_h2m_2.45GHz_600s.mat",
+    "id": "1fe0e75d-cbd8-4957-bbbb-6a791f28c7b5",
+    "size": 236413030,
+    "expected_size": 236413030,
+    "sha256": "0a5e4eace2131b0786b314f0cb6873a63ec459afdda2130d5920236c75858d2b",
+    "published_sha256": "0a5e4eace2131b0786b314f0cb6873a63ec459afdda2130d5920236c75858d2b",
+    "verified": true
+  },
+  {
+    "name": "Dynamic_SEM_1.25km_h50m_2.45GHz_600s.mat",
+    "id": "ab692cb8-edb1-4574-8992-c648afd551ec",
+    "size": 276802475,
+    "expected_size": 276802475,
+    "sha256": "568d3df5528e5eee4c010dd8c38c84849515ef2b8d17ac5accacfebbff17aa50",
+    "published_sha256": "568d3df5528e5eee4c010dd8c38c84849515ef2b8d17ac5accacfebbff17aa50",
+    "verified": true
+  },
+  {
+    "name": "Dynamic_SEM_1.25km_h80m_2.45GHz_600s.mat",
+    "id": "47243ad8-8377-45eb-a213-d60d34aa1849",
+    "size": 275973457,
+    "expected_size": 275973457,
+    "sha256": "54c73f0b9b57b484f9249c6eced6783cc60611b8b6010523374942a4b888c3bb",
+    "published_sha256": "54c73f0b9b57b484f9249c6eced6783cc60611b8b6010523374942a4b888c3bb",
+    "verified": true
+  },
+  {
+    "name": "guidemanual.pdf",
+    "id": "04188510-d373-4f4b-902a-6811ccd7e2d9",
+    "size": 3898472,
+    "expected_size": 3898472,
+    "sha256": "ef6fd3d837f1aec49dbe140691bd682934a2eee8b121fcc79f8122a9dab6bda6",
+    "published_sha256": "ef6fd3d837f1aec49dbe140691bd682934a2eee8b121fcc79f8122a9dab6bda6",
+    "verified": true
+  }
+]

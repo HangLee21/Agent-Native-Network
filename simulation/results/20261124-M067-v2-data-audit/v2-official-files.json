@@ -1,0 +1,164 @@
+[
+  {
+    "filename": "Dynamic_SEM_1.25km_h25m_2.45GHz_600s.mat",
+    "id": "6967b04b-365c-40b8-9e2b-ddf8d4ffd06c",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "5c62e53d-cc43-49cc-9210-3c1cd9269ebd",
+      "sha256_hash": "12f48c9da5ae1e555b1f5cbd7b95e2e04b99ccfa38d1a39c6cf08ee797a3d102",
+      "content_type": "application/octet-stream",
+      "size": 272507837,
+      "created_date": "2025-04-29T08:35:24.76Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/6967b04b-365c-40b8-9e2b-ddf8d4ffd06c/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/6967b04b-365c-40b8-9e2b-ddf8d4ffd06c/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481871677Z"
+    },
+    "size": 272507837,
+    "last_modified_date": "2025-04-29T08:43:02.465Z",
+    "status": "COMPLETED"
+  },
+  {
+    "filename": "Dynamic_SEM_1.25km_h2m_2.45GHz_600s.mat",
+    "id": "1fe0e75d-cbd8-4957-bbbb-6a791f28c7b5",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "36eedce3-3241-4ef3-9f1c-f3e99f6622d3",
+      "sha256_hash": "0a5e4eace2131b0786b314f0cb6873a63ec459afdda2130d5920236c75858d2b",
+      "content_type": "application/octet-stream",
+      "size": 236413030,
+      "created_date": "2025-04-29T08:32:31.523Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/1fe0e75d-cbd8-4957-bbbb-6a791f28c7b5/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/1fe0e75d-cbd8-4957-bbbb-6a791f28c7b5/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481876287Z"
+    },
+    "size": 236413030,
+    "last_modified_date": "2025-04-29T08:43:21.577Z",
+    "status": "COMPLETED"
+  },
+  {
+    "filename": "Dynamic_SEM_1.25km_h50m_2.45GHz_600s.mat",
+    "id": "ab692cb8-edb1-4574-8992-c648afd551ec",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "ebb595bb-7a53-412a-b91d-2a77f900d53d",
+      "sha256_hash": "568d3df5528e5eee4c010dd8c38c84849515ef2b8d17ac5accacfebbff17aa50",
+      "content_type": "application/octet-stream",
+      "size": 276802475,
+      "created_date": "2025-04-29T08:35:45.848Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/ab692cb8-edb1-4574-8992-c648afd551ec/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/ab692cb8-edb1-4574-8992-c648afd551ec/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481879778Z"
+    },
+    "size": 276802475,
+    "last_modified_date": "2025-04-29T08:43:32.782Z",
+    "status": "COMPLETED"
+  },
+  {
+    "filename": "Dynamic_SEM_1.25km_h80m_2.45GHz_600s.mat",
+    "id": "47243ad8-8377-45eb-a213-d60d34aa1849",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "313708fb-9f63-462a-98fd-9291ad1243bb",
+      "sha256_hash": "54c73f0b9b57b484f9249c6eced6783cc60611b8b6010523374942a4b888c3bb",
+      "content_type": "application/octet-stream",
+      "size": 275973457,
+      "created_date": "2025-04-29T08:35:50.976Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/47243ad8-8377-45eb-a213-d60d34aa1849/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/47243ad8-8377-45eb-a213-d60d34aa1849/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481883138Z"
+    },
+    "size": 275973457,
+    "last_modified_date": "2025-04-29T08:43:39.597Z",
+    "status": "COMPLETED"
+  },
+  {
+    "filename": "Static_REM_1.25km_h10m_2.45GHz_100s.mat",
+    "id": "5765352c-b489-4375-85b7-e922526ea4a8",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "5b6a0ca7-ee38-4d7a-b927-82c3b88175cd",
+      "sha256_hash": "e0f5879726304f9e2eff3dac542ec25d49711628ad628335698e71d619bfdaee",
+      "content_type": "application/octet-stream",
+      "size": 371477,
+      "created_date": "2024-10-08T00:16:07.483Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/5765352c-b489-4375-85b7-e922526ea4a8/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/5765352c-b489-4375-85b7-e922526ea4a8/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481886448Z"
+    },
+    "size": 371477,
+    "last_modified_date": "2024-10-08T00:16:07.483Z",
+    "status": "COMPLETED"
+  },
+  {
+    "filename": "Static_REM_1.25km_h20m_2.45GHz_100s.mat",
+    "id": "e274de0e-ffcc-4aee-bde1-a6cfbaff4ee8",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "f40df310-e4ec-46a4-a993-5befdb34a394",
+      "sha256_hash": "0c92fac47909484ffcd6d4a6c65f7d78bb532e998156f2ec6b6251c83bf53fdd",
+      "content_type": "application/octet-stream",
+      "size": 393612,
+      "created_date": "2024-10-08T00:16:08.183Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/e274de0e-ffcc-4aee-bde1-a6cfbaff4ee8/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/e274de0e-ffcc-4aee-bde1-a6cfbaff4ee8/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481889848Z"
+    },
+    "size": 393612,
+    "last_modified_date": "2024-10-08T00:16:08.183Z",
+    "status": "COMPLETED"
+  },
+  {
+    "filename": "Static_REM_1.25km_h30m_2.45GHz_100s.mat",
+    "id": "a956b071-4766-476f-8a20-0ea9e743c59d",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "93297783-994f-412c-9a97-6fd52d247425",
+      "sha256_hash": "5978e5e53316759815aa9d9bec7f2b534270c0e536eff531f4d25c6f70d40299",
+      "content_type": "application/octet-stream",
+      "size": 409094,
+      "created_date": "2024-10-08T00:16:08.135Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/a956b071-4766-476f-8a20-0ea9e743c59d/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/a956b071-4766-476f-8a20-0ea9e743c59d/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481892959Z"
+    },
+    "size": 409094,
+    "last_modified_date": "2024-10-08T00:16:08.135Z",
+    "status": "COMPLETED"
+  },
+  {
+    "filename": "Static_REM_1.25km_h40m_2.45GHz_100s.mat",
+    "id": "5567f12f-5d0a-4fa6-9aa7-751330c2f997",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "2d483375-e1a3-4154-8e9e-2321ad256aa9",
+      "sha256_hash": "c5b6c81a43660687cd7ba49f33ad29f063c790ed988e9f9d9efab52d6857995e",
+      "content_type": "application/octet-stream",
+      "size": 414968,
+      "created_date": "2024-10-08T00:16:08.204Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/5567f12f-5d0a-4fa6-9aa7-751330c2f997/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/5567f12f-5d0a-4fa6-9aa7-751330c2f997/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481897089Z"
+    },
+    "size": 414968,
+    "last_modified_date": "2024-10-08T00:16:08.204Z",
+    "status": "COMPLETED"
+  },
+  {
+    "filename": "Static_REM_1.25km_h50m_2.45GHz_100s.mat",
+    "id": "622d2994-588f-476f-8e33-1c4077391e3d",
+    "folder_id": "23f00f04-3699-4cac-aeb0-ab4e1e0ae072",
+    "content_details": {
+      "id": "ecda05ef-5a1d-4b69-9b0c-b29e616f0d3d",
+      "sha256_hash": "438fd24f735f5177568d2ec708e54ffb13cad1446b0bdc71217c111fc7397b3a",
+      "content_type": "application/octet-stream",
+      "size": 414517,
+      "created_date": "2024-10-08T00:16:08.122Z",
+      "download_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/622d2994-588f-476f-8e33-1c4077391e3d/file_downloaded",
+      "view_url": "https://data.mendeley.com/public-files/datasets/bn6n2639xh/files/622d2994-588f-476f-8e33-1c4077391e3d/file_viewed",
+      "download_expiry_time": "2126-11-24T07:54:11.481900499Z"
+    },
+    "size": 414517,
+    "last_modified_date": "2024-10-08T00:16:08.122Z",
+    "status": "COMPLETED"
+  }
+]

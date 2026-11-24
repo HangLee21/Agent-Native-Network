@@ -1,0 +1,346 @@
+{
+  "catalog_sha256": "934895e5ad40f006330c4b1cdb343b7e57948eaf81bf32b3d172aa84229a8c27",
+  "manual_sha256": "ef6fd3d837f1aec49dbe140691bd682934a2eee8b121fcc79f8122a9dab6bda6",
+  "runs": [
+    {
+      "height_m": 2,
+      "file": "Dynamic_SEM_1.25km_h2m_2.45GHz_600s.mat",
+      "sha256": "0a5e4eace2131b0786b314f0cb6873a63ec459afdda2130d5920236c75858d2b",
+      "derived_sha256": "05a19c574548eed9ff6eea42761e8b5ff97f5d96b65e0ecf30ae502ae77b58e8",
+      "mat_variables": [
+        [
+          "rem2m600s",
+          [
+            250,
+            250,
+            600
+          ],
+          "double"
+        ]
+      ],
+      "npy_sample_comparisons": [
+        {
+          "index": [
+            0,
+            0,
+            0
+          ],
+          "value": -86.75399999999999,
+          "derived_value": -86.75399999999999
+        },
+        {
+          "index": [
+            249,
+            249,
+            599
+          ],
+          "value": -73.65686320221805,
+          "derived_value": -73.65686320221805
+        },
+        {
+          "index": [
+            10,
+            20,
+            99
+          ],
+          "value": -240.96910013008056,
+          "derived_value": -240.96910013008056
+        },
+        {
+          "index": [
+            62,
+            187,
+            299
+          ],
+          "value": -57.93190579952827,
+          "derived_value": -57.93190579952827
+        },
+        {
+          "index": [
+            187,
+            62,
+            599
+          ],
+          "value": -69.16777174462818,
+          "derived_value": -69.16777174462818
+        }
+      ],
+      "finite_count": 37500000,
+      "min": -240.96910013008056,
+      "max": 14.36700006517765,
+      "minimum_count": 6070773
+    },
+    {
+      "height_m": 25,
+      "file": "Dynamic_SEM_1.25km_h25m_2.45GHz_600s.mat",
+      "sha256": "12f48c9da5ae1e555b1f5cbd7b95e2e04b99ccfa38d1a39c6cf08ee797a3d102",
+      "derived_sha256": "3c9e086ed27cfb2b1c437bc145c28a30e3a29532d4aa953c3c093e65e666d897",
+      "mat_variables": [
+        [
+          "rem25m600s",
+          [
+            250,
+            250,
+            600
+          ],
+          "double"
+        ]
+      ],
+      "npy_sample_comparisons": [
+        {
+          "index": [
+            0,
+            0,
+            0
+          ],
+          "value": -69.70307201205317,
+          "derived_value": -69.70307201205317
+        },
+        {
+          "index": [
+            249,
+            249,
+            599
+          ],
+          "value": -76.20285970162442,
+          "derived_value": -76.20285970162442
+        },
+        {
+          "index": [
+            10,
+            20,
+            99
+          ],
+          "value": -58.571254892447364,
+          "derived_value": -58.571254892447364
+        },
+        {
+          "index": [
+            62,
+            187,
+            299
+          ],
+          "value": -54.90518815231599,
+          "derived_value": -54.90518815231599
+        },
+        {
+          "index": [
+            187,
+            62,
+            599
+          ],
+          "value": -64.36953090954734,
+          "derived_value": -64.36953090954734
+        }
+      ],
+      "finite_count": 37500000,
+      "min": -240.96910013008056,
+      "max": -33.76186468091424,
+      "minimum_count": 912964
+    },
+    {
+      "height_m": 50,
+      "file": "Dynamic_SEM_1.25km_h50m_2.45GHz_600s.mat",
+      "sha256": "568d3df5528e5eee4c010dd8c38c84849515ef2b8d17ac5accacfebbff17aa50",
+      "derived_sha256": "5b5f53fa45525a6750ceb937bc81a2f1975dec768e993a45c7acca4fccb044ff",
+      "mat_variables": [
+        [
+          "rem50m600s",
+          [
+            250,
+            250,
+            600
+          ],
+          "double"
+        ]
+      ],
+      "npy_sample_comparisons": [
+        {
+          "index": [
+            0,
+            0,
+            0
+          ],
+          "value": -68.45969399116281,
+          "derived_value": -68.45969399116281
+        },
+        {
+          "index": [
+            249,
+            249,
+            599
+          ],
+          "value": -75.92381555177974,
+          "derived_value": -75.92381555177974
+        },
+        {
+          "index": [
+            10,
+            20,
+            99
+          ],
+          "value": -64.98325881556877,
+          "derived_value": -64.98325881556877
+        },
+        {
+          "index": [
+            62,
+            187,
+            299
+          ],
+          "value": -58.76226932571296,
+          "derived_value": -58.76226932571296
+        },
+        {
+          "index": [
+            187,
+            62,
+            599
+          ],
+          "value": -63.609606219249805,
+          "derived_value": -63.609606219249805
+        }
+      ],
+      "finite_count": 37500000,
+      "min": -240.96910013008056,
+      "max": -42.617334875335224,
+      "minimum_count": 16943
+    },
+    {
+      "height_m": 80,
+      "file": "Dynamic_SEM_1.25km_h80m_2.45GHz_600s.mat",
+      "sha256": "54c73f0b9b57b484f9249c6eced6783cc60611b8b6010523374942a4b888c3bb",
+      "derived_sha256": "365795c259817f7a5c76786ff562922fcdb72fb274d0acd54b67ff9e4deb2e93",
+      "mat_variables": [
+        [
+          "rem80m600s",
+          [
+            250,
+            250,
+            600
+          ],
+          "double"
+        ]
+      ],
+      "npy_sample_comparisons": [
+        {
+          "index": [
+            0,
+            0,
+            0
+          ],
+          "value": -71.379389564064,
+          "derived_value": -71.379389564064
+        },
+        {
+          "index": [
+            249,
+            249,
+            599
+          ],
+          "value": -75.98258874309532,
+          "derived_value": -75.98258874309532
+        },
+        {
+          "index": [
+            10,
+            20,
+            99
+          ],
+          "value": -68.52570095945978,
+          "derived_value": -68.52570095945978
+        },
+        {
+          "index": [
+            62,
+            187,
+            299
+          ],
+          "value": -59.62106646731033,
+          "derived_value": -59.62106646731033
+        },
+        {
+          "index": [
+            187,
+            62,
+            599
+          ],
+          "value": -60.770426696696035,
+          "derived_value": -60.770426696696035
+        }
+      ],
+      "finite_count": 37500000,
+      "min": -90.95537574849808,
+      "max": -48.56208697256508,
+      "minimum_count": 1
+    }
+  ],
+  "zip_entries": [
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/guidemanual.pdf",
+      "size": 3898472,
+      "crc": "10c0aeb4"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/recommended references/IET Communications - 2022 - Zhao - Temporal prediction for spectrum environment maps with moving radiation sources.pdf",
+      "size": 2190575,
+      "crc": "0bc71b00"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/recommended references/Spatial Sensor Layout Optimization for Radio Environment Map Construction.pdf",
+      "size": 3984120,
+      "crc": "cdd3d74b"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/recommended references/Sparse_Bayesian_Learning-Based_Hierarchical_Construction_for_3D_Radio_Environment_Maps_Incorporating_Channel_Shadowing (1).pdf",
+      "size": 4621650,
+      "crc": "d6111859"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Static_REM_1.25km_h10m_2.45GHz_100s.mat",
+      "size": 371477,
+      "crc": "1b1797b5"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Static_REM_1.25km_h50m_2.45GHz_100s.mat",
+      "size": 414517,
+      "crc": "93085204"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Static_REM_1.25km_h30m_2.45GHz_100s.mat",
+      "size": 409094,
+      "crc": "d0c863c5"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Static_REM_1.25km_h20m_2.45GHz_100s.mat",
+      "size": 393612,
+      "crc": "43cadc95"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Static_REM_1.25km_h40m_2.45GHz_100s.mat",
+      "size": 414968,
+      "crc": "b5f46c5a"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Dynamic_SEM_1.25km_h2m_2.45GHz_600s.mat",
+      "size": 236413030,
+      "crc": "3660b755"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Dynamic_SEM_1.25km_h25m_2.45GHz_600s.mat",
+      "size": 272507837,
+      "crc": "44e1acfd"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Dynamic_SEM_1.25km_h50m_2.45GHz_600s.mat",
+      "size": 276802475,
+      "crc": "11be6212"
+    },
+    {
+      "name": "RT-based dataset for 3D radio map under dynamic built-up scenario (1.25kmX1.25km)/RT-based data-2.45GHz-Urban Scenario (1.25kmX1.25km)/Dynamic_SEM_1.25km_h80m_2.45GHz_600s.mat",
+      "size": 275973457,
+      "crc": "9458d8e8"
+    }
+  ],
+  "interface": "20 source point queries, tie handling, 7 invalid queries passed"
+}
