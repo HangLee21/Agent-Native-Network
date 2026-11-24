@@ -1,0 +1,12 @@
+{
+  "task": "E1-034", "centers_index": [[62,62],[187,62],[62,187],[187,187]],
+  "region_half_width_grid": 30, "grid_m": 5, "heights_m": [20,30,40],
+  "stripe_anchor_offsets_x": [-20,0,20], "round_offsets_y": [-18,-6,6,18],
+  "line_vectors_grid": [[10,0],[8,6],[6,8],[0,10],[-6,8],[-8,6]],
+  "points_per_aircraft_round": 8, "rounds": 4, "weak_threshold_dbm": -75,
+  "blind_rule": "((local_x//5+2*(local_y//5))%5)==0", "valid_rule": "finite and > -250",
+  "gp_prior_dbm": -65, "gp_sigma_db": 10, "gp_noise_db": 1,
+  "gp_length_scale_m": [150,150,20], "coverage_radius_m": 25,
+  "policies": ["partition","local","delayed","timely"], "official_run_budget": 16,
+  "smoke_run_budget": 1, "random_seeds": [], "seed_note": "deterministic"
+}

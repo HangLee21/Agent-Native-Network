@@ -1,0 +1,290 @@
+[
+  {
+    "region": 1,
+    "round": 0,
+    "aircraft": 0,
+    "eligible_fixed_points": 15
+  },
+  {
+    "region": 1,
+    "round": 0,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 0,
+    "aircraft": 2,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 1,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 1,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 1,
+    "aircraft": 2,
+    "eligible_fixed_points": 20
+  },
+  {
+    "region": 1,
+    "round": 2,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 2,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 2,
+    "aircraft": 2,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 3,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 3,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 1,
+    "round": 3,
+    "aircraft": 2,
+    "eligible_fixed_points": 20
+  },
+  {
+    "region": 2,
+    "round": 0,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 0,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 0,
+    "aircraft": 2,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 1,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 1,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 1,
+    "aircraft": 2,
+    "eligible_fixed_points": 20
+  },
+  {
+    "region": 2,
+    "round": 2,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 2,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 2,
+    "aircraft": 2,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 3,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 3,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 2,
+    "round": 3,
+    "aircraft": 2,
+    "eligible_fixed_points": 20
+  },
+  {
+    "region": 3,
+    "round": 0,
+    "aircraft": 0,
+    "eligible_fixed_points": 14
+  },
+  {
+    "region": 3,
+    "round": 0,
+    "aircraft": 1,
+    "eligible_fixed_points": 6
+  },
+  {
+    "region": 3,
+    "round": 0,
+    "aircraft": 2,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 3,
+    "round": 1,
+    "aircraft": 0,
+    "eligible_fixed_points": 5
+  },
+  {
+    "region": 3,
+    "round": 1,
+    "aircraft": 1,
+    "eligible_fixed_points": 8
+  },
+  {
+    "region": 3,
+    "round": 1,
+    "aircraft": 2,
+    "eligible_fixed_points": 20
+  },
+  {
+    "region": 3,
+    "round": 2,
+    "aircraft": 0,
+    "eligible_fixed_points": 13
+  },
+  {
+    "region": 3,
+    "round": 2,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 3,
+    "round": 2,
+    "aircraft": 2,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 3,
+    "round": 3,
+    "aircraft": 0,
+    "eligible_fixed_points": 6
+  },
+  {
+    "region": 3,
+    "round": 3,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 3,
+    "round": 3,
+    "aircraft": 2,
+    "eligible_fixed_points": 20
+  },
+  {
+    "region": 4,
+    "round": 0,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 0,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 0,
+    "aircraft": 2,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 1,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 1,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 1,
+    "aircraft": 2,
+    "eligible_fixed_points": 20
+  },
+  {
+    "region": 4,
+    "round": 2,
+    "aircraft": 0,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 2,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 2,
+    "aircraft": 2,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 3,
+    "aircraft": 0,
+    "eligible_fixed_points": 14
+  },
+  {
+    "region": 4,
+    "round": 3,
+    "aircraft": 1,
+    "eligible_fixed_points": 16
+  },
+  {
+    "region": 4,
+    "round": 3,
+    "aircraft": 2,
+    "eligible_fixed_points": 20
+  }
+]

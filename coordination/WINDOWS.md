@@ -1,5 +1,7 @@
 # 窗口登记
 
+M-066 需求检验。E1-034 负责同预算任务回放，D-044 负责救灾任务与替代方案核查，C-050 独立验算，M 决定是否进入网络建模。
+
 M-065 弱覆盖区采样先导。E1 主持 E1-033，C 独立复算 C-049，M 汇总准入下一阶段的依据。
 
 2026-11-23 M-064：用户明确授权当前迁移会话在 `D:\Multi-Agent Network\.worktrees\vue-ts-baseline`（任务分支 `codex/baseline-vue-ts-20261123`）直接实施 lh→baseline 第一阶段；本轮不沿用/冒充下表旧角色窗口，不发跨聊天消息、不启动代替旧窗口的子代理。范围见 [M-064](tasks/M-064.md)。现已快进集成 baseline 主目录并自测交 review；后续主目录 frontend 为开发源，隔离 worktree 保留来源快照、不作默认预览。当前仅保留主目录 real-only 10518 预览；deploy 冻结、Control/lh 不反写，其他 dirty 文件及原角色预留范围保留，未冒充 C 独立审查。

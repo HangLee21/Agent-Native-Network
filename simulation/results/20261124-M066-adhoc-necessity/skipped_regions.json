@@ -1,0 +1,22 @@
+[
+  {
+    "region": 3,
+    "failures": [
+      {
+        "round": 0,
+        "aircraft": 1,
+        "reason": "fixed horizontal unavailable"
+      },
+      {
+        "round": 1,
+        "aircraft": 0,
+        "reason": "fixed horizontal unavailable"
+      },
+      {
+        "round": 3,
+        "aircraft": 0,
+        "reason": "fixed horizontal unavailable"
+      }
+    ]
+  }
+]

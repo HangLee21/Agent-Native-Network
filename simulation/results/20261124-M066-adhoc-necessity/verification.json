@@ -1,0 +1,53 @@
+{
+  "areas": [
+    {
+      "region": 1,
+      "valid_count": 10920,
+      "blind_valid_count": 2207,
+      "weak_blind_count": 9,
+      "status": "completed"
+    },
+    {
+      "region": 2,
+      "valid_count": 10935,
+      "blind_valid_count": 2198,
+      "weak_blind_count": 4,
+      "status": "completed"
+    },
+    {
+      "region": 3,
+      "valid_count": 10075,
+      "blind_valid_count": 2004,
+      "weak_blind_count": 33,
+      "status": "skipped fixed-scan eligibility"
+    },
+    {
+      "region": 4,
+      "valid_count": 11030,
+      "blind_valid_count": 2223,
+      "weak_blind_count": 144,
+      "status": "completed"
+    }
+  ],
+  "checked_run_count": 12,
+  "checked_runs": [
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-01\\delayed",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-01\\local",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-01\\partition",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-01\\timely",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-02\\delayed",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-02\\local",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-02\\partition",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-02\\timely",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-04\\delayed",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-04\\local",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-04\\partition",
+    "simulation\\outputs\\E1-034\\20261124-01-necessity\\region-04\\timely"
+  ],
+  "checks": "sample count, source values and blind mask, trajectory length, history visibility, ages and logged argmax; does not independently recompute model or metrics",
+  "source_hashes": {
+    "Static_REM_1.25km_h20m_2.45GHz_100s.mat": "0c92fac47909484ffcd6d4a6c65f7d78bb532e998156f2ec6b6251c83bf53fdd",
+    "Static_REM_1.25km_h30m_2.45GHz_100s.mat": "5978e5e53316759815aa9d9bec7f2b534270c0e536eff531f4d25c6f70d40299",
+    "Static_REM_1.25km_h40m_2.45GHz_100s.mat": "c5b6c81a43660687cd7ba49f33ad29f063c790ed988e9f9d9efab52d6857995e"
+  }
+}

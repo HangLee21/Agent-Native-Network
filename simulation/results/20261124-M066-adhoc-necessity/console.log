@@ -1,0 +1,14 @@
+Running region 1 partition
+Running region 1 local
+Running region 1 delayed
+Running region 1 timely
+Running region 2 partition
+Running region 2 local
+Running region 2 delayed
+Running region 2 timely
+Skipped region 3 [{'round': 0, 'aircraft': 1, 'reason': 'fixed horizontal unavailable'}, {'round': 1, 'aircraft': 0, 'reason': 'fixed horizontal unavailable'}, {'round': 3, 'aircraft': 0, 'reason': 'fixed horizontal unavailable'}]
+Running region 4 partition
+Running region 4 local
+Running region 4 delayed
+Running region 4 timely
+Completed 12 runs; skipped regions: 1

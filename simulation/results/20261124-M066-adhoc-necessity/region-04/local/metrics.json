@@ -1,0 +1,51 @@
+{
+  "valid_count": 11030,
+  "blind_count": 2223,
+  "blind_fraction_valid": 0.2015412511332729,
+  "weak_count": 144,
+  "weak_fraction_blind": 0.06477732793522267,
+  "fn": 103,
+  "fn_denominator": 144,
+  "fnr": 0.7152777777777778,
+  "fp": 214,
+  "fp_denominator": 2079,
+  "fpr": 0.10293410293410293,
+  "rmse_db": 6.927028892903834,
+  "boundary_symmetric_distance_m": 64.76543168641822,
+  "true_boundary_edge_count": 157,
+  "pred_boundary_edge_count": 17,
+  "coverage25_valid_numerator": 2513,
+  "coverage25_valid_denominator": 11030,
+  "coverage25_valid_fraction": 0.22783318223028104,
+  "coverage25_blind_numerator": 500,
+  "coverage25_blind_denominator": 2223,
+  "coverage25_blind_fraction": 0.2249212775528565,
+  "coverage25_assigned_stripes": [
+    {
+      "aircraft": 0,
+      "numerator": 697,
+      "denominator": 1125
+    },
+    {
+      "aircraft": 1,
+      "numerator": 726,
+      "denominator": 1220
+    },
+    {
+      "aircraft": 2,
+      "numerator": 774,
+      "denominator": 1281
+    }
+  ],
+  "region": 4,
+  "policy": "local",
+  "observation_count": 96,
+  "unique_locations": 96,
+  "unique_weak_observations": 8,
+  "travel_m_per_aircraft": [
+    1160.0,
+    1160.0,
+    1160.0
+  ],
+  "travel_m_total": 3480.0
+}
