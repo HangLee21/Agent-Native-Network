@@ -1,0 +1,54 @@
+{
+  "template_only": false,
+  "task_id": "E1-033",
+  "run_id": "20261124-01-pilot",
+  "started_at": "2026-11-24T14:56:11.274850+08:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "162665bf93265333e725486539a26098b1466a31",
+  "dirty_files_sha256": {
+    "D:\\Multi-Agent Network\\simulation\\field_reconstruction\\pilot.py": "e7d10bffe9b69076f7752a91107fec18c4fa6f8df6795c4cbf6013317e04455d"
+  },
+  "command": "python simulation/field_reconstruction/pilot.py --source \"D:\\Multi-Agent Network\\simulation\\outputs\\E1-033\\20261124-01-pilot\\source\" --out \"D:\\Multi-Agent Network\\simulation\\outputs\\E1-033\\20261124-01-pilot\\results\"",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "matplotlib": "3.7.5"
+  },
+  "upstream_commit": "7614b7a5fde3035a7f10a01714a6fdcced135080",
+  "data_and_weights_sha256": {
+    "Static_REM_1.25km_h20m_2.45GHz_100s.mat": "0c92fac47909484ffcd6d4a6c65f7d78bb532e998156f2ec6b6251c83bf53fdd",
+    "Static_REM_1.25km_h30m_2.45GHz_100s.mat": "5978e5e53316759815aa9d9bec7f2b534270c0e536eff531f4d25c6f70d40299",
+    "Static_REM_1.25km_h40m_2.45GHz_100s.mat": "c5b6c81a43660687cd7ba49f33ad29f063c790ed988e9f9d9efab52d6857995e"
+  },
+  "config_file": "D:\\Multi-Agent Network\\simulation\\outputs\\E1-033\\20261124-01-pilot\\results\\config.json",
+  "source_urls": [
+    "https://github.com/qiuming-nuaa/Dataset-for-RSSI-radio-map-under-urban-scenario/blob/7614b7a5fde3035a7f10a01714a6fdcced135080/Static_REM_1.25km_h20m_2.45GHz_100s.mat",
+    "https://github.com/qiuming-nuaa/Dataset-for-RSSI-radio-map-under-urban-scenario/blob/7614b7a5fde3035a7f10a01714a6fdcced135080/Static_REM_1.25km_h30m_2.45GHz_100s.mat",
+    "https://github.com/qiuming-nuaa/Dataset-for-RSSI-radio-map-under-urban-scenario/blob/7614b7a5fde3035a7f10a01714a6fdcced135080/Static_REM_1.25km_h40m_2.45GHz_100s.mat"
+  ],
+  "seeds": [],
+  "budget": {
+    "official_runs": 12,
+    "smoke_groups": 0,
+    "aircraft": 3,
+    "rounds": 4,
+    "observations_per_run": 75,
+    "travel_m_per_run": 1800
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E1-033\\20261124-01-pilot\\results",
+  "process_id": 28272,
+  "finished_at": "2026-11-24T14:56:15.626799+08:00",
+  "exit_code": 0,
+  "status": "completed",
+  "limitations": [
+    "simulated static field; ideal zero-noise observations",
+    "unknown -250 dBm values conservatively masked",
+    "virtual routes: obstacle safety and physical flyability not established",
+    "ideal instantaneous information exchange, no communication protocol or RF link validation",
+    "boundary is computed only on blind-cell adjacency edges"
+  ],
+  "review_reference": "coordination/tasks/E1-033.md"
+}

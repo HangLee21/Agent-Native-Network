@@ -1,0 +1,122 @@
+[
+  {
+    "group": 1,
+    "policy": "partition",
+    "weak_count": 2101,
+    "min_m": 110.11357772772621,
+    "median_m": 661.2299146287924,
+    "within_75_m": 0,
+    "within_150_m": 1,
+    "within_300_m": 53
+  },
+  {
+    "group": 1,
+    "policy": "local",
+    "weak_count": 2101,
+    "min_m": 101.9803902718557,
+    "median_m": 642.7480066091221,
+    "within_75_m": 0,
+    "within_150_m": 2,
+    "within_300_m": 53
+  },
+  {
+    "group": 1,
+    "policy": "shared",
+    "weak_count": 2101,
+    "min_m": 101.9803902718557,
+    "median_m": 643.1562796086189,
+    "within_75_m": 0,
+    "within_150_m": 2,
+    "within_300_m": 53
+  },
+  {
+    "group": 2,
+    "policy": "partition",
+    "weak_count": 2101,
+    "min_m": 87.32124598286491,
+    "median_m": 668.3000822983639,
+    "within_75_m": 0,
+    "within_150_m": 1,
+    "within_300_m": 53
+  },
+  {
+    "group": 2,
+    "policy": "local",
+    "weak_count": 2101,
+    "min_m": 87.32124598286491,
+    "median_m": 651.0376333208396,
+    "within_75_m": 0,
+    "within_150_m": 1,
+    "within_300_m": 53
+  },
+  {
+    "group": 2,
+    "policy": "shared",
+    "weak_count": 2101,
+    "min_m": 87.32124598286491,
+    "median_m": 648.5560885536423,
+    "within_75_m": 0,
+    "within_150_m": 1,
+    "within_300_m": 53
+  },
+  {
+    "group": 3,
+    "policy": "partition",
+    "weak_count": 2101,
+    "min_m": 170.07351351694948,
+    "median_m": 624.8199740725323,
+    "within_75_m": 0,
+    "within_150_m": 0,
+    "within_300_m": 14
+  },
+  {
+    "group": 3,
+    "policy": "local",
+    "weak_count": 2101,
+    "min_m": 161.24515496597098,
+    "median_m": 617.73780845922,
+    "within_75_m": 0,
+    "within_150_m": 0,
+    "within_300_m": 28
+  },
+  {
+    "group": 3,
+    "policy": "shared",
+    "weak_count": 2101,
+    "min_m": 165.0,
+    "median_m": 618.9709201569974,
+    "within_75_m": 0,
+    "within_150_m": 0,
+    "within_300_m": 28
+  },
+  {
+    "group": 4,
+    "policy": "partition",
+    "weak_count": 2101,
+    "min_m": 178.67568385205638,
+    "median_m": 642.1253771655502,
+    "within_75_m": 0,
+    "within_150_m": 0,
+    "within_300_m": 14
+  },
+  {
+    "group": 4,
+    "policy": "local",
+    "weak_count": 2101,
+    "min_m": 196.468827043885,
+    "median_m": 626.5979572261626,
+    "within_75_m": 0,
+    "within_150_m": 0,
+    "within_300_m": 26
+  },
+  {
+    "group": 4,
+    "policy": "shared",
+    "weak_count": 2101,
+    "min_m": 178.67568385205638,
+    "median_m": 625.7994886543133,
+    "within_75_m": 0,
+    "within_150_m": 0,
+    "within_300_m": 26
+  }
+]

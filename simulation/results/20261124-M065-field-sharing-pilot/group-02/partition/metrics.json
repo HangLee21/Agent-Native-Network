@@ -1,0 +1,45 @@
+{
+  "blind_count": 36653,
+  "weak_count": 2101,
+  "nonweak_count": 34552,
+  "fn": 2088,
+  "fn_denominator": 2101,
+  "fnr": 0.9938124702522608,
+  "fp": 314,
+  "fp_denominator": 34552,
+  "fpr": 0.009087751794396852,
+  "rmse_db": 8.115470655618086,
+  "boundary_symmetric_distance_m": 380.3468886740044,
+  "true_boundary_edge_count": 1866,
+  "pred_boundary_edge_count": 82,
+  "boundary_support": "midpoints of horizontal grid edges with both endpoints in blind mask; 3-D Euclidean distance; null when either boundary is empty",
+  "group": 2,
+  "policy": "partition",
+  "measurement_count": 75,
+  "unique_measurements": 69,
+  "travel_m_per_aircraft": [
+    600.0,
+    600.0,
+    600.0
+  ],
+  "travel_m_total": 1800.0,
+  "bases": [
+    [
+      112,
+      100
+    ],
+    [
+      127,
+      100
+    ],
+    [
+      117,
+      115
+    ]
+  ],
+  "candidate_count_per_aircraft": [
+    10,
+    10,
+    11
+  ]
+}

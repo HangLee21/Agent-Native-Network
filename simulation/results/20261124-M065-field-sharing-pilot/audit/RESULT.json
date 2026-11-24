@@ -1,0 +1,903 @@
+{
+  "source_sha256": {
+    "Static_REM_1.25km_h20m_2.45GHz_100s.mat": "0c92fac47909484ffcd6d4a6c65f7d78bb532e998156f2ec6b6251c83bf53fdd",
+    "Static_REM_1.25km_h30m_2.45GHz_100s.mat": "5978e5e53316759815aa9d9bec7f2b534270c0e536eff531f4d25c6f70d40299",
+    "Static_REM_1.25km_h40m_2.45GHz_100s.mat": "c5b6c81a43660687cd7ba49f33ad29f063c790ed988e9f9d9efab52d6857995e"
+  },
+  "pilot_sha256": "e7d10bffe9b69076f7752a91107fec18c4fa6f8df6795c4cbf6013317e04455d",
+  "mask_counts": {
+    "valid": 181806,
+    "excluded": 5694,
+    "blind": 36653,
+    "weak": 2101,
+    "nonweak": 34552,
+    "true_boundary_edges": 1866
+  },
+  "runs": [
+    {
+      "group": 1,
+      "policy": "partition",
+      "fn": 2101,
+      "fp": 1850,
+      "rmse_db": 8.938804769668193,
+      "boundary_m": 314.11080672087246,
+      "pred_boundary_edges": 199,
+      "unique": 47,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 169,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 13,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 200,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 17,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 198,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 17,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          11,
+          3,
+          3,
+          3
+        ],
+        [
+          4,
+          5,
+          5,
+          7
+        ],
+        [
+          8,
+          8,
+          10,
+          11
+        ]
+      ]
+    },
+    {
+      "group": 1,
+      "policy": "local",
+      "fn": 2101,
+      "fp": 29,
+      "rmse_db": 7.456828719601748,
+      "boundary_m": 398.61844295244225,
+      "pred_boundary_edges": 15,
+      "unique": 75,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 231,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 226,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 269,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          4,
+          8,
+          11,
+          3
+        ],
+        [
+          1,
+          5,
+          9,
+          7
+        ],
+        [
+          1,
+          5,
+          8,
+          10
+        ]
+      ]
+    },
+    {
+      "group": 1,
+      "policy": "shared",
+      "fn": 2101,
+      "fp": 72,
+      "rmse_db": 7.538776845594197,
+      "boundary_m": 376.5719669696874,
+      "pred_boundary_edges": 14,
+      "unique": 75,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 231,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 217,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 288,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          8,
+          4,
+          11,
+          3
+        ],
+        [
+          2,
+          9,
+          5,
+          0
+        ],
+        [
+          2,
+          6,
+          10,
+          4
+        ]
+      ]
+    },
+    {
+      "group": 2,
+      "policy": "partition",
+      "fn": 2088,
+      "fp": 314,
+      "rmse_db": 8.115470655618086,
+      "boundary_m": 380.3468886740044,
+      "pred_boundary_edges": 82,
+      "unique": 69,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 211,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 23,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 213,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 23,
+          "max_sample_distance_from_base_m": 75.0
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 300,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 23,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ]
+    },
+    {
+      "group": 2,
+      "policy": "local",
+      "fn": 2101,
+      "fp": 342,
+      "rmse_db": 7.970674874305792,
+      "boundary_m": 301.7095064263425,
+      "pred_boundary_edges": 32,
+      "unique": 75,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 243,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 307,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 75.0
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 307,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          4,
+          1,
+          8,
+          11
+        ],
+        [
+          7,
+          10,
+          3,
+          1
+        ],
+        [
+          4,
+          8,
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "group": 2,
+      "policy": "shared",
+      "fn": 2089,
+      "fp": 1491,
+      "rmse_db": 8.82444081885531,
+      "boundary_m": 248.48196627746233,
+      "pred_boundary_edges": 267,
+      "unique": 75,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 243,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 318,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 75.0
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 319,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          4,
+          8,
+          1,
+          10
+        ],
+        [
+          7,
+          10,
+          2,
+          5
+        ],
+        [
+          4,
+          1,
+          8,
+          11
+        ]
+      ]
+    },
+    {
+      "group": 3,
+      "policy": "partition",
+      "fn": 2101,
+      "fp": 0,
+      "rmse_db": 7.323842452504687,
+      "boundary_m": null,
+      "pred_boundary_edges": 0,
+      "unique": 69,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 244,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 23,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 209,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 23,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 227,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 23,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          8,
+          9,
+          10,
+          11
+        ]
+      ]
+    },
+    {
+      "group": 3,
+      "policy": "local",
+      "fn": 2101,
+      "fp": 0,
+      "rmse_db": 7.236950431533323,
+      "boundary_m": null,
+      "pred_boundary_edges": 0,
+      "unique": 75,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 299,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 297,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 242,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          11,
+          2,
+          7,
+          4
+        ],
+        [
+          1,
+          5,
+          9,
+          7
+        ],
+        [
+          11,
+          7,
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "group": 3,
+      "policy": "shared",
+      "fn": 2101,
+      "fp": 864,
+      "rmse_db": 8.245203327471325,
+      "boundary_m": 382.4552761328338,
+      "pred_boundary_edges": 83,
+      "unique": 75,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 272,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 300,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 248,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 64.03124237432849
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          11,
+          7,
+          3,
+          5
+        ],
+        [
+          2,
+          8,
+          11,
+          5
+        ],
+        [
+          2,
+          6,
+          11,
+          8
+        ]
+      ]
+    },
+    {
+      "group": 4,
+      "policy": "partition",
+      "fn": 2101,
+      "fp": 1911,
+      "rmse_db": 8.842814772951241,
+      "boundary_m": 282.0094594013558,
+      "pred_boundary_edges": 174,
+      "unique": 65,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 233,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 23,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 268,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 23,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 253,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 19,
+          "max_sample_distance_from_base_m": 75.0
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6,
+          7
+        ],
+        [
+          7,
+          10,
+          10,
+          11
+        ]
+      ]
+    },
+    {
+      "group": 4,
+      "policy": "local",
+      "fn": 2101,
+      "fp": 1937,
+      "rmse_db": 9.15613150166292,
+      "boundary_m": 240.01344239380407,
+      "pred_boundary_edges": 256,
+      "unique": 75,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 263,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 280,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 75.0
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 313,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 75.0
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          1,
+          5,
+          9,
+          11
+        ],
+        [
+          1,
+          11,
+          6,
+          3
+        ],
+        [
+          7,
+          10,
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "group": 4,
+      "policy": "shared",
+      "fn": 2101,
+      "fp": 902,
+      "rmse_db": 8.318502560965033,
+      "boundary_m": 287.61872207179925,
+      "pred_boundary_edges": 113,
+      "unique": 75,
+      "distances_m": {
+        "0": 600.0,
+        "1": 600.0,
+        "2": 600.0
+      },
+      "per_layer": [
+        {
+          "height_m": 20,
+          "blind_points": 11833,
+          "blind_within_75m": 245,
+          "blind_weak": 1091,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 32.01562118716424
+        },
+        {
+          "height_m": 30,
+          "blind_points": 12349,
+          "blind_within_75m": 318,
+          "blind_weak": 565,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 75.0
+        },
+        {
+          "height_m": 40,
+          "blind_points": 12471,
+          "blind_within_75m": 317,
+          "blind_weak": 445,
+          "blind_weak_within_75m": 0,
+          "sample_weak_occurrences": 0,
+          "unique_samples": 25,
+          "max_sample_distance_from_base_m": 75.0
+        }
+      ],
+      "selected_by_aircraft": [
+        [
+          9,
+          4,
+          1,
+          6
+        ],
+        [
+          1,
+          11,
+          7,
+          4
+        ],
+        [
+          7,
+          10,
+          3,
+          5
+        ]
+      ]
+    }
+  ],
+  "shared_changes": {
+    "count": 21,
+    "by_group": [
+      5,
+      6,
+      6,
+      4
+    ],
+    "first": {
+      "group": 1,
+      "round": 0,
+      "aircraft": 0,
+      "base": [
+        99,
+        100
+      ],
+      "selected": 8,
+      "local_counterfactual": 4,
+      "shared_counterfactual": 8,
+      "changed_from_local": true,
+      "local_history_count": 1,
+      "pooled_history_count": 3,
+      "local_scores": {
+        "3": 1.5725048096803371,
+        "4": 1.5844705139337913,
+        "5": 1.5844705139337913,
+        "6": 1.5725048096803371,
+        "7": 1.5844705139337913,
+        "8": 1.5844705139337913,
+        "9": 1.5725048096803371,
+        "10": 1.5844705139337913,
+        "11": 1.5844705139337913
+      },
+      "shared_scores": {
+        "3": 1.4981173565783437,
+        "4": 1.431632292771245,
+        "5": 1.4035800509774772,
+        "6": 1.4058486272731423,
+        "7": 1.5111962531694394,
+        "8": 1.5401786933324189,
+        "9": 1.5024958412407934,
+        "10": 1.3421491696757286,
+        "11": 1.2698756105218967
+      }
+    }
+  },
+  "paired_shared_minus_local": [
+    {
+      "group": 1,
+      "delta_fn": 0,
+      "delta_fnr": 0.0,
+      "delta_fp": 43,
+      "delta_fpr": 0.001244501041907849,
+      "delta_rmse_db": 0.08194812599244905
+    },
+    {
+      "group": 2,
+      "delta_fn": -12,
+      "delta_fnr": -0.005711565920990005,
+      "delta_fp": 1149,
+      "delta_fpr": 0.03325422551516555,
+      "delta_rmse_db": 0.8537659445495178
+    },
+    {
+      "group": 3,
+      "delta_fn": 0,
+      "delta_fnr": 0.0,
+      "delta_fp": 864,
+      "delta_fpr": 0.025005788376939106,
+      "delta_rmse_db": 1.0082528959380017
+    },
+    {
+      "group": 4,
+      "delta_fn": 0,
+      "delta_fnr": 0.0,
+      "delta_fp": -1035,
+      "delta_fpr": -0.029954850659874972,
+      "delta_rmse_db": -0.8376289406978863
+    }
+  ],
+  "sample_violations": 0
+}

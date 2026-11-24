@@ -1,5 +1,7 @@
 # 当前摘要
 
+2026-11-24 并行研究 [M-065](tasks/M-065.md)：12 次配对模拟完成。即时共享改变 21/48 次选线，尚未见整图弱区漏检稳定下降；下一步先修正任务范围和采样几何。数据见 simulation/results/20261124-M065-field-sharing-pilot/。
+
 2026-11-23 [M-064](tasks/M-064.md) review：lh（bdadc98）完整 Vue+TS 框架已从隔离 worktree fast-forward 迁入 baseline，[frontend](../frontend/) 为后续开发源。主目录再次通过 450 测试/类型/构建；另有 18 Node、13 同步保护、21 合成浏览器验证。主目录 real-only 预览 10518 默认断开、零后端读取；其余 16 份工程卡保持原字节。[迁移/保留能力清单](../docs/BASELINE_FRONTEND_MIGRATION.md)。**deploy 冻结，Control/lh 不反写，旧工程入口保留；尚未完整移植旧工程 UI，也未做 C 独立审查/生产验收。** 本轮执行方式为用户明确特批，不自动改变旧窗口默认分工。
 
 M-063 已完成并更新现场接收器与 Studio。故障注入通过，E870L 连续真实心跳与零节点提示已在正式页面验证。节点断电，本次未做上电节点或真实休眠复测。证据 simulation/results/20261120-M063-gateway-recovery/。

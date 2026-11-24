@@ -1,0 +1,96 @@
+{
+  "threshold_dbm": -75.0,
+  "threshold_rationale": "fixed illustrative weak-signal threshold, declared before evaluating any values; not a receiver sensitivity claim",
+  "domain": "250x250 cells, 5 m spacing; 20,30,40 m layers; no building geometry available",
+  "unknown_value_assumption": "exclude values <= -250 dBm and nonfinite; semantics not established",
+  "holdout": "((x//10 + 2*(y//10)) % 5)==0; excluded from every possible measurement",
+  "policy": "synchronous rounds; local sees own past; shared sees all actual past; final all observations pooled",
+  "sampling": "one initial point plus six grid-cell observations on each of four out-and-back rays per aircraft; along each continuous ray round sample positions to the nearest grid cell and use the cell value; this is a grid observation model, not a flown detour",
+  "ray_vectors_grid": [
+    [
+      15,
+      0
+    ],
+    [
+      12,
+      9
+    ],
+    [
+      9,
+      12
+    ],
+    [
+      0,
+      15
+    ],
+    [
+      -9,
+      12
+    ],
+    [
+      -12,
+      9
+    ],
+    [
+      -15,
+      0
+    ],
+    [
+      -12,
+      -9
+    ],
+    [
+      -9,
+      -12
+    ],
+    [
+      0,
+      -15
+    ],
+    [
+      9,
+      -12
+    ],
+    [
+      12,
+      -9
+    ]
+  ],
+  "group_offsets_grid": [
+    [
+      0,
+      0
+    ],
+    [
+      12,
+      0
+    ],
+    [
+      0,
+      12
+    ],
+    [
+      12,
+      12
+    ]
+  ],
+  "nominal_bases_grid": [
+    [
+      100,
+      100
+    ],
+    [
+      115,
+      100
+    ],
+    [
+      105,
+      115
+    ]
+  ],
+  "kernel": "Gaussian process, fixed prior -65 dBm, signal std 10 dB, noise std 1 dB, length scales 150,150,20 m",
+  "score": "mean posterior std + 12*exp(-0.5*((mean - threshold)/sqrt(std^2+4))^2)",
+  "seed": "deterministic, no random draws",
+  "official_runs": 12,
+  "hardware": "none; offline CPU only"
+}

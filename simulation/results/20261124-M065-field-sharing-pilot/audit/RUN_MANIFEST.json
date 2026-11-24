@@ -1,0 +1,28 @@
+{
+  "template_only": false,
+  "task_id": "C-049",
+  "run_id": "20261124-01-audit",
+  "started_at": null,
+  "finished_at": "2026-11-24T15:02:51+08:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "162665bf93265333e725486539a26098b1466a31",
+  "dirty_files_sha256": {
+    "simulation/field_reconstruction/pilot.py": "e7d10bffe9b69076f7752a91107fec18c4fa6f8df6795c4cbf6013317e04455d",
+    "simulation/outputs/C-049/20261124-01-audit/check_saved.py": "a6ebbf88810f7b2607103239583b11824e351f1730945d9812c67859720d060d",
+    "simulation/outputs/C-049/20261124-01-audit/check_spatial.py": "d91152161ec1940aef070a5e0028d3312f209f05de13b3689df64fdec8e51a06",
+    "simulation/outputs/C-049/20261124-01-audit/snapshot_hashes.py": "1e554383764479388e1392f9768a1da7608d465d7f6392143740311acff83018"
+  },
+  "command": "python -B -X utf8 simulation/outputs/C-049/20261124-01-audit/check_saved.py; python -B -X utf8 simulation/outputs/C-049/20261124-01-audit/check_spatial.py; python -B -X utf8 simulation/outputs/C-049/20261124-01-audit/snapshot_hashes.py",
+  "python_executable": "python", "dependency_snapshot": "host Python, NumPy and SciPy", "upstream_commit": "7614b7a5fde3035a7f10a01714a6fdcced135080",
+  "data_and_weights_sha256": {
+    "Static_REM_1.25km_h20m_2.45GHz_100s.mat": "0c92fac47909484ffcd6d4a6c65f7d78bb532e998156f2ec6b6251c83bf53fdd",
+    "Static_REM_1.25km_h30m_2.45GHz_100s.mat": "5978e5e53316759815aa9d9bec7f2b534270c0e536eff531f4d25c6f70d40299",
+    "Static_REM_1.25km_h40m_2.45GHz_100s.mat": "c5b6c81a43660687cd7ba49f33ad29f063c790ed988e9f9d9efab52d6857995e"
+  },
+  "config_file": "simulation/outputs/E1-033/20261124-01-pilot/results/config.json", "seeds": [],
+  "budget": "read-only recomputation from 12 saved runs; no new policy runs",
+  "output_directory": "simulation/outputs/C-049/20261124-01-audit", "process_id": null, "exit_code": 0, "status": "completed",
+  "limitations": ["Saved data only; upstream authorship and sentinel semantics not independently verified.", "Recomputed E1's fixed model, not an independent new field experiment.", "75m and 150m distances are same-layer horizontal distances to sample locations, not flight-path distance or strict GP influence boundaries.", "No hardware, RF measurements, or strategy reruns."],
+  "review_reference": "coordination/reviews/C-049.md"
+}

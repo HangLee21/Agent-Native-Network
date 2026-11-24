@@ -1,5 +1,7 @@
 # 任务索引
 
+[M-065](tasks/M-065.md) 在线共享与弱覆盖区重建；[E1-033](tasks/E1-033.md) 仿真实施，[C-049](tasks/C-049.md) 独立验算。
+
 [M-064](tasks/M-064.md) review：lh 完整 Vue+TS 框架已迁入 baseline 主目录并重新通过 450 测试/类型/构建；单源开发与冲突保护回传流程已整理。deploy 冻结，Control/lh 不反写，旧工程入口/其他窗口成果保留；C 独立审查与工程 UI 全量移植未做。
 
 [M-063](tasks/M-063.md) 网关自动恢复已交付。实施 [E2-043](tasks/E2-043.md)、[D-043](tasks/D-043.md)，窄审 [C-048](tasks/C-048.md)。
