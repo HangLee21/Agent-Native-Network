@@ -1,0 +1,177 @@
+{
+  "task": "M-067/E2-045",
+  "data": "10.17632/bn6n2639xh.2",
+  "design": "160 four-height runs (80 matched pairs), 48 coordinate-only holdouts before flight, equal movement segment lengths",
+  "files": [
+    {
+      "path": "20261124-05-multilevel-pilot/config.json",
+      "source": "simulation/outputs/E2-045/20261124-05-multilevel-pilot/config.json",
+      "sha256": "f4eca95622907e0af81e4b9e63bdd99c60bd263ad76e073c99360c8c2e021fef"
+    },
+    {
+      "path": "20261124-05-multilevel-pilot/pairs.csv",
+      "source": "simulation/outputs/E2-045/20261124-05-multilevel-pilot/pairs.csv",
+      "sha256": "ad46e9338556980ccdc229044d5553c6f8f651ea7f6dee32848c47b81eb951b0"
+    },
+    {
+      "path": "20261124-05-multilevel-pilot/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E2-045/20261124-05-multilevel-pilot/RUN_MANIFEST.json",
+      "sha256": "0624ce66f198439d2a2fd267ed8a63790734440a29ede4b005a1b25bb2cfac93"
+    },
+    {
+      "path": "20261124-05-multilevel-pilot/summary.json",
+      "source": "simulation/outputs/E2-045/20261124-05-multilevel-pilot/summary.json",
+      "sha256": "6ead571a1c1fe69fe0181282cd3575a7da876b8c535a6f94834fb125613f9aef"
+    },
+    {
+      "path": "20261124-05-multilevel-pilot/validation.json",
+      "source": "simulation/outputs/E2-045/20261124-05-multilevel-pilot/validation.json",
+      "sha256": "a59b3fbac9dde0f9047daef4de068b95ce459a35b6d0887f0dc76bb0cb180a17"
+    },
+    {
+      "path": "20261124-06-four-height-main/config.json",
+      "source": "simulation/outputs/E2-045/20261124-06-four-height-main/config.json",
+      "sha256": "2704a832246e7781ca1cfcde3435bedf67b3b12f468200545efe7c443e1c97ce"
+    },
+    {
+      "path": "20261124-06-four-height-main/n05-seed2000-C.json.gz",
+      "source": "simulation/outputs/E2-045/20261124-06-four-height-main/n05-seed2000-C.json.gz",
+      "sha256": "60a6a56f0ecad6ce12fe8458837776f91954c89216b7a5aa9557392d037b0bcf"
+    },
+    {
+      "path": "20261124-06-four-height-main/n05-seed2000-D.json.gz",
+      "source": "simulation/outputs/E2-045/20261124-06-four-height-main/n05-seed2000-D.json.gz",
+      "sha256": "5d68ac005ca21450a8ab8c10cee719b7923658b5383f6d6ae631b63c962f5054"
+    },
+    {
+      "path": "20261124-06-four-height-main/pairs.csv",
+      "source": "simulation/outputs/E2-045/20261124-06-four-height-main/pairs.csv",
+      "sha256": "b2dcf9188fd66cce25270dd6b680503f2c8a0dd84f0eba446e9507e2f9975086"
+    },
+    {
+      "path": "20261124-06-four-height-main/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E2-045/20261124-06-four-height-main/RUN_MANIFEST.json",
+      "sha256": "44d34ac6b28ca7ab9c29a291a12dd67573a52d3ea41d3037cce651ce95d8ac81"
+    },
+    {
+      "path": "20261124-06-four-height-main/summary.json",
+      "source": "simulation/outputs/E2-045/20261124-06-four-height-main/summary.json",
+      "sha256": "4880bee6817c02b053eb7fbc71d0d542d71e494e26abe4f32809e6e72b332f2d"
+    },
+    {
+      "path": "20261124-07-independent-check/validation.json",
+      "source": "simulation/outputs/E2-045/20261124-07-independent-check/validation.json",
+      "sha256": "3199a5705cf2b41a5b092252a7969e4ec8dcfba36be38fcebc22a9a350d74978"
+    },
+    {
+      "path": "20261124-08-summary/heights.csv",
+      "source": "simulation/outputs/E2-045/20261124-08-summary/heights.csv",
+      "sha256": "24927b09cd0e2cb305574d3de974c6f79ba1b132de1c8d3e628fae71706437cd"
+    },
+    {
+      "path": "20261124-08-summary/metrics-summary.json",
+      "source": "simulation/outputs/E2-045/20261124-08-summary/metrics-summary.json",
+      "sha256": "786edda26e93095b30ba29b0c00b2564657b505778d7e1e34b661ffbfe20cdc9"
+    },
+    {
+      "path": "20261124-08-summary/metrics.csv",
+      "source": "simulation/outputs/E2-045/20261124-08-summary/metrics.csv",
+      "sha256": "decdad6efc1d1e2e83c3da8271233101aa698d3e0f8956e585487bda705acc05"
+    },
+    {
+      "path": "20261124-08-summary/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E2-045/20261124-08-summary/RUN_MANIFEST.json",
+      "sha256": "86fb5232f5e0276c88770fa86cfdd55e820951552e7b7db55f4d2e00e47410d4"
+    },
+    {
+      "path": "20261124-09-figures/paired_delta.png",
+      "source": "simulation/outputs/E2-045/20261124-09-figures/paired_delta.png",
+      "sha256": "f3775f08dfebf73b72134e810ef3c6ce859c6169bbb6266c4eb0f896aa9380a2"
+    },
+    {
+      "path": "20261124-09-figures/representative_trajectories.png",
+      "source": "simulation/outputs/E2-045/20261124-09-figures/representative_trajectories.png",
+      "sha256": "362266f44e084f7657ac99d6043137ae14d7646270e53049d38713fb660f6777"
+    },
+    {
+      "path": "review/C-051/20261124-05-final-audit/equal_check.py",
+      "source": "simulation/outputs/C-051/20261124-05-final-audit/equal_check.py",
+      "sha256": "8a5a5d36ba49443114cb9135ca9ba16acbbba04d587c8d3cd4e730923c53f9ec"
+    },
+    {
+      "path": "review/C-051/20261124-05-final-audit/equal_result.json",
+      "source": "simulation/outputs/C-051/20261124-05-final-audit/equal_result.json",
+      "sha256": "85aa9ec4b78d2272bccbbe230e648f7abb52d948f33eeac10d6fa2d388436aa4"
+    },
+    {
+      "path": "review/C-051/20261124-05-final-audit/causal_example.py",
+      "source": "simulation/outputs/C-051/20261124-05-final-audit/causal_example.py",
+      "sha256": "97964e913e38e2aba888176152d3449238ff98f463c0e5468c25c8edecff4414"
+    },
+    {
+      "path": "review/C-051/20261124-05-final-audit/causal_example.json",
+      "source": "simulation/outputs/C-051/20261124-05-final-audit/causal_example.json",
+      "sha256": "fbc8125a3659153efe26907d796bf4d4c298c628bdd2d41afc8d56151df55e98"
+    },
+    {
+      "path": "review/C-051/20261124-05-final-audit/online_result.json",
+      "source": "simulation/outputs/C-051/20261124-05-final-audit/online_result.json",
+      "sha256": "5e09b218d3f07e4447a5fb4281fba6508b63afb4f78bef548f017c5aadbc3a54"
+    },
+    {
+      "path": "review/C-051/20261124-05-final-audit/online_check.py",
+      "source": "simulation/outputs/C-051/20261124-05-final-audit/online_check.py",
+      "sha256": "5ae613b0dacd0943cfcdd1d87ac204d6844891422de338de5194fdda86fe38cc"
+    },
+    {
+      "path": "review/C-051/20261124-05-final-audit/RUN_MANIFEST.json",
+      "source": "simulation/outputs/C-051/20261124-05-final-audit/RUN_MANIFEST.json",
+      "sha256": "5333567aeeabecf3aafbb1a5b320bd404b3579ffbb481d40e1c7eb5fd438fa64"
+    },
+    {
+      "path": "review/D-045/20261124-06-network-switched/RUN_MANIFEST.json",
+      "source": "simulation/outputs/D-045/20261124-06-network-switched/RUN_MANIFEST.json",
+      "sha256": "4336666bc9f24687f375954bcd127f98f877645609948d4eb165e4e338d64c6a"
+    },
+    {
+      "path": "review/D-045/20261124-06-network-switched/tests.txt",
+      "source": "simulation/outputs/D-045/20261124-06-network-switched/tests.txt",
+      "sha256": "b880e612670e64aeafafcf29590468da026208c6736b1db51bfe989ca35f04bd"
+    },
+    {
+      "path": "frozen-code/equal_budget_run.py",
+      "source": "simulation/field_feasibility/equal_budget_run.py",
+      "sha256": "8066664bd01d32eee90c12004fe0bcd33c409a64c068263c70211bbbbeb970de"
+    },
+    {
+      "path": "frozen-code/sampling.py",
+      "source": "simulation/results/20261124-M067-network-guided-field/frozen-main-code/sampling.py",
+      "sha256": "eab28b1f0e2ed0e62bef98aab8ce3d453b37b0bec7d3fb94257d10c6fda9ae7a"
+    },
+    {
+      "path": "frozen-code/analysis.py",
+      "source": "simulation/results/20261124-M067-network-guided-field/frozen-main-code/analysis.py",
+      "sha256": "885422281e4d13db14f0f735118718bad398ed53e77a2603f00abf2a3d146fee"
+    },
+    {
+      "path": "frozen-code/mission.py",
+      "source": "simulation/results/20261124-M067-network-guided-field/frozen-main-code/mission.py",
+      "sha256": "916380756e52f6e6f3116cd7e6293aa268fa6fddf2edbfeb41a06edf4b0a283f"
+    },
+    {
+      "path": "frozen-code/mission_transport.py",
+      "source": "simulation/results/20261124-M067-network-guided-field/frozen-main-code/mission_transport.py",
+      "sha256": "e4a9fdf8b996779276bde5e5fef10d1cb5577f3a1d56e135e6758023a49b97f5"
+    },
+    {
+      "path": "frozen-code/network.py",
+      "source": "simulation/results/20261124-M067-network-guided-field/frozen-main-code/network.py",
+      "sha256": "23ffdc6bc3d4bef88e5dea01c9f4818f5e6ffb7e1dfe829f05283a5dc48323fc"
+    },
+    {
+      "path": "frozen-code/data_v2.py",
+      "source": "simulation/results/20261124-M067-network-guided-field/frozen-main-code/data_v2.py",
+      "sha256": "3bba0f8bc0ff30a83920b5b9d7409eebcb29ddcf0546b19ba2619aef7fa03e59"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "label": "phase1_frozen_frame_common_unvisited_pilot", "phase": 1,
+  "nodes": 5, "dt_s": 30, "duration_s": 120, "speed_m_s": 2,
+  "min_separation_m": 5, "noise_sigma_db": 1,
+  "region_m": [375,375,875,875], "heights_m": [50],
+  "field_mode": "frozen_dynamic", "frozen_dynamic_frame_s": 0,
+  "repeated_floor_dbm": -240.96910013008056,
+  "floor_policy": "preserve raw observations and primary blind truth; also report exact-floor-excluded blind support/score using unchanged model and seed",
+  "seeds": [101], "policies": ["A","B","C","D","E"],
+  "network": {"range_m":400,"bandwidth_bps":1000000,"propagation_delay_s":0,"loss_probability":0},
+  "evaluation": {"grid_m":5,"candidate_spacing_m":25,"points_per_height":12,"rule":"fixed geometric pool minus every cell actually sampled by any policy across the whole paired run"},
+  "evaluation_steps": [1,3], "notes": "pilot only, frozen dynamic V2 frame; not real static data"
+}

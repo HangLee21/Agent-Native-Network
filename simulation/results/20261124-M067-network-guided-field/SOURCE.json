@@ -409,6 +409,21 @@
       "path": "analysis_v2/online_floor_sensitivity.csv",
       "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/online_floor_sensitivity.csv",
       "sha256": "cea45d0bc4757621a2d3c75f6f83095412b446d1c48438043fd248915bde6c6d"
+    },
+    {
+      "path": "analysis_v2/causality_all_runs.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/causality_all_runs.csv",
+      "sha256": "af42527bef0efc906e8f4afd250990913623edd0aa6b66fe0f752b22ca56c224"
+    },
+    {
+      "path": "analysis_v2/CAUSALITY_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/CAUSALITY_MANIFEST.json",
+      "sha256": "6bfa0b9be5af411af3fad1d111608ac7133899a730bcfb3319388bdab7cd6be8"
+    },
+    {
+      "path": "analysis_v2/e2_equal_pair_check.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/e2_equal_pair_check.json",
+      "sha256": "d075a5ea1395194777306cb3d3b31c025517921d721ceb25a3ad88dd884ad5ca"
     }
   ]
 }

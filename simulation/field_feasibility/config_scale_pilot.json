@@ -1,0 +1,12 @@
+{
+  "label":"phase3_30node_throughput_and_network_pilot", "phase":3,
+  "nodes":30, "dt_s":30, "duration_s":600, "speed_m_s":2, "min_separation_m":5,
+  "noise_sigma_db":1, "region_m":[375,375,875,875], "heights_m":[2,25,50,80],
+  "field_mode":"dynamic", "repeated_floor_dbm":-240.96910013008056,
+  "floor_policy":"raw primary; exact-floor-excluded blind sensitivity; identical model and seed",
+  "seeds":[101], "policies":["A","B","C","D","D_degraded","E"],
+  "network":{"range_m":400,"bandwidth_bps":1000000,"propagation_delay_s":0,"loss_probability":0},
+  "degraded_network":{"range_m":150,"bandwidth_bps":20000,"propagation_delay_s":5,"loss_probability":0.2,"max_queue_delay_s":60},
+  "evaluation":{"grid_m":5,"candidate_spacing_m":25,"points_per_height":12,"rule":"fixed pool minus observed cells across all paired policies and both network settings"},
+  "evaluation_steps":[4,9,19], "notes":"30-node throughput pilot, 1 seed; not main 20-seed results"
+}

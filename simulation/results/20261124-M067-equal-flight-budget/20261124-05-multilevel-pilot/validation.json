@@ -1,0 +1,30 @@
+[
+  {
+    "file": "n05-seed2000-C.json.gz",
+    "samples": 100,
+    "min_separation_m": 24.343877292694344,
+    "max_segment_error_m": 5.684341886080802e-14,
+    "events": 0
+  },
+  {
+    "file": "n05-seed2000-D.json.gz",
+    "samples": 100,
+    "min_separation_m": 24.99071960556845,
+    "max_segment_error_m": 5.684341886080802e-14,
+    "events": 1200
+  },
+  {
+    "file": "n05-seed2001-C.json.gz",
+    "samples": 100,
+    "min_separation_m": 27.52416936610535,
+    "max_segment_error_m": 4.973799150320701e-14,
+    "events": 0
+  },
+  {
+    "file": "n05-seed2001-D.json.gz",
+    "samples": 100,
+    "min_separation_m": 24.055268082697715,
+    "max_segment_error_m": 5.684341886080802e-14,
+    "events": 1300
+  }
+]

@@ -1,0 +1,232 @@
+{
+  "template_only": false,
+  "task_id": "E2-045",
+  "run_id": "20261124-06-four-height-main",
+  "status": "completed",
+  "started_at": 1795509278.397525,
+  "finished_at": 1795509729.609778,
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": null,
+  "upstream_commit": null,
+  "dirty_files_sha256": {
+    "equal_budget_run.py": "8066664bd01d32eee90c12004fe0bcd33c409a64c068263c70211bbbbeb970de",
+    "sampling.py": "eab28b1f0e2ed0e62bef98aab8ce3d453b37b0bec7d3fb94257d10c6fda9ae7a",
+    "analysis.py": "885422281e4d13db14f0f735118718bad398ed53e77a2603f00abf2a3d146fee",
+    "mission.py": "916380756e52f6e6f3116cd7e6293aa268fa6fddf2edbfeb41a06edf4b0a283f",
+    "mission_transport.py": "e4a9fdf8b996779276bde5e5fef10d1cb5577f3a1d56e135e6758023a49b97f5",
+    "network.py": "23ffdc6bc3d4bef88e5dea01c9f4818f5e6ffb7e1dfe829f05283a5dc48323fc",
+    "data_v2.py": "3bba0f8bc0ff30a83920b5b9d7409eebcb29ddcf0546b19ba2619aef7fa03e59"
+  },
+  "source_sha256": {
+    "equal_budget_run.py": "8066664bd01d32eee90c12004fe0bcd33c409a64c068263c70211bbbbeb970de",
+    "sampling.py": "eab28b1f0e2ed0e62bef98aab8ce3d453b37b0bec7d3fb94257d10c6fda9ae7a",
+    "analysis.py": "885422281e4d13db14f0f735118718bad398ed53e77a2603f00abf2a3d146fee",
+    "mission.py": "916380756e52f6e6f3116cd7e6293aa268fa6fddf2edbfeb41a06edf4b0a283f",
+    "mission_transport.py": "e4a9fdf8b996779276bde5e5fef10d1cb5577f3a1d56e135e6758023a49b97f5",
+    "network.py": "23ffdc6bc3d4bef88e5dea01c9f4818f5e6ffb7e1dfe829f05283a5dc48323fc",
+    "data_v2.py": "3bba0f8bc0ff30a83920b5b9d7409eebcb29ddcf0546b19ba2619aef7fa03e59"
+  },
+  "config": {
+    "nodes": [
+      5,
+      10,
+      20,
+      30
+    ],
+    "seeds": [
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "heights_m": [
+      2.0,
+      25.0,
+      50.0,
+      80.0
+    ],
+    "region_m": [
+      375.0,
+      375.0,
+      875.0,
+      875.0
+    ],
+    "dt_s": 30.0,
+    "steps": 20,
+    "speed_m_s": 2,
+    "distance_per_step_m": 60.0,
+    "heading_count": 24,
+    "min_separation_m": 5.0,
+    "blind_rule": "12 coordinate-only cells per height chosen before either mission; sampled endpoints prohibited",
+    "policy_difference": "common fixed-length heading planner, global region IDs for delivered intents; C local, D local plus delivered messages",
+    "noise_sigma_db": 1,
+    "network": {
+      "range_m": 400,
+      "bandwidth_bps": 1000000,
+      "propagation_delay_s": 0,
+      "loss_probability": 0
+    }
+  },
+  "config_file": "simulation\\outputs\\E2-045\\20261124-06-four-height-main\\config.json",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "process_id": 48848,
+  "command": [
+    "simulation/field_feasibility/equal_budget_run.py",
+    "--out",
+    "simulation/outputs/E2-045/20261124-06-four-height-main"
+  ],
+  "output_directory": "simulation\\outputs\\E2-045\\20261124-06-four-height-main",
+  "data_and_weights_sha256": {
+    "data_ready.json": "52a4f6a5d8f72503ef02edb5a78ce565bed937ddae3ba494fa52f020de0ae4a0"
+  },
+  "seeds": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+  ],
+  "budget": {
+    "nodes": [
+      5,
+      10,
+      20,
+      30
+    ],
+    "strategies": [
+      "C",
+      "D"
+    ],
+    "max_runs": 160
+  },
+  "dependency_snapshot": {
+    "numpy": "1.26.4"
+  },
+  "exit_code": 0,
+  "review_reference": "coordination/tasks/E2-045.md",
+  "limitations": [
+    "four fixed height planes and 500m region; no vertical transitions",
+    "coordinate-only fixed blind points exclude only sample endpoints",
+    "synchronous sequential geometric safety filter uses global positions and is not distributed collision avoidance",
+    "discrete 24 fixed-length headings change the original C/D motion planner",
+    "unclassified repeated floor retained; secondary score excludes exact floor only"
+  ],
+  "outcomes": [
+    {
+      "nodes": 5,
+      "attempted": 20,
+      "completed": 20,
+      "failed": 0,
+      "mean_D_minus_C_rmse": -1.4104780886894654,
+      "sd": 8.450882632011774,
+      "ci95": [
+        -5.3656129074347785,
+        2.544656730055847
+      ],
+      "paired_t_pvalue": 0.4645541965366349,
+      "floor_excluded_mean_D_minus_C_rmse": -3.3697467513101467,
+      "floor_excluded_pairs": 20,
+      "floor_excluded_sd": 9.7016998966182,
+      "floor_excluded_ci95": [
+        -7.91028206969001,
+        1.1707885670697165
+      ],
+      "floor_excluded_pvalue": 0.13684254650504035
+    },
+    {
+      "nodes": 10,
+      "attempted": 20,
+      "completed": 20,
+      "failed": 0,
+      "mean_D_minus_C_rmse": -1.6403080884872483,
+      "sd": 6.998092149390815,
+      "ci95": [
+        -4.915516031856219,
+        1.6348998548817222
+      ],
+      "paired_t_pvalue": 0.30768000871483997,
+      "floor_excluded_mean_D_minus_C_rmse": -1.695685058772117,
+      "floor_excluded_pairs": 20,
+      "floor_excluded_sd": 10.239266719714447,
+      "floor_excluded_ci95": [
+        -6.487809394774406,
+        3.0964392772301723
+      ],
+      "floor_excluded_pvalue": 0.4679827364636807
+    },
+    {
+      "nodes": 20,
+      "attempted": 20,
+      "completed": 20,
+      "failed": 0,
+      "mean_D_minus_C_rmse": -2.7804008092665513,
+      "sd": 12.53274115721494,
+      "ci95": [
+        -8.64590422277487,
+        3.0851026042417673
+      ],
+      "paired_t_pvalue": 0.33359354717792034,
+      "floor_excluded_mean_D_minus_C_rmse": -3.8374439563983294,
+      "floor_excluded_pairs": 20,
+      "floor_excluded_sd": 9.069160520847667,
+      "floor_excluded_ci95": [
+        -8.081941734289726,
+        0.4070538214930681
+      ],
+      "floor_excluded_pvalue": 0.0737900884000971
+    },
+    {
+      "nodes": 30,
+      "attempted": 20,
+      "completed": 20,
+      "failed": 0,
+      "mean_D_minus_C_rmse": -2.3574987760428088,
+      "sd": 11.188390431721968,
+      "ci95": [
+        -7.59382668273936,
+        2.878829130653743
+      ],
+      "paired_t_pvalue": 0.35785672028219895,
+      "floor_excluded_mean_D_minus_C_rmse": -5.277287018343363,
+      "floor_excluded_pairs": 20,
+      "floor_excluded_sd": 14.247157562243718,
+      "floor_excluded_ci95": [
+        -11.945162008007781,
+        1.3905879713210547
+      ],
+      "floor_excluded_pvalue": 0.11403771290132736
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "seed": 2000,
+  "nodes": 5,
+  "node": 0,
+  "step": 1,
+  "received_ids": [
+    "1:0",
+    "2:0",
+    "3:0",
+    "4:0"
+  ],
+  "summary": [
+    {
+      "target_index": 17,
+      "height_m": 2.0,
+      "variance": 32.91573787778548,
+      "expires_s": 60.0,
+      "sender": 4
+    }
+  ],
+  "selected": 14,
+  "local_counterfactual": 13,
+  "actual_next": [
+    446.0017540546514,
+    390.0216766152798,
+    2.0
+  ],
+  "local_next_if_same_legal_set": [
+    440.0077287043737,
+    404.4925339091285,
+    2.0
+  ]
+}

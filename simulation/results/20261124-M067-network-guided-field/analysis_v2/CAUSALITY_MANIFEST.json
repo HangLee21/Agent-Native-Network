@@ -1,0 +1,12 @@
+{
+  "task_id": "E1-035",
+  "status": "completed",
+  "finished_at": "2026-11-24T16:40:56.684054+08:00",
+  "started_at": null,
+  "script_sha256": "4d21c5cdd4611c916d0b7d25afd9b3a608a7da3e7104e6ef2aea042cb3905f72",
+  "input_main_manifest_sha256": "eb0c07287ae2e80a3f786dd78f0c21e68efd5c7aca529304eb83406f56eec93b",
+  "command": "python simulation/field_feasibility/analysis_causality.py --root simulation/outputs/E1-035/20261124-10-main --analysis analysis_v2",
+  "output_sha256": "af42527bef0efc906e8f4afd250990913623edd0aa6b66fe0f752b22ca56c224",
+  "checked_saved_runs": 480,
+  "new_policy_runs": 0
+}

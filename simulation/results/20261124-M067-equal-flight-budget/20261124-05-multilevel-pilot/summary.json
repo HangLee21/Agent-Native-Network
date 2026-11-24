@@ -1,0 +1,23 @@
+[
+  {
+    "nodes": 5,
+    "attempted": 2,
+    "completed": 2,
+    "failed": 0,
+    "mean_D_minus_C_rmse": -6.277721106320072,
+    "sd": 5.137006934160932,
+    "ci95": [
+      -52.43189723258483,
+      39.876455019944686
+    ],
+    "paired_t_pvalue": 0.3339390582051054,
+    "floor_excluded_mean_D_minus_C_rmse": -17.169420539726126,
+    "floor_excluded_pairs": 2,
+    "floor_excluded_sd": 9.154027952675097,
+    "floor_excluded_ci95": [
+      -99.41509857899999,
+      65.07625749954772
+    ],
+    "floor_excluded_pvalue": 0.2295161526268164
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "nodes": 5,
+    "attempted": 20,
+    "completed": 20,
+    "failed": 0,
+    "mean_D_minus_C_rmse": -1.4104780886894654,
+    "sd": 8.450882632011774,
+    "ci95": [
+      -5.3656129074347785,
+      2.544656730055847
+    ],
+    "paired_t_pvalue": 0.4645541965366349,
+    "floor_excluded_mean_D_minus_C_rmse": -3.3697467513101467,
+    "floor_excluded_pairs": 20,
+    "floor_excluded_sd": 9.7016998966182,
+    "floor_excluded_ci95": [
+      -7.91028206969001,
+      1.1707885670697165
+    ],
+    "floor_excluded_pvalue": 0.13684254650504035
+  },
+  {
+    "nodes": 10,
+    "attempted": 20,
+    "completed": 20,
+    "failed": 0,
+    "mean_D_minus_C_rmse": -1.6403080884872483,
+    "sd": 6.998092149390815,
+    "ci95": [
+      -4.915516031856219,
+      1.6348998548817222
+    ],
+    "paired_t_pvalue": 0.30768000871483997,
+    "floor_excluded_mean_D_minus_C_rmse": -1.695685058772117,
+    "floor_excluded_pairs": 20,
+    "floor_excluded_sd": 10.239266719714447,
+    "floor_excluded_ci95": [
+      -6.487809394774406,
+      3.0964392772301723
+    ],
+    "floor_excluded_pvalue": 0.4679827364636807
+  },
+  {
+    "nodes": 20,
+    "attempted": 20,
+    "completed": 20,
+    "failed": 0,
+    "mean_D_minus_C_rmse": -2.7804008092665513,
+    "sd": 12.53274115721494,
+    "ci95": [
+      -8.64590422277487,
+      3.0851026042417673
+    ],
+    "paired_t_pvalue": 0.33359354717792034,
+    "floor_excluded_mean_D_minus_C_rmse": -3.8374439563983294,
+    "floor_excluded_pairs": 20,
+    "floor_excluded_sd": 9.069160520847667,
+    "floor_excluded_ci95": [
+      -8.081941734289726,
+      0.4070538214930681
+    ],
+    "floor_excluded_pvalue": 0.0737900884000971
+  },
+  {
+    "nodes": 30,
+    "attempted": 20,
+    "completed": 20,
+    "failed": 0,
+    "mean_D_minus_C_rmse": -2.3574987760428088,
+    "sd": 11.188390431721968,
+    "ci95": [
+      -7.59382668273936,
+      2.878829130653743
+    ],
+    "paired_t_pvalue": 0.35785672028219895,
+    "floor_excluded_mean_D_minus_C_rmse": -5.277287018343363,
+    "floor_excluded_pairs": 20,
+    "floor_excluded_sd": 14.247157562243718,
+    "floor_excluded_ci95": [
+      -11.945162008007781,
+      1.3905879713210547
+    ],
+    "floor_excluded_pvalue": 0.11403771290132736
+  }
+]

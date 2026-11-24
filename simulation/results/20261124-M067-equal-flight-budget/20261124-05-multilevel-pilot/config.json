@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    5
+  ],
+  "seeds": [
+    2000,
+    2001
+  ],
+  "heights_m": [
+    2.0,
+    25.0,
+    50.0,
+    80.0
+  ],
+  "region_m": [
+    375.0,
+    375.0,
+    875.0,
+    875.0
+  ],
+  "dt_s": 30.0,
+  "steps": 20,
+  "speed_m_s": 2,
+  "distance_per_step_m": 60.0,
+  "heading_count": 24,
+  "min_separation_m": 5.0,
+  "blind_rule": "12 coordinate-only cells per height chosen before either mission; sampled endpoints prohibited",
+  "policy_difference": "common fixed-length heading planner, global region IDs for delivered intents; C local, D local plus delivered messages",
+  "noise_sigma_db": 1,
+  "network": {
+    "range_m": 400,
+    "bandwidth_bps": 1000000,
+    "propagation_delay_s": 0,
+    "loss_probability": 0
+  }
+}

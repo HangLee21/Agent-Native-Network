@@ -1,0 +1,86 @@
+{
+  "paired_rows_verified": 24,
+  "independent_reconstruction": [
+    {
+      "nodes": 5,
+      "policy": "A",
+      "seed": 2000,
+      "raw": 35.876949667367036,
+      "masked": 4.716306354308733,
+      "support": 46
+    },
+    {
+      "nodes": 5,
+      "policy": "B",
+      "seed": 2000,
+      "raw": 34.637066916714026,
+      "masked": 4.846564631011214,
+      "support": 46
+    },
+    {
+      "nodes": 5,
+      "policy": "C",
+      "seed": 2000,
+      "raw": 36.37434417896702,
+      "masked": 4.584398535187352,
+      "support": 46
+    },
+    {
+      "nodes": 5,
+      "policy": "D",
+      "seed": 2000,
+      "raw": 36.821466330426276,
+      "masked": 4.033452955239101,
+      "support": 46
+    },
+    {
+      "nodes": 5,
+      "policy": "D_degraded",
+      "seed": 2000,
+      "raw": 36.33980150670351,
+      "masked": 4.655435175185845,
+      "support": 46
+    },
+    {
+      "nodes": 30,
+      "policy": "A",
+      "seed": 2000,
+      "raw": 36.156853931138464,
+      "masked": 4.307157984141059,
+      "support": 46
+    },
+    {
+      "nodes": 30,
+      "policy": "B",
+      "seed": 2000,
+      "raw": 34.54703166990979,
+      "masked": 3.5600373876823865,
+      "support": 46
+    },
+    {
+      "nodes": 30,
+      "policy": "C",
+      "seed": 2000,
+      "raw": 36.18488881623116,
+      "masked": 4.350610698316599,
+      "support": 46
+    },
+    {
+      "nodes": 30,
+      "policy": "D",
+      "seed": 2000,
+      "raw": 31.67696383386062,
+      "masked": 7.544814555879076,
+      "support": 46
+    },
+    {
+      "nodes": 30,
+      "policy": "D_degraded",
+      "seed": 2000,
+      "raw": 36.3950261774805,
+      "masked": 4.985394508387391,
+      "support": 46
+    }
+  ],
+  "limits": "fixed seed 2000 across 2 scales; all paired stats from saved per-seed table"
+}

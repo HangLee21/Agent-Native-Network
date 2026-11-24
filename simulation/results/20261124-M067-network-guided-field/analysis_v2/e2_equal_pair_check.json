@@ -1,0 +1,103 @@
+{
+  "status": "pass_saved_pair_summary_checks",
+  "scope": "verify 80 saved pair rows, reported budgets and paired means; not an independent trajectory or model recomputation",
+  "inputs_sha256": {
+    "pairs.csv": "b2dcf9188fd66cce25270dd6b680503f2c8a0dd84f0eba446e9507e2f9975086",
+    "summary.json": "4880bee6817c02b053eb7fbc71d0d542d71e494e26abe4f32809e6e72b332f2d",
+    "RUN_MANIFEST.json": "44d34ac6b28ca7ab9c29a291a12dd67573a52d3ea41d3037cce651ce95d8ac81"
+  },
+  "results": [
+    {
+      "nodes": 5,
+      "pairs": 20,
+      "max_abs_distance_difference_m": 0.0,
+      "metrics": {
+        "delta_offline_rmse": {
+          "mean": -1.4104780886894657,
+          "sd": 8.450882632011774,
+          "ci95": [
+            -5.3656129074347785,
+            2.5446567300558476
+          ]
+        },
+        "delta_floor_excluded_rmse": {
+          "mean": -3.369746751310146,
+          "sd": 9.7016998966182,
+          "ci95": [
+            -7.910282069690009,
+            1.1707885670697173
+          ]
+        }
+      }
+    },
+    {
+      "nodes": 10,
+      "pairs": 20,
+      "max_abs_distance_difference_m": 0.0,
+      "metrics": {
+        "delta_offline_rmse": {
+          "mean": -1.640308088487249,
+          "sd": 6.998092149390814,
+          "ci95": [
+            -4.915516031856219,
+            1.634899854881721
+          ]
+        },
+        "delta_floor_excluded_rmse": {
+          "mean": -1.6956850587721173,
+          "sd": 10.239266719714447,
+          "ci95": [
+            -6.487809394774407,
+            3.096439277230173
+          ]
+        }
+      }
+    },
+    {
+      "nodes": 20,
+      "pairs": 20,
+      "max_abs_distance_difference_m": 0.0,
+      "metrics": {
+        "delta_offline_rmse": {
+          "mean": -2.7804008092665513,
+          "sd": 12.53274115721494,
+          "ci95": [
+            -8.64590422277487,
+            3.0851026042417673
+          ]
+        },
+        "delta_floor_excluded_rmse": {
+          "mean": -3.837443956398329,
+          "sd": 9.069160520847667,
+          "ci95": [
+            -8.081941734289726,
+            0.40705382149306857
+          ]
+        }
+      }
+    },
+    {
+      "nodes": 30,
+      "pairs": 20,
+      "max_abs_distance_difference_m": 0.0,
+      "metrics": {
+        "delta_offline_rmse": {
+          "mean": -2.3574987760428088,
+          "sd": 11.188390431721968,
+          "ci95": [
+            -7.59382668273936,
+            2.878829130653742
+          ]
+        },
+        "delta_floor_excluded_rmse": {
+          "mean": -5.277287018343364,
+          "sd": 14.247157562243716,
+          "ci95": [
+            -11.945162008007781,
+            1.390587971321053
+          ]
+        }
+      }
+    }
+  ]
+}

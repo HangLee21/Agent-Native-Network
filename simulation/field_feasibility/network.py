@@ -80,6 +80,7 @@ class Network:
         self._events = []
         self._event_counter = 0
         self._next_free = 0.0
+        self._medium_busy_until = 0.0
         self._next_id = 0
         self._mail = {}
         self._frames = []
@@ -96,6 +97,23 @@ class Network:
     def _schedule(self, when, kind, data):
         self._event_counter += 1
         heapq.heappush(self._events, (when, self._event_counter, kind, data))
+
+    def _reschedule_waiting(self, now):
+        """Reflow only waiting reservations after a sender cannot transmit.
+
+        Earlier admissions/rejections remain decisions made with the information
+        available then. Generation tags make the old heap entries inert.
+        """
+        next_start = max(now, self._medium_busy_until)
+        for frame in self._frames:
+            if frame['state'] != 'queued':
+                continue
+            frame['generation'] += 1
+            frame['start'] = next_start
+            frame['finish'] = next_start + frame['bytes'] * 8 / self.config.bandwidth_bps
+            next_start = frame['finish']
+            self._schedule(frame['start'], 'start', (frame, frame['generation']))
+        self._next_free = next_start
 
     def _edges(self):
         nodes = self._nodes
@@ -144,13 +162,17 @@ class Network:
             when, _, kind, data = heapq.heappop(self._events)
             self._integrate(when)
             if kind == 'start':
-                frame = data
+                frame, generation = data
+                if frame['state'] != 'queued' or generation != frame['generation']:
+                    continue
                 if not self._online[frame['source']]:
                     frame['state'] = 'source_offline'
                     for recipient in frame['recipients']:
                         self._finish(frame, recipient, when, 'source_offline')
+                    self._reschedule_waiting(when)
                     continue
                 frame['state'] = 'transmitted'
+                self._medium_busy_until = frame['finish']
                 for recipient in frame['recipients']:
                     if not self._linked(frame['source'], recipient):
                         self._finish(frame, recipient, when, 'link_unavailable_at_start')
@@ -248,9 +270,9 @@ class Network:
         frame = {'id': message_id, 'source': source, 'kind': kind, 'payload': copy.deepcopy(payload),
                  'created_at': float(t), 'start': start, 'finish': finish, 'bytes': len(wire),
                  'broadcast': destination is None, 'recipients': tuple(recipients), 'state': 'queued',
-                 'inflight': set(), 'disrupted': set()}
+                 'inflight': set(), 'disrupted': set(), 'generation': 0}
         self._frames.append(frame)
-        self._schedule(start, 'start', frame)
+        self._schedule(start, 'start', (frame, frame['generation']))
         return message_id
 
     def drain(self, t):

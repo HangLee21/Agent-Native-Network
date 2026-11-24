@@ -118,6 +118,65 @@ class NetworkTest(unittest.TestCase):
         self.assertEqual(n.drain(2)[0]['reason'], 'source_offline')
         self.assertEqual(n.metrics(2)['total']['tx_frames'], 0)
 
+    def test_offline_queued_frame_does_not_delay_multiple_later_frames(self):
+        def run(extra):
+            n = Network({'range_m':100, 'bandwidth_bps':1000}, seed=2)
+            n.update(0, POS)
+            n.send(0, 1, 'NODE_STATE', P, 3)
+            if extra:
+                n.send(0, 2, 'NODE_STATE', P, 3)
+            ids = [n.send(0, 1, 'NODE_STATE', P, 3) for _ in range(2)]
+            n.update(.1, POS, {1:True, 2:False, 3:True})
+            events = n.drain(10)
+            return [e for e in events if e['message_id'] in ids], n.metrics(10), events
+        baseline, _, _ = run(False)
+        actual, metrics, events = run(True)
+        self.assertEqual(len(actual), 2)
+        self.assertEqual([x['status'] for x in actual], ['delivered', 'delivered'])
+        for a, b in zip(actual, baseline):
+            self.assertAlmostEqual(a['completed_at'], b['completed_at'])
+        self.assertEqual(len([e for e in events if e['reason']=='source_offline']), 1)
+        self.assertEqual(metrics['total']['tx_frames'], 3)
+        self.assertEqual(metrics['total']['delivered'], 3)
+        self.assertEqual(metrics['total']['dropped'], 1)
+        self.assertEqual(metrics['total']['pending'], 0)
+
+    def test_offline_queue_release_allows_later_admission(self):
+        base = len(serialize_message(1, 3, 'NODE_STATE', P, 0, 0))*8/1000
+        n = Network({'range_m':100, 'bandwidth_bps':1000, 'max_queue_delay_s':base/2}, seed=2)
+        n.update(0, POS)
+        n.send(0, 1, 'NODE_STATE', P, 3)
+        self.assertIsNotNone(n.send(base*.75, 2, 'NODE_STATE', P, 3))
+        n.update(base*.8, POS, {1:True, 2:False, 3:True})
+        n.drain(base + .001)
+        self.assertIsNotNone(n.send(base+.001, 1, 'NODE_STATE', P, 3))
+        outcomes = n.drain(base*4)
+        self.assertEqual([e['status'] for e in outcomes], ['delivered'])
+        self.assertEqual(n.metrics(base*4)['total']['rejected_frames'], 0)
+
+    def test_future_offline_does_not_retroactively_reverse_rejection(self):
+        n = Network({'range_m':100, 'bandwidth_bps':1000, 'max_queue_delay_s':0}, seed=2)
+        n.update(0, POS)
+        n.send(0, 2, 'NODE_STATE', P, 3)
+        self.assertIsNone(n.send(0, 1, 'NODE_STATE', P, 3))
+        n.update(.1, POS, {1:True, 2:False, 3:True})
+        n.drain(5)
+        self.assertEqual(n.metrics(5)['total']['rejected_frames'], 1)
+
+    def test_offline_update_at_queued_start_and_stale_events_do_not_duplicate(self):
+        n = Network({'range_m':100, 'bandwidth_bps':1000}, seed=2)
+        n.update(0, POS)
+        first=n.send(0, 1, 'NODE_STATE', P, 3)
+        cancelled=n.send(0, 2, 'NODE_STATE', P, 3)
+        last=n.send(0, 1, 'NODE_STATE', P, 3)
+        at=len(serialize_message(1, 3, 'NODE_STATE', P, 0, first))*8/1000
+        n.update(at, POS, {1:True, 2:False, 3:True})
+        rows=n.drain(10)
+        self.assertEqual(len(rows), 3)
+        self.assertEqual([r['status'] for r in rows if r['message_id']==cancelled], ['dropped'])
+        self.assertEqual([r['status'] for r in rows if r['message_id']==last], ['delivered'])
+        self.assertEqual(n.metrics(10)['total']['pending'], 0)
+
     def test_shared_channel_and_queue_rejection(self):
         n = self.network(max_queue_delay_s=.001)
         self.assertIsNotNone(n.send(0, 1, 'NODE_STATE', P, 2))
