@@ -1,0 +1,15 @@
+{
+  "task_id": "E1-035",
+  "status": "completed",
+  "finished_at": "2026-11-24T16:36:55.622438+08:00",
+  "started_at": null,
+  "script_sha256": "9555d75477d81041557fade313542ee52266316e782bd4057878e1e25583b797",
+  "input_main_manifest_sha256": "eb0c07287ae2e80a3f786dd78f0c21e68efd5c7aca529304eb83406f56eec93b",
+  "command": "python simulation/field_feasibility/analysis_online_sensitivity.py --root simulation/outputs/E1-035/20261124-10-main --data data/field_feasibility_v2 --analysis analysis_v2",
+  "outputs": {
+    "online_floor_sensitivity.csv": "cea45d0bc4757621a2d3c75f6f83095412b446d1c48438043fd248915bde6c6d",
+    "online_floor_paired.csv": "1b1fd98301609b249130494be8b11ce8c7ff8c39b9a3555006711facae31a7d1"
+  },
+  "new_policy_runs": 0,
+  "note": "saved decision-visible histories; raw samples retained; exact-floor blind scoring sensitivity only"
+}

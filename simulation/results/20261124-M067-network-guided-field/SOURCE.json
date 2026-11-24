@@ -1,0 +1,414 @@
+{
+  "task": "M-067/E1-035",
+  "data": "10.17632/bn6n2639xh.2",
+  "full_local_records": "simulation/outputs/E1-035/20261124-10-main",
+  "scenario": "dynamic four-height city simulation; all 480 main mission scores and one complete six-strategy example; local unarchived traces reproducible with frozen code",
+  "seed_source": "config_main.json seeds",
+  "files": [
+    {
+      "path": "RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/RUN_MANIFEST.json",
+      "sha256": "eb0c07287ae2e80a3f786dd78f0c21e68efd5c7aca529304eb83406f56eec93b"
+    },
+    {
+      "path": "config_main.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/config_main.json",
+      "sha256": "43fc67bd7a563cffb7977ae191e49e01318efa13938afc6e4b2a10170d94fa2b"
+    },
+    {
+      "path": "MANIFEST_CORRECTIONS.md",
+      "source": "simulation/outputs/E1-035/20261124-10-main/MANIFEST_CORRECTIONS.md",
+      "sha256": "a38a10e5a4930996f59e98deaea53a3f6ced902028b4f6df5587064d7e00724a"
+    },
+    {
+      "path": "analysis_v2/all_checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/all_checkpoints.csv",
+      "sha256": "93efd93507af5d19fb57128d69a23098cac38231ed93c48fd321a0071024b267"
+    },
+    {
+      "path": "analysis_v2/example_field_reconstruction_error.png",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/example_field_reconstruction_error.png",
+      "sha256": "204b375d060599f5df2099f02662a832002380b34466ee12047b094c8313c12a"
+    },
+    {
+      "path": "analysis_v2/example_paths_samples_topology.png",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/example_paths_samples_topology.png",
+      "sha256": "41d04ec4485c34342608cd1ae6acd32c79faa5177e9ae8ab490fbdd3e46137f9"
+    },
+    {
+      "path": "analysis_v2/paired.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/paired.csv",
+      "sha256": "10c7d4ee23ff73d72720eab1a29396e5806bb025600bf5333363728fe6c1d8f0"
+    },
+    {
+      "path": "analysis_v2/paired_distance.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/paired_distance.csv",
+      "sha256": "f1da0c95b49b0bfd968274b433aa3887519036892d08f42483ed4085b73b1bd8"
+    },
+    {
+      "path": "analysis_v2/paired_height.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/paired_height.csv",
+      "sha256": "345c2786f6c97f13dbc09c99a387265910af358f5f703e2194c3190e65cc3c33"
+    },
+    {
+      "path": "analysis_v2/paired_temporal.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/paired_temporal.csv",
+      "sha256": "4551030fc04ea73365919e51a9e29b1fecb989bfbc3fbbe89cf567212788c3b0"
+    },
+    {
+      "path": "analysis_v2/paired_time.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/paired_time.csv",
+      "sha256": "ae100a4b01d7d0cbee44a4db103c811a1b168323e98820af4dc8d2accf817c44"
+    },
+    {
+      "path": "analysis_v2/per_seed.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/per_seed.csv",
+      "sha256": "f55dfe526d874eee0dd1fd4bad45695cc1df32731ec9049ce7772a87788fa1ea"
+    },
+    {
+      "path": "analysis_v2/representative_verification.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/representative_verification.json",
+      "sha256": "4634b16ceedbb671befad6ce220ab6c91e22f07b198cadd44c49cc10440ff7ce"
+    },
+    {
+      "path": "analysis_v2/rmse_time_samples_distance_n30.png",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/rmse_time_samples_distance_n30.png",
+      "sha256": "ff4f7f8a50cb1dacc2f3931b145e5f9c5bcd62ce81907778ac47cd1df44364b1"
+    },
+    {
+      "path": "analysis_v2/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/RUN_MANIFEST.json",
+      "sha256": "19e9911be01f6e0ca06425c8b5d89302fd2dc6342907b401d1d364612b527053"
+    },
+    {
+      "path": "analysis_v2/safety_all_runs.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/safety_all_runs.csv",
+      "sha256": "7ef563b3513135baedeae552f2043480ca387dc6daabc978efbea07db94e8b6e"
+    },
+    {
+      "path": "analysis_v2/scale_error_and_bytes.png",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/scale_error_and_bytes.png",
+      "sha256": "b7c862d36eb1b989739fb3f5bbf451becd824e5a826245665b5cad45a1388318"
+    },
+    {
+      "path": "analysis_v2/summary.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/summary.csv",
+      "sha256": "0573aa70ec37a50eac82bb1dae859412aaa34d7c4aac14d9db8181e8e8971a2d"
+    },
+    {
+      "path": "n05/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/RUN_MANIFEST.json",
+      "sha256": "cce4ff82f00e10d6343d5ee1314b28821ea1aa9648afa1bab95efb1245e84c40"
+    },
+    {
+      "path": "n05/checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/checkpoints.csv",
+      "sha256": "5f1c1eea1fe8942be4d20c7621a58d83a09a334a5d84c7b994b8ace8e2cea47c"
+    },
+    {
+      "path": "n05/distance_checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/distance_checkpoints.csv",
+      "sha256": "649e591ebff3cea537d6b64d9471a3e1d4fb82afbe4b2558cc6d3fecd2db890a"
+    },
+    {
+      "path": "n05/checkpoints_height.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/checkpoints_height.csv",
+      "sha256": "1f81055c06269da4cb552043def43e0eb9cd7c8852440e09adc292963e314dde"
+    },
+    {
+      "path": "n05/temporal.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/temporal.csv",
+      "sha256": "f37604a956b444a7269f2d0ee7bdb4b0a9f13ae3e577de892c5d8b4aceb45474"
+    },
+    {
+      "path": "n05/config.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/config.json",
+      "sha256": "f975e64dd1c6eee71f9a6d7de50cbfff9c1b3f75f7e3e4db7b770ec7746ace0a"
+    },
+    {
+      "path": "n10/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n10/RUN_MANIFEST.json",
+      "sha256": "10cb87680068bcbad39ffbcc03bbf64f2bb2e673ce15a628f8017bc9205a3b76"
+    },
+    {
+      "path": "n10/checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n10/checkpoints.csv",
+      "sha256": "a042a146420bf86bbbf8319f947414bdae885f183400b9824709b45aba9b2028"
+    },
+    {
+      "path": "n10/distance_checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n10/distance_checkpoints.csv",
+      "sha256": "ec83f0dbb9f674122016e0dbf7f887b88714507c1a729d7adb73dbed1157d967"
+    },
+    {
+      "path": "n10/checkpoints_height.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n10/checkpoints_height.csv",
+      "sha256": "5d7f38d3332f55b50703a149aae52dce84f0bb575d3511af0e2e974d448aba5f"
+    },
+    {
+      "path": "n10/temporal.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n10/temporal.csv",
+      "sha256": "45f9fa9cf9534dd59f5c6d5fc38d4a6f04b942b9e1b0b9174dab00b9893b258c"
+    },
+    {
+      "path": "n10/config.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n10/config.json",
+      "sha256": "96066ddec1a8081b46c1a85b6f952660f174f558cbeaa93a7d6dbbdc519fda69"
+    },
+    {
+      "path": "n20/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n20/RUN_MANIFEST.json",
+      "sha256": "5a8c941e9d6316add120ea684dacc7d8a8bd405b37ddb999e2324ce168bfa645"
+    },
+    {
+      "path": "n20/checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n20/checkpoints.csv",
+      "sha256": "af80b01ad843003819a578555a2e77d35c36e51214257cbd0e1a4a7e7eb12752"
+    },
+    {
+      "path": "n20/distance_checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n20/distance_checkpoints.csv",
+      "sha256": "1feb41bd1e0d7a0eb63cb945567c01e53c60c4ccd790e47fbf570e41187cd37f"
+    },
+    {
+      "path": "n20/checkpoints_height.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n20/checkpoints_height.csv",
+      "sha256": "4a8dc67bfdd252de9455ee651247b5bedf877d8a010126f267c256043f0b0f5c"
+    },
+    {
+      "path": "n20/temporal.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n20/temporal.csv",
+      "sha256": "84e99855e783802042716ddad620b6d15662caad2fc5a0f780b7b8b1a87deaef"
+    },
+    {
+      "path": "n20/config.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n20/config.json",
+      "sha256": "97262928817aa4afdc5141d979f7af4fbb7acbad1ecc152c2c9ecf4e50722edc"
+    },
+    {
+      "path": "n30/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n30/RUN_MANIFEST.json",
+      "sha256": "14672603d34077b10d5d7428224a672ea399793718a52678020d9713f7e6cc68"
+    },
+    {
+      "path": "n30/checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n30/checkpoints.csv",
+      "sha256": "8add3e1adcc414f37900c6800337c6a96d817f2701f827ff5b181f5c69e578b7"
+    },
+    {
+      "path": "n30/distance_checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n30/distance_checkpoints.csv",
+      "sha256": "138de933862a846629719f3c20e683f4294dcac12da829f169938ecc355effcd"
+    },
+    {
+      "path": "n30/checkpoints_height.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n30/checkpoints_height.csv",
+      "sha256": "2076c18f2c9bd814a95ae1d9323061e85b8747fbbb77c95cc420cae6bcd37c45"
+    },
+    {
+      "path": "n30/temporal.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n30/temporal.csv",
+      "sha256": "449b20cea77bce3e4d7c54e5c109972a690ecd94f961893042fe546cd0e6dab6"
+    },
+    {
+      "path": "n30/config.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n30/config.json",
+      "sha256": "0945c9b818f925642468912363d36823e88a9cdd80388cc04d9a5f92836e550b"
+    },
+    {
+      "path": "frozen-main-code/analysis.py",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/code_snapshot/analysis.py",
+      "sha256": "885422281e4d13db14f0f735118718bad398ed53e77a2603f00abf2a3d146fee"
+    },
+    {
+      "path": "frozen-main-code/analysis_stats.py",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/code_snapshot/analysis_stats.py",
+      "sha256": "a9aa50a3119627791fd645bbda050063f41817265b5aa1103b3df64b0a71a58a"
+    },
+    {
+      "path": "frozen-main-code/data_v2.py",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/code_snapshot/data_v2.py",
+      "sha256": "3bba0f8bc0ff30a83920b5b9d7409eebcb29ddcf0546b19ba2619aef7fa03e59"
+    },
+    {
+      "path": "frozen-main-code/mission.py",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/code_snapshot/mission.py",
+      "sha256": "916380756e52f6e6f3116cd7e6293aa268fa6fddf2edbfeb41a06edf4b0a283f"
+    },
+    {
+      "path": "frozen-main-code/mission_transport.py",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/code_snapshot/mission_transport.py",
+      "sha256": "e4a9fdf8b996779276bde5e5fef10d1cb5577f3a1d56e135e6758023a49b97f5"
+    },
+    {
+      "path": "frozen-main-code/network.py",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/code_snapshot/network.py",
+      "sha256": "23ffdc6bc3d4bef88e5dea01c9f4818f5e6ffb7e1dfe829f05283a5dc48323fc"
+    },
+    {
+      "path": "frozen-main-code/run_pilot.py",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/code_snapshot/run_pilot.py",
+      "sha256": "13ea6ce73072568953cbbbbd5c9093063eee7593e64db65ff5e539686832393b"
+    },
+    {
+      "path": "frozen-main-code/sampling.py",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/code_snapshot/sampling.py",
+      "sha256": "eab28b1f0e2ed0e62bef98aab8ce3d453b37b0bec7d3fb94257d10c6fda9ae7a"
+    },
+    {
+      "path": "n05/seed-2000/A/mission.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/A/mission.json.gz",
+      "sha256": "9f0b14d43c58aad35884714eb265ea0542b3f1af61b970f3a6564d911d89875a"
+    },
+    {
+      "path": "n05/seed-2000/B/mission.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/B/mission.json.gz",
+      "sha256": "886a8f473290772179b3f84d57fec1805d3c412ddab17bbcc2b9bd36db73acd3"
+    },
+    {
+      "path": "n05/seed-2000/B/network.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/B/network.json.gz",
+      "sha256": "df0fb4d7dd5689ea0f31c5c5203fed3335a15658def5a9f09b4f8fd7686d3b7f"
+    },
+    {
+      "path": "n05/seed-2000/C/mission.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/C/mission.json.gz",
+      "sha256": "6a43e134fab664142aa84a257082b60f1a808c752b09299cfb8f9bdab9bf7692"
+    },
+    {
+      "path": "n05/seed-2000/common_unvisited_points.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/common_unvisited_points.json",
+      "sha256": "4c6ab9ecd467a994fccc3408ffa8342d13ad08399b7a7f0bcb94b318ea20d644"
+    },
+    {
+      "path": "n05/seed-2000/D/mission.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/D/mission.json.gz",
+      "sha256": "7d1556f7232aecafaa7ed0fbc130643d49a7ef7b4f3decca76ef310be91197ee"
+    },
+    {
+      "path": "n05/seed-2000/D/network.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/D/network.json.gz",
+      "sha256": "256dae6080474959064f6ff87a9f4c93b7c3a3e546bc62bdfc20a104914e55e7"
+    },
+    {
+      "path": "n05/seed-2000/D_degraded/mission.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/D_degraded/mission.json.gz",
+      "sha256": "61ab6818fa4e15bbc43c27afa312c28b72136dc792079bb3afdf6f0fa0df4821"
+    },
+    {
+      "path": "n05/seed-2000/D_degraded/network.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/D_degraded/network.json.gz",
+      "sha256": "1f2a1a0e761433965cd99f5ed72b74d0b4387e66f5550aafc3044f76e532184a"
+    },
+    {
+      "path": "n05/seed-2000/E/mission.json.gz",
+      "source": "simulation/outputs/E1-035/20261124-10-main/n05/seed-2000/E/mission.json.gz",
+      "sha256": "8d041191b5570e91460d3a81446d1023b1b8a3b2d18da21249d541f87fd9ea04"
+    },
+    {
+      "path": "pilots/20261124-03-phase1-v2/config.json",
+      "source": "simulation/outputs/E1-035/20261124-03-phase1-v2/config.json",
+      "sha256": "c27702ea88d4b6a46bccb293da790eb675128567e7126d283910b8eeebb9ada4"
+    },
+    {
+      "path": "pilots/20261124-03-phase1-v2/checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-03-phase1-v2/checkpoints.csv",
+      "sha256": "9cda09ad47685071558b7078f1aad19f78fcffbe9038dd61fb1d328988504675"
+    },
+    {
+      "path": "pilots/20261124-03-phase1-v2/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-03-phase1-v2/RUN_MANIFEST.json",
+      "sha256": "1da79cb6336eda20142b6fffa6191fbce5b9acbce1991790108d027049ef0cc1"
+    },
+    {
+      "path": "pilots/20261124-05-phase2-paired/config.json",
+      "source": "simulation/outputs/E1-035/20261124-05-phase2-paired/config.json",
+      "sha256": "512edf281db9a5ea3b3d89100cd394b7551eb4094cda8303b4e3ab5aae98c8f1"
+    },
+    {
+      "path": "pilots/20261124-05-phase2-paired/checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-05-phase2-paired/checkpoints.csv",
+      "sha256": "2647836a3afaa84a4d62919260c45451ef77be5f1f1eb96a67b5dd517d17553e"
+    },
+    {
+      "path": "pilots/20261124-05-phase2-paired/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-05-phase2-paired/RUN_MANIFEST.json",
+      "sha256": "7aa04a5f93825bbc6513eccf38193b36cec6197c900602401cf0f4d01636890f"
+    },
+    {
+      "path": "pilots/20261124-06-phase3-paired/config.json",
+      "source": "simulation/outputs/E1-035/20261124-06-phase3-paired/config.json",
+      "sha256": "c42dca2c4fb2a3dead59b8a22b312cd32686146b99c284b78ef0fbbae95456c5"
+    },
+    {
+      "path": "pilots/20261124-06-phase3-paired/checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-06-phase3-paired/checkpoints.csv",
+      "sha256": "227a845c72bd79e9477c2183502a7025a1861e8f3d5a9c7a8f9c90d17eb65ace"
+    },
+    {
+      "path": "pilots/20261124-06-phase3-paired/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-06-phase3-paired/RUN_MANIFEST.json",
+      "sha256": "6da40eff084ecf9593c34d47350c8c78f6588421c339cea6a1e5628f961f1132"
+    },
+    {
+      "path": "pilots/20261124-07-scale30/config.json",
+      "source": "simulation/outputs/E1-035/20261124-07-scale30/config.json",
+      "sha256": "67e4d3ba929f3eaa7808f60a59d69ac8d2b7d4ce75d4b9af2c8efab79656a1e4"
+    },
+    {
+      "path": "pilots/20261124-07-scale30/checkpoints.csv",
+      "source": "simulation/outputs/E1-035/20261124-07-scale30/checkpoints.csv",
+      "sha256": "824d0605de39ccb9905c16ddc45dcb87272e4b63c0e4f30faf307473c76e8e30"
+    },
+    {
+      "path": "pilots/20261124-07-scale30/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-07-scale30/RUN_MANIFEST.json",
+      "sha256": "296b50d7ee60772b7a16afcb5440db47a427c02875173b37df872b162a9562b1"
+    },
+    {
+      "path": "independent/20261124-03-main-check/result.json",
+      "source": "simulation/outputs/C-051/20261124-03-main-check/result.json",
+      "sha256": "a5d1171061b5da3260d2be3534bc7f6978c6cac82c1e28aed59955eb3bc4f7fa"
+    },
+    {
+      "path": "independent/20261124-03-main-check/RUN_MANIFEST.json",
+      "source": "simulation/outputs/C-051/20261124-03-main-check/RUN_MANIFEST.json",
+      "sha256": "0555e0b7176d780da82ef55f80451e0b4354c9f7e81ddd0f2abc278c1094e656"
+    },
+    {
+      "path": "independent/20261124-03-main-check/score_result.json",
+      "source": "simulation/outputs/C-051/20261124-03-main-check/score_result.json",
+      "sha256": "1eeb04c4d7285b15ad45f659e92d310e27b826ce927799ca0b1d5613b18a0a47"
+    },
+    {
+      "path": "independent/20261124-04-candidate-main/candidate.json",
+      "source": "simulation/outputs/C-051/20261124-04-candidate-main/candidate.json",
+      "sha256": "53e1f24f62323d9337b71b292a204809f2b9836162153ea820424b3e41c441a9"
+    },
+    {
+      "path": "independent/20261124-04-candidate-main/main_result.json",
+      "source": "simulation/outputs/C-051/20261124-04-candidate-main/main_result.json",
+      "sha256": "7f0f511368bd44365f94b6b6a17be1f55f7a8a16439d94494e3c7f99ba188207"
+    },
+    {
+      "path": "independent/20261124-04-candidate-main/RUN_MANIFEST.json",
+      "source": "simulation/outputs/C-051/20261124-04-candidate-main/RUN_MANIFEST.json",
+      "sha256": "61fece695ae62f7ffca17195fe65e57ceb99b3b305a24d327208e662a7be2818"
+    },
+    {
+      "path": "analysis_v2/ONLINE_SENSITIVITY_MANIFEST.json",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/ONLINE_SENSITIVITY_MANIFEST.json",
+      "sha256": "4ced5542705f7efa417944318ccea1aa512984f6339dd0fb33b768b7d11c8dcd"
+    },
+    {
+      "path": "analysis_v2/online_floor_paired.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/online_floor_paired.csv",
+      "sha256": "1b1fd98301609b249130494be8b11ce8c7ff8c39b9a3555006711facae31a7d1"
+    },
+    {
+      "path": "analysis_v2/online_floor_sensitivity.csv",
+      "source": "simulation/outputs/E1-035/20261124-10-main/analysis_v2/online_floor_sensitivity.csv",
+      "sha256": "cea45d0bc4757621a2d3c75f6f83095412b446d1c48438043fd248915bde6c6d"
+    }
+  ]
+}

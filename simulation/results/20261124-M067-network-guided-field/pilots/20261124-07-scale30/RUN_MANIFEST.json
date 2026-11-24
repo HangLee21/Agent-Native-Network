@@ -1,0 +1,37 @@
+{
+  "status": "completed",
+  "task_id": "E1-035",
+  "phase": 1,
+  "started_at": "2026-11-24T16:07:59.426611+08:00",
+  "timezone": "Asia/Shanghai",
+  "config_sha256": "67e4d3ba929f3eaa7808f60a59d69ac8d2b7d4ce75d4b9af2c8efab79656a1e4",
+  "data_ready_sha256": "52a4f6a5d8f72503ef02edb5a78ce565bed937ddae3ba494fa52f020de0ae4a0",
+  "dependency_snapshot": {
+    "python": "3.11.5",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1"
+  },
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "code_sha256": {
+    "mission.py": "916380756e52f6e6f3116cd7e6293aa268fa6fddf2edbfeb41a06edf4b0a283f",
+    "sampling.py": "eab28b1f0e2ed0e62bef98aab8ce3d453b37b0bec7d3fb94257d10c6fda9ae7a",
+    "analysis.py": "885422281e4d13db14f0f735118718bad398ed53e77a2603f00abf2a3d146fee",
+    "analysis_stats.py": "a9aa50a3119627791fd645bbda050063f41817265b5aa1103b3df64b0a71a58a",
+    "mission_transport.py": "e4a9fdf8b996779276bde5e5fef10d1cb5577f3a1d56e135e6758023a49b97f5",
+    "network.py": "23ffdc6bc3d4bef88e5dea01c9f4818f5e6ffb7e1dfe829f05283a5dc48323fc",
+    "data_v2.py": "3bba0f8bc0ff30a83920b5b9d7409eebcb29ddcf0546b19ba2619aef7fa03e59",
+    "run_pilot.py": "0a6f545df610c825a5a694e8efd5ae976c05c6239fbdc1f20fe5850f63b69b72"
+  },
+  "seeds": [
+    101
+  ],
+  "command": "simulation/field_feasibility/run_pilot.py --data data/field_feasibility_v2 --config simulation/field_feasibility/config_scale_pilot.json --out simulation/outputs/E1-035/20261124-07-scale30",
+  "field_control": "dynamic",
+  "source_directory": "D:\\Multi-Agent Network\\data\\field_feasibility_v2",
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E1-035\\20261124-07-scale30",
+  "process_id": 13176,
+  "intended_runs": 6,
+  "completed_runs": 6,
+  "finished_at": "2026-11-24T16:08:26.296038+08:00",
+  "exit_code": 0
+}

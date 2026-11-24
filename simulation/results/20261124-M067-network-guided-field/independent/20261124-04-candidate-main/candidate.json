@@ -1,0 +1,145 @@
+{
+  "baseline": {
+    "events": [
+      {
+        "message_id": 0,
+        "source": 1,
+        "destination": 4,
+        "kind": "TASK_INTENT",
+        "broadcast": false,
+        "created_at": 0.0,
+        "completed_at": 0.952,
+        "latency_s": 0.952,
+        "bytes": 119,
+        "status": "delivered",
+        "reason": null
+      },
+      {
+        "message_id": 1,
+        "source": 1,
+        "destination": 4,
+        "kind": "TASK_INTENT",
+        "broadcast": false,
+        "created_at": 0.0,
+        "completed_at": 1.904,
+        "latency_s": 1.904,
+        "bytes": 119,
+        "status": "delivered",
+        "reason": null
+      },
+      {
+        "message_id": 2,
+        "source": 1,
+        "destination": 4,
+        "kind": "TASK_INTENT",
+        "broadcast": false,
+        "created_at": 0.0,
+        "completed_at": 2.856,
+        "latency_s": 2.856,
+        "bytes": 119,
+        "status": "delivered",
+        "reason": null
+      }
+    ],
+    "metrics": {
+      "enqueued_frames": 3,
+      "enqueued_bytes": 357,
+      "tx_frames": 3,
+      "tx_bytes": 357,
+      "rejected_frames": 0,
+      "rejected_receive_opportunities": 0,
+      "receive_opportunities": 3,
+      "delivered": 3,
+      "dropped": 0,
+      "pending": 0,
+      "pdr": 1.0,
+      "mean_latency_s": 1.904,
+      "rx_bytes": 357
+    }
+  },
+  "multiple_offline": {
+    "events": [
+      {
+        "message_id": 0,
+        "source": 1,
+        "destination": 4,
+        "kind": "TASK_INTENT",
+        "broadcast": false,
+        "created_at": 0.0,
+        "completed_at": 0.952,
+        "latency_s": 0.952,
+        "bytes": 119,
+        "status": "delivered",
+        "reason": null
+      },
+      {
+        "message_id": 1,
+        "source": 2,
+        "destination": 4,
+        "kind": "TASK_INTENT",
+        "broadcast": false,
+        "created_at": 0.0,
+        "completed_at": 0.952,
+        "latency_s": null,
+        "bytes": 119,
+        "status": "dropped",
+        "reason": "source_offline"
+      },
+      {
+        "message_id": 2,
+        "source": 3,
+        "destination": 4,
+        "kind": "TASK_INTENT",
+        "broadcast": false,
+        "created_at": 0.0,
+        "completed_at": 0.952,
+        "latency_s": null,
+        "bytes": 119,
+        "status": "dropped",
+        "reason": "source_offline"
+      },
+      {
+        "message_id": 3,
+        "source": 1,
+        "destination": 4,
+        "kind": "TASK_INTENT",
+        "broadcast": false,
+        "created_at": 0.0,
+        "completed_at": 1.904,
+        "latency_s": 1.904,
+        "bytes": 119,
+        "status": "delivered",
+        "reason": null
+      },
+      {
+        "message_id": 4,
+        "source": 1,
+        "destination": 4,
+        "kind": "TASK_INTENT",
+        "broadcast": false,
+        "created_at": 0.0,
+        "completed_at": 2.856,
+        "latency_s": 2.856,
+        "bytes": 119,
+        "status": "delivered",
+        "reason": null
+      }
+    ],
+    "metrics": {
+      "enqueued_frames": 5,
+      "enqueued_bytes": 595,
+      "tx_frames": 3,
+      "tx_bytes": 357,
+      "rejected_frames": 0,
+      "rejected_receive_opportunities": 0,
+      "receive_opportunities": 5,
+      "delivered": 3,
+      "dropped": 2,
+      "pending": 0,
+      "pdr": 0.6,
+      "mean_latency_s": 1.904,
+      "rx_bytes": 357
+    }
+  },
+  "candidate_sha256": "f7cf9b3b1b33307415c78f24cc2e20fe22fffbb26675b1c2462d109916c60741"
+}

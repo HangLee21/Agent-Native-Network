@@ -1,0 +1,130 @@
+{
+  "paired_rows_verified": 96,
+  "representative_rmse_comparisons": [
+    {
+      "nodes": "5",
+      "comparison": "D minus C",
+      "metric": "offline_rmse_db",
+      "seed_count": "20",
+      "mean_difference": "0.3047282779861721",
+      "sd_difference": "2.9323009185796414",
+      "ci95_low": "-1.067630795867434",
+      "ci95_high": "1.677087351839778",
+      "paired_t_p": "0.6473923849718854"
+    },
+    {
+      "nodes": "5",
+      "comparison": "D_degraded minus D",
+      "metric": "offline_rmse_db",
+      "seed_count": "20",
+      "mean_difference": "-0.13581192830506678",
+      "sd_difference": "2.4125232679804998",
+      "ci95_low": "-1.2649075735431803",
+      "ci95_high": "0.9932837169330468",
+      "paired_t_p": "0.8039319980766033"
+    },
+    {
+      "nodes": "10",
+      "comparison": "D minus C",
+      "metric": "offline_rmse_db",
+      "seed_count": "20",
+      "mean_difference": "1.4619765725272436",
+      "sd_difference": "3.386726712759139",
+      "ci95_low": "-0.12306031965117614",
+      "ci95_high": "3.047013464705663",
+      "paired_t_p": "0.06860433407744067"
+    },
+    {
+      "nodes": "10",
+      "comparison": "D_degraded minus D",
+      "metric": "offline_rmse_db",
+      "seed_count": "20",
+      "mean_difference": "-1.6511421424729391",
+      "sd_difference": "3.511804105369014",
+      "ci95_low": "-3.294717056310219",
+      "ci95_high": "-0.007567228635658951",
+      "paired_t_p": "0.0490551629964552"
+    },
+    {
+      "nodes": "20",
+      "comparison": "D minus C",
+      "metric": "offline_rmse_db",
+      "seed_count": "20",
+      "mean_difference": "-0.024622201764018747",
+      "sd_difference": "2.5018987054714703",
+      "ci95_low": "-1.1955468393279887",
+      "ci95_high": "1.1463024357999512",
+      "paired_t_p": "0.9653540170935075"
+    },
+    {
+      "nodes": "20",
+      "comparison": "D_degraded minus D",
+      "metric": "offline_rmse_db",
+      "seed_count": "20",
+      "mean_difference": "-0.14020674026482513",
+      "sd_difference": "3.744648152343313",
+      "ci95_low": "-1.8927560225351912",
+      "ci95_high": "1.612342542005541",
+      "paired_t_p": "0.8687890632042785"
+    },
+    {
+      "nodes": "30",
+      "comparison": "D minus C",
+      "metric": "offline_rmse_db",
+      "seed_count": "20",
+      "mean_difference": "-3.4703133012376846",
+      "sd_difference": "4.9749896129910915",
+      "ci95_low": "-5.798680111906926",
+      "ci95_high": "-1.141946490568444",
+      "paired_t_p": "0.005643649183037068"
+    },
+    {
+      "nodes": "30",
+      "comparison": "D_degraded minus D",
+      "metric": "offline_rmse_db",
+      "seed_count": "20",
+      "mean_difference": "1.5760774906968866",
+      "sd_difference": "5.319227712624512",
+      "ci95_low": "-0.9133977098394068",
+      "ci95_high": "4.06555269123318",
+      "paired_t_p": "0.20085829168950758"
+    }
+  ],
+  "n20_n30_records": {
+    "n20": {
+      "B_source_offline": 0,
+      "B_delivered": 280416,
+      "B_dropped": 0,
+      "B_pending": 0,
+      "B_rejected_receive_opportunities": 0,
+      "D_source_offline": 0,
+      "D_delivered": 629750,
+      "D_dropped": 0,
+      "D_pending": 0,
+      "D_rejected_receive_opportunities": 0,
+      "D_degraded_source_offline": 0,
+      "D_degraded_delivered": 133422,
+      "D_degraded_dropped": 32828,
+      "D_degraded_pending": 0,
+      "D_degraded_rejected_receive_opportunities": 0
+    },
+    "n30": {
+      "B_source_offline": 0,
+      "B_delivered": 643364,
+      "B_dropped": 0,
+      "B_pending": 0,
+      "B_rejected_receive_opportunities": 0,
+      "D_source_offline": 0,
+      "D_delivered": 1442600,
+      "D_dropped": 0,
+      "D_pending": 0,
+      "D_rejected_receive_opportunities": 0,
+      "D_degraded_source_offline": 0,
+      "D_degraded_delivered": 325142,
+      "D_degraded_dropped": 80748,
+      "D_degraded_pending": 0,
+      "D_degraded_rejected_receive_opportunities": 0
+    }
+  },
+  "limits": "statistical reproduction from per-seed table, not all per-seed scores independently recomputed; n20/n30 received-sample causality not fully traversed"
+}

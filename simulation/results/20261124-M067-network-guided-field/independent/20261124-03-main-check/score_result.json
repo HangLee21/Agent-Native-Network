@@ -1,0 +1,82 @@
+[
+  {
+    "scale": "n05",
+    "policy": "D",
+    "seed": 2000,
+    "step": 4,
+    "offline_rmse_db": 36.292022223339615,
+    "offline_mae_db": 10.880176074492583,
+    "offline_p95_abs_error_db": 15.012984764453389,
+    "online_mean_rmse_db": 36.31215806059807
+  },
+  {
+    "scale": "n05",
+    "policy": "D",
+    "seed": 2000,
+    "step": 19,
+    "offline_rmse_db": 36.844093731981765,
+    "offline_mae_db": 10.324969702051296,
+    "offline_p95_abs_error_db": 8.456822520922021,
+    "online_mean_rmse_db": 36.821466330426276
+  },
+  {
+    "scale": "n05",
+    "policy": "D_degraded",
+    "seed": 2000,
+    "step": 4,
+    "offline_rmse_db": 36.3139424984003,
+    "offline_mae_db": 11.188618658807671,
+    "offline_p95_abs_error_db": 14.91265633129486,
+    "online_mean_rmse_db": 36.37980850079224
+  },
+  {
+    "scale": "n05",
+    "policy": "D_degraded",
+    "seed": 2000,
+    "step": 19,
+    "offline_rmse_db": 36.22129627267382,
+    "offline_mae_db": 10.481701949879115,
+    "offline_p95_abs_error_db": 10.96131787116413,
+    "online_mean_rmse_db": 36.33980150670351
+  },
+  {
+    "scale": "n10",
+    "policy": "D",
+    "seed": 2000,
+    "step": 4,
+    "offline_rmse_db": 35.84823099155332,
+    "offline_mae_db": 10.206915021199785,
+    "offline_p95_abs_error_db": 8.123155243621422,
+    "online_mean_rmse_db": 36.164111935039315
+  },
+  {
+    "scale": "n10",
+    "policy": "D",
+    "seed": 2000,
+    "step": 19,
+    "offline_rmse_db": 36.7271598865165,
+    "offline_mae_db": 11.24722622020314,
+    "offline_p95_abs_error_db": 10.41725977021328,
+    "online_mean_rmse_db": 36.72607619695128
+  },
+  {
+    "scale": "n10",
+    "policy": "D_degraded",
+    "seed": 2000,
+    "step": 4,
+    "offline_rmse_db": 36.33121018232662,
+    "offline_mae_db": 11.105648881946758,
+    "offline_p95_abs_error_db": 11.854716500360293,
+    "online_mean_rmse_db": 36.29684787710191
+  },
+  {
+    "scale": "n10",
+    "policy": "D_degraded",
+    "seed": 2000,
+    "step": 19,
+    "offline_rmse_db": 31.459514457520513,
+    "offline_mae_db": 10.521881638783379,
+    "offline_p95_abs_error_db": 48.45967016082334,
+    "online_mean_rmse_db": 35.50758390370613
+  }
+]

@@ -1,0 +1,156 @@
+{
+  "n05": {
+    "seeds": 20,
+    "counter": {
+      "D_source_offline": 0,
+      "D_delivered": 31910,
+      "D_dropped": 0,
+      "D_pending": 0,
+      "D_rejected": 0,
+      "D_changed_decisions": 880,
+      "D_changed_next_position": 833,
+      "D_degraded_source_offline": 0,
+      "D_degraded_delivered": 7037,
+      "D_degraded_dropped": 1683,
+      "D_degraded_pending": 0,
+      "D_degraded_rejected": 0,
+      "D_degraded_changed_decisions": 293,
+      "D_degraded_changed_next_position": 277,
+      "B_source_offline": 0,
+      "B_delivered": 14680,
+      "B_dropped": 0,
+      "B_pending": 0,
+      "B_rejected": 0
+    },
+    "motion_examples": {
+      "D": {
+        "seed": 2000,
+        "node": 1,
+        "step": 1,
+        "received_sample_count": 4,
+        "selected": 13,
+        "counterfactual": 6,
+        "observed_next": [
+          678.8505831219987,
+          575.8257834808524,
+          25.0
+        ],
+        "local_no_message_next_no_safety": [
+          572.3819182524442,
+          523.3157523468425,
+          25.0
+        ]
+      },
+      "D_degraded": {
+        "seed": 2000,
+        "node": 0,
+        "step": 2,
+        "received_sample_count": 1,
+        "selected": 10,
+        "counterfactual": 12,
+        "observed_next": [
+          471.52227620471297,
+          573.0147611487996,
+          2.0
+        ],
+        "local_no_message_next_no_safety": [
+          571.2194148302784,
+          582.0212223896293,
+          2.0
+        ]
+      }
+    },
+    "distance_matching_max_spread_m": 299.96753142546913,
+    "distance_groups_with_spread": 28,
+    "time_matching_max_spread_s": 90.0,
+    "distance_groups": 40,
+    "config_sha256": "f975e64dd1c6eee71f9a6d7de50cbfff9c1b3f75f7e3e4db7b770ec7746ace0a",
+    "code_sha256": {
+      "mission.py": "916380756e52f6e6f3116cd7e6293aa268fa6fddf2edbfeb41a06edf4b0a283f",
+      "sampling.py": "eab28b1f0e2ed0e62bef98aab8ce3d453b37b0bec7d3fb94257d10c6fda9ae7a",
+      "analysis.py": "885422281e4d13db14f0f735118718bad398ed53e77a2603f00abf2a3d146fee",
+      "analysis_stats.py": "a9aa50a3119627791fd645bbda050063f41817265b5aa1103b3df64b0a71a58a",
+      "mission_transport.py": "e4a9fdf8b996779276bde5e5fef10d1cb5577f3a1d56e135e6758023a49b97f5",
+      "network.py": "23ffdc6bc3d4bef88e5dea01c9f4818f5e6ffb7e1dfe829f05283a5dc48323fc",
+      "data_v2.py": "3bba0f8bc0ff30a83920b5b9d7409eebcb29ddcf0546b19ba2619aef7fa03e59",
+      "run_pilot.py": "13ea6ce73072568953cbbbbd5c9093063eee7593e64db65ff5e539686832393b"
+    }
+  },
+  "n10": {
+    "seeds": 20,
+    "counter": {
+      "D_source_offline": 0,
+      "D_delivered": 154490,
+      "D_dropped": 0,
+      "D_pending": 0,
+      "D_rejected": 0,
+      "D_changed_decisions": 2483,
+      "D_changed_next_position": 2374,
+      "D_degraded_source_offline": 0,
+      "D_degraded_delivered": 36984,
+      "D_degraded_dropped": 8996,
+      "D_degraded_pending": 0,
+      "D_degraded_rejected": 0,
+      "D_degraded_changed_decisions": 1804,
+      "D_degraded_changed_next_position": 1724,
+      "B_source_offline": 0,
+      "B_delivered": 68356,
+      "B_dropped": 0,
+      "B_pending": 0,
+      "B_rejected": 0
+    },
+    "motion_examples": {
+      "D": {
+        "seed": 2000,
+        "node": 0,
+        "step": 1,
+        "received_sample_count": 8,
+        "selected": 5,
+        "counterfactual": 11,
+        "observed_next": [
+          454.61393425761827,
+          478.3389233394866,
+          2.0
+        ],
+        "local_no_message_next_no_safety": [
+          507.90166673510896,
+          522.4097708828918,
+          2.0
+        ]
+      },
+      "D_degraded": {
+        "seed": 2000,
+        "node": 1,
+        "step": 1,
+        "received_sample_count": 2,
+        "selected": 11,
+        "counterfactual": 8,
+        "observed_next": [
+          551.6721516828428,
+          552.2979153510613,
+          25.0
+        ],
+        "local_no_message_next_no_safety": [
+          646.4185695519694,
+          502.14800882606824,
+          25.0
+        ]
+      }
+    },
+    "distance_matching_max_spread_m": 540.0,
+    "distance_groups_with_spread": 37,
+    "time_matching_max_spread_s": 240.0,
+    "distance_groups": 40,
+    "config_sha256": "96066ddec1a8081b46c1a85b6f952660f174f558cbeaa93a7d6dbbdc519fda69",
+    "code_sha256": {
+      "mission.py": "916380756e52f6e6f3116cd7e6293aa268fa6fddf2edbfeb41a06edf4b0a283f",
+      "sampling.py": "eab28b1f0e2ed0e62bef98aab8ce3d453b37b0bec7d3fb94257d10c6fda9ae7a",
+      "analysis.py": "885422281e4d13db14f0f735118718bad398ed53e77a2603f00abf2a3d146fee",
+      "analysis_stats.py": "a9aa50a3119627791fd645bbda050063f41817265b5aa1103b3df64b0a71a58a",
+      "mission_transport.py": "e4a9fdf8b996779276bde5e5fef10d1cb5577f3a1d56e135e6758023a49b97f5",
+      "network.py": "23ffdc6bc3d4bef88e5dea01c9f4818f5e6ffb7e1dfe829f05283a5dc48323fc",
+      "data_v2.py": "3bba0f8bc0ff30a83920b5b9d7409eebcb29ddcf0546b19ba2619aef7fa03e59",
+      "run_pilot.py": "13ea6ce73072568953cbbbbd5c9093063eee7593e64db65ff5e539686832393b"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "task_id": "E1-035",
+  "phase": 4,
+  "status": "completed",
+  "started_at": "2026-11-24T16:12:09.806251+08:00",
+  "timezone": "Asia/Shanghai",
+  "config_sha256": "43fc67bd7a563cffb7977ae191e49e01318efa13938afc6e4b2a10170d94fa2b",
+  "node_counts": [
+    5,
+    10,
+    20,
+    30
+  ],
+  "seeds": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+  ],
+  "policies": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "D_degraded",
+    "E"
+  ],
+  "expected_main_runs": 400,
+  "expected_degraded_runs": 80,
+  "completed_node_counts": [
+    5,
+    10,
+    20,
+    30
+  ],
+  "process_id": 45904,
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "command": [
+    "simulation/field_feasibility/run_main.py",
+    "--data",
+    "data/field_feasibility_v2",
+    "--config",
+    "simulation/field_feasibility/config_main.json",
+    "--out",
+    "simulation/outputs/E1-035/20261124-10-main"
+  ],
+  "runner_sha256": "24a0cf678f02f4a2ffd7b491459b56fc1ab764efbe40dd4c91eb0615d99c14fa",
+  "exit_code": 0,
+  "finished_at": "2026-11-24T16:23:48.346300+08:00"
+}

@@ -1,0 +1,78 @@
+{
+  "template_only": false,
+  "task_id": "E1-035",
+  "run_id": "20261124-10-main-analysis-v2",
+  "started_at": null,
+  "finished_at": "2026-11-24T16:31:44.596712+08:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": null,
+  "git_commit_note": "Not captured at original main-run launch; do not infer from later HEAD",
+  "dirty_files_sha256": {
+    "simulation\\field_feasibility\\analysis_main.py": "38d983ac73e75c802411def93940964d1248f4286200f0446cd9459cef96a4e5",
+    "simulation\\field_feasibility\\analysis_stats.py": "a9aa50a3119627791fd645bbda050063f41817265b5aa1103b3df64b0a71a58a",
+    "simulation\\field_feasibility\\analysis_safety.py": "5d197adb7a62ea6b1f9fc6da5fe43073fe07c17d90a0cefb5e0d9e7b09c4a949",
+    "simulation\\field_feasibility\\analysis_verify.py": "575f5d5f38b9a62b3da2d8bc5bb2dd66443d0630339066a72164783d7b8dde77",
+    "simulation\\field_feasibility\\analysis_plots.py": "4780abee1f33c7d0fd2dd168bbadc41a31b66cc67ddd819d0f72825f73f5921d",
+    "simulation\\field_feasibility\\analysis_curves.py": "b7497bcd2e9af06d9f84dc725363c35d067596dd95043d05a348f22df525350c",
+    "simulation\\field_feasibility\\analysis.py": "885422281e4d13db14f0f735118718bad398ed53e77a2603f00abf2a3d146fee",
+    "simulation\\field_feasibility\\sampling.py": "eab28b1f0e2ed0e62bef98aab8ce3d453b37b0bec7d3fb94257d10c6fda9ae7a",
+    "simulation\\field_feasibility\\data_v2.py": "3bba0f8bc0ff30a83920b5b9d7409eebcb29ddcf0546b19ba2619aef7fa03e59"
+  },
+  "command": [
+    "python simulation/field_feasibility/analysis_main.py --root simulation/outputs/E1-035/20261124-10-main --out analysis_v2",
+    "python simulation/field_feasibility/analysis_safety.py --root simulation/outputs/E1-035/20261124-10-main --analysis analysis_v2",
+    "python simulation/field_feasibility/analysis_verify.py --root simulation/outputs/E1-035/20261124-10-main --data data/field_feasibility_v2 --analysis analysis_v2",
+    "python simulation/field_feasibility/analysis_plots.py --root simulation/outputs/E1-035/20261124-10-main --data data/field_feasibility_v2 --analysis analysis_v2",
+    "python simulation/field_feasibility/analysis_curves.py --root simulation/outputs/E1-035/20261124-10-main --analysis analysis_v2"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "matplotlib": "3.7.5"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {
+    "main_RUN_MANIFEST": "eb0c07287ae2e80a3f786dd78f0c21e68efd5c7aca529304eb83406f56eec93b",
+    "data_ready": "52a4f6a5d8f72503ef02edb5a78ce565bed937ddae3ba494fa52f020de0ae4a0"
+  },
+  "config_file": "simulation\\outputs\\E1-035\\20261124-10-main\\config_main.json",
+  "seeds": [
+    2000,
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+  ],
+  "budget": {
+    "new_policy_runs": 0,
+    "analysed_saved_runs": 480
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E1-035\\20261124-10-main\\analysis_v2",
+  "process_id": null,
+  "exit_code": 0,
+  "status": "completed",
+  "limitations": [
+    "Analyses from saved simulation only; no independent C audit",
+    "actual start times and individual process IDs were not captured",
+    "first analysis directory preserved; this is augmented analysis_v2"
+  ],
+  "review_reference": "coordination/tasks/E1-035.md"
+}

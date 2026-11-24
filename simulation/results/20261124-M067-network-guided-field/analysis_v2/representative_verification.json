@@ -1,0 +1,70 @@
+[
+  {
+    "nodes": 5,
+    "seed": 2000,
+    "policies_checked": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "D_degraded",
+      "E"
+    ],
+    "sample_value_checks": 600,
+    "trajectory_segments_checked": 600,
+    "min_continuous_separation_m": 12.011954424807652,
+    "common_unvisited_count": 48,
+    "ab_samples_and_trajectory_equal": true
+  },
+  {
+    "nodes": 10,
+    "seed": 2000,
+    "policies_checked": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "D_degraded",
+      "E"
+    ],
+    "sample_value_checks": 1200,
+    "trajectory_segments_checked": 1200,
+    "min_continuous_separation_m": 5.727404467461905,
+    "common_unvisited_count": 48,
+    "ab_samples_and_trajectory_equal": true
+  },
+  {
+    "nodes": 20,
+    "seed": 2000,
+    "policies_checked": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "D_degraded",
+      "E"
+    ],
+    "sample_value_checks": 2400,
+    "trajectory_segments_checked": 2400,
+    "min_continuous_separation_m": 5.224017370410704,
+    "common_unvisited_count": 48,
+    "ab_samples_and_trajectory_equal": true
+  },
+  {
+    "nodes": 30,
+    "seed": 2000,
+    "policies_checked": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "D_degraded",
+      "E"
+    ],
+    "sample_value_checks": 3600,
+    "trajectory_segments_checked": 3600,
+    "min_continuous_separation_m": 5.374189229311487,
+    "common_unvisited_count": 48,
+    "ab_samples_and_trajectory_equal": true
+  }
+]
