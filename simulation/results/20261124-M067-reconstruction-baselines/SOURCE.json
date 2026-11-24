@@ -1,0 +1,57 @@
+{
+  "task": "M-067/E2-044",
+  "release": "10.17632/bn6n2639xh.2",
+  "files": [
+    {
+      "path": "20261124-02-baseline-pilot/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E2-044/20261124-02-baseline-pilot/RUN_MANIFEST.json",
+      "sha256": "15aeeaee24596431d940765af0409b27a6ddbe1b240b573aa10c7bf29a037431"
+    },
+    {
+      "path": "20261124-02-baseline-pilot/scores.csv",
+      "source": "simulation/outputs/E2-044/20261124-02-baseline-pilot/scores.csv",
+      "sha256": "29d2a0e0b60f92dea1526f4635da8ad00a82761381204a852c2c50b8ebacb7ec"
+    },
+    {
+      "path": "20261124-02-baseline-pilot/tests.txt",
+      "source": "simulation/outputs/E2-044/20261124-02-baseline-pilot/tests.txt",
+      "sha256": "9108598d4a8d886c8e32540f639f059cab08d571fbdf9bfc48461b5a686ce161"
+    },
+    {
+      "path": "20261124-03-baseline-grid/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E2-044/20261124-03-baseline-grid/RUN_MANIFEST.json",
+      "sha256": "834fb6e51b347f69b4457c3c96277d1d434ac6e958e049a06ec9c01c3ec3f914"
+    },
+    {
+      "path": "20261124-03-baseline-grid/scores.csv",
+      "source": "simulation/outputs/E2-044/20261124-03-baseline-grid/scores.csv",
+      "sha256": "326d16bf356dd463a27d552752b0bfe4e83fcaff89c1fdf3fcffb59cbbabeb5d"
+    },
+    {
+      "path": "20261124-06-sensitivity-repro/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E2-044/20261124-06-sensitivity-repro/RUN_MANIFEST.json",
+      "sha256": "f3de0494c3c583a9d8835a5f82fbd6f5aea8f107d3b92411be9d364cd064bd25"
+    },
+    {
+      "path": "20261124-06-sensitivity-repro/scores.csv",
+      "source": "simulation/outputs/E2-044/20261124-06-sensitivity-repro/scores.csv",
+      "sha256": "39e6f3389d7135011a2cd342dbbf7703e480e83fd242234140e73c164f1fc4fa"
+    },
+    {
+      "path": "20261124-07-plot-final/RUN_MANIFEST.json",
+      "source": "simulation/outputs/E2-044/20261124-07-plot-final/RUN_MANIFEST.json",
+      "sha256": "e1f149de023e1c006819ee3a07b9c623c282a39f3444e32f4c3f66c98b70c2d7"
+    },
+    {
+      "path": "20261124-07-plot-final/example_reconstructions.png",
+      "source": "simulation/outputs/E2-044/20261124-07-plot-final/example_reconstructions.png",
+      "sha256": "1bca801f3aa68a2d600f92a930c1eeccac9dafa18c67f19452dc0d7cae1b62ba"
+    },
+    {
+      "path": "20261124-07-plot-final/rmse_by_height_and_rate.png",
+      "source": "simulation/outputs/E2-044/20261124-07-plot-final/rmse_by_height_and_rate.png",
+      "sha256": "1aca6a9a4f3f2664619418afdc2ca2fc228a0422f2cdebfd2583f678b8fc860f"
+    }
+  ],
+  "scope": "Paired random grid interpolation, one common split per height and time, plus threshold sensitivity. No flights."
+}

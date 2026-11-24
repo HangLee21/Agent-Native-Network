@@ -1,0 +1,74 @@
+{
+  "task_id": "E2-044",
+  "run_id": "20261124-02-baseline-pilot",
+  "started_at_epoch": 1795507229.1651814,
+  "finished_at_epoch": 1795507229.2074761,
+  "seed": 20261124,
+  "heights": [
+    50
+  ],
+  "relative_target_seconds": [
+    99
+  ],
+  "training_offsets": {
+    "spatial": 0,
+    "temporal": -10
+  },
+  "test_points_per_height_time": 16,
+  "sample_rates": [
+    0.01,
+    0.05
+  ],
+  "rate_denominator": 62500,
+  "test_holdout_excluded_from_training": true,
+  "local_neighbors": 16,
+  "covariance": "400 exp(-distance_m/75), independent noise variance 4; GP local sample mean",
+  "missing_policy": "all raw finite values included; repeated -240.969 minimum unclassified",
+  "source_doi": "10.17632/bn6n2639xh.2",
+  "data_ready": "D:\\Multi-Agent Network\\data\\field_feasibility_v2\\data_ready.json",
+  "scores_rows": 12,
+  "limitations": [
+    "single deterministic split per height/time, not multi-seed uncertainty",
+    "temporal experiment compares against held-out positions 10 seconds later",
+    "sampled test points, not full-grid metric"
+  ],
+  "template_only": false,
+  "started_at": "2026-11-24T08:00:29.165181+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "c119902a564376fe3919b31546e92fd4dae777d1",
+  "dirty_files_sha256": {
+    "simulation/field_feasibility/baseline_run.py": "ef8cf764c2d6c0dfaa2ccec5d09736d48987c99d8c19108e619e487f5f058ce2",
+    "simulation/field_feasibility/test_data_v2.py": "7fc1cca8a41729fcf70041e0c7c98245d5f2d485ec5c6e039b2e1636da3fa5a5"
+  },
+  "command": "python simulation/field_feasibility/baseline_run.py --pilot --out <this directory>",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1"
+  },
+  "upstream_commit": "c119902a564376fe3919b31546e92fd4dae777d1",
+  "data_and_weights_sha256": {
+    "Dynamic_SEM_1.25km_h25m_2.45GHz_600s.mat": "12f48c9da5ae1e555b1f5cbd7b95e2e04b99ccfa38d1a39c6cf08ee797a3d102",
+    "Dynamic_SEM_1.25km_h2m_2.45GHz_600s.mat": "0a5e4eace2131b0786b314f0cb6873a63ec459afdda2130d5920236c75858d2b",
+    "Dynamic_SEM_1.25km_h50m_2.45GHz_600s.mat": "568d3df5528e5eee4c010dd8c38c84849515ef2b8d17ac5accacfebbff17aa50",
+    "Dynamic_SEM_1.25km_h80m_2.45GHz_600s.mat": "54c73f0b9b57b484f9249c6eced6783cc60611b8b6010523374942a4b888c3bb",
+    "guidemanual.pdf": "ef6fd3d837f1aec49dbe140691bd682934a2eee8b121fcc79f8122a9dab6bda6",
+    "dynamic_h2m_f64.npy": "05a19c574548eed9ff6eea42761e8b5ff97f5d96b65e0ecf30ae502ae77b58e8",
+    "dynamic_h25m_f64.npy": "3c9e086ed27cfb2b1c437bc145c28a30e3a29532d4aa953c3c093e65e666d897",
+    "dynamic_h50m_f64.npy": "5b5f53fa45525a6750ceb937bc81a2f1975dec768e993a45c7acca4fccb044ff",
+    "dynamic_h80m_f64.npy": "365795c259817f7a5c76786ff562922fcdb72fb274d0acd54b67ff9e4deb2e93"
+  },
+  "config_file": null,
+  "seeds": [
+    20261124
+  ],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-044\\20261124-02-baseline-pilot",
+  "process_id": null,
+  "finished_at": "2026-11-24T08:00:29.207476+00:00",
+  "exit_code": 0,
+  "status": "completed",
+  "review_reference": "coordination/tasks/E2-044.md"
+}

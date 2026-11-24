@@ -11,3 +11,21 @@
 手册列出静态2/10/20/30/40/50/80 m，实际V2压缩包/官方目录仅见静态10/20/30/40/50 m五文件；动态四高度齐全。静态对照可使用明确冻结的V2动态时间片，不能自行补称缺失静态文件。时间与高度对照图 `simulation/outputs/E2-044/20261124-01-v2-audit/v2-spatiotemporal-grid.png` 的色标限制为[-120,-40] dBm仅用于显示；原始数据未裁剪。手册渲染 `manual-page-1.png`、`manual-page-2.png` 同目录。
 
 接口示例：`from simulation.field_feasibility.data_v2 import FieldV2; f=FieldV2("data/field_feasibility_v2"); f.query(0,0,2,0)` 返回 -86.754 dBm。真值整体数组仅供数据准备/离线评分，不提供给无人机策略或用来推断未来场；接口本身不是安全隔离机制。
+
+## 在另一台电脑准备 V2 数据
+
+仓库提供 `simulation/field_feasibility/baseline_prepare_v2.py`，依赖 Python、NumPy 与 SciPy；无需本机的 `.local` 或 `simulation/outputs`。先从[官方 V2 页面](https://data.mendeley.com/datasets/bn6n2639xh/2)取得 ZIP，然后在仓库根目录执行：
+
+```powershell
+python -X utf8 simulation/field_feasibility/baseline_prepare_v2.py --zip "D:\下载\Mendeley-V2.zip" --target data/field_feasibility_v2
+```
+
+如果本机已有四个原始 MAT、`guidemanual.pdf` 和可选派生 NPY，可改为：
+
+```powershell
+python -X utf8 simulation/field_feasibility/baseline_prepare_v2.py --source-dir "D:\已有V2缓存" --target data/field_feasibility_v2
+```
+
+也可同时提供 `--source-dir` 和 `--zip`，优先校验复用目标及源目录，缺失原始文件再从ZIP提取；单独只有NPY而没有四个原始MAT和手册（或ZIP）时不会伪称已核验原始文件。入口读取仓库已验收 `simulation/results/20261124-M067-v2-data-audit/data_ready.json` 的文件名、发布SHA256和派生数组SHA256；逐高度加载和转换，不同时加载四层。每个原始文件和派生数组都需与验收哈希一致，目录内已有文件不同、已有ready记录与验收不一致、或已有ready但资产缺失时均失败，不覆盖旧文件。转换生成的NPY也要求与已验收NPY字节哈希一致；若其他NumPy版本/平台生成格式有差异，入口会明确报错而非降低校验标准。输出目录需要与其内部暂存目录处于同一文件系统，文件发布不覆盖已有路径；失败后不会生成新的ready标记，但极端并发冲突可能留下已经成功发布且校验通过的个别新文件。
+
+确认接口：`python -c "from simulation.field_feasibility.data_v2 import FieldV2; print(FieldV2('data/field_feasibility_v2').query(0,0,2,0))"`，预期约 `-86.754`。这是审计数据的查询示例，不是实时测量。下载、原始与派生文件均保留在任务目录，约需2.3 GB以上；首次准备还需临时空间，请根据输入和目标是否同盘预留余量。

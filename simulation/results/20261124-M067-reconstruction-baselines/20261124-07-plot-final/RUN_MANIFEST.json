@@ -1,0 +1,34 @@
+{
+  "dependency_snapshot": "host Python numpy scipy matplotlib",
+  "data_and_weights_sha256": {
+    "simulation/outputs/E2-044/20261124-03-baseline-grid/scores.csv": "326d16bf356dd463a27d552752b0bfe4e83fcaff89c1fdf3fcffb59cbbabeb5d"
+  },
+  "started_at": null,
+  "seeds": [
+    20261124
+  ],
+  "status": "completed",
+  "command": "python simulation/field_feasibility/baseline_plot.py --scores <03/scores.csv> --out <new directory>",
+  "finished_at": null,
+  "review_reference": "coordination/tasks/E2-044.md",
+  "timezone": "Asia/Shanghai",
+  "template_only": false,
+  "exit_code": 0,
+  "budget": "visualization of 360 score rows and one map",
+  "worktree": "D:\\Multi-Agent Network",
+  "run_id": "20261124-07-plot-final",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "upstream_commit": "b4507833a5869fb548f0a5c734ba82a860dd80d1",
+  "config_file": null,
+  "dirty_files_sha256": {
+    "simulation/field_feasibility/baseline_plot.py": "69d9f5a9e261dd6f6af890d19a816fd59b927147c84caf584c5dd9d91901058c"
+  },
+  "process_id": null,
+  "limitations": [
+    "One deterministic split per scenario",
+    "Different y axes per height; illustrative plotting, not independently sampled results"
+  ],
+  "git_commit": "b4507833a5869fb548f0a5c734ba82a860dd80d1",
+  "task_id": "E2-044",
+  "output_directory": "simulation/outputs/E2-044/20261124-07-plot-final"
+}

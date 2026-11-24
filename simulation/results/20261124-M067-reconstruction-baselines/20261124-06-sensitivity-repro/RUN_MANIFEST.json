@@ -1,0 +1,57 @@
+{
+  "task_id": "E2-044",
+  "run_id": "20261124-06-sensitivity-repro",
+  "seed": 20261124,
+  "start_epoch": 1795507600.605566,
+  "end_epoch": 1795507605.427688,
+  "hypothesis": "exclude raw values <= -200 dBm; threshold is a sensitivity assumption only, not established invalidity",
+  "train_filter": "only values observed at train_t; sample target count rate*62500",
+  "test_filter": "posthoc target truth excludes <=-200; held-out locations otherwise same as unfiltered experiment",
+  "rate_denominator": 62500,
+  "test_sample_count_before_filter": 128,
+  "source_doi": "10.17632/bn6n2639xh.2",
+  "limitations": [
+    "posthoc scoring subset; no claims for removed regions",
+    "not a sampling-policy run",
+    "single split per height/time"
+  ],
+  "template_only": false,
+  "started_at": "2026-11-24T08:06:40.605566+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "b4507833a5869fb548f0a5c734ba82a860dd80d1",
+  "dirty_files_sha256": {
+    "simulation/field_feasibility/baseline_sensitivity.py": "355f46699ec3f04b904c7d67a372e2a921d2d869f95185c14cdf5cccc0126413",
+    "simulation/field_feasibility/baseline_run.py": "ef8cf764c2d6c0dfaa2ccec5d09736d48987c99d8c19108e619e487f5f058ce2"
+  },
+  "command": "python simulation/field_feasibility/baseline_sensitivity.py --out <this directory>",
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1"
+  },
+  "upstream_commit": "b4507833a5869fb548f0a5c734ba82a860dd80d1",
+  "data_and_weights_sha256": {
+    "Dynamic_SEM_1.25km_h25m_2.45GHz_600s.mat": "12f48c9da5ae1e555b1f5cbd7b95e2e04b99ccfa38d1a39c6cf08ee797a3d102",
+    "Dynamic_SEM_1.25km_h2m_2.45GHz_600s.mat": "0a5e4eace2131b0786b314f0cb6873a63ec459afdda2130d5920236c75858d2b",
+    "Dynamic_SEM_1.25km_h50m_2.45GHz_600s.mat": "568d3df5528e5eee4c010dd8c38c84849515ef2b8d17ac5accacfebbff17aa50",
+    "Dynamic_SEM_1.25km_h80m_2.45GHz_600s.mat": "54c73f0b9b57b484f9249c6eced6783cc60611b8b6010523374942a4b888c3bb",
+    "guidemanual.pdf": "ef6fd3d837f1aec49dbe140691bd682934a2eee8b121fcc79f8122a9dab6bda6",
+    "dynamic_h2m_f64.npy": "05a19c574548eed9ff6eea42761e8b5ff97f5d96b65e0ecf30ae502ae77b58e8",
+    "dynamic_h25m_f64.npy": "3c9e086ed27cfb2b1c437bc145c28a30e3a29532d4aa953c3c093e65e666d897",
+    "dynamic_h50m_f64.npy": "5b5f53fa45525a6750ceb937bc81a2f1975dec768e993a45c7acca4fccb044ff",
+    "dynamic_h80m_f64.npy": "365795c259817f7a5c76786ff562922fcdb72fb274d0acd54b67ff9e4deb2e93"
+  },
+  "config_file": null,
+  "seeds": [
+    20261124
+  ],
+  "budget": null,
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-044\\20261124-06-sensitivity-repro",
+  "process_id": null,
+  "finished_at": "2026-11-24T08:06:45.427688+00:00",
+  "exit_code": 0,
+  "status": "completed",
+  "review_reference": "coordination/tasks/E2-044.md"
+}
