@@ -5,6 +5,10 @@
 #include "lr11xx_system.h"
 typedef struct {uint32_t magic,role,period,jitter,frequency,bw,sf,cr,preamble,sync,start;int32_t power;} lref_config;
 int lref_port_apply(const lref_config*);
+/* Fast band/parameter change without chip bring-up. */
+int lref_port_switch(const lref_config*);
+int lref_port_active(void);
+extern uint32_t lref_switch_last_us,lref_apply_last_us;
 void lref_port_off(void);
 int lref_port_rx(uint8_t*,unsigned*,int*,int*);
 /* Resume continuous RX after an RX event or completed TX. Worker-only. */
