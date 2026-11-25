@@ -507,6 +507,7 @@ static void radio_heal(void){
  output(j);
 }
 void app_main(void){
+ link_mode_load(); /* must be known before radio_start() picks a link radio */
  vTaskPrioritySet(NULL,5);esp_reset_reason_t reason=esp_reset_reason();hg_boot(&health_record,reason==ESP_RST_TASK_WDT?2:reason==ESP_RST_SW?1:0);__atomic_store_n(&health_restarts,health_record.count,__ATOMIC_RELEASE);if(!task_watchdog_config(health_record.count<HG_MAX_RESTARTS))main_wdt_registered=esp_task_wdt_add(NULL)==ESP_OK||esp_task_wdt_status(NULL)==ESP_OK;
  esp_err_t u=uart_driver_install(UART_NUM_0,4096,4096,16,&uart_events,0);if(u!=ESP_OK){printf("MID UART driver failure %d; no radio\n",(int)u);return;}if(uart_set_baudrate(UART_NUM_0,460800)!=ESP_OK){printf("MID UART baud failure; no radio\n");return;}uart_set_hw_flow_ctrl(UART_NUM_0,UART_HW_FLOWCTRL_DISABLE,0);uart_vfs_dev_use_driver(UART_NUM_0);esp_err_t r;unsigned nvs_failures=0;while((r=nvs_flash_init())!=ESP_OK){printf("MID NVS failure %d; retry without erase/radio\n",(int)r);fflush(stdout);nvs_failures++;uint32_t wait_ms=nvs_failures>=3?60000u:(1000u<<nvs_failures);if(nvs_failures>=3)nvs_failures=0;startup_wait(wait_ms);}if(esp_read_mac(self.mac,ESP_MAC_WIFI_STA)!=ESP_OK)return;boot=esp_random()|1u;node_number_load();mid_mt_init(&mobile,self,boot,0);field_boot();lora_ref_init(self,boot);
  mid_display_identity identity={.channel=CHANNEL,.protocol=MID_DISPLAY_MID,.label='?',.node_id=node_number};memcpy(identity.mac,self.mac,6);
