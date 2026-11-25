@@ -149,7 +149,7 @@ Mock 由 `scripts/network-studio/dev.mjs`（**不带 `--real`**）提供：
 1. **2.4G 发射上限 +13 dBm**，是 LR1121 硬件限制，配置无法突破
 2. **`link_mode` 需要重启生效**（`radio_start()` 在启动时决定）
 3. **只设 `link_mode` 不设 `role=link` 会导致失联**（无 Wi-Fi 也无 2.4G 链路）
-4. `uplink_from()` 目前**继承链路配置的功率**（13 dBm），比设定的 15 dBm 低 2 dB
+4. `uplink_from()` **沿用链路配置的功率**（13 dBm）。**这是保留的设计选择，不是缺陷**：470M 上行实测稳定（链路态下 age 仍为 4~7 s），无需调回 15 dBm；若将来需要，改 `uplink_from()` 一行即可
 5. 上行频段在固件里以常量 `LREF_UPLINK_HZ` 固定为 470.5 MHz，尚未做成配置项
 6. ESP-NOW 与 2.4G LoRa 共存会互相干扰（实测丢包），切换是操作动作，不会自动回退
 
