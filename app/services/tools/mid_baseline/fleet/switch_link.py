@@ -58,8 +58,8 @@ def online_devices():
 
 def main():
     ap = argparse.ArgumentParser(description="在 espnow 与 lora24 之间切换节点链路层")
-    ap.add_argument("mode", choices=["espnow", "lora24", "status"],
-                    help="目标链路层；status 只读不写")
+    ap.add_argument("mode", choices=["espnow", "lora24", "toggle", "status"],
+                    help="目标链路层；toggle 切到当前模式的另一侧；status 只读不写")
     ap.add_argument("only", nargs="*", help="设备名，省略则作用于全部在线节点")
     ap.add_argument("--no-reboot", action="store_true", help="写入后不重启（下次上电生效）")
     a = ap.parse_args()
@@ -80,6 +80,15 @@ def main():
         run([node_config, "read"] + only)
         run([set_link, "--read"] + only)
         return 0
+
+    # toggle: read what is stored now, then aim at the other side.
+    if a.mode == "toggle":
+        r = subprocess.run([sys.executable, "-X", "utf8", set_link, "--read"] + only,
+                           cwd=str(ROOT), capture_output=True, text=True)
+        text = (r.stdout or "") + (r.stderr or "")
+        current = "lora24" if "stored=lora24" in text else "espnow"
+        a.mode = "espnow" if current == "lora24" else "lora24"
+        print("== 当前 %s -> 切换到 %s" % (current, a.mode))
 
     p = PROFILES[a.mode]
     print("== 切换到 %s" % a.mode)
