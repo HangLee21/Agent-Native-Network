@@ -56,6 +56,17 @@ static unsigned capture(nd_node*n,mt_node*m,uint64_t now,int(*allowed)(mid_id),u
 #endif
 /* Link-layer receive ring: the worker owns the radio, so frames received in the link
  * role are staged here and drained by the main task through lora_ref_link_pop(). */
+/* The uplink band the gateway listens on. Link mode keeps the radio on 2.4 GHz and
+ * only parks it here for the duration of one report, then returns. */
+#define LREF_UPLINK_HZ 470500000u
+static lref_config uplink_from(const lref_config*c){
+ lref_config u=*c;
+ u.frequency=LREF_UPLINK_HZ;
+ u.bw=125000;
+ u.sf=7;
+ u.cr=5;
+ return u;
+}
 #define LREF_LINK_RING 8
 typedef struct{uint8_t bytes[208];uint16_t len;int8_t rssi,snr;}lref_link_frame;
 static lref_link_frame link_ring[LREF_LINK_RING];
@@ -118,25 +129,39 @@ static void worker(void*unused){
    }
    frame_job job;
    if(__atomic_load_n(&running,__ATOMIC_ACQUIRE)==3&&xQueueReceive(frames,&job,0)==pdTRUE){
-    if(job.generation!=applied_generation){__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);}
-    else{
-     memset(&e,0,sizeof(e));e.kind=1;e.seq=job.seq;e.frame=job;e.config=current;e.at=ms();
-     __atomic_fetch_add(&attempted,1,__ATOMIC_RELAXED);
-     int tr=lref_port_tx(job.bytes,job.len,&e.toa);e.result=tr?-1:0;
-     if(tr){__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}
-     if(!tr){
-      __atomic_fetch_add(&submitted,1,__ATOMIC_RELAXED);emit_event(&e);
-      uint64_t stop=ms()+e.toa+1500;int done=0;
-      while(ms()<stop){done=lref_port_tx_done();worker_progress_step();if(done){break;}vTaskDelay(pdMS_TO_TICKS(5)+1);}
-      e.done=ms();e.result=done==1?1:(done<0?-1:2);
-      if(done==1){
-       __atomic_fetch_add(&completed,1,__ATOMIC_RELAXED);
-       if(lref_port_listen()){__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}
-      }else{
-       lref_port_off();__atomic_store_n(&running,-1,__ATOMIC_RELEASE);
+    if(job.generation!=applied_generation){
+     __atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);
+    }else{
+     lref_config up=uplink_from(&current);
+     if(lref_port_switch(&up)){
+      __atomic_store_n(&running,-1,__ATOMIC_RELEASE);
+     }else{
+      memset(&e,0,sizeof(e));e.kind=1;e.seq=job.seq;e.frame=job;e.config=up;e.at=ms();
+      __atomic_fetch_add(&attempted,1,__ATOMIC_RELAXED);
+      int tr=lref_port_tx(job.bytes,job.len,&e.toa);
+      e.result=tr?-1:0;
+      if(tr){
+       __atomic_store_n(&running,-1,__ATOMIC_RELEASE);
+      }
+      if(!tr){
+       __atomic_fetch_add(&submitted,1,__ATOMIC_RELAXED);emit_event(&e);
+       uint64_t stop=ms()+e.toa+1500;int done=0;
+       while(ms()<stop){done=lref_port_tx_done();worker_progress_step();if(done){break;}vTaskDelay(pdMS_TO_TICKS(5)+1);}
+       e.done=ms();e.result=done==1?1:(done<0?-1:2);
+       if(done==1){
+        __atomic_fetch_add(&completed,1,__ATOMIC_RELAXED);
+       }else{
+        lref_port_off();__atomic_store_n(&running,-1,__ATOMIC_RELEASE);
+       }
+      }
+      emit_event(&e);
+      /* Return to the link band so neighbours keep hearing us. */
+      if(__atomic_load_n(&running,__ATOMIC_ACQUIRE)==3){
+       if(lref_port_switch(&current)){
+        __atomic_store_n(&running,-1,__ATOMIC_RELEASE);
+       }
       }
      }
-     emit_event(&e);
     }
    }
   }
