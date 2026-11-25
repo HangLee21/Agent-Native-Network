@@ -287,7 +287,7 @@ python tools\release\sync_to_deploy.py --deploy <deploy 路径> --check
 ## 日常操作（三条命令）
 
 ```powershell
-FLASH_UPDATE.cmd              # 更新算法/固件：先归一化链路状态，再刷机，最后逐台读回校验
+FLASH_REMOTE.cmd              # 更新算法/固件：先归一化链路状态，再刷机，最后逐台读回校验
 SWITCH_LINK.cmd lora24        # 启用 2.4 GHz LoRa 链路层
 SWITCH_LINK.cmd espnow        # 切回 ESP-NOW
 ```
@@ -298,13 +298,13 @@ SWITCH_LINK.cmd espnow        # 切回 ESP-NOW
 SWITCH_LINK.cmd status              # 只读，看当前链路配置
 SWITCH_LINK.cmd toggle              # 在两个链路层之间来回切，不必记当前是哪个
 SWITCH_LINK.cmd lora24 eora-air-01  # 只操作指定设备
-FLASH_UPDATE.cmd --skip-normalize   # 只刷机，保留当前 NVS 链路配置
-FLASH_UPDATE.cmd path\to\image.bin  # 指定镜像（回滚用）
+FLASH_REMOTE.cmd --skip-normalize   # 只刷机，保留当前 NVS 链路配置
+FLASH_REMOTE.cmd path\to\image.bin  # 指定镜像（回滚用）
 ```
 
-### FLASH_UPDATE 与 FLASH_NODES 的关系
+### FLASH_REMOTE 与 FLASH_NODES 的关系
 
-| 能力 | FLASH_NODES.cmd | FLASH_UPDATE.cmd |
+| 能力 | FLASH_NODES.cmd | FLASH_REMOTE.cmd |
 | --- | --- | --- |
 | 刷写固件 | 是 | 是（内部调用 FLASH_NODES） |
 | 刷前归一化链路状态 | 否 | 是 |
@@ -312,9 +312,9 @@ FLASH_UPDATE.cmd path\to\image.bin  # 指定镜像（回滚用）
 | 单台定向刷写 | 是（`--only`） | 否，需直接用 FLASH_NODES |
 | 列出可用镜像 | 是（`--list`） | 否 |
 
-所以两者不是重复：`FLASH_UPDATE` 是**带安全护栏的默认入口**，
+所以两者不是重复：`FLASH_REMOTE` 是**带安全护栏的默认入口**，
 `FLASH_NODES` 是**底层原语**（批量刷写、单台定向、列镜像时使用）。
 
 为什么必须归一化：esptool 只写 app 分区，NVS 保留 `link_mode` 与射频角色。
 节点若停在 `lora24` 且未设 `role=link`，重烧后会既无 Wi-Fi 也无 2.4G 链路，
-只能拆下来接 USB。`FLASH_UPDATE` 默认先写回 `espnow` 规避这一点。
+只能拆下来接 USB。`FLASH_REMOTE` 默认先写回 `espnow` 规避这一点。
