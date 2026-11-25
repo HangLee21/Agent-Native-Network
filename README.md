@@ -8,7 +8,9 @@
 
 ## 新前端开发源：Vue + TypeScript（2026-11-23）
 
-ControlSystem/lh 的新版完整前端已迁入 [frontend](frontend/)，以后在 baseline 开发；新入口 [START_NETWORK_STUDIO.cmd](START_NETWORK_STUDIO.cmd) 只启动真实工作区，[START_NETWORK_DEMO.cmd](START_NETWORK_DEMO.cmd) 为独立模拟入口。框架来源、运行与回传 lh 规则见 [迁移说明](docs/BASELINE_FRONTEND_MIGRATION.md)。**本阶段 deploy 冻结；原 [START_STUDIO.cmd](START_STUDIO.cmd) 和所有工程工具保留，不把框架导入当作旧工程 UI 全量迁完。**
+ControlSystem/lh 的新版完整前端已迁入 [frontend](frontend/)，以后在 baseline 开发。**2026-11-24 用户确认：默认双击 [START_STUDIO.cmd](START_STUDIO.cmd)，打开新版 Vue 真实工作区（10518）；旧启动器原字节保留为 [START_STUDIO_LEGACY.cmd](START_STUDIO_LEGACY.cmd)，不再默认。** 默认入口复用原采集/Studio后台但不打开旧界面、不改网卡；已有同根真实预览会安全复用。只启前端仍可用 [START_NETWORK_STUDIO.cmd](START_NETWORK_STUDIO.cmd)，[START_NETWORK_DEMO.cmd](START_NETWORK_DEMO.cmd) 是独立模拟入口。来源、运行、功能缺口与回传 lh 规则见 [迁移说明](docs/BASELINE_FRONTEND_MIGRATION.md)。**deploy 冻结，旧工程工具仍保留；切换默认 UI 不表示旧工程 UI 全量迁完或生产已验收。**
+
+2026-11-24 追加：原 Sources/epoch、fleet/recovery、SQLite分页录放、Agent/原字节实收证据与独立Wi-Fi/IP图层已接入；默认清晰布局、红色超时/琥珀未观测、粗方向箭头和入出向表。473 Vue/27 Node/25原后端/22构建浏览器检查通过，均为软件与隔离合同验证，未复测现场3/4号问题；[本轮证据/边界](simulation/results/20261124-M064-core-observability/REPORT.md)。本机可用构建静态服务，无需Vite；不是公网部署鉴权完成。
 
 ## 工程线：固件与自组网
 
@@ -53,3 +55,38 @@ ControlSystem/lh 的新版完整前端已迁入 [frontend](frontend/)，以后�
 | [来源导航](research/agent_native_network/RESEARCH_PROVENANCE_INDEX.md)、[simulation](simulation/README.md) | 历史源码、原结果与证据等级；文档中的旧待办不自动激活 |
 
 [旧需求驱动链条](research/agent_native_network/DEMAND_DRIVEN_RESEARCH_CHAIN.md)、[此前扩展分析](research/agent_native_network/SCALABILITY_COMPREHENSIVE_ANALYSIS.md)及[首版实验链条](research/agent_native_network/RESEARCH_EXPERIMENT_CHAIN.md)作为阶段资料保留。当前路线和执行顺序以上述新入口为准。
+
+## 日常操作（三条命令）
+
+```powershell
+FLASH_UPDATE.cmd              # 更新算法/固件：先归一化链路状态，再刷机，最后逐台读回校验
+SWITCH_LINK.cmd lora24        # 启用 2.4 GHz LoRa 链路层
+SWITCH_LINK.cmd espnow        # 切回 ESP-NOW
+```
+
+补充：
+
+```powershell
+SWITCH_LINK.cmd status              # 只读，看当前链路配置
+SWITCH_LINK.cmd toggle              # 在两个链路层之间来回切，不必记当前是哪个
+SWITCH_LINK.cmd lora24 eora-air-01  # 只操作指定设备
+FLASH_UPDATE.cmd --skip-normalize   # 只刷机，保留当前 NVS 链路配置
+FLASH_UPDATE.cmd path\to\image.bin  # 指定镜像（回滚用）
+```
+
+### FLASH_UPDATE 与 FLASH_NODES 的关系
+
+| 能力 | FLASH_NODES.cmd | FLASH_UPDATE.cmd |
+| --- | --- | --- |
+| 刷写固件 | 是 | 是（内部调用 FLASH_NODES） |
+| 刷前归一化链路状态 | 否 | 是 |
+| 刷后读回配置校验 | 只校验 build id | 追加参数读回 |
+| 单台定向刷写 | 是（`--only`） | 否，需直接用 FLASH_NODES |
+| 列出可用镜像 | 是（`--list`） | 否 |
+
+所以两者不是重复：`FLASH_UPDATE` 是**带安全护栏的默认入口**，
+`FLASH_NODES` 是**底层原语**（批量刷写、单台定向、列镜像时使用）。
+
+为什么必须归一化：esptool 只写 app 分区，NVS 保留 `link_mode` 与射频角色。
+节点若停在 `lora24` 且未设 `role=link`，重烧后会既无 Wi-Fi 也无 2.4G 链路，
+只能拆下来接 USB。`FLASH_UPDATE` 默认先写回 `espnow` 规避这一点。
