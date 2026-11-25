@@ -1,0 +1,212 @@
+# 开发环境与生产环境解耦
+
+## 一、职责划分
+
+| | 开发环境（你） | 生产环境（另一位运维） |
+|---|---|---|
+| 谁 | 开发 + 运维 | 只做卡 |
+| 装 Tailscale | ✅ 需要（远程刷板要用） | ❌ **不需要** |
+| 有代码仓库 | ✅ | ❌ 只要一个做卡包 |
+| 能编译固件 | ✅ | ❌ |
+| 能远程刷板 | ✅ | ❌ |
+| 能看前端 | ✅ | ❌ |
+| 做卡 | ✅（调试卡） | ✅（生产卡） |
+
+**生产那边只需要三样东西**：Python 3 + PyYAML、读卡器、扫描仪/Imager 写的 SD 卡。
+
+---
+
+## 二、两边的画像
+
+```
+┌─ 开发环境（你的机器）──────────────────────┐
+│  完整仓库 + 编译链 + 前端 + fleet 工具         │
+│  Tailscale（组织）  ✅                        │
+│  SSH 私钥 id_ed25519_eora  ✅                 │
+│                                              │
+│  职责：                                       │
+│   1. 出生产做卡包（make_production_kit.py）    │
+│   2. 编译固件、远程刷 15 台                    │
+│   3. 远程更新代码（后续所有变更）              │
+└──────────────────────────────────────────────┘
+                    │  交付：做卡包（zip/文件夹）
+                    ▼
+┌─ 生产环境（另一位运维）────────────────────┐
+│  只有做卡包（9 个文件，约 57 KB）              │
+│  ❌ 不装 Tailscale                            │
+│  ❌ 没有 SSH 私钥                             │
+│  ❌ 没有固件、前端、构建脚本                  │
+│                                              │
+│  职责：只用 MK_CARD.cmd 做卡                  │
+└──────────────────────────────────────────────┘
+```
+
+---
+
+## 三、生产包内容（不含任何私密物）
+
+用 `tools/mid_baseline/fleet/make_production_kit.py` 生成：
+
+```powershell
+python tools\mid_baseline\fleet\make_production_kit.py --out D:\handoff\prod-kit
+```
+
+| 文件 | 大小 | 作用 |
+|---|---:|---|
+| `MK_CARD.cmd` | 1.1 KB | 一键入口 |
+| `gateway_probe/mkcard.py` | 35 KB | 做卡逻辑 |
+| `gateway_probe/node_reader.py` | 8.3 KB | 会被写进卡里（Pi 侧串口服务） |
+| `gateway_probe/node_update.py` | 7.3 KB | 会被写进卡里（Pi 侧烧写器） |
+| `gateway_probe/pi_node_probe.py` | 6.3 KB | 会被写进卡里（串口探针） |
+| `gateway_probe/node_reader.service` | 0.5 KB | systemd 单元 |
+| **`fleet.pub`** | 90 B | **管理公钥**（只有公钥） |
+| `site.env.example` | 0.6 KB | 现场配置模板 |
+| `README.md` | 1.8 KB | 一页操作说明 |
+
+**包里明确没有**：SSH 私钥、`.local/`、固件镜像、前端资源、fleet 工具、构建脚本、git 历史。
+
+> 生成脚本会拒绝：目标目录非空、找不到公钥、公钥不是 ed25519。
+
+---
+
+## 四、权限怎么分
+
+| 凭据 | 生产 | 开发 |
+|---|---|---|
+| **管理公钥** `fleet.pub` | ✅ 需要（写进每张卡） | ✅ |
+| **管理私钥** `id_ed25519_eora` | ❌ **不给** | ✅ 只有这里有 |
+| Tailscale auth key | ✅ 写进 `site.env`（一次性） | ✅ 自用 |
+| Tailscale 客户端 | ❌ 不需要装 | ✅ |
+| WiFi 口令 | ✅ `site.env` | ✅ |
+
+**关键**：卡片里装的是**公钥**。所以生产那边即使整台机器被拿走，也拿不到能登进树莓派的私钥。
+
+**远程更新由你来做**：你手上有私钥 + Tailscale，能 SSH 到 15 台 Pi，
+刷固件、改配置、更新代码都不经过生产那边。
+
+---
+
+## 五、编号号段（必须事先约定）
+
+编号写在卡上、没有中央登记，所以两边必须先分号段：
+
+| 谁的机器 | 号段 |
+|---|---|
+| 你的调试卡 | 1–5（现有五块） |
+| 生产运维 | **6–20**（远程 15 块） |
+
+建议把分配写进 `config/fleet.groups.json` 一起交付，作为唯一事实来源。
+
+---
+
+## 六、交付节奏
+
+```
+① 你：编译固件 → 确认镜像可用
+② 你：生成做卡包 → 连同 site.env 模板、号段约定一起交付
+③ 运维：按 README 做卡（15 张），上电
+④ 你：fleet.py status 看到 15 台 → 远程刷固件
+⑤ 你：fleet.py group --group 2 --channel 6 ... 设成第二组
+⑥ 之后所有代码/固件变更，都由你远程推送
+```
+
+**生产那边做完卡就没戏份了**，后续一切由你远程完成。
+
+---
+
+## 七、验证记录
+
+| 检查 | 结果 |
+|---|---|
+| 生成包的文件清单 | 9 个文件，共约 57 KB |
+| 包内有无私钥/固件/前端/`.local` | ✅ **都没有** |
+| **在不进入仓库的情况下**用包做卡 | ✅ 成功（假卡，installer 46 KB，meta-data 与 cmdline 一致） |
+| 坏公钥 | ✅ 拒绝，并报出实际使用的路径 |
+| `--public-key` 指定公钥 | ✅ 生效 |
+
+---
+
+## 八、还没做
+
+| 项 | 说明 |
+|---|---|
+| 生产包的实际交付 | 等你确认号段与现场 WiFi |
+| 15 张卡实做 | 等现场配置 |
+| 编号冲突检查 | 可加：做卡前扫 `fleet.groups.json` 与在线节点，发现重号拒绝写卡 |
+
+---
+
+## 九、修订：**两个人都有刷板权限**，并且允许密码登录
+
+前面的"生产只做卡"不再是唯一形态。现在的实际需求是：
+
+| 能力 | 开发（你） | 运维（同事） |
+|---|---|---|
+| 做卡 | ✅ | ✅ |
+| **刷板** | ✅ | ✅ |
+| Tailscale | ✅ | ✅（同一组织 tailnet） |
+| SSH 私钥 | ✅ | 可选——**也可以用密码登录** |
+| 编译固件 / 前端 | ✅ | ❌ |
+
+### 9.1 两把公钥同时写进卡
+
+`fleet.pub` 现在可以放**多行**，一行一把公钥：
+
+```
+ssh-ed25519 AAAAC3...  you@dev
+ssh-ed25519 AAAAC3...  ops@site
+```
+
+做卡时会全部装进 `eora` 的 `authorized_keys`，两台机器都能登录。
+格式校验逐行进行，任何一行不合格就整体拒绝（不会写半套）。
+
+### 9.2 允许密码登录（可选，强度自定）
+
+在 `site.env` 里加：
+
+```ini
+SSH_PASSWORD=现场统一的口令
+```
+
+卡片首次启动时会：
+
+```
+printf 'eora:%s\n' "$EORA_SSH_PASS" | chpasswd          # 设置 eora 的密码
+写 /etc/ssh/sshd_config.d/20-eora-password.conf:
+    PasswordAuthentication yes
+    KbdInteractiveAuthentication yes
+systemctl reload ssh
+```
+
+同时在 cloud-init 里把 `ssh_pwauth` 强制为 `true`
+（因为 Imager 选"仅公钥"时会写 `false`，会覆盖我们的设置）。
+
+**只开密码、不设密码**也可以：
+
+```ini
+SSH_ALLOW_PASSWORD=yes
+```
+
+（适用于 Imager 阶段已经设过密码的情况。）
+
+### 9.3 包形态
+
+```powershell
+# 只做卡
+python tools\mid_baseline\fleet\make_production_kit.py --out D:\handoff\card-kit
+
+# 做卡 + 刷板（两个人都要用）
+python tools\mid_baseline\fleet\make_production_kit.py --out D:\handoff\full-kit --with-flash
+```
+
+`--with-flash` 会额外带上 `fleet/`、`FLASH_NODES.cmd`、`FLEET_STATUS.cmd`、
+`config/*.example.json`，共 16 个文件、约 90 KB，**仍然不含私钥**。
+
+### 9.4 安全提醒
+
+| 风险 | 建议 |
+|---|---|
+| 密码登录可被暴力破解 | 用长口令；必要时只在内网开放 |
+| 卡片上带明文密码 | 首启成功后删掉 `/etc/eora/identity.env` |
+| 两把公钥都在卡上 | 任一私钥泄露即等于该机群全部可登录 → 定期换钥 |
+| 建议 | 能只用公钥的场景就别开密码；密码作为**备用通道** |

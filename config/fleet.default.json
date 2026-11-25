@@ -38,7 +38,7 @@
   },
   "release_manifest": "../firmware/manifest.json",
   "network": {
-    "group": 31,
+    "group": 1,
     "channel": 11
   }
 }
