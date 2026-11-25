@@ -1,0 +1,18 @@
+--- lh/scripts/network-studio/browser_check.py
++++ baseline/scripts/network-studio/browser_check.py
+@@ -10,7 +10,7 @@
+ from playwright.sync_api import sync_playwright, expect
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+-OUT = ROOT / 'docs/network-studio/evidence' / datetime.datetime.now().strftime('browser-%Y%m%d-%H%M%S')
++OUT = Path(os.environ.get('NETWORK_EVIDENCE_DIR', str(ROOT / 'docs/network-studio/evidence' / datetime.datetime.now().strftime('browser-%Y%m%d-%H%M%S'))))
+ BASE = os.environ.get('NETWORK_PREVIEW_URL', 'http://127.0.0.1:5188').rstrip('/')
+ STATIC = os.environ.get('NETWORK_STATIC_URL', '').rstrip('/')
+ SERVER = 'https://network-fixture.invalid'
+@@ -339,5 +339,5 @@
+         browser.close()
+         report.update(checks=checks, page_errors=errors, blocked_unexpected_requests=blocked)
+         (OUT / 'REPORT.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+-        print(json.dumps({'output': str(OUT), **report}, ensure_ascii=False, indent=2))
++        print(json.dumps({'output': str(OUT), **report}, ensure_ascii=True, indent=2))
+ assert report['passed'], report.get('failure', errors)

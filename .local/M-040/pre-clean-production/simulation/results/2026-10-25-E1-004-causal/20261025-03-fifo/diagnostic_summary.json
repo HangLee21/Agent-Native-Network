@@ -1,0 +1,44 @@
+[
+  {
+    "condition": "fifo2048",
+    "n": 5,
+    "successes": 3,
+    "mean_completion": 0.6,
+    "mean_success_makespan": 34.097538216036796,
+    "mean_capped_makespan": 100.45852292962208,
+    "mean_messages": 211,
+    "mean_application_bytes": 65168.6,
+    "mean_serviced_bytes": 44935.65495986601,
+    "rejected": 0,
+    "pending_recipients": 2592,
+    "mean_delivered_p95": 9.06093708715949
+  },
+  {
+    "condition": "fifo4096",
+    "n": 5,
+    "successes": 3,
+    "mean_completion": 0.6,
+    "mean_success_makespan": 26.42016660108787,
+    "mean_capped_makespan": 95.85209996065272,
+    "mean_messages": 138,
+    "mean_application_bytes": 42487,
+    "mean_serviced_bytes": 42221.8,
+    "rejected": 0,
+    "pending_recipients": 32,
+    "mean_delivered_p95": 1.047034789566312
+  },
+  {
+    "condition": "fifo8192",
+    "n": 5,
+    "successes": 3,
+    "mean_completion": 0.6,
+    "mean_success_makespan": 24.020714349760837,
+    "mean_capped_makespan": 94.4124286098565,
+    "mean_messages": 127.4,
+    "mean_application_bytes": 39223,
+    "mean_serviced_bytes": 39025.0,
+    "rejected": 0,
+    "pending_recipients": 24,
+    "mean_delivered_p95": 0.3453515872303814
+  }
+]

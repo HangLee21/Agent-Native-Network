@@ -1,0 +1,8 @@
+{
+  "frontend_files": 59,
+  "frontend_tests": 450,
+  "type_check_and_build": "passed",
+  "native_network_tests": 18,
+  "python_tests": 17,
+  "hardware_access": false
+}

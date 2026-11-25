@@ -1,0 +1,9 @@
+{
+  "stage": "evidence archive finalization",
+  "initial_attempt_exit_code": 1,
+  "initial_failure": "AssertionError: ARTIFACT_SHA256.json",
+  "cause": "Report link validation ran before creation of the checksum manifest that the report itself links to.",
+  "scope": "Archival ordering error only; all live samples, browser results and original field-health failure remain unchanged.",
+  "resolution": "Resume finalization only: create the previously absent checksum manifest, then validate all links and hashes. Do not rerun copies or overwrite original evidence.",
+  "device_or_product_changes": false
+}

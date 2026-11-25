@@ -1,0 +1,46 @@
+{
+  "task_id": "M-064",
+  "raw_run": "D:\\Multi-Agent Network\\simulation\\outputs\\M-064\\20261125-165200-edge-states",
+  "initial_manifest_sha256": "4f5c5556f9bf5cfa2f5b68d9874862aaa6497395746600ffff1fad9a12263795",
+  "git_commit_at_start": "8ddec3fd0fa7d7aba190a78b6dcbea6c1ca26e20",
+  "git_commit_at_acceptance": "8ddec3fd0fa7d7aba190a78b6dcbea6c1ca26e20",
+  "git_write_operations": 0,
+  "modified_frontend_paths": [
+    "frontend/src/network/model.ts",
+    "frontend/src/network/types.ts",
+    "frontend/src/network/gateway.ts",
+    "frontend/src/network/native.ts",
+    "frontend/src/network/presentation.ts",
+    "frontend/src/components/network/NetworkTopology.vue",
+    "frontend/src/components/network/NetworkRelations.vue",
+    "frontend/src/components/network/network-topology-operations.css",
+    "frontend/src/views/NetworkView.vue",
+    "frontend/src/i18n/en/network.ts",
+    "frontend/src/__tests__/network-link-evidence.spec.ts"
+  ],
+  "source_sha256": {
+    "frontend/src/network/model.ts": "3c0bc38ab19f209225d19debb113ea18bf12e23f65a51d1d469a5f3cd234b596",
+    "frontend/src/network/types.ts": "a8224e0a095826b718b12e18c39a5715e1184266f13d48599589fba9b7b6d946",
+    "frontend/src/network/gateway.ts": "09dfbf337a57bb3044c5ee2d19f4a9b596aca850b97a4450a66fe12b38007f9a",
+    "frontend/src/network/native.ts": "8eec1fa353dadb5e50dd4deb3d4bc515cd2d7de6038fd4268629aace62f830ab",
+    "frontend/src/network/presentation.ts": "8301963910240e1850e3f1b758e3c6c417a68ca7bc9280c534db4773849d5496",
+    "frontend/src/components/network/NetworkTopology.vue": "70a12aec89372a0da6f32a1d9ea1578e899abd8e4891aa576ac5735202522732",
+    "frontend/src/components/network/NetworkRelations.vue": "4bb1cd44dfdb48eaae00deec1f80129d98ee06043215765eb08338d6088589f5",
+    "frontend/src/components/network/network-topology-operations.css": "ec629ded12ce174e893a5202868c2c3eb19db857acfacd3c90212a5cedc075fa",
+    "frontend/src/views/NetworkView.vue": "82e515f0ff2ba83c2f0d70768e6e7ef5b122e1871f6c4d96cb117cc7c3aa15ab",
+    "frontend/src/i18n/en/network.ts": "b44c04c5f4545f737555c92d2bbb1267e1ad4fb0b8b0e6885f54725df3f4fb7a",
+    "frontend/src/__tests__/network-model.spec.ts": "326afda3d4d9fbbeda281cb07134b554c3ae04b888c7a38291df512fe5dd5d7a",
+    "frontend/src/__tests__/network-gateway.spec.ts": "97330068156bbf215b5999489ca0574aa1b9205cee9bb2614ff5eee2097653a3",
+    "frontend/src/__tests__/network-view.spec.ts": "0797e5a0af42327f061a2c45dcec2d2b3369d3c7e359cb6d7fa5bcec04691968",
+    "frontend/src/__tests__/network-link-evidence.spec.ts": "ad96c5dda8ab07b5d7f86c08f0d996d610b86b63bdc3f799fc473cbdf39ed30e"
+  },
+  "original_legacy_validity": "null preserved; frontend-only optional sampleOrigin does not create a wire TTL",
+  "backend_firmware_launchers_role_cards_unchanged": true,
+  "live_vs_test": "ACTUAL10518 screenshot and browser live_requests use existing real GET APIs; TEST-ONLY screenshot and fixture_requests use fabricated isolated HTTP inputs, never current hardware evidence",
+  "processes_retained": {
+    "10518": 19772,
+    "8780": 18504,
+    "8794": 45312
+  },
+  "retained_process_check": "same port owners observed before and after this correction; no diagnostic server retained"
+}

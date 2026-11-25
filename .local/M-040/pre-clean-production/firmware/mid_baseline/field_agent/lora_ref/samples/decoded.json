@@ -1,0 +1,28 @@
+{
+  "frame_schema": "LRN1",
+  "observer_id": "90:da:72:48:a5:cc",
+  "observer_boot": 305419896,
+  "report_seq": 7,
+  "snapshot_at_ms": 123456,
+  "wifi_group": 31,
+  "report_period_ms": 10000,
+  "tx_delay_ms": 12,
+  "total_rows": 1,
+  "truncated": false,
+  "nd_table_full": false,
+  "neighbors": [
+    {
+      "peer_id": "90:da:72:48:a4:f8",
+      "peer_boot": 287454020,
+      "state": "bidirectional",
+      "seen_age_ms": 100,
+      "ack_age_ms": 200,
+      "rssi_dbm": -54,
+      "rf_age_ms": 50,
+      "channel": 11,
+      "rf_source": "measured"
+    }
+  ],
+  "transport_age_ms": null,
+  "evidence": "state_at_source_snapshot"
+}

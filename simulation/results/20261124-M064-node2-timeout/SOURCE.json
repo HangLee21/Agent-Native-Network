@@ -1,0 +1,25 @@
+{
+  "task_id": "M-064",
+  "kind": "hardware_readonly_diagnosis_not_fixture_or_deployment",
+  "raw_run": "D:\\Multi-Agent Network\\simulation\\outputs\\M-064\\20261124-164421-node2",
+  "raw_manifest": "D:\\Multi-Agent Network\\simulation\\outputs\\M-064\\20261124-164421-node2\\RUN_MANIFEST.json",
+  "raw_manifest_sha256": "6dc45ba897466ac13361ba1a64bdfe70b80b865779c56be5f70bce813ed5cdd7",
+  "manifest_captured_after_initial_checks": true,
+  "initial_git_commit": "43ead6552d0f85f5e9964056b21c057a0d05a325",
+  "git_commit_at_completion": "8ddec3fd0fa7d7aba190a78b6dcbea6c1ca26e20",
+  "concurrent_commits_preserved_not_authored_by_this_diagnosis": true,
+  "actual_endpoints": [
+    "SSH existing eora-air-01/02/04 aliases",
+    "127.0.0.1:8794/api/v1/lora/topology",
+    "existing legacy:configured UDP receiver 8780, gateway a4f00fe57b830000"
+  ],
+  "original_frontend_legacy_provenance_policy": "unchanged/unknown; no backend identity auto-upgrade",
+  "user_tailscale_recovery": "initial NoState; user restored; this session did not restart or reconfigure it",
+  "accepted_at": "2026-11-24T17:22:14.736694+08:00",
+  "limitations": [
+    "Unique RF root cause; collision remains leading hypothesis",
+    "No packet loss reproduced during the last175s trace",
+    "No RF packet timestamps/waveform, no gateway PHY CRC/forwarder/UDP A/B isolation",
+    "No repair deployed or long-stability/device acceptance"
+  ]
+}

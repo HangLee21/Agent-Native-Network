@@ -1,0 +1,1263 @@
+{
+  "task_id": "E1-012",
+  "kind": "user_approved_continuation",
+  "created_at": "2026-10-28T13:54:46.304589+00:00",
+  "parent_manifest_sha256": "532dd1cef8aca97b6e4ec180fe77b27db6e9687455eb9ab6d8a4d0a0f6b3d6c2",
+  "worker_starts_total": 4,
+  "generation_completed_total": 3,
+  "files": [
+    {
+      "source": "data/agent_native/E1-012/archive_restart_evidence.py",
+      "archive": "payload/data/agent_native/E1-012/archive_restart_evidence.py",
+      "bytes": 3144,
+      "sha256": "7e890ad24a33141412379e15b21b1920611e203111018395f7273e9e23935359"
+    },
+    {
+      "source": "data/agent_native/E1-012/audit_restart.py",
+      "archive": "payload/data/agent_native/E1-012/audit_restart.py",
+      "bytes": 6238,
+      "sha256": "b6726bd92425c26c197910e4dc1441da0a01f0570d97b89b32a6aa87c1a97996"
+    },
+    {
+      "source": "data/agent_native/E1-012/worker_ledger.jsonl",
+      "archive": "payload/data/agent_native/E1-012/worker_ledger.jsonl",
+      "bytes": 5004,
+      "sha256": "dbee6a87627761be3d0309c23db633bd850adad66ae3c0ce9dfd84d42b58e5d8"
+    },
+    {
+      "source": "research/agent_native_network/a0_20261028/MODEL_RUN.md",
+      "archive": "payload/research/agent_native_network/a0_20261028/MODEL_RUN.md",
+      "bytes": 8725,
+      "sha256": "bbcc692d17a271988c33422816954f16d6a85e68450613bd397c11716effacbc"
+    },
+    {
+      "source": "simulation/edge_agent_entry/__init__.py",
+      "archive": "payload/simulation/edge_agent_entry/__init__.py",
+      "bytes": 77,
+      "sha256": "cb7e96750ed46b99468148641d2aae60517fcd9881db3b0f29bb1c20bc75c60e"
+    },
+    {
+      "source": "simulation/edge_agent_entry/a0.py",
+      "archive": "payload/simulation/edge_agent_entry/a0.py",
+      "bytes": 11560,
+      "sha256": "51d4b4bbc818153275711c61688d25a66233195f648fb8830c4ba9fa557d629d"
+    },
+    {
+      "source": "simulation/edge_agent_entry/a0_requirements.txt",
+      "archive": "payload/simulation/edge_agent_entry/a0_requirements.txt",
+      "bytes": 414,
+      "sha256": "320f611b8a4811cd62f9cf3ff09874e87f8a49b27887f33d8d1a1083a5c1b4c4"
+    },
+    {
+      "source": "simulation/edge_agent_entry/a0_task.py",
+      "archive": "payload/simulation/edge_agent_entry/a0_task.py",
+      "bytes": 21119,
+      "sha256": "95dd9d2511c0827103744ba7f350156dd9b57a9f33b874e29da601c5dea46c87"
+    },
+    {
+      "source": "simulation/edge_agent_entry/acquire.py",
+      "archive": "payload/simulation/edge_agent_entry/acquire.py",
+      "bytes": 9546,
+      "sha256": "e297eeb4c71cf29b54bf26e6041ae907ea1c0969c5d67ff0be82ba8f18eb436c"
+    },
+    {
+      "source": "simulation/edge_agent_entry/cli.py",
+      "archive": "payload/simulation/edge_agent_entry/cli.py",
+      "bytes": 4078,
+      "sha256": "f59e6253cf810a963d7612cb0c56eb6ff8904369e9cfdd9a61c5fc6d9fe1f7d1"
+    },
+    {
+      "source": "simulation/edge_agent_entry/common.py",
+      "archive": "payload/simulation/edge_agent_entry/common.py",
+      "bytes": 5714,
+      "sha256": "c9f4c60574d162224e1b9e5a1a5706c4122b73d0c75c27a31d4a348d361f9375"
+    },
+    {
+      "source": "simulation/edge_agent_entry/event_schema.json",
+      "archive": "payload/simulation/edge_agent_entry/event_schema.json",
+      "bytes": 1234,
+      "sha256": "39357def5d22123eda2e22728451f71ace61292bf49809f743d00a992945a19b"
+    },
+    {
+      "source": "simulation/edge_agent_entry/fixture_config.json",
+      "archive": "payload/simulation/edge_agent_entry/fixture_config.json",
+      "bytes": 1220,
+      "sha256": "8c24ca3447f06244bafbed9098ea844958814f6301e0ec06b7537125aa0dc2c2"
+    },
+    {
+      "source": "simulation/edge_agent_entry/invalid_fixture_config.json",
+      "archive": "payload/simulation/edge_agent_entry/invalid_fixture_config.json",
+      "bytes": 1806,
+      "sha256": "e2d4cad50146786a00f3f9def222e488db630a1d470f0d1658c476688e817106"
+    },
+    {
+      "source": "simulation/edge_agent_entry/model_backend.py",
+      "archive": "payload/simulation/edge_agent_entry/model_backend.py",
+      "bytes": 3861,
+      "sha256": "886b6f0716d2ae76f610bf7768e4e0d9238786db79eb1430cae6aad9573debdb"
+    },
+    {
+      "source": "simulation/edge_agent_entry/model_worker.py",
+      "archive": "payload/simulation/edge_agent_entry/model_worker.py",
+      "bytes": 6557,
+      "sha256": "cca0faae0a3fae3295d810d24a34590c45238a405c363b3f00fe1ef926df26a8"
+    },
+    {
+      "source": "simulation/edge_agent_entry/preflight.py",
+      "archive": "payload/simulation/edge_agent_entry/preflight.py",
+      "bytes": 4430,
+      "sha256": "92a5f8196deb5147867f46f7ef09c3ab5e542897a8eecd0cb780a68f321f14f5"
+    },
+    {
+      "source": "simulation/edge_agent_entry/README.md",
+      "archive": "payload/simulation/edge_agent_entry/README.md",
+      "bytes": 6234,
+      "sha256": "c38141f61730fa42f017f46b777bd68456065eb1ee153e1a11a1a1a35640b565"
+    },
+    {
+      "source": "simulation/edge_agent_entry/runtime.py",
+      "archive": "payload/simulation/edge_agent_entry/runtime.py",
+      "bytes": 13935,
+      "sha256": "bf9c2a4b62fa87c45aea1a88d9195cc832335da2ec99eb7853f85587ba891a1a"
+    },
+    {
+      "source": "simulation/edge_agent_entry/test_runtime.py",
+      "archive": "payload/simulation/edge_agent_entry/test_runtime.py",
+      "bytes": 10343,
+      "sha256": "a26058b42338ee171002373360b998fc41fa29fa6ac76f5fb785adcc940e603b"
+    },
+    {
+      "source": "simulation/edge_agent_entry/test_source_identity.py",
+      "archive": "payload/simulation/edge_agent_entry/test_source_identity.py",
+      "bytes": 4937,
+      "sha256": "12bbee1345f857523e7165b1ef4765c61c848cabc4a23bec2dd2baa0bd7dd89c"
+    },
+    {
+      "source": "simulation/edge_agent_entry/test_task_scope.py",
+      "archive": "payload/simulation/edge_agent_entry/test_task_scope.py",
+      "bytes": 8901,
+      "sha256": "44e5a738516626534dbfdaba7109a5eda7991a4bc1f4b4fe7fec09a53d050abe"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-failure/call-01/process.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-failure/call-01/process.json",
+      "bytes": 398,
+      "sha256": "4166d7cfe7f8c4f057605d24de183b3e46bd84a8981c1d3e94be32bba8531074"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-failure/call-01/spec.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-failure/call-01/spec.json",
+      "bytes": 1145,
+      "sha256": "667f265151534ee2edbc1be1ba4b60fc7bc3cb87d851123a2c2ca27e18ee9f42"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-failure/call-01/stdout.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-failure/call-01/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-timeout/call-01/process.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-timeout/call-01/process.json",
+      "bytes": 400,
+      "sha256": "c4efc9f9f149e7db0fe37f93b95eb7b69caf9d7e0fcaadedc6e6457ec412af88"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-timeout/call-01/spec.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-timeout/call-01/spec.json",
+      "bytes": 1145,
+      "sha256": "667f265151534ee2edbc1be1ba4b60fc7bc3cb87d851123a2c2ca27e18ee9f42"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-timeout/call-01/stdout.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/CausalChecks/model-timeout/call-01/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/checks.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/checks.txt",
+      "bytes": 5236,
+      "sha256": "8287547b63ac9453af5436fb4aae248649c76d0bf9d3c35021a858a25736a290"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/manifest.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/manifest.json",
+      "bytes": 4855,
+      "sha256": "2120c273b498074ffea32a3a57e962b85542a0a9e63895e683fd7c319f2a5d7c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/result.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/result.json",
+      "bytes": 85,
+      "sha256": "73e559cc3ff5598271a1bd0bf2ad9823a54a747dfc1453420d1ed60728eb5ac5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/RUN_MANIFEST.template.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/RUN_MANIFEST.template.json",
+      "bytes": 582,
+      "sha256": "aa09f184f908c53345c34a476ce0f32fd56770f6ba828c11068a1812a2199ac7"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/__init__.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/__init__.py",
+      "bytes": 77,
+      "sha256": "cb7e96750ed46b99468148641d2aae60517fcd9881db3b0f29bb1c20bc75c60e"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/a0.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/a0.py",
+      "bytes": 11560,
+      "sha256": "51d4b4bbc818153275711c61688d25a66233195f648fb8830c4ba9fa557d629d"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/a0_task.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/a0_task.py",
+      "bytes": 20463,
+      "sha256": "9c703887351b0f6f4ed39db6404220d1a61d524f2499f73d09569c54087ac5ff"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/acquire.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/acquire.py",
+      "bytes": 9546,
+      "sha256": "e297eeb4c71cf29b54bf26e6041ae907ea1c0969c5d67ff0be82ba8f18eb436c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/cli.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/cli.py",
+      "bytes": 4078,
+      "sha256": "f59e6253cf810a963d7612cb0c56eb6ff8904369e9cfdd9a61c5fc6d9fe1f7d1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/common.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/common.py",
+      "bytes": 5714,
+      "sha256": "c9f4c60574d162224e1b9e5a1a5706c4122b73d0c75c27a31d4a348d361f9375"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/event_schema.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/event_schema.json",
+      "bytes": 1234,
+      "sha256": "39357def5d22123eda2e22728451f71ace61292bf49809f743d00a992945a19b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/fixture_config.json",
+      "bytes": 1220,
+      "sha256": "8c24ca3447f06244bafbed9098ea844958814f6301e0ec06b7537125aa0dc2c2"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/invalid_fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/invalid_fixture_config.json",
+      "bytes": 1806,
+      "sha256": "e2d4cad50146786a00f3f9def222e488db630a1d470f0d1658c476688e817106"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/model_backend.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/model_backend.py",
+      "bytes": 3861,
+      "sha256": "886b6f0716d2ae76f610bf7768e4e0d9238786db79eb1430cae6aad9573debdb"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/model_worker.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/model_worker.py",
+      "bytes": 6557,
+      "sha256": "cca0faae0a3fae3295d810d24a34590c45238a405c363b3f00fe1ef926df26a8"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/preflight.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/preflight.py",
+      "bytes": 4430,
+      "sha256": "92a5f8196deb5147867f46f7ef09c3ab5e542897a8eecd0cb780a68f321f14f5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/runtime.py",
+      "bytes": 13935,
+      "sha256": "bf9c2a4b62fa87c45aea1a88d9195cc832335da2ec99eb7853f85587ba891a1a"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/test_runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/test_runtime.py",
+      "bytes": 10343,
+      "sha256": "a26058b42338ee171002373360b998fc41fa29fa6ac76f5fb785adcc940e603b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/test_source_identity.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/test_source_identity.py",
+      "bytes": 4937,
+      "sha256": "12bbee1345f857523e7165b1ef4765c61c848cabc4a23bec2dd2baa0bd7dd89c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/source/test_task_scope.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/source/test_task_scope.py",
+      "bytes": 8395,
+      "sha256": "8a1f10fd93424e8582fc524890b139b616755707c68ed6fec5465310f618d6aa"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/changed.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/changed.json",
+      "bytes": 14,
+      "sha256": "f540b204e6e2552e5ac2308748dae85e38de02d2177a8b61cb599096cc4a39f1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/missing-identity",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/missing-identity",
+      "bytes": 3,
+      "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/original.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/original.json",
+      "bytes": 21,
+      "sha256": "eafcc0c19aab845a4704ec36187d6acf35e9f93e1162fdf05779fa00bf2cee7d"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-added_tokens.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-added_tokens.json",
+      "bytes": 4739,
+      "sha256": "5bc584ef24acdb1fda03ca45e78df4e724fb972a2adc845fdafd5505073160ba"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-lfs",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-lfs",
+      "bytes": 25,
+      "sha256": "0f02c4383a05811ee7921a650112434065aa89869f4f07d78aa41b3187f1c529"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-merges.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-merges.txt",
+      "bytes": 466391,
+      "sha256": "09419a9e157647c87c8d851217df64810156debade2fa237261f424798b33a69"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-special_tokens_map.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-special_tokens_map.json",
+      "bytes": 868,
+      "sha256": "0e0aaeb62caf1bcb22e3ea59cc16fd531c69ff457d6bcffb02af689760184495"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-tokenizer.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-tokenizer.json",
+      "bytes": 3548256,
+      "sha256": "a5c6e2fb8fe4c936a677f22915c2bdcece523513927fe57eb3b6634baaffca71"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-vocab.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/synthetic-vocab.json",
+      "bytes": 800662,
+      "sha256": "0384e15d85632a8414b851bfdabb6cc2ca2a20659cef30068f37639494e43cdd"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/wrong-published",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/SourceIdentityChecks/wrong-published",
+      "bytes": 3,
+      "sha256": "3608bca1e44ea6c4d268eb6db02260269892c0b42b86bbf1e77a6fa16c3c9282"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/four.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/four.jsonl",
+      "bytes": 1212,
+      "sha256": "f80da0ec52b028b3a035af280da21d72852e322c3c33c58cd0f667a725af7dcc"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/interrupted.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/interrupted.jsonl",
+      "bytes": 308,
+      "sha256": "696b176097220c04e437f0a63678c9217fa3bd31de98edbb37b74c45893d88ae"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/low.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/low.jsonl",
+      "bytes": 203,
+      "sha256": "3707ad216d6c1cb1be79e569ee37dbebcae7eefde02d96b305b5ed2302c1d980"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/manual-restart.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/manual-restart.jsonl",
+      "bytes": 814,
+      "sha256": "58f74a2f50d905f74cde89147e7d0c961c12354cc01c792acf4d9e18fc71f0b4"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/normal.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/normal.jsonl",
+      "bytes": 288,
+      "sha256": "5bf5847245f94e81a44b67814c1e9eba5975d0bb7fe82bab14411fb34c1e10b5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/protected-stop.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/protected-stop.jsonl",
+      "bytes": 342,
+      "sha256": "75d52b48a4c06adb33b123d1c81a2224c54e671926f3088217930f52d0a5b420"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/timeout.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/timeout.jsonl",
+      "bytes": 202,
+      "sha256": "32b40ff5df0ee75b4c4a945dc92e42a06f296d235f4dc616ca89f615c6261147"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/total.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/total.jsonl",
+      "bytes": 457,
+      "sha256": "44ce161983a68c4129e55424459b918819efbd75a2f615682871834399b1fd78"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/unavailable.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-11-user-restart-checks/TaskChecks/unavailable.jsonl",
+      "bytes": 128,
+      "sha256": "43cab3c2d37591b8ff694d49aef2ef13a2a1572dfe2c96f84ac0c376818f30a4"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/asset_verification.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/asset_verification.json",
+      "bytes": 1735,
+      "sha256": "1f8e90b0a6046ea6594a318553c322d379638ec103a6428a3007e3e4b245b3f5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/config.json",
+      "bytes": 1110,
+      "sha256": "c7b817414221703e7435de26c1e51e83835a0516c1c7aada6309890caf2cdda2"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/evaluator_labels.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/evaluator_labels.json",
+      "bytes": 98,
+      "sha256": "093cc74973dda6edebc973633a551d7b38aa384cfd801339868f346f2d2a1258"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/input_manifest.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/input_manifest.json",
+      "bytes": 470,
+      "sha256": "6f9a432de0185efeead029673ae80e577b81178445667c46687dafb6fcf59a89"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/inputs/input-0.png",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/inputs/input-0.png",
+      "bytes": 168,
+      "sha256": "ca96adb50da6a5f6cbfe03c9c5eb8ad8f1a6c88f526b8a4b9d9d7d3b9ef90157"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/inputs/input-1.png",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/inputs/input-1.png",
+      "bytes": 168,
+      "sha256": "fb59293297bbed4792e45b1e8a353c63f942d86ac3b235a8c5c38b81ab75e09a"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/inventory.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/inventory.json",
+      "bytes": 771,
+      "sha256": "0789b3e97317a8645f0eaa44d8049662e55a80d719e9b3a7563db988ccbc8b5e"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/manifest.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/manifest.json",
+      "bytes": 7018,
+      "sha256": "f442e17867d60850e3e78af936a1f1f6bb6f74721387d5a324361e26b8ce9f98"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/RUN_MANIFEST.template.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/RUN_MANIFEST.template.json",
+      "bytes": 582,
+      "sha256": "aa09f184f908c53345c34a476ce0f32fd56770f6ba828c11068a1812a2199ac7"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/__init__.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/__init__.py",
+      "bytes": 77,
+      "sha256": "cb7e96750ed46b99468148641d2aae60517fcd9881db3b0f29bb1c20bc75c60e"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/a0.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/a0.py",
+      "bytes": 11560,
+      "sha256": "51d4b4bbc818153275711c61688d25a66233195f648fb8830c4ba9fa557d629d"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/a0_task.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/a0_task.py",
+      "bytes": 20463,
+      "sha256": "9c703887351b0f6f4ed39db6404220d1a61d524f2499f73d09569c54087ac5ff"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/acquire.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/acquire.py",
+      "bytes": 9546,
+      "sha256": "e297eeb4c71cf29b54bf26e6041ae907ea1c0969c5d67ff0be82ba8f18eb436c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/cli.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/cli.py",
+      "bytes": 4078,
+      "sha256": "f59e6253cf810a963d7612cb0c56eb6ff8904369e9cfdd9a61c5fc6d9fe1f7d1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/common.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/common.py",
+      "bytes": 5714,
+      "sha256": "c9f4c60574d162224e1b9e5a1a5706c4122b73d0c75c27a31d4a348d361f9375"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/event_schema.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/event_schema.json",
+      "bytes": 1234,
+      "sha256": "39357def5d22123eda2e22728451f71ace61292bf49809f743d00a992945a19b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/fixture_config.json",
+      "bytes": 1220,
+      "sha256": "8c24ca3447f06244bafbed9098ea844958814f6301e0ec06b7537125aa0dc2c2"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/invalid_fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/invalid_fixture_config.json",
+      "bytes": 1806,
+      "sha256": "e2d4cad50146786a00f3f9def222e488db630a1d470f0d1658c476688e817106"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/model_backend.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/model_backend.py",
+      "bytes": 3861,
+      "sha256": "886b6f0716d2ae76f610bf7768e4e0d9238786db79eb1430cae6aad9573debdb"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/model_worker.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/model_worker.py",
+      "bytes": 6557,
+      "sha256": "cca0faae0a3fae3295d810d24a34590c45238a405c363b3f00fe1ef926df26a8"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/preflight.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/preflight.py",
+      "bytes": 4430,
+      "sha256": "92a5f8196deb5147867f46f7ef09c3ab5e542897a8eecd0cb780a68f321f14f5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/runtime.py",
+      "bytes": 13935,
+      "sha256": "bf9c2a4b62fa87c45aea1a88d9195cc832335da2ec99eb7853f85587ba891a1a"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/test_runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/test_runtime.py",
+      "bytes": 10343,
+      "sha256": "a26058b42338ee171002373360b998fc41fa29fa6ac76f5fb785adcc940e603b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/test_source_identity.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/test_source_identity.py",
+      "bytes": 4937,
+      "sha256": "12bbee1345f857523e7165b1ef4765c61c848cabc4a23bec2dd2baa0bd7dd89c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/source/test_task_scope.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/source/test_task_scope.py",
+      "bytes": 8395,
+      "sha256": "8a1f10fd93424e8582fc524890b139b616755707c68ed6fec5465310f618d6aa"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/SOURCE_LOCK.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/SOURCE_LOCK.json",
+      "bytes": 8462,
+      "sha256": "139330b3c5ba0468b06999e0b238a999c21cd6d10f1f106fe03b21d2601503c1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/summary.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/summary.json",
+      "bytes": 1286,
+      "sha256": "c73f22411877c7213821033033126a3580585cf04d6d8b0e1f53464d52d368cc"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/task-card-snapshot.md",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/task-card-snapshot.md",
+      "bytes": 9471,
+      "sha256": "9e98755a3ebc31db827ae599acb5959b7a4fa5226490d82538c100ef632933de"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/process.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/process.json",
+      "bytes": 1014,
+      "sha256": "155a1da2a78bdcaaf470154d53b9d8fe818ac42b4a84874b68f72ab2ee643352"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/ram_curve.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/ram_curve.jsonl",
+      "bytes": 13057,
+      "sha256": "b6e2d5bc981cbd23f8d507cdb08f8e70a118f09825f2f632633721eb0e69dd91"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/result.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/result.json",
+      "bytes": 1962,
+      "sha256": "6633fa43e8d9f7ac73f4dc77a2b037d6e07ff8f4d58a2056b692caafdfb951f4"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/spec.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/spec.json",
+      "bytes": 823,
+      "sha256": "5e21c3b991fdd03b3f084b337c1dc8a882a9c2f4eb333d9cdc37d34379365e9a"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/stdout.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-02/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/process.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/process.json",
+      "bytes": 1014,
+      "sha256": "4693cfb580477041ff77f39427360f840815fa6fb8cb22c05d514508dcfb0926"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/ram_curve.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/ram_curve.jsonl",
+      "bytes": 11100,
+      "sha256": "abdce1ceaa230aca38167ab2cea5d4c258051daa0b3650a0c71f44c43d831a71"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/result.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/result.json",
+      "bytes": 1930,
+      "sha256": "8a897d459ccf98cac2000e41f0767f7bf8c210828f829e88f7116afc4195f1bc"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/spec.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/spec.json",
+      "bytes": 819,
+      "sha256": "9e514400c3bf2734607672727777fcda79c3448357a0355d46ba34b49eee2404"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/stdout.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-12-A0-user-approved/worker-03/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-failure/call-01/process.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-failure/call-01/process.json",
+      "bytes": 392,
+      "sha256": "843d2ce84fa2113c19d8a3684ae4bdc32903037f7126b7955ef39e98e517b268"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-failure/call-01/spec.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-failure/call-01/spec.json",
+      "bytes": 1145,
+      "sha256": "667f265151534ee2edbc1be1ba4b60fc7bc3cb87d851123a2c2ca27e18ee9f42"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-failure/call-01/stdout.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-failure/call-01/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-timeout/call-01/process.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-timeout/call-01/process.json",
+      "bytes": 394,
+      "sha256": "2a236ab45b071da30aa528cd84d4c506750b1ac54d782d35f0a7282d1865bc89"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-timeout/call-01/spec.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-timeout/call-01/spec.json",
+      "bytes": 1145,
+      "sha256": "667f265151534ee2edbc1be1ba4b60fc7bc3cb87d851123a2c2ca27e18ee9f42"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-timeout/call-01/stdout.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/CausalChecks/model-timeout/call-01/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/checks.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/checks.txt",
+      "bytes": 5382,
+      "sha256": "54fed3849d513d9b91ea8c7ff303fa8af0781491b90e60dca270b9b94b1f2594"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/manifest.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/manifest.json",
+      "bytes": 4847,
+      "sha256": "9a269ef59c3fa028eb71fa86272fa805df5195c95bdc1dd29868511c0d746a18"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/result.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/result.json",
+      "bytes": 85,
+      "sha256": "ea45d11ae8bef24173f48e4d756235cbb9e8c1ff62a67c1daee12952289228ff"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/RUN_MANIFEST.template.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/RUN_MANIFEST.template.json",
+      "bytes": 582,
+      "sha256": "aa09f184f908c53345c34a476ce0f32fd56770f6ba828c11068a1812a2199ac7"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/__init__.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/__init__.py",
+      "bytes": 77,
+      "sha256": "cb7e96750ed46b99468148641d2aae60517fcd9881db3b0f29bb1c20bc75c60e"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/a0.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/a0.py",
+      "bytes": 11560,
+      "sha256": "51d4b4bbc818153275711c61688d25a66233195f648fb8830c4ba9fa557d629d"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/a0_task.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/a0_task.py",
+      "bytes": 21119,
+      "sha256": "95dd9d2511c0827103744ba7f350156dd9b57a9f33b874e29da601c5dea46c87"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/acquire.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/acquire.py",
+      "bytes": 9546,
+      "sha256": "e297eeb4c71cf29b54bf26e6041ae907ea1c0969c5d67ff0be82ba8f18eb436c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/cli.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/cli.py",
+      "bytes": 4078,
+      "sha256": "f59e6253cf810a963d7612cb0c56eb6ff8904369e9cfdd9a61c5fc6d9fe1f7d1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/common.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/common.py",
+      "bytes": 5714,
+      "sha256": "c9f4c60574d162224e1b9e5a1a5706c4122b73d0c75c27a31d4a348d361f9375"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/event_schema.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/event_schema.json",
+      "bytes": 1234,
+      "sha256": "39357def5d22123eda2e22728451f71ace61292bf49809f743d00a992945a19b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/fixture_config.json",
+      "bytes": 1220,
+      "sha256": "8c24ca3447f06244bafbed9098ea844958814f6301e0ec06b7537125aa0dc2c2"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/invalid_fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/invalid_fixture_config.json",
+      "bytes": 1806,
+      "sha256": "e2d4cad50146786a00f3f9def222e488db630a1d470f0d1658c476688e817106"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/model_backend.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/model_backend.py",
+      "bytes": 3861,
+      "sha256": "886b6f0716d2ae76f610bf7768e4e0d9238786db79eb1430cae6aad9573debdb"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/model_worker.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/model_worker.py",
+      "bytes": 6557,
+      "sha256": "cca0faae0a3fae3295d810d24a34590c45238a405c363b3f00fe1ef926df26a8"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/preflight.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/preflight.py",
+      "bytes": 4430,
+      "sha256": "92a5f8196deb5147867f46f7ef09c3ab5e542897a8eecd0cb780a68f321f14f5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/runtime.py",
+      "bytes": 13935,
+      "sha256": "bf9c2a4b62fa87c45aea1a88d9195cc832335da2ec99eb7853f85587ba891a1a"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/test_runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/test_runtime.py",
+      "bytes": 10343,
+      "sha256": "a26058b42338ee171002373360b998fc41fa29fa6ac76f5fb785adcc940e603b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/test_source_identity.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/test_source_identity.py",
+      "bytes": 4937,
+      "sha256": "12bbee1345f857523e7165b1ef4765c61c848cabc4a23bec2dd2baa0bd7dd89c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/source/test_task_scope.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/source/test_task_scope.py",
+      "bytes": 8901,
+      "sha256": "44e5a738516626534dbfdaba7109a5eda7991a4bc1f4b4fe7fec09a53d050abe"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/changed.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/changed.json",
+      "bytes": 14,
+      "sha256": "f540b204e6e2552e5ac2308748dae85e38de02d2177a8b61cb599096cc4a39f1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/missing-identity",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/missing-identity",
+      "bytes": 3,
+      "sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/original.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/original.json",
+      "bytes": 21,
+      "sha256": "eafcc0c19aab845a4704ec36187d6acf35e9f93e1162fdf05779fa00bf2cee7d"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-added_tokens.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-added_tokens.json",
+      "bytes": 4739,
+      "sha256": "5bc584ef24acdb1fda03ca45e78df4e724fb972a2adc845fdafd5505073160ba"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-lfs",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-lfs",
+      "bytes": 25,
+      "sha256": "0f02c4383a05811ee7921a650112434065aa89869f4f07d78aa41b3187f1c529"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-merges.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-merges.txt",
+      "bytes": 466391,
+      "sha256": "09419a9e157647c87c8d851217df64810156debade2fa237261f424798b33a69"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-special_tokens_map.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-special_tokens_map.json",
+      "bytes": 868,
+      "sha256": "0e0aaeb62caf1bcb22e3ea59cc16fd531c69ff457d6bcffb02af689760184495"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-tokenizer.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-tokenizer.json",
+      "bytes": 3548256,
+      "sha256": "a5c6e2fb8fe4c936a677f22915c2bdcece523513927fe57eb3b6634baaffca71"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-vocab.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/synthetic-vocab.json",
+      "bytes": 800662,
+      "sha256": "0384e15d85632a8414b851bfdabb6cc2ca2a20659cef30068f37639494e43cdd"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/wrong-published",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/SourceIdentityChecks/wrong-published",
+      "bytes": 3,
+      "sha256": "3608bca1e44ea6c4d268eb6db02260269892c0b42b86bbf1e77a6fa16c3c9282"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/four.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/four.jsonl",
+      "bytes": 1212,
+      "sha256": "a24b4bf26d80795c3b45577cf7068c8c7652e0ca0bfdcad58439c4e7e49e4df4"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/interrupted.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/interrupted.jsonl",
+      "bytes": 308,
+      "sha256": "e00e016454c5acbe1e703b3eff748fe6449fd5e3ddbb05c517cb9b8b66447187"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/low.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/low.jsonl",
+      "bytes": 203,
+      "sha256": "3707ad216d6c1cb1be79e569ee37dbebcae7eefde02d96b305b5ed2302c1d980"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/manual-restart.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/manual-restart.jsonl",
+      "bytes": 814,
+      "sha256": "b2dd432245ff6fb4bae5c2ceea90afbd53fadc3ef3526ea9162fe1c54612506b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/normal.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/normal.jsonl",
+      "bytes": 288,
+      "sha256": "5bf5847245f94e81a44b67814c1e9eba5975d0bb7fe82bab14411fb34c1e10b5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/protected-stop.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/protected-stop.jsonl",
+      "bytes": 342,
+      "sha256": "c09151e642e89cdb51f6b4d1ea4b689fb860bb2587cb4696324e2d7ed82d17be"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/timeout.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/timeout.jsonl",
+      "bytes": 202,
+      "sha256": "32b40ff5df0ee75b4c4a945dc92e42a06f296d235f4dc616ca89f615c6261147"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/total.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/total.jsonl",
+      "bytes": 457,
+      "sha256": "3b832ce9b3d461f841d6041ce5fad9b1265db2dbaeb06ccf8e3e31e60e5db7b4"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/unavailable.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-13-two-input-checks/TaskChecks/unavailable.jsonl",
+      "bytes": 128,
+      "sha256": "43cab3c2d37591b8ff694d49aef2ef13a2a1572dfe2c96f84ac0c376818f30a4"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/asset_verification.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/asset_verification.json",
+      "bytes": 1735,
+      "sha256": "1f8e90b0a6046ea6594a318553c322d379638ec103a6428a3007e3e4b245b3f5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/config.json",
+      "bytes": 1138,
+      "sha256": "986c89127a56f72ec1a4ec09f4feb513002519be45d2d78a7ac501f2532a3bd9"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/evaluator_labels.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/evaluator_labels.json",
+      "bytes": 98,
+      "sha256": "093cc74973dda6edebc973633a551d7b38aa384cfd801339868f346f2d2a1258"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/formal_preflight_reference.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/formal_preflight_reference.json",
+      "bytes": 738,
+      "sha256": "a24e746a66196f1472e83a47bc95801fcd5ff4525e0e950fe9d5d08e70b6fd56"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/input_manifest.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/input_manifest.json",
+      "bytes": 474,
+      "sha256": "bdbd6802944c8132f43de8b0a838287045a3e61a56dc50806574222644eadafc"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/inputs/input-0.png",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/inputs/input-0.png",
+      "bytes": 168,
+      "sha256": "ca96adb50da6a5f6cbfe03c9c5eb8ad8f1a6c88f526b8a4b9d9d7d3b9ef90157"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/inputs/input-1.png",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/inputs/input-1.png",
+      "bytes": 168,
+      "sha256": "fb59293297bbed4792e45b1e8a353c63f942d86ac3b235a8c5c38b81ab75e09a"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/manifest.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/manifest.json",
+      "bytes": 6837,
+      "sha256": "402e2f2ff31b341630ae8c4e0cfcd700e1141dcd0aea5f2e89b9f12fdad5a5a5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/RUN_MANIFEST.template.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/RUN_MANIFEST.template.json",
+      "bytes": 582,
+      "sha256": "aa09f184f908c53345c34a476ce0f32fd56770f6ba828c11068a1812a2199ac7"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/__init__.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/__init__.py",
+      "bytes": 77,
+      "sha256": "cb7e96750ed46b99468148641d2aae60517fcd9881db3b0f29bb1c20bc75c60e"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/a0.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/a0.py",
+      "bytes": 11560,
+      "sha256": "51d4b4bbc818153275711c61688d25a66233195f648fb8830c4ba9fa557d629d"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/a0_task.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/a0_task.py",
+      "bytes": 21119,
+      "sha256": "95dd9d2511c0827103744ba7f350156dd9b57a9f33b874e29da601c5dea46c87"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/acquire.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/acquire.py",
+      "bytes": 9546,
+      "sha256": "e297eeb4c71cf29b54bf26e6041ae907ea1c0969c5d67ff0be82ba8f18eb436c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/cli.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/cli.py",
+      "bytes": 4078,
+      "sha256": "f59e6253cf810a963d7612cb0c56eb6ff8904369e9cfdd9a61c5fc6d9fe1f7d1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/common.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/common.py",
+      "bytes": 5714,
+      "sha256": "c9f4c60574d162224e1b9e5a1a5706c4122b73d0c75c27a31d4a348d361f9375"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/event_schema.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/event_schema.json",
+      "bytes": 1234,
+      "sha256": "39357def5d22123eda2e22728451f71ace61292bf49809f743d00a992945a19b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/fixture_config.json",
+      "bytes": 1220,
+      "sha256": "8c24ca3447f06244bafbed9098ea844958814f6301e0ec06b7537125aa0dc2c2"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/invalid_fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/invalid_fixture_config.json",
+      "bytes": 1806,
+      "sha256": "e2d4cad50146786a00f3f9def222e488db630a1d470f0d1658c476688e817106"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/model_backend.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/model_backend.py",
+      "bytes": 3861,
+      "sha256": "886b6f0716d2ae76f610bf7768e4e0d9238786db79eb1430cae6aad9573debdb"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/model_worker.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/model_worker.py",
+      "bytes": 6557,
+      "sha256": "cca0faae0a3fae3295d810d24a34590c45238a405c363b3f00fe1ef926df26a8"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/preflight.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/preflight.py",
+      "bytes": 4430,
+      "sha256": "92a5f8196deb5147867f46f7ef09c3ab5e542897a8eecd0cb780a68f321f14f5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/runtime.py",
+      "bytes": 13935,
+      "sha256": "bf9c2a4b62fa87c45aea1a88d9195cc832335da2ec99eb7853f85587ba891a1a"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/test_runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/test_runtime.py",
+      "bytes": 10343,
+      "sha256": "a26058b42338ee171002373360b998fc41fa29fa6ac76f5fb785adcc940e603b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/test_source_identity.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/test_source_identity.py",
+      "bytes": 4937,
+      "sha256": "12bbee1345f857523e7165b1ef4765c61c848cabc4a23bec2dd2baa0bd7dd89c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/test_task_scope.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/source/test_task_scope.py",
+      "bytes": 8901,
+      "sha256": "44e5a738516626534dbfdaba7109a5eda7991a4bc1f4b4fe7fec09a53d050abe"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/SOURCE_LOCK.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/SOURCE_LOCK.json",
+      "bytes": 8462,
+      "sha256": "139330b3c5ba0468b06999e0b238a999c21cd6d10f1f106fe03b21d2601503c1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/summary.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/summary.json",
+      "bytes": 717,
+      "sha256": "fdf26d69b3eec49d52175e2e95d426c4122dd29f58d259573a695133b78b2d6d"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/task-card-snapshot.md",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/task-card-snapshot.md",
+      "bytes": 9471,
+      "sha256": "9e98755a3ebc31db827ae599acb5959b7a4fa5226490d82538c100ef632933de"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/process.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/process.json",
+      "bytes": 1021,
+      "sha256": "7dd991ac0c165b26cd80d1110e632cc13931414d660961a6cee8bf6943290759"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/ram_curve.jsonl",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/ram_curve.jsonl",
+      "bytes": 11356,
+      "sha256": "55edabeec84b019620b52dce8dc1e15bf492ef00038c5b87c7a3cd513f394947"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/result.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/result.json",
+      "bytes": 1924,
+      "sha256": "fc851e506522668a3b72457be1bbe259053ed879db7c31e0ac72dce5e394ea54"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/spec.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/spec.json",
+      "bytes": 821,
+      "sha256": "4f1d1943189570d27315bc71df1b3309f252ec90bb47c975534e403fafb14f85"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/stdout.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-14-A0-blue-diagnostic/worker-04/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/diff-check.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/diff-check.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/ledger-snapshot.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/ledger-snapshot.json",
+      "bytes": 5006,
+      "sha256": "bb88adb9acaa852b9237004a413739b91d5f3509c4620c27f600f57b04af2737"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/manifest.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/manifest.json",
+      "bytes": 4900,
+      "sha256": "53c5689119240fff77dd99a462e4976344e1b31184561178db77b964d86fcb21"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/pid-scope.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/pid-scope.json",
+      "bytes": 92,
+      "sha256": "9b12e6624bf975eb5acc0daf0514a130988d8cf24b4b5b2d3400829de1a32ca8"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/process-check.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/process-check.json",
+      "bytes": 269,
+      "sha256": "230c13a351d725110d1cfe6d18f83572fe557d5f95670d15769f9250e5d7c80e"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/processor-excerpt.txt",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/processor-excerpt.txt",
+      "bytes": 3380,
+      "sha256": "dda86e691a19b46cba5a4ccba55a589555db5960b2c222b1908dcd0d558f571b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/result.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/result.json",
+      "bytes": 2663,
+      "sha256": "bdbf6a1de266dbfb8bc6b7c456632c3768808eb6cf08cd160d24bf9b9d24ef81"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/RUN_MANIFEST.template.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/RUN_MANIFEST.template.json",
+      "bytes": 582,
+      "sha256": "aa09f184f908c53345c34a476ce0f32fd56770f6ba828c11068a1812a2199ac7"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/__init__.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/__init__.py",
+      "bytes": 77,
+      "sha256": "cb7e96750ed46b99468148641d2aae60517fcd9881db3b0f29bb1c20bc75c60e"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/a0.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/a0.py",
+      "bytes": 11560,
+      "sha256": "51d4b4bbc818153275711c61688d25a66233195f648fb8830c4ba9fa557d629d"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/a0_task.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/a0_task.py",
+      "bytes": 21119,
+      "sha256": "95dd9d2511c0827103744ba7f350156dd9b57a9f33b874e29da601c5dea46c87"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/acquire.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/acquire.py",
+      "bytes": 9546,
+      "sha256": "e297eeb4c71cf29b54bf26e6041ae907ea1c0969c5d67ff0be82ba8f18eb436c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/cli.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/cli.py",
+      "bytes": 4078,
+      "sha256": "f59e6253cf810a963d7612cb0c56eb6ff8904369e9cfdd9a61c5fc6d9fe1f7d1"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/common.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/common.py",
+      "bytes": 5714,
+      "sha256": "c9f4c60574d162224e1b9e5a1a5706c4122b73d0c75c27a31d4a348d361f9375"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/event_schema.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/event_schema.json",
+      "bytes": 1234,
+      "sha256": "39357def5d22123eda2e22728451f71ace61292bf49809f743d00a992945a19b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/fixture_config.json",
+      "bytes": 1220,
+      "sha256": "8c24ca3447f06244bafbed9098ea844958814f6301e0ec06b7537125aa0dc2c2"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/invalid_fixture_config.json",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/invalid_fixture_config.json",
+      "bytes": 1806,
+      "sha256": "e2d4cad50146786a00f3f9def222e488db630a1d470f0d1658c476688e817106"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/model_backend.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/model_backend.py",
+      "bytes": 3861,
+      "sha256": "886b6f0716d2ae76f610bf7768e4e0d9238786db79eb1430cae6aad9573debdb"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/model_worker.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/model_worker.py",
+      "bytes": 6557,
+      "sha256": "cca0faae0a3fae3295d810d24a34590c45238a405c363b3f00fe1ef926df26a8"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/preflight.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/preflight.py",
+      "bytes": 4430,
+      "sha256": "92a5f8196deb5147867f46f7ef09c3ab5e542897a8eecd0cb780a68f321f14f5"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/runtime.py",
+      "bytes": 13935,
+      "sha256": "bf9c2a4b62fa87c45aea1a88d9195cc832335da2ec99eb7853f85587ba891a1a"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/test_runtime.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/test_runtime.py",
+      "bytes": 10343,
+      "sha256": "a26058b42338ee171002373360b998fc41fa29fa6ac76f5fb785adcc940e603b"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/test_source_identity.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/test_source_identity.py",
+      "bytes": 4937,
+      "sha256": "12bbee1345f857523e7165b1ef4765c61c848cabc4a23bec2dd2baa0bd7dd89c"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/source/test_task_scope.py",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/source/test_task_scope.py",
+      "bytes": 8901,
+      "sha256": "44e5a738516626534dbfdaba7109a5eda7991a4bc1f4b4fe7fec09a53d050abe"
+    },
+    {
+      "source": "simulation/outputs/E1-012/20261028-15-restart-audit/task-card-snapshot.md",
+      "archive": "payload/simulation/outputs/E1-012/20261028-15-restart-audit/task-card-snapshot.md",
+      "bytes": 9471,
+      "sha256": "9e98755a3ebc31db827ae599acb5959b7a4fa5226490d82538c100ef632933de"
+    }
+  ],
+  "exclusions": [
+    "model/environment files",
+    "original freeze payload",
+    "other roles' files"
+  ]
+}

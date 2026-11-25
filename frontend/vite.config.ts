@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 // @ts-expect-error development-only Node module, covered by native Node tests
 import { gatewayReadHandler } from '../scripts/network-studio/gateway-relay.mjs'
+// @ts-expect-error local Node operator adapter, covered by native HTTP tests
+import { engineeringHandler } from '../scripts/network-studio/engineering-relay.mjs'
 
 const networkMockTarget = process.env.NETWORK_MOCK_TARGET
 const gatewayBridge = process.env.NETWORK_GATEWAY_BRIDGE === '1' || !!networkMockTarget
@@ -14,11 +16,12 @@ export default defineConfig({
     configureServer(server: import('vite').ViteDevServer) {
       if (gatewayBridge) {
         server.middlewares.use('/__network_gateway', gatewayReadHandler)
+        if (!networkMockTarget) server.middlewares.use('/__baseline_engineering', engineeringHandler)
         server.middlewares.use('/network-config.json', (_req, res, next) => {
           void readFile(new URL('./public/network-config.json', import.meta.url), 'utf8').then(text => {
             const config = JSON.parse(text)
             res.setHeader('Content-Type', 'application/json'); res.setHeader('Cache-Control', 'no-store')
-            res.end(JSON.stringify({ ...config, gatewayRelayPath: '/__network_gateway' }))
+            res.end(JSON.stringify({ ...config, gatewayRelayPath: '/__network_gateway', ...(!networkMockTarget ? { engineeringRelayPath: '/__baseline_engineering' } : {}) }))
           }).catch(next)
         })
       }

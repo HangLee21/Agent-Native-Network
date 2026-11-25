@@ -1,0 +1,43 @@
+{
+  "seed": 4,
+  "method": "policy",
+  "initial_sha256": "920123a50a06092d79d349336492fc937140b8bdf477c0282920d5ff33dc0ee8",
+  "agents": 9,
+  "tasks": 15,
+  "status": "success",
+  "within_horizon": true,
+  "completed": 15,
+  "completion_fraction": 1.0,
+  "returned": 9,
+  "env_finished": true,
+  "simulation_end_time": 15.67102635704218,
+  "makespan_return": 15.67102635704218,
+  "last_task_finish": 10.96010678860825,
+  "travel_distance": 11.41737563547386,
+  "mean_waiting": 0.5896156711868705,
+  "upstream_metrics": {
+    "success_rate": [
+      1.0
+    ],
+    "makespan": [
+      15.67102635704218
+    ],
+    "time_cost": [
+      4.422425124966755
+    ],
+    "waiting_time": [
+      0.5896156711868705
+    ],
+    "travel_dist": [
+      11.41737563547386
+    ],
+    "efficiency": [
+      2.1944444444444446
+    ]
+  },
+  "wall_seconds": 0.3970672999857925,
+  "actions": 29,
+  "initialization_seconds": 0.14315519999945536,
+  "execution_seconds": 0.2539134999969974,
+  "masked_actions": 0
+}

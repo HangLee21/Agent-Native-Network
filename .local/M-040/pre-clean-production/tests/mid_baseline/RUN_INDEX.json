@@ -1,0 +1,176 @@
+{
+  "schema": "E2-016-run-index/3",
+  "runs": [
+    {
+      "run_id": "20261106-01-independent-preparation",
+      "result": {
+        "tests_run": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "cf845ebd98a27d297811195a25eac15f4d2209e6ddf9b69c0389b0b8aea01299",
+      "manifest_sha256": "17dea4b9b1de143401239c2ac2b69a962bb12d135fec2aebeb4ac43e503df780",
+      "elapsed_s": 0.42199999999138527
+    },
+    {
+      "run_id": "20261106-02-preparation-regression",
+      "result": {
+        "tests_run": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "b8e4c8ccb21cce5b049765e00ac6db988bc5e2131b2338d83bb8e4ace0098c3b",
+      "manifest_sha256": "285d724e84bb26143983247c0830b09d93af7741b6aefb2838f1ffe9ea6a7e98",
+      "elapsed_s": 0.4220000000059372
+    },
+    {
+      "run_id": "20261106-03-H-display-independent",
+      "result": {
+        "tests_run": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "3d7cf1cb1113d15da2cb1ea104c480ef8cfad442d67b51819cb56ddd98fbd5fd",
+      "manifest_sha256": "d42fb7afb0bd0d7190ba982d0563205183ba97962c53205992f9953c5464ec5a",
+      "elapsed_s": 6.76600000000326
+    },
+    {
+      "run_id": "20261106-04-candidate-core-independent",
+      "result": {
+        "tests_run": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "0f4d4e3e28c3ea04237781277defdb7674cc875ab9781754f25e5f06ce6d47df",
+      "manifest_sha256": "cc63377fc773b2eeeb18a7aadaf3bfd8bec389dcd592a0dc62e73c89407e5142",
+      "elapsed_s": 3.2969999999913853
+    },
+    {
+      "run_id": "20261106-05-native-package",
+      "result": {
+        "tests_run": 0,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0,
+        "successful": false,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "03479b6e1441a89037c2c6d4ff282c599db5f792956e8366794e10f20f504808",
+      "manifest_sha256": "e7dd33791ecfc02b112d5da3c570ed542a0f3305553972d466e6e2b76867f535",
+      "elapsed_s": 1.875
+    },
+    {
+      "run_id": "20261106-06-native-package-corrected",
+      "result": {
+        "tests_run": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "0f4d4e3e28c3ea04237781277defdb7674cc875ab9781754f25e5f06ce6d47df",
+      "manifest_sha256": "b0587dc6819396446db7253afa9bf5db4b54ee32e8267c124a0595f6c145a99b",
+      "elapsed_s": 2.327999999979511
+    },
+    {
+      "run_id": "20261106-07-native-tools",
+      "result": {
+        "tests_run": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "165e7e2a775d70f7e22cd457e231d3dd7a0efb1e41fae10b8b81dad283eaa57d",
+      "manifest_sha256": "2bddbc6362b4ce217a3c6f7c246271166c973f83c89bbd6668bcaf60dc5e5315",
+      "elapsed_s": 1.2660000000032596
+    },
+    {
+      "run_id": "20261106-08-native-tools-final",
+      "result": {
+        "tests_run": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "165e7e2a775d70f7e22cd457e231d3dd7a0efb1e41fae10b8b81dad283eaa57d",
+      "manifest_sha256": "924ab32b9d76d19110a63036569078cc62bf8e40de4a67734b527f760659b904",
+      "elapsed_s": 1.2190000000118744
+    },
+    {
+      "run_id": "20261106-09-ABC-native-tools",
+      "result": {
+        "tests_run": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "0f4d4e3e28c3ea04237781277defdb7674cc875ab9781754f25e5f06ce6d47df",
+      "manifest_sha256": "046448e96bc6461e3576ecc4acf93f78be719c9388e7c1f0f9f5a6a617119467",
+      "elapsed_s": 1.9219999999913853
+    },
+    {
+      "run_id": "20261106-10-native-coverage-final",
+      "result": {
+        "tests_run": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "evidence_kind": "synthetic",
+        "physical_ports_opened": 0,
+        "RF_runs": 0,
+        "E1_H_integration_verified": false
+      },
+      "result_sha256": "0f4d4e3e28c3ea04237781277defdb7674cc875ab9781754f25e5f06ce6d47df",
+      "manifest_sha256": "3d011ed98cea2c6d6ce063cc0f02eaa56cf885fe2e6b79b3793c326e578e27b4",
+      "elapsed_s": 1.672000000020489
+    }
+  ],
+  "charged_test_seconds": 21.188999999998487
+}

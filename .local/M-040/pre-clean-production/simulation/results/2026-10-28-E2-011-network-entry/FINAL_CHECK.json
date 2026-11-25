@@ -1,0 +1,10 @@
+{
+  "task_id": "E2-011",
+  "archive_entries_checked": 134,
+  "original_byte_mismatches": [],
+  "pcap_structure": "all six pcap files parsed to EOF, linktype105, per run records 335/434/320",
+  "local_report_links_missing": [],
+  "simulator_runs_executed_by_this_check": 0,
+  "all_subprocess_commands_completed": true,
+  "review_status": "pending C-013; not independent acceptance"
+}

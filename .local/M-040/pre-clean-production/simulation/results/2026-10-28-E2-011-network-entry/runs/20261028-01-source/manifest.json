@@ -1,0 +1,81 @@
+{
+  "template_only": false,
+  "task_id": "E2-011",
+  "run_id": "20261028-01-source",
+  "started_at": "2026-10-28T08:54:38.955557+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "72855ef8dbde54a090e67c17c5af9ae1e23c5d29",
+  "dirty_files_sha256": {
+    "START_HERE.md": "8e5e9557d0208bce5b495452da38efe6081b53850c25ff63613707d1262b0f52",
+    "coordination/CURRENT.md": "096d22ac47cfe01eeeaf2a9496f77a3b646d608531326dddb3e8addac017416d",
+    "coordination/DECISIONS.md": "8f240b44a01c31325c95119273a76d9b41fc5395e49aceb5fdb4e0e7471cf020",
+    "coordination/TASKS.md": "bd93f8993274f69e3d5a37596f9c88828fe3b3c521e5d69921e41c859d7eb5b0",
+    "coordination/WINDOWS.md": "baf284b49bd02557ca363258dc397dd09984ffab21166a263edf180b198ffc5c",
+    "coordination/reviews/M-012-verification.json": "c0e987bf2de3d757cfacd7f8605a5654e81c06c60f0dcb36f8450c3d68cd38ff",
+    "coordination/tasks/C-013.md": "fe68394cbb3547cb9366baad516e70e87a1643675aa645e3862bb428f47bbd41",
+    "coordination/tasks/D-010.md": "967c9ef7d117d5631a5018cde81661856e0ecfa52e103b321e2b79a30e286926",
+    "coordination/tasks/E1-010.md": "b04f3559ef8a49713d7574cd49999845f3734b58f1f98a9435ac82779f01fdce",
+    "coordination/tasks/E2-011.md": "8f5f7afc63b09287e753bd746a80994bc6b014a96988f7177a9bc194f0ef5176",
+    "coordination/tasks/M-012.md": "283982495d186fe46420f1feb35a2de6326673591b56c8be11fa82a85935acf7",
+    "simulation/dynamic_network_entry/b0-aodv.cc": "618eabbc405ab49e761dc8626dab6efe50445f6ce4781d2e352ce6e7130b9e47",
+    "simulation/dynamic_network_entry/config.json": "a9b423f2be15667cb81cdc040e3e61063a2c10e93c722b7afcc7d74c860b0fd4",
+    "simulation/dynamic_network_entry/network_entry.py": "7d77d0b703b443448ca7844ffcc3d0f6e6d67f72ba1e2fed0a7c849806277a43",
+    "simulation/edge_agent_entry/__init__.py": "cb7e96750ed46b99468148641d2aae60517fcd9881db3b0f29bb1c20bc75c60e",
+    "simulation/edge_agent_entry/a0.py": "f25d35fbd80b778e23f016f4e0c19e55a94c2c710652d7e8cf1d71702a8698a6",
+    "simulation/edge_agent_entry/a0_requirements.txt": "320f611b8a4811cd62f9cf3ff09874e87f8a49b27887f33d8d1a1083a5c1b4c4",
+    "simulation/edge_agent_entry/cli.py": "f59e6253cf810a963d7612cb0c56eb6ff8904369e9cfdd9a61c5fc6d9fe1f7d1",
+    "simulation/edge_agent_entry/common.py": "7b756703d25d5091e057244f95ad0d4c612fa592959c146b309d5110cbc3b36e",
+    "simulation/edge_agent_entry/event_schema.json": "39357def5d22123eda2e22728451f71ace61292bf49809f743d00a992945a19b",
+    "simulation/edge_agent_entry/fixture_config.json": "8c24ca3447f06244bafbed9098ea844958814f6301e0ec06b7537125aa0dc2c2",
+    "simulation/edge_agent_entry/model_backend.py": "886b6f0716d2ae76f610bf7768e4e0d9238786db79eb1430cae6aad9573debdb",
+    "simulation/edge_agent_entry/model_worker.py": "f2f8e618928c225e8d9238df033418a21bc541139f96f8a58d035f498eeead3e",
+    "simulation/edge_agent_entry/runtime.py": "0df1e2c70fa074d4999d34cf45698194350be557737dfa67126f1c304cbcbcdb",
+    "simulation/edge_agent_entry/test_runtime.py": "c196050c8d2b44f0e1e514eb2a24c63a06a462e6c525ed1c19b57412c2a4f5d7"
+  },
+  "command": [
+    "simulation/dynamic_network_entry/network_entry.py",
+    "acquire",
+    "--output",
+    "simulation/outputs/E2-011/20261028-01-source"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": "D:\\Multi-Agent Network\\simulation\\dynamic_network_entry\\config.json",
+  "seeds": [],
+  "budget": {
+    "simulations": 3,
+    "dynamic": 2,
+    "smoke": 1,
+    "simulation_seconds_each": 60,
+    "build_wall_seconds": 900
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-011\\20261028-01-source",
+  "process_id": 6096,
+  "finished_at": "2026-10-28T08:54:39.290509+00:00",
+  "exit_code": 1,
+  "status": "failed",
+  "limitations": [
+    "No model inference or Agent-Network Interface implementation",
+    "UDP probes are not reliable request/reply transactions",
+    "Synthetic mobility and deterministic range cutoff are micro-scenario controls",
+    "IPv4 forward traces are path evidence; not successful-hop airtime by themselves",
+    "PHY transmission records charge actual attempts including retries and ACKs",
+    "No capacity, scaling, spatial reuse or field-performance claim"
+  ],
+  "review_reference": null,
+  "action": "acquire",
+  "source_hashes": {
+    "b0-aodv.cc": "618eabbc405ab49e761dc8626dab6efe50445f6ce4781d2e352ce6e7130b9e47",
+    "config.json": "a9b423f2be15667cb81cdc040e3e61063a2c10e93c722b7afcc7d74c860b0fd4",
+    "network_entry.py": "7d77d0b703b443448ca7844ffcc3d0f6e6d67f72ba1e2fed0a7c849806277a43"
+  },
+  "output_hashes": {
+    "failure.json": "886da255754bfa71278a349377bd629710f7ccc08a2965614e9d10e73f66aa29"
+  }
+}

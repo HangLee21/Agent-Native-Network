@@ -1,10 +1,10 @@
-# baseline Vue + TypeScript 前端迁移（M-064，第一阶段）
+# baseline Vue + TypeScript 前端迁移（M-064）
 
 ## 已确认方向
 
 2026-11-23 用户确认：**先将 ControlSystem/lh 的新版框架迁入 baseline，以后在 baseline 开发。deploy 暂不迁移，待测试充分后另行同步。** 当前会话获明确授权在独立 worktree 实施，不替代或冒充原独立角色窗口。
 
-本阶段不是将两套 Git 历史整树合并，不是重写固件/采集，也不是声称旧工程 UI 已全部变成 Vue。先建立完整、能独立构建验证的新框架开发源；工程功能按下表逐项移植，验收前保留原默认入口。
+本阶段不是将两套 Git 历史整树合并，不是重写固件/采集，也不是声称旧工程 UI 已全部变成 Vue。先建立完整、能独立构建验证的新框架开发源；工程功能按下表逐项移植。**2026-11-24 真实网关接入验证后，用户明确选择新 Vue 为默认启动 UI；原启动器保留为 [START_STUDIO_LEGACY.cmd](../START_STUDIO_LEGACY.cmd)，不再默认。** 这一入口选择覆盖最初的暂缓切换决定，但不关闭功能缺口或授权生产发布。
 
 ## 源码布局与权威源
 
@@ -15,7 +15,9 @@
 | [scripts/network-studio/](../scripts/network-studio/) | 真实/Mock 分离启动、只读网关桥与自动检查；不启动硬件采集 |
 | [START_NETWORK_STUDIO.cmd](../START_NETWORK_STUDIO.cmd) | 新框架真实工作区；默认不连接，操作者选择服务器/本地网关 |
 | [START_NETWORK_DEMO.cmd](../START_NETWORK_DEMO.cmd) | 显式、独立的合成演示；只打开 mock-studio 入口 |
-| [START_STUDIO.cmd](../START_STUDIO.cmd) | **原工程默认入口，原样保留**；采集、来源选择、SQLite 记录回放仍在原工程服务 |
+| [START_STUDIO.cmd](../START_STUDIO.cmd) | **默认新版真实 Vue UI**；10518，复用同根真实预览；原后台保留，无旧浏览器/网卡变更 |
+| [START_STUDIO_LEGACY.cmd](../START_STUDIO_LEGACY.cmd) | 原默认启动器的逐字节副本；仅显式运行时打开旧工程 UI，保留原采集/来源/SQLite工程能力 |
+| [默认入口适配](../tools/release/start_vue_studio.py) | 识别预览根目录与真实/Mock隔离；后台缺失时复用原启动逻辑的无浏览器/skip-lab模式 |
 | [tools/release/sync_frontend.py](../tools/release/sync_frontend.py) | 后续 baseline → ControlSystem/lh 的受控回传工具，默认只检查 |
 
 初次来源为 `haimol/ControlSystem` 的 `lh@bdadc989decf4d383b49dff2def4aa1aa0aa59b5`。使用已提交内容导出，不复制 node_modules、dist、Java 后端、工作机环境文件、现场日志或录制数据库。平台壳保留是为了框架和样式统一，**不意味着 baseline 已有 Java 平台接口，也不把 Python 采集器改作飞控后端**。平台业务需对应 Java 服务；独立网络 Studio 可单独运行。
@@ -28,15 +30,20 @@
 |---|---|---|
 | NODE、LoRa/ESP-NOW 方向、RF/GPS 新鲜度、三种布局 | 原 Studio + lora.topology.v1 | 已有 Vue 实现；无 GPS 不补点，旧协议保持 unknown |
 | 前端选择服务器 / 网关地址 | 新版连接配置 | 已有，真实/Mock 双向拒绝，默认断开 |
-| 自动/手动接收源、故障回退 | 原 sources；GET sources / POST sources/select | **原工程保留，尚未接入新 Vue**；地址切换不冒充硬件来源切换 |
-| SQLite 持久记录、分段回放 | 原 replay；sessions/session/start/stop | **原工程保留，尚未移植**；新 Mock 的内存演示记录不是它的替代品 |
-| 接收器/启动器恢复、fleet/registry 数字身份 | recovery / fleet 与原启动器 | 原工程保留；新界面不臆造自动恢复或注册能力 |
+| 自动/手动接收源、故障回退 | 原 sources；GET sources / POST sources/select | **已接原合同**；显示偏好与实际源/epoch，未验证来源禁选，换源清理旧观测 |
+| SQLite 持久记录、分段回放 | 原 replay；sessions/session/start/stop | **已接原持久库**；刷新后恢复录制状态、正确处理 stop 返回已关闭ID；25帧分页/全局定位/原时间轴，不套用当前清单 |
+| 接收器/启动器恢复、fleet/registry 数字身份 | recovery / fleet 与原启动器 | **已接只读状态与合并清单**；登记缺报/历史标签/直接报告分开，恢复未知或过期不报成功；不提供注册/设备配置写入 |
+| Agent/逐包/原始载荷与覆盖缺口 | 原 State/timeline 与旧证据模型 | **已接独立证据区**；显式启动只读取证，完整身份+目的自报+原字节才计实收，冲突保留，计数/提交/选路不冒充交付 |
+| Wi-Fi/IP 即时方向 | 原 State 的样本时间/boot失效/互证 | **已接独立图层**；双向新鲜证据共同限制互证有效期，LoRa邻居历史样本仍不标成即时互通 |
+| 构建产物同源接入 | 旧服务无 CORS；本机受限 Node 服务 | **已提供本机静态服务**；不依赖Vite，独立只读桥与限动作工程桥，不是公网鉴权/生产部署方案 |
 | USB 本机刷写 | FLASH_NODES 与原 flash 适配 | CLI/控制台原样保留，不改成未经验证的网页按钮 |
 | 跨网络刷写、做卡、分组、机群 | SITE/FLASH_REMOTE/MK_CARDS 等 | 原样保留，未执行任何设备操作 |
 | 网关安装、随包 Python、ARM 解码器兼容 | 原 setup/runtime/decoder | 原样保留，未运行安装/SSH/配置 |
 | DJI/机器人平台业务与视频 | 导入的平台前端壳，需 Java 等服务 | 仅保留框架源码，未新增后端或真机联调 |
 
-后续需要将来源管理、真实持久记录/回放、恢复与身份配置逐项做成类型明确的 Vue 工程模块。必须验证行为一致、错误/中断可见、保留旧数据，再决定将原默认 START_STUDIO 切换到新 UI。不能为了换样式丢失工程能力。
+2026-11-24 追加迁移已覆盖上表的核心只读观测与本地录放合同，并修复 [旧自检入口](../tools/mobile_gateway/check_studio.py)。来源/SQLite操作只走独立 [工程桥](../scripts/network-studio/engineering-relay.mjs)；原 [GET-only桥](../scripts/network-studio/gateway-relay.mjs) 权限不扩大。旧工程入口继续保留，注册配置、刷写、机群等未做成新网页控制功能。**原协议全部继续标 unknown；清单缺席不是确认掉电，LoRa历史邻居不是即时Wi-Fi互通，SQLite只录LoRa、不含IP/Agent时间线。** 详情与验证见 [本轮报告](../simulation/results/20261124-M064-core-observability/REPORT.md)。
+
+图形默认清晰布局，红色超时与琥珀色未观测单独告警；加粗箭头/选中邻接/入出向关系表与样本年龄保留证据区别。板内证据需要显式点击开始，页面初次连接不隐式读取原生状态；初始/追赶最多请求最近512个时间线cursor，缺口显式提示，不将缺收件当作未交付。
 
 ## 本地运行
 
@@ -49,18 +56,36 @@ npm ci --no-audit --no-fund
 npm run network:real
 ```
 
-或双击新真实入口。默认候选网页端口 5188；如果原 ControlSystem 预览仍运行，应先显式设置空闲端口，**不停止或抢占其他进程**：
+**推荐双击 [默认 START_STUDIO.cmd](../START_STUDIO.cmd)**：默认10518，打开新Vue真实页。已有同根、real-only预览则复用；陌生、其他checkout或Mock预览占用则停止并说明，不杀进程。缺失的后台通过原启动逻辑以 `--no-browser --skip-lab` 启动，不打开旧UI、不改网卡/触发UAC；原后台已在时不重启。`--which`仅查看分派，`--no-browser`不打开浏览器，`--web-port`或 `NETWORK_WEB_PORT` 可指定端口。旧交付包的自带Python/app分支仍保持，不意味着deploy已迁移。
+
+只需要前端时，也可显式双击 [START_NETWORK_STUDIO.cmd](../START_NETWORK_STUDIO.cmd)；该原有低层入口保持5188默认值，不负责后台或端口复用。若原ControlSystem预览仍运行，应显式选择空闲端口，**不停止或抢占其他进程**：
 
 ```powershell
 $env:NETWORK_WEB_PORT = '10518'
 node scripts/network-studio/dev.mjs --real
 ```
 
-新 Studio 地址 `/studio.html`，平台共享模块 `/#/network`。真实模式不会启动 Mock。需要合成演示时另用 DEMO 入口，正常与模拟两个启动器不能抢同一端口。网络配置默认 disabled，刷新不会因保存过地址就自动连接；不访问线上 ECS。
+新 Studio 地址 `/studio.html`，平台共享模块 `/#/network`。真实模式不会启动 Mock。需要合成演示时另用 DEMO 入口，正常与模拟两个启动器不能抢同一端口。网络配置默认 disabled，刷新不会因保存过地址就自动连接；不访问线上 ECS。冷启动新版时请保留启动窗口，关闭窗口会结束该前端开发进程；复用已有预览时不改变其生命周期。
+
+### 构建后的本机服务（不启动后端/Mock/硬件）
+
+```powershell
+cd frontend
+npm run build
+npm run network:serve
+# http://127.0.0.1:10518/studio.html
+# 自定义端口：npm run network:serve -- --port 10519
+```
+
+[静态服务](../scripts/network-studio/serve.mjs) 只绑定loopback，同源提供构建产物与两条受限桥；默认入口能识别同根服务并复用。构建模式没有源码HMR，改前端后需重新构建并刷新；服务端模块修改需重启自有服务。仅复制dist到任意Web服务器仍不等于接入成功，更不是公网鉴权/生产发布方案。不要将本机工程桥直接暴露到外网。
+
+完整工程功能选择本机 Studio 地址 `http://127.0.0.1:8794` 和旧网关协议；8780直连接收器仍只有拓扑。默认CMD可按既有逻辑启动缺失后台；仅运行前端服务不会代开采集器。原生Wi-Fi/IP或逐包证据的显式读取可能使原后台发起只读状态查询，不是启动Agent或发送业务。
+
+[原始来源清单](../frontend/FRAMEWORK_SOURCE.json) 是首次349文件导入凭据，**不是后续授权开发后的当前源码哈希声明**；本轮源码/构建与证据校验另存报告目录。外部Java/Network-v1/飞控/视频服务未迁入；平台壳原有localhost:8080轮询与网络工程接口不是同一能力，回归中明确阻断并记录这些请求。
 
 ## 回传 lh：仅显式范围，不整树合并
 
-选择导入完整前端而非整个 ControlSystem 仓库：保留新框架所有组件/测试，但避免混入无关后端/历史。选择并行过渡而非立即替换默认入口：暂时多一个入口，换取工程能力不丢失。回传采用精确范围和三方校验，不强制覆盖。
+选择导入完整前端而非整个 ControlSystem 仓库：保留新框架所有组件/测试，但避免混入无关后端/历史。初期选择并行过渡；2026-11-24按用户要求切换默认UI，但保留显式旧入口，确保未迁移工程能力不丢失。回传采用精确范围和三方校验，不强制覆盖。
 
 先在 baseline 提交并验证新前端，再：
 

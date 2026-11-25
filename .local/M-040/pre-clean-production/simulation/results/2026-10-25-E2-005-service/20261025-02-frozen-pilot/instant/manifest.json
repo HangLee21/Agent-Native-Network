@@ -1,0 +1,67 @@
+{
+  "schema": "shared-service-replay-v1",
+  "input_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E1-004\\20261025-01-pilot\\tasks15_seed0_instant\\messages.json",
+  "input_sha256": "098f16144ed248657e6e6e0fd8d89de8def2474dc06fef42f283a39368f73c2d",
+  "source_sha256": {
+    "service_replay.py": "502aadf76442d54383919d74a1fffa1f46d3de929c4b79a25de51d25f8c425d0",
+    "message_service.py": "de4c4e507b083e82462dfd233e13507a813aeb673935c6c0b227f366f9e240c0",
+    "test_message_service.py": "4fd33f1e211181c3c67f82fe54731bbc3a1836bd24589d08c14b34ae2c758564"
+  },
+  "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "argv": [
+    "D:\\Multi-Agent Network\\simulation\\service_replay.py",
+    "--input",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E1-004\\20261025-01-pilot\\tasks15_seed0_instant\\messages.json",
+    "--output",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-005\\20261025-02-frozen-pilot\\instant",
+    "--mode",
+    "instant",
+    "--delay",
+    "0",
+    "--rate",
+    "8192",
+    "--capacity",
+    "65536",
+    "--horizon",
+    "20.966401263043952"
+  ],
+  "config": {
+    "mode": "instant",
+    "delay": 0.0,
+    "rate_bytes_per_time": 8192.0,
+    "capacity_bytes": 65536,
+    "overhead_bytes": 0
+  },
+  "horizon": 20.966401263043952,
+  "max_wall_seconds": 30.0,
+  "catalogue": {
+    "messages": 141,
+    "recipients": 1128,
+    "application_bytes": 42674,
+    "service_bytes": 42674,
+    "overhead_bytes_per_message": 0,
+    "first_generation": 0.0,
+    "last_generation": 20.966401263043952,
+    "mean_service_bytes_per_time_from_origin": 2035.3516783644961,
+    "mean_service_bytes_per_generation_span": 2035.3516783644961,
+    "message_bytes_p50": 328.0,
+    "message_bytes_p95": 345.0,
+    "message_bytes_max": 348,
+    "same_time_burst_bytes_p50": 892.0,
+    "same_time_burst_bytes_p95": 1566.0,
+    "same_time_burst_bytes_max": 2586,
+    "occupied_one_time_unit_bin_bytes_p50": 2139.5,
+    "occupied_one_time_unit_bin_bytes_p95": 4397.7,
+    "one_time_unit_bin_bytes_max": 4532,
+    "time_unit": "author_simulation_time_without_seconds_calibration"
+  },
+  "status": "completed",
+  "evidence_scope": "fixed traffic application-byte service replay; no task policy or wireless model",
+  "output_sha256": {
+    "result.json": "b0fee531ea51dee5ec017ad2ba7c1a15468630a34d8bee9b25bc9db51e7ea52c",
+    "ledger.json": "db62b69d66206f6dd13fc6a24d73c1842de672298d0487aef1a07928b0e5c932",
+    "deliveries.json": "d0e53eb405fde98b5d3691a2d3547eab5e39d799b7361c0ef390fe3fd46df628",
+    "message_id_map.json": "a624b1beac9602ca8b28c78f334fea8c168dc6c9f35db5289b0fc5ef09b564dc"
+  }
+}

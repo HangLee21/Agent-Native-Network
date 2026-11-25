@@ -1,0 +1,64 @@
+{
+  "template_only": false,
+  "task_id": "H-001",
+  "run_id": "20261103-01-host-safety",
+  "started_at": "2026-11-03T07:42:53.155891+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "tools\\espnow_hardware\\__init__.py": "a3ad1fb6d7d138895ad84ca910c3be001cedcd408b0ed34b2a187554a7e44c9e",
+    "tools\\espnow_hardware\\hardware_tool.py": "32062ae8e47b54e80c28a3e1c5389e3faa24c33ec78d0c147f5e5ba525a52c08",
+    "tools\\espnow_hardware\\tests\\test_hardware_tool.py": "2e1e5c7bb9a7a84a745aaaa9147a7256fe231356b95936823fc31f7f639e8b7f",
+    "tools\\espnow_hardware\\verify_host.py": "eb9957a0a8f3b08280de733a98b74bf2e32159e1797129c0a8d6e28a02aa5058",
+    "hardware\\eora_hub_400tb\\bench.example.json": "5e0fa59a763852a2c481fe977ebf79a3e0df837841ecd2ee99f33947a5963f79",
+    "hardware\\eora_hub_400tb\\bindings.example.json": "171e4df4c834f54d3a6d7210f466af163ec4b6ab809b07558e5d4e00e62e022d",
+    "hardware\\eora_hub_400tb\\profile.json": "66196ae50a40d173e458cc20d14ae5c25f4bb919a817ece6f742e93fde57ba39",
+    "hardware\\eora_hub_400tb\\README.md": "e6f38ef18bf19f0a7b95eebc4bb834daa641ad81bf6eefd096e3bb337a967a86"
+  },
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/espnow_hardware/tests",
+    "-v"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "tools_in_path": {
+      "idf.py": null,
+      "xtensa-esp32s3-elf-gcc": null,
+      "cmake": "D:\\CMake\\bin\\cmake.EXE",
+      "ninja": "C:\\Strawberry\\c\\bin\\ninja.EXE"
+    },
+    "scope": "PATH only; no installation or target compiler invocation",
+    "target_compilation": "not_verified",
+    "radio_run": false
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": {
+    "command_timeout_seconds": 120,
+    "cumulative_task_limit_seconds": 600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\H-001\\20261103-01-host-safety",
+  "process_id": null,
+  "finished_at": "2026-11-03T07:42:57.173509+00:00",
+  "exit_code": 0,
+  "status": "passed",
+  "limitations": [
+    "Synthetic host tests only",
+    "No ESP target compilation",
+    "No physical serial port opened",
+    "No RF measurements"
+  ],
+  "review_reference": null,
+  "evidence_kind": "synthetic",
+  "elapsed_seconds": 4.015999999999622
+}

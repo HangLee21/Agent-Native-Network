@@ -1,0 +1,107 @@
+{
+  "checks": [
+    {
+      "name": "health is a live observation-only service",
+      "passed": true
+    },
+    {
+      "name": "empty snapshot/history share the actual state instance",
+      "passed": true
+    },
+    {
+      "name": "no fabricated reports or events",
+      "passed": true
+    },
+    {
+      "name": "legacy demo and fake GPS controls are explicitly disabled",
+      "passed": true
+    },
+    {
+      "name": "removed control returns 404: /api/studio/mode",
+      "passed": true
+    },
+    {
+      "name": "removed control returns 404: /api/studio/demo/start",
+      "passed": true
+    },
+    {
+      "name": "removed control returns 404: /api/studio/demo/stop",
+      "passed": true
+    },
+    {
+      "name": "removed control returns 404: /api/studio/demo/replay",
+      "passed": true
+    },
+    {
+      "name": "removed control returns 404: /api/studio/fake-gps",
+      "passed": true
+    },
+    {
+      "name": "removed control returns 404: /api/pc/send",
+      "passed": true
+    },
+    {
+      "name": "isolated source manager has no adapters or sockets",
+      "passed": true
+    },
+    {
+      "name": "source selection requires same origin",
+      "passed": true
+    },
+    {
+      "name": "automatic source selection is explicit and empty",
+      "passed": true
+    },
+    {
+      "name": "unknown source is rejected",
+      "passed": true
+    },
+    {
+      "name": "unavailable source never fabricates topology",
+      "passed": true
+    },
+    {
+      "name": "empty inventory remains empty",
+      "passed": true
+    },
+    {
+      "name": "absent recovery evidence is unknown, not recovered",
+      "passed": true
+    },
+    {
+      "name": "recording requires same origin",
+      "passed": true
+    },
+    {
+      "name": "duplicate start preserves the existing session",
+      "passed": true
+    },
+    {
+      "name": "real SQLite paginates beyond 100 frames",
+      "passed": true
+    },
+    {
+      "name": "recorded interruption remains unavailable",
+      "passed": true
+    },
+    {
+      "name": "unpaged large session is rejected",
+      "passed": true
+    },
+    {
+      "name": "stop returns the closed session identifier",
+      "passed": true
+    },
+    {
+      "name": "session remains listed but is no longer active",
+      "passed": true
+    },
+    {
+      "name": "sessions and original timestamps survive DB reopen",
+      "passed": true
+    }
+  ],
+  "serial_opens": 0,
+  "physical_boards": 0,
+  "production_services_changed": false
+}

@@ -1,0 +1,10 @@
+{
+  "case_id": "seed1-tasks15-delay0.5-recovery",
+  "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed1_delay0.5\\catalog.json.gz",
+  "expected_catalog_sha256": "784f20752ac24bffaf657d312697212224b5e40e05ce5711dc4ea0212b098196",
+  "seed": 1,
+  "condition": "delay0.5",
+  "recovery": true,
+  "legacy_reference": null,
+  "source_catalog_sha256": "784f20752ac24bffaf657d312697212224b5e40e05ce5711dc4ea0212b098196"
+}

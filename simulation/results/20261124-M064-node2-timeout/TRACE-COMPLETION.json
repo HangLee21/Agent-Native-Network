@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-24T17:11:04.033930+08:00",
+  "results": [
+    {
+      "pi": "01",
+      "ssh_exit": 0
+    },
+    {
+      "pi": "02",
+      "ssh_exit": 0
+    },
+    {
+      "pi": "04",
+      "ssh_exit": 0
+    },
+    {
+      "pc_capture": "finished",
+      "at": "2026-11-24T17:11:04.033930+08:00"
+    }
+  ],
+  "limit_seconds": 175,
+  "no_serial_open_or_write": true,
+  "timeout_exit_124_is_expected": true
+}

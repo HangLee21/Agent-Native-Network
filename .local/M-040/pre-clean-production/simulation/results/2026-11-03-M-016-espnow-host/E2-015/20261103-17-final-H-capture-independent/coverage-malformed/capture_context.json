@@ -1,0 +1,160 @@
+{
+  "schema": "ann.hardware.capture_context.v1",
+  "task_id": "H-001",
+  "run_id": "E2-echo",
+  "status": "hardware_capture_unanalyzed",
+  "evidence_kind": "synthetic",
+  "source_node_id": "00:00:00:00:00:01",
+  "destination_id": "00:00:00:00:00:05",
+  "expected_generated": 1,
+  "receiver_log_complete": false,
+  "coverage_reasons": [
+    "malformed_or_partial_serial:board5"
+  ],
+  "duration_clock": "host_monotonic_controlled_window",
+  "measurement_duration_us": 1000000,
+  "window_start_ns": 1000000000,
+  "window_end_ns": 2000000000,
+  "window_reason": null,
+  "baseline_stats": {
+    "board1": {
+      "boot_id": "00000064",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    },
+    "board2": {
+      "boot_id": "00000065",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    },
+    "board3": {
+      "boot_id": "00000066",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    },
+    "board4": {
+      "boot_id": "00000067",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    },
+    "board5": {
+      "boot_id": "00000068",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    }
+  },
+  "final_stats": {
+    "board1": {
+      "boot_id": "00000064",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    },
+    "board2": {
+      "boot_id": "00000065",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    },
+    "board3": {
+      "boot_id": "00000066",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    },
+    "board4": {
+      "boot_id": "00000067",
+      "delivered": 0,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    },
+    "board5": {
+      "boot_id": "00000068",
+      "delivered": 1,
+      "event_overflow": 0,
+      "queue_overflow": 0
+    }
+  },
+  "bindings": {
+    "board1": {
+      "node_id": "00:00:00:00:00:01"
+    },
+    "board2": {
+      "node_id": "00:00:00:00:00:02"
+    },
+    "board3": {
+      "node_id": "00:00:00:00:00:03"
+    },
+    "board4": {
+      "node_id": "00:00:00:00:00:04"
+    },
+    "board5": {
+      "node_id": "00:00:00:00:00:05"
+    }
+  },
+  "verified_infos": {
+    "board1": {
+      "boot_id": "00000064",
+      "chip": "host-synthetic"
+    },
+    "board2": {
+      "boot_id": "00000065",
+      "chip": "host-synthetic"
+    },
+    "board3": {
+      "boot_id": "00000066",
+      "chip": "host-synthetic"
+    },
+    "board4": {
+      "boot_id": "00000067",
+      "chip": "host-synthetic"
+    },
+    "board5": {
+      "boot_id": "00000068",
+      "chip": "host-synthetic"
+    }
+  },
+  "stop_attempts": [
+    {
+      "id": "board1",
+      "acknowledged": true
+    },
+    {
+      "id": "board2",
+      "acknowledged": true
+    },
+    {
+      "id": "board3",
+      "acknowledged": true
+    },
+    {
+      "id": "board4",
+      "acknowledged": true
+    },
+    {
+      "id": "board5",
+      "acknowledged": true
+    }
+  ],
+  "cleanup_errors": [],
+  "serial_sha256": "533c5a2944f6c2b7c1793e9b9407ecdc630e80e292bc5b51b6fc5932986d7f25",
+  "raw_logs": [
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\serial.jsonl",
+      "sha256": "533c5a2944f6c2b7c1793e9b9407ecdc630e80e292bc5b51b6fc5932986d7f25"
+    }
+  ],
+  "log_sha256": {
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\serial.jsonl": "533c5a2944f6c2b7c1793e9b9407ecdc630e80e292bc5b51b6fc5932986d7f25"
+  },
+  "stats_errors": [],
+  "notes": [
+    "Host window includes serial command/stop/drain latency",
+    "Counter reconciliation supports log coverage; no RF retry or PHY airtime measurement"
+  ]
+}

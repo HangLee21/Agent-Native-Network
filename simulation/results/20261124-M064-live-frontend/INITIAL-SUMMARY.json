@@ -1,0 +1,108 @@
+{
+  "run": "D:\\Multi-Agent Network\\simulation\\outputs\\M-064\\20261124-103525718831-live-frontend",
+  "schema": "lora.topology.v1",
+  "source": "gateway_udp_lrn1",
+  "labels": {
+    "90:da:72:48:a4:e0": "3",
+    "90:da:72:48:a4:f8": "1",
+    "90:da:72:48:a5:cc": "2",
+    "a4f00fe57b830000": "E870L-470",
+    "b827ebfffe32e2c1": "RHF2S008",
+    "90:da:72:48:a6:98": "5",
+    "90:da:72:48:a5:20": "4"
+  },
+  "receiver": {
+    "state": "receiving",
+    "gateway_id": "a4f00fe57b830000",
+    "gateway_observed": true,
+    "gateway_last_pull_age_ms": 75,
+    "identity_verified": true,
+    "recent_threshold_ms": 30000,
+    "port": null,
+    "serial_open": false,
+    "last_rx_age_ms": 74,
+    "channel": 1,
+    "frequency_hz": 470500000,
+    "frames": 7,
+    "lrn1_frames": 7,
+    "foreign_frames": 0,
+    "bad_frames": 0,
+    "socket_resets": 0,
+    "worker_state": "running",
+    "worker_error": null,
+    "last_worker_error": null,
+    "last_ack_error": null,
+    "worker_restarts": 0,
+    "ack_errors": 0
+  },
+  "report_nodes": [
+    {
+      "id": "90:da:72:48:a6:98",
+      "node_number": 5,
+      "boot": 3352931045,
+      "seq": 31,
+      "age_ms": 5255,
+      "gps": null,
+      "lora": {
+        "rssi_dbm": -66,
+        "snr_db": 15.0,
+        "frequency_hz": 470500000,
+        "channel": 1,
+        "datarate": "SF7BW125",
+        "coding_rate": "4/5",
+        "rf_chain": 0
+      }
+    },
+    {
+      "id": "90:da:72:48:a5:cc",
+      "node_number": 2,
+      "boot": 2236131425,
+      "seq": 31,
+      "age_ms": 3775,
+      "gps": null,
+      "lora": {
+        "rssi_dbm": -62,
+        "snr_db": 14.5,
+        "frequency_hz": 470500000,
+        "channel": 1,
+        "datarate": "SF7BW125",
+        "coding_rate": "4/5",
+        "rf_chain": 0
+      }
+    },
+    {
+      "id": "90:da:72:48:a4:f8",
+      "node_number": 1,
+      "boot": 2963104107,
+      "seq": 32,
+      "age_ms": 74,
+      "gps": null,
+      "lora": {
+        "rssi_dbm": -55,
+        "snr_db": 14.8,
+        "frequency_hz": 470500000,
+        "channel": 1,
+        "datarate": "SF7BW125",
+        "coding_rate": "4/5",
+        "rf_chain": 0
+      }
+    },
+    {
+      "id": "90:da:72:48:a5:20",
+      "node_number": 4,
+      "boot": 1017068043,
+      "seq": 30,
+      "age_ms": 8695,
+      "gps": null,
+      "lora": {
+        "rssi_dbm": -66,
+        "snr_db": 15.0,
+        "frequency_hz": 470500000,
+        "channel": 1,
+        "datarate": "SF7BW125",
+        "coding_rate": "4/5",
+        "rf_chain": 0
+      }
+    }
+  ]
+}

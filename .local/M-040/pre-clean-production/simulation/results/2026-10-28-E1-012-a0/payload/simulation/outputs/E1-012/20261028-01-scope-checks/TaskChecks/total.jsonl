@@ -1,0 +1,3 @@
+{"at":"2026-10-28T13:18:59.197076+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":180,"worker_id":1}
+{"actual_forward_started":true,"at":"2026-10-28T13:18:59.198074+00:00","event":"worker_finished","task_id":"E1-012","wall_seconds":710,"worker_id":1}
+{"at":"2026-10-28T13:18:59.198074+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":10,"worker_id":2}

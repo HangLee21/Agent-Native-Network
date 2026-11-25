@@ -1,0 +1,2 @@
+source D:/Multi-Agent Network/firmware/flight_link/mid_baseline/field_agent/idf/build/bootloader/gdbinit/symbols
+source D:/Multi-Agent Network/firmware/flight_link/mid_baseline/field_agent/idf/build/bootloader/gdbinit/connect

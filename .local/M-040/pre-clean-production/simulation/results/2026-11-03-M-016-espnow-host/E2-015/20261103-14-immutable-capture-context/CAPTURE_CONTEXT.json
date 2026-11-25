@@ -1,0 +1,15 @@
+{
+  "schema": "ann.capture.context.v1",
+  "task_id": "E2-015",
+  "run_id": "20261103-14-immutable-capture-context",
+  "status": "synthetic_capture_complete",
+  "evidence_kind": "synthetic",
+  "source_core_manifest": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-13-final-core-contract\\manifest.json",
+  "source_core_manifest_sha256": "be681bdd872894aca7e0b6042a1cbdaa8e6c8748b5d574a6efac920bd9a0b222",
+  "source_core_build_sha256": "32b33e7ab9627eb79845984199ab48d8e2f5d41968947bded6e93754dc7e0814",
+  "log_sha256": {
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-13-final-core-contract\\telemetry.jsonl": "22049f5b1a1c05cd22583f24c72f4a21dd3850176f6fd183d2c1c8826a509c33",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-14-immutable-capture-context\\H-format-v4-capture.jsonl": "62f8da5ddaf978d762d7c0afbef34d5833ea683bf08a00c0772c808e0c77dee6"
+  },
+  "limitation": "virtual host test clock/window, not hardware PDR/RTT/goodput"
+}

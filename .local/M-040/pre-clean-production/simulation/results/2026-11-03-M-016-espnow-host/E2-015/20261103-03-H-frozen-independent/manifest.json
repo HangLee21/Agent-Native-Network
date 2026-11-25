@@ -1,0 +1,58 @@
+{
+  "template_only": false,
+  "task_id": "E2-015",
+  "run_id": "20261103-03-H-frozen-independent",
+  "started_at": "2026-11-03T07:52:21.648413+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "tests\\espnow\\analyze_logs.py": "e228d79b954eb47c9af91c06affc63ba3a8659620cc617bd4571f3b735d89139",
+    "tests\\espnow\\CASES.json": "35712ab3bc749918cb2f4d905cfbd588661f2e11da7228bc4fc64d8a4262b5b5",
+    "tests\\espnow\\protocol_properties.py": "afeda42a6eb725279b2062a5ed9311d1be54ac030699e441ee987b18cd63701e",
+    "tests\\espnow\\README.md": "717262992b8b42f9f2658f87c3c71ca41cce1bd1098f12344a9adc7050ba6900",
+    "tests\\espnow\\run_validation.py": "adab52d9b2caa11fde5c81c1967172903e82bac48aa1d5a4c3e4cc2c5d613d76",
+    "tests\\espnow\\test_analysis.py": "5c74af0b6ab9df0d18e96b78c7469be46c2562df9932e2bbc868b4f544ca27bc",
+    "tests\\espnow\\test_h_frozen.py": "4368444537b219242eb6c674e39f0904fb6224088f015b159da8b2589cfcdeb4",
+    "tests\\espnow\\test_properties.py": "0e4fee81ae0508ef038e8672f6c45496d47b8bf9c623fe8dad1e11a878a23fd5",
+    "tests\\espnow\\test_wire.py": "807c8d56b37dcb6986db0305eacd980adc5376d01ad474f9a8d99e6205663470",
+    "tests\\espnow\\wire_reference.py": "407d246160c18b93a2c95c474213ceab4edf37c65c400eed7c58c6c584c9a46e"
+  },
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "D:\\Multi-Agent Network\\tests\\espnow\\run_validation.py",
+    "--child",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-03-H-frozen-independent\\result.json"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "libraries": "stdlib only"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": "D:\\Multi-Agent Network\\tests\\espnow\\CASES.json",
+  "seeds": [],
+  "budget": {
+    "command_timeout_s": 120,
+    "task_cap_s": 600,
+    "prior_charged_s": 0.6409999999996217,
+    "output_cap_bytes": 104857600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-03-H-frozen-independent",
+  "process_id": 35604,
+  "finished_at": "2026-11-03T07:52:22.316040+00:00",
+  "exit_code": 1,
+  "status": "host_checks_failed",
+  "limitations": [
+    "preparation tests, no E1 C implementation or target compilation",
+    "all fixtures synthetic; no serial opened or hardware measurements"
+  ],
+  "review_reference": null,
+  "contract_sha256": "eaa8290cae21c958e4b0beb27cfdc910aeb35987de8d6a75122c766882eb55ae",
+  "task_card_sha256": "97d0c3ca4b5ab9a9a6169a344854557df4c68277ef3b0bcf6a6c6292be66824f",
+  "execution_elapsed_s": 0.5470000000004802,
+  "protection_stopped": false,
+  "task_output_bytes": 170851
+}

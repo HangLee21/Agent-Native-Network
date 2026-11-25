@@ -1,0 +1,1351 @@
+{
+  "schema_version": 1,
+  "task": "E2-009",
+  "date": "2026-10-27",
+  "timezone": "Asia/Shanghai",
+  "actual_chat_id": "01a16824-3f4e-7e61-8a83-08d2dd8c82f6",
+  "cwd": "D:\\Multi-Agent Network",
+  "git_branch": "codex/baseline-reproduction-20261023",
+  "git_head": "514382a5ac68c613f219899f1cd6a34cecf42b45",
+  "initial_dirty_paths": [
+    "START_HERE.md",
+    "coordination/CURRENT.md",
+    "coordination/DECISIONS.md",
+    "coordination/TASKS.md",
+    "coordination/WINDOWS.md",
+    "coordination/tasks/C-011.md",
+    "coordination/tasks/D-008.md",
+    "coordination/tasks/E2-009.md",
+    "coordination/tasks/M-010.md"
+  ],
+  "new_experiments": 0,
+  "research_scripts_run": 0,
+  "tests_run": 0,
+  "verification_scope": "saved summaries/CSV, selected manifests and report text only; no raw ledger reconstruction or source behavior execution",
+  "blocks": {
+    "original_evaluation": {
+      "evidence_status": "recomputed_from_saved_paired_csv",
+      "unique_paired_instances": 10,
+      "conditions": [
+        {
+          "tasks": 15,
+          "agents": 9,
+          "seeds": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "paired_instances": 5,
+          "policy_successes": 5,
+          "greedy_successes": 5,
+          "policy_return_mean": 21.40873724403928,
+          "greedy_return_mean": 24.030662240284794,
+          "policy_faster_pairs": 4,
+          "reduction_of_means_pct": 10.910747985339086,
+          "unit": "original model time, includes return to depot",
+          "sources": [
+            "S01",
+            "S02",
+            "S03"
+          ]
+        },
+        {
+          "tasks": 20,
+          "agents": 9,
+          "seeds": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "paired_instances": 5,
+          "policy_successes": 5,
+          "greedy_successes": 5,
+          "policy_return_mean": 25.90058339480786,
+          "greedy_return_mean": 32.299928662709284,
+          "policy_faster_pairs": 5,
+          "reduction_of_means_pct": 19.812258208760557,
+          "unit": "original model time, includes return to depot",
+          "sources": [
+            "S04",
+            "S05",
+            "S06"
+          ]
+        }
+      ],
+      "limits": "Not paper-table replication. Author Greedy retains known candidate-distance and differing mask behavior. Two methods per paired directory are not independent task instances.",
+      "total_evaluation_episodes": 20
+    },
+    "shadow_interface": {
+      "evidence_status": "recomputed_counts_from_saved_summary",
+      "episodes": 10,
+      "completed": 10,
+      "zero_delay_equivalent": 10,
+      "conditions": {
+        "0.0": {
+          "decisions": 384,
+          "observation_mismatch": 0,
+          "mask_mismatch": 0,
+          "branch_mismatch": 0,
+          "action_mismatch": 0,
+          "pending_deliveries": 0,
+          "blocked_intents": 0
+        },
+        "0.5": {
+          "decisions": 384,
+          "observation_mismatch": 298,
+          "mask_mismatch": 136,
+          "branch_mismatch": 13,
+          "action_mismatch": 138,
+          "pending_deliveries": 0,
+          "blocked_intents": 0
+        },
+        "2.0": {
+          "decisions": 384,
+          "observation_mismatch": 370,
+          "mask_mismatch": 230,
+          "branch_mismatch": 20,
+          "action_mismatch": 215,
+          "pending_deliveries": 8,
+          "blocked_intents": 0
+        }
+      },
+      "shadow_actions_executed": false,
+      "sources": [
+        "S07",
+        "S08"
+      ],
+      "unit": "decision opportunities; delay in original model time",
+      "denominator": "384 opportunities on the same 10 original trajectories per delay; not independent samples",
+      "limits": "Positive-delay actions were not executed; no new task success/makespan can be attributed to shadows."
+    },
+    "baseline_components": {
+      "evidence_status": "counted_saved_check_flags_and_phase_bytes",
+      "component_checks": 14,
+      "component_passed": 14,
+      "protocol_checks": 18,
+      "protocol_passed": 18,
+      "successful_exchanges": 12,
+      "successful_envelope_bytes": 371,
+      "phase_table": [
+        {
+          "phase": "reverse_sync",
+          "requests": 3,
+          "request_bytes": 46,
+          "reply_bytes": 48,
+          "total_bytes": 94
+        },
+        {
+          "phase": "initial_sync",
+          "requests": 4,
+          "request_bytes": 63,
+          "reply_bytes": 65,
+          "total_bytes": 128
+        },
+        {
+          "phase": "no_change_sync",
+          "requests": 2,
+          "request_bytes": 29,
+          "reply_bytes": 27,
+          "total_bytes": 56
+        },
+        {
+          "phase": "updated_sync",
+          "requests": 3,
+          "request_bytes": 46,
+          "reply_bytes": 47,
+          "total_bytes": 93
+        }
+      ],
+      "sources": [
+        "S09",
+        "S10"
+      ],
+      "unit": "checks, request-reply exchanges, application envelope bytes including six-byte request ID",
+      "denominator": "14 component inputs; 18 protocol assertions in one successful second loopback run, not 32 performance trials",
+      "limits": "MOCHA isolated original state machine/ZeroMQ loopback, ROS adapters; AutoCast component probes only. No full ROS/CARLA/wireless/task baseline evaluation."
+    },
+    "causal_stage": {
+      "evidence_status": "recomputed_saved_summary_cases",
+      "total_episodes": 58,
+      "total_statuses": {
+        "success": 45,
+        "horizon_incomplete": 13
+      },
+      "main_episodes": 45,
+      "main_statuses": {
+        "success": 35,
+        "horizon_incomplete": 10
+      },
+      "episode_partition": [
+        {
+          "run_id": "20261025-01-pilot",
+          "role": "pilot",
+          "episodes": 1,
+          "statuses": {
+            "success": 1
+          },
+          "sources": [
+            "S11"
+          ]
+        },
+        {
+          "run_id": "20261025-02-delay",
+          "role": "main_delay",
+          "episodes": 30,
+          "statuses": {
+            "success": 26,
+            "horizon_incomplete": 4
+          },
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "run_id": "20261025-03-fifo",
+          "role": "main_fifo",
+          "episodes": 15,
+          "statuses": {
+            "success": 9,
+            "horizon_incomplete": 6
+          },
+          "sources": [
+            "S13"
+          ]
+        },
+        {
+          "run_id": "20261025-04-wait20",
+          "role": "wait_sensitivity",
+          "episodes": 10,
+          "statuses": {
+            "success": 9,
+            "horizon_incomplete": 1
+          },
+          "sources": [
+            "S14"
+          ]
+        },
+        {
+          "run_id": "20261025-05-epsilon",
+          "role": "epsilon_diagnostic",
+          "episodes": 2,
+          "statuses": {
+            "horizon_incomplete": 2
+          },
+          "sources": [
+            "S15"
+          ]
+        }
+      ],
+      "main_table": [
+        {
+          "tasks": 15,
+          "condition": "delay0.5",
+          "episodes": 5,
+          "successes": 3,
+          "mean_completion_fraction": 0.6,
+          "mean_success_return": 24.88720486015498,
+          "mean_H_capped_score": 94.932322916093
+        },
+        {
+          "tasks": 15,
+          "condition": "delay2.0",
+          "episodes": 5,
+          "successes": 3,
+          "mean_completion_fraction": 0.6,
+          "mean_success_return": 24.716957260879074,
+          "mean_H_capped_score": 94.83017435652745
+        },
+        {
+          "tasks": 15,
+          "condition": "fifo2048",
+          "episodes": 5,
+          "successes": 3,
+          "mean_completion_fraction": 0.6,
+          "mean_success_return": 34.09753821603679,
+          "mean_H_capped_score": 100.45852292962209
+        },
+        {
+          "tasks": 15,
+          "condition": "fifo4096",
+          "episodes": 5,
+          "successes": 3,
+          "mean_completion_fraction": 0.6,
+          "mean_success_return": 26.420166601087875,
+          "mean_H_capped_score": 95.85209996065272
+        },
+        {
+          "tasks": 15,
+          "condition": "fifo8192",
+          "episodes": 5,
+          "successes": 3,
+          "mean_completion_fraction": 0.6,
+          "mean_success_return": 24.020714349760837,
+          "mean_H_capped_score": 94.4124286098565
+        },
+        {
+          "tasks": 15,
+          "condition": "instant",
+          "episodes": 5,
+          "successes": 5,
+          "mean_completion_fraction": 1.0,
+          "mean_success_return": 21.531945129590994,
+          "mean_H_capped_score": 21.531945129590994
+        },
+        {
+          "tasks": 20,
+          "condition": "delay0.5",
+          "episodes": 5,
+          "successes": 5,
+          "mean_completion_fraction": 1.0,
+          "mean_success_return": 30.785238249899994,
+          "mean_H_capped_score": 30.785238249899994
+        },
+        {
+          "tasks": 20,
+          "condition": "delay2.0",
+          "episodes": 5,
+          "successes": 5,
+          "mean_completion_fraction": 1.0,
+          "mean_success_return": 34.08557775341457,
+          "mean_H_capped_score": 34.08557775341457
+        },
+        {
+          "tasks": 20,
+          "condition": "instant",
+          "episodes": 5,
+          "successes": 5,
+          "mean_completion_fraction": 1.0,
+          "mean_success_return": 25.584029769891547,
+          "mean_H_capped_score": 25.584029769891547
+        }
+      ],
+      "manifest_source": "S16",
+      "fixed_replay_source": "S17",
+      "fixed_replay_cases": 6,
+      "fixed_replay_table": [
+        {
+          "condition": "instant",
+          "accepted": 141,
+          "dropped": 0,
+          "delivered": 141,
+          "pending": 0,
+          "serviced_bytes": 42674,
+          "queue_bytes": 0,
+          "in_service_buffer_bytes": 0,
+          "propagation_bytes": 0,
+          "latency_mean": 0.0,
+          "latency_p95": 0.0,
+          "checks": true,
+          "wall_seconds": 0.014999999955762178
+        },
+        {
+          "condition": "fixed05",
+          "accepted": 141,
+          "dropped": 0,
+          "delivered": 139,
+          "pending": 2,
+          "serviced_bytes": 42674,
+          "queue_bytes": 0,
+          "in_service_buffer_bytes": 0,
+          "propagation_bytes": 662,
+          "latency_mean": 0.5,
+          "latency_p95": 0.5,
+          "checks": true,
+          "wall_seconds": 0.0
+        },
+        {
+          "condition": "fixed2",
+          "accepted": 141,
+          "dropped": 0,
+          "delivered": 138,
+          "pending": 3,
+          "serviced_bytes": 42674,
+          "queue_bytes": 0,
+          "in_service_buffer_bytes": 0,
+          "propagation_bytes": 993,
+          "latency_mean": 2.0,
+          "latency_p95": 2.0,
+          "checks": true,
+          "wall_seconds": 0.014999999955762178
+        },
+        {
+          "condition": "fifo2048",
+          "accepted": 141,
+          "dropped": 0,
+          "delivered": 139,
+          "pending": 2,
+          "serviced_bytes": 42108.64766792849,
+          "queue_bytes": 330,
+          "in_service_buffer_bytes": 332,
+          "propagation_bytes": 0,
+          "latency_mean": 2.0790891430305547,
+          "latency_p95": 3.2555187816594686,
+          "checks": true,
+          "wall_seconds": 0.0
+        },
+        {
+          "condition": "fifo4096",
+          "accepted": 141,
+          "dropped": 0,
+          "delivered": 139,
+          "pending": 2,
+          "serviced_bytes": 42205.29533585698,
+          "queue_bytes": 330,
+          "in_service_buffer_bytes": 332,
+          "propagation_bytes": 0,
+          "latency_mean": 0.25256937016385994,
+          "latency_p95": 0.563094437770049,
+          "checks": true,
+          "wall_seconds": 0.01600000000325963
+        },
+        {
+          "condition": "fifo8192",
+          "accepted": 141,
+          "dropped": 0,
+          "delivered": 140,
+          "pending": 1,
+          "serviced_bytes": 42344.0,
+          "queue_bytes": 0,
+          "in_service_buffer_bytes": 330,
+          "propagation_bytes": 0,
+          "latency_mean": 0.10382129536293229,
+          "latency_p95": 0.22346179713333558,
+          "checks": true,
+          "wall_seconds": 0.014999999955762178
+        }
+      ],
+      "unit": "original model time; FIFO rate application bytes per model time; H=200",
+      "denominator": "Main table: five paired seed0-4 directories per task-count/condition. Diagnostic/pilot episodes kept separately. Six replays share one 141-message pilot trajectory.",
+      "limits": "H-capped score is descriptive, not failure completion time; no physical bit/s or radio-capacity claim. 58 episodes are reused directories/diagnostics, not 58 independent instances."
+    },
+    "demand_census": {
+      "evidence_status": "recomputed_coalition_csv_and_saved_role_totals",
+      "analyzed_episode_rows": 45,
+      "independent_native_directories": 10,
+      "native_tasks": 175,
+      "min_members_histogram": {
+        "1": 139,
+        "2": 34,
+        "3": 2
+      },
+      "static_team_required": 36,
+      "actual_multi_worker_tasks": 85,
+      "native_totals": {
+        "sample_role": "native_instant",
+        "cases": 10,
+        "successes": 10,
+        "mean_application_bytes": 53841.9,
+        "mean_messages": 173.8,
+        "total_tasks": 175,
+        "total_completed": 175,
+        "total_messages": 1738,
+        "total_application_bytes": 538419,
+        "total_self_state_bytes": 420525,
+        "total_task_scene_bytes": 117894,
+        "total_recipient_copies_requested": 13904,
+        "total_recipient_copies_delivered": 13904,
+        "total_recipient_copies_cache_applied": 13676,
+        "total_recipient_copies_referenced": 5668,
+        "total_static_tasks_requiring_team": 36,
+        "total_tasks_started_multi_worker": 85,
+        "total_tasks_started_multi_species": 85,
+        "total_decisions": 1166,
+        "total_policy_inferences": 369,
+        "total_remote_state_slots": 9328,
+        "total_initial_remote_state_slots": 360,
+        "total_network_state_references": 8968,
+        "total_network_scene_references": 14374,
+        "total_local_scene_references": 2874,
+        "total_reference_occurrences": 23342,
+        "total_late_closed_task_arrivals": 6
+      },
+      "sources": [
+        "S18",
+        "S19",
+        "S20"
+      ],
+      "unit": "tasks, publications, UTF-8 payload bytes, recipient copies, cache references",
+      "denominator": "10 instant directories only for 175 tasks; remaining 35 rows are paired service diagnostics from the same causal main matrix",
+      "limits": "139 one-worker-feasible tasks do not mean solo execution is fastest. 85 actual coalitions are distinct from 36 capability-required teams. Cache reference is not causal usefulness; bytes exclude MAC/PHY/ACK."
+    },
+    "execution_008": {
+      "evidence_status": "recomputed_saved_csv",
+      "episodes": 30,
+      "groups": [
+        {
+          "group": "legacy",
+          "episodes": 10,
+          "statuses": {
+            "success": 8,
+            "horizon_incomplete": 2
+          },
+          "publications": 1472,
+          "application_bytes": 454382
+        },
+        {
+          "group": "recovery",
+          "episodes": 10,
+          "statuses": {
+            "success": 10
+          },
+          "publications": 1897,
+          "application_bytes": 596379
+        },
+        {
+          "group": "scale",
+          "episodes": 10,
+          "statuses": {
+            "success": 10
+          },
+          "publications": 3091,
+          "application_bytes": 977998
+        }
+      ],
+      "scale_table": [
+        {
+          "seed": 5,
+          "agents": 9,
+          "tasks": 15,
+          "return_model": 21.677935740865905,
+          "publications": 143,
+          "application_bytes": 44942,
+          "recipient_copies": 1144,
+          "families": "fixed_total_15;fixed_tasks_per_agent_5_over_3"
+        },
+        {
+          "seed": 5,
+          "agents": 18,
+          "tasks": 15,
+          "return_model": 15.23625973747256,
+          "publications": 171,
+          "application_bytes": 54181,
+          "recipient_copies": 2907,
+          "families": "fixed_total_15"
+        },
+        {
+          "seed": 5,
+          "agents": 36,
+          "tasks": 15,
+          "return_model": 14.142382837313477,
+          "publications": 197,
+          "application_bytes": 62820,
+          "recipient_copies": 6895,
+          "families": "fixed_total_15"
+        },
+        {
+          "seed": 5,
+          "agents": 18,
+          "tasks": 30,
+          "return_model": 22.755987832397327,
+          "publications": 328,
+          "application_bytes": 103646,
+          "recipient_copies": 5576,
+          "families": "fixed_tasks_per_agent_5_over_3"
+        },
+        {
+          "seed": 5,
+          "agents": 36,
+          "tasks": 60,
+          "return_model": 23.536340545050145,
+          "publications": 650,
+          "application_bytes": 206054,
+          "recipient_copies": 22750,
+          "families": "fixed_tasks_per_agent_5_over_3"
+        },
+        {
+          "seed": 6,
+          "agents": 9,
+          "tasks": 15,
+          "return_model": 25.07322469120589,
+          "publications": 174,
+          "application_bytes": 54500,
+          "recipient_copies": 1392,
+          "families": "fixed_total_15;fixed_tasks_per_agent_5_over_3"
+        },
+        {
+          "seed": 6,
+          "agents": 18,
+          "tasks": 15,
+          "return_model": 17.212456028750182,
+          "publications": 196,
+          "application_bytes": 61903,
+          "recipient_copies": 3332,
+          "families": "fixed_total_15"
+        },
+        {
+          "seed": 6,
+          "agents": 36,
+          "tasks": 15,
+          "return_model": 14.506400832277805,
+          "publications": 211,
+          "application_bytes": 67089,
+          "recipient_copies": 7385,
+          "families": "fixed_total_15"
+        },
+        {
+          "seed": 6,
+          "agents": 18,
+          "tasks": 30,
+          "return_model": 24.62052246993665,
+          "publications": 344,
+          "application_bytes": 108594,
+          "recipient_copies": 5848,
+          "families": "fixed_tasks_per_agent_5_over_3"
+        },
+        {
+          "seed": 6,
+          "agents": 36,
+          "tasks": 60,
+          "return_model": 23.41081290859504,
+          "publications": 677,
+          "application_bytes": 214269,
+          "recipient_copies": 23695,
+          "families": "fixed_tasks_per_agent_5_over_3"
+        }
+      ],
+      "scale_relative": [
+        {
+          "seed": 5,
+          "fixed_total_return_reduction_pct": 34.76139515141596,
+          "fixed_total_bytes_growth_pct": 39.7801610965244,
+          "fixed_per_agent_bytes_ratio": 4.584887187931111
+        },
+        {
+          "seed": 6,
+          "fixed_total_return_reduction_pct": 42.143856600281104,
+          "fixed_total_bytes_growth_pct": 23.09908256880735,
+          "fixed_per_agent_bytes_ratio": 3.9315412844036697
+        }
+      ],
+      "catalog_preflight": {
+        "configurations": 10,
+        "passed": 10,
+        "masters": 2,
+        "full_episodes_run": 0,
+        "families": {
+          "fixed_total_15": 6,
+          "fixed_tasks_per_agent_5_over_3": 6
+        }
+      },
+      "sources": [
+        "S21",
+        "S22",
+        "S23",
+        "S24"
+      ],
+      "unit": "model time including return, publication counts, application bytes; no PHY charges",
+      "denominator": "30=10 legacy+10 recovery+10 new scale closed loops. Two families each six memberships share two 9/15 starting cases; only 10 unique scale configurations.",
+      "limits": "20 preflight policy forwards are one-step probes, not 20 task episodes. Recovery components not independently ablated. Fixed area and replicated capability groups do not validate physical device heterogeneity or fixed-density spatial expansion."
+    },
+    "wireless_009": {
+      "evidence_status": "recomputed_saved_csv_and_summary_crosschecks",
+      "replays": 60,
+      "task_episodes": 18,
+      "task_statuses": {
+        "success": 18
+      },
+      "task_groups": [
+        {
+          "condition": "event_fifo",
+          "episodes": 6,
+          "successes": 6,
+          "completed_tasks": 210,
+          "application_bytes": 743789,
+          "airtime_attempt_us": 1248936,
+          "pooled_airtime_ms_per_completed_task": 5.9473142857142856,
+          "busy_pct_min": 0.017945435610210964,
+          "busy_pct_max": 0.0744356245726767,
+          "collision_frames": 102,
+          "recipient_copies": 58396,
+          "cache_applied": 57899,
+          "cache_unchanged": 497
+        },
+        {
+          "condition": "event_latest",
+          "episodes": 6,
+          "successes": 6,
+          "completed_tasks": 210,
+          "application_bytes": 737724,
+          "airtime_attempt_us": 908528,
+          "pooled_airtime_ms_per_completed_task": 4.326323809523809,
+          "busy_pct_min": 0.012906210413410167,
+          "busy_pct_max": 0.05543641861340921,
+          "collision_frames": 53,
+          "recipient_copies": 43587,
+          "cache_applied": 43092,
+          "cache_unchanged": 495
+        },
+        {
+          "condition": "refresh_latest",
+          "episodes": 6,
+          "successes": 6,
+          "completed_tasks": 210,
+          "application_bytes": 2982716,
+          "airtime_attempt_us": 4763208,
+          "pooled_airtime_ms_per_completed_task": 22.681942857142857,
+          "busy_pct_min": 0.06668808401690808,
+          "busy_pct_max": 0.28526761103097714,
+          "collision_frames": 72,
+          "recipient_copies": 247915,
+          "cache_applied": 44383,
+          "cache_unchanged": 203532
+        }
+      ],
+      "replay_groups": [
+        {
+          "demanded": 9273,
+          "delivered": 8857,
+          "collided": 416,
+          "replaced": 0,
+          "dropped": 0,
+          "application_bytes": 2933994,
+          "airtime_attempt_us": 4938036,
+          "channel_busy_us": 4827840,
+          "policy": "fifo",
+          "replays": 30,
+          "actual_tx_frames": 9273,
+          "max_drain_ms": 0.7321826819151056
+        },
+        {
+          "demanded": 9273,
+          "delivered": 6756,
+          "collided": 225,
+          "replaced": 2292,
+          "dropped": 0,
+          "application_bytes": 2933994,
+          "airtime_attempt_us": 3679032,
+          "channel_busy_us": 3619920,
+          "policy": "latest_state",
+          "replays": 30,
+          "actual_tx_frames": 6981,
+          "max_drain_ms": 0.7334249963264483
+        }
+      ],
+      "replay_airtime_reduction_pct": 25.49604741642224,
+      "refresh_over_latest_airtime_ratio": 5.242775126358241,
+      "paired_makespans": [
+        {
+          "seed": 5,
+          "agents": 9,
+          "tasks": 15,
+          "instant": 21.677935740865905,
+          "makespan": {
+            "event_fifo": 21.677935740865905,
+            "event_latest": 21.677935740865905,
+            "refresh_latest": 21.677935740865905
+          },
+          "ratios": {
+            "event_fifo": 1.0,
+            "event_latest": 1.0,
+            "refresh_latest": 1.0
+          },
+          "tx_us_per_task": {
+            "event_fifo": 5223.2,
+            "event_latest": 3730.4,
+            "refresh_latest": 19350.133333333335
+          }
+        },
+        {
+          "seed": 5,
+          "agents": 18,
+          "tasks": 30,
+          "instant": 22.755987832397327,
+          "makespan": {
+            "event_fifo": 23.420980309311037,
+            "event_latest": 24.6586265683071,
+            "refresh_latest": 22.755987832397327
+          },
+          "ratios": {
+            "event_fifo": 1.0292227470770121,
+            "event_latest": 1.0836104655145322,
+            "refresh_latest": 1.0
+          },
+          "tx_us_per_task": {
+            "event_fifo": 5886.533333333334,
+            "event_latest": 4401.6,
+            "refresh_latest": 20486.8
+          }
+        },
+        {
+          "seed": 5,
+          "agents": 36,
+          "tasks": 60,
+          "instant": 23.536340545050145,
+          "makespan": {
+            "event_fifo": 24.48125016091746,
+            "event_latest": 22.589843127006908,
+            "refresh_latest": 25.288955777095286
+          },
+          "ratios": {
+            "event_fifo": 1.0401468365083644,
+            "event_latest": 0.9597857017648271,
+            "refresh_latest": 1.0744642196475072
+          },
+          "tx_us_per_task": {
+            "event_fifo": 5861.6,
+            "event_latest": 4209.066666666667,
+            "refresh_latest": 24127.133333333335
+          }
+        },
+        {
+          "seed": 6,
+          "agents": 9,
+          "tasks": 15,
+          "instant": 25.07322469120589,
+          "makespan": {
+            "event_fifo": 25.07993187260333,
+            "event_latest": 25.07322469120589,
+            "refresh_latest": 27.218193841091345
+          },
+          "ratios": {
+            "event_fifo": 1.000267503740745,
+            "event_latest": 1.0,
+            "refresh_latest": 1.085548196384878
+          },
+          "tx_us_per_task": {
+            "event_fifo": 6197.6,
+            "event_latest": 4455.733333333334,
+            "refresh_latest": 25097.333333333332
+          }
+        },
+        {
+          "seed": 6,
+          "agents": 18,
+          "tasks": 30,
+          "instant": 24.62052246993665,
+          "makespan": {
+            "event_fifo": 25.676649794439026,
+            "event_latest": 25.676649794439026,
+            "refresh_latest": 24.4490703294866
+          },
+          "ratios": {
+            "event_fifo": 1.0428962190299569,
+            "event_latest": 1.0428962190299569,
+            "refresh_latest": 0.9930362103135949
+          },
+          "tx_us_per_task": {
+            "event_fifo": 6109.733333333334,
+            "event_latest": 4396.666666666667,
+            "refresh_latest": 22896.4
+          }
+        },
+        {
+          "seed": 6,
+          "agents": 36,
+          "tasks": 60,
+          "instant": 23.41081290859504,
+          "makespan": {
+            "event_fifo": 24.00114206411577,
+            "event_latest": 24.00114206411577,
+            "refresh_latest": 24.00114206411577
+          },
+          "ratios": {
+            "event_fifo": 1.025216089583288,
+            "event_latest": 1.025216089583288,
+            "refresh_latest": 1.025216089583288
+          },
+          "tx_us_per_task": {
+            "event_fifo": 6100.666666666667,
+            "event_latest": 4487.4,
+            "refresh_latest": 22456.2
+          }
+        }
+      ],
+      "sources": [
+        "S25",
+        "S26",
+        "S27",
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "unit": "model time for makespan; 20 physical seconds per model unit; airtime microseconds; busy percentage of observed window; serialized bytes",
+      "conditions": {
+        "task_seeds": [
+          5,
+          6
+        ],
+        "task_mac_seeds": [
+          0
+        ],
+        "replay_mac_seeds": [
+          0,
+          1,
+          2
+        ],
+        "Mbps": 6,
+        "MHz": 20,
+        "queue_bytes_per_node": 65536,
+        "refresh_seconds": 20,
+        "seconds_per_model_unit": 20,
+        "meters_per_model_unit": 100
+      },
+      "denominator": "60=10 fixed trajectories x 3 MAC seeds x 2 queues; 18=6 task directories x 3 rules; each rule completes 210 tasks. Task MAC repeats=1.",
+      "limits": "No capacity saturation established. Frame airtime sums differ from busy-interval union. Copy quantiles differ from frame quantiles. Costs at task stop count only already transmitted portions; replay drain includes remaining service."
+    }
+  },
+  "checks": [
+    {
+      "name": "original_policy_mean_15",
+      "computed": 21.40873724403928,
+      "reference": 21.40873724403928,
+      "consistent": true
+    },
+    {
+      "name": "original_greedy_mean_15",
+      "computed": 24.030662240284794,
+      "reference": 24.030662240284794,
+      "consistent": true
+    },
+    {
+      "name": "original_policy_mean_20",
+      "computed": 25.90058339480786,
+      "reference": 25.90058339480786,
+      "consistent": true
+    },
+    {
+      "name": "original_greedy_mean_20",
+      "computed": 32.299928662709284,
+      "reference": 32.299928662709284,
+      "consistent": true
+    },
+    {
+      "name": "component_passed",
+      "computed": 14,
+      "reference": 14,
+      "consistent": true
+    },
+    {
+      "name": "protocol_all_checks",
+      "computed": 18,
+      "reference": 18,
+      "consistent": true
+    },
+    {
+      "name": "causal_total",
+      "computed": 58,
+      "reference": 58,
+      "consistent": true
+    },
+    {
+      "name": "causal_success",
+      "computed": 45,
+      "reference": 45,
+      "consistent": true
+    },
+    {
+      "name": "native_task_rows",
+      "computed": 175,
+      "reference": 175,
+      "consistent": true
+    },
+    {
+      "name": "team_required",
+      "computed": 36,
+      "reference": 36,
+      "consistent": true
+    },
+    {
+      "name": "actual_team",
+      "computed": 85,
+      "reference": 85,
+      "consistent": true
+    },
+    {
+      "name": "008_episodes",
+      "computed": 30,
+      "reference": 30,
+      "consistent": true
+    },
+    {
+      "name": "009_airtime_event_fifo",
+      "computed": 1248936,
+      "reference": 1248936,
+      "consistent": true
+    },
+    {
+      "name": "009_airtime_event_latest",
+      "computed": 908528,
+      "reference": 908528,
+      "consistent": true
+    },
+    {
+      "name": "009_airtime_refresh_latest",
+      "computed": 4763208,
+      "reference": 4763208,
+      "consistent": true
+    },
+    {
+      "name": "009_replay_airtime_fifo",
+      "computed": 4938036,
+      "reference": 4938036,
+      "consistent": true
+    },
+    {
+      "name": "009_replay_airtime_latest_state",
+      "computed": 3679032,
+      "reference": 3679032,
+      "consistent": true
+    },
+    {
+      "name": "causal_main_condition_groups",
+      "computed": 9,
+      "reference": 9,
+      "consistent": true
+    }
+  ],
+  "all_checks_consistent": true,
+  "report_sources": {
+    "HETEROMRTA_REPRODUCTION": "S31",
+    "HETEROMRTA_NETWORK_INTERFACE": "S32",
+    "NETWORK_BASELINE_RUNTIME": "S33",
+    "MOCHA_RUNTIME_ENTRY": "S34",
+    "CAUSAL_SERVICE_STAGE": "S35",
+    "DEMAND_CENSUS": "S36",
+    "DEMAND_EXECUTION_STAGE": "S37",
+    "WIRELESS_EXECUTION_STAGE": "S38",
+    "WIRELESS_SERVICE_CONTRACT": "S39"
+  },
+  "sources": {
+    "S01": {
+      "path": "simulation/results/2026-10-23-E1-002-heteromrta/20261023-02/paired.csv",
+      "stored_sha256": "5bdffa95b5448e3226d531916648b318bb2c8bf8e348816e2fc483f9cacf0963",
+      "content_sha256": "5bdffa95b5448e3226d531916648b318bb2c8bf8e348816e2fc483f9cacf0963",
+      "compressed": false,
+      "bytes": 800,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S02": {
+      "path": "simulation/results/2026-10-23-E1-002-heteromrta/20261023-02/summary.json",
+      "stored_sha256": "7766e437696948bb93ebf17218d70a1fc3b023a333ec9f9ef28f01e424c0e08c",
+      "content_sha256": "7766e437696948bb93ebf17218d70a1fc3b023a333ec9f9ef28f01e424c0e08c",
+      "compressed": false,
+      "bytes": 321,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S03": {
+      "path": "simulation/results/2026-10-23-E1-002-heteromrta/20261023-02/manifest.json",
+      "stored_sha256": "c46613f19a474b604bd7bd678cc65bac22890004bc8b417a8815ef92004fa86b",
+      "content_sha256": "c46613f19a474b604bd7bd678cc65bac22890004bc8b417a8815ef92004fa86b",
+      "compressed": false,
+      "bytes": 5272,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S04": {
+      "path": "simulation/results/2026-10-23-E1-002-heteromrta/20261023-03/paired.csv",
+      "stored_sha256": "6e036f38227007ec2c2d35b3e957cac6bb4c16098d6d3ff6cb41b36908608570",
+      "content_sha256": "6e036f38227007ec2c2d35b3e957cac6bb4c16098d6d3ff6cb41b36908608570",
+      "compressed": false,
+      "bytes": 804,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S05": {
+      "path": "simulation/results/2026-10-23-E1-002-heteromrta/20261023-03/summary.json",
+      "stored_sha256": "65010c297cc885602e5411e7af2e7c7fcbe31662d9dbc8e4a0720f93e0682480",
+      "content_sha256": "65010c297cc885602e5411e7af2e7c7fcbe31662d9dbc8e4a0720f93e0682480",
+      "compressed": false,
+      "bytes": 321,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S06": {
+      "path": "simulation/results/2026-10-23-E1-002-heteromrta/20261023-03/manifest.json",
+      "stored_sha256": "1b812f21e80e595c27d8c32f50c3871f28024a8ddf7beab96117010affa37a81",
+      "content_sha256": "1b812f21e80e595c27d8c32f50c3871f28024a8ddf7beab96117010affa37a81",
+      "compressed": false,
+      "bytes": 5299,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S07": {
+      "path": "simulation/results/2026-10-25-E1-003-interface/20261025-03/summary.json",
+      "stored_sha256": "0ac52e4b45ac6b0e58f14b033e22e317d67eaa9106e67e0b6eb69d726431b0fd",
+      "content_sha256": "0ac52e4b45ac6b0e58f14b033e22e317d67eaa9106e67e0b6eb69d726431b0fd",
+      "compressed": false,
+      "bytes": 815,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S08": {
+      "path": "simulation/results/2026-10-25-E1-003-interface/20261025-03/manifest.json",
+      "stored_sha256": "bf2e86960e80ec9a669ac97a313afb9eca3393c4436b3fa6973113bcf9650e81",
+      "content_sha256": "bf2e86960e80ec9a669ac97a313afb9eca3393c4436b3fa6973113bcf9650e81",
+      "compressed": false,
+      "bytes": 4915,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S09": {
+      "path": "simulation/results/2026-10-23-D-002-network-components/probe_results.json",
+      "stored_sha256": "0b68aec4bd0ccdee5a08b519eed020ca08f457c1edafa60ba91d48854beff901",
+      "content_sha256": "0b68aec4bd0ccdee5a08b519eed020ca08f457c1edafa60ba91d48854beff901",
+      "compressed": false,
+      "bytes": 10858,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S10": {
+      "path": "simulation/results/2026-10-25-D-004-protocol/20261025-02/result.json",
+      "stored_sha256": "878ba2cc53279b1f047f3419a017edb66a855d339bd9320e84f0a15dd76758c3",
+      "content_sha256": "878ba2cc53279b1f047f3419a017edb66a855d339bd9320e84f0a15dd76758c3",
+      "compressed": false,
+      "bytes": 14536,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S11": {
+      "path": "simulation/results/2026-10-25-E1-004-causal/20261025-01-pilot/summary.json",
+      "stored_sha256": "a1357ffd00ef531a51e85bc58b72ba6b5cfb60358138d4242a2ec78a33695e97",
+      "content_sha256": "a1357ffd00ef531a51e85bc58b72ba6b5cfb60358138d4242a2ec78a33695e97",
+      "compressed": false,
+      "bytes": 3566,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S12": {
+      "path": "simulation/results/2026-10-25-E1-004-causal/20261025-02-delay/summary.json.gz",
+      "stored_sha256": "7353f41eecd3a415932a44f3d408e12e015e19d7279d82154746cc4f46113f5f",
+      "content_sha256": "f686fcdf07d505c656bf0031cdc49aa7bb92aa4fa8dd8fffbbe77713ee0ffac2",
+      "compressed": true,
+      "bytes": 9388,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S13": {
+      "path": "simulation/results/2026-10-25-E1-004-causal/20261025-03-fifo/summary.json.gz",
+      "stored_sha256": "3b34fc562227e9f237b6757fec6222bf126baf0851d0ecf5b90995d691d40dec",
+      "content_sha256": "d03f1131520dbe6eb07a0263b93b6c10e69378f4ef7b24b12e3b3d23f2bb7cc3",
+      "compressed": true,
+      "bytes": 5296,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S14": {
+      "path": "simulation/results/2026-10-25-E1-004-causal/20261025-04-wait20/summary.json.gz",
+      "stored_sha256": "ee412542ad5d6aac40ecd20b92f7543a0eaaeb02ccd0e975ed7f784d184b819d",
+      "content_sha256": "847497111e2dee0fe1deadb2f4441e4a38b38b28fc3b32fe143d198032ae0c4b",
+      "compressed": true,
+      "bytes": 4150,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S15": {
+      "path": "simulation/results/2026-10-25-E1-004-causal/20261025-05-epsilon/summary.json.gz",
+      "stored_sha256": "fc4841e313f58d2c32ff4b0d7bc381b83d75cbb8bee0c0dd3c1de814c8187271",
+      "content_sha256": "6276264cde39d8fc3d013a71c0e8a6651116d01c4d31595745644b32d158a3f3",
+      "compressed": true,
+      "bytes": 1543,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S16": {
+      "path": "simulation/results/2026-10-25-E1-004-causal/20261025-02-delay/manifest.json.gz",
+      "stored_sha256": "689f0ccc948a55dcaf46bb551f643ea65f98765068f79446e1465d663a829316",
+      "content_sha256": "3fdeef3392a741aac6ec53a095af0c08c61cdcf58a091460c48f088dc9bf0924",
+      "compressed": true,
+      "bytes": 1925,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S17": {
+      "path": "simulation/results/2026-10-25-E2-005-service/20261025-02-frozen-pilot/summary.json",
+      "stored_sha256": "3b2ee01954e260471796edeb59f0f30ea680c55546fd3a05c884265657341df1",
+      "content_sha256": "3b2ee01954e260471796edeb59f0f30ea680c55546fd3a05c884265657341df1",
+      "compressed": false,
+      "bytes": 2136,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S18": {
+      "path": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/summary.json",
+      "stored_sha256": "089703e4f9a9c9fac966d0cc9297eb187119ac34cd02c5b845112166f5cca68e",
+      "content_sha256": "089703e4f9a9c9fac966d0cc9297eb187119ac34cd02c5b845112166f5cca68e",
+      "compressed": false,
+      "bytes": 14376,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S19": {
+      "path": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/task_coalitions.csv",
+      "stored_sha256": "e962bccb5170d47d450aabdf5e5b76b542df7d3e168db1c9902f1232e9d8b258",
+      "content_sha256": "e962bccb5170d47d450aabdf5e5b76b542df7d3e168db1c9902f1232e9d8b258",
+      "compressed": false,
+      "bytes": 92724,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S20": {
+      "path": "simulation/results/2026-10-26-E1-005-demand/20261026-01-census/cases.csv",
+      "stored_sha256": "79fedf8ab00ef5d2d6c2a81a0d1ed7bf2eb24403a72a5fc949de55112f55fe17",
+      "content_sha256": "79fedf8ab00ef5d2d6c2a81a0d1ed7bf2eb24403a72a5fc949de55112f55fe17",
+      "compressed": false,
+      "bytes": 10740,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S21": {
+      "path": "simulation/results/2026-10-26-E1-006-execution/20261026-04-analysis/cases.csv",
+      "stored_sha256": "8b7a0e6eac589953d691ff392af7caac0e8a4299cb86ec71e2cc975b6fd36ba6",
+      "content_sha256": "8b7a0e6eac589953d691ff392af7caac0e8a4299cb86ec71e2cc975b6fd36ba6",
+      "compressed": false,
+      "bytes": 8765,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S22": {
+      "path": "simulation/results/2026-10-26-E1-006-execution/20261026-04-analysis/summary.json",
+      "stored_sha256": "665eb3cd502cff1c1be69231aa6b54ba4608683f397f1d600859a616641e158a",
+      "content_sha256": "665eb3cd502cff1c1be69231aa6b54ba4608683f397f1d600859a616641e158a",
+      "compressed": false,
+      "bytes": 34484,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S23": {
+      "path": "simulation/results/2026-10-26-E2-006-scale/20261026-01/summary.json",
+      "stored_sha256": "2c0d7012bc74802227cc5e86924fef7d574e80a80af38e3e8945c6821199db96",
+      "content_sha256": "2c0d7012bc74802227cc5e86924fef7d574e80a80af38e3e8945c6821199db96",
+      "compressed": false,
+      "bytes": 181,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S24": {
+      "path": "simulation/results/2026-10-26-E1-006-execution/20261026-03-scale/manifest.json",
+      "stored_sha256": "9510781a7405052cac7fb0e52ba1f35aab7c9080f70d8657fdf0a36f8cf68939",
+      "content_sha256": "9510781a7405052cac7fb0e52ba1f35aab7c9080f70d8657fdf0a36f8cf68939",
+      "compressed": false,
+      "bytes": 10396,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S25": {
+      "path": "simulation/results/2026-10-26-E2-007-wireless/20261026-03-analysis/cases.csv",
+      "stored_sha256": "3758a5249bb27bc901792c0a43091f41c70ab0fab4fbcb35ed215b445392a6cc",
+      "content_sha256": "3758a5249bb27bc901792c0a43091f41c70ab0fab4fbcb35ed215b445392a6cc",
+      "compressed": false,
+      "bytes": 5066,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S26": {
+      "path": "simulation/results/2026-10-26-E2-007-wireless/20261026-03-analysis/descriptive_summary.json",
+      "stored_sha256": "041678ad4260b929dfde7995027c0ee745119df3d4911aac75b331d0f3df6905",
+      "content_sha256": "041678ad4260b929dfde7995027c0ee745119df3d4911aac75b331d0f3df6905",
+      "compressed": false,
+      "bytes": 8715,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S27": {
+      "path": "simulation/results/2026-10-26-E2-007-wireless/20261026-01-replay/cases.csv",
+      "stored_sha256": "68d43a94717c696a336f7c7809410bc9e92cadc0f24f9a45bbd91106f964e8d0",
+      "content_sha256": "68d43a94717c696a336f7c7809410bc9e92cadc0f24f9a45bbd91106f964e8d0",
+      "compressed": false,
+      "bytes": 10136,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S28": {
+      "path": "simulation/results/2026-10-26-E2-007-wireless/20261026-01-replay/summary.json",
+      "stored_sha256": "18239f725387ba1ec68bac6530d85906fea23b3447f6eeaa5f1c6c53e273d22a",
+      "content_sha256": "18239f725387ba1ec68bac6530d85906fea23b3447f6eeaa5f1c6c53e273d22a",
+      "compressed": false,
+      "bytes": 36634,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S29": {
+      "path": "simulation/results/2026-10-26-E2-007-wireless/20261026-02-task/summary.json.gz",
+      "stored_sha256": "6bd66cfb2f0dc4fdaea429172e2e057c24a48762bcc06d43d64f80f91d751c34",
+      "content_sha256": "f7371034cb2bb3edf02dc4ea46b8b1754ae87d080b9f71a9c372b613d12131b6",
+      "compressed": true,
+      "bytes": 10845,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S30": {
+      "path": "simulation/results/2026-10-26-E2-007-wireless/20261026-02-task/manifest.json",
+      "stored_sha256": "703ac15caad88ec07475ceebf27cd99f59a55d0d974bf078b02b70d600e3a8e7",
+      "content_sha256": "703ac15caad88ec07475ceebf27cd99f59a55d0d974bf078b02b70d600e3a8e7",
+      "compressed": false,
+      "bytes": 19734,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S31": {
+      "path": "research/agent_native_network/HETEROMRTA_REPRODUCTION.md",
+      "stored_sha256": "3f72979b9b647ffd5bdf1316fdaa03cc31e27a609611e8db69bfebc3ef332178",
+      "content_sha256": "3f72979b9b647ffd5bdf1316fdaa03cc31e27a609611e8db69bfebc3ef332178",
+      "compressed": false,
+      "bytes": 7226,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S32": {
+      "path": "research/agent_native_network/HETEROMRTA_NETWORK_INTERFACE.md",
+      "stored_sha256": "fa357dd7360df4c070432ef3882683c866c430a4be58e55fa2486f37e9a4ecc8",
+      "content_sha256": "fa357dd7360df4c070432ef3882683c866c430a4be58e55fa2486f37e9a4ecc8",
+      "compressed": false,
+      "bytes": 10424,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S33": {
+      "path": "research/agent_native_network/NETWORK_BASELINE_RUNTIME.md",
+      "stored_sha256": "35b166142c025b7527ec86e20524ca97608ec3e485ab70fde18b5cdb01ed0d9f",
+      "content_sha256": "35b166142c025b7527ec86e20524ca97608ec3e485ab70fde18b5cdb01ed0d9f",
+      "compressed": false,
+      "bytes": 11318,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S34": {
+      "path": "research/agent_native_network/MOCHA_RUNTIME_ENTRY.md",
+      "stored_sha256": "6364aac9106c91eadf17afa2af5d0a5a95e624681e134469067659ee7cf397fc",
+      "content_sha256": "6364aac9106c91eadf17afa2af5d0a5a95e624681e134469067659ee7cf397fc",
+      "compressed": false,
+      "bytes": 9672,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S35": {
+      "path": "research/agent_native_network/CAUSAL_SERVICE_STAGE.md",
+      "stored_sha256": "06fcf85fee182018c85ff116f0d15c254b8d33357c6118e59c62b7b8b8cf3e3a",
+      "content_sha256": "06fcf85fee182018c85ff116f0d15c254b8d33357c6118e59c62b7b8b8cf3e3a",
+      "compressed": false,
+      "bytes": 8996,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S36": {
+      "path": "research/agent_native_network/DEMAND_CENSUS.md",
+      "stored_sha256": "d8bf0dc39377008a03062fdca26d854a51cb95f488666b193f5017d8f754d3af",
+      "content_sha256": "d8bf0dc39377008a03062fdca26d854a51cb95f488666b193f5017d8f754d3af",
+      "compressed": false,
+      "bytes": 10360,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S37": {
+      "path": "research/agent_native_network/DEMAND_EXECUTION_STAGE.md",
+      "stored_sha256": "d9dfcb808179b306621aa78ab30ecbe7b9d433e3c4a63f937ebe4477c9c76526",
+      "content_sha256": "d9dfcb808179b306621aa78ab30ecbe7b9d433e3c4a63f937ebe4477c9c76526",
+      "compressed": false,
+      "bytes": 8222,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S38": {
+      "path": "research/agent_native_network/WIRELESS_EXECUTION_STAGE.md",
+      "stored_sha256": "309a886a9133f5e2c1dbf29e0083cf082e5fdecba6c4a5b5a5fcdb588818e943",
+      "content_sha256": "309a886a9133f5e2c1dbf29e0083cf082e5fdecba6c4a5b5a5fcdb588818e943",
+      "compressed": false,
+      "bytes": 9496,
+      "scope": "saved file read; no experiment rerun"
+    },
+    "S39": {
+      "path": "research/agent_native_network/WIRELESS_SERVICE_CONTRACT.md",
+      "stored_sha256": "28ad9fcc776edec8456ed4a0ade206a77035e4fe13cd1c27f309c05cc0ce3e41",
+      "content_sha256": "28ad9fcc776edec8456ed4a0ade206a77035e4fe13cd1c27f309c05cc0ce3e41",
+      "compressed": false,
+      "bytes": 8744,
+      "scope": "saved file read; no experiment rerun"
+    }
+  },
+  "issues": [
+    {
+      "id": "I1",
+      "severity": "interpretation",
+      "description": "Causal total 58 contains 45 primary and 13 pilot/diagnostic episodes; total successes 45 must not be mistaken for main-matrix successes 35."
+    },
+    {
+      "id": "I2",
+      "severity": "interpretation",
+      "description": "Census reuses 45 causal primary episodes; 008 legacy reruns and 009 fixed replays reuse earlier directories/trajectories. Never sum phases as independent samples."
+    },
+    {
+      "id": "I3",
+      "severity": "interpretation",
+      "description": "Static 36 team-required tasks and actual 85 multi-worker task starts have different meanings."
+    },
+    {
+      "id": "I4",
+      "severity": "future_validation",
+      "description": "009 has two task seeds and one closed-loop MAC seed; 25.496% is fixed-replay airtime reduction and 5.2428 is pooled closed-loop airtime cost ratio, neither is a task-speed gain."
+    }
+  ],
+  "process_status": "All file-read/arithmetic commands exited; no research/background process started by this window. Other windows not inspected.",
+  "next_step": "D incorporates evidence; C-011 independently reviews; M accepts. No dependency blocking this evidence delivery."
+}

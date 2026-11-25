@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "seed": 6,
+  "catalog_path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-006\\20261026-01\\catalogs\\seed-006-n018-t015\\catalog.json",
+  "catalog_sha256": "4a4b8ee01d76d6d82d7ef05c0808a9bb26e7edd1814e70f116f38b6b178eb259",
+  "actors": [
+    {
+      "actor": 0,
+      "branch": "infer",
+      "action": 8,
+      "action_is_legal": true,
+      "observation_shapes": [
+        [
+          1,
+          16,
+          15
+        ],
+        [
+          1,
+          18,
+          11
+        ],
+        [
+          1,
+          16
+        ]
+      ],
+      "output_shape": [
+        1,
+        16
+      ],
+      "initial_state_only": true,
+      "forward_seconds": 0.15000440005678684
+    },
+    {
+      "actor": 17,
+      "branch": "infer",
+      "action": 12,
+      "action_is_legal": true,
+      "observation_shapes": [
+        [
+          1,
+          16,
+          15
+        ],
+        [
+          1,
+          18,
+          11
+        ],
+        [
+          1,
+          16
+        ]
+      ],
+      "output_shape": [
+        1,
+        16
+      ],
+      "initial_state_only": true,
+      "forward_seconds": 0.008943900000303984
+    }
+  ],
+  "torch_version": "2.3.1+cu121",
+  "task_count": 15,
+  "agent_count": 18,
+  "wall_seconds": 5.30148659995757
+}

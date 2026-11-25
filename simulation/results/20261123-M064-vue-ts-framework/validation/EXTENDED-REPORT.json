@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "synthetic_only": true,
+  "hardware_access": false,
+  "intercepted_fixture_responses": false,
+  "fixture_port": 10523,
+  "checks": [
+    "legacy SQLite: idempotent start, outage frame, persistence across reopen, pagination, old TEXT compatibility",
+    "actual HTTP chain browser -> Vite read bridge -> owned legacy fixture, no response interception",
+    "real HTTP fake rejection, outage/history retention and recovery without Mock fallback",
+    "static deployment limitation reproduced as an expected failure, not reported as a working feature",
+    "POST rejected by real development bridge before forwarding to fixture"
+  ],
+  "observed_gaps": [
+    "Legacy gateway has no new Vue source management or SQLite recording/replay integration; controls absent/disabled.",
+    "Server profile requires Network v1 (owned legacy fixture returns 404); direct browser connection also lacks CORS. Legacy cannot substitute for the missing backend.",
+    "Static build direct connection to existing no-CORS legacy service fails; dev bridge is not packaged as production backend/proxy."
+  ],
+  "fixture_requests": [
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/network/capabilities"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/network/capabilities"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    }
+  ],
+  "page_errors": [],
+  "unexpected_requests": [],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Access to fetch at 'http://127.0.0.1:10523/api/v1/network/capabilities' from origin 'http://127.0.0.1:10521' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED",
+    "Access to fetch at 'http://127.0.0.1:10523/api/v1/lora/topology' from origin 'http://127.0.0.1:10524' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED"
+  ]
+}

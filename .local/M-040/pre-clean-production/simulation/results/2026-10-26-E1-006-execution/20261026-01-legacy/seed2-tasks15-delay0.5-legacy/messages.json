@@ -1,0 +1,542 @@
+[
+  {
+    "message_id": "m00000001",
+    "source": 0,
+    "recipients": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":0,\"state\":{\"arrival\":3.040036884326415,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.9727170538106237,0.2677431627585899],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.5593771875448765,0.7136390309587972],\"seq\":1,\"source\":0,\"target\":12}}",
+    "payload_sha256": "dced40673daa388633ce868d038d4614a3ec8cf70c9d58e6a9c19dceb8a1a9e7",
+    "bytes": 286,
+    "local_evidence": 2
+  },
+  {
+    "message_id": "m00000002",
+    "source": 1,
+    "recipients": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":1,\"state\":{\"arrival\":3.040036884326415,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.9727170538106237,0.2677431627585899],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.5593771875448765,0.7136390309587972],\"seq\":1,\"source\":1,\"target\":12}}",
+    "payload_sha256": "d33c489b00a01602784f3ea9e35682b27feb584d7a213a58194830e72f7c18b2",
+    "bytes": 286,
+    "local_evidence": 5
+  },
+  {
+    "message_id": "m00000003",
+    "source": 2,
+    "recipients": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":2,\"state\":{\"arrival\":3.040036884326415,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.9727170538106237,0.2677431627585899],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.5593771875448765,0.7136390309587972],\"seq\":1,\"source\":2,\"target\":12}}",
+    "payload_sha256": "467357080aec4626730316a724c5c75a5a0909a09523432e28ef3283116df1ed",
+    "bytes": 286,
+    "local_evidence": 8
+  },
+  {
+    "message_id": "m00000004",
+    "source": 3,
+    "recipients": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":3,\"state\":{\"arrival\":3.8171406186579495,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.19259497537902004,0.5486913759909932],\"seq\":1,\"source\":3,\"target\":8}}",
+    "payload_sha256": "9d71e3ac5b883fa1317f27b4c7fcbb663e2c399db0268da8377143a7b2962405",
+    "bytes": 288,
+    "local_evidence": 11
+  },
+  {
+    "message_id": "m00000005",
+    "source": 4,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":4,\"state\":{\"arrival\":3.8171406186579495,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.19259497537902004,0.5486913759909932],\"seq\":1,\"source\":4,\"target\":8}}",
+    "payload_sha256": "5c7ac8f246fc7615ff2373de6ff11a808b3c9738a02c100dbf9371df83e1b1b3",
+    "bytes": 288,
+    "local_evidence": 14
+  },
+  {
+    "message_id": "m00000006",
+    "source": 5,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":5,\"state\":{\"arrival\":3.8171406186579495,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.19259497537902004,0.5486913759909932],\"seq\":1,\"source\":5,\"target\":8}}",
+    "payload_sha256": "b60b5445c2aa52bbaa81936c10289aef4fcae2a6f019b1095be03300bcff2510",
+    "bytes": 288,
+    "local_evidence": 17
+  },
+  {
+    "message_id": "m00000007",
+    "source": 6,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":6,\"state\":{\"arrival\":3.0861058940112507,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.2892779241219192,0.10548047686670692],\"seq\":1,\"source\":6,\"target\":8}}",
+    "payload_sha256": "aa287b0c734a096d03646b20da3fe49e0461752290ebd5ce244f1ddbd7829115",
+    "bytes": 288,
+    "local_evidence": 20
+  },
+  {
+    "message_id": "m00000008",
+    "source": 7,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":7,\"state\":{\"arrival\":3.0861058940112507,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.2892779241219192,0.10548047686670692],\"seq\":1,\"source\":7,\"target\":8}}",
+    "payload_sha256": "8ebd3ecc301bf41c51c896721f146c2193ffe6a383837179516749b605f589fc",
+    "bytes": 288,
+    "local_evidence": 23
+  },
+  {
+    "message_id": "m00000009",
+    "source": 8,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "kind": "self_state",
+    "generated_at": 0.0,
+    "payload_utf8": "{\"generated_at\":0.0,\"kind\":\"self_state\",\"source\":8,\"state\":{\"arrival\":3.0861058940112507,\"changed_at\":0.0,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"travel\",\"origin\":[0.2892779241219192,0.10548047686670692],\"seq\":1,\"source\":8,\"target\":8}}",
+    "payload_sha256": "1e89102833ff9eca84ff30654f60690d19c7fd127e67b2eca033271a707557bc",
+    "bytes": 288,
+    "local_evidence": 26
+  },
+  {
+    "message_id": "m00000010",
+    "source": 0,
+    "recipients": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 3.040036884326415,
+    "payload_utf8": "{\"generated_at\":3.040036884326415,\"kind\":\"self_state\",\"source\":0,\"state\":{\"arrival\":3.040036884326415,\"changed_at\":3.040036884326415,\"departure\":0.0,\"destination\":[0.9727170538106237,0.2677431627585899],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.5593771875448765,0.7136390309587972],\"seq\":2,\"source\":0,\"target\":12}}",
+    "payload_sha256": "4ff34228f4ec9452b1cb218302ad2a071e081602d1d34fd2afa6ddd823260fec",
+    "bytes": 315,
+    "local_evidence": 28
+  },
+  {
+    "message_id": "m00000011",
+    "source": 0,
+    "recipients": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.040036884326415,
+    "payload_utf8": "{\"generated_at\":3.040036884326415,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.040036884326415,\"phase\":\"open\",\"started_at\":null,\"task\":12,\"version\":[3.040036884326415,0,0,1],\"witnesses\":[0],\"workers\":[]},\"source\":0}",
+    "payload_sha256": "2637a811de1e9112fffc9ea82d4d0ce26e617ae74fdbfe89e797108e59e3ee03",
+    "bytes": 234,
+    "local_evidence": 29
+  },
+  {
+    "message_id": "m00000012",
+    "source": 1,
+    "recipients": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 3.040036884326415,
+    "payload_utf8": "{\"generated_at\":3.040036884326415,\"kind\":\"self_state\",\"source\":1,\"state\":{\"arrival\":3.040036884326415,\"changed_at\":3.040036884326415,\"departure\":0.0,\"destination\":[0.9727170538106237,0.2677431627585899],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.5593771875448765,0.7136390309587972],\"seq\":2,\"source\":1,\"target\":12}}",
+    "payload_sha256": "5ff4250df665e0a6b1f3af3066e9e85e0aaa0c080e09a62afb41ae525fd4752f",
+    "bytes": 315,
+    "local_evidence": 31
+  },
+  {
+    "message_id": "m00000013",
+    "source": 0,
+    "recipients": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.040036884326415,
+    "payload_utf8": "{\"generated_at\":3.040036884326415,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.040036884326415,\"phase\":\"open\",\"started_at\":null,\"task\":12,\"version\":[3.040036884326415,0,0,2],\"witnesses\":[0,1],\"workers\":[]},\"source\":0}",
+    "payload_sha256": "9b4160f3d364a490d671ab517038178fe4704cafeec557591860b97d4d5212c2",
+    "bytes": 236,
+    "local_evidence": 32
+  },
+  {
+    "message_id": "m00000014",
+    "source": 2,
+    "recipients": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 3.040036884326415,
+    "payload_utf8": "{\"generated_at\":3.040036884326415,\"kind\":\"self_state\",\"source\":2,\"state\":{\"arrival\":3.040036884326415,\"changed_at\":3.040036884326415,\"departure\":0.0,\"destination\":[0.9727170538106237,0.2677431627585899],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.5593771875448765,0.7136390309587972],\"seq\":2,\"source\":2,\"target\":12}}",
+    "payload_sha256": "68d24f5d8792fcbcf06f21eba72c824b081ee7369d4d93d2f6ca4d6f2381cb03",
+    "bytes": 315,
+    "local_evidence": 34
+  },
+  {
+    "message_id": "m00000015",
+    "source": 0,
+    "recipients": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.040036884326415,
+    "payload_utf8": "{\"generated_at\":3.040036884326415,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.040036884326415,\"phase\":\"open\",\"started_at\":null,\"task\":12,\"version\":[3.040036884326415,0,0,3],\"witnesses\":[0,1,2],\"workers\":[]},\"source\":0}",
+    "payload_sha256": "658f3fe9e17d2d1275c450a7f4bfdc52d8bcfff58b85e3f2d45ebafd6f8e8285",
+    "bytes": 238,
+    "local_evidence": 35
+  },
+  {
+    "message_id": "m00000016",
+    "source": 6,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 3.0861058940112507,
+    "payload_utf8": "{\"generated_at\":3.0861058940112507,\"kind\":\"self_state\",\"source\":6,\"state\":{\"arrival\":3.0861058940112507,\"changed_at\":3.0861058940112507,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.2892779241219192,0.10548047686670692],\"seq\":2,\"source\":6,\"target\":8}}",
+    "payload_sha256": "802d52ed644647272507599fa3b744f3ad2fdc848f48af42421a4fe31d2d1cbc",
+    "bytes": 319,
+    "local_evidence": 37
+  },
+  {
+    "message_id": "m00000017",
+    "source": 6,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.0861058940112507,
+    "payload_utf8": "{\"generated_at\":3.0861058940112507,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.0861058940112507,\"phase\":\"open\",\"started_at\":null,\"task\":8,\"version\":[3.0861058940112507,0,6,1],\"witnesses\":[6],\"workers\":[]},\"source\":6}",
+    "payload_sha256": "275e5c346c54ea95f2ec05e07612d82bc4c4685610e0538c299283f8404c2322",
+    "bytes": 236,
+    "local_evidence": 38
+  },
+  {
+    "message_id": "m00000018",
+    "source": 7,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 3.0861058940112507,
+    "payload_utf8": "{\"generated_at\":3.0861058940112507,\"kind\":\"self_state\",\"source\":7,\"state\":{\"arrival\":3.0861058940112507,\"changed_at\":3.0861058940112507,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.2892779241219192,0.10548047686670692],\"seq\":2,\"source\":7,\"target\":8}}",
+    "payload_sha256": "95b235e0dd16f0dadc0ef8f22e5cb546ad63acf07a67a137930e1321b1db90ee",
+    "bytes": 319,
+    "local_evidence": 40
+  },
+  {
+    "message_id": "m00000019",
+    "source": 6,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.0861058940112507,
+    "payload_utf8": "{\"generated_at\":3.0861058940112507,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.0861058940112507,\"phase\":\"open\",\"started_at\":null,\"task\":8,\"version\":[3.0861058940112507,0,6,2],\"witnesses\":[6,7],\"workers\":[]},\"source\":6}",
+    "payload_sha256": "6aabeadbaacea429e4f0c2853a0a085cef4d980304eb2fc6f57679dfe2d219bb",
+    "bytes": 238,
+    "local_evidence": 41
+  },
+  {
+    "message_id": "m00000020",
+    "source": 8,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "kind": "self_state",
+    "generated_at": 3.0861058940112507,
+    "payload_utf8": "{\"generated_at\":3.0861058940112507,\"kind\":\"self_state\",\"source\":8,\"state\":{\"arrival\":3.0861058940112507,\"changed_at\":3.0861058940112507,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.2892779241219192,0.10548047686670692],\"seq\":2,\"source\":8,\"target\":8}}",
+    "payload_sha256": "3f4fede40676249679953da0623297634b8859c8a82ab77c83d31b5c358bbecb",
+    "bytes": 319,
+    "local_evidence": 43
+  },
+  {
+    "message_id": "m00000021",
+    "source": 6,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.0861058940112507,
+    "payload_utf8": "{\"generated_at\":3.0861058940112507,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.0861058940112507,\"phase\":\"open\",\"started_at\":null,\"task\":8,\"version\":[3.0861058940112507,0,6,3],\"witnesses\":[6,7,8],\"workers\":[]},\"source\":6}",
+    "payload_sha256": "2ff3496b9dfb8073e4f2974a3d07ad1e010393e7c5d77875c432b9b25c43d8f4",
+    "bytes": 240,
+    "local_evidence": 44
+  },
+  {
+    "message_id": "m00000022",
+    "source": 3,
+    "recipients": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 3.8171406186579495,
+    "payload_utf8": "{\"generated_at\":3.8171406186579495,\"kind\":\"self_state\",\"source\":3,\"state\":{\"arrival\":3.8171406186579495,\"changed_at\":3.8171406186579495,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.19259497537902004,0.5486913759909932],\"seq\":2,\"source\":3,\"target\":8}}",
+    "payload_sha256": "88d3a6fa66e04d3ca9a037031b4ea647e8e9ba12539839bf2c24ab4a32ba5dfb",
+    "bytes": 319,
+    "local_evidence": 46
+  },
+  {
+    "message_id": "m00000023",
+    "source": 3,
+    "recipients": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.8171406186579495,
+    "payload_utf8": "{\"generated_at\":3.8171406186579495,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.8171406186579495,\"phase\":\"open\",\"started_at\":null,\"task\":8,\"version\":[3.8171406186579495,0,3,1],\"witnesses\":[3,6,7,8],\"workers\":[]},\"source\":3}",
+    "payload_sha256": "3e4822daf412e27e76b9c1f550d9cdc02ae35b23035264192543d72c8fa0b31d",
+    "bytes": 242,
+    "local_evidence": 47
+  },
+  {
+    "message_id": "m00000024",
+    "source": 4,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 3.8171406186579495,
+    "payload_utf8": "{\"generated_at\":3.8171406186579495,\"kind\":\"self_state\",\"source\":4,\"state\":{\"arrival\":3.8171406186579495,\"changed_at\":3.8171406186579495,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.19259497537902004,0.5486913759909932],\"seq\":2,\"source\":4,\"target\":8}}",
+    "payload_sha256": "a13c4265579de1e6e042ad276cf7b524e72eed93abfb8d5f29c219091a16b4ee",
+    "bytes": 319,
+    "local_evidence": 49
+  },
+  {
+    "message_id": "m00000025",
+    "source": 3,
+    "recipients": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.8171406186579495,
+    "payload_utf8": "{\"generated_at\":3.8171406186579495,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.8171406186579495,\"phase\":\"open\",\"started_at\":null,\"task\":8,\"version\":[3.8171406186579495,0,3,2],\"witnesses\":[3,4,6,7,8],\"workers\":[]},\"source\":3}",
+    "payload_sha256": "372035ad6588a9d66bb0f6b2c6b261a38bb2a71e3d2f1aceb003522784c2186e",
+    "bytes": 244,
+    "local_evidence": 50
+  },
+  {
+    "message_id": "m00000026",
+    "source": 5,
+    "recipients": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8
+    ],
+    "kind": "self_state",
+    "generated_at": 3.8171406186579495,
+    "payload_utf8": "{\"generated_at\":3.8171406186579495,\"kind\":\"self_state\",\"source\":5,\"state\":{\"arrival\":3.8171406186579495,\"changed_at\":3.8171406186579495,\"departure\":0.0,\"destination\":[0.8913813730010061,0.24125020990742596],\"finish\":null,\"mode\":\"waiting\",\"origin\":[0.19259497537902004,0.5486913759909932],\"seq\":2,\"source\":5,\"target\":8}}",
+    "payload_sha256": "cc3a6115d684a6d34511ea99a463e65d2fe816e5d9592621d140d93bc5efecde",
+    "bytes": 319,
+    "local_evidence": 52
+  },
+  {
+    "message_id": "m00000027",
+    "source": 3,
+    "recipients": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "kind": "task_scene",
+    "generated_at": 3.8171406186579495,
+    "payload_utf8": "{\"generated_at\":3.8171406186579495,\"kind\":\"task_scene\",\"scene\":{\"finished_at\":null,\"observed_at\":3.8171406186579495,\"phase\":\"open\",\"started_at\":null,\"task\":8,\"version\":[3.8171406186579495,0,3,3],\"witnesses\":[3,4,5,6,7,8],\"workers\":[]},\"source\":3}",
+    "payload_sha256": "9a6521c21836bbfdf6efcdba53c3b914129152d42494849b816748a3e9ee2e5d",
+    "bytes": 246,
+    "local_evidence": 53
+  }
+]

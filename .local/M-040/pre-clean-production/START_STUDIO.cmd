@@ -1,0 +1,25 @@
+@echo off
+setlocal
+cd /d "%~dp0"
+chcp 65001 >nul
+if not exist "production\flash\runtime-win64-py311\python.exe" goto checkpy
+"production\flash\runtime-win64-py311\python.exe" -X utf8 production\start\launcher.py %*
+goto finished
+:checkpy
+py -3 --version >nul 2>nul
+if errorlevel 1 goto checkpython
+py -3 -X utf8 production\start\launcher.py %*
+goto finished
+:checkpython
+python --version >nul 2>nul
+if errorlevel 1 goto missing
+python -X utf8 production\start\launcher.py %*
+goto finished
+:missing
+echo Python runtime is missing. Please restore the complete delivery package.
+if "%~1"=="" pause
+exit /b 2
+:finished
+set "result=%errorlevel%"
+if "%~1"=="" pause
+exit /b %result%

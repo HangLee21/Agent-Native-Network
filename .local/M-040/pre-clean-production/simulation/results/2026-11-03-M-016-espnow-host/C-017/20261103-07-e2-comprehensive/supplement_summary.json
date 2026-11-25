@@ -1,0 +1,9 @@
+{
+  "checks": 594,
+  "original_omissions_checked": 16,
+  "issues": [],
+  "archive_scope": "Executable omission documented in archive README; Kconfig.projbuild and sdkconfig.defaults are present only in retained original E2 snapshots.",
+  "new_author_tests_executed": 0,
+  "new_C_binaries_executed": 0,
+  "elapsed_s": 1.125
+}

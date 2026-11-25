@@ -1,0 +1,1 @@
+Command 'D:/Multi-Agent Network/data/agent_native/E2-011/ns-3.46/build/scratch/ns3.46-b0-aodv-default.exe --output=D:\Multi-Agent Network\simulation\outputs\E2-011\20261028-10-dynamic0\raw --mode=dynamic --seed=0' returned non-zero exit status 3221226505.

@@ -1,0 +1,17 @@
+{
+  ".gitattributes": "ffe82f3c5b968ed009c2577fa38f32c83be167799ee565d40a18e3440c57b342",
+  ".gitattributes.snapshot": "e2ba463e70f14737c6b2ec2e6fdaf67acb819b84ca720509c22f6e5a31f12a35",
+  "cmd-smoke.log": "6dfc0e7a9d8550f15b0e32547db9ba618caeb02fe5e2e91b5071d3747897299b",
+  "COMPLETION.json": "4eb7ad8f0e8c602d7bceeff8923c49392acfb7600d2c9f60f2a7ae2a84753787",
+  "README.md": "ab43906566ca7ed6c79800209dcff54a07d678903f439bf994c038f9123b0549",
+  "RUN_MANIFEST.json": "6cc58761fcb0186a402bf75d632ccad010350558d98fb6249889b2f46ce5f4e5",
+  "service-listeners.json": "54bfdaa88c961b1a3c6afbb57cc7f0682df56b0ea326ff34569c4080860d4080",
+  "START_STUDIO.cmd.snapshot": "96f6dc59f9bedd035e72c9e2fe4e3e7208ea72d4f54bd6142c6767379990883c",
+  "START_STUDIO_LEGACY.cmd.snapshot": "40074f56fdfcb569a0902bc7fe0bcb83c3c98eb58df39944f4888494b7b2dbcf",
+  "start_vue_studio.py.snapshot": "e0b9f3f906e89e1d03ac667d4b733a91811267ac3ca3759745fe204d7681ed6f",
+  "test_studio_launcher_m064.py.snapshot": "108a49f2a107087114fdc51bb6d255eebac397575dadb9dc2f17d5245a5e74f4",
+  "UNIT-FINAL-SUMMARY.json": "3bc82f67d7433b2ff115c36add8299ad7c2e604bee0e5eb9dc5ae141e17fd0aa",
+  "UNIT-SUMMARY.json": "1de12f1496b6d90a6710f2dfdd883e806637574527dd6199e85c22bed0efbcd5",
+  "unit-tests-final.log": "410601984d819774b84e1683e7b8f39008be32322a8ea4f6746ab1e2d46fbb90",
+  "unit-tests.log": "4edf0e7d1b3d8b25afd3492159097da6267adf43b4bd278be76bd423026f066c"
+}

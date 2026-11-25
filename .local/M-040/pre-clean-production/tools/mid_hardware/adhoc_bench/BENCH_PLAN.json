@@ -1,0 +1,34 @@
+{
+  "task_id": "H-015",
+  "authority": "coordination/tasks/M-029.md",
+  "hardware_owner": "H015",
+  "state": "preparation_only_before_formal_target_intake",
+  "application_source": "A",
+  "application_destination": "C",
+  "interchangeable_relays": ["B", "D"],
+  "topology_method": "Volatile per-board ingress/egress frame filters if natural isolation is unavailable; not a physical RF isolation measurement.",
+  "local_hearability_by_label": {"A": ["B", "D"], "B": ["A", "C"], "C": ["B", "D"], "D": ["A", "C"]},
+  "filter_restrictions": [
+    "One local allow-list sent only to each board, affects HELLO and all control/data frames equally.",
+    "No routes, gateway weights, next hops, full graph or preferred relay sent to routing firmware.",
+    "MACs for filter construction come from current verified device identities; actual neighbor/cache state begins empty.",
+    "Filter configuration is saved as experimental evidence, and is cleared for deployment."
+  ],
+  "ownership": "Four independent processes, each with exactly one local serial owner and its own application/event log. Supervisor coordinates fault injection and reads logs, never forwards RF payload or selects/installs routes.",
+  "phases": [
+    "Fresh service/lease/current MAC checks and retain exact per-board existing app/whole-flash backup references.",
+    "Integrate only frozen E1 contract/core into an isolated H snapshot if necessary; otherwise consume formally released compatible target without rebuilding unchanged code.",
+    "Deploy same protocol to A/B/C/D under H015 exclusive physical window; per local board configure group/channel/autostart only, plus explicitly labelled temporary local test filter.",
+    "Read actual confirmed neighbor tables for the diamond, confirm no remote routes preinstalled; do not use a host planner.",
+    "Source application sends an original 160-byte payload to C; record request/candidates/selected path, per-hop same-identity events and C application bytes.",
+    "Optionally one distinct second baseline payload checks cache behavior, not a resend.",
+    "Determine which relay the board actually used from its original selected-path/data events; command only that relay to stop RF and verify it stopped.",
+    "Submit bounded distinct new source messages; preserve unknown/lost outcomes, do not resend an old identity or payload automatically. Require actual invalidation and new discovery evidence before claiming rediscovery.",
+    "Verify subsequent new delivery through the other relay without host route commands; record local counters and board processing/memory fields, leaving unavailable metrics null.",
+    "Stop/drain/close every board, clear temporary filters and explicitly record each saved mode/autostart state; preserve rollback and a user-repeatable start/clear/deploy entry."
+  ],
+  "limits": {"boards": 4, "source_business_messages_max": 8, "used_relay_withdrawals": 1, "controller_wall_time_s": 180, "automatic_business_resends": 0, "routing_decision_on_PC": false},
+  "received_E1_initial_contract": {"SR01_header_bytes": 60, "max_application_bytes": 160, "max_path_nodes": 5, "max_hops": 4, "reply_window_ms": 200, "absolute_discovery_deadline_ms": 1500, "route_cache_ms": 10000, "outbound_residence_ms": 250},
+  "measurements": ["Original origin/boot/seq/dst and byte hashes at source and C application", "Actual request/reply/selected path and whether both candidates arrived in W", "First-build and fault-recovery host-observed times, with device clocks stored separately", "Per-kind generated/core-output/radio-submitted/link-result/received control and data counters where exposed", "On-device heap/high-water and route-processing timing only if actually instrumented"],
+  "limitations": ["Controlled logical topology is distinct from natural RF isolation.", "Same-PC four independent processes is not four physical Ubuntu hosts.", "Full-MAC lexical ordering may prefer D over B for these actual board addresses; the supervisor must withdraw whichever relay was actually selected.", "No physical RF retries/airtime/one-way latency inferred from serial callbacks.", "Delivered means C original bytes; source acceptance, candidates and TX success alone are not delivery."]
+}

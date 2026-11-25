@@ -1,0 +1,3 @@
+# Node-count environment v1
+
+This separate environment generalizes only fixed 30-node array construction and trajectory generation. `formation` preserves 45 m nominal grid spacing; `crossing` preserves 35/45 m within-group spacing and divides nodes into two groups; `reorganize` samples within the original 400 m square. Consequently formation/crossing occupied area changes with node count; this is not a fixed-area scaling experiment. At 30 nodes all original formulas are unchanged, verified at 27 mode/seed/time points; full event equivalence and varied N require separately saved runs. Same uncalibrated PHY, airtime and 10 ms service assumptions as frozen E1-030.

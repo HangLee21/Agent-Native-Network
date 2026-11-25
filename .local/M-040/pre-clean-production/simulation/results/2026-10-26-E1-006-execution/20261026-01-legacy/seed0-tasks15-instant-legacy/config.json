@@ -1,0 +1,10 @@
+{
+  "case_id": "seed0-tasks15-instant-legacy",
+  "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant\\catalog.json.gz",
+  "expected_catalog_sha256": "e2b095bb5d2bc9cc8a306ff6f3f78d4902e174fed0cc11ca5255e392ea729508",
+  "seed": 0,
+  "condition": "instant",
+  "recovery": false,
+  "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant",
+  "source_catalog_sha256": "e2b095bb5d2bc9cc8a306ff6f3f78d4902e174fed0cc11ca5255e392ea729508"
+}

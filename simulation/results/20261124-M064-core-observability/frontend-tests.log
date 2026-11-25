@@ -1,0 +1,247 @@
+﻿
+> uav-platform-frontend@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 D:/Multi-Agent Network/frontend
+
+ ✓ src/__tests__/i18n.spec.ts (8 tests) 436ms
+     ✓ covers every interface string in the source (node scripts/i18n-scan.mjs lists what is left)  378ms
+ ✓ src/__tests__/demo-no-fix.spec.ts (1 test) 535ms
+     ✓ keeps the last track point and the marker where the aircraft was last seen  530ms
+ ✓ src/__tests__/editor.spec.ts (10 tests) 356ms
+ ✓ src/__tests__/map-canvas.spec.ts (4 tests) 810ms
+     ✓ swaps tiles in place within GCJ-02 and re-creates the map when switching to WGS84  508ms
+ ✓ src/__tests__/network-view.spec.ts (12 tests) 1097ms
+ ✓ src/__tests__/records-dogs.spec.ts (6 tests) 610ms
+ ✓ src/__tests__/dog-replay-routes.spec.ts (1 test) 1006ms
+   ✓ maps each recorded dog route separately and selects it from the menu or timeline  1002ms
+ ✓ src/__tests__/joint-replay.spec.ts (5 tests) 1069ms
+     ✓ shows both drones, their separation and one merged list  999ms
+ ✓ src/__tests__/history-video.spec.ts (4 tests) 762ms
+     ✓ shows the video size and deletes just the video of one flight  329ms
+ ✓ src/__tests__/watch-settings.spec.ts (2 tests) 276ms
+ ✓ src/__tests__/monitor-fleet-panel.spec.ts (7 tests) 739ms
+     ✓ B's card returns, stops and resumes B while A is selected  389ms
+ ✓ src/__tests__/dogv2-map.spec.ts (4 tests) 1075ms
+     ✓ draws the dog with its heading, then grey at the last fix while it has none, then hides with the layer  825ms
+ ✓ src/__tests__/video.spec.ts (12 tests) 699ms
+ ✓ src/__tests__/monitor-panel.spec.ts (8 tests) 918ms
+     ✓ the stop menu offers every stop, each with its original API  354ms
+ ✓ src/__tests__/control.spec.ts (7 tests) 287ms
+ ✓ src/__tests__/manual.spec.ts (6 tests) 341ms
+ ✓ src/__tests__/layers.spec.ts (6 tests) 460ms
+ ✓ src/__tests__/i18n-manual-dogv2.spec.ts (5 tests) 728ms
+     ✓ is what the Guide shows in English mode, and Chinese stays the default  647ms
+ ✓ src/__tests__/fleet.spec.ts (5 tests) 297ms
+ ✓ src/__tests__/settings.spec.ts (7 tests) 2086ms
+     ✓ shows the save bar after changing the platform height limit and saves the full payload after confirming  944ms
+ ✓ src/__tests__/dog-nav-card.spec.ts (22 tests) 2601ms
+     ✓ idle: the readiness line says which item is missing; opening the area asks for the dog's settings  363ms
+     ✓ avoidance off: asked once with the fact, then "避障关" on the card; on again without asking  301ms
+     ✓ start: grey until there are points, the check passed and this page holds control; problems are listed  415ms
+ ✓ src/__tests__/dogv2-depth-front.spec.ts (7 tests) 207ms
+ ✓ src/__tests__/targets.spec.ts (8 tests) 294ms
+node.exe : stderr | src/__tests__/monitor-stage.spec.ts > monitor stage with two drones > one drone streaming: the smal
+l window keeps only the map, as before
+At C:\environment\nodejs\node_global\npm.ps1:24 char:5
++     & "node$exe"  "$basedir/node_modules/npm/bin/npm-cli.js" $args
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (stderr | src/__... map, as before:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > monitor stage with two drones > two drones streaming: the small window h
+as the map and the other drone's video; a click puts a tile in the main view
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > monitor stage with two drones > tucking the small window away closes the
+ other drone's tile; the chip names both tiles
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > monitor stage with two drones > the other drone's video in the main view
+ falls back to the selected drone's video when it stops
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+ ✓ src/__tests__/watch-engine.spec.ts (2 tests) 255ms
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > the control
+led drone's video stays the controlled drone's video
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > the control
+led drone's video stays the controlled drone's video
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-B" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-B" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > the control
+led drone's video stays the controlled drone's video
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > the map sta
+ys the map
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > the map sta
+ys the map
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-B" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-B" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > the other d
+rone's video stays the video of the drone that is not controlled
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > the other d
+rone's video stays the video of the drone that is not controlled
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-B" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-B" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > leaving the
+ page and coming back starts from the default again
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/__tests__/monitor-stage.spec.ts > switching the controlled drone keeps the kind of main view > leaving the
+ page and coming back starts from the default again
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView key="RC-T" > 
+  at <Anonymous ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+ ✓ src/__tests__/monitor-stage.spec.ts (8 tests) 1084ms
+     ✓ two drones streaming: the small window has the map and the other drone's video; a click puts a tile in the main view  327ms
+ ✓ src/__tests__/execution.spec.ts (5 tests) 254ms
+ ✓ src/__tests__/dog-holdpad.spec.ts (3 tests) 203ms
+ ✓ src/__tests__/network-engineering.spec.ts (21 tests) 295ms
+stderr | src/__tests__/dog-nav-map.spec.ts > picking a dog's points on the live page > goal: the map comes large, one c
+lick is the goal and is checked; route: every click adds a point until "完成"
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <MonitorView ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: injection "Symbol(route location)" not found. 
+  at <MonitorView ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+ ✓ src/__tests__/device-messages.spec.ts (1 test) 169ms
+ ✓ src/__tests__/dog-nav-map.spec.ts (4 tests) 1459ms
+     ✓ route editing: numbered points, the refused one red; drag moves it, right-click deletes it  1056ms
+ ✓ src/__tests__/dog-nav-store.spec.ts (18 tests) 87ms
+ ✓ src/__tests__/network-connections.spec.ts (13 tests) 146ms
+ ✓ src/__tests__/i18n-backend-targets-history.spec.ts (48 tests) 85ms
+ ✓ src/__tests__/dog-live-video.spec.ts (2 tests) 171ms
+ ✓ src/__tests__/dog-store.spec.ts (8 tests) 132ms
+ ✓ src/__tests__/network-store.spec.ts (12 tests) 98ms
+ ✓ src/__tests__/i18n-backend-dogs-demo.spec.ts (4 tests) 49ms
+ ✓ src/__tests__/safety.spec.ts (3 tests) 121ms
+ ✓ src/__tests__/network-api.spec.ts (16 tests) 49ms
+ ✓ src/__tests__/i18n-backend-platform.spec.ts (40 tests) 75ms
+ ✓ src/__tests__/dogv2-store.spec.ts (7 tests) 57ms
+ ✓ src/__tests__/telemetry-store.spec.ts (5 tests) 64ms
+ ✓ src/__tests__/i18n-settings.spec.ts (4 tests) 62ms
+ ✓ src/__tests__/network-gateway.spec.ts (11 tests) 42ms
+ ✓ src/__tests__/dog-flow.spec.ts (12 tests) 41ms
+ ✓ src/__tests__/network-model.spec.ts (15 tests) 82ms
+ ✓ src/__tests__/i18n-dog.spec.ts (5 tests) 39ms
+ ✓ src/__tests__/watch-model.spec.ts (5 tests) 32ms
+ ✓ src/__tests__/runtime-config.spec.ts (5 tests) 14ms
+ ✓ src/__tests__/dog-lite3-info.spec.ts (11 tests) 26ms
+ ✓ src/__tests__/import.spec.ts (1 test) 16ms
+ ✓ src/__tests__/replay.spec.ts (6 tests) 21ms
+ ✓ src/__tests__/coord.spec.ts (5 tests) 11ms
+ ✓ src/__tests__/http-api.spec.ts (1 test) 10ms
+ ✓ src/__tests__/i18n-history.spec.ts (3 tests) 6ms
+ ✓ src/__tests__/i18n-monitor.spec.ts (4 tests) 6ms
+ ✓ src/__tests__/i18n-route.spec.ts (2 tests) 5ms
+ ✓ src/__tests__/dog-dual-heading.spec.ts (1 test) 6ms
+ ✓ src/__tests__/i18n-audience.spec.ts (2 tests) 5ms
+ ✓ src/__tests__/i18n-control.spec.ts (3 tests) 4ms
+
+ Test Files  60 passed (60)
+      Tests  473 passed (473)
+   Start at  16:20:34
+   Duration  28.68s (transform 93.88s, setup 26.18s, import 107.33s, tests 22.97s, environment 198.81s)
+

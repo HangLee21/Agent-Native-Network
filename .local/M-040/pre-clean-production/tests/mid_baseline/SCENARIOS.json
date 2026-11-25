@@ -1,0 +1,234 @@
+{
+  "schema": "mid.validation.scenarios.v1",
+  "status": "draft_pending_E1_H_freeze_and_C_readiness",
+  "enabled": false,
+  "run_limit": 6,
+  "RF_seconds_limit": 360,
+  "source_packet_limit_per_run": 1000,
+  "channel": null,
+  "binding_map": {
+    "A": null,
+    "B": null,
+    "C": null,
+    "D": null,
+    "E": null
+  },
+  "input_freezes": {
+    "E1": null,
+    "H": null
+  },
+  "physical_serial_owner": "H-005",
+  "default_payload_bytes": 16,
+  "global_issue_interval_ms": 100,
+  "baseline_end_to_end_ack": false,
+  "baseline_retransmission_added": false,
+  "execution_rules": [
+    "No executable commands until native E1/H contracts and packages are frozen",
+    "H expands letters to MAC/boot; preserve original draft and save a derived immutable config",
+    "H finalizes actual measurement windows and coverage from counters; count times interval is not measured time",
+    "If any dependency/binding is missing, save pending status and stop; no device polling",
+    "S1 total100 packets; S2 200; S3 total40; S4 control-only; S5 60; S6 total60",
+    "H current lower remaining budget takes precedence; counters never reset by changing run IDs"
+  ],
+  "scenarios": [
+    {
+      "id": "S1",
+      "seconds": 30,
+      "kind": "peer_endpoint_function",
+      "flows": [
+        {
+          "source_id": "A",
+          "destination_id": "B",
+          "count": 5
+        },
+        {
+          "source_id": "A",
+          "destination_id": "C",
+          "count": 5
+        },
+        {
+          "source_id": "A",
+          "destination_id": "D",
+          "count": 5
+        },
+        {
+          "source_id": "A",
+          "destination_id": "E",
+          "count": 5
+        },
+        {
+          "source_id": "B",
+          "destination_id": "A",
+          "count": 5
+        },
+        {
+          "source_id": "B",
+          "destination_id": "C",
+          "count": 5
+        },
+        {
+          "source_id": "B",
+          "destination_id": "D",
+          "count": 5
+        },
+        {
+          "source_id": "B",
+          "destination_id": "E",
+          "count": 5
+        },
+        {
+          "source_id": "C",
+          "destination_id": "A",
+          "count": 5
+        },
+        {
+          "source_id": "C",
+          "destination_id": "B",
+          "count": 5
+        },
+        {
+          "source_id": "C",
+          "destination_id": "D",
+          "count": 5
+        },
+        {
+          "source_id": "C",
+          "destination_id": "E",
+          "count": 5
+        },
+        {
+          "source_id": "D",
+          "destination_id": "A",
+          "count": 5
+        },
+        {
+          "source_id": "D",
+          "destination_id": "B",
+          "count": 5
+        },
+        {
+          "source_id": "D",
+          "destination_id": "C",
+          "count": 5
+        },
+        {
+          "source_id": "D",
+          "destination_id": "E",
+          "count": 5
+        },
+        {
+          "source_id": "E",
+          "destination_id": "A",
+          "count": 5
+        },
+        {
+          "source_id": "E",
+          "destination_id": "B",
+          "count": 5
+        },
+        {
+          "source_id": "E",
+          "destination_id": "C",
+          "count": 5
+        },
+        {
+          "source_id": "E",
+          "destination_id": "D",
+          "count": 5
+        }
+      ],
+      "purpose": "All 20 directed pairs sequentially; ability check, not paper-scale evidence"
+    },
+    {
+      "id": "S2",
+      "seconds": 30,
+      "kind": "periodic_weighted_route",
+      "flows": [
+        {
+          "source_id": "A",
+          "destination_id": "E",
+          "count": 200
+        }
+      ],
+      "route_period_ms": 500,
+      "weights": [
+        0.25,
+        0.75
+      ],
+      "purpose": "Record every sampled route epoch and per-packet applied next hop; no per-packet resampling"
+    },
+    {
+      "id": "S3",
+      "seconds": 20,
+      "kind": "same_source_multi_destination",
+      "flows": [
+        {
+          "source_id": "A",
+          "destination_id": "D",
+          "count": 20
+        },
+        {
+          "source_id": "A",
+          "destination_id": "E",
+          "count": 20
+        }
+      ],
+      "purpose": "Detect overwrite; report explicit adaptation/unsupported rather than silently changing author baseline"
+    },
+    {
+      "id": "S4",
+      "seconds": 20,
+      "kind": "control_origin_dedup",
+      "flows": [],
+      "control_sequences": [
+        4,
+        4,
+        3,
+        5
+      ],
+      "relay_labels": [
+        "B",
+        "C"
+      ],
+      "purpose": "Same origin via different relays: accept/forward only 4 then 5; software-forced relay is functional only"
+    },
+    {
+      "id": "S5",
+      "seconds": 30,
+      "kind": "table_update_and_route_switch",
+      "flows": [
+        {
+          "source_id": "B",
+          "destination_id": "D",
+          "count": 60
+        }
+      ],
+      "purpose": "Use frozen Planner outputs before/after; trace received config versus applied periodic route; no new ACK/dual-version protocol"
+    },
+    {
+      "id": "S6",
+      "seconds": 40,
+      "kind": "display_comparison",
+      "flows": [
+        {
+          "source_id": "A",
+          "destination_id": "E",
+          "count": 60
+        }
+      ],
+      "phases": [
+        {
+          "display": false,
+          "seconds": 15,
+          "count": 30
+        },
+        {
+          "display": true,
+          "seconds": 15,
+          "count": 30
+        }
+      ],
+      "purpose": "Matched workload/window and actual local queue/drop/processing counters; software preview separate from physical display confirmation"
+    }
+  ]
+}

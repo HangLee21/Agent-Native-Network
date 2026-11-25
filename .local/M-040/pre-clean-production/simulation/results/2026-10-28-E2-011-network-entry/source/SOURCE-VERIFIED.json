@@ -1,0 +1,17 @@
+{
+  "tag": "ns-3.46",
+  "commit_from_D_lock": "ea50b72ab79b1ec5912c66d5b384effa829f18bc",
+  "files_sha256": {
+    "VERSION": "4f5098543db1b37706d58a8b1ab37632789f2ecbeddd8daccac7cff273f70d20",
+    "LICENSE": "ab15fd526bd8dd18a9e77ebc139656bf4d33e97fc7238cd11bf60e2b9b8666c6",
+    "RELEASE_NOTES.md": "ae912a037b4f0f819f64aca2a4b5cc076028bd351402e147974347e056efaa7d",
+    "ns3": "12902276ac4af5843175e81b7fc07e7ff7fb7430b29ced264883caa132aa8748",
+    "build-support/macros-and-definitions.cmake": "bde58db7b9a9ed9e0fef70bcd7d2f185b1de4c3fd3b1c5e8e2585f3c5a484558",
+    "src/internet/model/ipv4-l3-protocol.h": "b0d7f037c355c6e46b6bb307028fd4f0a53406772228ec49390f3677f01b5707",
+    "src/wifi/model/wifi-phy.h": "b2e8c6a1a667392ecc64dbf7d6996743ca90b313eff0f03e5c0942275a195aa2",
+    "src/wifi/model/wifi-phy-state-helper.h": "b0447df01db073e2ef490ad3e0dc09ea06385409c9767e17a77e539b43fa7d79",
+    "src/aodv/model/aodv-routing-protocol.cc": "f20faf3f5a08ff135f2be234fee745ec6dbc0e78cfb6a316078c6bbba69c138a"
+  },
+  "macro_matches_D_lock": true,
+  "compatibility": "local archive headers confirm PhyTxBegin(Packet,double), State(Time,Time,WifiPhyState), IPv4 SentTracedCallback and AODV MaxQueueTime; not a substitute for compile/runtime"
+}

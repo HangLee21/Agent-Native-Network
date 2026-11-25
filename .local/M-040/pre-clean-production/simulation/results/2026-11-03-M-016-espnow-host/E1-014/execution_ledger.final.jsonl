@@ -1,0 +1,80 @@
+{"event": "command_reserved", "id": "20261103-01-host-compiler", "command": ["C:\\Strawberry\\c\\bin\\gcc.EXE", "--version"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-01-host-compiler", "exit_code": 0, "wall_seconds": 0.7030000000004293}
+{"event": "command_reserved", "id": "20261103-01-host-configure", "command": ["D:\\CMake\\bin\\cmake.EXE", "-S", "D:\\Multi-Agent Network\\firmware\\agent_native", "-B", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-01-host\\build", "-G", "Ninja", "-DCMAKE_C_COMPILER=C:\\Strawberry\\c\\bin\\gcc.EXE", "-DCMAKE_MAKE_PROGRAM=C:\\Strawberry\\c\\bin\\ninja.EXE"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-01-host-configure", "exit_code": 0, "wall_seconds": 8.469000000000051}
+{"event": "command_reserved", "id": "20261103-01-host-build", "command": ["D:\\CMake\\bin\\cmake.EXE", "--build", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-01-host\\build"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-01-host-build", "exit_code": 1, "wall_seconds": 0.6089999999994689}
+{"event": "command_reserved", "id": "20261103-02-host-compiler", "command": ["C:\\Strawberry\\c\\bin\\gcc.EXE", "--version"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-02-host-compiler", "exit_code": 0, "wall_seconds": 0.046000000000276486}
+{"event": "command_reserved", "id": "20261103-02-host-configure", "command": ["D:\\CMake\\bin\\cmake.EXE", "-S", "D:\\Multi-Agent Network\\firmware\\agent_native", "-B", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-02-host\\build", "-G", "Ninja", "-DCMAKE_C_COMPILER=C:\\Strawberry\\c\\bin\\gcc.EXE", "-DCMAKE_MAKE_PROGRAM=C:\\Strawberry\\c\\bin\\ninja.EXE"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-02-host-configure", "exit_code": 0, "wall_seconds": 4.25}
+{"event": "command_reserved", "id": "20261103-02-host-build", "command": ["D:\\CMake\\bin\\cmake.EXE", "--build", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-02-host\\build"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-02-host-build", "exit_code": 0, "wall_seconds": 2.6099999999996726}
+{"event": "command_reserved", "id": "20261103-02-host-scenarios", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-02-host\\build\\ann_host.exe", "--scenario", "all"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-02-host-scenarios", "exit_code": 0, "wall_seconds": 0.20300000000042928}
+{"event": "command_reserved", "id": "20261103-02-host-console", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-02-host\\build\\ann_host.exe", "--console"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-02-host-console", "exit_code": 0, "wall_seconds": 0.01599999999962165}
+{"event": "command_reserved", "id": "20261103-03-telemetry-compiler", "command": ["C:\\Strawberry\\c\\bin\\gcc.EXE", "--version"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-03-telemetry-compiler", "exit_code": 0, "wall_seconds": 0.03099999999994907}
+{"event": "command_reserved", "id": "20261103-03-telemetry-configure", "command": ["D:\\CMake\\bin\\cmake.EXE", "-S", "D:\\Multi-Agent Network\\firmware\\agent_native", "-B", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-03-telemetry\\build", "-G", "Ninja", "-DCMAKE_C_COMPILER=C:\\Strawberry\\c\\bin\\gcc.EXE", "-DCMAKE_MAKE_PROGRAM=C:\\Strawberry\\c\\bin\\ninja.EXE"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-03-telemetry-configure", "exit_code": 0, "wall_seconds": 4.061999999999898}
+{"event": "command_reserved", "id": "20261103-03-telemetry-build", "command": ["D:\\CMake\\bin\\cmake.EXE", "--build", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-03-telemetry\\build"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-03-telemetry-build", "exit_code": 0, "wall_seconds": 1.625}
+{"event": "command_reserved", "id": "20261103-03-telemetry-scenarios", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-03-telemetry\\build\\ann_host.exe", "--scenario", "all"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-03-telemetry-scenarios", "exit_code": 0, "wall_seconds": 0.23499999999967258}
+{"event": "command_reserved", "id": "20261103-03-telemetry-console", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-03-telemetry\\build\\ann_host.exe", "--console"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-03-telemetry-console", "exit_code": 0, "wall_seconds": 0.01599999999962165}
+{"event": "command_reserved", "id": "20261103-04-final-compiler", "command": ["C:\\Strawberry\\c\\bin\\gcc.EXE", "--version"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-04-final-compiler", "exit_code": 0, "wall_seconds": 0.06199999999989814}
+{"event": "command_reserved", "id": "20261103-04-final-configure", "command": ["D:\\CMake\\bin\\cmake.EXE", "-S", "D:\\Multi-Agent Network\\firmware\\agent_native", "-B", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-04-final\\build", "-G", "Ninja", "-DCMAKE_C_COMPILER=C:\\Strawberry\\c\\bin\\gcc.EXE", "-DCMAKE_MAKE_PROGRAM=C:\\Strawberry\\c\\bin\\ninja.EXE"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-04-final-configure", "exit_code": 0, "wall_seconds": 4.844000000000051}
+{"event": "command_reserved", "id": "20261103-04-final-build", "command": ["D:\\CMake\\bin\\cmake.EXE", "--build", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-04-final\\build"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-04-final-build", "exit_code": 0, "wall_seconds": 1.6400000000003274}
+{"event": "command_reserved", "id": "20261103-04-final-scenarios", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-04-final\\build\\ann_host.exe", "--scenario", "all"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-04-final-scenarios", "exit_code": 0, "wall_seconds": 0.21900000000005093}
+{"event": "command_reserved", "id": "20261103-04-final-console", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-04-final\\build\\ann_host.exe", "--console"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-04-final-console", "exit_code": 0, "wall_seconds": 0.015000000000327418}
+{"event": "command_reserved", "id": "20261103-05-frozen-compiler", "command": ["C:\\Strawberry\\c\\bin\\gcc.EXE", "--version"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-05-frozen-compiler", "exit_code": 0, "wall_seconds": 0.03099999999994907}
+{"event": "command_reserved", "id": "20261103-05-frozen-configure", "command": ["D:\\CMake\\bin\\cmake.EXE", "-S", "D:\\Multi-Agent Network\\firmware\\agent_native", "-B", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-05-frozen\\build", "-G", "Ninja", "-DCMAKE_C_COMPILER=C:\\Strawberry\\c\\bin\\gcc.EXE", "-DCMAKE_MAKE_PROGRAM=C:\\Strawberry\\c\\bin\\ninja.EXE"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-05-frozen-configure", "exit_code": 0, "wall_seconds": 4.780999999999949}
+{"event": "command_reserved", "id": "20261103-05-frozen-build", "command": ["D:\\CMake\\bin\\cmake.EXE", "--build", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-05-frozen\\build"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-05-frozen-build", "exit_code": 0, "wall_seconds": 1.7660000000005311}
+{"event": "command_reserved", "id": "20261103-05-frozen-scenarios", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-05-frozen\\build\\ann_host.exe", "--scenario", "all"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-05-frozen-scenarios", "exit_code": 0, "wall_seconds": 0.2029999999995198}
+{"event": "command_reserved", "id": "20261103-05-frozen-console", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-05-frozen\\build\\ann_host.exe", "--console"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-05-frozen-console", "exit_code": 0, "wall_seconds": 0.01599999999962165}
+{"event": "command_reserved", "id": "20261103-06-line-framing-compiler", "command": ["C:\\Strawberry\\c\\bin\\gcc.EXE", "--version"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-06-line-framing-compiler", "exit_code": 0, "wall_seconds": 0.032000000000152795}
+{"event": "command_reserved", "id": "20261103-06-line-framing-configure", "command": ["D:\\CMake\\bin\\cmake.EXE", "-S", "D:\\Multi-Agent Network\\firmware\\agent_native", "-B", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-06-line-framing\\build", "-G", "Ninja", "-DCMAKE_C_COMPILER=C:\\Strawberry\\c\\bin\\gcc.EXE", "-DCMAKE_MAKE_PROGRAM=C:\\Strawberry\\c\\bin\\ninja.EXE"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-06-line-framing-configure", "exit_code": 0, "wall_seconds": 4.2960000000002765}
+{"event": "command_reserved", "id": "20261103-06-line-framing-build", "command": ["D:\\CMake\\bin\\cmake.EXE", "--build", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-06-line-framing\\build"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-06-line-framing-build", "exit_code": 0, "wall_seconds": 1.7039999999997235}
+{"event": "command_reserved", "id": "20261103-06-line-framing-scenarios", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-06-line-framing\\build\\ann_host.exe", "--scenario", "all"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-06-line-framing-scenarios", "exit_code": 0, "wall_seconds": 0.2179999999998472}
+{"event": "command_reserved", "id": "20261103-06-line-framing-console", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-06-line-framing\\build\\ann_host.exe", "--console"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-06-line-framing-console", "exit_code": 0, "wall_seconds": 0.01599999999962165}
+{"event": "command_reserved", "id": "20261103-08-c017-reproduce-compiler", "command": ["C:\\Strawberry\\c\\bin\\gcc.EXE", "--version"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-08-c017-reproduce-compiler", "exit_code": 0, "wall_seconds": 0.03099999999994907}
+{"event": "command_reserved", "id": "20261103-08-c017-reproduce-configure", "command": ["D:\\CMake\\bin\\cmake.EXE", "-S", "D:\\Multi-Agent Network\\firmware\\agent_native", "-B", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-08-c017-reproduce\\build", "-G", "Ninja", "-DCMAKE_C_COMPILER=C:\\Strawberry\\c\\bin\\gcc.EXE", "-DCMAKE_MAKE_PROGRAM=C:\\Strawberry\\c\\bin\\ninja.EXE"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-08-c017-reproduce-configure", "exit_code": 0, "wall_seconds": 4.359000000000378}
+{"event": "command_reserved", "id": "20261103-08-c017-reproduce-build", "command": ["D:\\CMake\\bin\\cmake.EXE", "--build", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-08-c017-reproduce\\build"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-08-c017-reproduce-build", "exit_code": 0, "wall_seconds": 2.688000000000102}
+{"event": "command_reserved", "id": "20261103-08-c017-reproduce-scenarios", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-08-c017-reproduce\\build\\ann_host.exe", "--scenario", "all"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-08-c017-reproduce-scenarios", "exit_code": 0, "wall_seconds": 0.375}
+{"event": "command_reserved", "id": "20261103-08-c017-reproduce-c017_regressions", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-08-c017-reproduce\\build\\ann_c017_regressions.exe"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-08-c017-reproduce-c017_regressions", "exit_code": 1, "wall_seconds": 0.125}
+{"event": "command_reserved", "id": "20261103-09-lifecycle-fixed-compiler", "command": ["C:\\Strawberry\\c\\bin\\gcc.EXE", "--version"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-09-lifecycle-fixed-compiler", "exit_code": 0, "wall_seconds": 0.03099999999994907}
+{"event": "command_reserved", "id": "20261103-09-lifecycle-fixed-configure", "command": ["D:\\CMake\\bin\\cmake.EXE", "-S", "D:\\Multi-Agent Network\\firmware\\agent_native", "-B", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-09-lifecycle-fixed\\build", "-G", "Ninja", "-DCMAKE_C_COMPILER=C:\\Strawberry\\c\\bin\\gcc.EXE", "-DCMAKE_MAKE_PROGRAM=C:\\Strawberry\\c\\bin\\ninja.EXE"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-09-lifecycle-fixed-configure", "exit_code": 0, "wall_seconds": 4.07799999999952}
+{"event": "command_reserved", "id": "20261103-09-lifecycle-fixed-build", "command": ["D:\\CMake\\bin\\cmake.EXE", "--build", "D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-09-lifecycle-fixed\\build"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-09-lifecycle-fixed-build", "exit_code": 0, "wall_seconds": 1.735000000000582}
+{"event": "command_reserved", "id": "20261103-09-lifecycle-fixed-scenarios", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-09-lifecycle-fixed\\build\\ann_host.exe", "--scenario", "all"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-09-lifecycle-fixed-scenarios", "exit_code": 0, "wall_seconds": 0.23399999999946886}
+{"event": "command_reserved", "id": "20261103-09-lifecycle-fixed-c017_regressions", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-09-lifecycle-fixed\\build\\ann_c017_regressions.exe"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-09-lifecycle-fixed-c017_regressions", "exit_code": 0, "wall_seconds": 0.10899999999946886}
+{"event": "command_reserved", "id": "20261103-09-lifecycle-fixed-lifecycle_regressions", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-09-lifecycle-fixed\\build\\ann_lifecycle_regressions.exe"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-09-lifecycle-fixed-lifecycle_regressions", "exit_code": 0, "wall_seconds": 0.125}
+{"event": "command_reserved", "id": "20261103-09-lifecycle-fixed-console", "command": ["D:\\Multi-Agent Network\\simulation\\outputs\\E1-014\\20261103-09-lifecycle-fixed\\build\\ann_host.exe", "--console"], "timeout_s": 120}
+{"event": "command_finished", "id": "20261103-09-lifecycle-fixed-console", "exit_code": 0, "wall_seconds": 0.014999999999417923}

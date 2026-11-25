@@ -1,0 +1,47 @@
+{
+  "template_only": false,
+  "task_id": "C-017",
+  "run_id": "20261103-05-e2-analyzer-v1",
+  "started_at": "2026-11-03T08:39:11.135231+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "tests/espnow/analyze_logs.py": "e317f4eeed40ba299641ec61d37f531b5fcbcad4f154c87d2623936be3c14818",
+    "tests/espnow/ANALYZER_API.md": "d5b94dc4adfbb1a8659eb180a39e8ec5e35eeccbc1d7d977f75d494ad021fb52",
+    "tests/espnow/README.md": "3ec0a9e1bd11020b6711fa5929de79ba33dde5142810b6f6a88d27f492e2f183",
+    "tests/espnow/ANALYZER_FREEZE.json": "1eb8450ca57472442091917df6d650e243e9021d1768f786fc7a61192321d3b5",
+    "simulation\\outputs\\C-017\\20261103-05-e2-analyzer-v1\\review_analyzer.py": "0f335b2a0585881312870ea5b3b50c66d62d6a8ed6161977a31c3ce311775e47"
+  },
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\C-017\\20261103-05-e2-analyzer-v1\\review_analyzer.py"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "dependencies": "stdlib only"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": {
+    "run_seconds": 60,
+    "task_seconds": 600,
+    "bytes": 104857600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\C-017\\20261103-05-e2-analyzer-v1",
+  "process_id": null,
+  "finished_at": "2026-11-03T08:39:11.250681+00:00",
+  "exit_code": 1,
+  "status": "findings_reproduced",
+  "limitations": [
+    "Negative hardware-label inputs are synthetic fixtures, never actual measurement records",
+    "No E2 active tests, H active integration, serial, RF, target build or model execution"
+  ],
+  "review_reference": "coordination/reviews/C-017.md",
+  "evidence_kind": "synthetic",
+  "elapsed_seconds": 0.125
+}

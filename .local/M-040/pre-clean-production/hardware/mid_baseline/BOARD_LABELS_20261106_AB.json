@@ -1,0 +1,12 @@
+{
+  "schema": "mid.board.labels.v1",
+  "source": "User labels plus H-005 ROM/info evidence; no MAC hashing",
+  "bindings": {
+    "A": "90:da:72:48:a4:f8",
+    "B": "90:da:72:48:a5:cc",
+    "C": null,
+    "D": null,
+    "E": null
+  },
+  "note": "E1 may supply these labels to the frozen identity API after matching actual MAC; do not edit the frozen H module."
+}

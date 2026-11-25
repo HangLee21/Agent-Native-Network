@@ -1,0 +1,7 @@
+--- lh/frontend/src/__tests__/joint-replay.spec.ts
++++ baseline/frontend/src/__tests__/joint-replay.spec.ts
+@@ -132,4 +132,3 @@
+     w.unmount()
+   })
+ })
+-

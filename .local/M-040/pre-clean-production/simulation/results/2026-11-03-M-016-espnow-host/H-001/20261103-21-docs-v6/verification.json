@@ -1,0 +1,13 @@
+{
+  "status": "review",
+  "scope": "README three outdated paragraphs only",
+  "source_file_count": 12,
+  "unchanged_other_files": 11,
+  "function_tests_run": 0,
+  "hardware_operations": 0,
+  "automation_changes": 0,
+  "H002_card_modified": false,
+  "readme_link_valid": true,
+  "H001_process": "no background process launched; foreground document check exits",
+  "H002_status": "review, unchanged"
+}

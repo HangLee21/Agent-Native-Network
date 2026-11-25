@@ -7,6 +7,8 @@
     "dev": "vite",
     "network:dev": "node ../scripts/network-studio/dev.mjs",
     "network:real": "node ../scripts/network-studio/dev.mjs --real",
+    "network:serve": "node ../scripts/network-studio/serve.mjs",
+    "test:network-core": "node --test ../scripts/network-studio/gateway-relay.test.mjs ../scripts/network-studio/engineering-relay.test.mjs ../scripts/network-studio/serve.test.mjs",
     "test:network-mock": "node --test ../scripts/network-studio/mock.test.mjs ../scripts/network-studio/gateway-relay.test.mjs",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",

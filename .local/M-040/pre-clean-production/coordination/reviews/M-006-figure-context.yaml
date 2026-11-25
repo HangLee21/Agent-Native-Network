@@ -1,0 +1,11 @@
+version: 1
+paper_type: empirical
+domain: wireless_networks
+submission_stage: draft
+language: en
+task_scope: artifact
+task_mode: writing
+scopes: [writing]
+artifacts: [figure]
+features: [paper_figure, data_figure]
+policy_sets: [integrity-core, academic-defaults]

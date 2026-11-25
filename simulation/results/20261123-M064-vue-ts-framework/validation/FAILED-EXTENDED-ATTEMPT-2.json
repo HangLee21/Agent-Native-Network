@@ -1,0 +1,49 @@
+{
+  "passed": false,
+  "synthetic_only": true,
+  "hardware_access": false,
+  "intercepted_fixture_responses": false,
+  "fixture_port": 10523,
+  "failure": "Traceback (most recent call last):\n  File \"D:\\Multi-Agent Network\\simulation\\outputs\\M-064\\20261123-203335675548-validation\\extended_validation.py\", line 179, in <module>\n    browser_checks()\n  File \"D:\\Multi-Agent Network\\simulation\\outputs\\M-064\\20261123-203335675548-validation\\extended_validation.py\", line 151, in browser_checks\n    expect(second.locator('.network-error')).to_contain_text('NETWORK_HTTP_404')\n  File \"C:\\environment\\python3.11\\Lib\\site-packages\\playwright\\sync_api\\_generated.py\", line 19079, in to_contain_text\n    self._sync(\n  File \"C:\\environment\\python3.11\\Lib\\site-packages\\playwright\\_impl\\_sync_base.py\", line 115, in _sync\n    return task.result()\n           ^^^^^^^^^^^^^\n  File \"C:\\environment\\python3.11\\Lib\\site-packages\\playwright\\_impl\\_assertions.py\", line 201, in to_contain_text\n    await self._expect_impl(\n  File \"C:\\environment\\python3.11\\Lib\\site-packages\\playwright\\_impl\\_assertions.py\", line 74, in _expect_impl\n    raise AssertionError(\nAssertionError: Locator expected to contain text 'NETWORK_HTTP_404'\nActual value: 无法更新网络观测保留最后快照并标为历史，不会自动切换到模拟数据。Failed to fetch重试读取 \nCall log:\n  - LocatorAssertions.to_contain_text with timeout 5000ms\n  -   - waiting for locator(\".network-error\")\n  -     9 × locator resolved to <div role=\"alert\" data-v-227f8677=\"\" class=\"network-error\">…</div>\n  -       - unexpected value \"无法更新网络观测保留最后快照并标为历史，不会自动切换到模拟数据。Failed to fetch重试读取\"\n\n",
+  "checks": [
+    "legacy SQLite: idempotent start, outage frame, persistence across reopen, pagination, old TEXT compatibility",
+    "actual HTTP chain browser -> Vite read bridge -> owned legacy fixture, no response interception",
+    "real HTTP fake rejection, outage/history retention and recovery without Mock fallback"
+  ],
+  "observed_gaps": [
+    "Legacy gateway has no new Vue source management or SQLite recording/replay integration; controls absent/disabled."
+  ],
+  "fixture_requests": [
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/network/capabilities"
+    }
+  ],
+  "page_errors": [],
+  "unexpected_requests": [],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Access to fetch at 'http://127.0.0.1:10523/api/v1/network/capabilities' from origin 'http://127.0.0.1:10521' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+    "Failed to load resource: net::ERR_FAILED"
+  ]
+}

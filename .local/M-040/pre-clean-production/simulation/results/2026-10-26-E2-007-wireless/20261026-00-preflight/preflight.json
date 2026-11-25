@@ -1,0 +1,26 @@
+{
+  "status": "planned_not_executed",
+  "task_cases": 18,
+  "recovery": {
+    "startup_window": 1.0,
+    "wait_base": 20.0,
+    "wait_jitter": 5.0,
+    "idle_base": 1.0,
+    "idle_jitter": 1.0
+  },
+  "contract_path": "D:\\Multi-Agent Network\\research\\agent_native_network\\WIRELESS_SERVICE_CONTRACT.md",
+  "contract_sha256": "28ad9fcc776edec8456ed4a0ade206a77035e4fe13cd1c27f309c05cc0ce3e41",
+  "catalog_index_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-26-E2-006-scale\\20261026-01\\catalog_index.json",
+  "catalog_index_sha256": "dae5db475be0a5c62c810943f71fc743db70cfadd970194cc44ac0604ae54b93",
+  "physical_scale": {
+    "seconds_per_model_unit": 20,
+    "meters_per_model_unit": 100
+  },
+  "refresh_period_model": 1,
+  "mac_seed": 0,
+  "source_hashes": {
+    "heteromrta_wireless_eval.py": "6835051153f5dc92523d8b7eacca998d1c47e9b3e65b3e5e53e27432382dc898",
+    "test_heteromrta_wireless_eval.py": "186ec4a3427752cb74b9a82d309d2397740b269e2378f968e946ece3a1949be8",
+    "wireless_trace_replay.py": "10529cef1da51c3cfb872f555111ca3945267b8ac905127e03075ba994c96b76"
+  }
+}

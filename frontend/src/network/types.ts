@@ -7,10 +7,13 @@ export type NetworkProtocol = 'network-v1' | 'lora-v1'
 export type LinkKind = 'wifi' | 'lora'
 export type LayoutMode = 'clear' | 'manual' | 'gps'
 export type ObservationState = 'recent' | 'stale' | 'unknown' | 'interrupted'
+export type LinkEvidenceState = 'current' | 'recent-sample' | 'older-sample' | 'report-stale' | 'expired' | 'unknown' | 'lost' | 'interrupted'
 export interface NetworkPosition { lat: number; lon: number; observedAt: number; source: string }
 export interface NetworkNode {
   id: string; label: string; role: NodeRole; reportedAt: number | null
   tag?: NodeTag
+  registration?: 'observed' | 'fleet' | 'label'
+  reportTimeoutMs?: number
   position: NetworkPosition | null; batteryPercent: number | null
   radio: { rssiDbm: number | null; snrDb: number | null; channel: number | null; frequencyHz: number | null }
   binding: { kind: 'drone' | 'dog'; id: string } | null
@@ -19,6 +22,8 @@ export interface NetworkLink {
   id: string; from: string; to: string; kind: LinkKind
   state: 'mutual' | 'oneway' | 'lost' | 'unknown'
   sampledAt: number | null; validForMs: number | null
+  /** Legacy neighbor evidence only; not an attestation of current connectivity. */
+  sampleOrigin?: 'legacy-neighbor'
   rssiDbm: number | null; snrDb: number | null; channel: number | null
 }
 export interface NetworkEvent {
@@ -31,18 +36,20 @@ export interface NetworkSnapshot {
   receiver: { id: string; label: string; state: 'receiving' | 'waiting' | 'unavailable'; receivedCount: number }
   nodes: NetworkNode[]; links: NetworkLink[]; events: NetworkEvent[]
 }
-export interface NetworkSource { id: string; label: string }
+export interface NetworkSource { id: string; label: string; selectable?: boolean }
 export type MockScenario = 'nominal' | 'dense' | 'empty' | 'interrupted' | 'stale' | 'no-gps'
 export interface NetworkCapabilities {
   schema: 'network.capabilities.v1'; mock: boolean; recording: boolean; sourceSelection: boolean
   sources: NetworkSource[]; selectedSourceId: string; scenario: MockScenario | null
+  engineering?: boolean; recordingActiveId?: string | null
 }
-export interface ReplaySummary { id: string; label: string; startedAt: number; frames: number; synthetic: boolean }
-export interface ReplayData { schema: 'network.replay.v1'; id: string; frames: NetworkSnapshot[] }
+export interface ReplaySummary { id: string; label: string; startedAt: number; frames: number; synthetic: boolean; provenance?: 'unknown' | 'measured' | 'synthetic'; active?: boolean }
+export interface ReplayData { schema: 'network.replay.v1'; id: string; frames: NetworkSnapshot[]; total?: number; offset?: number; paginated?: boolean }
 export interface ConnectionProfile { apiBaseUrl: string; protocol: NetworkProtocol }
 export interface NetworkConfig {
   schema: 'network.config.v2'; enabled: boolean; mode: ConnectionMode
   profiles: Record<ConnectionMode, ConnectionProfile>
   gatewayRelayPath?: string
+  engineeringRelayPath?: string
 }
 export interface Point { x: number; y: number }

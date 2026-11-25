@@ -1,0 +1,22 @@
+{
+  "status": "environment_recorded",
+  "environment": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "C:\\environment\\python3.11\\python.exe",
+    "tools": {
+      "cmake": "D:\\CMake\\bin\\cmake.EXE",
+      "ninja": "C:\\Strawberry\\c\\bin\\ninja.EXE",
+      "g++": "C:\\Strawberry\\c\\bin\\g++.EXE",
+      "mingw32-make": "C:\\Strawberry\\c\\bin\\mingw32-make.EXE",
+      "wsl": "C:\\Windows\\system32\\wsl.EXE"
+    },
+    "global_environment_modified": false,
+    "simulations_run": 0,
+    "wsl_inventory": {
+      "exit_code": 4294967295,
+      "stdout": "拒绝访问。 \r\nError code: Wsl/E_ACCESSDENIED\r\n",
+      "stderr": ""
+    },
+    "windows_build_candidate": true
+  }
+}

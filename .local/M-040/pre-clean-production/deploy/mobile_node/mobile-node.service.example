@@ -1,0 +1,19 @@
+[Unit]
+Description=Mobile node observation and business process
+After=network.target
+
+[Service]
+Type=simple
+# Replace paths and user for this Pi. Start the registered edge owner separately.
+User=pi
+WorkingDirectory=/opt/mid
+ExecStart=/usr/bin/python3 -m tools.mobile_node node --edge-port 8780 --state /var/lib/mid-mobile/car --gateway http://192.168.137.1:8790 --label car --agent
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGTERM
+TimeoutStopSec=15
+StateDirectory=mid-mobile
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

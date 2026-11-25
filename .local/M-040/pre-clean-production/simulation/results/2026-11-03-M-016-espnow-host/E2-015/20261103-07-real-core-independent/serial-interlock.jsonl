@@ -1,0 +1,5 @@
+{"schema":"ann.serial.v1","event":"info","nonce":"n","ok":true,"firmware":"ann-espnow","protocol":1,"node_id":"00:00:00:00:00:01","boot_id":"00000001","build_id":"host-v1","chip":"host-synthetic","board":"unverified","mode":"idle"}
+{"schema":"ann.serial.v1","event":"error","nonce":"n","ok":false,"error":"not_armed"}
+{"schema":"ann.serial.v1","event":"error","nonce":null,"ok":false,"error":"invalid_json"}
+{"schema":"ann.serial.v1","event":"error","nonce":null,"ok":false,"error":"invalid_json"}
+{"schema":"ann.serial.v1","event":"info","nonce":"fresh","ok":true,"firmware":"ann-espnow","protocol":1,"node_id":"00:00:00:00:00:01","boot_id":"00000001","build_id":"host-v1","chip":"host-synthetic","board":"unverified","mode":"idle"}

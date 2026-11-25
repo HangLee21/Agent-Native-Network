@@ -1,0 +1,11 @@
+{
+  "task_id": "H-015",
+  "state": "core_contract_read_target_integration_and_formal_package_pending",
+  "E1_owned_sources": ["firmware/mid_baseline/autonomous/"],
+  "H_owned_integration_scope": ["tools/mid_hardware/adhoc_bench/", ".local/mid/H-015/", "simulation/outputs/H-015/"],
+  "source_rule": "Do not edit E1 shared files while its role is active. H may build an isolated snapshot after contract/source freeze and record all integration deltas. Do not repeat an unchanged target build already supplied formally.",
+  "board_artifacts_needed": ["Exact OLED target app/build/SHA/manifest and app-only partition/flash compatibility", "Source snapshot and public contract hashes, native target compile evidence", "Runtime identity/baud, saved autonomous mode/boot autostart, stop/drain and explicit exit semantics", "Original per-board return apps and known good factory backup references"],
+  "runtime_contract_needed": ["route_config/group/channel/autostart and route_start/route_clear local-only commands", "Local volatile link_filter allow-list/clear, default unrestricted behavior", "Application admission identity even when waiting for route; no immediate concrete next hop implied", "Unambiguous packet_kind for DATA versus RREQ/RREP/ERROR identities and TX events", "Actual route request/reply candidates/selected path, invalidation and local delivery_unknown/no_route events", "Actual per-hop DATA forwarding/receive and final rx_local original bytes", "routes and neighbors read-only status, route/core queue drain state and resource/timing counters"],
+  "acceptance_rule": "Only use observed board selection; never install A-B-C or A-D-C as an answer. Preserve any lost/unknown packet and verify recovery with a different newly accepted business identity.",
+  "handoff_channel": "Local task card and saved artifacts; no attempt to bypass the prior cross-thread notification auto-review rejection."
+}

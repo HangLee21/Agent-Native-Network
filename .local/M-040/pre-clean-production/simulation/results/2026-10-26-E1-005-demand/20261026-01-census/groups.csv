@@ -1,0 +1,10 @@
+sample_role,tasks,condition,cases,successes,mean_application_bytes,mean_messages,total_tasks,total_completed,total_messages,total_application_bytes,total_self_state_bytes,total_task_scene_bytes,total_recipient_copies_requested,total_recipient_copies_delivered,total_recipient_copies_cache_applied,total_recipient_copies_referenced,total_static_tasks_requiring_team,total_tasks_started_multi_worker,total_tasks_started_multi_species,total_decisions,total_policy_inferences,total_remote_state_slots,total_initial_remote_state_slots,total_network_state_references,total_network_scene_references,total_local_scene_references,total_reference_occurrences,total_late_closed_task_arrivals
+native_instant,15,instant,5,5,47154.8,152.6,75,75,763,235774,185235,50539,6104,6104,6003,2545,21,39,39,589,165,4712,180,4532,6313,1281,10845,1
+native_instant,20,instant,5,5,60529.0,195.0,100,100,975,302645,235290,67355,7800,7800,7673,3123,15,46,46,577,204,4616,180,4436,8061,1593,12497,5
+service_diagnostic,15,delay0.5,5,3,43721.6,141.8,75,45,709,218608,167812,50796,5672,5632,5239,1634,21,14,14,313,177,2504,360,2144,2578,646,4722,52
+service_diagnostic,15,delay2,5,3,49556.8,160.4,75,45,802,247784,189191,58593,6416,6320,5655,1765,21,16,16,334,206,2672,424,2248,2482,889,4730,78
+service_diagnostic,15,fifo2048,5,3,65168.6,211.0,75,45,1055,325843,244592,81251,8440,5848,4930,2214,21,16,16,922,291,7376,378,6998,6022,5614,13020,164
+service_diagnostic,15,fifo4096,5,3,42487.0,138.0,75,45,690,212435,161815,50620,5520,5488,5109,1647,21,11,11,429,176,3432,362,3070,4074,877,7144,59
+service_diagnostic,15,fifo8192,5,3,39223.0,127.4,75,45,637,196115,150614,45501,5096,5072,4785,1526,21,13,13,334,157,2672,360,2312,3048,640,5360,38
+service_diagnostic,20,delay0.5,5,5,87710.6,281.2,100,100,1406,438553,340208,98345,11248,11168,10435,3558,15,44,44,592,321,4736,360,4376,6525,1903,10901,82
+service_diagnostic,20,delay2,5,5,112858.0,362.0,100,100,1810,564290,428845,135445,14480,14224,12660,4063,15,38,38,693,457,5544,552,4992,6882,2518,11874,220

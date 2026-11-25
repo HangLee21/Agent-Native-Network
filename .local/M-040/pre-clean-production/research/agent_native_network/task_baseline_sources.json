@@ -1,0 +1,108 @@
+[
+  {
+    "repo": "marmotlab/HeteroMRTA",
+    "commit": "db51e29535e34bcaa8cb75f70be3fd28b0027988",
+    "files": [
+      {
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/marmotlab/HeteroMRTA/db51e29535e34bcaa8cb75f70be3fd28b0027988/README.md",
+        "sha256": "523e9f3a2be32b9ae32819ab799c38c5721690395317e1d5107185e698ee8913"
+      },
+      {
+        "path": "parameters.py",
+        "url": "https://raw.githubusercontent.com/marmotlab/HeteroMRTA/db51e29535e34bcaa8cb75f70be3fd28b0027988/parameters.py",
+        "sha256": "56d85d21366ff04977e8f75482df356b9a70aefff85986f94c8cf45c0bfb48fe"
+      },
+      {
+        "path": "worker.py",
+        "url": "https://raw.githubusercontent.com/marmotlab/HeteroMRTA/db51e29535e34bcaa8cb75f70be3fd28b0027988/worker.py",
+        "sha256": "1cd1e1b1b46c4d8b90ab04abaa3eb7b306f94ab0ccf1733dbcc431221081da85"
+      },
+      {
+        "path": "env/task_env.py",
+        "url": "https://raw.githubusercontent.com/marmotlab/HeteroMRTA/db51e29535e34bcaa8cb75f70be3fd28b0027988/env/task_env.py",
+        "sha256": "7d567ee3b56157d9f3b23fdb6550e7d2f84b32632b3b61b53a74eb1f3171050a"
+      },
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/marmotlab/HeteroMRTA/db51e29535e34bcaa8cb75f70be3fd28b0027988/LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    ],
+    "weights": [
+      {
+        "path": "model/save/checkpoint.pth",
+        "size": 38361491
+      }
+    ]
+  },
+  {
+    "repo": "marmotlab/DCMRTA",
+    "commit": "029aeb81c28a38ecd69667153223e4aa740e01dd",
+    "files": [
+      {
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/marmotlab/DCMRTA/029aeb81c28a38ecd69667153223e4aa740e01dd/README.md",
+        "sha256": "008a7d0647dcf63f96e5aa1635d2d7bb852b709a5a07acb0861666c51bf30a0e"
+      },
+      {
+        "path": "worker.py",
+        "url": "https://raw.githubusercontent.com/marmotlab/DCMRTA/029aeb81c28a38ecd69667153223e4aa740e01dd/worker.py",
+        "sha256": "f1ed7b15538b0427e83e050f302126cbf149ba829ced2fe34547ad73dd6719b4"
+      },
+      {
+        "path": "env/task_env.py",
+        "url": "https://raw.githubusercontent.com/marmotlab/DCMRTA/029aeb81c28a38ecd69667153223e4aa740e01dd/env/task_env.py",
+        "sha256": "44e9bc635a0f6de33cdf3c60f91a4f8d57a37ce3f0cffeb23e50e81e15fb0b78"
+      },
+      {
+        "path": "baselines/CTAS-D.py",
+        "url": "https://raw.githubusercontent.com/marmotlab/DCMRTA/029aeb81c28a38ecd69667153223e4aa740e01dd/baselines/CTAS-D.py",
+        "sha256": "204f0d5d8ed8dbfe1df465add6876abaa5e97820e03f8f0eec7c20a60cb25ff6"
+      },
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/marmotlab/DCMRTA/029aeb81c28a38ecd69667153223e4aa740e01dd/LICENSE",
+        "sha256": "a3cb501062db8dc1f05fbacd215206c139f0dba06eaf577bb22f002ffdb5c2f5"
+      }
+    ],
+    "weights": [
+      {
+        "path": "model/REINFORCE/checkpoint.pth",
+        "size": 27328033
+      }
+    ]
+  },
+  {
+    "repo": "iamstevepaul/MRTA-Graph_RL",
+    "commit": "7f670b86dea2d3cb1fe4b554888e6bdbb5a82dd0",
+    "files": [
+      {
+        "path": "README.md",
+        "url": "https://raw.githubusercontent.com/iamstevepaul/MRTA-Graph_RL/7f670b86dea2d3cb1fe4b554888e6bdbb5a82dd0/README.md",
+        "sha256": "0dae49b3cea344d3a1b9bf29806273a2913e9a16c6cfd2bf3e28d0817ec5459e"
+      },
+      {
+        "path": "environment.yml",
+        "url": "https://raw.githubusercontent.com/iamstevepaul/MRTA-Graph_RL/7f670b86dea2d3cb1fe4b554888e6bdbb5a82dd0/environment.yml",
+        "sha256": "b78714c79a4ae96a48ef3847df7fdec0371f037b6b8a587c871b8481ec7b0396"
+      },
+      {
+        "path": "problems/mrta/state_mrta.py",
+        "url": "https://raw.githubusercontent.com/iamstevepaul/MRTA-Graph_RL/7f670b86dea2d3cb1fe4b554888e6bdbb5a82dd0/problems/mrta/state_mrta.py",
+        "sha256": "1acd833b28ce9650df3db96035d450114c607b6dccb4f8238ade9aa83aebc777"
+      },
+      {
+        "path": "LICENSE",
+        "url": "https://raw.githubusercontent.com/iamstevepaul/MRTA-Graph_RL/7f670b86dea2d3cb1fe4b554888e6bdbb5a82dd0/LICENSE",
+        "sha256": "2e1cbb1185b9da0595cf1020e7b49eca3a2bc28439cef6ef7e4774d2540961b0"
+      }
+    ],
+    "weights": [
+      {
+        "path": "outputs/mrta_100/epoch-90.pt",
+        "size": 12647930
+      }
+    ]
+  }
+]

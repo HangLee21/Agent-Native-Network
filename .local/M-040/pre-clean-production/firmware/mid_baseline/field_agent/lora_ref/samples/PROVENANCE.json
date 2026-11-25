@@ -1,0 +1,6 @@
+{
+  "kind": "synthetic_fixed_protocol_vector",
+  "physical_boards": 0,
+  "rf_transmissions": 0,
+  "description": "B/A registered MAC labels with deliberately synthetic boot/time/RSSI values; not live evidence"
+}

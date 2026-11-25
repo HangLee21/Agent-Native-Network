@@ -1,0 +1,47 @@
+@echo off
+setlocal EnableExtensions DisableDelayedExpansion
+cd /d "%~dp0"
+chcp 65001 >nul
+
+rem Baseline default: real Vue Studio, with existing legacy backend services.
+rem The previous launcher is preserved byte-for-byte as START_STUDIO_LEGACY.cmd.
+rem Packaged runtime dispatch is retained; production/deploy is not migrated here.
+
+set "PYEXE="
+if exist "%~dp0runtime\python\python.exe" set "PYEXE=%~dp0runtime\python\python.exe"
+if not defined PYEXE if exist "%~dp0.local\espnow\E1-015\tools\python_env\idf5.5_py3.11_env\Scripts\python.exe" set "PYEXE=%~dp0.local\espnow\E1-015\tools\python_env\idf5.5_py3.11_env\Scripts\python.exe"
+if not defined PYEXE set "PYEXE=python"
+if not defined NETWORK_WEB_PORT set "NETWORK_WEB_PORT=10518"
+
+if /i "%~1"=="--which" (
+  echo mode=packaged  target=app\start\launcher.py
+  if exist "%~dp0app\start\launcher.py" (echo found=yes) else (echo found=no)
+  echo mode=vue-dev   target=tools\release\start_vue_studio.py
+  if exist "%~dp0tools\release\start_vue_studio.py" (echo found=yes) else (echo found=no)
+  echo real_url=http://127.0.0.1:%NETWORK_WEB_PORT%/studio.html
+  echo legacy=START_STUDIO_LEGACY.cmd
+  echo python=%PYEXE%
+  exit /b 0
+)
+
+if exist "%~dp0app\start\launcher.py" goto packaged
+if exist "%~dp0tools\release\start_vue_studio.py" goto dev
+echo Missing Vue launcher: tools\release\start_vue_studio.py. Legacy: START_STUDIO_LEGACY.cmd
+echo 请确认是在完整的交付包或开发仓库根目录运行。
+if "%~1"=="" pause
+exit /b 2
+
+:packaged
+echo Starting packaged Studio (runtime\python + app\start\launcher.py)...
+"%PYEXE%" -X utf8 app\start\launcher.py %*
+goto finished
+
+:dev
+echo Starting REAL Vue Studio. Legacy services are reused; the old UI is not opened.
+"%PYEXE%" -X utf8 tools\release\start_vue_studio.py %*
+goto finished
+
+:finished
+set "result=%errorlevel%"
+if "%~1"=="" pause
+exit /b %result%

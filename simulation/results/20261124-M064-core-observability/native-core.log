@@ -1,0 +1,35 @@
+﻿✔ module/server startup performs no upstream or device I/O (39.7844ms)
+✔ only the exact observation and bounded pagination reads are admitted (63.7547ms)
+✔ source selection and recording require explicit operator origin and validated Studio health (24.8893ms)
+✔ missing/mismatched origin, cross-site requests and wrong Host never reach the backend (19.5353ms)
+✔ flight, serial, command, Agent/demo and arbitrary POST APIs are not a part of this bridge (40.0553ms)
+✔ non-loopback, credentials, prefixes and alternate transport targets are rejected (15.9357ms)
+✔ malformed resources, duplicated parameters and unbounded replay reads are rejected before I/O (15.1359ms)
+✔ write payload shape and content type cannot tunnel a device action (20.7088ms)
+✔ unknown local service does not receive a forwarded write (3.0243ms)
+✔ cookies and authorization are never copied to the local backend (4.7897ms)
+✔ redirects, invalid JSON and response limits are failures without fallback (30.6187ms)
+✔ resource predicate is method-specific, never a catch-all proxy (0.3387ms)
+✔ reader startup does not contact anything and a permitted read is GET-only (40.7177ms)
+✔ cross-origin, missing opt-in and forged Host requests never reach upstream (13.1914ms)
+✔ POST and all flight/source/recording/serial endpoints are rejected before forwarding (16.9394ms)
+✔ credential URLs, unsupported schemes, duplicate parameters and query targets are rejected (6.2046ms)
+✔ browser cookies and authorization never reach the gateway (2.704ms)
+✔ redirects are not followed and never silently change a configured target (2.7811ms)
+✔ invalid JSON, oversized responses and upstream errors remain explicit failures (36.9507ms)
+✔ normalized capabilities and replay are read-only allowed resources (5.8909ms)
+✔ serves built Vue and hashed assets without a Vite or Mock server (71.0996ms)
+✔ built real config advertises same-origin bridges but does not auto-connect (6.4888ms)
+✔ HEAD serves metadata only and the original import identity remains accessible (15.4823ms)
+✔ unknown API and control paths never fall back to a successful SPA page (12.2756ms)
+✔ raw, encoded and double-encoded traversal, hidden paths and absolute URLs are rejected (6.6306ms)
+✔ a forged DNS-rebinding Host is denied even for static assets (2.1765ms)
+✔ built UI retains both independent bridge permission boundaries (4.5537ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 462.8213

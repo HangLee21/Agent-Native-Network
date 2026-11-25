@@ -1,0 +1,216 @@
+{
+  "schema": "M064.readonly-trace.decode.v1",
+  "nodes": {
+    "01": {
+      "pi": "01",
+      "source_file": "pi01-existing-reader-trace.log",
+      "syscall_reads": 69516,
+      "serial_bytes_observed": 2123771,
+      "decoded_events": 4959,
+      "bad_json_lines": 1,
+      "first_bad": [
+        {
+          "line": 13,
+          "prefix": "tonic_ms\":1540468,\"peer_id\":\"90:da:72:48:a5:20\",\"receiver_id\":\"90:da:72:48:a4:f8\",\"direction\":\"peer_to_receiver\",\"rssi_dbm\":-62,\"channel\":11,\"rf_source\":\"measured\",\"sample_at_ms\":1"
+        }
+      ],
+      "trailing_incomplete_bytes": 352,
+      "byte_count_mismatch_lines": [],
+      "node_ids": [
+        "90:da:72:48:a4:f8"
+      ],
+      "monotonic_ms_min_max": [
+        1540492,
+        1715444
+      ],
+      "event_counts": {
+        "route_request": 340,
+        "rf_rx": 3360,
+        "pc_unreachable": 132,
+        "route_no_route": 389,
+        "tx_queued": 77,
+        "route_accepted": 77,
+        "tx_submit": 231,
+        "tx_link_ok": 231,
+        "route_drop": 9,
+        "route_waiting": 50,
+        "lora_ref_tx": 34,
+        "rx_local": 29
+      },
+      "trace_metadata": {
+        "TRACE_REMOTE_BEFORE": {
+          "at": "2026-11-24T17:07:53.545047+08:00",
+          "epoch": 1795511273.545176,
+          "reader_pid": "891",
+          "proc_status": {
+            "Name": "python3",
+            "State": "S (sleeping)",
+            "Pid": "891",
+            "PPid": "1",
+            "TracerPid": "0",
+            "Uid": "1000\t1000\t1000\t1000"
+          },
+          "service": "MainPID=891\nNRestarts=0\nActiveState=active\nSubState=running\n"
+        },
+        "trace_exit": 124,
+        "TRACE_REMOTE_AFTER": {
+          "at": "2026-11-24T17:10:48.629641+08:00",
+          "epoch": 1795511448.629803,
+          "reader_pid": "891",
+          "proc_status": {
+            "Name": "python3",
+            "State": "S (sleeping)",
+            "Pid": "891",
+            "PPid": "1",
+            "TracerPid": "0",
+            "Uid": "1000\t1000\t1000\t1000"
+          },
+          "service": "MainPID=891\nNRestarts=0\nActiveState=active\nSubState=running\n"
+        }
+      },
+      "lora_event_count": 34,
+      "tx_results": {
+        "submitted": 17,
+        "tx_done": 17
+      }
+    },
+    "02": {
+      "pi": "02",
+      "source_file": "pi02-existing-reader-trace.log",
+      "syscall_reads": 71011,
+      "serial_bytes_observed": 2163513,
+      "decoded_events": 5050,
+      "bad_json_lines": 0,
+      "first_bad": [],
+      "trailing_incomplete_bytes": 0,
+      "byte_count_mismatch_lines": [],
+      "node_ids": [
+        "90:da:72:48:a5:cc"
+      ],
+      "monotonic_ms_min_max": [
+        1534435,
+        1709407
+      ],
+      "event_counts": {
+        "route_request": 339,
+        "rf_rx": 3416,
+        "tx_submit": 239,
+        "tx_link_ok": 239,
+        "route_no_route": 383,
+        "tx_queued": 75,
+        "route_accepted": 76,
+        "pc_unreachable": 130,
+        "lora_ref_tx": 36,
+        "route_waiting": 45,
+        "rx_local": 21,
+        "route_drop": 50,
+        "delivery_unknown": 1
+      },
+      "trace_metadata": {
+        "TRACE_REMOTE_BEFORE": {
+          "at": "2026-11-24T17:07:55.418199+08:00",
+          "epoch": 1795511275.4183166,
+          "reader_pid": "890",
+          "proc_status": {
+            "Name": "python3",
+            "State": "S (sleeping)",
+            "Pid": "890",
+            "PPid": "1",
+            "TracerPid": "0",
+            "Uid": "1000\t1000\t1000\t1000"
+          },
+          "service": "MainPID=890\nNRestarts=0\nActiveState=active\nSubState=running\n"
+        },
+        "trace_exit": 124,
+        "TRACE_REMOTE_AFTER": {
+          "at": "2026-11-24T17:10:50.466216+08:00",
+          "epoch": 1795511450.4663513,
+          "reader_pid": "890",
+          "proc_status": {
+            "Name": "python3",
+            "State": "S (sleeping)",
+            "Pid": "890",
+            "PPid": "1",
+            "TracerPid": "0",
+            "Uid": "1000\t1000\t1000\t1000"
+          },
+          "service": "MainPID=890\nNRestarts=0\nActiveState=active\nSubState=running\n"
+        }
+      },
+      "lora_event_count": 36,
+      "tx_results": {
+        "submitted": 18,
+        "tx_done": 18
+      }
+    },
+    "04": {
+      "pi": "04",
+      "source_file": "pi04-existing-reader-trace.log",
+      "syscall_reads": 71098,
+      "serial_bytes_observed": 2168558,
+      "decoded_events": 5081,
+      "bad_json_lines": 0,
+      "first_bad": [],
+      "trailing_incomplete_bytes": 0,
+      "byte_count_mismatch_lines": [],
+      "node_ids": [
+        "90:da:72:48:a5:20"
+      ],
+      "monotonic_ms_min_max": [
+        1489331,
+        1664044
+      ],
+      "event_counts": {
+        "rf_rx": 3436,
+        "tx_submit": 237,
+        "tx_link_ok": 237,
+        "tx_queued": 76,
+        "route_accepted": 77,
+        "route_waiting": 49,
+        "pc_unreachable": 135,
+        "route_no_route": 388,
+        "route_request": 339,
+        "rx_local": 34,
+        "lora_ref_tx": 34,
+        "route_drop": 38,
+        "delivery_unknown": 1
+      },
+      "trace_metadata": {
+        "TRACE_REMOTE_BEFORE": {
+          "at": "2026-11-24T17:07:54.979643+08:00",
+          "epoch": 1795511274.9797575,
+          "reader_pid": "1111",
+          "proc_status": {
+            "Name": "python3",
+            "State": "S (sleeping)",
+            "Pid": "1111",
+            "PPid": "1",
+            "TracerPid": "0",
+            "Uid": "1000\t1000\t1000\t1000"
+          },
+          "service": "MainPID=1111\nNRestarts=0\nActiveState=active\nSubState=running\n"
+        },
+        "trace_exit": 124,
+        "TRACE_REMOTE_AFTER": {
+          "at": "2026-11-24T17:10:50.071335+08:00",
+          "epoch": 1795511450.071518,
+          "reader_pid": "1111",
+          "proc_status": {
+            "Name": "python3",
+            "State": "S (sleeping)",
+            "Pid": "1111",
+            "PPid": "1",
+            "TracerPid": "0",
+            "Uid": "1000\t1000\t1000\t1000"
+          },
+          "service": "MainPID=1111\nNRestarts=0\nActiveState=active\nSubState=running\n"
+        }
+      },
+      "lora_event_count": 34,
+      "tx_results": {
+        "submitted": 17,
+        "tx_done": 17
+      }
+    }
+  }
+}

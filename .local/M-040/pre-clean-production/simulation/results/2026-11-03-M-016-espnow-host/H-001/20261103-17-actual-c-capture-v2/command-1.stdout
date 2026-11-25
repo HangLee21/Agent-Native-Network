@@ -1,0 +1,6 @@
+[1/6] Building C object CMakeFiles/ann_core.dir/src/ann.c.obj
+[2/6] Building C object CMakeFiles/ann_core.dir/src/ann_console.c.obj
+[3/6] Building C object CMakeFiles/ann_core.dir/src/ann_log.c.obj
+[4/6] Building C object CMakeFiles/ann_host.dir/host/main.c.obj
+[5/6] Linking C static library libann_core.a
+[6/6] Linking C executable ann_host.exe

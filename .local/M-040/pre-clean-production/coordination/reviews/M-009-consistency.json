@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "base": "5f297335f5bfa7663e00156dceb4a96dd241af8c",
+  "old_files": 1834,
+  "preserved_unchanged": 1824,
+  "allowed_navigation_changes": [
+    ".gitattributes",
+    "README.md",
+    "START_HERE.md",
+    "coordination/CURRENT.md",
+    "coordination/DECISIONS.md",
+    "coordination/TASKS.md",
+    "coordination/WINDOWS.md",
+    "research/agent_native_network/EVIDENCE_LOG.md",
+    "research/agent_native_network/NEXT_STEPS.md",
+    "research/agent_native_network/README.md"
+  ],
+  "archive_files": 557,
+  "archive_raw_bytes": 1001343168,
+  "archive_stored_bytes": 44174174,
+  "archive_index_verified": 557,
+  "audited_input_hashes": 583,
+  "audited_replays": 60,
+  "audited_tasks": 18,
+  "local_links_checked": 285,
+  "immutable_snapshot_links_at_source": 6,
+  "missing_links": [],
+  "additional_task_runs": 0
+}

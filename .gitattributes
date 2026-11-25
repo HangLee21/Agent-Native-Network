@@ -1,3 +1,6 @@
+# M-064: preserve the original Windows launcher exactly, including CRLF.
+/START_STUDIO_LEGACY.cmd -text whitespace=cr-at-eol
+
 # Keep recorded simulation source hashes stable across Windows/Linux checkouts.
 simulation/*.py text eol=lf
 simulation/ROUTE_PROTOCOL.md text eol=lf

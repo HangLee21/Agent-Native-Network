@@ -1,0 +1,102 @@
+{
+  "ext4": {
+    "volume_label": "rootfs",
+    "last_mount_utc": "2026-10-06T01:03:03+00:00",
+    "mount_count": 7
+  },
+  "present": {
+    "/etc/cloud/cloud-init.disabled": false,
+    "/usr/bin/cloud-init": true,
+    "/var/lib/cloud/instance": true,
+    "/var/lib/cloud/data/instance-id": true,
+    "/var/lib/cloud/data/status.json": true,
+    "/var/lib/cloud/instances": true,
+    "/var/log/cloud-init.log": true,
+    "/var/log/cloud-init-output.log": true,
+    "/var/log/journal": true,
+    "/etc/systemd/system/eora-firstboot.service": false,
+    "/usr/local/sbin/eora-firstboot-logic.sh": false,
+    "/var/log/eora-firstboot.log": false
+  },
+  "/var/log/cloud-init.log": {
+    "datasourcenocloud": 51,
+    "eora-firstboot": 0,
+    "running module runcmd": 4,
+    "scripts-user": 0,
+    "cloud-init.disabled": 0,
+    "failed": 0,
+    "error": 1,
+    "traceback": 0,
+    "network-config": 11
+  },
+  "/var/log/cloud-init-output.log": {
+    "datasourcenocloud": 4,
+    "eora-firstboot": 0,
+    "running module runcmd": 0,
+    "scripts-user": 0,
+    "cloud-init.disabled": 0,
+    "failed": 5,
+    "error": 0,
+    "traceback": 0,
+    "network-config": 0
+  },
+  "instance_types": [
+    "imager"
+  ],
+  "release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"",
+  "hostname_is_04": true,
+  "cloud_stages": {
+    "init": {
+      "start": 10.23,
+      "finished": 10.32,
+      "error_count": 0
+    },
+    "init-local": {
+      "start": 9.85,
+      "finished": 10.16,
+      "error_count": 0
+    },
+    "modules-config": {
+      "start": 19.84,
+      "finished": 19.99,
+      "error_count": 0
+    },
+    "modules-final": {
+      "start": 20.06,
+      "finished": 20.23,
+      "error_count": 0
+    }
+  },
+  "cached_id_matches_cmdline": true,
+  "cached_id_matches_meta": false,
+  "user-data.txt": {
+    "present": true,
+    "contains_eora_installer": false
+  },
+  "scripts/runcmd": {
+    "present": true,
+    "contains_eora_installer": false
+  },
+  "sem/config_runcmd": {
+    "present": true,
+    "contains_eora_installer": false
+  },
+  "sem/config_scripts_user": {
+    "present": true,
+    "contains_eora_installer": false
+  },
+  "output_keywords": {
+    "failed to fetch": 4,
+    "temporary failure resolving": 8,
+    "network is unreachable": 0,
+    "could not resolve": 0,
+    "failed to connect": 0,
+    "failed to start": 0,
+    "802.1x": 0,
+    "wlan0": 4,
+    "package": 2,
+    "systemctl": 0,
+    "ssh.service": 4
+  },
+  "saved_wifi_eap_profiles": 0
+}

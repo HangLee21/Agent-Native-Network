@@ -1,0 +1,4 @@
+First extended harness attempt stopped at module initialization, before any fixture server or SQLite database was created:
+ValueError: too many values to unpack (expected 6)
+At: calls, checks, gaps, errors, blocked, console = [], [], [], [], [], [], []
+Fixed the harness-only list count to six. This was not a product-source change or a product failure. Original tool execution reported exit 1; no feature check had run.

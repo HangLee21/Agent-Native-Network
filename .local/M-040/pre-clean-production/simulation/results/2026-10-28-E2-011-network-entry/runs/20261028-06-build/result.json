@@ -1,0 +1,50 @@
+{
+  "status": "built",
+  "freeze": {
+    "tree": "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46",
+    "ns3_version": "3.46",
+    "entry_sha256": "618eabbc405ab49e761dc8626dab6efe50445f6ce4781d2e352ce6e7130b9e47",
+    "config_sha256": "d92013779548f396fa77b780d4383a257c5c39d5bb6410668c65a92a6cee4277",
+    "built_at": "2026-10-28T09:12:26.096345+00:00",
+    "upstream_archive_sha256": "73353e5bc45b3ada8ee079d6122afd76340cc4e2f08068c7d4a6c7c463a60fc8"
+  },
+  "commands": [
+    {
+      "command": [
+        "C:\\environment\\python3.11\\python.exe",
+        "ns3",
+        "configure",
+        "--enable-modules=core;network;internet;wifi;mobility;aodv;applications",
+        "--disable-examples",
+        "--disable-tests",
+        "-G",
+        "Ninja",
+        "--",
+        "-DCMAKE_CXX_COMPILER=g++",
+        "-DNS3_CCACHE=OFF",
+        "-DPython3_EXECUTABLE=C:\\environment\\python3.11\\python.exe",
+        "-DCMAKE_CXX_FLAGS=-include algorithm"
+      ],
+      "cwd": "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46",
+      "process_id": 45924,
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 8.093999999997322
+    },
+    {
+      "command": [
+        "C:\\environment\\python3.11\\python.exe",
+        "ns3",
+        "build",
+        "b0-aodv",
+        "-j",
+        "4"
+      ],
+      "cwd": "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46",
+      "process_id": 51064,
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 665.5149999999994
+    }
+  ]
+}

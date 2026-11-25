@@ -1,8 +1,14 @@
 # 从这里开始
 
-2026-11-23 [M-064](coordination/tasks/M-064.md)：先将 lh 的完整 Vue+TS 框架迁入 [frontend](frontend/)，以后在 baseline 开发。[新真实入口](START_NETWORK_STUDIO.cmd) 与 [独立 Mock 入口](START_NETWORK_DEMO.cmd) 分开，详见 [迁移/功能保留清单](docs/BASELINE_FRONTEND_MIGRATION.md)。**deploy 暂不迁移；原工程默认入口 START_STUDIO 与采集、来源、持久记录回放、做卡刷写等工具均保留。** 新框架不等于全部工程功能已移植。
+2026-11-25 17:20后 [M-064动态拓扑重构](simulation/results/20261125-M064-dynamic-topology/REPORT.md)已完成自测，**替代下段多颜色历史线常驻方案**：新鲜实线、软失效虚线（最多10秒）、明确lost/移除不绘制；清晰布局只依据新鲜Wi-Fi重排，3/4/5三角断3–5后成为3—4—5，5孤立时另组；默认不画采集网关星形，LoRa可选且不参与组网。506 Vue、类型/构建、35浏览器检查通过，已验证现有10518。刷新并选“清晰布局”查看；历史证据折叠、不代表实测转发路由。设备/后端/启动器/原服务不改，原任务仍review，deploy冻结。
 
-2026-11-19 M-061。Studio 的实时和回放操作见 `docs/OPERATING_GUIDE.md`，前端入口仍为根目录 `START_STUDIO.cmd`。
+2026-11-25 [M-064连线状态修正](simulation/results/20261125-M064-edge-states/REPORT.md)：旧邻居近期采样蓝、未知/中断琥珀、较早/过期/报告超时灰、明确上报lost红，有时效双向互证才绿；有效期未知不再混作过期。图例/邻接/详情和选中保色统一；491 Vue、类型/构建、32浏览器检查通过，已在现有10518验证。仅修显示，不改设备/后端协议/启动器，不代表RF问题已修复；原任务仍review，deploy冻结。
+
+2026-11-24 [M-064核心观测迁移/可辨性](simulation/results/20261124-M064-core-observability/REPORT.md)：Sources/epoch、原SQLite分页录放、fleet/recovery、逐包原始字节/收件/缺口与独立IP互证已接新Vue；红色超时、琥珀未观测、粗箭头/邻接/进出向表。473 Vue/27 Node/25原后端/22构建浏览器检查通过；不是当前硬件或生产验收。仅保留 http://127.0.0.1:10518/studio.html 的real-only构建前端（默认断开，无源码HMR），未代启采集/板内服务；完整工程合同显式接本机8794。现场3/4号问题未重测，deploy仍冻结。
+
+2026-11-24 [M-064](coordination/tasks/M-064.md)：真实网关接入验证后，用户明确将默认 [START_STUDIO.cmd](START_STUDIO.cmd) 切到新版 Vue Studio（10518）。原启动器逐字节保留为 [START_STUDIO_LEGACY.cmd](START_STUDIO_LEGACY.cmd)，不再默认。原后台服务复用/缺失时以无旧浏览器、无网卡变更方式启动；已有同根真实预览复用，陌生/Mock端口不抢占。[frontend](frontend/) 仍为开发源；[仅真实前端入口](START_NETWORK_STUDIO.cmd) 与 [独立 Mock 入口](START_NETWORK_DEMO.cmd) 也保留，详见 [迁移/功能保留清单](docs/BASELINE_FRONTEND_MIGRATION.md)。**deploy不迁移；旧采集、来源、持久回放、做卡刷写工具保留，UI默认切换不等于全部工程功能已移植。**
+
+2026-11-19 M-061。原 Studio 的实时和回放操作见 [操作指南](docs/OPERATING_GUIDE.md)，现在通过 [旧启动器](START_STUDIO_LEGACY.cmd) 显式进入，默认入口已按上文改为 Vue。
 
 2026-11-19 M-058 已验收。Studio 支持 LoRa 拓扑记录、时间轴回放、节点超时和链路变化定位、上行报告质量与 LRN1 状态/GPS。E2-040、D-039 和 C-043 收口。验收记录见 `simulation/results/20261119-M058-studio-replay/SOURCE.json`。现场移动与实际 GPS 待测。
 

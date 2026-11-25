@@ -1,0 +1,19 @@
+{
+  "checks": 112,
+  "issues": [],
+  "changed_or_added_E2_files": [
+    "tests/espnow/execution_budget.jsonl",
+    "tests/espnow/freeze_history/E2-final-aa01c19bb84fc6f47bffe2318b9e424a67a83141378f01aef83fdac2e2268d42.json",
+    "tests/espnow/RUN_INDEX.json",
+    "tests/espnow/test_H_final_capture.py",
+    "tests/espnow/VALIDATION.md",
+    "tests/espnow/E2_FINAL_FREEZE.json"
+  ],
+  "E2_tests_recorded": 6,
+  "E2_tests_reexecuted": 0,
+  "H002_reexecuted": false,
+  "H002_frozen_hashes_recorded": 38,
+  "H002_opened_ports": 0,
+  "H002_metrics_all_null": true,
+  "elapsed_s": 0.26599999999962165
+}

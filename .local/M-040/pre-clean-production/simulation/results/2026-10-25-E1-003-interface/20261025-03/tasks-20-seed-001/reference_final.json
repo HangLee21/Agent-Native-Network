@@ -1,0 +1,1276 @@
+{
+  "tasks": {
+    "0": {
+      "ID": 0,
+      "requirements": [
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "members": [
+        7,
+        0,
+        4
+      ],
+      "cost": [],
+      "location": [
+        0.9716899756197547,
+        0.774664134923732
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 8.742278924541994,
+      "time_finish": 11.94984687207001,
+      "status": [
+        -2,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "time": 3.2075679475280165,
+      "sum_waiting_time": 9.481101236689462,
+      "efficiency": 2.0,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "1": {
+      "ID": 1,
+      "requirements": [
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      "members": [
+        1,
+        3
+      ],
+      "cost": [],
+      "location": [
+        0.7911339481728052,
+        0.75926850053958
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 10.162276491368505,
+      "time_finish": 12.067184187833943,
+      "status": [
+        -1,
+        -1,
+        -1,
+        0,
+        -2
+      ],
+      "time": 1.9049076964654377,
+      "sum_waiting_time": 6.1716580908137315,
+      "efficiency": 3.5,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "2": {
+      "ID": 2,
+      "requirements": [
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "members": [
+        8,
+        2,
+        5
+      ],
+      "cost": [],
+      "location": [
+        0.5969877305237564,
+        0.9176922571709127
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 12.471728468419325,
+      "time_finish": 14.379193131618926,
+      "status": [
+        -2,
+        0,
+        0,
+        -1,
+        -1
+      ],
+      "time": 1.9074646631996002,
+      "sum_waiting_time": 6.568486545498081,
+      "efficiency": 2.0,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "3": {
+      "ID": 3,
+      "requirements": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "members": [
+        2,
+        3
+      ],
+      "cost": [],
+      "location": [
+        0.689630155447081,
+        0.500356430736871
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 6.252771900202575,
+      "time_finish": 8.771786651175223,
+      "status": [
+        -2,
+        0,
+        -1,
+        -1,
+        -1
+      ],
+      "time": 2.519014750972648,
+      "sum_waiting_time": 4.608996701265378,
+      "efficiency": 3.5,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "4": {
+      "ID": 4,
+      "requirements": [
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      "members": [
+        7,
+        1,
+        3
+      ],
+      "cost": [],
+      "location": [
+        0.07708380850053875,
+        0.48844922708552385
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 23.817195793824535,
+      "time_finish": 23.90080990200142,
+      "status": [
+        -2,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "time": 0.08361410817688542,
+      "sum_waiting_time": 5.582238538490877,
+      "efficiency": 2.0,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "5": {
+      "ID": 5,
+      "requirements": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "members": [
+        3
+      ],
+      "cost": [],
+      "location": [
+        0.21283099534033434,
+        0.13269629754678725
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 25.804670753076884,
+      "time_finish": 28.272528552793865,
+      "status": [
+        -1,
+        -1,
+        0,
+        0,
+        -1
+      ],
+      "time": 2.467857799716981,
+      "sum_waiting_time": 0.0,
+      "efficiency": 2.5,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "6": {
+      "ID": 6,
+      "requirements": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "members": [
+        4
+      ],
+      "cost": [],
+      "location": [
+        0.506064922529373,
+        0.785085292596959
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 14.278555154534084,
+      "time_finish": 19.136547221768524,
+      "status": [
+        -1,
+        -1,
+        -1,
+        0,
+        -1
+      ],
+      "time": 4.85799206723444,
+      "sum_waiting_time": 0.0,
+      "efficiency": 5.0,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "7": {
+      "ID": 7,
+      "requirements": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "members": [
+        2,
+        5
+      ],
+      "cost": [],
+      "location": [
+        0.29500644280551946,
+        0.7687717599091665
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 16.062716317059586,
+      "time_finish": 17.49004246098748,
+      "status": [
+        -2,
+        0,
+        0,
+        -1,
+        -1
+      ],
+      "time": 1.4273261439278921,
+      "sum_waiting_time": 0.0,
+      "efficiency": 2.3333333333333335,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "8": {
+      "ID": 8,
+      "requirements": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "members": [
+        5
+      ],
+      "cost": [],
+      "location": [
+        0.5256295231622541,
+        0.14904802337071255
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 0.8137476640247654,
+      "time_finish": 4.5548374594078265,
+      "status": [
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "time": 3.741089795383061,
+      "sum_waiting_time": 0.0,
+      "efficiency": 2.5,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "9": {
+      "ID": 9,
+      "requirements": [
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "members": [
+        6,
+        5
+      ],
+      "cost": [],
+      "location": [
+        0.9649677439797357,
+        0.4016362238885175
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 7.08870244847045,
+      "time_finish": 9.302646898822925,
+      "status": [
+        -1,
+        -1,
+        0,
+        -1,
+        -1
+      ],
+      "time": 2.213944450352475,
+      "sum_waiting_time": 3.234773771005439,
+      "efficiency": 3.0,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "10": {
+      "ID": 10,
+      "requirements": [
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "members": [
+        7,
+        1,
+        5
+      ],
+      "cost": [],
+      "location": [
+        0.2952342556626958,
+        0.8469983706337296
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 17.881177173207906,
+      "time_finish": 18.927582386296834,
+      "status": [
+        -2,
+        0,
+        -1,
+        -1,
+        -1
+      ],
+      "time": 1.0464052130889274,
+      "sum_waiting_time": 5.825762305790615,
+      "efficiency": 2.6666666666666665,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "11": {
+      "ID": 11,
+      "requirements": [
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "members": [
+        6,
+        0,
+        5
+      ],
+      "cost": [],
+      "location": [
+        0.12446033251547983,
+        0.7335904610737034
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 19.95258344456295,
+      "time_finish": 24.477596298653598,
+      "status": [
+        -2,
+        0,
+        -1,
+        -1,
+        -1
+      ],
+      "time": 4.525012854090647,
+      "sum_waiting_time": 9.893125402580168,
+      "efficiency": 2.6666666666666665,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "12": {
+      "ID": 12,
+      "requirements": [
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "members": [
+        8,
+        2,
+        5
+      ],
+      "cost": [],
+      "location": [
+        0.18782474256546833,
+        0.39249177601258245
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 26.212267459215514,
+      "time_finish": 26.29640388261658,
+      "status": [
+        -2,
+        -1,
+        0,
+        -1,
+        -1
+      ],
+      "time": 0.08413642340106497,
+      "sum_waiting_time": 10.571088891716691,
+      "efficiency": 2.6666666666666665,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "13": {
+      "ID": 13,
+      "requirements": [
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "members": [
+        2,
+        3
+      ],
+      "cost": [],
+      "location": [
+        0.23189987846213844,
+        0.8412279926923869
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 20.37337967826373,
+      "time_finish": 21.890924311261283,
+      "status": [
+        -2,
+        -1,
+        0,
+        0,
+        -1
+      ],
+      "time": 1.5175446329975535,
+      "sum_waiting_time": 2.4029117773700825,
+      "efficiency": 2.3333333333333335,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "14": {
+      "ID": 14,
+      "requirements": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "members": [
+        3
+      ],
+      "cost": [],
+      "location": [
+        0.39007455193986174,
+        0.9746928128822893
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 14.343454567506921,
+      "time_finish": 19.33858397912661,
+      "status": [
+        -1,
+        0,
+        0,
+        -1,
+        -1
+      ],
+      "time": 4.995129411619688,
+      "sum_waiting_time": 0.0,
+      "efficiency": 2.5,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "15": {
+      "ID": 15,
+      "requirements": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "members": [
+        1
+      ],
+      "cost": [],
+      "location": [
+        0.6252614844151068,
+        0.6936228347029152
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 1.7879339210317824,
+      "time_finish": 3.09866790198173,
+      "status": [
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "time": 1.3107339809499474,
+      "sum_waiting_time": 0.0,
+      "efficiency": 2.0,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "16": {
+      "ID": 16,
+      "requirements": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "members": [
+        4
+      ],
+      "cost": [],
+      "location": [
+        0.5215251221324175,
+        0.30896819907559114
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 1.2585338898919376,
+      "time_finish": 5.503756499188298,
+      "status": [
+        -1,
+        0,
+        0,
+        -1,
+        0
+      ],
+      "time": 4.24522260929636,
+      "sum_waiting_time": 0.0,
+      "efficiency": 1.6666666666666667,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "17": {
+      "ID": 17,
+      "requirements": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "members": [
+        8
+      ],
+      "cost": [],
+      "location": [
+        0.3955564210524287,
+        0.9409341876619017
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 3.423455214853075,
+      "time_finish": 6.451870958131597,
+      "status": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "time": 3.0284157432785213,
+      "sum_waiting_time": 0.0,
+      "efficiency": 1.0,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "18": {
+      "ID": 18,
+      "requirements": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "members": [
+        4
+      ],
+      "cost": [],
+      "location": [
+        0.20120320072466447,
+        0.9882189012202123
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 20.968239966022022,
+      "time_finish": 24.99841850365764,
+      "status": [
+        -1,
+        -1,
+        0,
+        0,
+        -1
+      ],
+      "time": 4.030178537635618,
+      "sum_waiting_time": 0.0,
+      "efficiency": 2.5,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    },
+    "19": {
+      "ID": 19,
+      "requirements": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "members": [
+        3
+      ],
+      "cost": [],
+      "location": [
+        0.7583058620038184,
+        0.35978692649261024
+      ],
+      "feasible_assignment": true,
+      "finished": true,
+      "time_start": 2.31894054241084,
+      "time_finish": 5.4705293196282305,
+      "status": [
+        -1,
+        0,
+        -1,
+        0,
+        0
+      ],
+      "time": 3.151588777217391,
+      "sum_waiting_time": 0.0,
+      "efficiency": 1.6666666666666667,
+      "abandoned_agent": [],
+      "optimized_ability": null,
+      "optimized_species": []
+    }
+  },
+  "agents": {
+    "0": {
+      "ID": 0,
+      "species": 0,
+      "abilities": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "location": [
+        0.36500726350855894,
+        0.44839630934448427
+      ],
+      "route": [
+        -1,
+        0,
+        11,
+        -1
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        3.4442510331812572,
+        16.190970292928377,
+        26.34306226048953
+      ],
+      "cost": [
+        [
+          0.3141338956023022
+        ]
+      ],
+      "travel_time": 1.8654659618359297,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.36500726350855894,
+        0.44839630934448427
+      ],
+      "travel_dist": 1.9101680831751109,
+      "sum_waiting_time": 9.05964104299531,
+      "current_action_index": 0,
+      "decision_step": 17,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    },
+    "1": {
+      "ID": 1,
+      "species": 0,
+      "abilities": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "location": [
+        0.36500726350855894,
+        0.44839630934448427
+      ],
+      "route": [
+        -1,
+        15,
+        1,
+        10,
+        4,
+        -1
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        1.7879339210317824,
+        3.990618400554774,
+        14.585184560840059,
+        21.026076524579096,
+        25.35428979662781
+      ],
+      "cost": [
+        [
+          0.3141338956023022
+        ]
+      ],
+      "travel_time": 1.453479894626392,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.36500726350855894,
+        0.44839630934448427
+      ],
+      "travel_dist": 1.7499717651039197,
+      "sum_waiting_time": 12.258769972427018,
+      "current_action_index": 0,
+      "decision_step": 17,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    },
+    "2": {
+      "ID": 2,
+      "species": 0,
+      "abilities": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "location": [
+        0.36500726350855894,
+        0.44839630934448427
+      ],
+      "route": [
+        -1,
+        3,
+        2,
+        7,
+        13,
+        12,
+        -1
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        1.6437751989371974,
+        10.90926069149161,
+        16.062716317059586,
+        17.97046790089365,
+        24.1454021319795,
+        27.225367856283032
+      ],
+      "cost": [
+        [
+          0.3141338956023022
+        ]
+      ],
+      "travel_time": 0.9289639736664503,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.36500726350855894,
+        0.44839630934448427
+      ],
+      "travel_dist": 1.825727931797016,
+      "sum_waiting_time": 10.641241582799191,
+      "current_action_index": 0,
+      "decision_step": 19,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    },
+    "3": {
+      "ID": 3,
+      "species": 1,
+      "abilities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "location": [
+        0.3676995696900066,
+        0.10973466400669674
+      ],
+      "route": [
+        -2,
+        19,
+        3,
+        1,
+        14,
+        13,
+        4,
+        5,
+        -2
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        2.31894054241084,
+        6.252771900202575,
+        10.162276491368505,
+        14.343454567506921,
+        20.37337967826373,
+        23.817195793824535,
+        25.804670753076884,
+        29.05533619097724
+      ],
+      "cost": [
+        [
+          0.3130478588199377
+        ]
+      ],
+      "travel_time": 0.7828076381833754,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.3676995696900066,
+        0.10973466400669674
+      ],
+      "travel_dist": 2.4831358027621313,
+      "sum_waiting_time": 0.0,
+      "current_action_index": 0,
+      "decision_step": 20,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    },
+    "4": {
+      "ID": 4,
+      "species": 1,
+      "abilities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "location": [
+        0.3676995696900066,
+        0.10973466400669674
+      ],
+      "route": [
+        -2,
+        16,
+        0,
+        6,
+        18,
+        -2
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        1.2585338898919376,
+        8.742278924541994,
+        14.278555154534084,
+        20.968239966022022,
+        29.469032544008403
+      ],
+      "cost": [
+        [
+          0.3130478588199377
+        ]
+      ],
+      "travel_time": 4.470614040350765,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.3676995696900066,
+        0.10973466400669674
+      ],
+      "travel_dist": 2.625614276462794,
+      "sum_waiting_time": 0.0,
+      "current_action_index": 0,
+      "decision_step": 18,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    },
+    "5": {
+      "ID": 5,
+      "species": 1,
+      "abilities": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "location": [
+        0.3676995696900066,
+        0.10973466400669674
+      ],
+      "route": [
+        -2,
+        8,
+        9,
+        2,
+        7,
+        10,
+        11,
+        12,
+        -2
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        0.8137476640247654,
+        7.08870244847045,
+        12.471728468419325,
+        16.062716317059586,
+        17.881177173207906,
+        19.95258344456295,
+        26.212267459215514,
+        27.97201226334723
+      ],
+      "cost": [
+        [
+          0.3130478588199377
+        ]
+      ],
+      "travel_time": 1.6756083807306492,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.3676995696900066,
+        0.10973466400669674
+      ],
+      "travel_dist": 2.605326543980711,
+      "sum_waiting_time": 0.0,
+      "current_action_index": 0,
+      "decision_step": 19,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    },
+    "6": {
+      "ID": 6,
+      "species": 2,
+      "abilities": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "location": [
+        0.2032415440873966,
+        0.2838064889441311
+      ],
+      "route": [
+        -3,
+        9,
+        11,
+        -3
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        3.8539286774650106,
+        13.821071193617357,
+        26.76075256181976
+      ],
+      "cost": [
+        [
+          0.576699716252952
+        ]
+      ],
+      "travel_time": 2.2831562631661626,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.2032415440873966,
+        0.2838064889441311
+      ],
+      "travel_dist": 2.131101847085121,
+      "sum_waiting_time": 9.366286021951034,
+      "current_action_index": 0,
+      "decision_step": 17,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    },
+    "7": {
+      "ID": 7,
+      "species": 2,
+      "abilities": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "location": [
+        0.2032415440873966,
+        0.2838064889441311
+      ],
+      "route": [
+        -3,
+        0,
+        10,
+        4,
+        -3
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        4.55920557921327,
+        15.351407479785138,
+        21.026076524579096,
+        25.10283345129663
+      ],
+      "cost": [
+        [
+          0.576699716252952
+        ]
+      ],
+      "travel_time": 1.2020235492952103,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.2032415440873966,
+        0.2838064889441311
+      ],
+      "travel_dist": 2.252256774901175,
+      "sum_waiting_time": 9.50396230799693,
+      "current_action_index": 0,
+      "decision_step": 17,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    },
+    "8": {
+      "ID": 8,
+      "species": 2,
+      "abilities": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "location": [
+        0.2032415440873966,
+        0.2838064889441311
+      ],
+      "route": [
+        -3,
+        17,
+        2,
+        12,
+        -3
+      ],
+      "current_task": -1,
+      "contributed": false,
+      "arrival_time": [
+        0.0,
+        3.423455214853075,
+        7.465709699848959,
+        17.70804389473484,
+        26.84527020045541
+      ],
+      "cost": [
+        [
+          0.576699716252952
+        ]
+      ],
+      "travel_time": 0.5488663178388298,
+      "velocity": 0.2,
+      "next_decision": "nan",
+      "depot": [
+        0.2032415440873966,
+        0.2838064889441311
+      ],
+      "travel_dist": 1.663002207505036,
+      "sum_waiting_time": 13.510242333051043,
+      "current_action_index": 0,
+      "decision_step": 19,
+      "task_waiting_ratio": 1,
+      "trajectory": [],
+      "angle": 0,
+      "returned": true,
+      "assigned": true,
+      "pre_set_route": null,
+      "no_choice": false,
+      "next_action": 0
+    }
+  },
+  "depots": {
+    "0": {
+      "location": [
+        0.36500726350855894,
+        0.44839630934448427
+      ],
+      "members": [
+        0,
+        1,
+        2
+      ],
+      "ID": -1
+    },
+    "1": {
+      "location": [
+        0.3676995696900066,
+        0.10973466400669674
+      ],
+      "members": [
+        3,
+        4,
+        5
+      ],
+      "ID": -2
+    },
+    "2": {
+      "location": [
+        0.2032415440873966,
+        0.2838064889441311
+      ],
+      "members": [
+        6,
+        7,
+        8
+      ],
+      "ID": -3
+    }
+  }
+}

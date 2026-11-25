@@ -1,0 +1,92 @@
+[
+  {
+    "case_id": "seed0-tasks15-instant-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant\\catalog.json.gz",
+    "expected_catalog_sha256": "e2b095bb5d2bc9cc8a306ff6f3f78d4902e174fed0cc11ca5255e392ea729508",
+    "seed": 0,
+    "condition": "instant",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant"
+  },
+  {
+    "case_id": "seed0-tasks15-delay0.5-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_delay0.5\\catalog.json.gz",
+    "expected_catalog_sha256": "e2b095bb5d2bc9cc8a306ff6f3f78d4902e174fed0cc11ca5255e392ea729508",
+    "seed": 0,
+    "condition": "delay0.5",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_delay0.5"
+  },
+  {
+    "case_id": "seed1-tasks15-instant-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed1_instant\\catalog.json.gz",
+    "expected_catalog_sha256": "784f20752ac24bffaf657d312697212224b5e40e05ce5711dc4ea0212b098196",
+    "seed": 1,
+    "condition": "instant",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed1_instant"
+  },
+  {
+    "case_id": "seed1-tasks15-delay0.5-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed1_delay0.5\\catalog.json.gz",
+    "expected_catalog_sha256": "784f20752ac24bffaf657d312697212224b5e40e05ce5711dc4ea0212b098196",
+    "seed": 1,
+    "condition": "delay0.5",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed1_delay0.5"
+  },
+  {
+    "case_id": "seed2-tasks15-instant-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed2_instant\\catalog.json.gz",
+    "expected_catalog_sha256": "3f58e899ee46594a4ad3832ec034a210eb581805d9d9c7c74fcf13ce7ec4acdb",
+    "seed": 2,
+    "condition": "instant",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed2_instant"
+  },
+  {
+    "case_id": "seed2-tasks15-delay0.5-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed2_delay0.5\\catalog.json.gz",
+    "expected_catalog_sha256": "3f58e899ee46594a4ad3832ec034a210eb581805d9d9c7c74fcf13ce7ec4acdb",
+    "seed": 2,
+    "condition": "delay0.5",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed2_delay0.5"
+  },
+  {
+    "case_id": "seed3-tasks15-instant-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed3_instant\\catalog.json.gz",
+    "expected_catalog_sha256": "bb6573ce90d86911be0451a86a12a06b603293f294dac975befb4da8c2d2341e",
+    "seed": 3,
+    "condition": "instant",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed3_instant"
+  },
+  {
+    "case_id": "seed3-tasks15-delay0.5-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed3_delay0.5\\catalog.json.gz",
+    "expected_catalog_sha256": "bb6573ce90d86911be0451a86a12a06b603293f294dac975befb4da8c2d2341e",
+    "seed": 3,
+    "condition": "delay0.5",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed3_delay0.5"
+  },
+  {
+    "case_id": "seed4-tasks15-instant-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed4_instant\\catalog.json.gz",
+    "expected_catalog_sha256": "b3ee338d39081222cdc7059136b463ceec1ef341ef8f2318fd63294c1526aff0",
+    "seed": 4,
+    "condition": "instant",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed4_instant"
+  },
+  {
+    "case_id": "seed4-tasks15-delay0.5-legacy",
+    "catalog_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed4_delay0.5\\catalog.json.gz",
+    "expected_catalog_sha256": "b3ee338d39081222cdc7059136b463ceec1ef341ef8f2318fd63294c1526aff0",
+    "seed": 4,
+    "condition": "delay0.5",
+    "recovery": false,
+    "legacy_reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed4_delay0.5"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "freeze_sha256": "3b028fb77103ad011a92e0fdb7f34d4065a940806240ad570f7f30e21c2d908f",
+  "source_hashes": {
+    "CMakeLists.txt": "db025a72d83f5b4b368e48ba9009cfbc68a5ea5b2cde4600be62eecae7f6bb0c",
+    "golden/provenance.json": "cacf1305c95b0a56486cc681b42fbccad8c9bc594a1b626cdf707c320e6f2a65",
+    "golden/serial-v1.jsonl": "1fe7634db59c512987be068e3205e521a726bc0cc112733c7ca2e03fdc221178",
+    "host/c017_regressions.c": "ccdc51bf9075b58a9c5fe4ce2fa2125fb8555c6f9f0568c4be3f6f8cf5bdfa05",
+    "host/lifecycle_regressions.c": "0a2b82d3a9e879a2a44d982a3851fd028d2bfbe7ad14110eeee8335c692a1422",
+    "host/main.c": "19f05600c21346785b33a02e43009cfb2a789efc8eee020d67d13c662883486e",
+    "idf/CMakeLists.txt": "f815227a3e0e95db84c990a99fe8bde9175d707826f1acce5a54b72ac7269a1a",
+    "idf/main/app_main.c": "d6adf0c578812d5834024586b097865b8b08b77b0fbeefd470866013ff10c4fa",
+    "idf/main/CMakeLists.txt": "a4793e598a3a37f2d17d8b30b36a8acb2ed5643674f27b5b8a43c31c0f2e92b3",
+    "idf/main/Kconfig.projbuild": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a",
+    "idf/sdkconfig.defaults": "0db8b80d5e23fda6171a4c2be24c043f60af5afd16f5195babd8ac35c5080c7f",
+    "include/ann.h": "1a39ed4df19f0bfa63ca3da213ff5bc23c7047beaea23020e61e82ae5558e309",
+    "include/ann_console.h": "e495a23a6a7dfa78e6ab8f54d5bb3b41c9c467439800633a20921304db49453e",
+    "INTERFACE.md": "ee87f1e1a2c6f134b306582a0d2c003a9cdf91038032b132c80ab744f8b3e32e",
+    "README.md": "4097b99a03a53d4cd804f435bb3276a52f824b21f8b0f64ba7e3992b77f8b17b",
+    "run_host_checks.py": "8cd13afa5edf6b3901b33c6a77abf64c2da1d2da69d28dec03692db6360bb928",
+    "src/ann.c": "bdd4f570ea0da8c20094cac02c1a33e48535ba0b20c1ff3e88623442a7cc264b",
+    "src/ann_console.c": "d336dceb92e110b1548475d9171dab3eead0d566677b7a66ae9ec0cbd30f27b7",
+    "src/ann_log.c": "b5928a1b12f4b3e0b19a1609f4ba579d43e75e75ad14db0c52941600e570690a",
+    "src/ann_log.h": "7d009ea19c839f21bb50683f93fda304867f798ab1127acccfa2a838fceed1c3",
+    "VALIDATION.md": "dc97dcb387b4e59c821b44ae90f8869fd291b5257b5ce79437ecd7daa1c7a15b"
+  },
+  "core_root": "firmware/agent_native",
+  "scope": "M authorized lifecycle v4 complete freeze"
+}

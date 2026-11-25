@@ -1,4 +1,4 @@
-import type { NetworkLink, NetworkNode, NetworkSnapshot, ObservationState, Point } from './types'
+import type { LinkEvidenceState, NetworkLink, NetworkNode, NetworkSnapshot, ObservationState, Point } from './types'
 
 const finite = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v)
 const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v)
@@ -18,6 +18,8 @@ export function parseSnapshot(raw: unknown): NetworkSnapshot {
   for (const n of raw.nodes) {
     if (!object(n) || !text(n.id) || ids.has(n.id) || !text(n.label) || !['gateway', 'node', 'aircraft', 'robot', 'relay'].includes(String(n.role)) ||
       (n.tag !== undefined && !['node', 'drone', 'robot'].includes(String(n.tag))) ||
+      (n.registration !== undefined && !['observed', 'fleet', 'label'].includes(String(n.registration))) ||
+      (n.reportTimeoutMs !== undefined && (!finite(n.reportTimeoutMs) || n.reportTimeoutMs <= 0)) ||
       !nullableTime(n.reportedAt) || !nullableNumber(n.batteryPercent) || (finite(n.batteryPercent) && (n.batteryPercent < 0 || n.batteryPercent > 100)) ||
       !object(n.radio) || !['rssiDbm', 'snrDb', 'channel', 'frequencyHz'].every(k => nullableNumber(n.radio && (n.radio as Record<string, unknown>)[k]))) throw new Error('NETWORK_NODE_INVALID')
     if (n.position !== null && (!object(n.position) || !finite(n.position.lat) || Math.abs(n.position.lat) > 90 || !finite(n.position.lon) || Math.abs(n.position.lon) > 180 || !time(n.position.observedAt) || !text(n.position.source))) throw new Error('NETWORK_POSITION_INVALID')
@@ -28,7 +30,7 @@ export function parseSnapshot(raw: unknown): NetworkSnapshot {
   for (const e of raw.links) {
     if (!object(e) || !text(e.id) || links.has(e.id) || !text(e.from) || !ids.has(e.from) || !text(e.to) || !ids.has(e.to) || e.from === e.to ||
       !['wifi', 'lora'].includes(String(e.kind)) || !['mutual', 'oneway', 'lost', 'unknown'].includes(String(e.state)) || !nullableTime(e.sampledAt) ||
-      !nullableNumber(e.validForMs) || (finite(e.validForMs) && e.validForMs < 0) || !nullableNumber(e.rssiDbm) || !nullableNumber(e.snrDb) || !nullableNumber(e.channel)) throw new Error('NETWORK_LINK_INVALID')
+      !nullableNumber(e.validForMs) || (finite(e.validForMs) && e.validForMs < 0) || (e.sampleOrigin !== undefined && (e.sampleOrigin !== 'legacy-neighbor' || e.kind !== 'wifi')) || !nullableNumber(e.rssiDbm) || !nullableNumber(e.snrDb) || !nullableNumber(e.channel)) throw new Error('NETWORK_LINK_INVALID')
     links.add(e.id)
   }
   for (const e of raw.events) if (!object(e) || !text(e.id) || !time(e.at) || !['report', 'link', 'receiver'].includes(String(e.kind)) ||
@@ -52,11 +54,32 @@ export function nodeName(n: Pick<NetworkNode, 'id' | 'label' | 'role'>): string 
 export function nodeState(n: NetworkNode, snapshot: NetworkSnapshot, now: number, interrupted = false): ObservationState {
   if (interrupted || snapshot.receiver.state === 'unavailable') return 'interrupted'
   if (n.reportedAt === null) return 'unknown'
-  return Math.max(0, now - n.reportedAt) > snapshot.reportTimeoutMs ? 'stale' : 'recent'
+  return Math.max(0, now - n.reportedAt) > (n.reportTimeoutMs ?? snapshot.reportTimeoutMs) ? 'stale' : 'recent'
 }
+/** Proof gate retained for consumers/tests; NOT a display color or an assertion of expiry. */
 export function linkHistorical(e: NetworkLink, snapshot: NetworkSnapshot, now: number, interrupted = false): boolean {
   if (interrupted || snapshot.receiver.state === 'unavailable' || e.state === 'unknown' || e.sampledAt === null || e.validForMs === null) return true
   return Math.max(0, now - e.sampledAt) >= e.validForMs
+}
+/** Display recency separately from proven link validity. Never manufacture a legacy TTL. */
+export function linkEvidenceState(e: NetworkLink, snapshot: NetworkSnapshot, now: number, interrupted = false): LinkEvidenceState {
+  if (interrupted || snapshot.receiver.state === 'unavailable') return 'interrupted'
+  if (e.sampledAt === null) return 'unknown'
+  const sampleAge = Math.max(0, now - e.sampledAt)
+  if (e.validForMs !== null && sampleAge >= e.validForMs) return 'expired'
+  if (e.sampleOrigin === 'legacy-neighbor') {
+    const reporter = snapshot.nodes.find(n => n.id === e.to)
+    if (!reporter || reporter.reportedAt === null) return 'unknown'
+    const window = reporter.reportTimeoutMs ?? snapshot.reportTimeoutMs
+    if (Math.max(0, now - reporter.reportedAt) > window) return 'report-stale'
+    // This is a UI recency budget, NOT the wire's missing Wi-Fi validity window.
+    if (sampleAge > window) return 'older-sample'
+    if (e.state === 'lost') return 'lost'
+    return e.state === 'unknown' ? 'unknown' : 'recent-sample'
+  }
+  if (e.state === 'unknown') return 'unknown'
+  if (e.state === 'lost') return 'lost'
+  return e.validForMs === null ? 'unknown' : 'current'
 }
 export function hasPosition(n: NetworkNode, now: number, timeoutMs: number): boolean {
   return n.position !== null && Math.max(0, now - n.position.observedAt) <= timeoutMs

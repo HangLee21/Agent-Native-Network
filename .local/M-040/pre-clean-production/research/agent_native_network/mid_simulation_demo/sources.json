@@ -1,0 +1,19 @@
+{
+  "schema": "mid.simulation.viewer.sources.v1",
+  "scenario_files": [
+    "simulation/mid_link_study/scenarios/gradual_link.json",
+    "simulation/mid_link_study/scenarios/relay_exit.json",
+    "simulation/mid_link_study/scenarios/partition_restore.json"
+  ],
+  "truth_files": {
+    "gradual_link": "simulation/outputs/H-008/20261107-01-scenario-truth/gradual_link-truth.json",
+    "relay_exit": "simulation/outputs/H-008/20261107-01-scenario-truth/relay_exit-truth.json",
+    "partition_restore": "simulation/outputs/H-008/20261107-01-scenario-truth/partition_restore-truth.json"
+  },
+  "engine_indexes": [
+    "simulation/outputs/E1-019/20261107-04-combined/BATCH_INDEX.json"
+  ],
+  "analysis_datasets": [
+    "simulation/outputs/E2-019/20261107-06-final-batch/DATASET.json"
+  ]
+}

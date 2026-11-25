@@ -6,6 +6,12 @@
 
 [M-065](tasks/M-065.md) 在线共享与弱覆盖区重建；[E1-033](tasks/E1-033.md) 仿真实施，[C-049](tasks/C-049.md) 独立验算。
 
+2026-11-25 17:20后 [M-064](tasks/M-064.md) [动态自组网主图重构](../simulation/results/20261125-M064-dynamic-topology/REPORT.md)自测完成、仍review：lost/移除断边不画，软失效10秒上限；有效邻接决定重排、合并双向、默认无采集网关星形。3/4/5三角→链→孤立→重连通过；62文件506 Vue、类型/构建、35浏览器检查。替代前轮多颜色常驻历史线，源数据/设备/后端不改，独立C/生产/deploy未关闭。
+
+2026-11-25 [M-064](tasks/M-064.md) 前端连线状态修正自测完成、仍review：[近期采样/未知/过期/明确失效区分与验证](../simulation/results/20261125-M064-edge-states/REPORT.md)。61文件491 Vue、类型/构建、32浏览器检查通过；现有10518已验证，288份后台/启动器/其他角色卡字节不变。仅前端显示，不关闭RF根因、独立C或deploy。
+
+2026-11-24 [M-064](tasks/M-064.md) 本轮核心迁移与可辨性实现完成、继续review：[Sources/epoch、原SQLite分页、fleet/recovery、Agent原始证据/独立IP图层及验证](../simulation/results/20261124-M064-core-observability/REPORT.md)。473 Vue/27 Node/25原后端/22构建浏览器检查通过；默认 [新入口](../START_STUDIO.cmd) 与显式 [旧入口](../START_STUDIO_LEGACY.cmd) 保留；现场3/4号未复测，F05/公网鉴权/C独立审查及deploy不随本轮关闭。
+
 [M-064](tasks/M-064.md) review：lh 完整 Vue+TS 框架已迁入 baseline 主目录并重新通过 450 测试/类型/构建；单源开发与冲突保护回传流程已整理。deploy 冻结，Control/lh 不反写，旧工程入口/其他窗口成果保留；C 独立审查与工程 UI 全量移植未做。
 
 [M-063](tasks/M-063.md) 网关自动恢复已交付。实施 [E2-043](tasks/E2-043.md)、[D-043](tasks/D-043.md)，窄审 [C-048](tasks/C-048.md)。

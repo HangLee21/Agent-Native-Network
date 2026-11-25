@@ -1,0 +1,59 @@
+{
+  "template_only": false,
+  "task_id": "E2-015",
+  "run_id": "20261103-05-H-envelope-analysis",
+  "started_at": "2026-11-03T07:55:21.731071+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "tests\\espnow\\analyze_logs.py": "d59a2b40543e64d9ad0b6c01797c848a9041f643f84fb357fae5949cd2162ad3",
+    "tests\\espnow\\CASES.json": "35712ab3bc749918cb2f4d905cfbd588661f2e11da7228bc4fc64d8a4262b5b5",
+    "tests\\espnow\\frozen_inputs.json": "452b0cf8d95dab3c656f850a17686a33d320ea63472945bb0608556598c5fbbc",
+    "tests\\espnow\\protocol_properties.py": "afeda42a6eb725279b2062a5ed9311d1be54ac030699e441ee987b18cd63701e",
+    "tests\\espnow\\README.md": "717262992b8b42f9f2658f87c3c71ca41cce1bd1098f12344a9adc7050ba6900",
+    "tests\\espnow\\run_validation.py": "adab52d9b2caa11fde5c81c1967172903e82bac48aa1d5a4c3e4cc2c5d613d76",
+    "tests\\espnow\\test_analysis.py": "a1741fffc502f0b4e002767ccad453fc12c8b1fb5426fe0ee7a9e7144198f866",
+    "tests\\espnow\\test_h_frozen.py": "4368444537b219242eb6c674e39f0904fb6224088f015b159da8b2589cfcdeb4",
+    "tests\\espnow\\test_properties.py": "0e4fee81ae0508ef038e8672f6c45496d47b8bf9c623fe8dad1e11a878a23fd5",
+    "tests\\espnow\\test_wire.py": "807c8d56b37dcb6986db0305eacd980adc5376d01ad474f9a8d99e6205663470",
+    "tests\\espnow\\wire_reference.py": "407d246160c18b93a2c95c474213ceab4edf37c65c400eed7c58c6c584c9a46e"
+  },
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "D:\\Multi-Agent Network\\tests\\espnow\\run_validation.py",
+    "--child",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-05-H-envelope-analysis\\result.json"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "libraries": "stdlib only"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": "D:\\Multi-Agent Network\\tests\\espnow\\CASES.json",
+  "seeds": [],
+  "budget": {
+    "command_timeout_s": 120,
+    "task_cap_s": 600,
+    "prior_charged_s": 1.75,
+    "output_cap_bytes": 104857600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-05-H-envelope-analysis",
+  "process_id": 42776,
+  "finished_at": "2026-11-03T07:55:22.379561+00:00",
+  "exit_code": 0,
+  "status": "host_checks_passed",
+  "limitations": [
+    "preparation tests, no E1 C implementation or target compilation",
+    "all fixtures synthetic; no serial opened or hardware measurements"
+  ],
+  "review_reference": null,
+  "contract_sha256": "eaa8290cae21c958e4b0beb27cfdc910aeb35987de8d6a75122c766882eb55ae",
+  "task_card_sha256": "1ef017582bcc3b44b35693bfbb1358171c3289148788cb55c4b2363dd480754d",
+  "execution_elapsed_s": 0.5159999999996217,
+  "protection_stopped": false,
+  "task_output_bytes": 300204
+}

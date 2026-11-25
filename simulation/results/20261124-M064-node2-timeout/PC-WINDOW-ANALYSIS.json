@@ -1,0 +1,255 @@
+{
+  "captured_from": "2026-11-24T16:49:12.548366+08:00",
+  "captured_through": "2026-11-24T16:51:10.549246+08:00",
+  "samples": 60,
+  "errors": [],
+  "timestamp_method": "request-start wall clock minus backend receive age; small HTTP RTT uncertainty; no RF packet timestamp available",
+  "nodes": {
+    "90:da:72:48:a4:f8": {
+      "node": 1,
+      "unique_received_frames": 13,
+      "boot_ids": [
+        1639563369
+      ],
+      "seq_first": 40,
+      "seq_last": 52,
+      "observed_seq_span_includes_pre_capture_frame": 13,
+      "max_receive_interval_ms": 10225.904,
+      "rssi_dbm_min_max": [
+        -58,
+        -54
+      ],
+      "gaps": 0
+    },
+    "90:da:72:48:a5:20": {
+      "node": 4,
+      "unique_received_frames": 9,
+      "boot_ids": [
+        282063663
+      ],
+      "seq_first": 35,
+      "seq_last": 47,
+      "observed_seq_span_includes_pre_capture_frame": 13,
+      "max_receive_interval_ms": 30408.311,
+      "rssi_dbm_min_max": [
+        -58,
+        -56
+      ],
+      "gaps": 3
+    },
+    "90:da:72:48:a5:cc": {
+      "node": 2,
+      "unique_received_frames": 13,
+      "boot_ids": [
+        3482894829
+      ],
+      "seq_first": 40,
+      "seq_last": 52,
+      "observed_seq_span_includes_pre_capture_frame": 13,
+      "max_receive_interval_ms": 10242.452,
+      "rssi_dbm_min_max": [
+        -70,
+        -65
+      ],
+      "gaps": 0
+    }
+  },
+  "gaps": [
+    {
+      "node": 4,
+      "mac": "90:da:72:48:a5:20",
+      "boot": 282063663,
+      "from_seq": 38,
+      "to_seq": 40,
+      "missing_receive_sequence_numbers": [
+        39
+      ],
+      "rx_interval_ms": 20265.861,
+      "from_rx_ms": 1795510174279.721,
+      "to_rx_ms": 1795510194545.582,
+      "peer_reports_during_gap": [
+        {
+          "reporter_node": 1,
+          "reporter_seq": 43,
+          "rx_ms": 1795510174439.721,
+          "peer_boot": 282063663,
+          "seen_age_ms": 709,
+          "ack_age_ms": 1985,
+          "wifi_rssi_dbm": -64,
+          "valid": 15
+        },
+        {
+          "reporter_node": 2,
+          "reporter_seq": 43,
+          "rx_ms": 1795510175419.721,
+          "peer_boot": 282063663,
+          "seen_age_ms": 1693,
+          "ack_age_ms": 1773,
+          "wifi_rssi_dbm": -58,
+          "valid": 15
+        },
+        {
+          "reporter_node": 1,
+          "reporter_seq": 44,
+          "rx_ms": 1795510184304.533,
+          "peer_boot": 282063663,
+          "seen_age_ms": 367,
+          "ack_age_ms": 2233,
+          "wifi_rssi_dbm": -63,
+          "valid": 15
+        },
+        {
+          "reporter_node": 2,
+          "reporter_seq": 44,
+          "rx_ms": 1795510185484.533,
+          "peer_boot": 282063663,
+          "seen_age_ms": 1547,
+          "ack_age_ms": 1811,
+          "wifi_rssi_dbm": -58,
+          "valid": 15
+        },
+        {
+          "reporter_node": 1,
+          "reporter_seq": 45,
+          "rx_ms": 1795510194386.582,
+          "peer_boot": 282063663,
+          "seen_age_ms": 1188,
+          "ack_age_ms": 1725,
+          "wifi_rssi_dbm": -63,
+          "valid": 15
+        }
+      ]
+    },
+    {
+      "node": 4,
+      "mac": "90:da:72:48:a5:20",
+      "boot": 282063663,
+      "from_seq": 42,
+      "to_seq": 44,
+      "missing_receive_sequence_numbers": [
+        43
+      ],
+      "rx_interval_ms": 19988.256,
+      "from_rx_ms": 1795510214664.712,
+      "to_rx_ms": 1795510234652.968,
+      "peer_reports_during_gap": [
+        {
+          "reporter_node": 2,
+          "reporter_seq": 47,
+          "rx_ms": 1795510215842.935,
+          "peer_boot": 282063663,
+          "seen_age_ms": 138,
+          "ack_age_ms": 138,
+          "wifi_rssi_dbm": -56,
+          "valid": 15
+        },
+        {
+          "reporter_node": 1,
+          "reporter_seq": 48,
+          "rx_ms": 1795510224368.695,
+          "peer_boot": 282063663,
+          "seen_age_ms": 824,
+          "ack_age_ms": 2062,
+          "wifi_rssi_dbm": -63,
+          "valid": 15
+        },
+        {
+          "reporter_node": 2,
+          "reporter_seq": 48,
+          "rx_ms": 1795510225647.695,
+          "peer_boot": 282063663,
+          "seen_age_ms": 704,
+          "ack_age_ms": 704,
+          "wifi_rssi_dbm": -56,
+          "valid": 15
+        },
+        {
+          "reporter_node": 1,
+          "reporter_seq": 49,
+          "rx_ms": 1795510234441.968,
+          "peer_boot": 282063663,
+          "seen_age_ms": 340,
+          "ack_age_ms": 2253,
+          "wifi_rssi_dbm": -64,
+          "valid": 15
+        }
+      ]
+    },
+    {
+      "node": 4,
+      "mac": "90:da:72:48:a5:20",
+      "boot": 282063663,
+      "from_seq": 44,
+      "to_seq": 47,
+      "missing_receive_sequence_numbers": [
+        45,
+        46
+      ],
+      "rx_interval_ms": 30408.311,
+      "from_rx_ms": 1795510234652.968,
+      "to_rx_ms": 1795510265061.279,
+      "peer_reports_during_gap": [
+        {
+          "reporter_node": 2,
+          "reporter_seq": 49,
+          "rx_ms": 1795510235741.968,
+          "peer_boot": 282063663,
+          "seen_age_ms": 1534,
+          "ack_age_ms": 1534,
+          "wifi_rssi_dbm": -56,
+          "valid": 15
+        },
+        {
+          "reporter_node": 1,
+          "reporter_seq": 50,
+          "rx_ms": 1795510244667.872,
+          "peer_boot": 282063663,
+          "seen_age_ms": 1073,
+          "ack_age_ms": 1129,
+          "wifi_rssi_dbm": -64,
+          "valid": 15
+        },
+        {
+          "reporter_node": 2,
+          "reporter_seq": 50,
+          "rx_ms": 1795510245628.872,
+          "peer_boot": 282063663,
+          "seen_age_ms": 1894,
+          "ack_age_ms": 1894,
+          "wifi_rssi_dbm": -55,
+          "valid": 15
+        },
+        {
+          "reporter_node": 1,
+          "reporter_seq": 51,
+          "rx_ms": 1795510254822.196,
+          "peer_boot": 282063663,
+          "seen_age_ms": 1087,
+          "ack_age_ms": 1087,
+          "wifi_rssi_dbm": -64,
+          "valid": 15
+        },
+        {
+          "reporter_node": 2,
+          "reporter_seq": 51,
+          "rx_ms": 1795510255591.196,
+          "peer_boot": 282063663,
+          "seen_age_ms": 197,
+          "ack_age_ms": 197,
+          "wifi_rssi_dbm": -56,
+          "valid": 15
+        },
+        {
+          "reporter_node": 1,
+          "reporter_seq": 52,
+          "rx_ms": 1795510264641.279,
+          "peer_boot": 282063663,
+          "seen_age_ms": 691,
+          "ack_age_ms": 691,
+          "wifi_rssi_dbm": -63,
+          "valid": 15
+        }
+      ]
+    }
+  ]
+}

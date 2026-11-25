@@ -1,0 +1,10 @@
+"""Audit 20 paired seeds as independent scenario repeats, not packet replicates."""
+import json,math,pathlib,statistics,subprocess,sys
+root=pathlib.Path(sys.argv[1]);out=pathlib.Path(sys.argv[2]);out.mkdir(parents=True,exist_ok=False);auditor=pathlib.Path(__file__).with_name('audit_pair.py');rows=[]
+for seed in range(20):
+ folder=out/f'seed-{seed:02}';cmd=[sys.executable,'-B',str(auditor),str(root/f'seed-{seed:02}-policy-1'),str(root/f'seed-{seed:02}-policy-5'),'--output',str(folder)];r=subprocess.run(cmd,text=True,capture_output=True)
+ if r.returncode:raise RuntimeError(r.stderr)
+ x=json.loads((folder/'comparison.json').read_text());assert x['same_source_hashes'];rows.append({'seed':seed,'base':x['base']['rate'],'candidate':x['candidate']['rate'],'delta':x['paired_rate_difference'],'control_ratio':x['candidate']['control_airtime_us']/x['base']['control_airtime_us'],'worst_destination_delta':x['candidate']['node_rates']['destination']['worst']-x['base']['node_rates']['destination']['worst']});print('seed',seed,'audited',flush=True)
+def summary(v):
+ mu=statistics.mean(v);half=2.093*statistics.stdev(v)/math.sqrt(len(v));return {'mean':mu,'sample_sd':statistics.stdev(v),'t95_low':mu-half,'t95_high':mu+half,'min':min(v),'max':max(v),'n':len(v)}
+x={'status':'passed','scope':'crossing 25m/s compact, 600s, 30 nodes, 1 packet per node-second, 32-byte payload, 20 seeds','rows':rows,'base':summary([z['base'] for z in rows]),'candidate':summary([z['candidate'] for z in rows]),'paired_difference':summary([z['delta'] for z in rows]),'control_ratio':summary([z['control_ratio'] for z in rows]),'worst_destination_delta':summary([z['worst_destination_delta'] for z in rows]),'limits':['Synthetic uncalibrated radio','t interval only describes seed variation for this single modeled scenario','Worst node may differ by policy','Not a physical deployment or user acceptance test']};(out/'summary.json').write_text(json.dumps(x,indent=2));print(json.dumps({k:v for k,v in x.items() if k!='rows'}),flush=True)

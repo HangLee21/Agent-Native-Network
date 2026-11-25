@@ -1,0 +1,92 @@
+{
+  "schema": "mid.validation.AB_plan.v1",
+  "task_id": "E2-016",
+  "status": "prepared_pending_final_E1_package_and_C_readiness",
+  "enabled": false,
+  "physical_serial_owner": "H-005",
+  "requires_new_native_config": true,
+  "native_commands": null,
+  "source_files": {
+    "hardware\\mid_baseline\\BOARD_LABELS_20261106_AB.json": "452c16eadab50c4ef60d0a821dd6be923574a89f276d7b3dbe2637f65b09b0a3",
+    "hardware\\mid_baseline\\BOARD_INVENTORY_20261106_AB.json": "8bbac6619fc21410e1de712628751a0b15aa9f32820eb0927f6c794e3e77be2c"
+  },
+  "binding_snapshot": {
+    "A": {
+      "mac": "90:da:72:48:a4:f8",
+      "port_hint_only": "COM7"
+    },
+    "B": {
+      "mac": "90:da:72:48:a5:cc",
+      "port_hint_only": "COM8"
+    }
+  },
+  "input_freezes": {
+    "H_display": "2d72ee784757d881a6b77108bf886e5e6e0591934c94693d5baee0330e4da9aa",
+    "E1_final": null
+  },
+  "package_sha256": null,
+  "channel": null,
+  "planner_input": "tests\\mid_baseline\\AB_SOCP_INPUT.json",
+  "planner_output_sha256": null,
+  "route_execution_period_ms": 500,
+  "phase_seconds": 8,
+  "RF_run_seconds_max": 24,
+  "RF_run_count_max": 1,
+  "total_user_packets_max": 10,
+  "source_packet_interval_ms": 500,
+  "user_payload_bytes_requested": 16,
+  "flows": [
+    {
+      "flow_id": "AB",
+      "source": "90:da:72:48:a4:f8",
+      "destination": "90:da:72:48:a5:cc",
+      "count": 5
+    },
+    {
+      "flow_id": "BA",
+      "source": "90:da:72:48:a5:cc",
+      "destination": "90:da:72:48:a4:f8",
+      "count": 5
+    }
+  ],
+  "phases": [
+    "capture boot/info/stats and frozen plan context before starting traffic",
+    "A to B five numbered packets; wait/drain within eight-second phase",
+    "B to A five numbered packets; wait/drain within eight-second phase",
+    "stop both; confirm bounded completion and drain; save raw logs and independent display snapshots"
+  ],
+  "required_gates": [
+    "H rechecks physical MAC/USB association; port hints never identity",
+    "H handles B required backup and package readiness, without E2 port access",
+    "E1 final package exact hash and build_id includes H six production file hashes",
+    "E1 actual parsed CLI/native event schema and E2 provenance-preserving adapter frozen",
+    "C device readiness review has no blocking item",
+    "H remaining six-run/six-minute budget includes all preceding RF usage; no reset",
+    "fixed common channel and final Planner input/output identities saved",
+    "actual capture windows, both logger boots, endpoint counters/overflow and stop state saved"
+  ],
+  "acceptance": {
+    "endpoints": "count five unique identities each direction using destination logs; preserve all missing/duplicate/error observations",
+    "source_display": "queued/submitted/link result allowed; destination remains UNCONFIRMED in MID even if link succeeds",
+    "destination_display": "local RX only for own MAC and correct flow; relay/duplicate distinguished",
+    "MAC_callback": "separate from delivery, no PDR inference",
+    "RTT": null,
+    "RTT_reason": "no baseline correlated endpoint ACK",
+    "control_bytes": "application submitted bytes only; not RF retries or PHY airtime",
+    "route": "Planner output applied at periodic epoch; no software forced hop or masked direct link",
+    "display": "E1 help matches actual CLI, unknown labels remain ? until binding; start/READY not pixel verification"
+  },
+  "abort_conditions": [
+    "identity/build/config mismatch",
+    "stop unconfirmed or capture incomplete",
+    "missing required board or C/package dependency"
+  ],
+  "scope_limits": [
+    "No new ACK/retransmission/timeout protocol for display",
+    "No C-E boards or five-board performance claim",
+    "No coverage/mesh gain from two directly reachable boards",
+    "H invokes physical actions only after gates; E2 does not execute this semantic plan"
+  ],
+  "planner_input_sha256": "2d7cc1877cd453d7d05c6d1e01fd606c6419089f6950491c31ae3bcaefdb5980",
+  "planner_input_scope": "Checkpoint1 Planner schema only; E1 must validate against final frozen parser and save actual solver output/hash. E2 has not solved this input."
+}

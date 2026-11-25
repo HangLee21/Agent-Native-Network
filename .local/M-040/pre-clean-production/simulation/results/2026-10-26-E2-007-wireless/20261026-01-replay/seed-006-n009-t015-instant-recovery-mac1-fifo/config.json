@@ -1,0 +1,13 @@
+{
+  "case_id": "seed-006-n009-t015-instant-recovery-mac1-fifo",
+  "source_case": "seed-006-n009-t015-instant-recovery",
+  "task_seed": 6,
+  "agents": 9,
+  "tasks": 15,
+  "mac_seed": 1,
+  "policy": "fifo",
+  "messages_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-26-E1-006-execution\\20261026-03-scale\\seed-006-n009-t015-instant-recovery\\messages.json.gz",
+  "messages_sha256": "9938814c9d8d0d486eb4b561a83853459dbe2c34c2be19fba6ec680eed27dae4",
+  "reference_result_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-26-E1-006-execution\\20261026-03-scale\\seed-006-n009-t015-instant-recovery\\result.json",
+  "reference_result_sha256": "1e41c3e58eedb26e18425510ddf9e4b221a79854ba1fb33b1c4320a679b7ef87"
+}

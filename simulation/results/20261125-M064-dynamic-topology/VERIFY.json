@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-25T17:49:46.917322+08:00",
+  "all_indexed_files_match": true,
+  "counts": {
+    "raw": 24,
+    "result": 7,
+    "source": 14,
+    "built": 109
+  },
+  "index_sha256": "6ecff05ca378ad0572878b48de44e3a5dc40b90a1d25839a1f75a008bef6dacf"
+}

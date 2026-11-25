@@ -1,0 +1,15 @@
+{
+  "schema": "mid.replacement.display.sources.v1",
+  "capture_index": "simulation/outputs/H-006/20261107-final-capture/RUN_INDEX.json",
+  "capture_summary": "simulation/outputs/H-006/20261107-final-capture/result.json",
+  "analyses": [
+    "simulation/outputs/E2-017/20261107-09-pair01-audit/fixed.paired.json",
+    "simulation/outputs/E2-017/20261107-09-pair01-audit/replan.paired.json",
+    "simulation/outputs/E2-017/20261107-11-pairs02-04/pair02-fixed.json",
+    "simulation/outputs/E2-017/20261107-11-pairs02-04/pair02-replan.json",
+    "simulation/outputs/E2-017/20261107-11-pairs02-04/pair03-fixed.json",
+    "simulation/outputs/E2-017/20261107-11-pairs02-04/pair03-replan.json",
+    "simulation/outputs/E2-017/20261107-11-pairs02-04/pair04-fixed.json",
+    "simulation/outputs/E2-017/20261107-11-pairs02-04/pair04-replan.json"
+  ]
+}

@@ -1,0 +1,3 @@
+# Bitmap plus lower forwarding budget, exploratory
+
+Same bounded adaptive bitmap source as `../bitmap` plus policy bit 16: when the local duplicate-pressure detector is active, forward at most 4 unique RREQ per second instead of 8. Policy 5 is adaptive baseline without bitmap, policy 13 adds bitmap with cap 8, and policy 29 adds bitmap with cap 4. This is a sensitivity/ablation of one local cap, not a proven congestion controller or a paper reproduction. Fixed windows can starve flows. All three variants use identical code, memory struct, offered traffic and simulated PHY. Test control airtime, delivery, worst nodes and queue overflow, not just table overflow.

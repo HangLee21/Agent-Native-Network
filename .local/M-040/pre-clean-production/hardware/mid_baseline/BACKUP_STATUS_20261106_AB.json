@@ -1,0 +1,35 @@
+{
+  "B": {
+    "status": "B_complete_private_backup_verified",
+    "source_mac": "90:da:72:48:a5:cc",
+    "bytes": 4194304,
+    "sha256": "753a2e4ce0b6bdddf08468a28bbbdab533a9b948f2bfac9d62a78670222c4141",
+    "host_md5": "5a230ecbb2fdad2272e050f98df08755",
+    "device_md5": "5a230ecbb2fdad2272e050f98df08755",
+    "device_md5_matched": true,
+    "parts": 4,
+    "baud": 230400,
+    "prior_device_seconds": 12.607,
+    "segment_supervisor_seconds": [
+      52.78100000000268,
+      52.79700000000594,
+      52.54700000000594,
+      62.328999999997905
+    ],
+    "cumulative_device_seconds": 233.06100000001246,
+    "device_budget_seconds": 900,
+    "flash_writes": 0,
+    "efuse_writes": 0,
+    "RF_test_runs": 0,
+    "all_ports_closed": true,
+    "last_state": "normal_reset_requested_application_unverified",
+    "application_verified": false,
+    "original_binary_private_only": true
+  },
+  "A": {
+    "status": "Prior complete H-004 private backup retained",
+    "manifest": "simulation/outputs/H-004/20261106-05-backup-460800/backup_manifest.json",
+    "sha256": "71b85891c556de0c510498deb6dce1ab8f1209415113dd23c7493cacc86b5c23"
+  },
+  "note": "New sidecar; frozen AB input/display inventory not rewritten."
+}

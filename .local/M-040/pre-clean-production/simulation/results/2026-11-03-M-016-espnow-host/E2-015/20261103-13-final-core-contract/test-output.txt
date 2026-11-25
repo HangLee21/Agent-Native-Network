@@ -1,0 +1,25 @@
+test_100_sequential_live_duplicate_replay (test_core.RealCoreTests.test_100_sequential_live_duplicate_replay) ... ok
+test_actual_host_arm_expiry_does_not_leave_radio_active (test_core.RealCoreTests.test_actual_host_arm_expiry_does_not_leave_radio_active) ... ok
+test_actual_host_positive_arm_bench_and_stop (test_core.RealCoreTests.test_actual_host_positive_arm_bench_and_stop) ... ok
+test_actual_host_serial_interlock_and_line_recovery (test_core.RealCoreTests.test_actual_host_serial_interlock_and_line_recovery) ... ok
+test_actual_log_fixture (test_core.RealCoreTests.test_actual_log_fixture) ... ok
+test_alternate_path (test_core.RealCoreTests.test_alternate_path) ... ok
+test_cancellation (test_core.RealCoreTests.test_cancellation) ... ok
+test_cancelled_locally_queued_data_is_not_sent (test_core.RealCoreTests.test_cancelled_locally_queued_data_is_not_sent) ... ok
+test_duplicate_data_and_ack_loss (test_core.RealCoreTests.test_duplicate_data_and_ack_loss) ... ok
+test_expiry_before_delivery (test_core.RealCoreTests.test_expiry_before_delivery) ... ok
+test_independent_wire_and_C_encode_match (test_core.RealCoreTests.test_independent_wire_and_C_encode_match) ... ok
+test_late_ack_after_cancel_does_not_rollback_effect (test_core.RealCoreTests.test_late_ack_after_cancel_does_not_rollback_effect) ... ok
+test_late_ack_cannot_confirm_expired_work (test_core.RealCoreTests.test_late_ack_cannot_confirm_expired_work) ... ok
+test_late_rrep_cannot_underflow_deadline (test_core.RealCoreTests.test_late_rrep_cannot_underflow_deadline) ... ok
+test_normal_actual_multihop (test_core.RealCoreTests.test_normal_actual_multihop) ... ok
+test_outbound_and_event_queues_are_bounded (test_core.RealCoreTests.test_outbound_and_event_queues_are_bounded) ... ok
+test_partition (test_core.RealCoreTests.test_partition) ... ok
+test_queue_pending_limits (test_core.RealCoreTests.test_queue_pending_limits) ... ok
+test_source_and_relay_reboot (test_core.RealCoreTests.test_source_and_relay_reboot) ... ok
+test_state_latest_value_and_expiry (test_core.RealCoreTests.test_state_latest_value_and_expiry) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 5.292s
+
+OK

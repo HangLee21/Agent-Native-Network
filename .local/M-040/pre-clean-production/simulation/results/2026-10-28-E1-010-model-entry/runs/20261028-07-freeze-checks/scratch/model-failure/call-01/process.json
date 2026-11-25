@@ -1,0 +1,1 @@
+{"command":["unused-python","-B","unused-worker","--spec","D:\\Multi-Agent Network\\simulation\\outputs\\E1-010\\20261028-07-freeze-checks\\scratch\\model-failure\\call-01\\spec.json","--result","D:\\Multi-Agent Network\\simulation\\outputs\\E1-010\\20261028-07-freeze-checks\\scratch\\model-failure\\call-01\\result.json"],"exit_code":7,"timed_out":false,"wall_seconds":0.0}

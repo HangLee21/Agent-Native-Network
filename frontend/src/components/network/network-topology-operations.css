@@ -1,0 +1,36 @@
+/* High-contrast evidence, not an upgrade of legacy samples to current connectivity. */
+/* Allow long/translated legends to wrap inside the fixed-height desktop panel. */
+.topology .graph-canvas{min-height:440px}
+.topology .edge-line{stroke:#63bafa;stroke-width:2.8;opacity:.88;vector-effect:non-scaling-stroke}
+.topology .edge.fresh .edge-line{stroke:#63bafa;stroke-dasharray:none}
+.topology .edge.impaired .edge-line{stroke:#efbb55;stroke-dasharray:6 6;opacity:.7}
+.topology .component-boundary{fill:color-mix(in srgb,var(--accent) 2%,transparent);stroke:var(--border);stroke-width:1;stroke-dasharray:5 8;pointer-events:none}
+.topology .component-label{fill:var(--text-dim);font:11px var(--font-ui);pointer-events:none}
+.topology .graph-node{transition:transform .45s ease}
+.topology .observer-note{font-size:11px;color:var(--warn);padding:0 20px 8px;margin:0}
+.topology .edge.muted .edge-line{opacity:.7;stroke-width:2.4}
+.topology .edge.focused .edge-line{stroke-width:4;opacity:1}
+.topology .edge.picked .edge-line,.topology .edge:focus-visible .edge-line,.topology .edge:hover .edge-line{stroke-width:5;opacity:1;filter:drop-shadow(0 0 3px #dba33b60)}
+.topology .node-body{stroke-width:2.6;filter:drop-shadow(0 2px 5px #0003)}
+.topology .graph-node.dimmed{opacity:.9}
+.topology .graph-node.stale,.topology .graph-node.unknown,.topology .graph-node.interrupted{opacity:1}
+.topology .graph-node.stale .node-body{stroke:#fb748c;fill:color-mix(in srgb,#d94965 23%,var(--panel));stroke-width:4}
+.topology .graph-node.unknown .node-body{stroke:#efbb55;fill:color-mix(in srgb,#c59735 20%,var(--panel));stroke-dasharray:5 3;stroke-width:3}
+.topology .graph-node.interrupted .node-body{stroke:#f69c63;stroke-width:3;stroke-dasharray:7 3}
+.topology .graph-node.stale .node-status{fill:#fb748c}.topology .graph-node.unknown .node-status{fill:#efbb55}
+.topology .graph-node.interrupted .node-status{fill:#f69c63}
+.topology .node-label{font-size:15px;font-weight:750;fill:var(--text);paint-order:stroke;stroke:var(--panel);stroke-width:5;stroke-linejoin:round}
+.topology .node-meta{font-size:11px;fill:var(--text-dim);paint-order:stroke;stroke:var(--panel);stroke-width:4}
+.topology .node-state-caption{pointer-events:none}
+.topology .node-state-caption rect{fill:var(--panel);stroke:var(--accent);stroke-width:1}
+.topology .node-state-caption text{fill:var(--accent);font:700 11px var(--font-ui)}
+.topology .stale .node-state-caption rect{stroke:#fb748c;fill:color-mix(in srgb,#d94965 16%,var(--panel))}.topology .stale .node-state-caption text{fill:#fb748c}
+.topology .unknown .node-state-caption rect{stroke:#efbb55}.topology .unknown .node-state-caption text{fill:#efbb55}
+.topology .interrupted .node-state-caption rect{stroke:#f69c63}.topology .interrupted .node-state-caption text{fill:#f69c63}
+.topology .selected .selection-ring{stroke:var(--accent);stroke-width:3;opacity:1;stroke-dasharray:none}
+.topology .legend{font-size:11px;flex-wrap:wrap;gap:9px 14px;padding-bottom:8px}
+.topology .legend i{display:inline-block;width:23px;height:0;border-radius:0;background:none;opacity:1;border-top:3px solid #63bafa}
+.topology .legend .impaired-key{border-color:#efbb55;border-top-style:dashed}
+.topology .legend .hidden-key{width:auto;border:0;color:var(--text-dim);font-style:normal}
+.topology .link-recency-note{font-size:11px;line-height:1.6;color:var(--text-dim);margin:0;padding:0 20px 12px}
+@media(max-width:900px){.topology .graph-canvas{min-height:440px}}

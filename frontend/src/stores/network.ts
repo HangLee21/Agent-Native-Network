@@ -2,6 +2,7 @@ import { computed, ref, shallowRef, watch } from 'vue'
 import { defineStore } from 'pinia'
 import { loadNetworkConfig, NetworkClient } from '@/network/api'
 import { nodeState } from '@/network/model'
+import type { EngineeringStatus } from '@/network/legacy'
 import { defaultNetworkConfig, parseNetworkConfig, savedConnections, saveConnections, validateProfile } from '@/network/config'
 import type { ConnectionMode, ConnectionProfile, MockScenario, NetworkCapabilities, NetworkConfig, NetworkNode, NetworkSnapshot, NodeTag, ReplayData, ReplaySummary, Workspace } from '@/network/types'
 
@@ -28,16 +29,21 @@ export const useNetworkStore = defineStore('network', () => {
     try { localStorage.setItem(tagKey.value, JSON.stringify(tags.value)) } catch { /* optional */ }
   }
   const capabilities = shallowRef<NetworkCapabilities | null>(null)
+  const engineeringStatus = shallowRef<EngineeringStatus | null>(null)
   const status = ref<'connecting' | 'online' | 'error' | 'disabled'>('connecting')
   const error = ref('')
   const paused = ref(false)
   const busy = ref(false)
   const mode = ref<'live' | 'replay'>('live')
+  const observationLayer = ref<'lora' | 'wifi'>('lora')
   const clock = ref(Date.now())
   const receivedAt = ref(0)
   const sessions = ref<ReplaySummary[]>([])
   const replay = shallowRef<ReplayData | null>(null)
   const frame = ref(0)
+  const replayTotal = computed(() => replay.value?.total ?? replay.value?.frames.length ?? 0)
+  let seekSequence = 0
+  let playbackSequence = 0
   const playing = ref(false)
   const speed = ref(1)
   const recording = ref<string | null>(null)
@@ -58,7 +64,16 @@ export const useNetworkStore = defineStore('network', () => {
   const message = (e: unknown) => e instanceof Error ? e.message : 'NETWORK_REQUEST_FAILED'
   function cancelRequest() { generation++; pending?.abort(); pending = null; refreshing = false; busy.value = false; clearTimeout(polling) }
   function schedule() { clearTimeout(polling); if (canPoll()) polling = setTimeout(() => void refresh(), 2000) }
-  function stopPlayback() { clearTimeout(playback); playing.value = false }
+  function stopPlayback() { clearTimeout(playback); playing.value = false; playbackSequence++ }
+  function syncEngineering() {
+    if (!client?.engineering) return
+    engineeringStatus.value = { ...client.engineering.state }
+    if (client.engineering.state.available) { capabilities.value = client.engineering.capabilities(); recording.value = client.engineering.state.recordingId }
+  }
+  async function readEvidence(after = 0, signal?: AbortSignal) {
+    if (!active || !client || mode.value !== 'live' || paused.value || document.hidden) throw new Error('BASELINE_EVIDENCE_LIVE_ONLY')
+    return client.evidence(after, signal)
+  }
 
   async function refresh(): Promise<void> {
     if (!canPoll() || refreshing) return
@@ -67,11 +82,11 @@ export const useNetworkStore = defineStore('network', () => {
     pending = controller; refreshing = true
     const timeout = setTimeout(() => controller.abort(), 6000)
     try {
-      const value = await client!.snapshot(controller.signal)
+      const value = observationLayer.value === 'wifi' ? await client!.wifiSnapshot(controller.signal) : await client!.snapshot(controller.signal)
       if (ticket !== generation || !active) return
       const old = snapshot.value
       if (old && old.instanceId === value.instanceId && old.sourceId === value.sourceId && value.epoch < old.epoch) throw new Error('NETWORK_EPOCH_REGRESSION')
-      snapshot.value = value; receivedAt.value = Date.now(); clock.value = receivedAt.value
+      snapshot.value = value; receivedAt.value = Date.now(); clock.value = receivedAt.value; syncEngineering()
       status.value = 'online'; error.value = ''
     } catch (e) {
       if (ticket === generation && active) { status.value = 'error'; error.value = message(e) }
@@ -85,15 +100,15 @@ export const useNetworkStore = defineStore('network', () => {
     try {
       if (!client) return
       const result = await client.sessions()
-      if (active && ticket === generation) sessions.value = result
+      if (active && ticket === generation) { sessions.value = result; syncEngineering() }
     } catch (e) { if (active && ticket === generation) error.value = message(e) }
   }
   async function start(target: Workspace = 'real', override?: NetworkConfig) {
     if (active && workspace.value === target) return
     if (active) stop()
     workspace.value = target
-    active = true; paused.value = false; mode.value = 'live'; status.value = 'connecting'; error.value = ''
-    busy.value = false; client = null; snapshot.value = null; capabilities.value = null; sessions.value = []; replay.value = null; recording.value = null; receivedAt.value = 0
+    active = true; paused.value = false; mode.value = 'live'; observationLayer.value = 'lora'; status.value = 'connecting'; error.value = ''
+    busy.value = false; client = null; snapshot.value = null; capabilities.value = null; engineeringStatus.value = null; sessions.value = []; replay.value = null; recording.value = null; receivedAt.value = 0
     document.addEventListener('visibilitychange', visibility)
     ticking = setInterval(() => { if (!document.hidden) clock.value = Date.now() }, 1000)
     const ticket = ++generation
@@ -104,7 +119,7 @@ export const useNetworkStore = defineStore('network', () => {
       configuration.value = config
       if (!config.enabled) { status.value = 'disabled'; return }
       const selectedProfile = config.profiles[config.mode]
-      const candidate = new NetworkClient(selectedProfile.apiBaseUrl, { workspace: target, mode: config.mode, protocol: selectedProfile.protocol, gatewayRelayPath: config.gatewayRelayPath })
+      const candidate = new NetworkClient(selectedProfile.apiBaseUrl, { workspace: target, mode: config.mode, protocol: selectedProfile.protocol, gatewayRelayPath: config.gatewayRelayPath, engineeringRelayPath: config.engineeringRelayPath })
       const controller = new AbortController()
       pending = controller
       const timeout = setTimeout(() => controller.abort(), 6000)
@@ -121,7 +136,7 @@ export const useNetworkStore = defineStore('network', () => {
     document.removeEventListener('visibilitychange', visibility)
   }
   function disconnect() {
-    stop(); client = null; snapshot.value = null; capabilities.value = null; sessions.value = []; replay.value = null
+    stop(); client = null; snapshot.value = null; capabilities.value = null; engineeringStatus.value = null; sessions.value = []; replay.value = null
     recording.value = null; mode.value = 'live'; status.value = 'disabled'; paused.value = false; error.value = ''
     configuration.value = { ...configuration.value, enabled: false }
   }
@@ -165,6 +180,11 @@ export const useNetworkStore = defineStore('network', () => {
     } catch (e) { if (active && ticket === generation) { error.value = message(e); status.value = 'error' } }
     finally { if (ticket === generation) { busy.value = false; schedule() } }
   }
+  async function selectObservationLayer(layer: 'lora' | 'wifi') {
+    if (!active || !client || !capabilities.value?.engineering || busy.value || mode.value !== 'live' || layer === observationLayer.value) return
+    cancelRequest(); stopPlayback(); observationLayer.value = layer; snapshot.value = null; paused.value = false; status.value = 'connecting'; error.value = ''
+    await refresh()
+  }
   function selectSource(id: string) {
     if (!capabilities.value?.sourceSelection) return Promise.resolve()
     return mutate(() => client!.selectSource(id))
@@ -186,24 +206,50 @@ export const useNetworkStore = defineStore('network', () => {
     } catch (e) { if (active && ticket === generation) { error.value = message(e); schedule() } }
     finally { if (ticket === generation) busy.value = false }
   }
-  function seek(index: number, duringPlayback = false) {
-    if (!replay.value?.frames.length) return
+  async function seek(index: number, duringPlayback = false) {
+    if (!replay.value?.frames.length || !Number.isFinite(index)) return
     if (!duringPlayback) stopPlayback()
-    frame.value = Math.max(0, Math.min(replay.value.frames.length - 1, Math.round(index)))
-    snapshot.value = replay.value.frames[frame.value]!
+    const target = Math.max(0, Math.min(replayTotal.value - 1, Math.round(index)))
+    const offset = replay.value.offset ?? 0
+    if (target >= offset && target < offset + replay.value.frames.length) {
+      frame.value = target; snapshot.value = replay.value.frames[target - offset]!; return
+    }
+    if (!replay.value.paginated || !client) return
+    const ticket = generation, sequence = ++seekSequence, id = replay.value.id
+    busy.value = true
+    try {
+      const result = await client.replay(id, Math.floor(target / 25) * 25)
+      if (!active || ticket !== generation || sequence !== seekSequence || mode.value !== 'replay' || replay.value?.id !== id) return
+      const next = result.frames[target - (result.offset ?? 0)]
+      if (!next) throw new Error('NETWORK_REPLAY_FRAME_UNAVAILABLE')
+      replay.value = result; frame.value = target; snapshot.value = next; error.value = ''
+    } catch (e) { if (active && ticket === generation && sequence === seekSequence) { error.value = message(e); stopPlayback() } }
+    finally { if (ticket === generation && sequence === seekSequence) busy.value = false }
   }
-  function play() {
+  async function play() {
     if (playing.value) { stopPlayback(); return }
-    if (!replay.value?.frames.length || mode.value !== 'replay') return
-    if (frame.value >= replay.value.frames.length - 1) seek(0)
-    playing.value = true
-    schedulePlayback()
+    if (!replay.value?.frames.length || mode.value !== 'replay' || busy.value) return
+    const ticket = generation
+    if (frame.value >= replayTotal.value - 1) await seek(0)
+    if (!active || ticket !== generation || mode.value !== 'replay' || error.value) return
+    playing.value = true; void schedulePlayback()
   }
-  function schedulePlayback() {
-    const frames = replay.value?.frames, current = frames?.[frame.value], next = frames?.[frame.value + 1]
-    if (!playing.value || !current || !next) { stopPlayback(); return }
-    // Preserve captured timing: a 2-second observation interval is 2 seconds at 1x, not 1 second.
-    playback = setTimeout(() => { seek(frame.value + 1, true); schedulePlayback() }, Math.max(16, next.observedAt - current.observedAt) / speed.value)
+  async function schedulePlayback() {
+    const data = replay.value, ticket = generation, sequence = playbackSequence, started = Date.now(), index = frame.value
+    const current = data?.frames[index - (data.offset ?? 0)]
+    let next = data?.frames[index + 1 - (data.offset ?? 0)], page: ReplayData | undefined
+    if (!playing.value || !data || !current || index >= replayTotal.value - 1) { stopPlayback(); return }
+    try {
+      if (!next && data.paginated && client) { page = await client.replay(data.id, index + 1); next = page.frames[0] }
+      if (!playing.value || !active || ticket !== generation || sequence !== playbackSequence || mode.value !== 'replay') return
+      if (!next || next.observedAt < current.observedAt) throw new Error('NETWORK_REPLAY_ORDER_INVALID')
+      const delay = Math.max(16, (next.observedAt - current.observedAt) / speed.value - (Date.now() - started))
+      playback = setTimeout(() => {
+        if (page) replay.value = page
+        void seek(index + 1, true)
+        if (index + 1 >= replayTotal.value - 1) stopPlayback(); else void schedulePlayback()
+      }, delay)
+    } catch (e) { if (active && ticket === generation && sequence === playbackSequence) { error.value = message(e); stopPlayback() } }
   }
   function setSpeed(value: number) {
     speed.value = [1, 2, 4].includes(value) ? value : 1
@@ -214,7 +260,7 @@ export const useNetworkStore = defineStore('network', () => {
     status.value = 'connecting'; await refresh()
   }
   async function toggleRecording() {
-    if (!client || !capabilities.value?.recording || busy.value || mode.value !== 'live') return
+    if (!client || !capabilities.value?.recording || busy.value || mode.value !== 'live' || (observationLayer.value !== 'lora' && !recording.value)) return
     busy.value = true
     const ticket = generation
     try { const r = await client.record(recording.value ? 'stop' : 'start'); if (active && ticket === generation) { recording.value = r.id; await loadSessions() } }
@@ -226,6 +272,6 @@ export const useNetworkStore = defineStore('network', () => {
     else { paused.value = false; await refresh() }
   }
   return { workspace, configuration, profile, connectionKey, displaySnapshot, tagOf, setTag, connect, disconnect, selectConnectionMode,
-    snapshot, capabilities, status, error, paused, busy, mode, now, receivedAt, interrupted, recent, sessions, replay, frame, playing, speed, recording,
-    start, stop, refresh, retry, togglePause, selectSource, setScenario, loadSessions, openReplay, seek, play, setSpeed, goLive, toggleRecording }
+    snapshot, capabilities, engineeringStatus, readEvidence, status, error, paused, busy, mode, now, receivedAt, interrupted, recent, sessions, replay, replayTotal, frame, playing, speed, recording,
+    observationLayer, selectObservationLayer, start, stop, refresh, retry, togglePause, selectSource, setScenario, loadSessions, openReplay, seek, play, setSpeed, goLive, toggleRecording }
 })

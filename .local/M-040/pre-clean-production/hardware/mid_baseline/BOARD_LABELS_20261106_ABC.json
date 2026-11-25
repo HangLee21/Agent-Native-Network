@@ -1,0 +1,14 @@
+{
+  "schema": "mid.board.labels.v1",
+  "bindings": {
+    "A": "90:da:72:48:a4:f8",
+    "B": "90:da:72:48:a5:cc",
+    "C": "90:da:72:48:a4:e0",
+    "D": null,
+    "E": null
+  },
+  "inventory_source": "hardware/mid_baseline/BOARD_INVENTORY_20261106_ABC.json",
+  "inventory_sha256": "a3498aa190939d98b6992ddda9801056ccc792ec4ee601ee29a2ad1fd1477fe7",
+  "source": "ROM reads after user connected ABC; no COM-order identity assignment",
+  "note": "Immutable labels for offline planner; actual publisher boot remains runtime info, not ROM metadata."
+}

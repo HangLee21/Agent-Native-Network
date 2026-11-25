@@ -1,0 +1,31 @@
+[Unit]
+Description=MID single-board local application on %I
+BindsTo=dev-%i.device
+After=dev-%i.device
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=mid-edge
+Group=mid-edge
+WorkingDirectory=/opt/mid-edge
+ExecStart=/usr/bin/python3 -m tools.mid_edge.linux_service --config /etc/mid-edge/config.json --device /dev/%I
+Environment=PYTHONDONTWRITEBYTECODE=1
+Restart=on-failure
+RestartPreventExitStatus=78
+RestartSec=5
+TimeoutStopSec=15
+StateDirectory=mid-edge
+RuntimeDirectory=mid-edge
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+ReadWritePaths=/var/lib/mid-edge
+DevicePolicy=closed
+DeviceAllow=/dev/%I rw
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6

@@ -1,0 +1,6 @@
+test_completed_C_v4_sources_and_context_hash_survive_analysis (test_capture_context.ImmutableCaptureContextTests.test_completed_C_v4_sources_and_context_hash_survive_analysis) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.026s
+
+OK

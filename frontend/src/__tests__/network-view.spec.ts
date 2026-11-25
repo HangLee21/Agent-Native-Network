@@ -51,13 +51,27 @@ describe('shared platform and standalone network view', () => {
     expect(wrapper.find('.connection-state').classes()).toContain('neutral')
     expect(wrapper.findAll('[data-node]')).toHaveLength(0)
   })
-  it('defaults to GPS with a visible layout summary, north arrow and scale', () => {
+  it('defaults to a clear logical layout so unlocated and missing members stay visible', () => {
     wrapper = mountView()
-    expect(wrapper.find('.segmented button').text()).toContain('GPS 布局')
-    expect(wrapper.find('.segmented button').attributes('aria-pressed')).toBe('true')
-    expect(wrapper.find('[data-test="gps-summary"]').text()).toContain('5 / 6 GPS')
+    expect(wrapper.find('.segmented button.active').text()).toContain('清晰布局')
+    expect(wrapper.find('.segmented button.active').attributes('aria-pressed')).toBe('true')
+    expect(wrapper.find('[data-test="gps-summary"]').exists()).toBe(false)
+    expect(wrapper.findAll('[data-node]')).toHaveLength(5) // observation gateway is opt-in, never a mesh shortcut
+  })
+  it('retains explicit GPS layout with a north arrow, scale and unlocated exclusion', async () => {
+    wrapper = mountView(); await wrapper.findAll('.segmented button').find(b => b.text().includes('GPS 布局'))!.trigger('click')
+    expect(wrapper.find('[data-test="gps-summary"]').text()).toContain('4 / 5 GPS')
     expect(wrapper.find('[data-test="gps-map-guide"]').exists()).toBe(true)
-    expect(wrapper.findAll('[data-node]')).toHaveLength(5)
+    expect(wrapper.findAll('[data-node]')).toHaveLength(4)
+  })
+  it('makes report timeout and never-observed inventory separate, visible alerts', () => {
+    network.snapshot = makeSnapshot({ scenario: 'stale' }); const absent = network.snapshot!.nodes.find(n => n.role !== 'gateway')!
+    absent.reportedAt = null; absent.registration = 'fleet'; wrapper = mountView()
+    expect(wrapper.find('[data-test="network-alerts"]').text()).toContain('已登记 · 未收到报告')
+    expect(wrapper.find('[data-test="network-alerts"]').text()).toContain('报告超时')
+    expect(wrapper.findAll('.graph-node.unknown')).toHaveLength(1)
+    expect(wrapper.findAll('.graph-node.stale').length).toBeGreaterThan(0)
+    expect(wrapper.find('[data-test="network-relations"]').exists()).toBe(true)
   })
   it('lets an operator tag a NODE without changing its name, identity or flight binding', async () => {
     wrapper = mountView(); await wrapper.find('[data-list-node="02:00:00:01:00:02"]').trigger('click')

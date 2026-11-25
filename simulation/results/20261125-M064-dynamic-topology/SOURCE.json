@@ -1,0 +1,49 @@
+{
+  "task": "M-064",
+  "phase": "dynamic-topology per user17:20 request; supersedes multi-color persistent historical main graph",
+  "raw_run": "D:\\Multi-Agent Network\\simulation\\outputs\\M-064\\20261125-172051-dynamic-topology",
+  "initial_manifest_sha256": "77c69b30fef59292ae6237b4c1f48aa7c260e56cdbcefa45d6bef44f6201a51a",
+  "git_start": "8ddec3fd0fa7d7aba190a78b6dcbea6c1ca26e20",
+  "git_end": "756bb16460d054e54499657718aac109c93f31ae",
+  "git_write_operations": 0,
+  "modified_paths": [
+    "frontend/src/components/network/NetworkTopology.vue",
+    "frontend/src/components/network/NetworkRelations.vue",
+    "frontend/src/components/network/network-topology-operations.css",
+    "frontend/src/views/NetworkView.vue",
+    "frontend/src/i18n/en/network.ts",
+    "frontend/src/__tests__/network-link-evidence.spec.ts",
+    "frontend/src/__tests__/network-view.spec.ts",
+    "frontend/src/network/topology.ts",
+    "frontend/src/__tests__/network-dynamic-topology.spec.ts"
+  ],
+  "source_sha256": {
+    "frontend/src/components/network/NetworkTopology.vue": "b961d717c0e9406a132c98e17444019a71b7aa351571f63c0ea03f6510b58cdb",
+    "frontend/src/components/network/NetworkRelations.vue": "e1d8dc73a72c6856b100e18082d4566c0c6227f16334ba152a9b3503243617a3",
+    "frontend/src/components/network/network-topology-operations.css": "7ed3a1f1affaef7ce0afcaecfd5a6223a8d9d2fd84acbb029662022b2e857134",
+    "frontend/src/network/model.ts": "3c0bc38ab19f209225d19debb113ea18bf12e23f65a51d1d469a5f3cd234b596",
+    "frontend/src/network/types.ts": "a8224e0a095826b718b12e18c39a5715e1184266f13d48599589fba9b7b6d946",
+    "frontend/src/network/gateway.ts": "09dfbf337a57bb3044c5ee2d19f4a9b596aca850b97a4450a66fe12b38007f9a",
+    "frontend/src/network/native.ts": "8eec1fa353dadb5e50dd4deb3d4bc515cd2d7de6038fd4268629aace62f830ab",
+    "frontend/src/network/presentation.ts": "8301963910240e1850e3f1b758e3c6c417a68ca7bc9280c534db4773849d5496",
+    "frontend/src/views/NetworkView.vue": "d374a71611ad569c8725f9c0b217499fb57c9cc9865d2241e4bc4f97a6ed3bb3",
+    "frontend/src/i18n/en/network.ts": "81251beb51352a4408bb0f4a01a577ad15da8231588f20e809d1fdfbd0b5b25a",
+    "frontend/src/__tests__/network-link-evidence.spec.ts": "d5c41f42ac64cd561f77189321d45b81c3bf85a13e34d148a48137a6d9ee0915",
+    "frontend/src/__tests__/network-view.spec.ts": "b26500cae5f00c8f1889e1b28681a0d738a8e32299cb6e5915af055bfa0c2c8f",
+    "frontend/src/network/topology.ts": "550d98daa586a83b2d049be953a7667b2ebddabb416910ed7996b4c82695296e",
+    "frontend/src/__tests__/network-dynamic-topology.spec.ts": "b21b1582f9e971d19ed1a45bd3f085960894874fd0d03942c468bfc3838f8f86"
+  },
+  "frontend_only": true,
+  "raw_model_ttl_and_provenance_unchanged": true,
+  "lost_or_missing": "immediate hide direction, merge reciprocal only from actually fresh directions",
+  "soft_failure_grace_ms": 10000,
+  "grace_is_display_policy_not_radio_ttl": true,
+  "layout_inputs": "fresh Wi-Fi pairs only, not failed/historical/LoRa uplinks",
+  "default": "mesh peers only, optional gateway uplinks separate from grouping",
+  "retained_user_service_owners": {
+    "10518": 19772,
+    "8780": 18504,
+    "8794": 45312
+  },
+  "diagnostic_servers_retained": 0
+}

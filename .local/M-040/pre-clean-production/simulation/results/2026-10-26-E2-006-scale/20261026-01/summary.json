@@ -1,0 +1,10 @@
+{
+  "configurations": 10,
+  "passed": 10,
+  "masters": 2,
+  "full_episodes_run": 0,
+  "families": {
+    "fixed_total_15": 6,
+    "fixed_tasks_per_agent_5_over_3": 6
+  }
+}

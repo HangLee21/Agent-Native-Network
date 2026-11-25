@@ -1,0 +1,33 @@
+{
+  "schema": "mid.results.source.v1",
+  "captured_at": "2026-11-13T15:46:55.027585+08:00",
+  "build_id": "mid-lora-ref-v1-e345154cff2cf41f2358f7b2944aa6314c2ff0cc61261275f6632c1e0d7642ea",
+  "note": "LoRa topology and five-board soak evidence; raw bytes stay in simulation/outputs (ignored by design).",
+  "files": [
+    {
+      "path": "simulation/outputs/H-019/20261113-31-lora-topology-fixed/reports.jsonl",
+      "bytes": 44440,
+      "sha256": "ed63ebe79e51b13895b3c7b760169113cbf06862306192f1c50024b3de68bf4e"
+    },
+    {
+      "path": "simulation/outputs/H-019/20261113-31-lora-topology-fixed/RESULT.json",
+      "bytes": 752,
+      "sha256": "de542abe0b4a8da65c228b8ee2534ce60b63d984a7e2d6a13a93113ce9ea9efb"
+    },
+    {
+      "path": "simulation/outputs/H-019/20261113-31-lora-topology-fixed/RUN_MANIFEST.json",
+      "bytes": 1733,
+      "sha256": "9bac285d43be14d0fc2cb7444f5bd736ac16155bb24434ce3827a79c9758284c"
+    },
+    {
+      "path": "simulation/outputs/H-019/20261113-31-lora-topology-fixed/TOPOLOGY.md",
+      "bytes": 2488,
+      "sha256": "735f1aa6fadf1edf4dd11735183e5748922a84cfd91b5dc1d3aec3ba3a6330f2"
+    },
+    {
+      "path": "simulation/outputs/H-019/20261113-20-soak-stable/SOAK.json",
+      "bytes": 2103,
+      "sha256": "7ee6e2bf90ada822f6f37fde4cb6eb77b4f5d96e8451ec60df703e33326a6a89"
+    }
+  ]
+}

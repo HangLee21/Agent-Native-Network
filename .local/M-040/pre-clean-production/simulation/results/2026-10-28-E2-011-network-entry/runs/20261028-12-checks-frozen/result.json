@@ -1,0 +1,23 @@
+{
+  "status": "checker_unit_tests_passed",
+  "scope": "synthetic log fixtures, not wireless simulation",
+  "command": {
+    "command": [
+      "C:\\environment\\python3.11\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "D:\\Multi-Agent Network\\simulation\\dynamic_network_entry",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "cwd": "D:\\Multi-Agent Network",
+    "process_id": 23396,
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 0.6720000000059372
+  }
+}

@@ -1,0 +1,16 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MID 五板控制台</title>
+<style>body{font:16px system-ui;background:#101827;color:#e3eaf4;max-width:1000px;margin:40px auto;padding:20px}section{background:#192539;padding:24px;border-radius:16px;margin:18px 0}select,input,button{font:inherit;padding:10px;border-radius:8px;margin:5px;border:1px solid #6681a0}button{background:#7dd3fc;color:#102136;cursor:pointer}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}a{color:#7dd3fc}small{color:#aec0d6}</style>
+<h1>MID 五板控制台</h1><p>选择路由并预览。历史假设系数不代表此刻无线连通性。</p><p><a href="/replay/">历史真实回放</a></p>
+<section><p id="status">读取服务状态…</p><label>源<select id="src"></select></label><label>目的<select id="dst"></select></label><label>模式<select id="mode"><option value="hops">恰好几跳</option><option value="mid">MID / SOCP 权重</option><option value="manual">手工中继</option></select></label><label>跳数<input id="hops" type="number" min="1" max="4" value="2"></label><label>中继（逗号分隔）<input id="via" placeholder="B,C"></label><label>包数<input id="count" type="number" min="1" max="10" value="1"></label><p><button id="plan">规划预览</button><button id="run" disabled>发送到实板</button><button id="stop" disabled>停止</button></p><small>启动或刷新只浏览。固定跳数是受控简单链；MID可能多条候选路径，逐包实际路径须读设备日志。</small></section>
+<section><h2>规划与来源</h2><pre id="preview">尚未规划</pre></section><section><h2>本次运行</h2><pre id="result">尚未发送</pre></section>
+<script>
+const $=s=>document.getElementById(s);let planId=null,runId=null;
+for(const x of 'ABCDE'){for(const k of ['src','dst'])$(k).add(new Option(x,x));}$('dst').value='E';
+async function api(path,data){let r=await fetch(path,data===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});let v=await r.json();if(!r.ok)throw Error(v.error?.message||r.status);return v;}
+function show(el,v){$(el).textContent=typeof v==='string'?v:JSON.stringify(v,null,2)}
+async function status(){try{let s=await api('/api/status');show('status',`${s.mode==='preview'?'离线模型预览':'H硬件模式'} · ${s.busy?'忙碌':s.run_available?'可以发送':'暂不可发送'} · ${s.reason||''}`)}catch(e){show('status',e.message)}}
+$('plan').onclick=async()=>{planId=null;$('run').disabled=true;$('plan').disabled=true;try{let q={src:$('src').value,dst:$('dst').value,mode:$('mode').value,count:Number($('count').value)};if(q.mode==='hops')q.hops=Number($('hops').value);if(q.mode==='manual')q.via=$('via').value.split(',').map(x=>x.trim()).filter(Boolean);let p=await api('/api/plan',q);planId=p.plan_id;show('preview',p);$('run').disabled=!p.run_available;}catch(e){show('preview',e.message)}finally{$('plan').disabled=false;status()}};
+$('run').onclick=async()=>{if(!planId)return;$('run').disabled=true;try{let r=await api('/api/run',{plan_id:planId});runId=r.run_id;show('result',r);$('stop').disabled=false;watch()}catch(e){show('result',e.message)}status()};
+async function watch(){if(!runId)return;try{let r=await api('/api/runs/'+runId);show('result',r);if(['running','stopping'].includes(r.state)){setTimeout(watch,750)}else{$('stop').disabled=true;status()}}catch(e){show('result',e.message)}}
+$('stop').onclick=async()=>{if(runId){try{show('result',await api('/api/runs/'+runId+'/stop',{}))}catch(e){show('result',e.message)}}};status();
+</script></html>

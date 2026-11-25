@@ -1,0 +1,24 @@
+{"event": "reserved", "run_id": "20261106-01-independent-preparation", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-01-independent-preparation", "elapsed_s": 0.42199999999138527, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-02-preparation-regression", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-02-preparation-regression", "elapsed_s": 0.4220000000059372, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-03-H-display-independent", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-03-H-display-independent", "elapsed_s": 6.76600000000326, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-04-candidate-core-independent", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-04-candidate-core-independent", "elapsed_s": 3.2969999999913853, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-05-native-package", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-05-native-package", "elapsed_s": 1.875, "exit_code": 1, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-06-native-package-corrected", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-06-native-package-corrected", "elapsed_s": 2.327999999979511, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-07-native-tools", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-07-native-tools", "elapsed_s": 1.2660000000032596, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-08-native-tools-final", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-08-native-tools-final", "elapsed_s": 1.2190000000118744, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-09-ABC-native-tools", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-09-ABC-native-tools", "elapsed_s": 1.9219999999913853, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-10-native-coverage-final", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-10-native-coverage-final", "elapsed_s": 1.672000000020489, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-11-NATIVE01-targeted", "timeout_s": 120}
+{"event": "finished", "run_id": "20261106-11-NATIVE01-targeted", "elapsed_s": 0.5320000000065193, "exit_code": 0, "protection_stopped": false}
+{"event": "reserved", "run_id": "20261106-12-real-data-review", "timeout_s": 120, "scope": "existing_hardware_log_analysis"}
+{"event": "finished", "run_id": "20261106-12-real-data-review", "elapsed_s": 0.07800000000861473, "exit_code": 0, "protection_stopped": false}

@@ -1,0 +1,23 @@
+--- H_capture_v5
++++ H_docs_v6
+@@ -48,7 +48,7 @@
+ 
+ 当前对齐M明确active_freezes.E1=E1_lifecycle_v4的完整冻结（FREEZE version2、22项）及未变的golden；此前E1_full_v3和公共接口v1保留为历史。verify_host.py只接受代码中列入M授权清单的active版本，核FREEZE.json固定锚点、M完整来源清单及各文件hash，测试前后均核一次；未知版本、漂移、路径越界或清单缺项均拒绝，不回退旧冻结，失败也保存最终manifest。后续E1改版须M同步新冻结并明确授权更新该清单。
+ 
+-host-synthetic芯片身份会被真实硬件握手拒绝。消息身份为(origin_id, origin_boot_id, seq)，node_id+boot_id属于当前记录节点；tx_attempt是该节点本次启动内的提交编号，不是RF重试。原始行保留这些字段、unique_receive及evidence_kind，不重命名为测量。frame_rx不是唯一应用接收。echo_correlation关联request_origin_id/request_boot_id/request_seq；RTT只可由同源同boot的generated与echo_correlation本地t_us相减，不跨板减时钟，当前不接尚未冻结E2分析器，不计算数值。
++host-synthetic芯片身份会被真实硬件握手拒绝。消息身份为(origin_id, origin_boot_id, seq)，node_id+boot_id属于当前记录节点；tx_attempt是该节点本次启动内的提交编号，不是RF重试。原始行保留这些字段、unique_receive及evidence_kind，不重命名为测量。frame_rx不是唯一应用接收。echo_correlation关联request_origin_id/request_boot_id/request_seq；RTT只可由同源同boot的generated与echo_correlation本地t_us相减，不跨板减时钟。已接入冻结的E2_analyzer_v2；当前仅有合成互验，尚无无线实测。
+ 
+ 五板配置不等于五板多跳实验。此入口验证串口控制和单发送者台架采集；多跳/恢复合同另行冻结。原始serial.jsonl包括host_tx/device_rx、主机时间与解析事件；tx_result只属于链路回调，端到端交付要由接收节点唯一消息验证。未定义/未验证的RF重试和airtime保持unknown，不由回调计数推算。
+ 
+@@ -62,9 +62,9 @@
+ 
+ 主机验证入口：python -B -m tools.espnow_hardware.verify_host --output simulation/outputs/H-001/<新run>。它核E1/E2冻结后运行合成安全/控制/来源测试，再核来源未变；不枚举或打开真实串口。额外的verify_c_capture同样要求新H-001输出，用已安装CMake/Ninja在该run内编译冻结的主机C入口、运行有限echo场景，将实际C日志经过真实H Capture和E2分析函数互验。该入口的覆盖计数与一秒归一窗口明确为synthetic fixture，不是UART/RF实测，不创建实测更新；主机编译不代表ESP目标编译。每次≤120秒、编译最多2作业，禁止借此运行旧ns-3或无线实验。
+ 
+-工具支持显式--task-id H-001或H-002，默认H-001；输出必须是本仓库simulation/outputs/<task-id>/<run-id>/的全新目录，manifest的task_id与选择一致，拒绝跨任务根和嵌套run目录。H-002强制--once，只允许枚举或附加--probe进行已绑定设备info握手，拒绝bench、stats/stop、--device及日志导入。后续测量分析接口待M冻结后再集成，当前不猜算数值。
++工具支持显式--task-id H-001或H-002，默认H-001；输出必须是本仓库simulation/outputs/<task-id>/<run-id>/的全新目录，manifest的task_id与选择一致，拒绝跨任务根和嵌套run目录。H-002强制--once，只允许枚举或附加--probe进行已绑定设备info握手，拒绝bench、stats/stop、--device及日志导入。有限台架采集后的测量分析已接入E2_analyzer_v2，实际无线测量尚未发生。
+ 
+-H-002仍须先由调用方读取其主卡：仅ready/running且M-016验收后执行。以下是未来入口示例，本轮没有运行H-002，也没有创建后台进程、计划任务或循环轮询；调度由M统一登记。
++H-002的后续状态与授权以[主卡](../../coordination/tasks/H-002.md)为准；调用方先读主卡，按其明确范围执行。已按M一次预检例外完成不带probe的默认枚举，打开串口0，测量全null。以下是每次检查的入口示例；调度与启停由M统一登记。
+ 
+ ```powershell
+ python -B -m tools.espnow_hardware.hardware_tool --task-id H-002 --once --output simulation/outputs/H-002/UNIQUE-CHECK-ID

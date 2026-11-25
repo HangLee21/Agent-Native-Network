@@ -1,0 +1,125 @@
+{
+  "cumulative": {
+    "01": {
+      "complete_events_checked": 17,
+      "every_seq_equals_attempted_equals_submitted_equals_tx_done": true,
+      "no_skips_event_drops_recoveries_or_generation_changes": true,
+      "first": {
+        "observer_id": "90:da:72:48:a4:f8",
+        "observer_boot": 1639563369,
+        "report_seq": 155,
+        "attempted": 155,
+        "submitted": 155,
+        "tx_done": 155,
+        "skipped": 0,
+        "recovery_attempted": 0,
+        "requested_generation": 1
+      },
+      "last": {
+        "report_seq": 171,
+        "attempted": 171,
+        "submitted": 171,
+        "tx_done": 171
+      },
+      "interpretation": "Cumulative counters include successful board/chip transmissions BEFORE this trace in the same unchanged boot/generation; not proof of radiation or gateway receipt."
+    },
+    "02": {
+      "complete_events_checked": 18,
+      "every_seq_equals_attempted_equals_submitted_equals_tx_done": true,
+      "no_skips_event_drops_recoveries_or_generation_changes": true,
+      "first": {
+        "observer_id": "90:da:72:48:a5:cc",
+        "observer_boot": 3482894829,
+        "report_seq": 154,
+        "attempted": 154,
+        "submitted": 154,
+        "tx_done": 154,
+        "skipped": 0,
+        "recovery_attempted": 0,
+        "requested_generation": 1
+      },
+      "last": {
+        "report_seq": 171,
+        "attempted": 171,
+        "submitted": 171,
+        "tx_done": 171
+      },
+      "interpretation": "Cumulative counters include successful board/chip transmissions BEFORE this trace in the same unchanged boot/generation; not proof of radiation or gateway receipt."
+    },
+    "04": {
+      "complete_events_checked": 17,
+      "every_seq_equals_attempted_equals_submitted_equals_tx_done": true,
+      "no_skips_event_drops_recoveries_or_generation_changes": true,
+      "first": {
+        "observer_id": "90:da:72:48:a5:20",
+        "observer_boot": 282063663,
+        "report_seq": 150,
+        "attempted": 150,
+        "submitted": 150,
+        "tx_done": 150,
+        "skipped": 0,
+        "recovery_attempted": 0,
+        "requested_generation": 1
+      },
+      "last": {
+        "report_seq": 166,
+        "attempted": 166,
+        "submitted": 166,
+        "tx_done": 166
+      },
+      "interpretation": "Cumulative counters include successful board/chip transmissions BEFORE this trace in the same unchanged boot/generation; not proof of radiation or gateway receipt."
+    }
+  },
+  "reader_parser_replay": {
+    "01": {
+      "source": "Actual syscall byte stream; inferred exact pyserial read(8192) boundaries from os.read requested remaining byte count; discard edge groups",
+      "interior_read_calls": 2794,
+      "remaining_size_invariant_holds": true,
+      "old_chunk_split_decoded_events": 3188,
+      "buffered_decoded_events": 4957,
+      "old_chunk_split_lora_tx_events": 2,
+      "buffered_lora_tx_events": 34,
+      "old_invalid_json_fragments": 3539,
+      "buffered_invalid_lines": 1
+    },
+    "02": {
+      "source": "Actual syscall byte stream; inferred exact pyserial read(8192) boundaries from os.read requested remaining byte count; discard edge groups",
+      "interior_read_calls": 2907,
+      "remaining_size_invariant_holds": true,
+      "old_chunk_split_decoded_events": 3205,
+      "buffered_decoded_events": 5048,
+      "old_chunk_split_lora_tx_events": 4,
+      "buffered_lora_tx_events": 36,
+      "old_invalid_json_fragments": 3687,
+      "buffered_invalid_lines": 0
+    },
+    "04": {
+      "source": "Actual syscall byte stream; inferred exact pyserial read(8192) boundaries from os.read requested remaining byte count; discard edge groups",
+      "interior_read_calls": 2759,
+      "remaining_size_invariant_holds": true,
+      "old_chunk_split_decoded_events": 3229,
+      "buffered_decoded_events": 5078,
+      "old_chunk_split_lora_tx_events": 3,
+      "buffered_lora_tx_events": 34,
+      "old_invalid_json_fragments": 3699,
+      "buffered_invalid_lines": 1
+    }
+  },
+  "source_binding": {
+    "copied_pi02_reader_sha256": "f6e9822bee47980d9adeba932ee92e7d68c1abf31f976c686e314253a8c3aac2",
+    "repo_reader_sha256": "f6e9822bee47980d9adeba932ee92e7d68c1abf31f976c686e314253a8c3aac2",
+    "same_bytes": true
+  },
+  "initial_window_ack_errors": [
+    {
+      "at": "2026-11-24T16:49:12.548366+08:00",
+      "ack_errors": 0,
+      "last_ack_error": null
+    },
+    {
+      "at": "2026-11-24T16:51:10.549246+08:00",
+      "ack_errors": 0,
+      "last_ack_error": null
+    }
+  ]
+}

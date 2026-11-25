@@ -1,0 +1,1342 @@
+{
+  "started_at": "2026-11-24T16:25:24.845270+08:00",
+  "passed": true,
+  "test_only_fabricated_inputs": true,
+  "physical_boards": 0,
+  "device_commands": 0,
+  "existing_databases_opened": false,
+  "api_fulfillments": 0,
+  "checks": [
+    {
+      "name": "built real page starts disconnected with zero backend reads",
+      "passed": true
+    },
+    {
+      "name": "clear layout exposes timeout and registered missing node with no GPS",
+      "passed": true
+    },
+    {
+      "name": "no IP/RAM observer reads before an explicit action",
+      "passed": true
+    },
+    {
+      "name": "historical adjacent links are visible, thick and still historical",
+      "passed": true
+    },
+    {
+      "name": "status captions and legend are not clipped by the old fixed-height grid",
+      "passed": true
+    },
+    {
+      "name": "native Wi-Fi layer preserves fresh reverse corroboration and its separate source",
+      "passed": true
+    },
+    {
+      "name": "original identity, destination receipt, conflicting bytes and incomplete coverage are displayed",
+      "passed": true
+    },
+    {
+      "name": "record action reaches the actual isolated SQLite writer",
+      "passed": true
+    },
+    {
+      "name": "closing/reloading the browser does not stop backend recording",
+      "passed": true
+    },
+    {
+      "name": "reconnect resumes recorder ownership and stop does not retain the closed ID",
+      "passed": true
+    },
+    {
+      "name": "historical playback never overlays the current fleet or engineering health metadata",
+      "passed": true
+    },
+    {
+      "name": "persistent replay seeks beyond 100 via bounded HTTP pages",
+      "passed": true
+    },
+    {
+      "name": "replay uses the original captured timestamp",
+      "passed": true
+    },
+    {
+      "name": "source selection discards old observed reports and links",
+      "passed": true
+    },
+    {
+      "name": "all source-A reporters become inventory-only, not old-source online residue",
+      "passed": true
+    },
+    {
+      "name": "integrated platform route uses the same real-only engineering module",
+      "passed": true
+    },
+    {
+      "name": "390px view retains explicit stale and missing states without horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "390px topology captions are inside the panel",
+      "passed": true
+    },
+    {
+      "name": "English reload remains disconnected until explicit reconnect, then preserves evidence states",
+      "passed": true
+    },
+    {
+      "name": "receiver outage is prominent and does not claim all devices powered off",
+      "passed": true
+    },
+    {
+      "name": "no page exceptions or unexpected external requests; known platform Java reads were blocked",
+      "passed": true
+    },
+    {
+      "name": "only scoped local source/SQLite actions reached the backend",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/studio.html"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/studio-CWha9QEW.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-NC0VF8Qz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/mountStudio-VdDCUxN4.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-DiNwAq80.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkStudioApp-ISvZDras.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/_plugin-vue_export-helper-BDNMzG2s.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/system-xFohZwvG.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/http-BCtKDfct.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/runtime-Gbje05ZA.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/rolldown-runtime-XKyaHtl9.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-BDBALe1N.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-Do5pdU1k.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-BN0fE1hp.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkStudioApp-Ebqp8XVH.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/network-config.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-jEEY46G_.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/embonet-icon.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ffleet"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Frecovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Fstate"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Fstate"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ftimeline%3Fafter%3D0"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Fstate"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ftimeline%3Fafter%3D9"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fstart"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/studio.html"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/studio-CWha9QEW.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-NC0VF8Qz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/mountStudio-VdDCUxN4.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-DiNwAq80.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkStudioApp-ISvZDras.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/_plugin-vue_export-helper-BDNMzG2s.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/system-xFohZwvG.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/http-BCtKDfct.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/runtime-Gbje05ZA.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/rolldown-runtime-XKyaHtl9.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-BDBALe1N.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-Do5pdU1k.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-BN0fE1hp.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkStudioApp-Ebqp8XVH.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/network-config.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-jEEY46G_.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/embonet-icon.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ffleet"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Frecovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fstop"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsession%3Fid%3D6964caa119cc49ddbebd7ec588aa3c33%26offset%3D0%26limit%3D25"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsession%3Fid%3D6964caa119cc49ddbebd7ec588aa3c33%26offset%3D100%26limit%3D25"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources%2Fselect"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources%2Fselect"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/platform-Ck7nae10.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-NC0VF8Qz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-DiNwAq80.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/platform-vh-t_kPv.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/App-CqPD4yH8.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/vue-router-C6WmG7ah.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/AppIcon-B_vmAUYF.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/_plugin-vue_export-helper-BDNMzG2s.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/AppIcon-B7gDoOMr.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/system-xFohZwvG.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/http-BCtKDfct.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/runtime-Gbje05ZA.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/rolldown-runtime-XKyaHtl9.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-BDBALe1N.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/dogFlow-W4mM5WAo.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/ws-Qwj9aGPK.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/dogv2-CxRqJIOP.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/dogv2-DNQyDT1f.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/safety-CJTv-yLJ.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/format-BiY_1rCL.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/live-Cehg8782.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/toast-DYqomtM9.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/DroneScope-q7JR_ZVL.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/confirm-CQwARY5K.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/App-oddt2TKn.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/router-DGwHuzM9.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/embonet-icon.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/config.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-reverse-9iXz7NMq.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-Do5pdU1k.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-BN0fE1hp.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/poppins-latin-400-normal-cpxAROuN.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/network-config.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ffleet"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Frecovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ffleet"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Frecovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/studio.html"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/studio-CWha9QEW.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-NC0VF8Qz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/mountStudio-VdDCUxN4.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-DiNwAq80.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkStudioApp-ISvZDras.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/_plugin-vue_export-helper-BDNMzG2s.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/system-xFohZwvG.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/http-BCtKDfct.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/runtime-Gbje05ZA.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/rolldown-runtime-XKyaHtl9.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-BDBALe1N.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-Do5pdU1k.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-BN0fE1hp.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkStudioApp-Ebqp8XVH.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/network-config.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-jEEY46G_.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/embonet-icon.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ffleet"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Frecovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ffleet"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Frecovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/studio.html"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/studio-CWha9QEW.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-NC0VF8Qz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/mountStudio-VdDCUxN4.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/i18n-DiNwAq80.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/context-DZ-FPhXt.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/control-DqZvgI_R.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/core-Cxirr379.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/demo-CL7g1_5g.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/dog-mAF6PHyE.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/dogv2-DWC9AZvP.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/history-BKyPrYcS.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/manual-Ddzdfvpa.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/monitor-R6x1vbZ7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/network-qvQfZ-l8.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/route-Dbu19ntl.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/settings-jOoZ6cW-.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/watch-ikHDU-tZ.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/dogs-demo-CMVzXyId.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/platform-BFtlO1ZU.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/targets-history-Z8kLP6Dp.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/embonet-icon.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkStudioApp-ISvZDras.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/_plugin-vue_export-helper-BDNMzG2s.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/system-xFohZwvG.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/http-BCtKDfct.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/runtime-Gbje05ZA.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/rolldown-runtime-XKyaHtl9.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-BDBALe1N.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-Do5pdU1k.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkView-BN0fE1hp.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/NetworkStudioApp-Ebqp8XVH.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/network-config.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/assets/embonet-mark-color-jEEY46G_.svg"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ffleet"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Frecovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__network_gateway?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Ftopology"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fhealth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Flora%2Fsources"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Ffleet"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Frecovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:10524/__baseline_engineering?base=http%3A%2F%2F127.0.0.1%3A63338&resource=%2Fapi%2Fv1%2Freplay%2Fsessions"
+    }
+  ],
+  "backend_requests": [
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/sources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/fleet"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/state"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/state"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/timeline?after=0"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/state"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/timeline?after=9"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/replay/start",
+      "origin": "http://127.0.0.1:63338",
+      "connection": "close"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/sources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/fleet"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/replay/stop",
+      "origin": "http://127.0.0.1:63338",
+      "connection": "close"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/session?id=6964caa119cc49ddbebd7ec588aa3c33&offset=0&limit=25"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/session?id=6964caa119cc49ddbebd7ec588aa3c33&offset=100&limit=25"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/lora/sources/select",
+      "origin": "http://127.0.0.1:63338",
+      "connection": "close"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/lora/sources/select",
+      "origin": "http://127.0.0.1:63338",
+      "connection": "close"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/sources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/fleet"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/sources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/fleet"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/sources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/fleet"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/sources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/fleet"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/sources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/fleet"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/topology"
+    },
+    {
+      "method": "GET",
+      "path": "/health"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/lora/sources"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/fleet"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/recovery"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/replay/sessions"
+    }
+  ],
+  "blocked": [],
+  "external_platform_reads_blocked": [
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/dogs/time"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/dogs"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v2/dogs"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v2/dogs"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/system/info"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/safety/config"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v1/drones"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v2/dogs"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v2/dogs"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v2/dogs"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v2/dogs"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v2/dogs"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:8080/api/v2/dogs"
+    }
+  ],
+  "owned_static_pid": 11128,
+  "historical_edge_style": {
+    "width": "4px",
+    "opacity": "1",
+    "color": "rgb(188, 140, 228)"
+  },
+  "browser_version": "158.0.4370.33",
+  "closed_transport_connections": 2,
+  "finished_at": "2026-11-24T16:25:59.442475+08:00",
+  "owned_processes_stopped": true,
+  "sqlite_sessions_after_close": {
+    "sessions": [
+      {
+        "id": "a162f387eed843bba3ac6928025826b9",
+        "started_ms": 1795508737382,
+        "ended_ms": 1795508739820,
+        "active": false,
+        "count": 22
+      },
+      {
+        "id": "6964caa119cc49ddbebd7ec588aa3c33",
+        "started_ms": 1795501525517,
+        "ended_ms": 1795501627517,
+        "active": false,
+        "count": 103
+      }
+    ],
+    "active_id": null,
+    "error": null
+  },
+  "sqlite_reopen_verified": true
+}

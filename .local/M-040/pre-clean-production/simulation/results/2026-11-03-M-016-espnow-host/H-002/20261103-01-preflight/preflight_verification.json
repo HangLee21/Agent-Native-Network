@@ -1,0 +1,18 @@
+{
+  "status": "preflight_passed",
+  "tool_status": "waiting_hardware",
+  "enumeration_status": "enumerated",
+  "enumeration_backend": "pyserial",
+  "enumerated_port_count": 4,
+  "physical_board_identity": "unverified",
+  "opened_ports": 0,
+  "probe": false,
+  "bench": false,
+  "metrics_all_null": true,
+  "run_manifest_sha256": "cee8b47f3764ad35421b900f5f801106cbc2068eec9daa079c14d43d858ca077",
+  "elapsed_seconds": 0.75,
+  "frozen_files_checked": 38,
+  "automation_modified": false,
+  "automation_state": "PAUSED per M; not queried or changed by H",
+  "process": "foreground child exited 0"
+}

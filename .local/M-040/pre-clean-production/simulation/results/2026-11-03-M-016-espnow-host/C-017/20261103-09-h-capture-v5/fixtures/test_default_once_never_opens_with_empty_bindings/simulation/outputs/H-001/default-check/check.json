@@ -1,0 +1,12 @@
+{
+  "schema": "ann.hardware.check.v1",
+  "time": "2026-11-03T09:07:37.026547+00:00",
+  "status": "waiting_hardware",
+  "board_identity": "unverified",
+  "probes": [],
+  "bench_started": false,
+  "arm_attempted": false,
+  "cleanup_errors": [],
+  "elapsed_seconds": 0.125,
+  "artifact_errors": []
+}

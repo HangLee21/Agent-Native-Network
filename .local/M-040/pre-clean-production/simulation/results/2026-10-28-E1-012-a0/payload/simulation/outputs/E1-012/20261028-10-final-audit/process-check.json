@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-28T13:34:08.0697917Z",
+  "checked_pids": [
+    49936,
+    46488
+  ],
+  "present_pids": [],
+  "scope": "Only this task worker and controller PID; no whole-machine claim",
+  "worker_reaped_from_parent_record": true
+}

@@ -1,90 +1,111 @@
-"""Isolated real-process checks for source-session isolation and explicit demo cleanup."""
+"""Isolated live-only Studio contract check: no radio, serial, agents or production DB."""
 import argparse
 import json
 from pathlib import Path
 import socket
 import threading
-import time
 import urllib.error
 import urllib.request
 
 from .server import Gateway, ROOT
 from .studio import Studio, StudioHandler
+from .sources import Sources
+from .replay import Replay
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--output',type=Path,required=True)
-    a=p.parse_args()
-    out=a.output.resolve()
-    out.mkdir(parents=True,exist_ok=False)
-    with socket.socket() as unused:
-        unused.bind(('127.0.0.1',0))
-        demo_port=unused.getsockname()[1]
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    out = args.output.resolve()
+    out.mkdir(parents=True, exist_ok=False)
+    checks = []
+    # Hold an unlistened ephemeral loopback port: never query an existing PC/device service.
     with socket.socket() as unavailable:
-        unavailable.bind(('127.0.0.1',0))
-        pc_port=unavailable.getsockname()[1]
-        state=Studio(out,demo_port,pc_port) # No production endpoint, radio or serial.
-        server=Gateway(('127.0.0.1',0),state,ROOT/'research/agent_native_network/mobile_gateway')
-        server.RequestHandlerClass=StudioHandler
-        thread=threading.Thread(target=server.serve_forever,daemon=True)
+        unavailable.bind(('127.0.0.1', 0))
+        pc_port = unavailable.getsockname()[1]
+        state = Studio(out, pc_port)
+        sources = Sources(start=False)
+        replay = Replay(out / 'isolated-replay.sqlite3', sources.topology, interval=3600)
+        fleet = out / 'empty-fleet.json'
+        fleet.write_text(json.dumps({'schema_version': 1, 'nodes': []}), encoding='utf-8')
+        server = Gateway(('127.0.0.1', 0), state, ROOT / 'research/agent_native_network/mobile_gateway')
+        server.RequestHandlerClass = StudioHandler
+        server.sources = sources
+        server.remote = sources
+        server.serial = None
+        server.replay = replay
+        server.fleet_path = fleet
+        server.registry_path = out / 'absent-registry.json'
+        server.recovery_path = out / 'absent-recovery.json'
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()
-        base=f'http://127.0.0.1:{server.server_port}'
-        checks=[]
-        def call(path,body=None):
-            request=urllib.request.Request(base+path,None if body is None else json.dumps(body).encode(),
-                         headers={'Content-Type':'application/json','Origin':base})
-            with urllib.request.urlopen(request,timeout=25) as response:
-                return json.load(response)
-        def ok(name,value):
-            checks.append(dict(name=name,passed=bool(value)))
+        base = f'http://127.0.0.1:{server.server_port}'
+
+        def call(path, body=None, origin=True):
+            headers = {'Content-Type': 'application/json'}
+            if origin:
+                headers['Origin'] = base
+            request = urllib.request.Request(base + path, None if body is None else json.dumps(body).encode(), headers=headers)
+            try:
+                with urllib.request.urlopen(request, timeout=8) as response:
+                    return response.status, json.load(response)
+            except urllib.error.HTTPError as exc:
+                return exc.code, json.load(exc)
+
+        def ok(name, value):
+            checks.append({'name': name, 'passed': bool(value)})
             if not value:
                 raise AssertionError(name)
-        def empty_pair():
-            snapshot=call('/api/v1/state')
-            history=call('/api/v1/timeline?after=500')
-            ok('empty snapshot/history same instance',snapshot['gateway_instance']==history['gateway_instance'])
-            ok('empty snapshot and cursor stay empty',snapshot['nodes']==[] and snapshot['edges']==[] and snapshot['cursor']==0 and history['events']==[] and history['cursor']==0)
-            return snapshot['gateway_instance']
+
         try:
-            call('/api/studio/mode',{'mode':'demo'})
-            first=empty_pair()
-            ok('changing mode never auto-starts agents',not call('/api/studio/status')['demo']['running'])
-            call('/api/studio/demo/start',{})
-            first_dir=state.demo_dir
-            until=time.monotonic()+15
-            while time.monotonic()<until:
-                snapshot=call('/api/v1/state')
-                if snapshot['nodes'] and all(n['agent']['running'] is True for n in snapshot['nodes']):
-                    break
-                time.sleep(.1)
-            ok('actual E2 model processes produced reports',bool(snapshot['nodes']) and all(n['position']['source']=='simulated' for n in snapshot['nodes']))
-            ok('demo radio is explicitly simulated',snapshot['radio_source']=='host_model_simulated')
-            ok('demo agent runtime comes from owned process status',all(n['agent']['source']=='actual_E2_fake_agent_function_processes' and n['agent']['process']['agent_pid']>0 for n in snapshot['nodes']))
-            call('/api/studio/demo/stop',{})
-            stopped=empty_pair()
-            saved=json.loads((first_dir/'RESULT.json').read_text())
-            ok('all first-demo children stopped',all(not p['running'] for p in saved['processes']))
-            call('/api/studio/demo/replay',{})
-            second_dir=state.demo_dir
-            ok('replay uses a fresh output/session',second_dir!=first_dir)
-            # Immediate stop also covers creation-before-directory startup race.
-            call('/api/studio/demo/stop',{})
-            second=empty_pair()
-            ok('previous demo session never reused',first!=stopped and stopped!=second)
-            saved2=json.loads((second_dir/'RESULT.json').read_text())
-            ok('all replay children stopped',all(not p['running'] for p in saved2['processes']))
-            call('/api/studio/mode',{'mode':'live'})
-            current=call('/api/v1/state')
-            ok('return to live has no synthetic nodes',current['nodes']==[] and current['gateway_instance']==state.live.instance and current['view_mode']=='live')
+            code, health = call('/health')
+            ok('health is a live observation-only service', code == 200 and health['role'] == 'observation_only' and health['gateway_instance'] == state.session)
+            _, snapshot = call('/api/v1/state')
+            _, history = call('/api/v1/timeline?after=500')
+            ok('empty snapshot/history share the actual state instance', snapshot['gateway_instance'] == history['gateway_instance'] == state.live.instance)
+            ok('no fabricated reports or events', snapshot['nodes'] == [] and snapshot['edges'] == [] and history['events'] == [] and snapshot['view_mode'] == 'live' and snapshot['fake_gps'] is False)
+            _, status = call('/api/studio/status')
+            ok('legacy demo and fake GPS controls are explicitly disabled', status['mode'] == 'live' and status['capabilities']['demo_control'] is False and status['capabilities']['fake_gps_toggle'] is False)
+            for path in ('/api/studio/mode', '/api/studio/demo/start', '/api/studio/demo/stop', '/api/studio/demo/replay', '/api/studio/fake-gps', '/api/pc/send'):
+                ok('removed control returns 404: ' + path, call(path, {})[0] == 404)
+            _, source_list = call('/api/v1/lora/sources')
+            ok('isolated source manager has no adapters or sockets', source_list['sources'] == [] and source_list['selected_source_id'] is None and sources.sock is None and sources.thread is None)
+            ok('source selection requires same origin', call('/api/v1/lora/sources/select', {'source_id': None}, origin=False)[0] == 403)
+            ok('automatic source selection is explicit and empty', call('/api/v1/lora/sources/select', {'source_id': None})[1]['selection'] == 'auto')
+            ok('unknown source is rejected', call('/api/v1/lora/sources/select', {'source_id': 'not-registered'})[0] == 400)
+            _, topology = call('/api/v1/lora/topology')
+            ok('unavailable source never fabricates topology', topology['source'] == 'unavailable' and topology['reports'] == [])
+            ok('empty inventory remains empty', call('/api/v1/fleet')[1]['nodes'] == [])
+            recovery_code, recovery = call('/api/v1/recovery')
+            ok('absent recovery evidence is unknown, not recovered', recovery_code == 503 and recovery['state'] == 'unknown')
+            ok('recording requires same origin', call('/api/v1/replay/start', {}, origin=False)[0] == 403)
+            first = call('/api/v1/replay/start', {})[1]['id']
+            ok('duplicate start preserves the existing session', call('/api/v1/replay/start', {})[1]['id'] == first)
+            for _ in range(101):
+                replay.sample()
+            _, page = call('/api/v1/replay/session?id=' + first + '&offset=100&limit=1')
+            ok('real SQLite paginates beyond 100 frames', page['total'] == 101 and page['offset'] == 100 and len(page['frames']) == 1)
+            ok('recorded interruption remains unavailable', page['frames'][0]['topology']['source'] == 'unavailable')
+            ok('unpaged large session is rejected', call('/api/v1/replay/session?id=' + first)[0] == 413)
+            ok('stop returns the closed session identifier', call('/api/v1/replay/stop', {})[1]['id'] == first)
+            ok('session remains listed but is no longer active', call('/api/v1/replay/sessions')[1]['active_id'] is None)
         finally:
             server.shutdown()
             thread.join(3)
             server.server_close()
+            replay.close()
+            sources.close()
             state.close()
-            (out/'CHECK.json').write_text(json.dumps(dict(checks=checks,serial_opens=0,physical_boards=0,production_services_changed=False),indent=2),encoding='utf-8')
-        print(json.dumps(dict(checks=len(checks),passed=all(c['passed'] for c in checks),physical_boards=0)))
+            (out / 'CHECK.json').write_text(json.dumps({'checks': checks, 'serial_opens': 0, 'physical_boards': 0, 'production_services_changed': False}, ensure_ascii=False, indent=2), encoding='utf-8')
+        reopened = Replay(out / 'isolated-replay.sqlite3', sources.topology, interval=3600)
+        try:
+            ok('sessions and original timestamps survive DB reopen', reopened.sessions()['sessions'][0]['count'] == 101 and reopened.session(first, 100, 1)['frames'][0]['t_ms'] == page['frames'][0]['t_ms'])
+        finally:
+            reopened.close()
+            (out / 'CHECK.json').write_text(json.dumps({'checks': checks, 'serial_opens': 0, 'physical_boards': 0, 'production_services_changed': False}, ensure_ascii=False, indent=2), encoding='utf-8')
+        print(json.dumps({'checks': len(checks), 'passed': all(c['passed'] for c in checks), 'physical_boards': 0}))
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

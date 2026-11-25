@@ -1,0 +1,121 @@
+[
+  {
+    "condition": "instant",
+    "peak_buffer_bytes": null,
+    "started_messages": 141,
+    "started_queue_wait_mean": 0.0,
+    "started_queue_wait_p95": 0.0,
+    "started_queue_wait_max": 0.0,
+    "pending_at_cutoff": []
+  },
+  {
+    "condition": "fixed05",
+    "peak_buffer_bytes": null,
+    "started_messages": 141,
+    "started_queue_wait_mean": 0.0,
+    "started_queue_wait_p95": 0.0,
+    "started_queue_wait_max": 0.0,
+    "pending_at_cutoff": [
+      {
+        "message_id": "m00000140",
+        "generated_at": 20.919210018938244,
+        "application_bytes": 332,
+        "age_at_cutoff": 0.04719124410570785
+      },
+      {
+        "message_id": "m00000141",
+        "generated_at": 20.966401263043952,
+        "application_bytes": 330,
+        "age_at_cutoff": 0.0
+      }
+    ]
+  },
+  {
+    "condition": "fixed2",
+    "peak_buffer_bytes": null,
+    "started_messages": 141,
+    "started_queue_wait_mean": 0.0,
+    "started_queue_wait_p95": 0.0,
+    "started_queue_wait_max": 0.0,
+    "pending_at_cutoff": [
+      {
+        "message_id": "m00000139",
+        "generated_at": 20.136619925602595,
+        "application_bytes": 331,
+        "age_at_cutoff": 0.8297813374413572
+      },
+      {
+        "message_id": "m00000140",
+        "generated_at": 20.919210018938244,
+        "application_bytes": 332,
+        "age_at_cutoff": 0.04719124410570785
+      },
+      {
+        "message_id": "m00000141",
+        "generated_at": 20.966401263043952,
+        "application_bytes": 330,
+        "age_at_cutoff": 0.0
+      }
+    ]
+  },
+  {
+    "condition": "fifo2048",
+    "peak_buffer_bytes": 7573,
+    "started_messages": 140,
+    "started_queue_wait_mean": 1.9177122786160512,
+    "started_queue_wait_p95": 3.1167242791543206,
+    "started_queue_wait_max": 3.494735191962194,
+    "pending_at_cutoff": [
+      {
+        "message_id": "m00000140",
+        "generated_at": 20.919210018938244,
+        "application_bytes": 332,
+        "age_at_cutoff": 0.04719124410570785
+      },
+      {
+        "message_id": "m00000141",
+        "generated_at": 20.966401263043952,
+        "application_bytes": 330,
+        "age_at_cutoff": 0.0
+      }
+    ]
+  },
+  {
+    "condition": "fifo4096",
+    "peak_buffer_bytes": 2884,
+    "started_messages": 140,
+    "started_queue_wait_mean": 0.17750218939483245,
+    "started_queue_wait_p95": 0.49859317431935646,
+    "started_queue_wait_max": 0.6071594829331162,
+    "pending_at_cutoff": [
+      {
+        "message_id": "m00000140",
+        "generated_at": 20.919210018938244,
+        "application_bytes": 332,
+        "age_at_cutoff": 0.04719124410570785
+      },
+      {
+        "message_id": "m00000141",
+        "generated_at": 20.966401263043952,
+        "application_bytes": 330,
+        "age_at_cutoff": 0.0
+      }
+    ]
+  },
+  {
+    "condition": "fifo8192",
+    "peak_buffer_bytes": 2586,
+    "started_messages": 141,
+    "started_queue_wait_mean": 0.06642578750574837,
+    "started_queue_wait_p95": 0.18178827124232733,
+    "started_queue_wait_max": 0.280517578125,
+    "pending_at_cutoff": [
+      {
+        "message_id": "m00000141",
+        "generated_at": 20.966401263043952,
+        "application_bytes": 330,
+        "age_at_cutoff": 0.0
+      }
+    ]
+  }
+]

@@ -1,0 +1,32 @@
+Processing d:\multi-agent network\data\agent_native\e1-010\downloads\transformers-4.51.3-py3-none-any.whl
+Processing d:\multi-agent network\data\agent_native\e1-010\downloads\tokenizers-0.21.1-cp39-abi3-win_amd64.whl
+Processing d:\multi-agent network\data\agent_native\e1-010\downloads\huggingface_hub-0.30.2-py3-none-any.whl
+Processing d:\multi-agent network\data\agent_native\e1-010\downloads\safetensors-0.5.3-cp38-abi3-win_amd64.whl
+Processing d:\multi-agent network\data\agent_native\e1-010\downloads\num2words-0.5.14-py3-none-any.whl
+Processing d:\multi-agent network\data\agent_native\e1-010\downloads\docopt-0.6.2.tar.gz
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Building wheels for collected packages: docopt
+  Building wheel for docopt (setup.py): started
+  Building wheel for docopt (setup.py): finished with status 'done'
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13774 sha256=af6650f1360252a44693d5f8325936b811560b58cf7520760a5b4c29dd9495e8
+  Stored in directory: d:\multi-agent network\data\agent_native\e1-010\pip-cache\wheels\aa\90\b6\01d476709db30506ec58cfdba696c97393fe6561fc9d297aa5
+Successfully built docopt
+Installing collected packages: num2words, docopt, transformers, tokenizers, safetensors, huggingface-hub
+  Attempting uninstall: transformers
+    Found existing installation: transformers 4.42.3
+    Not uninstalling transformers at c:\environment\python3.11\lib\site-packages, outside environment D:\Multi-Agent Network\data\agent_native\E1-010\env
+    Can't uninstall 'transformers'. No files were found to uninstall.
+  Attempting uninstall: tokenizers
+    Found existing installation: tokenizers 0.19.1
+    Not uninstalling tokenizers at c:\environment\python3.11\lib\site-packages, outside environment D:\Multi-Agent Network\data\agent_native\E1-010\env
+    Can't uninstall 'tokenizers'. No files were found to uninstall.
+  Attempting uninstall: safetensors
+    Found existing installation: safetensors 0.4.3
+    Not uninstalling safetensors at c:\environment\python3.11\lib\site-packages, outside environment D:\Multi-Agent Network\data\agent_native\E1-010\env
+    Can't uninstall 'safetensors'. No files were found to uninstall.
+  Attempting uninstall: huggingface-hub
+    Found existing installation: huggingface-hub 0.23.4
+    Not uninstalling huggingface-hub at c:\environment\python3.11\lib\site-packages, outside environment D:\Multi-Agent Network\data\agent_native\E1-010\env
+    Can't uninstall 'huggingface-hub'. No files were found to uninstall.
+Successfully installed docopt-0.6.2 huggingface-hub-0.30.2 num2words-0.5.14 safetensors-0.5.3 tokenizers-0.21.1 transformers-4.51.3

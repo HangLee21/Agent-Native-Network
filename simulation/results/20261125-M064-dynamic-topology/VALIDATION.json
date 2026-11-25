@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-25T17:48:39.151409+08:00",
+  "test_files": 62,
+  "tests": 506,
+  "new_dynamic_tests": 15,
+  "full_tests_exit": 0,
+  "type_check_and_build_exit": 0,
+  "browser_exit": 0,
+  "browser_checks": 35,
+  "browser_passed": true,
+  "viewports": [
+    1680,
+    1280,
+    390
+  ],
+  "languages": [
+    "zh",
+    "en"
+  ],
+  "live_url": "http://127.0.0.1:10518/studio.html",
+  "live_api_fulfillments": 0,
+  "device_commands": 0,
+  "non_get_or_external_requests": 0,
+  "fixture_server_closed": true,
+  "protected_file_count": 288,
+  "protected_changed": [],
+  "attempts_retained": {
+    "tests_a1": "503/504 passed; observer no longer shown by default so GPS test/count needed peer-only4/5 correction",
+    "build_a1": "GraphEdge literal widened to string; return type annotation fixed",
+    "a2": "504/504 and build passed; browser35 passed",
+    "final": "added live-clock-jitter/observer-only-empty cases; 506 tests plus final browser rerun"
+  },
+  "limitations": [
+    "UI freshness is not proof of current physical connectivity",
+    "Logical weak-adjacency placement, not verified forwarding routes or end-to-end delivery",
+    "Hidden does not mean a permanent physical disconnection; observation interruption has explicit warning",
+    "Current source-retained history folded, no invented history for rows the backend removed",
+    "No independent C or production acceptance"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "template_only": false,
+  "task_id": "C-017",
+  "run_id": "20261103-04-e1-lifecycle-v4",
+  "started_at": "2026-11-03T08:28:25.823202+00:00",
+  "timezone": "Asia/Shanghai",
+  "worktree": "D:\\Multi-Agent Network",
+  "git_commit": "d8325a230ce41943f43528c6a0c9552949e07abe",
+  "dirty_files_sha256": {
+    "firmware/agent_native/CMakeLists.txt": "db025a72d83f5b4b368e48ba9009cfbc68a5ea5b2cde4600be62eecae7f6bb0c",
+    "firmware/agent_native/golden/provenance.json": "cacf1305c95b0a56486cc681b42fbccad8c9bc594a1b626cdf707c320e6f2a65",
+    "firmware/agent_native/golden/serial-v1.jsonl": "1fe7634db59c512987be068e3205e521a726bc0cc112733c7ca2e03fdc221178",
+    "firmware/agent_native/host/c017_regressions.c": "ccdc51bf9075b58a9c5fe4ce2fa2125fb8555c6f9f0568c4be3f6f8cf5bdfa05",
+    "firmware/agent_native/host/lifecycle_regressions.c": "0a2b82d3a9e879a2a44d982a3851fd028d2bfbe7ad14110eeee8335c692a1422",
+    "firmware/agent_native/host/main.c": "19f05600c21346785b33a02e43009cfb2a789efc8eee020d67d13c662883486e",
+    "firmware/agent_native/idf/CMakeLists.txt": "f815227a3e0e95db84c990a99fe8bde9175d707826f1acce5a54b72ac7269a1a",
+    "firmware/agent_native/idf/main/app_main.c": "d6adf0c578812d5834024586b097865b8b08b77b0fbeefd470866013ff10c4fa",
+    "firmware/agent_native/idf/main/CMakeLists.txt": "a4793e598a3a37f2d17d8b30b36a8acb2ed5643674f27b5b8a43c31c0f2e92b3",
+    "firmware/agent_native/idf/main/Kconfig.projbuild": "212caef4dcbac57cba4af0748d0e14795dd499cb9d62f874f265d9590b8d186a",
+    "firmware/agent_native/idf/sdkconfig.defaults": "0db8b80d5e23fda6171a4c2be24c043f60af5afd16f5195babd8ac35c5080c7f",
+    "firmware/agent_native/include/ann.h": "1a39ed4df19f0bfa63ca3da213ff5bc23c7047beaea23020e61e82ae5558e309",
+    "firmware/agent_native/include/ann_console.h": "e495a23a6a7dfa78e6ab8f54d5bb3b41c9c467439800633a20921304db49453e",
+    "firmware/agent_native/INTERFACE.md": "ee87f1e1a2c6f134b306582a0d2c003a9cdf91038032b132c80ab744f8b3e32e",
+    "firmware/agent_native/README.md": "4097b99a03a53d4cd804f435bb3276a52f824b21f8b0f64ba7e3992b77f8b17b",
+    "firmware/agent_native/run_host_checks.py": "8cd13afa5edf6b3901b33c6a77abf64c2da1d2da69d28dec03692db6360bb928",
+    "firmware/agent_native/src/ann.c": "bdd4f570ea0da8c20094cac02c1a33e48535ba0b20c1ff3e88623442a7cc264b",
+    "firmware/agent_native/src/ann_console.c": "d336dceb92e110b1548475d9171dab3eead0d566677b7a66ae9ec0cbd30f27b7",
+    "firmware/agent_native/src/ann_log.c": "b5928a1b12f4b3e0b19a1609f4ba579d43e75e75ad14db0c52941600e570690a",
+    "firmware/agent_native/src/ann_log.h": "7d009ea19c839f21bb50683f93fda304867f798ab1127acccfa2a838fceed1c3",
+    "firmware/agent_native/VALIDATION.md": "dc97dcb387b4e59c821b44ae90f8869fd291b5257b5ce79437ecd7daa1c7a15b",
+    "firmware/agent_native/FREEZE.json": "3b028fb77103ad011a92e0fdb7f34d4065a940806240ad570f7f30e21c2d908f",
+    "simulation\\outputs\\C-017\\20261103-04-e1-lifecycle-v4\\review_e1.py": "fde43b86ce74df964ab17e87db15c0200c771e939f12ff835479cbe92d30423a",
+    "simulation\\outputs\\C-017\\20261103-04-e1-lifecycle-v4\\audit_cases.c": "ccdc51bf9075b58a9c5fe4ce2fa2125fb8555c6f9f0568c4be3f6f8cf5bdfa05"
+  },
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "D:\\Multi-Agent Network\\simulation\\outputs\\C-017\\20261103-04-e1-lifecycle-v4\\review_e1.py"
+  ],
+  "python_executable": "C:\\environment\\python3.11\\python.exe",
+  "dependency_snapshot": {
+    "python": "3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)]",
+    "gcc": "C:\\Strawberry\\c\\bin\\gcc.EXE"
+  },
+  "upstream_commit": null,
+  "data_and_weights_sha256": {},
+  "config_file": null,
+  "seeds": [],
+  "budget": {
+    "per_child_seconds": 60,
+    "run_seconds": 90,
+    "task_seconds": 600,
+    "bytes": 104857600
+  },
+  "output_directory": "D:\\Multi-Agent Network\\simulation\\outputs\\C-017\\20261103-04-e1-lifecycle-v4",
+  "process_id": null,
+  "finished_at": null,
+  "exit_code": null,
+  "status": "running",
+  "limitations": [
+    "Host compilation only, no ESP-IDF target build",
+    "No serial, RF, model or old simulation",
+    "Prepopulated local route fixture is not an online global-topology oracle"
+  ],
+  "review_reference": "coordination/reviews/C-017.md",
+  "evidence_kind": "synthetic_host"
+}

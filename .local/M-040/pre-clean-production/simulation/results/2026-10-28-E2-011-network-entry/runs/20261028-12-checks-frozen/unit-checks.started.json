@@ -1,0 +1,20 @@
+{
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "D:\\Multi-Agent Network\\simulation\\dynamic_network_entry",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "process_id": 23396,
+  "started_at": "2026-10-28T09:16:04.770623+00:00",
+  "child_path_prefix": [
+    "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46\\build\\lib",
+    "C:\\Strawberry\\c\\bin"
+  ]
+}

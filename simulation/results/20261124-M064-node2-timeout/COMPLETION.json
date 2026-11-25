@@ -1,0 +1,46 @@
+{
+  "status": "read_only_diagnostic_phase_complete",
+  "finished_at": "2026-11-24T17:22:14.736694+08:00",
+  "task_id": "M-064",
+  "original_manifest_unchanged": true,
+  "original_manifest_sha256": "6dc45ba897466ac13361ba1a64bdfe70b80b865779c56be5f70bce813ed5cdd7",
+  "supplement_to_initial_120s_budget": {
+    "user_explicitly_authorized_existing_reader_trace": true,
+    "actual_attachment_limit_seconds_each": 175,
+    "parallel_readers": [
+      "eora-air-01",
+      "eora-air-02",
+      "eora-air-04"
+    ],
+    "existing_tools_only": "strace 6.13 + timeout, normal eora owner permissions; no software install, sudo not usable and not used for attach",
+    "trace_completion": "all detached, TracerPid 0, same MainPID/NRestarts 0, active/running"
+  },
+  "gateway_accepted_counter_increment": 53,
+  "all_accepted_frames_captured": true,
+  "tx_done_events": 52,
+  "tx_done_matched_rx": 52,
+  "confirmed_findings": [
+    "Report receive sequence gaps and 30s timeout threshold",
+    "Continuous cumulative chip TX_DONE counters in same boot/generation despite preceding receiver gaps",
+    "Actual shared frequency/SF/BW/sync and 10s plus/minus250ms schedule",
+    "Existing reader loses cross-read JSON and aggregates away TX identity/results"
+  ],
+  "not_confirmed": [
+    "Unique RF root cause; collision remains leading hypothesis",
+    "No packet loss reproduced during the last175s trace",
+    "No RF packet timestamps/waveform, no gateway PHY CRC/forwarder/UDP A/B isolation",
+    "No repair deployed or long-stability/device acceptance"
+  ],
+  "changes_not_made": [
+    "no serial open/write by diagnostic process",
+    "no board/Pi/reader restart",
+    "no channel/period/interface/config/firmware changes",
+    "no production data or prior SQLite opened/modified",
+    "no Git writes or Control/deploy changes"
+  ],
+  "retained_processes": [
+    "existing real-only built frontend 10518 managed job pwsh-29/PID35240",
+    "user-started 8780/PID48488 and 8794/PID44064; no diagnostic service started"
+  ],
+  "background_diagnostic_work": "all finite captures/traces finished; no polling job or scheduled task remains"
+}

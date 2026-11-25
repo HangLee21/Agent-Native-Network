@@ -1,0 +1,818 @@
+{
+  "status": "verified",
+  "verification": {
+    "passed": true,
+    "errors": [],
+    "mode": "dynamic",
+    "generated": 110,
+    "socket_accepted": 110,
+    "socket_rejected": 0,
+    "received_unique": 68,
+    "not_received_by_stop": 42,
+    "initial_deliveries": 28,
+    "partition_deliveries": 0,
+    "fresh_recovery_deliveries": 36,
+    "first_fresh_delivery_after_42_s": 42.001712668,
+    "hop_histogram_received": {
+      "2": 68
+    },
+    "actual_phy_cost_by_category": {
+      "aodv": {
+        "attempts": 193,
+        "frame_bytes": 16250,
+        "airtime_s": 0.026336000000000075
+      },
+      "application": {
+        "attempts": 143,
+        "frame_bytes": 82368,
+        "airtime_s": 0.11325600000000012
+      },
+      "arp": {
+        "attempts": 8,
+        "frame_bytes": 512,
+        "airtime_s": 0.0008959999999999994
+      },
+      "mac_control": {
+        "attempts": 145,
+        "frame_bytes": 2030,
+        "airtime_s": 0.006379999999999976
+      }
+    },
+    "request_terminals": [
+      {
+        "seq": 0,
+        "status": "delivered_on_time",
+        "generated_s": 5,
+        "deadline_s": 7,
+        "received_s": 5.01532134
+      },
+      {
+        "seq": 1,
+        "status": "delivered_on_time",
+        "generated_s": 5.5,
+        "deadline_s": 7.5,
+        "received_s": 5.501712668
+      },
+      {
+        "seq": 2,
+        "status": "delivered_on_time",
+        "generated_s": 6,
+        "deadline_s": 8,
+        "received_s": 6.001712668
+      },
+      {
+        "seq": 3,
+        "status": "delivered_on_time",
+        "generated_s": 6.5,
+        "deadline_s": 8.5,
+        "received_s": 6.501712668
+      },
+      {
+        "seq": 4,
+        "status": "delivered_on_time",
+        "generated_s": 7,
+        "deadline_s": 9,
+        "received_s": 7.001712668
+      },
+      {
+        "seq": 5,
+        "status": "delivered_on_time",
+        "generated_s": 7.5,
+        "deadline_s": 9.5,
+        "received_s": 7.501712668
+      },
+      {
+        "seq": 6,
+        "status": "delivered_on_time",
+        "generated_s": 8,
+        "deadline_s": 10,
+        "received_s": 8.001712668
+      },
+      {
+        "seq": 7,
+        "status": "delivered_on_time",
+        "generated_s": 8.5,
+        "deadline_s": 10.5,
+        "received_s": 8.501712668
+      },
+      {
+        "seq": 8,
+        "status": "delivered_on_time",
+        "generated_s": 9,
+        "deadline_s": 11,
+        "received_s": 9.001712668
+      },
+      {
+        "seq": 9,
+        "status": "delivered_on_time",
+        "generated_s": 9.5,
+        "deadline_s": 11.5,
+        "received_s": 9.501712668
+      },
+      {
+        "seq": 10,
+        "status": "delivered_on_time",
+        "generated_s": 10,
+        "deadline_s": 12,
+        "received_s": 10.001712668
+      },
+      {
+        "seq": 11,
+        "status": "delivered_on_time",
+        "generated_s": 10.5,
+        "deadline_s": 12.5,
+        "received_s": 10.501712668
+      },
+      {
+        "seq": 12,
+        "status": "delivered_on_time",
+        "generated_s": 11,
+        "deadline_s": 13,
+        "received_s": 11.001712668
+      },
+      {
+        "seq": 13,
+        "status": "delivered_on_time",
+        "generated_s": 11.5,
+        "deadline_s": 13.5,
+        "received_s": 11.501712668
+      },
+      {
+        "seq": 14,
+        "status": "delivered_on_time",
+        "generated_s": 12,
+        "deadline_s": 14,
+        "received_s": 12.001712668
+      },
+      {
+        "seq": 15,
+        "status": "delivered_on_time",
+        "generated_s": 12.5,
+        "deadline_s": 14.5,
+        "received_s": 12.501712668
+      },
+      {
+        "seq": 16,
+        "status": "delivered_on_time",
+        "generated_s": 13,
+        "deadline_s": 15,
+        "received_s": 13.001712668
+      },
+      {
+        "seq": 17,
+        "status": "delivered_on_time",
+        "generated_s": 13.5,
+        "deadline_s": 15.5,
+        "received_s": 13.501712668
+      },
+      {
+        "seq": 18,
+        "status": "delivered_on_time",
+        "generated_s": 14,
+        "deadline_s": 16,
+        "received_s": 14.001712668
+      },
+      {
+        "seq": 19,
+        "status": "delivered_on_time",
+        "generated_s": 14.5,
+        "deadline_s": 16.5,
+        "received_s": 14.501712668
+      },
+      {
+        "seq": 20,
+        "status": "delivered_on_time",
+        "generated_s": 15,
+        "deadline_s": 17,
+        "received_s": 15.001712668
+      },
+      {
+        "seq": 21,
+        "status": "delivered_on_time",
+        "generated_s": 15.5,
+        "deadline_s": 17.5,
+        "received_s": 15.501712668
+      },
+      {
+        "seq": 22,
+        "status": "delivered_on_time",
+        "generated_s": 16,
+        "deadline_s": 18,
+        "received_s": 16.001712668
+      },
+      {
+        "seq": 23,
+        "status": "delivered_on_time",
+        "generated_s": 16.5,
+        "deadline_s": 18.5,
+        "received_s": 16.501712668
+      },
+      {
+        "seq": 24,
+        "status": "delivered_on_time",
+        "generated_s": 17,
+        "deadline_s": 19,
+        "received_s": 17.001712668
+      },
+      {
+        "seq": 25,
+        "status": "delivered_on_time",
+        "generated_s": 17.5,
+        "deadline_s": 19.5,
+        "received_s": 17.501712668
+      },
+      {
+        "seq": 26,
+        "status": "delivered_on_time",
+        "generated_s": 18,
+        "deadline_s": 20,
+        "received_s": 18.001712668
+      },
+      {
+        "seq": 27,
+        "status": "delivered_on_time",
+        "generated_s": 18.5,
+        "deadline_s": 20.5,
+        "received_s": 18.501712668
+      },
+      {
+        "seq": 28,
+        "status": "delivered_on_time",
+        "generated_s": 19,
+        "deadline_s": 21,
+        "received_s": 19.001712668
+      },
+      {
+        "seq": 29,
+        "status": "not_received_by_stop",
+        "generated_s": 19.5,
+        "deadline_s": 21.5,
+        "received_s": null
+      },
+      {
+        "seq": 30,
+        "status": "not_received_by_stop",
+        "generated_s": 20,
+        "deadline_s": 22,
+        "received_s": null
+      },
+      {
+        "seq": 31,
+        "status": "not_received_by_stop",
+        "generated_s": 20.5,
+        "deadline_s": 22.5,
+        "received_s": null
+      },
+      {
+        "seq": 32,
+        "status": "not_received_by_stop",
+        "generated_s": 21,
+        "deadline_s": 23,
+        "received_s": null
+      },
+      {
+        "seq": 33,
+        "status": "not_received_by_stop",
+        "generated_s": 21.5,
+        "deadline_s": 23.5,
+        "received_s": null
+      },
+      {
+        "seq": 34,
+        "status": "not_received_by_stop",
+        "generated_s": 22,
+        "deadline_s": 24,
+        "received_s": null
+      },
+      {
+        "seq": 35,
+        "status": "not_received_by_stop",
+        "generated_s": 22.5,
+        "deadline_s": 24.5,
+        "received_s": null
+      },
+      {
+        "seq": 36,
+        "status": "not_received_by_stop",
+        "generated_s": 23,
+        "deadline_s": 25,
+        "received_s": null
+      },
+      {
+        "seq": 37,
+        "status": "not_received_by_stop",
+        "generated_s": 23.5,
+        "deadline_s": 25.5,
+        "received_s": null
+      },
+      {
+        "seq": 38,
+        "status": "not_received_by_stop",
+        "generated_s": 24,
+        "deadline_s": 26,
+        "received_s": null
+      },
+      {
+        "seq": 39,
+        "status": "not_received_by_stop",
+        "generated_s": 24.5,
+        "deadline_s": 26.5,
+        "received_s": null
+      },
+      {
+        "seq": 40,
+        "status": "not_received_by_stop",
+        "generated_s": 25,
+        "deadline_s": 27,
+        "received_s": null
+      },
+      {
+        "seq": 41,
+        "status": "not_received_by_stop",
+        "generated_s": 25.5,
+        "deadline_s": 27.5,
+        "received_s": null
+      },
+      {
+        "seq": 42,
+        "status": "not_received_by_stop",
+        "generated_s": 26,
+        "deadline_s": 28,
+        "received_s": null
+      },
+      {
+        "seq": 43,
+        "status": "not_received_by_stop",
+        "generated_s": 26.5,
+        "deadline_s": 28.5,
+        "received_s": null
+      },
+      {
+        "seq": 44,
+        "status": "not_received_by_stop",
+        "generated_s": 27,
+        "deadline_s": 29,
+        "received_s": null
+      },
+      {
+        "seq": 45,
+        "status": "not_received_by_stop",
+        "generated_s": 27.5,
+        "deadline_s": 29.5,
+        "received_s": null
+      },
+      {
+        "seq": 46,
+        "status": "not_received_by_stop",
+        "generated_s": 28,
+        "deadline_s": 30,
+        "received_s": null
+      },
+      {
+        "seq": 47,
+        "status": "not_received_by_stop",
+        "generated_s": 28.5,
+        "deadline_s": 30.5,
+        "received_s": null
+      },
+      {
+        "seq": 48,
+        "status": "not_received_by_stop",
+        "generated_s": 29,
+        "deadline_s": 31,
+        "received_s": null
+      },
+      {
+        "seq": 49,
+        "status": "not_received_by_stop",
+        "generated_s": 29.5,
+        "deadline_s": 31.5,
+        "received_s": null
+      },
+      {
+        "seq": 50,
+        "status": "not_received_by_stop",
+        "generated_s": 30,
+        "deadline_s": 32,
+        "received_s": null
+      },
+      {
+        "seq": 51,
+        "status": "not_received_by_stop",
+        "generated_s": 30.5,
+        "deadline_s": 32.5,
+        "received_s": null
+      },
+      {
+        "seq": 52,
+        "status": "not_received_by_stop",
+        "generated_s": 31,
+        "deadline_s": 33,
+        "received_s": null
+      },
+      {
+        "seq": 53,
+        "status": "not_received_by_stop",
+        "generated_s": 31.5,
+        "deadline_s": 33.5,
+        "received_s": null
+      },
+      {
+        "seq": 54,
+        "status": "not_received_by_stop",
+        "generated_s": 32,
+        "deadline_s": 34,
+        "received_s": null
+      },
+      {
+        "seq": 55,
+        "status": "not_received_by_stop",
+        "generated_s": 32.5,
+        "deadline_s": 34.5,
+        "received_s": null
+      },
+      {
+        "seq": 56,
+        "status": "not_received_by_stop",
+        "generated_s": 33,
+        "deadline_s": 35,
+        "received_s": null
+      },
+      {
+        "seq": 57,
+        "status": "not_received_by_stop",
+        "generated_s": 33.5,
+        "deadline_s": 35.5,
+        "received_s": null
+      },
+      {
+        "seq": 58,
+        "status": "not_received_by_stop",
+        "generated_s": 34,
+        "deadline_s": 36,
+        "received_s": null
+      },
+      {
+        "seq": 59,
+        "status": "not_received_by_stop",
+        "generated_s": 34.5,
+        "deadline_s": 36.5,
+        "received_s": null
+      },
+      {
+        "seq": 60,
+        "status": "not_received_by_stop",
+        "generated_s": 35,
+        "deadline_s": 37,
+        "received_s": null
+      },
+      {
+        "seq": 61,
+        "status": "not_received_by_stop",
+        "generated_s": 35.5,
+        "deadline_s": 37.5,
+        "received_s": null
+      },
+      {
+        "seq": 62,
+        "status": "not_received_by_stop",
+        "generated_s": 36,
+        "deadline_s": 38,
+        "received_s": null
+      },
+      {
+        "seq": 63,
+        "status": "not_received_by_stop",
+        "generated_s": 36.5,
+        "deadline_s": 38.5,
+        "received_s": null
+      },
+      {
+        "seq": 64,
+        "status": "not_received_by_stop",
+        "generated_s": 37,
+        "deadline_s": 39,
+        "received_s": null
+      },
+      {
+        "seq": 65,
+        "status": "not_received_by_stop",
+        "generated_s": 37.5,
+        "deadline_s": 39.5,
+        "received_s": null
+      },
+      {
+        "seq": 66,
+        "status": "not_received_by_stop",
+        "generated_s": 38,
+        "deadline_s": 40,
+        "received_s": null
+      },
+      {
+        "seq": 67,
+        "status": "not_received_by_stop",
+        "generated_s": 38.5,
+        "deadline_s": 40.5,
+        "received_s": null
+      },
+      {
+        "seq": 68,
+        "status": "not_received_by_stop",
+        "generated_s": 39,
+        "deadline_s": 41,
+        "received_s": null
+      },
+      {
+        "seq": 69,
+        "status": "not_received_by_stop",
+        "generated_s": 39.5,
+        "deadline_s": 41.5,
+        "received_s": null
+      },
+      {
+        "seq": 70,
+        "status": "not_received_by_stop",
+        "generated_s": 40,
+        "deadline_s": 42,
+        "received_s": null
+      },
+      {
+        "seq": 71,
+        "status": "delivered_on_time",
+        "generated_s": 40.5,
+        "deadline_s": 42.5,
+        "received_s": 40.756008978
+      },
+      {
+        "seq": 72,
+        "status": "delivered_on_time",
+        "generated_s": 41,
+        "deadline_s": 43,
+        "received_s": 41.001712668
+      },
+      {
+        "seq": 73,
+        "status": "delivered_on_time",
+        "generated_s": 41.5,
+        "deadline_s": 43.5,
+        "received_s": 41.501712668
+      },
+      {
+        "seq": 74,
+        "status": "delivered_on_time",
+        "generated_s": 42,
+        "deadline_s": 44,
+        "received_s": 42.001712668
+      },
+      {
+        "seq": 75,
+        "status": "delivered_on_time",
+        "generated_s": 42.5,
+        "deadline_s": 44.5,
+        "received_s": 42.501712668
+      },
+      {
+        "seq": 76,
+        "status": "delivered_on_time",
+        "generated_s": 43,
+        "deadline_s": 45,
+        "received_s": 43.001712668
+      },
+      {
+        "seq": 77,
+        "status": "delivered_on_time",
+        "generated_s": 43.5,
+        "deadline_s": 45.5,
+        "received_s": 43.501712668
+      },
+      {
+        "seq": 78,
+        "status": "delivered_on_time",
+        "generated_s": 44,
+        "deadline_s": 46,
+        "received_s": 44.001712668
+      },
+      {
+        "seq": 79,
+        "status": "delivered_on_time",
+        "generated_s": 44.5,
+        "deadline_s": 46.5,
+        "received_s": 44.501712668
+      },
+      {
+        "seq": 80,
+        "status": "delivered_on_time",
+        "generated_s": 45,
+        "deadline_s": 47,
+        "received_s": 45.001712668
+      },
+      {
+        "seq": 81,
+        "status": "delivered_on_time",
+        "generated_s": 45.5,
+        "deadline_s": 47.5,
+        "received_s": 45.501712668
+      },
+      {
+        "seq": 82,
+        "status": "delivered_on_time",
+        "generated_s": 46,
+        "deadline_s": 48,
+        "received_s": 46.001712668
+      },
+      {
+        "seq": 83,
+        "status": "delivered_on_time",
+        "generated_s": 46.5,
+        "deadline_s": 48.5,
+        "received_s": 46.501712668
+      },
+      {
+        "seq": 84,
+        "status": "delivered_on_time",
+        "generated_s": 47,
+        "deadline_s": 49,
+        "received_s": 47.001712668
+      },
+      {
+        "seq": 85,
+        "status": "delivered_on_time",
+        "generated_s": 47.5,
+        "deadline_s": 49.5,
+        "received_s": 47.501712668
+      },
+      {
+        "seq": 86,
+        "status": "delivered_on_time",
+        "generated_s": 48,
+        "deadline_s": 50,
+        "received_s": 48.001712668
+      },
+      {
+        "seq": 87,
+        "status": "delivered_on_time",
+        "generated_s": 48.5,
+        "deadline_s": 50.5,
+        "received_s": 48.501712668
+      },
+      {
+        "seq": 88,
+        "status": "delivered_on_time",
+        "generated_s": 49,
+        "deadline_s": 51,
+        "received_s": 49.001712668
+      },
+      {
+        "seq": 89,
+        "status": "delivered_on_time",
+        "generated_s": 49.5,
+        "deadline_s": 51.5,
+        "received_s": 49.501712668
+      },
+      {
+        "seq": 90,
+        "status": "delivered_on_time",
+        "generated_s": 50,
+        "deadline_s": 52,
+        "received_s": 50.001712668
+      },
+      {
+        "seq": 91,
+        "status": "delivered_on_time",
+        "generated_s": 50.5,
+        "deadline_s": 52.5,
+        "received_s": 50.501712668
+      },
+      {
+        "seq": 92,
+        "status": "delivered_on_time",
+        "generated_s": 51,
+        "deadline_s": 53,
+        "received_s": 51.001712668
+      },
+      {
+        "seq": 93,
+        "status": "delivered_on_time",
+        "generated_s": 51.5,
+        "deadline_s": 53.5,
+        "received_s": 51.501712668
+      },
+      {
+        "seq": 94,
+        "status": "delivered_on_time",
+        "generated_s": 52,
+        "deadline_s": 54,
+        "received_s": 52.001712668
+      },
+      {
+        "seq": 95,
+        "status": "delivered_on_time",
+        "generated_s": 52.5,
+        "deadline_s": 54.5,
+        "received_s": 52.501712668
+      },
+      {
+        "seq": 96,
+        "status": "delivered_on_time",
+        "generated_s": 53,
+        "deadline_s": 55,
+        "received_s": 53.001712668
+      },
+      {
+        "seq": 97,
+        "status": "delivered_on_time",
+        "generated_s": 53.5,
+        "deadline_s": 55.5,
+        "received_s": 53.501712668
+      },
+      {
+        "seq": 98,
+        "status": "delivered_on_time",
+        "generated_s": 54,
+        "deadline_s": 56,
+        "received_s": 54.001712668
+      },
+      {
+        "seq": 99,
+        "status": "delivered_on_time",
+        "generated_s": 54.5,
+        "deadline_s": 56.5,
+        "received_s": 54.501712668
+      },
+      {
+        "seq": 100,
+        "status": "delivered_on_time",
+        "generated_s": 55,
+        "deadline_s": 57,
+        "received_s": 55.001712668
+      },
+      {
+        "seq": 101,
+        "status": "delivered_on_time",
+        "generated_s": 55.5,
+        "deadline_s": 57.5,
+        "received_s": 55.501712668
+      },
+      {
+        "seq": 102,
+        "status": "delivered_on_time",
+        "generated_s": 56,
+        "deadline_s": 58,
+        "received_s": 56.001712668
+      },
+      {
+        "seq": 103,
+        "status": "delivered_on_time",
+        "generated_s": 56.5,
+        "deadline_s": 58.5,
+        "received_s": 56.501712668
+      },
+      {
+        "seq": 104,
+        "status": "delivered_on_time",
+        "generated_s": 57,
+        "deadline_s": 59,
+        "received_s": 57.001712668
+      },
+      {
+        "seq": 105,
+        "status": "delivered_on_time",
+        "generated_s": 57.5,
+        "deadline_s": 59.5,
+        "received_s": 57.501712668
+      },
+      {
+        "seq": 106,
+        "status": "delivered_on_time",
+        "generated_s": 58,
+        "deadline_s": 60,
+        "received_s": 58.001712668
+      },
+      {
+        "seq": 107,
+        "status": "delivered_on_time",
+        "generated_s": 58.5,
+        "deadline_s": 60.5,
+        "received_s": 58.501712668
+      },
+      {
+        "seq": 108,
+        "status": "delivered_on_time",
+        "generated_s": 59,
+        "deadline_s": 61,
+        "received_s": 59.001712668
+      },
+      {
+        "seq": 109,
+        "status": "delivered_on_time",
+        "generated_s": 59.5,
+        "deadline_s": 61.5,
+        "received_s": 59.501712668
+      }
+    ],
+    "tx_attempts_truncated_by_stop": 0,
+    "frame_byte_scope": "full MPDU sizes of started attempts; airtime clipped to observed 60 s; partial attempts separately counted",
+    "scope": "engineering UDP probe accounting; no Agent inference/consumption or performance benchmark",
+    "input_events_sha256": "37dfc0af5eaeb747058c3cd73dc1c6e5d7d32adc71b002091227887530f054de"
+  }
+}

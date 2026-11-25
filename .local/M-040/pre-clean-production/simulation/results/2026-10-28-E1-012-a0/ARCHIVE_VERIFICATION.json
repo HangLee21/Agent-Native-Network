@@ -1,0 +1,10 @@
+{
+  "task_id": "E1-012",
+  "files": 296,
+  "all_source_and_archive_hashes_match": true,
+  "total_bytes": 25094847,
+  "manifest_sha256": "532dd1cef8aca97b6e4ec180fe77b27db6e9687455eb9ab6d8a4d0a0f6b3d6c2",
+  "worker_starts": 1,
+  "actual_model_forwards": 0,
+  "source_files_not_modified": true
+}

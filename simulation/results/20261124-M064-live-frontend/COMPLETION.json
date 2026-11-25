@@ -1,0 +1,45 @@
+{
+  "finished_at": "2026-11-24T10:49:29.131453+08:00",
+  "tested_commit": "162665bf93265333e725486539a26098b1466a31",
+  "live_gateway_ui_pipeline_passed": true,
+  "full_expected_node_health_passed": false,
+  "sampling_return_code": 1,
+  "first_browser_return_code": 0,
+  "ui_correlation_return_code": 0,
+  "fixtures_used": false,
+  "api_fulfillments": 0,
+  "device_control_requests_sent": 0,
+  "nodes_reporting": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "numeric_registry_node_not_observed": [
+    3
+  ],
+  "node4_observed_timeout_max_ms": 54975,
+  "node4_ui_timeout_and_recovery_observed": true,
+  "gps_valid_points": 0,
+  "frontend_preview": {
+    "url": "http://127.0.0.1:10518/studio.html",
+    "job_id": "pwsh-3",
+    "pid": 5320,
+    "mode": "real only, retained for user"
+  },
+  "existing_gateway_pid": 39744,
+  "existing_studio_pid": 38492,
+  "existing_services_restarted": false,
+  "product_code_modified": false,
+  "foreign_dirty_cards_preserved": 16,
+  "deploy_modified": false,
+  "control_modified": false,
+  "independent_C_review": false,
+  "limits": [
+    "Gateway labels are not independent physical inventory",
+    "Missing3 and intermittent4 root cause not diagnosed; no node control or serial access",
+    "Observed report directions are not packet delivery or current RF mutual proof",
+    "Legacy protocol provenance remains unknown; no fixture injection in this run",
+    "No production release, power-cycle recovery, downlink or packet-loss-rate qualification"
+  ]
+}

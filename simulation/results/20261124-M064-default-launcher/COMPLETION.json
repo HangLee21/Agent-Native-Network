@@ -1,0 +1,47 @@
+{
+  "finished_at": "2026-11-24T11:27:59.957068+08:00",
+  "status": "completed",
+  "default": "START_STUDIO.cmd -> tools/release/start_vue_studio.py -> real Vue studio.html",
+  "default_port": 10518,
+  "legacy": "START_STUDIO_LEGACY.cmd",
+  "legacy_original_sha256": "40074f56fdfcb569a0902bc7fe0bcb83c3c98eb58df39944f4888494b7b2dbcf",
+  "legacy_raw_bytes_match": true,
+  "legacy_git_text_attribute": "START_STUDIO_LEGACY.cmd: text: unset",
+  "tests": {
+    "tests_run": 29,
+    "failures": 0,
+    "errors": 0,
+    "passed": true,
+    "hardware_actions": false
+  },
+  "cmd_smoke_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "existing_pids_preserved": {
+    "10518": 5320,
+    "8794": 38492,
+    "8780": 39744
+  },
+  "other_dirty_cards_preserved": 16,
+  "imported_frontend_and_original_backends_modified": false,
+  "source_sha256": {
+    "START_STUDIO.cmd": "96f6dc59f9bedd035e72c9e2fe4e3e7208ea72d4f54bd6142c6767379990883c",
+    "START_STUDIO_LEGACY.cmd": "40074f56fdfcb569a0902bc7fe0bcb83c3c98eb58df39944f4888494b7b2dbcf",
+    "tools/release/start_vue_studio.py": "e0b9f3f906e89e1d03ac667d4b733a91811267ac3ca3759745fe204d7681ed6f",
+    "tests/test_studio_launcher_m064.py": "108a49f2a107087114fdc51bb6d255eebac397575dadb9dc2f17d5245a5e74f4",
+    ".gitattributes": "e2ba463e70f14737c6b2ec2e6fdaf67acb819b84ca720509c22f6e5a31f12a35"
+  },
+  "deploy_modified": false,
+  "control_modified": false,
+  "mock_started": false,
+  "real_device_or_nic_actions": false,
+  "independent_C_review": false,
+  "limits": [
+    "Cold startup dispatch uses harmless offline CMD/service substitutes; existing live services were never stopped",
+    "29 targeted tests, not a rerun of full Vue suite",
+    "Original source/SQLite/business feature migration and node3/node4 field issues remain open",
+    "No Git commit/push in this stage"
+  ]
+}

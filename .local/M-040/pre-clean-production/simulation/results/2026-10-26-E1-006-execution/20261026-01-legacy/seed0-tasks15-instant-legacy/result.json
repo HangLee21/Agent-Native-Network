@@ -1,0 +1,143 @@
+{
+  "case_id": "seed0-tasks15-instant-legacy",
+  "seed": 0,
+  "recovery": false,
+  "condition": "instant",
+  "status": "success",
+  "task_executed": true,
+  "agents": 9,
+  "tasks": 15,
+  "catalog_sha256": "f9efd79bb65a01063c07d1c84ce4f334553bcb3328587a52a8136553aa5c7fbf",
+  "completed": 15,
+  "completion_fraction": 1.0,
+  "returned": 9,
+  "success": true,
+  "end_time": 20.966401263043952,
+  "makespan_return": 20.966401263043952,
+  "capped_makespan": 20.966401263043952,
+  "last_task_finish": 16.45784732600669,
+  "actions": 31,
+  "decisions": 109,
+  "processed_physical_events": 100,
+  "budget_event_records": 2047,
+  "task_phases": {
+    "open": 0,
+    "running": 0,
+    "done": 15
+  },
+  "actor_modes": {
+    "idle": 9,
+    "travel": 0,
+    "waiting": 0,
+    "working": 0
+  },
+  "planned_travel_distance": 16.377478694300653,
+  "actual_travel_distance": 16.377478694300653,
+  "network": {
+    "observed_at": 20.966401263043952,
+    "mode": "instant",
+    "time_unit": "author_simulation_time",
+    "service_byte_unit": "application_plus_configured_overhead",
+    "resource_relaxed": true,
+    "capacity_applied": false,
+    "rate_bytes_per_time": 1024.0,
+    "capacity_bytes": 65536,
+    "overhead_bytes": 0,
+    "propagation_delay": 0.0,
+    "demanded": 141,
+    "accepted": 141,
+    "dropped": 0,
+    "pending": 0,
+    "delivered": 141,
+    "recipient_demand": 1128,
+    "recipient_delivered": 1128,
+    "demand_application_bytes": 43583,
+    "demand_service_bytes": 43583,
+    "admitted_application_bytes": 43583,
+    "admitted_service_bytes": 43583,
+    "rejected_application_bytes": 0,
+    "rejected_service_bytes": 0,
+    "completed_service_bytes": 43583,
+    "serviced_bytes": 43583,
+    "remaining_service_bytes": 0,
+    "queue_messages": 0,
+    "queue_bytes": 0,
+    "in_service_messages": 0,
+    "in_service_buffer_bytes": 0,
+    "in_service_remaining_bytes": 0,
+    "buffer_occupied_bytes": 0,
+    "propagation_messages": 0,
+    "propagation_bytes": 0,
+    "delivered_application_bytes": 43583,
+    "recipient_delivered_application_bytes": 348664,
+    "ready_deliveries": 0,
+    "latency_mean": 0.0,
+    "latency_p95": 0.0,
+    "latency_max": 0.0,
+    "recipient_unmet": 0,
+    "by_kind": {
+      "self_state": {
+        "demanded": 104,
+        "accepted": 104,
+        "dropped": 0,
+        "delivered": 104,
+        "demand_application_bytes": 33918,
+        "demand_service_bytes": 33918,
+        "serviced_bytes": 33918,
+        "recipient_demand": 832,
+        "recipient_delivered": 832
+      },
+      "task_scene": {
+        "demanded": 37,
+        "accepted": 37,
+        "dropped": 0,
+        "delivered": 37,
+        "demand_application_bytes": 9665,
+        "demand_service_bytes": 9665,
+        "serviced_bytes": 9665,
+        "recipient_demand": 296,
+        "recipient_delivered": 296
+      }
+    }
+  },
+  "information_records": 1872,
+  "information_record_counts": {
+    "action_intent": 109,
+    "action_result": 109,
+    "decision": 109,
+    "information_acquired": 1291,
+    "information_consulted": 109,
+    "local_timer_scheduled": 99,
+    "physical_event_scheduled": 46
+  },
+  "budget_definition": "physical trace + message-service ledger; instrumentation separately counted",
+  "legacy_comparison": {
+    "events": {
+      "equal": true,
+      "reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant\\events.json.gz",
+      "sha256": "e287c28f94a820f98f8951ceeb0a1e5276dc66dff539c19c8299c83185162184"
+    },
+    "decisions": {
+      "equal": true,
+      "reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant\\decisions.json.gz",
+      "sha256": "ad11eea20a896881ad67dcfa1a2a54e8f06ba2870d477a128c9d62b924d1ad13"
+    },
+    "messages": {
+      "equal": true,
+      "reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant\\messages.json.gz",
+      "sha256": "682abcf52c11d8c04c825b76a20c529c4b578ba1ae1aa9a575e0342029849af9"
+    },
+    "deliveries": {
+      "equal": true,
+      "reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant\\deliveries.json.gz",
+      "sha256": "89ee2712bdd2784d3c183563bb4597eddae8ec5ba6efba7514fd85c5418145ca"
+    },
+    "view_evidence": {
+      "equal": true,
+      "reference": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-25-E1-004-causal\\20261025-02-delay\\tasks15_seed0_instant\\view_evidence.json.gz",
+      "sha256": "0c267654a33d5231cce8145714847284ce2f3b7eb569293a525b4cc7b57e037f"
+    }
+  },
+  "wall_seconds": 6.867221200023778,
+  "executor_sha256": "7e67a5e81a2c520d382649e28d79e0f62f3bed087ffde88c19e5b18eebb1645c"
+}

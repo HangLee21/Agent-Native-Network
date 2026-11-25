@@ -1,0 +1,12 @@
+test_cancel_retains_site_and_uses_actual_delivery (simulation.test_heteromrta_demand_execution.DemandExecutionTests.test_cancel_retains_site_and_uses_actual_delivery) ... ok
+test_legacy_behavior_same_as_parent (simulation.test_heteromrta_demand_execution.DemandExecutionTests.test_legacy_behavior_same_as_parent) ... ok
+test_randomness_is_keyed_and_interval_bounded (simulation.test_heteromrta_demand_execution.DemandExecutionTests.test_randomness_is_keyed_and_interval_bounded) ... ok
+test_recovery_closed_loop_completes_fixture (simulation.test_heteromrta_demand_execution.DemandExecutionTests.test_recovery_closed_loop_completes_fixture) ... ok
+test_startup_gate_survives_network_receipt_and_decide (simulation.test_heteromrta_demand_execution.DemandExecutionTests.test_startup_gate_survives_network_receipt_and_decide) ... ok
+test_unknown_and_network_provenance_are_separate (simulation.test_heteromrta_demand_execution.DemandExecutionTests.test_unknown_and_network_provenance_are_separate) ... ok
+test_wait_timeout_does_not_interrupt_work (simulation.test_heteromrta_demand_execution.DemandExecutionTests.test_wait_timeout_does_not_interrupt_work) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.366s
+
+OK

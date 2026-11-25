@@ -1,0 +1,170 @@
+{
+  "task": "D-004",
+  "date": "2026-10-25",
+  "base_commit": "7b6b09c23333609ee428cd45e4e24fc77a08fc24",
+  "adopted_run": "20261025-02",
+  "files": [
+    {
+      "source": "simulation/outputs/D-004/20261025-01/config.json",
+      "archive": "20261025-01/config.json",
+      "source_sha256": "64a7ca275d456771fc7a89066850fd75357edad7b74122873fd6cc78b3e30912",
+      "stored_sha256": "64a7ca275d456771fc7a89066850fd75357edad7b74122873fd6cc78b3e30912",
+      "source_bytes": 511,
+      "stored_bytes": 511,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-01/environment.json",
+      "archive": "20261025-01/environment.json",
+      "source_sha256": "4defb43c2d9a2f411edbcf0a540824a231458cf01f3edec38bab7a9a6b00247d",
+      "stored_sha256": "4defb43c2d9a2f411edbcf0a540824a231458cf01f3edec38bab7a9a6b00247d",
+      "source_bytes": 1656,
+      "stored_bytes": 1656,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-01/mocha_runtime_probe.snapshot.py",
+      "archive": "20261025-01/mocha_runtime_probe.snapshot.py",
+      "source_sha256": "2d340aa10b261c0d3ec4fccf2d28e45df6d876c5d6a2e70b1e008832863623f1",
+      "stored_sha256": "2d340aa10b261c0d3ec4fccf2d28e45df6d876c5d6a2e70b1e008832863623f1",
+      "source_bytes": 24401,
+      "stored_bytes": 24401,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-01/result.json",
+      "archive": "20261025-01/result.json",
+      "source_sha256": "c86460a332616399c56de07244776593a2706fc4e250b9d71cf659b202aefbb5",
+      "stored_sha256": "c86460a332616399c56de07244776593a2706fc4e250b9d71cf659b202aefbb5",
+      "source_bytes": 8748,
+      "stored_bytes": 8748,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-01/robot_a_events.jsonl",
+      "archive": "20261025-01/robot_a_events.jsonl",
+      "source_sha256": "d819dacd3d9f1eb481cc6f3ef7b7175f35f989222eec7b67d861d772ed713c20",
+      "stored_sha256": "d819dacd3d9f1eb481cc6f3ef7b7175f35f989222eec7b67d861d772ed713c20",
+      "source_bytes": 14640,
+      "stored_bytes": 14640,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-01/robot_a_stderr.txt",
+      "archive": "20261025-01/robot_a_stderr.txt",
+      "source_sha256": "c7ca6a87488409ecb08404fd53d7ecac1152ae6afc9bf4c0130b37bc28097f5f",
+      "stored_sha256": "c7ca6a87488409ecb08404fd53d7ecac1152ae6afc9bf4c0130b37bc28097f5f",
+      "source_bytes": 252,
+      "stored_bytes": 252,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-01/robot_b_events.jsonl",
+      "archive": "20261025-01/robot_b_events.jsonl",
+      "source_sha256": "4c4059b53b51e1cfd7acda01c111ee54aa3cb3229bbc231b0f7d6b7150ceb14f",
+      "stored_sha256": "4c4059b53b51e1cfd7acda01c111ee54aa3cb3229bbc231b0f7d6b7150ceb14f",
+      "source_bytes": 10487,
+      "stored_bytes": 10487,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-01/robot_b_stderr.txt",
+      "archive": "20261025-01/robot_b_stderr.txt",
+      "source_sha256": "c7ca6a87488409ecb08404fd53d7ecac1152ae6afc9bf4c0130b37bc28097f5f",
+      "stored_sha256": "c7ca6a87488409ecb08404fd53d7ecac1152ae6afc9bf4c0130b37bc28097f5f",
+      "source_bytes": 252,
+      "stored_bytes": 252,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-01/sources.json",
+      "archive": "20261025-01/sources.json",
+      "source_sha256": "37b83a117df9678f50565f991bb3a235e535df10f6e98ca703c2c19b4db7aeca",
+      "stored_sha256": "37b83a117df9678f50565f991bb3a235e535df10f6e98ca703c2c19b4db7aeca",
+      "source_bytes": 21479,
+      "stored_bytes": 21479,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/config.json",
+      "archive": "20261025-02/config.json",
+      "source_sha256": "fd3893e37f8d35ca6ff1a1921dc7a956cc07b16dbe9c822bc1249e1e7a92c740",
+      "stored_sha256": "fd3893e37f8d35ca6ff1a1921dc7a956cc07b16dbe9c822bc1249e1e7a92c740",
+      "source_bytes": 511,
+      "stored_bytes": 511,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/environment.json",
+      "archive": "20261025-02/environment.json",
+      "source_sha256": "fe2db5c729e20e50a8ce85f85c38972990e069541e13141a23485120a0eac9b3",
+      "stored_sha256": "fe2db5c729e20e50a8ce85f85c38972990e069541e13141a23485120a0eac9b3",
+      "source_bytes": 2021,
+      "stored_bytes": 2021,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/mocha_runtime_probe.snapshot.py",
+      "archive": "20261025-02/mocha_runtime_probe.snapshot.py",
+      "source_sha256": "7b524d3555c56eeba28e292faf9299c6b3d1d28f855783ab2b121fb0c6f0af44",
+      "stored_sha256": "7b524d3555c56eeba28e292faf9299c6b3d1d28f855783ab2b121fb0c6f0af44",
+      "source_bytes": 24592,
+      "stored_bytes": 24592,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/result.json",
+      "archive": "20261025-02/result.json",
+      "source_sha256": "878ba2cc53279b1f047f3419a017edb66a855d339bd9320e84f0a15dd76758c3",
+      "stored_sha256": "878ba2cc53279b1f047f3419a017edb66a855d339bd9320e84f0a15dd76758c3",
+      "source_bytes": 14536,
+      "stored_bytes": 14536,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/robot_a_events.jsonl",
+      "archive": "20261025-02/robot_a_events.jsonl",
+      "source_sha256": "993f48d783452e3614338459c576780f657ad9d66e2512455f1d3ad51404bed3",
+      "stored_sha256": "993f48d783452e3614338459c576780f657ad9d66e2512455f1d3ad51404bed3",
+      "source_bytes": 36071,
+      "stored_bytes": 36071,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/robot_a_stderr.txt",
+      "archive": "20261025-02/robot_a_stderr.txt",
+      "source_sha256": "c7ca6a87488409ecb08404fd53d7ecac1152ae6afc9bf4c0130b37bc28097f5f",
+      "stored_sha256": "c7ca6a87488409ecb08404fd53d7ecac1152ae6afc9bf4c0130b37bc28097f5f",
+      "source_bytes": 252,
+      "stored_bytes": 252,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/robot_b_events.jsonl",
+      "archive": "20261025-02/robot_b_events.jsonl",
+      "source_sha256": "61c92692b39511e334d68e6194082cd516efbdefbc34219e1662ef4b43ef5faa",
+      "stored_sha256": "61c92692b39511e334d68e6194082cd516efbdefbc34219e1662ef4b43ef5faa",
+      "source_bytes": 26852,
+      "stored_bytes": 26852,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/robot_b_stderr.txt",
+      "archive": "20261025-02/robot_b_stderr.txt",
+      "source_sha256": "c7ca6a87488409ecb08404fd53d7ecac1152ae6afc9bf4c0130b37bc28097f5f",
+      "stored_sha256": "c7ca6a87488409ecb08404fd53d7ecac1152ae6afc9bf4c0130b37bc28097f5f",
+      "source_bytes": 252,
+      "stored_bytes": 252,
+      "compression": "none"
+    },
+    {
+      "source": "simulation/outputs/D-004/20261025-02/sources.json",
+      "archive": "20261025-02/sources.json",
+      "source_sha256": "37b83a117df9678f50565f991bb3a235e535df10f6e98ca703c2c19b4db7aeca",
+      "stored_sha256": "37b83a117df9678f50565f991bb3a235e535df10f6e98ca703c2c19b4db7aeca",
+      "source_bytes": 21479,
+      "stored_bytes": 21479,
+      "compression": "none"
+    }
+  ]
+}

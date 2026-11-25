@@ -1,0 +1,11 @@
+{
+  "task": "H-001",
+  "status": "review",
+  "synthetic_tests_passed": 26,
+  "active_release_guard": "pre and post complete approved E1_full_v3",
+  "golden_fields": "origin_boot_id, logger boot_id, tx_attempt, unique_receive, echo_correlation preserved",
+  "measurement_import": "pending M freeze of E2 analyzer",
+  "physical_serial_opens": 0,
+  "RF_runs": 0,
+  "background_processes_started": 0
+}

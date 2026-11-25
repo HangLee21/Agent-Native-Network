@@ -1,0 +1,134 @@
+{
+  "live_source": "existing gateway_udp_lrn1 receiver 127.0.0.1:8780, UDP1680",
+  "baseline_commit": "162665bf93265333e725486539a26098b1466a31",
+  "fixtures_used": false,
+  "control_requests_sent": 0,
+  "sampling_started_at": "2026-11-24T10:38:22.293798+08:00",
+  "sampling_finished_at": "2026-11-24T10:40:22.328256+08:00",
+  "sample_count": 25,
+  "gateway_frames_first": 75,
+  "gateway_frames_last": 112,
+  "gateway_continuous": true,
+  "gateway_bad_frames_max": 0,
+  "gateway_worker_states": [
+    "running"
+  ],
+  "observed_reporters": [
+    {
+      "id": "90:da:72:48:a4:f8",
+      "node_number": 1,
+      "first_sequence": 49,
+      "last_sequence": 61,
+      "unique_report_ids_observed": 13,
+      "boot_changed": false,
+      "min_report_age_ms": 56,
+      "max_report_age_ms": 10462,
+      "last_report_age_ms": 5155,
+      "samples_over_30s": 0,
+      "fresh_at_sample_end": true
+    },
+    {
+      "id": "90:da:72:48:a5:cc",
+      "node_number": 2,
+      "first_sequence": 49,
+      "last_sequence": 60,
+      "unique_report_ids_observed": 12,
+      "boot_changed": false,
+      "min_report_age_ms": 55,
+      "max_report_age_ms": 10642,
+      "last_report_age_ms": 10294,
+      "samples_over_30s": 0,
+      "fresh_at_sample_end": true
+    },
+    {
+      "id": "90:da:72:48:a5:20",
+      "node_number": 4,
+      "first_sequence": 48,
+      "last_sequence": 55,
+      "unique_report_ids_observed": 3,
+      "boot_changed": false,
+      "min_report_age_ms": 4977,
+      "max_report_age_ms": 54975,
+      "last_report_age_ms": 54975,
+      "samples_over_30s": 9,
+      "fresh_at_sample_end": false
+    },
+    {
+      "id": "90:da:72:48:a6:98",
+      "node_number": 5,
+      "first_sequence": 49,
+      "last_sequence": 61,
+      "unique_report_ids_observed": 13,
+      "boot_changed": false,
+      "min_report_age_ms": 584,
+      "max_report_age_ms": 6894,
+      "last_report_age_ms": 584,
+      "samples_over_30s": 0,
+      "fresh_at_sample_end": true
+    }
+  ],
+  "configured_numeric_labels": {
+    "90:da:72:48:a4:e0": "3",
+    "90:da:72:48:a4:f8": "1",
+    "90:da:72:48:a5:cc": "2",
+    "90:da:72:48:a6:98": "5",
+    "90:da:72:48:a5:20": "4"
+  },
+  "missing_numeric_labels": {
+    "90:da:72:48:a4:e0": "3"
+  },
+  "telemetry_full_health_passed": false,
+  "sampled_stability_passed": false,
+  "http_errors": [],
+  "ui_browser_check_passed": true,
+  "ui_members_total_including_gateway": 5,
+  "ui_wifi_sample_directions": 12,
+  "ui_lora_uplinks": 4,
+  "gps_drawn_nodes": 0,
+  "browser_final_rows": [
+    {
+      "id": "a4f00fe57b830000",
+      "label": "GATEWAY",
+      "state": "近期报告",
+      "stateClass": "node-state recent"
+    },
+    {
+      "id": "90:da:72:48:a6:98",
+      "label": "NODE 05",
+      "state": "近期报告",
+      "stateClass": "node-state recent"
+    },
+    {
+      "id": "90:da:72:48:a4:f8",
+      "label": "NODE 01",
+      "state": "近期报告",
+      "stateClass": "node-state recent"
+    },
+    {
+      "id": "90:da:72:48:a5:cc",
+      "label": "NODE 02",
+      "state": "近期报告",
+      "stateClass": "node-state recent"
+    },
+    {
+      "id": "90:da:72:48:a5:20",
+      "label": "NODE 04",
+      "state": "近期报告",
+      "stateClass": "node-state recent"
+    }
+  ],
+  "browser_snapshot_frames": [
+    120,
+    120,
+    120,
+    122
+  ],
+  "browser_page_errors": [],
+  "browser_unexpected_requests": [],
+  "important_limits": [
+    "numeric label registry may be historical; not independently verified physical inventory",
+    "4/4 in UI means observed reporters, not all configured five nodes",
+    "node4 recovered by the later first browser check; its earlier timeout is not invalidated",
+    "no physical power-cycle/downlink/production or packet-loss-rate test"
+  ]
+}

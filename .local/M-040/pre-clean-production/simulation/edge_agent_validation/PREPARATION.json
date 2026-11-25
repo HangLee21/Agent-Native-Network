@@ -1,0 +1,21 @@
+{
+  "baseline_commit": "7f92debd36310a7d5e37ef52d23c019138284cdd",
+  "read_method": "git show immutable object; no E1 active source/output read",
+  "inputs_sha256": {
+    "simulation/edge_agent_entry/a0.py": "51d4b4bbc818153275711c61688d25a66233195f648fb8830c4ba9fa557d629d",
+    "simulation/edge_agent_entry/preflight.py": "92a5f8196deb5147867f46f7ef09c3ab5e542897a8eecd0cb780a68f321f14f5",
+    "simulation/edge_agent_entry/common.py": "7b756703d25d5091e057244f95ad0d4c612fa592959c146b309d5110cbc3b36e",
+    "simulation/edge_agent_entry/model_worker.py": "16a6874da403bf815554fce08a03f2cdc31d4c511c12ed9751b1e20e30d20bdc",
+    "simulation/edge_agent_entry/model_backend.py": "886b6f0716d2ae76f610bf7768e4e0d9238786db79eb1430cae6aad9573debdb",
+    "simulation/edge_agent_entry/runtime.py": "bf9c2a4b62fa87c45aea1a88d9195cc832335da2ec99eb7853f85587ba891a1a",
+    "research/agent_native_network/experiment_framework/MODEL_CHAIN.md": "b72d676152827a6e21614c6514e70b47a987bb90f03c6b3b3d9fb1012c8c8d04",
+    "research/agent_native_network/experiment_framework/NETWORK_CHAIN.md": "1f1a384103f0e9420de9d6601c08b36131b25527cc0d4cd84232b89ee47d51bf",
+    "research/agent_native_network/EXPERIMENT_FRAMEWORK.md": "f0d3e087a0150a8dd7a22b9de372e3ee8f3b7516907cb5963bb3f7252829b577"
+  },
+  "static_check": "validator AST and criteria JSON parsed; no E1 validation run; zero model/download/simulation",
+  "prepared_files_sha256": {
+    "criteria.json": "3c3d31c2bfe3566567cb61c87d621c3dfc8c226c8dccdd608430a609747cd0f3",
+    "README.md": "bb8bc97e2ea69686af0b7f06c95c93ef1f9bc6d794053836276100dc162341eb",
+    "validate_a0.py": "bc742f1f4962a165eb4b12576d6fde24c3daaadb726ae3ad977a8d2a9923778b"
+  }
+}

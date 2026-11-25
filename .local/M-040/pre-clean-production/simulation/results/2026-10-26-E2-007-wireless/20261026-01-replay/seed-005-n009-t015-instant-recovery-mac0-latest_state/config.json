@@ -1,0 +1,13 @@
+{
+  "case_id": "seed-005-n009-t015-instant-recovery-mac0-latest_state",
+  "source_case": "seed-005-n009-t015-instant-recovery",
+  "task_seed": 5,
+  "agents": 9,
+  "tasks": 15,
+  "mac_seed": 0,
+  "policy": "latest_state",
+  "messages_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-26-E1-006-execution\\20261026-03-scale\\seed-005-n009-t015-instant-recovery\\messages.json.gz",
+  "messages_sha256": "97713471b35ea405065243285d0c01d8614784d624e6d348588d718f1fbefa9c",
+  "reference_result_path": "D:\\Multi-Agent Network\\simulation\\results\\2026-10-26-E1-006-execution\\20261026-03-scale\\seed-005-n009-t015-instant-recovery\\result.json",
+  "reference_result_sha256": "f36b4d2b5ba393f5b73781eb0e0c477da18ba6ced02d0442382e0b96e01c494a"
+}

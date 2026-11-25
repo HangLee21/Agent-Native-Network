@@ -1,0 +1,6 @@
+{
+  "task_id": "H-001",
+  "run_id": "fixture-run",
+  "status": "hardware_capture_unanalyzed",
+  "fixture_notice": "Synthetic gate test; no real hardware"
+}

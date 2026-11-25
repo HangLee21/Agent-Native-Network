@@ -1,0 +1,3 @@
+# Keep all validation evidence byte-identical when committed later.
+* -text -whitespace
+*.png binary

@@ -1,0 +1,34 @@
+{
+  "tools/espnow_hardware/__init__.py": {
+    "expected": "a3ad1fb6d7d138895ad84ca910c3be001cedcd408b0ed34b2a187554a7e44c9e",
+    "actual": "a3ad1fb6d7d138895ad84ca910c3be001cedcd408b0ed34b2a187554a7e44c9e"
+  },
+  "tools/espnow_hardware/hardware_tool.py": {
+    "expected": "01cde57c55461cf67efaf078133a198da0e0d047881083d702596a3328eadcec",
+    "actual": "01cde57c55461cf67efaf078133a198da0e0d047881083d702596a3328eadcec"
+  },
+  "tools/espnow_hardware/tests/test_hardware_tool.py": {
+    "expected": "d9997a06ed57006fa3307dd7c5cde0bf8ac7d612ea9655be40307c3dad08529e",
+    "actual": "d9997a06ed57006fa3307dd7c5cde0bf8ac7d612ea9655be40307c3dad08529e"
+  },
+  "tools/espnow_hardware/verify_host.py": {
+    "expected": "eb9957a0a8f3b08280de733a98b74bf2e32159e1797129c0a8d6e28a02aa5058",
+    "actual": "eb9957a0a8f3b08280de733a98b74bf2e32159e1797129c0a8d6e28a02aa5058"
+  },
+  "hardware/eora_hub_400tb/bench.example.json": {
+    "expected": "5e0fa59a763852a2c481fe977ebf79a3e0df837841ecd2ee99f33947a5963f79",
+    "actual": "5e0fa59a763852a2c481fe977ebf79a3e0df837841ecd2ee99f33947a5963f79"
+  },
+  "hardware/eora_hub_400tb/bindings.example.json": {
+    "expected": "171e4df4c834f54d3a6d7210f466af163ec4b6ab809b07558e5d4e00e62e022d",
+    "actual": "171e4df4c834f54d3a6d7210f466af163ec4b6ab809b07558e5d4e00e62e022d"
+  },
+  "hardware/eora_hub_400tb/profile.json": {
+    "expected": "66196ae50a40d173e458cc20d14ae5c25f4bb919a817ece6f742e93fde57ba39",
+    "actual": "66196ae50a40d173e458cc20d14ae5c25f4bb919a817ece6f742e93fde57ba39"
+  },
+  "hardware/eora_hub_400tb/README.md": {
+    "expected": "126f1338f672db952daf7ebbc157244447be156ddd06a18aefa2aa25e0e81e4c",
+    "actual": "126f1338f672db952daf7ebbc157244447be156ddd06a18aefa2aa25e0e81e4c"
+  }
+}

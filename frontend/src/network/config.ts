@@ -21,10 +21,10 @@ export function validateProfile(raw: unknown, mode: ConnectionMode): ConnectionP
 export function parseNetworkConfig(raw: unknown): NetworkConfig {
   const r = raw as Partial<NetworkConfig> | null
   if (!r || r.schema !== 'network.config.v2' || typeof r.enabled !== 'boolean' || !['server', 'gateway'].includes(r.mode ?? '') || !r.profiles) throw new Error('NETWORK_CONFIG_INVALID')
-  if (r.gatewayRelayPath !== undefined && (typeof r.gatewayRelayPath !== 'string' || !/^\/[a-zA-Z0-9/_-]+$/.test(r.gatewayRelayPath))) throw new Error('NETWORK_CONFIG_INVALID')
+  for (const value of [r.gatewayRelayPath, r.engineeringRelayPath]) if (value !== undefined && (typeof value !== 'string' || !/^\/[a-zA-Z0-9/_-]+$/.test(value))) throw new Error('NETWORK_CONFIG_INVALID')
   return { schema: 'network.config.v2', enabled: r.enabled, mode: r.mode!, profiles: {
     server: validateProfile(r.profiles.server, 'server'), gateway: validateProfile(r.profiles.gateway, 'gateway'),
-  }, ...(r.gatewayRelayPath ? { gatewayRelayPath: r.gatewayRelayPath } : {}) }
+  }, ...(r.gatewayRelayPath ? { gatewayRelayPath: r.gatewayRelayPath } : {}), ...(r.engineeringRelayPath ? { engineeringRelayPath: r.engineeringRelayPath } : {}) }
 }
 
 const SETTINGS = 'network.real.connections.v2'
@@ -32,12 +32,12 @@ export function savedConnections(config: NetworkConfig): NetworkConfig {
   try {
     const saved = JSON.parse(localStorage.getItem(SETTINGS) || 'null') as NetworkConfig | null
     if (!saved) return config
-    const parsed = parseNetworkConfig({ ...saved, enabled: config.enabled, gatewayRelayPath: config.gatewayRelayPath })
+    const parsed = parseNetworkConfig({ ...saved, enabled: config.enabled, gatewayRelayPath: config.gatewayRelayPath, engineeringRelayPath: config.engineeringRelayPath })
     // An explicit deployment config wins; browser settings do not authorize automatic connections.
     return config.enabled ? config : parsed
   } catch { return config }
 }
 export function saveConnections(config: NetworkConfig) {
-  try { localStorage.setItem(SETTINGS, JSON.stringify({ ...config, enabled: false, gatewayRelayPath: undefined })) } catch { /* storage optional */ }
+  try { localStorage.setItem(SETTINGS, JSON.stringify({ ...config, enabled: false, gatewayRelayPath: undefined, engineeringRelayPath: undefined })) } catch { /* storage optional */ }
 }
 export const configPath = (workspace: Workspace) => workspace === 'mock' ? '/network-mock-config.json' : '/network-config.json'

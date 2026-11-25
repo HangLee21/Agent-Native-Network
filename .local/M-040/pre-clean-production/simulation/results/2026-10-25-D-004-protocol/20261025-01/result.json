@@ -1,0 +1,140 @@
+{
+  "label": "isolated_original_protocol_runtime_not_full_ROS_or_wireless_reproduction",
+  "passed": false,
+  "error": "Traceback (most recent call last):\n  File \"D:\\Multi-Agent Network\\simulation\\mocha_runtime_probe.py\", line 440, in run\n    evidence[\"a_after_initial\"] = synchronize(a, 1)\n                                  ^^^^^^^^^^^^^^^^^\n  File \"D:\\Multi-Agent Network\\simulation\\mocha_runtime_probe.py\", line 416, in synchronize\n    s = snapshot(p)\n        ^^^^^^^^^^^\n  File \"D:\\Multi-Agent Network\\simulation\\mocha_runtime_probe.py\", line 401, in snapshot\n    raise RuntimeError(s[\"thread_exceptions\"])\nRuntimeError: [{'t_ns': 505553909282700, 'pid': 18548, 'phase': 'initial_sync', 'kind': 'thread_exception', 'error': 'Traceback (most recent call last):\\n  File \"D:\\\\Multi-Agent Network\\\\simulation\\\\outputs\\\\D-004\\\\dependencies\\\\smach-3.0.3\\\\smach\\\\state_machine.py\", line 251, in _update_once\\n    outcome = self._current_state.execute(\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"D:\\\\Multi-Agent Network\\\\data\\\\network_baselines\\\\MOCHA\\\\source\\\\mocha_core\\\\mocha_core\\\\synchronize_channel.py\", line 150, in execute\\n    comm.connect_send_message(msg)\\n  File \"D:\\\\Multi-Agent Network\\\\data\\\\network_baselines\\\\MOCHA\\\\source\\\\mocha_core\\\\mocha_core\\\\zmq_comm_node.py\", line 155, in connect_send_message\\n    bw = len(reply)/time_s/1024/1024\\n         ~~~~~~~~~~^~~~~~~\\nZeroDivisionError: float division by zero\\n\\nDuring handling of the above exception, another exception occurred:\\n\\nTraceback (most recent call last):\\n  File \"C:\\\\environment\\\\python3.11\\\\Lib\\\\threading.py\", line 1038, in _bootstrap_inner\\n    self.run()\\n  File \"C:\\\\environment\\\\python3.11\\\\Lib\\\\threading.py\", line 975, in run\\n    self._target(*self._args, **self._kwargs)\\n  File \"D:\\\\Multi-Agent Network\\\\data\\\\network_baselines\\\\MOCHA\\\\source\\\\mocha_core\\\\mocha_core\\\\synchronize_channel.py\", line 416, in sm_thread\\n    outcome = self.sm.execute()\\n              ^^^^^^^^^^^^^^^^^\\n  File \"D:\\\\Multi-Agent Network\\\\simulation\\\\outputs\\\\D-004\\\\dependencies\\\\smach-3.0.3\\\\smach\\\\state_machine.py\", line 368, in execute\\n    container_outcome = self._update_once()\\n                        ^^^^^^^^^^^^^^^^^^^\\n  File \"D:\\\\Multi-Agent Network\\\\simulation\\\\outputs\\\\D-004\\\\dependencies\\\\smach-3.0.3\\\\smach\\\\state_machine.py\", line 261, in _update_once\\n    raise smach.InvalidUserCodeError(\"Could not execute state \\'%s\\' of type \\'%s\\': \" %\\nsmach.exceptions.InvalidUserCodeError: Could not execute state \\'GET_DATA\\' of type \\'<mocha_core.synchronize_channel.GetData object at 0x000001D3495395D0>\\': Traceback (most recent call last):\\n  File \"D:\\\\Multi-Agent Network\\\\simulation\\\\outputs\\\\D-004\\\\dependencies\\\\smach-3.0.3\\\\smach\\\\state_machine.py\", line 251, in _update_once\\n    outcome = self._current_state.execute(\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \"D:\\\\Multi-Agent Network\\\\data\\\\network_baselines\\\\MOCHA\\\\source\\\\mocha_core\\\\mocha_core\\\\synchronize_channel.py\", line 150, in execute\\n    comm.connect_send_message(msg)\\n  File \"D:\\\\Multi-Agent Network\\\\data\\\\network_baselines\\\\MOCHA\\\\source\\\\mocha_core\\\\mocha_core\\\\zmq_comm_node.py\", line 155, in connect_send_message\\n    bw = len(reply)/time_s/1024/1024\\n         ~~~~~~~~~~^~~~~~~\\nZeroDivisionError: float division by zero\\n\\n'}]\n",
+  "checks": [
+    {
+      "name": "two_distinct_processes",
+      "passed": true
+    },
+    {
+      "name": "remote_new_payload_absent_before_sync",
+      "passed": true
+    },
+    {
+      "name": "no_change_requests_no_data",
+      "passed": false
+    },
+    {
+      "name": "latest_then_priority_order",
+      "passed": false
+    },
+    {
+      "name": "no_excluded_adapter_calls",
+      "passed": true
+    },
+    {
+      "name": "no_background_thread_exceptions",
+      "passed": false
+    },
+    {
+      "name": "all_children_cleanly_stopped",
+      "passed": false
+    },
+    {
+      "name": "within_runtime_budget",
+      "passed": true
+    }
+  ],
+  "elapsed_seconds": 6.686999999976251,
+  "cleanup": {
+    "robot_a": {
+      "pid": 18548,
+      "exit_code": 1,
+      "forced": true,
+      "response": {
+        "stopped": true,
+        "sm_thread_alive": false,
+        "server_thread_alive": true
+      }
+    },
+    "robot_b": {
+      "pid": 9120,
+      "exit_code": 0,
+      "forced": false,
+      "response": {
+        "stopped": true,
+        "sm_thread_alive": false,
+        "server_thread_alive": false
+      }
+    }
+  },
+  "evidence": {
+    "processes": [
+      {
+        "ready": true,
+        "pid": 18548,
+        "modules": {
+          "hash_comm": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\hash_comm.py",
+          "database": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\database.py",
+          "database_utils": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\database_utils.py",
+          "zmq_comm_node": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\zmq_comm_node.py",
+          "synchronize_channel": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\synchronize_channel.py",
+          "smach": "D:\\Multi-Agent Network\\simulation\\outputs\\D-004\\dependencies\\smach-3.0.3\\smach\\__init__.py",
+          "zmq": "C:\\environment\\python3.11\\Lib\\site-packages\\zmq\\__init__.py"
+        }
+      },
+      {
+        "ready": true,
+        "pid": 9120,
+        "modules": {
+          "hash_comm": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\hash_comm.py",
+          "database": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\database.py",
+          "database_utils": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\database_utils.py",
+          "zmq_comm_node": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\zmq_comm_node.py",
+          "synchronize_channel": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\synchronize_channel.py",
+          "smach": "D:\\Multi-Agent Network\\simulation\\outputs\\D-004\\dependencies\\smach-3.0.3\\smach\\__init__.py",
+          "zmq": "C:\\environment\\python3.11\\Lib\\site-packages\\zmq\\__init__.py"
+        }
+      }
+    ],
+    "a_before_sync": {
+      "records": [
+        {
+          "robot": 0,
+          "topic": 7,
+          "dtype": 1,
+          "priority": 3,
+          "timestamp_ns": 12000000000,
+          "header": "0007000c0000",
+          "payload": "6c6f63616c2d41"
+        },
+        {
+          "robot": 1,
+          "topic": 1,
+          "dtype": 1,
+          "priority": 1,
+          "timestamp_ns": 5000000000,
+          "header": "010100050000",
+          "payload": "7374616c652d41"
+        }
+      ],
+      "busy": false,
+      "client_complete": 0,
+      "sm_thread_alive": true,
+      "server_thread_alive": true,
+      "thread_exceptions": []
+    }
+  },
+  "phase_exchanges": {
+    "initial_sync": {
+      "codes": [
+        "GHEAD",
+        "GDATA"
+      ],
+      "request_envelope_bytes": 28,
+      "reply_envelope_bytes": 39
+    }
+  },
+  "byte_scope": "MOCHA application frame including six-byte request ID; excludes ZMTP/TCP/IP/ACK/retransmissions/airtime",
+  "adapters": {
+    "rclpy.time.Time": "Integer nanosecond arithmetic, comparison, seconds_nanoseconds and to_msg; not ROS clock domains.",
+    "rclpy.logging/node": "Local logger and monotonic clock; no DDS, ROS executor or services.",
+    "builtin_interfaces.msg.Time/mocha_core.msg": "Plain holders for Time, SMState and ClientStats telemetry; publish appends JSONL.",
+    "rclpy.serialization": "Import-only placeholders; serialize_message and deserialize_message raise if called.",
+    "lz4.frame": "Import-only placeholder; compress/decompress raise if called. Payloads are opaque supplied bytes.",
+    "InstrumentedChannel": "Calls original callback_server/client unchanged; records requests, replies and arrival callbacks.",
+    "trigger": "Explicit trigger_sync commands; RSSI discovery, translators and task topic consumers are outside this run."
+  },
+  "script_sha256": "2d340aa10b261c0d3ec4fccf2d28e45df6d876c5d6a2e70b1e008832863623f1"
+}

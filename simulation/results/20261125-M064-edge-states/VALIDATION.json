@@ -1,0 +1,50 @@
+{
+  "accepted_at": "2026-11-25T17:13:52.126440+08:00",
+  "vitest": {
+    "files": 61,
+    "tests": 491,
+    "new_link_evidence_tests": 18,
+    "exit": 0
+  },
+  "vue_tsc": {
+    "exit": 0
+  },
+  "vite_build": {
+    "exit": 0,
+    "retained_warnings": [
+      "existing large chunks/plugin timings"
+    ]
+  },
+  "browser": {
+    "checks": 32,
+    "all_passed": true,
+    "viewports": [
+      1680,
+      1280,
+      390
+    ],
+    "languages": [
+      "zh",
+      "en"
+    ],
+    "actual_existing_url": "http://127.0.0.1:10518/studio.html",
+    "existing_url_has_no_api_fulfillments": true,
+    "fixture_is_separate_ephemeral_test_only": true,
+    "fixture_server_closed": true,
+    "no_non_get_or_external_requests": true,
+    "page_errors": []
+  },
+  "protected_files_checked": 288,
+  "protected_changed": {},
+  "prior_attempts_preserved": {
+    "a1": "23 checks, only English desktop legend clipping failed; measured21.516px overflow and reduced canvas minimum so flex can accommodate wrapped legend",
+    "a2": "30 checks passed; final pass a3 adds graph/table color agreement checks"
+  },
+  "full_vitest_runs": 2,
+  "type_and_build_runs": 3,
+  "limitations": [
+    "self-tests, not independent C review",
+    "frontend evidence presentation only, no RF or end-to-end delivery acceptance",
+    "no hardware/firmware/network/production deploy changes"
+  ]
+}

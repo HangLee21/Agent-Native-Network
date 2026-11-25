@@ -1,0 +1,3 @@
+# Preserve field evidence bytes if committed later.
+* -text -whitespace
+*.png binary

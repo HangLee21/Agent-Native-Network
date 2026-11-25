@@ -1,0 +1,21 @@
+{
+  "task_id": "H-017",
+  "authority": "coordination/tasks/M-031.md dynamic multi-entry requirements",
+  "local_capture_entry": "python -m tools.mid_hardware.field_agent.capture_ip --port 8791 --duration 60 --output <new H-017 dir>",
+  "pc_api": "tools/field_gateway/API.md; actual E2 Client, no serial access",
+  "fault_entry": "fault_ip.ps1 -Action Apply -RemoteIP <currently used entry IP> -Record <new .local/mid/H-017 record>; Restore removes only owned rules",
+  "fault_scope": "PC UDP receive/send for exactly one entry IP and two configured ports; WLAN association and all board ESP-NOW radios untouched",
+  "fault_validation": "Inspect and parse only until formal entry protocol and active UDP source ports are confirmed; Apply not yet executed",
+  "requires_before_flashing": [
+    "Formal E1 multi-entry package with build/app SHA and app-partition fit, retained exact current c761 rollback",
+    "Same implemented E1/E2 registration/lease/query/evidence/logical-identity protocol, not older manual-entry v1",
+    "Board command to obtain actual AP channel while preserving ESP-NOW channel; local credential injection without credential echo",
+    "Independent bounded entry lease and upper/lower failover rules with unknown-message no-blind-retry",
+    "Destination and PC receive byte evidence, field_records/overflow/checkpoint and OLED actual fields",
+    "After all-PC-link outage, zero-USB IP access to each board's retained original field_records pages or equivalent byte evidence; summary counts alone cannot prove board-to-board original bytes",
+    "Actual entry UDP source/listen ports for narrow PC-side firewall fault and independent entry lease expiry",
+    "AP channel/BSSID discovery while the board radio is deliberately stopped for initial provisioning, before all boards start on one channel"
+  ],
+  "credential_handling": "SSID/password/BSSID stay in private local configuration; no credentials in repository, serial transcript, manifests or chat",
+  "handoff": "Local task card and this file; no transfer of prior rejected hardware data through another chat"
+}

@@ -1,0 +1,35 @@
+{
+  "episodes": 1,
+  "completed": 1,
+  "zero_delay_equivalent": 1,
+  "shadows": {
+    "0.0": {
+      "decisions": 31,
+      "observation_mismatch": 0,
+      "mask_mismatch": 0,
+      "branch_mismatch": 0,
+      "action_mismatch": 0,
+      "pending_deliveries": 0,
+      "blocked_intents": 0
+    },
+    "0.5": {
+      "decisions": 31,
+      "observation_mismatch": 25,
+      "mask_mismatch": 12,
+      "branch_mismatch": 0,
+      "action_mismatch": 11,
+      "pending_deliveries": 40,
+      "blocked_intents": 0
+    },
+    "2.0": {
+      "decisions": 31,
+      "observation_mismatch": 30,
+      "mask_mismatch": 17,
+      "branch_mismatch": 1,
+      "action_mismatch": 18,
+      "pending_deliveries": 56,
+      "blocked_intents": 0
+    }
+  },
+  "legacy_backdated": 0
+}

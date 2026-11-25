@@ -1,0 +1,147 @@
+{
+  "schema": "ann.analysis.v1",
+  "run_id": "E2-echo",
+  "mode": "reliable",
+  "evidence_kind": "synthetic",
+  "generated_unique": 1,
+  "expected_generated": 1,
+  "driver_accepted": null,
+  "driver_accepted_known": 0,
+  "driver_acceptance_unknown": 37,
+  "callback_binding_issues": [],
+  "link_callbacks_success": 37,
+  "link_callbacks_failed": 0,
+  "link_callbacks_unknown": 0,
+  "destination_unique_rx_observed": 1,
+  "destination_duplicates_observed": 0,
+  "unmatched_or_ambiguous_rx": 0,
+  "pdr": null,
+  "goodput_bps": null,
+  "successful_same_boot_rtt_count": 1,
+  "rtt_p95_ms": 1.0,
+  "generated_without_echo": 0,
+  "invalid_echoes": 0,
+  "ambiguous_generated_identity_count": 0,
+  "range_m": null,
+  "one_way_delay_ms": null,
+  "rf_retry_count": null,
+  "airtime_us": null,
+  "raw_event_counts": {
+    "tx_submit": 37,
+    "tx_result": 37,
+    "generated": 2,
+    "frame_rx": 46,
+    "rx": 1,
+    "confirmed": 2,
+    "echo_correlation": 1,
+    "echo": 1
+  },
+  "issues": [],
+  "clock_order_warnings": [
+    {
+      "node_id": "00:00:00:00:00:01",
+      "boot_id": "00000064",
+      "t_us": 0,
+      "reason": "buffered_event_timestamp_precedes_already_emitted_record",
+      "source": {
+        "file": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\serial.jsonl",
+        "line": 21
+      }
+    }
+  ],
+  "metric_status": {
+    "driver_accepted": {
+      "status": "unavailable",
+      "reason": "transport_API_acceptance_not_explicitly_logged"
+    },
+    "pdr": {
+      "status": "unavailable",
+      "reason": "receiver_log_coverage_not_confirmed"
+    },
+    "goodput_bps": {
+      "status": "unavailable",
+      "reason": "receiver_log_coverage_not_confirmed"
+    },
+    "rtt_p95_ms": {
+      "status": "calculated_successful_echo_subset",
+      "reason": null,
+      "excluded_ambiguous_identities": 0
+    },
+    "one_way_delay_ms": {
+      "status": "unavailable",
+      "reason": "cross_device_clock_synchronization_not_established"
+    },
+    "range_m": {
+      "status": "unavailable",
+      "reason": "distance_not_measured"
+    },
+    "rf_retry_count": {
+      "status": "unavailable",
+      "reason": "RF_retry_counter_not_observed"
+    },
+    "airtime_us": {
+      "status": "unavailable",
+      "reason": "PHY_airtime_not_observed"
+    }
+  },
+  "identity_evidence": [
+    {
+      "identity": [
+        "E2-echo",
+        "00:00:00:00:00:01",
+        "00000064",
+        1
+      ],
+      "generated_source": {
+        "file": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\serial.jsonl",
+        "line": 21
+      },
+      "generation_ambiguous": false,
+      "generation_conflict_sources": [],
+      "destination_rx_sources": [
+        {
+          "file": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\serial.jsonl",
+          "line": 65
+        }
+      ],
+      "echo_source": {
+        "file": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\serial.jsonl",
+        "line": 111
+      }
+    }
+  ],
+  "goodput_definition": "unique protocol payload bits at destination per measured window; excludes 112-byte ANN header, includes any metadata inside payload",
+  "limitations": [
+    "callback success is not end-to-end delivery",
+    "one-way delay unavailable without synchronized clocks",
+    "event creation timestamps may be emitted after later TX logs; ordering warnings alone do not prove clock regression",
+    "RTT nearest-rank P95 covers successful same-origin-boot echoes; missing echoes remain counted",
+    "evidence_kind is provenance supplied by caller, not physical authentication",
+    "unknown receiver coverage/duration yields null metrics; RF retry/airtime/range not inferred"
+  ],
+  "parsing": {
+    "ignored_non_schema_lines": 1,
+    "malformed_json_lines": 0
+  },
+  "source_logs": [
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\serial.jsonl",
+      "sha256": "533c5a2944f6c2b7c1793e9b9407ecdc630e80e292bc5b51b6fc5932986d7f25",
+      "bytes": 121775
+    }
+  ],
+  "source_manifests": [
+    {
+      "path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\capture_context.json",
+      "sha256": "c1fde7d960aceaf50dde9fa66fcb7e398495e4ba3ee138665a8b305e13352564",
+      "task_id": "H-001",
+      "run_id": "E2-echo",
+      "status": "hardware_capture_unanalyzed"
+    }
+  ],
+  "source_config": {
+    "path": "D:\\Multi-Agent Network\\simulation\\outputs\\E2-015\\20261103-17-final-H-capture-independent\\coverage-malformed\\synthetic\\analysis_config.json",
+    "sha256": "b3b541014cffd5984cc775adf43099170bf1030cc73ca2c2ae64c202ccd91b70"
+  },
+  "analyzer_sha256": "acb8ba503597d4943c3f7d340dfec9508b4a86126389dc67bfc362a83c1025cd"
+}

@@ -1,0 +1,18 @@
+mode=packaged  target=app\start\launcher.py
+found=no
+mode=vue-dev   target=tools\release\start_vue_studio.py
+found=yes
+real_url=http://127.0.0.1:10518/studio.html
+legacy=START_STUDIO_LEGACY.cmd
+python=D:\Multi-Agent Network\.local\espnow\E1-015\tools\python_env\idf5.5_py3.11_env\Scripts\python.exe
+mode=packaged  target=app\start\launcher.py
+found=no
+mode=dev       target=tools\mid_baseline\gateway_probe\start_frontend.py
+found=yes
+python=D:\Multi-Agent Network\.local\espnow\E1-015\tools\python_env\idf5.5_py3.11_env\Scripts\python.exe
+Starting REAL Vue Studio. Legacy services are reused; the old UI is not opened.
+Existing gateway/Studio services reused; no process was restarted.
+REAL Vue Studio: http://127.0.0.1:10518/studio.html
+Local gateway: http://127.0.0.1:8780, LoRa topology v1. Connect explicitly; use clear layout without GPS.
+Legacy UI remains available through START_STUDIO_LEGACY.cmd. No Mock or NIC changes.
+Reusing verified baseline real-only preview.

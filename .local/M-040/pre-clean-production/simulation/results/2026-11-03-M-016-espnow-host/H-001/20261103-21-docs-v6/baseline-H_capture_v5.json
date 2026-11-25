@@ -1,0 +1,14 @@
+{
+  "tools/espnow_hardware/__init__.py": "a3ad1fb6d7d138895ad84ca910c3be001cedcd408b0ed34b2a187554a7e44c9e",
+  "tools/espnow_hardware/analysis_bridge.py": "3cbfdeb49e2345f496db7081c113a824f2fa1581b118491df7bb7ae1d0f56895",
+  "tools/espnow_hardware/hardware_tool.py": "b626b9fff05db29206f714269422a8a8dbdb7b41789e560aec2a6c572c583415",
+  "tools/espnow_hardware/tests/test_active_release.py": "c217100cc187e69bd724ae61aa1e5e6ee8c26bb5bb7de6ddab178398d040bf30",
+  "tools/espnow_hardware/tests/test_analysis_bridge.py": "3b8469d52f355ff41739f817da96263ea8d598d41be0f5843980cfa6a32e1f75",
+  "tools/espnow_hardware/tests/test_hardware_tool.py": "20f19ccc6f933f4e3e2737d738c2f5ca67cc21ef7ffd22d5715b63fad82f5359",
+  "tools/espnow_hardware/verify_c_capture.py": "0a03b4b539189cc9a72c79e332e957240faf169e299f15c1d17ae57cb7b9cc60",
+  "tools/espnow_hardware/verify_host.py": "a52b0384b6a5a12b9e7b30b08f148315bceb2d892a2d30146a0e31e9f1603a07",
+  "hardware/eora_hub_400tb/bench.example.json": "5e0fa59a763852a2c481fe977ebf79a3e0df837841ecd2ee99f33947a5963f79",
+  "hardware/eora_hub_400tb/bindings.example.json": "171e4df4c834f54d3a6d7210f466af163ec4b6ab809b07558e5d4e00e62e022d",
+  "hardware/eora_hub_400tb/profile.json": "66196ae50a40d173e458cc20d14ae5c25f4bb919a817ece6f742e93fde57ba39",
+  "hardware/eora_hub_400tb/README.md": "243f1808b12c931f9d6b32f4b4ea5bb5a623edb67ff7b21ee47461c0d3b33787"
+}

@@ -1,0 +1,7 @@
+{
+  "status": "historical_v1_check_only",
+  "final_integration_accepted": false,
+  "reason": "M paused analyzer v1 after C reported three P2s; process already returned 0 before pause handling",
+  "next": "M-approved replacement analyzer freeze required",
+  "hardware_operations": 0
+}

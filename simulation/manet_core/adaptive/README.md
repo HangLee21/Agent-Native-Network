@@ -1,0 +1,3 @@
+# Exploratory adaptive forward limiter
+
+Snapshot based on the same AODV subset as `../aodv.c`. Policy 4 observes local duplicate RREQ count over the prior one-second receive window. If >=40 duplicates were observed, the following window allows at most eight forwarded unique RREQs; otherwise no added forward cap. A gap >=2 s clears pressure. Fixed threshold/interval are initial uncalibrated hypotheses, not paper reproduction or proven innovation; duplicates are not equivalent to channel occupancy. Both comparison policies in the adaptive snapshot share this source. Node decision uses only locally received frames and local clock. The original policy 2 always limits forwarding, independently of this mechanism.

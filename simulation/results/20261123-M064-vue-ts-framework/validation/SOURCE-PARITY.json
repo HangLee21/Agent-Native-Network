@@ -1,0 +1,19 @@
+{
+  "frozen_upstream_files": 349,
+  "upstream_raw_manifest_hashes": "all matched",
+  "unchanged_canonical_files": 347,
+  "intentional_changed_files": [
+    "frontend/src/__tests__/joint-replay.spec.ts",
+    "scripts/network-studio/browser_check.py"
+  ],
+  "new_managed_files": [
+    "frontend/FRAMEWORK_SOURCE.json"
+  ],
+  "working_sources_match_committed": true,
+  "protected_legacy_code_unchanged": true,
+  "legacy_check_studio_constructor_expected_args": 2,
+  "legacy_check_studio_passed_args": [
+    3
+  ],
+  "legacy_check_entry_stale": true
+}

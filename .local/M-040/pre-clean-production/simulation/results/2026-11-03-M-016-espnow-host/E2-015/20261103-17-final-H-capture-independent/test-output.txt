@@ -1,0 +1,11 @@
+test_actual_capture_context_wrong_run_and_log_hash_are_rejected (test_H_final_capture.FinalCaptureIntegrationTests.test_actual_capture_context_wrong_run_and_log_hash_are_rejected) ... ok
+test_actual_capture_poll_v4_C_to_API_preserves_sources_and_null_hardware (test_H_final_capture.FinalCaptureIntegrationTests.test_actual_capture_poll_v4_C_to_API_preserves_sources_and_null_hardware) ... ok
+test_capture_integrity_faults_keep_delivery_unknown (test_H_final_capture.FinalCaptureIntegrationTests.test_capture_integrity_faults_keep_delivery_unknown) ... ok
+test_hardware_envelope_cannot_promote_actual_synthetic_C (test_H_final_capture.FinalCaptureIntegrationTests.test_hardware_envelope_cannot_promote_actual_synthetic_C) ... ok
+test_missing_window_keeps_goodput_unknown (test_H_final_capture.FinalCaptureIntegrationTests.test_missing_window_keeps_goodput_unknown) ... ok
+test_unconfirmed_stop_saves_context_without_analysis (test_H_final_capture.FinalCaptureIntegrationTests.test_unconfirmed_stop_saves_context_without_analysis) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.002s
+
+OK

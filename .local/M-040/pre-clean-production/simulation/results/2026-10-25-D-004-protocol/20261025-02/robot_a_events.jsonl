@@ -1,0 +1,198 @@
+{"t_ns": 505607015287000, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state (IDLE, <mocha_core.synchronize_channel.Idle object at 0x00000269BDE68D50>, {'to_req_hash': 'REQ_HASH', 'to_stopped': 'stopped'})"}
+{"t_ns": 505607015397500, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state 'IDLE' to the state machine."}
+{"t_ns": 505607015423800, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "State 'IDLE' is missing transitions: {}"}
+{"t_ns": 505607015439400, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "TRANSITIONS FOR IDLE: {'to_req_hash': 'REQ_HASH', 'to_stopped': 'stopped'}"}
+{"t_ns": 505607016032300, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state (REQ_HASH, <mocha_core.synchronize_channel.RequestHash object at 0x00000269BDE69410>, {'to_idle': 'IDLE', 'to_req_hash_reply': 'REQ_HASH_REPLY', 'to_stopped': 'stopped'})"}
+{"t_ns": 505607016094800, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state 'REQ_HASH' to the state machine."}
+{"t_ns": 505607016108000, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "State 'REQ_HASH' is missing transitions: {}"}
+{"t_ns": 505607016120400, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "TRANSITIONS FOR REQ_HASH: {'to_idle': 'IDLE', 'to_req_hash_reply': 'REQ_HASH_REPLY', 'to_stopped': 'stopped'}"}
+{"t_ns": 505607016140200, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state (REQ_HASH_REPLY, <mocha_core.synchronize_channel.RequestHashReply object at 0x00000269BDE69650>, {'to_transmission_end': 'TRANSMISSION_END', 'to_get_data': 'GET_DATA'})"}
+{"t_ns": 505607016150700, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state 'REQ_HASH_REPLY' to the state machine."}
+{"t_ns": 505607016158800, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "State 'REQ_HASH_REPLY' is missing transitions: {}"}
+{"t_ns": 505607016170200, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "TRANSITIONS FOR REQ_HASH_REPLY: {'to_transmission_end': 'TRANSMISSION_END', 'to_get_data': 'GET_DATA'}"}
+{"t_ns": 505607016182800, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state (GET_DATA, <mocha_core.synchronize_channel.GetData object at 0x00000269BDE69690>, {'to_idle': 'IDLE', 'to_get_data_reply': 'GET_DATA_REPLY', 'to_stopped': 'stopped'})"}
+{"t_ns": 505607016191300, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state 'GET_DATA' to the state machine."}
+{"t_ns": 505607016199300, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "State 'GET_DATA' is missing transitions: {}"}
+{"t_ns": 505607016206500, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "TRANSITIONS FOR GET_DATA: {'to_idle': 'IDLE', 'to_get_data_reply': 'GET_DATA_REPLY', 'to_stopped': 'stopped'}"}
+{"t_ns": 505607016217400, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state (GET_DATA_REPLY, <mocha_core.synchronize_channel.GetDataReply object at 0x00000269BDE69950>, {'to_transmission_end': 'TRANSMISSION_END', 'to_get_more_data': 'GET_DATA'})"}
+{"t_ns": 505607016225100, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state 'GET_DATA_REPLY' to the state machine."}
+{"t_ns": 505607016232300, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "State 'GET_DATA_REPLY' is missing transitions: {}"}
+{"t_ns": 505607016239700, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "TRANSITIONS FOR GET_DATA_REPLY: {'to_transmission_end': 'TRANSMISSION_END', 'to_get_more_data': 'GET_DATA'}"}
+{"t_ns": 505607016271400, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state (TRANSMISSION_END, <mocha_core.synchronize_channel.TransmissionEnd object at 0x00000269BDE69B10>, {'to_idle': 'IDLE', 'to_stopped': 'stopped'})"}
+{"t_ns": 505607016281500, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "Adding state 'TRANSMISSION_END' to the state machine."}
+{"t_ns": 505607016288900, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "State 'TRANSMISSION_END' is missing transitions: {}"}
+{"t_ns": 505607016295800, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "TRANSITIONS FOR TRANSMISSION_END: {'to_idle': 'IDLE', 'to_stopped': 'stopped'}"}
+{"t_ns": 505607031693400, "pid": 23060, "phase": "initialization", "kind": "log", "level": "info", "message": "Channel robot_a -> robot_b started"}
+{"t_ns": 505607031796600, "pid": 23060, "phase": "initialization", "kind": "log", "level": "debug", "message": "State machine starting in initial state 'IDLE' with userdata: \n\t[]"}
+{"t_ns": 505607031839700, "pid": 23060, "phase": "initialization", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle Start"}}
+{"t_ns": 505607182321600, "pid": 23060, "phase": "initialization", "kind": "worker_started", "modules": {"hash_comm": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\hash_comm.py", "database": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\database.py", "database_utils": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\database_utils.py", "zmq_comm_node": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\zmq_comm_node.py", "synchronize_channel": "D:\\Multi-Agent Network\\data\\network_baselines\\MOCHA\\source\\mocha_core\\mocha_core\\synchronize_channel.py", "smach": "D:\\Multi-Agent Network\\simulation\\outputs\\D-004\\dependencies\\smach-3.0.3\\smach\\__init__.py", "zmq": "C:\\environment\\python3.11\\Lib\\site-packages\\zmq\\__init__.py"}, "sm_thread_alive": true, "server_thread_alive": true}
+{"t_ns": 505607762256700, "pid": 23060, "phase": "initial_sync", "kind": "db_insert", "robot": 0, "topic": 7, "timestamp_ns": 12000000000, "header": "0007000c0000", "payload": "6c6f63616c2d41"}
+{"t_ns": 505607762375900, "pid": 23060, "phase": "initial_sync", "kind": "db_insert", "robot": 1, "topic": 1, "timestamp_ns": 5000000000, "header": "010100050000", "payload": "7374616c652d41"}
+{"t_ns": 505607762993700, "pid": 23060, "phase": "initial_sync", "kind": "trigger_sync"}
+{"t_ns": 505607786647200, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle to RequestHash"}}
+{"t_ns": 505607786719200, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'IDLE':'to_req_hash'-->'REQ_HASH'"}
+{"t_ns": 505607786755500, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "RequestHash Start"}}
+{"t_ns": 505607786791400, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505607790373900, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'\\xe8r_6\\xf3\\x8cGHEAD')"}
+{"t_ns": 505607915375500, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (18 bytes)"}
+{"t_ns": 505607915436900, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "GHEAD", "rtt": 0.1249822, "bw": 0.00013734866001168566, "answ_len": 18}}
+{"t_ns": 505607915455300, "pid": 23060, "phase": "initial_sync", "kind": "client_arrival", "payload": "0102000f0000010100140000"}
+{"t_ns": 505607915493900, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 12"}
+{"t_ns": 505607915549900, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel- REQUESTHASH: b'\\x01\\x02\\x00\\x0f\\x00\\x00\\x01\\x01\\x00\\x14\\x00\\x00'"}
+{"t_ns": 505607915587300, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "RequestHash to Reply"}}
+{"t_ns": 505607915608500, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'REQ_HASH':'to_req_hash_reply'-->'REQ_HASH_REPLY'"}
+{"t_ns": 505607915637100, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetHashReply Start"}}
+{"t_ns": 505607915696600, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "======== - REQUESTHASH: [b'\\x01\\x02\\x00\\x0f\\x00\\x00', b'\\x01\\x01\\x00\\x14\\x00\\x00']"}
+{"t_ns": 505607915717200, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetHashReply to GetData"}}
+{"t_ns": 505607915731900, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'REQ_HASH_REPLY':'to_get_data'-->'GET_DATA'"}
+{"t_ns": 505607915753600, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetData Start"}}
+{"t_ns": 505607915771200, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - GETDATA: b'\\x01\\x02\\x00\\x0f\\x00\\x00'"}
+{"t_ns": 505607915792600, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505607918986600, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'(\\x9b<\\xa2h\\x82GDATA\\x01\\x02\\x00\\x0f\\x00\\x00')"}
+{"t_ns": 505607919737000, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (21 bytes)"}
+{"t_ns": 505607919783100, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "GDATA", "rtt": 0.0006222, "bw": 0.03218765773791586, "answ_len": 21}}
+{"t_ns": 505607919803300, "pid": 23060, "phase": "initial_sync", "kind": "client_arrival", "payload": "01027461736b2d65766964656e6365"}
+{"t_ns": 505607919821100, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 15"}
+{"t_ns": 505607919894000, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetData to GetDataReply"}}
+{"t_ns": 505607919922200, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'GET_DATA':'to_get_data_reply'-->'GET_DATA_REPLY'"}
+{"t_ns": 505607919947400, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetDataReply Start"}}
+{"t_ns": 505607920000300, "pid": 23060, "phase": "initial_sync", "kind": "db_insert", "robot": 1, "topic": 2, "timestamp_ns": 15000000000, "header": "0102000f0000", "payload": "7461736b2d65766964656e6365"}
+{"t_ns": 505607920032200, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetDataReply to GetMoreData"}}
+{"t_ns": 505607920046500, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'GET_DATA_REPLY':'to_get_more_data'-->'GET_DATA'"}
+{"t_ns": 505607920071000, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetData Start"}}
+{"t_ns": 505607920091900, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - GETDATA: b'\\x01\\x01\\x00\\x14\\x00\\x00'"}
+{"t_ns": 505607920111200, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505607923086400, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'\\x82/\\xf5\\xbd\\xdc\\xa7GDATA\\x01\\x01\\x00\\x14\\x00\\x00')"}
+{"t_ns": 505607923945300, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (17 bytes)"}
+{"t_ns": 505607923995800, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "GDATA", "rtt": 0.0008195, "bw": 0.01978335982782947, "answ_len": 17}}
+{"t_ns": 505607924012700, "pid": 23060, "phase": "initial_sync", "kind": "client_arrival", "payload": "01016e65772d7374617465"}
+{"t_ns": 505607924023900, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 11"}
+{"t_ns": 505607924082900, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetData to GetDataReply"}}
+{"t_ns": 505607924100300, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'GET_DATA':'to_get_data_reply'-->'GET_DATA_REPLY'"}
+{"t_ns": 505607924119900, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetDataReply Start"}}
+{"t_ns": 505607924160100, "pid": 23060, "phase": "initial_sync", "kind": "db_insert", "robot": 1, "topic": 1, "timestamp_ns": 20000000000, "header": "010100140000", "payload": "6e65772d7374617465"}
+{"t_ns": 505607924174300, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetDataReply to TransmissionEnd"}}
+{"t_ns": 505607924185000, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'GET_DATA_REPLY':'to_transmission_end'-->'TRANSMISSION_END'"}
+{"t_ns": 505607924202600, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "TransmissionEnd Start"}}
+{"t_ns": 505607924211200, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - DENDT"}
+{"t_ns": 505607924228700, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505607927820500, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'YE\\x06g\\xed1DENDTrobot_a')"}
+{"t_ns": 505607928646100, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (9 bytes)"}
+{"t_ns": 505607928689900, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "DENDT", "rtt": 0.0007854, "bw": 0.010928277116954736, "answ_len": 9}}
+{"t_ns": 505607928709000, "pid": 23060, "phase": "initial_sync", "kind": "client_arrival", "payload": "41636b"}
+{"t_ns": 505607928719700, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 3"}
+{"t_ns": 505607928763700, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sync_complete/robot_b", "fields": {}}
+{"t_ns": 505607928781900, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "TransmissionEnd to Idle"}}
+{"t_ns": 505607928835800, "pid": 23060, "phase": "initial_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'TRANSMISSION_END':'to_idle'-->'IDLE'"}
+{"t_ns": 505607928860000, "pid": 23060, "phase": "initial_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle Start"}}
+{"t_ns": 505607950193500, "pid": 23060, "phase": "no_change_sync", "kind": "trigger_sync"}
+{"t_ns": 505607979298500, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle to RequestHash"}}
+{"t_ns": 505607979371600, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'IDLE':'to_req_hash'-->'REQ_HASH'"}
+{"t_ns": 505607979405100, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "RequestHash Start"}}
+{"t_ns": 505607979440900, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505607983406700, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'\\x99\\xab2\\xb1;ZGHEAD')"}
+{"t_ns": 505607984222000, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (18 bytes)"}
+{"t_ns": 505607984259300, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "GHEAD", "rtt": 0.0006184, "bw": 0.02775895487599046, "answ_len": 18}}
+{"t_ns": 505607984272900, "pid": 23060, "phase": "no_change_sync", "kind": "client_arrival", "payload": "0102000f0000010100140000"}
+{"t_ns": 505607984283000, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 12"}
+{"t_ns": 505607984322900, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel- REQUESTHASH: b'\\x01\\x02\\x00\\x0f\\x00\\x00\\x01\\x01\\x00\\x14\\x00\\x00'"}
+{"t_ns": 505607984341900, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "RequestHash to Reply"}}
+{"t_ns": 505607984356000, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'REQ_HASH':'to_req_hash_reply'-->'REQ_HASH_REPLY'"}
+{"t_ns": 505607984374200, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetHashReply Start"}}
+{"t_ns": 505607984411400, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "======== - REQUESTHASH: []"}
+{"t_ns": 505607984423300, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetHashReply to TransmissionEnd"}}
+{"t_ns": 505607984431600, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'REQ_HASH_REPLY':'to_transmission_end'-->'TRANSMISSION_END'"}
+{"t_ns": 505607984443000, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "TransmissionEnd Start"}}
+{"t_ns": 505607984451700, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - DENDT"}
+{"t_ns": 505607984471900, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505607987846100, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'0W\\x88\\x9b\\xe2\\xa2DENDTrobot_a')"}
+{"t_ns": 505607988952800, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (9 bytes)"}
+{"t_ns": 505607989024500, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "DENDT", "rtt": 0.0011065, "bw": 0.00775695331916516, "answ_len": 9}}
+{"t_ns": 505607989050000, "pid": 23060, "phase": "no_change_sync", "kind": "client_arrival", "payload": "41636b"}
+{"t_ns": 505607989067700, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 3"}
+{"t_ns": 505607989124900, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sync_complete/robot_b", "fields": {}}
+{"t_ns": 505607989144300, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "TransmissionEnd to Idle"}}
+{"t_ns": 505607989161300, "pid": 23060, "phase": "no_change_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'TRANSMISSION_END':'to_idle'-->'IDLE'"}
+{"t_ns": 505607989185700, "pid": 23060, "phase": "no_change_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle Start"}}
+{"t_ns": 505608014801300, "pid": 23060, "phase": "updated_sync", "kind": "trigger_sync"}
+{"t_ns": 505608039699300, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle to RequestHash"}}
+{"t_ns": 505608039756200, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'IDLE':'to_req_hash'-->'REQ_HASH'"}
+{"t_ns": 505608039780900, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "RequestHash Start"}}
+{"t_ns": 505608039807100, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505608042832700, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'\\x80\\xe1\\xe3+;\\xbcGHEAD')"}
+{"t_ns": 505608043789500, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (18 bytes)"}
+{"t_ns": 505608043845600, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "GHEAD", "rtt": 0.0009382, "bw": 0.018296885200716796, "answ_len": 18}}
+{"t_ns": 505608043868900, "pid": 23060, "phase": "updated_sync", "kind": "client_arrival", "payload": "0102000f00000101001e0000"}
+{"t_ns": 505608043884600, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 12"}
+{"t_ns": 505608043937800, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel- REQUESTHASH: b'\\x01\\x02\\x00\\x0f\\x00\\x00\\x01\\x01\\x00\\x1e\\x00\\x00'"}
+{"t_ns": 505608043963500, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "RequestHash to Reply"}}
+{"t_ns": 505608043981800, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'REQ_HASH':'to_req_hash_reply'-->'REQ_HASH_REPLY'"}
+{"t_ns": 505608044009500, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetHashReply Start"}}
+{"t_ns": 505608044072900, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "======== - REQUESTHASH: [b'\\x01\\x01\\x00\\x1e\\x00\\x00']"}
+{"t_ns": 505608044090800, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetHashReply to GetData"}}
+{"t_ns": 505608044104000, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'REQ_HASH_REPLY':'to_get_data'-->'GET_DATA'"}
+{"t_ns": 505608044129300, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetData Start"}}
+{"t_ns": 505608044148400, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - GETDATA: b'\\x01\\x01\\x00\\x1e\\x00\\x00'"}
+{"t_ns": 505608044172200, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505608047370000, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'\\x9eq\\xf1\\xf6\\x06ZGDATA\\x01\\x01\\x00\\x1e\\x00\\x00')"}
+{"t_ns": 505608048252500, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (20 bytes)"}
+{"t_ns": 505608048307200, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "GDATA", "rtt": 0.0007105, "bw": 0.026845160208479945, "answ_len": 20}}
+{"t_ns": 505608048335800, "pid": 23060, "phase": "updated_sync", "kind": "client_arrival", "payload": "01016e65776573742d7374617465"}
+{"t_ns": 505608048354400, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 14"}
+{"t_ns": 505608048432600, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetData to GetDataReply"}}
+{"t_ns": 505608048455700, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'GET_DATA':'to_get_data_reply'-->'GET_DATA_REPLY'"}
+{"t_ns": 505608048478600, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetDataReply Start"}}
+{"t_ns": 505608048527100, "pid": 23060, "phase": "updated_sync", "kind": "db_insert", "robot": 1, "topic": 1, "timestamp_ns": 30000000000, "header": "0101001e0000", "payload": "6e65776573742d7374617465"}
+{"t_ns": 505608048548300, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "GetDataReply to TransmissionEnd"}}
+{"t_ns": 505608048562300, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'GET_DATA_REPLY':'to_transmission_end'-->'TRANSMISSION_END'"}
+{"t_ns": 505608048580400, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "TransmissionEnd Start"}}
+{"t_ns": 505608048598200, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - DENDT"}
+{"t_ns": 505608048620500, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505608052349100, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'\\x8e\\xecE \\xd4\\rDENDTrobot_a')"}
+{"t_ns": 505608053450000, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Server replied (9 bytes)"}
+{"t_ns": 505608053504400, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_stats/robot_b", "fields": {"msg": "DENDT", "rtt": 0.0010786, "bw": 0.007957601379247404, "answ_len": 9}}
+{"t_ns": 505608053532600, "pid": 23060, "phase": "updated_sync", "kind": "client_arrival", "payload": "41636b"}
+{"t_ns": 505608053548800, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT: len: 3"}
+{"t_ns": 505608053599500, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sync_complete/robot_b", "fields": {}}
+{"t_ns": 505608053625200, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "TransmissionEnd to Idle"}}
+{"t_ns": 505608053645200, "pid": 23060, "phase": "updated_sync", "kind": "log", "level": "debug", "message": "State machine transitioning 'TRANSMISSION_END':'to_idle'-->'IDLE'"}
+{"t_ns": 505608053669700, "pid": 23060, "phase": "updated_sync", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle Start"}}
+{"t_ns": 505608119546400, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SERVER: Got b'!\\xe4k\\x8c\\xa0KGHEAD'"}
+{"t_ns": 505608119587400, "pid": 23060, "phase": "reverse_sync", "kind": "server_request", "payload": "4748454144", "code": "GHEAD"}
+{"t_ns": 505608119601200, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_SERVER: b'GHEAD'"}
+{"t_ns": 505608119636700, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - Sending 3 headers"}
+{"t_ns": 505608119663300, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - [b'\\x00\\x07\\x00\\x0c\\x00\\x00', b'\\x01\\x02\\x00\\x0f\\x00\\x00', b'\\x01\\x01\\x00\\x1e\\x00\\x00']"}
+{"t_ns": 505608119675500, "pid": 23060, "phase": "reverse_sync", "kind": "server_exchange", "code": "GHEAD", "request": "4748454144", "reply": "0007000c00000102000f00000101001e0000", "request_envelope_bytes": 11, "reply_envelope_bytes": 24}
+{"t_ns": 505608119698200, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SERVER: Replied 24 bytes"}
+{"t_ns": 505608119706000, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - SERVER: b'!\\xe4k\\x8c\\xa0K\\x00\\x07\\x00\\x0c\\x00\\x00\\x01\\x02\\x00\\x0f\\x00\\x00\\x01\\x01\\x00\\x1e\\x00\\x00'"}
+{"t_ns": 505608123279900, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SERVER: Got b'\\x0cB\\x0bU\\xbapGDATA\\x00\\x07\\x00\\x0c\\x00\\x00'"}
+{"t_ns": 505608123331900, "pid": 23060, "phase": "reverse_sync", "kind": "server_request", "payload": "47444154410007000c0000", "code": "GDATA"}
+{"t_ns": 505608123348800, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_SERVER: b'GDATA\\x00\\x07\\x00\\x0c\\x00\\x00'"}
+{"t_ns": 505608123393200, "pid": 23060, "phase": "reverse_sync", "kind": "server_exchange", "code": "GDATA", "request": "47444154410007000c0000", "reply": "01036c6f63616c2d41", "request_envelope_bytes": 17, "reply_envelope_bytes": 15}
+{"t_ns": 505608123425800, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SERVER: Replied 15 bytes"}
+{"t_ns": 505608123442300, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - SERVER: b'\\x0cB\\x0bU\\xbap\\x01\\x03local-A'"}
+{"t_ns": 505608128234300, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SERVER: Got b'\\x1c&\\x1cM\\x13\\xdaDENDTrobot_b'"}
+{"t_ns": 505608128279700, "pid": 23060, "phase": "reverse_sync", "kind": "server_request", "payload": "44454e4454726f626f745f62", "code": "DENDT"}
+{"t_ns": 505608128294600, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_SERVER: b'DENDTrobot_b'"}
+{"t_ns": 505608128319700, "pid": 23060, "phase": "reverse_sync", "kind": "publish", "topic": "/robot_a/server_sync_complete/robot_b", "fields": {}}
+{"t_ns": 505608128330700, "pid": 23060, "phase": "reverse_sync", "kind": "server_exchange", "code": "DENDT", "request": "44454e4454726f626f745f62", "reply": "41636b", "request_envelope_bytes": 18, "reply_envelope_bytes": 9}
+{"t_ns": 505608128356500, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - Node - SERVER: Replied 9 bytes"}
+{"t_ns": 505608128405500, "pid": 23060, "phase": "reverse_sync", "kind": "log", "level": "debug", "message": "robot_a - SERVER: b'\\x1c&\\x1cM\\x13\\xdaAck'"}
+{"t_ns": 505609074904500, "pid": 23060, "phase": "peer_absent_timeout", "kind": "trigger_sync"}
+{"t_ns": 505609110215600, "pid": 23060, "phase": "peer_absent_timeout", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle to RequestHash"}}
+{"t_ns": 505609110271600, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "debug", "message": "State machine transitioning 'IDLE':'to_req_hash'-->'REQ_HASH'"}
+{"t_ns": 505609110297300, "pid": 23060, "phase": "peer_absent_timeout", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "RequestHash Start"}}
+{"t_ns": 505609110320800, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Connecting to server tcp://127.0.0.1:63752"}
+{"t_ns": 505609114129500, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: Sending (b'\\xf0\\x9a\\xd2\\xde\\xfcqGHEAD')"}
+{"t_ns": 505609526641800, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "debug", "message": "robot_a - Node - SENDMSG: No response from server"}
+{"t_ns": 505609526703200, "pid": 23060, "phase": "peer_absent_timeout", "kind": "client_arrival", "payload": null}
+{"t_ns": 505609526727700, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "debug", "message": "robot_a - Channel - CALLBACK_CLIENT - None"}
+{"t_ns": 505610127220600, "pid": 23060, "phase": "peer_absent_timeout", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "RequestHash to Idle"}}
+{"t_ns": 505610127311900, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "debug", "message": "State machine transitioning 'REQ_HASH':'to_idle'-->'IDLE'"}
+{"t_ns": 505610127369800, "pid": 23060, "phase": "peer_absent_timeout", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle Start"}}
+{"t_ns": 505610479522800, "pid": 23060, "phase": "peer_absent_timeout", "kind": "publish", "topic": "/robot_a/client_sm_state/robot_b", "fields": {"state": "Idle to Stopped"}}
+{"t_ns": 505610479589800, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "debug", "message": "State machine terminating 'IDLE':'to_stopped':'stopped'"}
+{"t_ns": 505611161025000, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "info", "message": "Node robot_a -> robot_b terminating server"}
+{"t_ns": 505611161092200, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "info", "message": "Channel robot_a -> robot_b finished with outcome: stopped"}
+{"t_ns": 505611161145200, "pid": 23060, "phase": "peer_absent_timeout", "kind": "log", "level": "info", "message": "Channel robot_a -> robot_b destroyed"}
+{"t_ns": 505611161174600, "pid": 23060, "phase": "peer_absent_timeout", "kind": "worker_stopped", "stopped": true, "sm_thread_alive": false, "server_thread_alive": false}

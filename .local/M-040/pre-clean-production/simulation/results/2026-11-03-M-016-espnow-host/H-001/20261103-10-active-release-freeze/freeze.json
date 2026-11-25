@@ -1,0 +1,18 @@
+{
+  "schema": "ann.hardware.freeze.v1",
+  "source_hashes": {
+    "tools\\espnow_hardware\\__init__.py": "a3ad1fb6d7d138895ad84ca910c3be001cedcd408b0ed34b2a187554a7e44c9e",
+    "tools\\espnow_hardware\\hardware_tool.py": "a5c6c13947be93887aa43c314f67382429ffe11db5f1236f3c56622a54ee67cf",
+    "tools\\espnow_hardware\\tests\\test_active_release.py": "c217100cc187e69bd724ae61aa1e5e6ee8c26bb5bb7de6ddab178398d040bf30",
+    "tools\\espnow_hardware\\tests\\test_hardware_tool.py": "997d2c136b0ee67b562b53fad7445bf81bb1fc19f4f475518bd3212b54dd3ced",
+    "tools\\espnow_hardware\\verify_host.py": "d07ee3113127e33b496feb1c0dc7970bd79a76553c87af59c1ba64b1a0dd2b92",
+    "hardware\\eora_hub_400tb\\bench.example.json": "5e0fa59a763852a2c481fe977ebf79a3e0df837841ecd2ee99f33947a5963f79",
+    "hardware\\eora_hub_400tb\\bindings.example.json": "171e4df4c834f54d3a6d7210f466af163ec4b6ab809b07558e5d4e00e62e022d",
+    "hardware\\eora_hub_400tb\\profile.json": "66196ae50a40d173e458cc20d14ae5c25f4bb919a817ece6f742e93fde57ba39",
+    "hardware\\eora_hub_400tb\\README.md": "17531ce0b7259b63d90652593253953426309115605775d3cd5777167ca194e1"
+  },
+  "task_card_sha256": "44ba581c5f4109b4187a8b8ed7c98dbec23be6b263bd82580fcfd71e68081659",
+  "E1_active_key": "E1_full_v3",
+  "E1_anchor_sha256": "f38bee27cec54b9ea6e5627db4036f6b3a7aff4100b306a94051825450dbd251",
+  "regression_manifest_sha256": "13c0e4a0542e26e00e6e3f36ff814744e6e7ee7d2a2ad46aa1a228bbe9fe39bb"
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "ns3",
+    "configure",
+    "--enable-modules=core;network;internet;wifi;mobility;aodv;applications",
+    "--disable-examples",
+    "--disable-tests",
+    "-G",
+    "Ninja",
+    "--",
+    "-DCMAKE_CXX_COMPILER=g++"
+  ],
+  "cwd": "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46",
+  "process_id": 29592,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 66.8130000000092
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46\\build\\scratch\\ns3.46-b0-aodv-default.exe",
+    "--output=..\\..\\..\\..\\simulation\\outputs\\E2-011\\20261028-14-dynamic1-supplement\\raw",
+    "--mode=dynamic",
+    "--seed=1"
+  ],
+  "cwd": "D:\\Multi-Agent Network\\data\\agent_native\\E2-011\\ns-3.46",
+  "process_id": 46172,
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 0.4850000000005821
+}

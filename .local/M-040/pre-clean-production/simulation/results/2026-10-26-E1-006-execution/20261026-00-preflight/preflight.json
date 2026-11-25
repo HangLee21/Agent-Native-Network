@@ -1,0 +1,26 @@
+{
+  "test_command": [
+    "D:\\Multi-Agent Network\\.venv\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "simulation.test_heteromrta_demand_execution",
+    "-v"
+  ],
+  "test_exit_code": 0,
+  "case_counts": {
+    "legacy": 10,
+    "recovery": 10,
+    "scale": 10
+  },
+  "script_sha256": "7e67a5e81a2c520d382649e28d79e0f62f3bed087ffde88c19e5b18eebb1645c",
+  "test_sha256": "755f473b902ec2255f9eafe71acc47f5b78034ede01f939fde7a1e80467a8042",
+  "index_sha256": "dae5db475be0a5c62c810943f71fc743db70cfadd970194cc44ac0604ae54b93",
+  "files": {
+    "legacy_cases.json": "abb6c8eae9c6fb465cc094dde1cc198919958804c1a74419a85b16e1278b5616",
+    "recovery_cases.json": "467d4629e348471e2c24dd3f8a1122beb47349225537410b97ff46dc8946869d",
+    "scale_cases.json": "1332548329c47b415e9803f473d5097b31c884451437425d504b66f9fb9441a5",
+    "tests.stderr.txt": "6f7793f606c8c653d39787987b01dc85e4a14522d2a599723a0352001b885436",
+    "tests.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

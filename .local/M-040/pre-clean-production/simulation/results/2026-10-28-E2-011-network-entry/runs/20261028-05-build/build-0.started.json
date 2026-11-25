@@ -1,0 +1,18 @@
+{
+  "command": [
+    "C:\\environment\\python3.11\\python.exe",
+    "ns3",
+    "configure",
+    "--enable-modules=core;network;internet;wifi;mobility;aodv;applications",
+    "--disable-examples",
+    "--disable-tests",
+    "-G",
+    "Ninja",
+    "--",
+    "-DCMAKE_CXX_COMPILER=g++",
+    "-DNS3_CCACHE=OFF",
+    "-DPython3_EXECUTABLE=C:\\environment\\python3.11\\python.exe"
+  ],
+  "process_id": 51436,
+  "started_at": "2026-10-28T08:59:55.557260+00:00"
+}
