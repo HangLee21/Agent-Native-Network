@@ -11,5 +11,6 @@ uint32_t lora_ref_progress(void);
 /* Radio supply/temperature and the configured modulation, for the LRN1 status block. */
 void lora_ref_health(uint16_t* vbat_mv, int16_t* temp_c, int32_t* tx_power_dbm, uint8_t* sf);
 int lora_ref_watch_enabled(void);
+int lora_ref_link_pop(uint8_t*,unsigned*,int*,int*);
 cJSON* lora_ref_tick(nd_node*,mt_node*,uint64_t,int (*allowed)(mid_id));
 #endif

@@ -54,6 +54,35 @@ static unsigned capture(nd_node*n,mt_node*m,uint64_t now,int(*allowed)(mid_id),u
  return len;
 }
 #endif
+/* Link-layer receive ring: the worker owns the radio, so frames received in the link
+ * role are staged here and drained by the main task through lora_ref_link_pop(). */
+#define LREF_LINK_RING 8
+typedef struct{uint8_t bytes[208];uint16_t len;int8_t rssi,snr;}lref_link_frame;
+static lref_link_frame link_ring[LREF_LINK_RING];
+static volatile unsigned link_head,link_tail;
+static unsigned link_rx_frames,link_rx_dropped;
+static void link_push(const uint8_t*b,unsigned n,int rssi,int snr){
+ unsigned next=(link_head+1)%LREF_LINK_RING;
+ if(next==link_tail){__atomic_fetch_add(&link_rx_dropped,1,__ATOMIC_RELAXED);return;}
+ if(n>sizeof(link_ring[0].bytes)){n=sizeof(link_ring[0].bytes);}
+ lref_link_frame*f=&link_ring[link_head];
+ memcpy(f->bytes,b,n);
+ f->len=(uint16_t)n;
+ f->rssi=(int8_t)rssi;
+ f->snr=(int8_t)snr;
+ link_head=next;
+ __atomic_fetch_add(&link_rx_frames,1,__ATOMIC_RELAXED);
+}
+int lora_ref_link_pop(uint8_t*out,unsigned*len,int*rssi,int*snr){
+ if(link_tail==link_head){return 0;}
+ lref_link_frame*f=&link_ring[link_tail];
+ if(out!=NULL&&len!=NULL){memcpy(out,f->bytes,f->len);}
+ if(len!=NULL){*len=f->len;}
+ if(rssi!=NULL){*rssi=f->rssi;}
+ if(snr!=NULL){*snr=f->snr;}
+ link_tail=(link_tail+1)%LREF_LINK_RING;
+ return 1;
+}
 static void emit_event(ref_event*e){if(xQueueSend(events,e,0)!=pdTRUE)__atomic_fetch_add(&event_drops,1,__ATOMIC_RELAXED);}
 static int recover_apply(void*ctx){return lref_port_apply((const lref_config*)ctx);}
 static void worker(void*unused){
@@ -61,6 +90,17 @@ static void worker(void*unused){
  for(;;){config_job next;
   worker_progress_step();
   if(xQueueReceive(settings,&next,0)==pdTRUE){current=next.config;applied_generation=next.generation;lref_recovery_reset(&recovery);fault_seen=0;__atomic_store_n(&recovery_state,0,__ATOMIC_RELEASE);int ok=(current.role&&lref_port_active())?lref_port_switch(&current):lref_port_apply(&current);if(ok)ok=lref_port_apply(&current);__atomic_store_n(&running,ok?-1:(int)current.role,__ATOMIC_RELEASE);__atomic_store_n(&applied_version,applied_generation,__ATOMIC_RELEASE);memset(&e,0,sizeof(e));e.kind=2;e.seq=next.generation;e.result=ok;e.at=ms();e.config=current;emit_event(&e);}
+  if(__atomic_load_n(&running,__ATOMIC_ACQUIRE)==3){
+   memset(&e,0,sizeof(e));e.kind=0;e.at=ms();e.config=current;
+   int lr=lref_port_rx(e.frame.bytes,&e.frame.len,&e.rssi,&e.snr);
+   if(lr==1){link_push(e.frame.bytes,e.frame.len,e.rssi,e.snr);}
+   if(lr==-1){__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}
+   if(lr!=0){
+    if(__atomic_load_n(&running,__ATOMIC_ACQUIRE)==3){
+     if(lref_port_listen()){__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}
+    }
+   }
+  }
   if(__atomic_load_n(&running,__ATOMIC_ACQUIRE)==1){memset(&e,0,sizeof(e));e.kind=0;e.at=ms();e.config=current;int r=lref_port_rx(e.frame.bytes,&e.frame.len,&e.rssi,&e.snr);
    if(r==1){uint8_t*p=e.frame.bytes;unsigned n=e.frame.len;uint32_t crc=(uint32_t)p[n-4]|((uint32_t)p[n-3]<<8)|((uint32_t)p[n-2]<<16)|((uint32_t)p[n-1]<<24);
     if(memcmp(p,"LRN1",4)||p[4]!=44||p[5]!=20||p[7]>8||n!=48u+20u*p[7]||crc!=crc32(p,n-4))__atomic_fetch_add(&rx_bad,1,__ATOMIC_RELAXED);else{e.at=ms();__atomic_fetch_add(&rx_ok,1,__ATOMIC_RELAXED);__atomic_store_n(&last_rx_ms,(uint32_t)e.at,__ATOMIC_RELAXED);last_rx_rssi=e.rssi;last_rx_snr=e.snr;emit_event(&e);}
@@ -113,7 +153,7 @@ static int lref_band_ok(const lref_config*c){
  return 0;
 }
 static int overlay_i32(cJSON*j,const char*key,int32_t*out){cJSON*v=cJSON_GetObjectItemCaseSensitive(j,key);if(!v)return 0;if(!cJSON_IsNumber(v))return -1;double d=v->valuedouble;if(d<-128||d>127)return -1;*out=(int32_t)d;return 1;}
-static int valid(const lref_config*c){return c->magic==0x3146524c&&c->role<=2&&c->period>=1000&&c->period<=3600000&&c->jitter<=1000&&c->jitter<=c->period/4&&lref_band_ok(c)&&c->sf>=7&&c->sf<=12&&c->cr>=5&&c->cr<=8&&c->preamble>=8&&c->preamble<=64&&(c->sync==18||c->sync==52)&&c->start<=1&&c->period>=lref_toa(c,208)+100+c->jitter;}
+static int valid(const lref_config*c){return c->magic==0x3146524c&&c->role<=3&&c->period>=1000&&c->period<=3600000&&c->jitter<=1000&&c->jitter<=c->period/4&&lref_band_ok(c)&&c->sf>=7&&c->sf<=12&&c->cr>=5&&c->cr<=8&&c->preamble>=8&&c->preamble<=64&&(c->sync==18||c->sync==52)&&c->start<=1&&c->period>=lref_toa(c,208)+100+c->jitter;}
 void lora_ref_init(mid_id self,uint32_t boot){identity=self;own_boot=boot;fc_init(&control,self.mac,boot);nvs_handle_t h;lref_config saved;size_t size=sizeof(saved);if(nvs_open("lr_ref",NVS_READONLY,&h)==ESP_OK){esp_err_t r=nvs_get_blob(h,"cfg",&saved,&size);nvs_close(h);if(r==ESP_OK&&size==sizeof(saved)&&valid(&saved)){cfg=saved;}}
  generation=1;boot_suppressed=!cfg.start&&cfg.role!=0;__atomic_store_n(&watch_requested,cfg.role!=0&&!boot_suppressed,__ATOMIC_RELEASE);due=ms()+1000+((boot^((uint32_t)self.mac[4]<<8)^self.mac[5])%cfg.period);lref_recovery_reset(&task_recovery);if(spawn_worker(NULL)){running=-1;lref_recovery_fault(&task_recovery,ms());}
 }
@@ -122,7 +162,7 @@ int lora_ref_command(cJSON*j,const char*name,const char**why){
  if(!strcmp(name,"lora_ref_status"))return 1;
  if(strcmp(name,"lora_ref_config"))return -1;
  if(!settings||!frames||!events){*why="lora_task_unavailable";return 0;}
- lref_config c=cfg;cJSON*r=cJSON_GetObjectItemCaseSensitive(j,"role");if(r){if(!cJSON_IsString(r)){*why="invalid_lora_role";return 0;}if(!strcmp(r->valuestring,"off"))c.role=0;else if(!strcmp(r->valuestring,"rx"))c.role=1;else if(!strcmp(r->valuestring,"tx"))c.role=2;else{*why="invalid_lora_role";return 0;}}
+ lref_config c=cfg;cJSON*r=cJSON_GetObjectItemCaseSensitive(j,"role");if(r){if(!cJSON_IsString(r)){*why="invalid_lora_role";return 0;}if(!strcmp(r->valuestring,"off"))c.role=0;else if(!strcmp(r->valuestring,"rx"))c.role=1;else if(!strcmp(r->valuestring,"tx"))c.role=2;else if(!strcmp(r->valuestring,"link"))c.role=3;else{*why="invalid_lora_role";return 0;}}
  if(overlay(j,"report_period_ms",&c.period)||overlay(j,"jitter_ms",&c.jitter)||overlay(j,"frequency_hz",&c.frequency)||overlay(j,"sf",&c.sf)||overlay(j,"bandwidth_hz",&c.bw)||overlay(j,"coding_rate",&c.cr)||overlay(j,"preamble_symbols",&c.preamble)||overlay(j,"sync_word",&c.sync)){*why="invalid_lora_number";return 0;}
  {int32_t power=0;int r=overlay_i32(j,"tx_power_dbm",&power);if(r<0){*why="invalid_lora_tx_power";return 0;}if(r>0)c.power=power;}
  cJSON*start=cJSON_GetObjectItemCaseSensitive(j,"start_on_boot");if(start){if(!cJSON_IsBool(start)){*why="invalid_lora_boot_policy";return 0;}c.start=cJSON_IsTrue(start);}
@@ -130,7 +170,7 @@ int lora_ref_command(cJSON*j,const char*name,const char**why){
  nvs_handle_t h;esp_err_t err=nvs_open("lr_ref",NVS_READWRITE,&h);if(err!=ESP_OK){*why="lora_nvs_open";return 0;}err=nvs_set_blob(h,"cfg",&c,sizeof(c));if(err==ESP_OK)err=nvs_commit(h);nvs_close(h);if(err!=ESP_OK){*why="lora_nvs_write";return 0;}
  cfg=c;boot_suppressed=0;__atomic_store_n(&watch_requested,cfg.role!=0,__ATOMIC_RELEASE);uint32_t gen=__atomic_add_fetch(&generation,1,__ATOMIC_RELEASE);config_job job={.config=cfg,.generation=gen};xQueueReset(frames);xQueueOverwrite(settings,&job);due=ms()+1000+(esp_random()%cfg.period);return 1;
 }
-void lora_ref_status(cJSON*j){static const char*names[]={"off","rx","tx"};cJSON_AddStringToObject(j,"lora_ref_requested_role",names[cfg.role]);cJSON_AddNumberToObject(j,"lora_ref_worker_state",__atomic_load_n(&running,__ATOMIC_ACQUIRE));cJSON_AddBoolToObject(j,"start_on_boot",cfg.start);cJSON_AddBoolToObject(j,"boot_role_suppressed",boot_suppressed);cJSON_AddNumberToObject(j,"requested_generation",__atomic_load_n(&generation,__ATOMIC_ACQUIRE));cJSON_AddNumberToObject(j,"applied_generation",__atomic_load_n(&applied_version,__ATOMIC_ACQUIRE));cJSON_AddNumberToObject(j,"report_period_ms",cfg.period);cJSON_AddNumberToObject(j,"jitter_ms",cfg.jitter);cJSON_AddNumberToObject(j,"frequency_hz",cfg.frequency);cJSON_AddNumberToObject(j,"tx_power_dbm",cfg.power);cJSON_AddNumberToObject(j,"switch_us",lref_switch_last_us);cJSON_AddNumberToObject(j,"apply_us",lref_apply_last_us);cJSON_AddNumberToObject(j,"sync_word",cfg.sync);cJSON_AddNumberToObject(j,"preamble_symbols",cfg.preamble);cJSON_AddNumberToObject(j,"sf",cfg.sf);cJSON_AddNumberToObject(j,"bandwidth_hz",cfg.bw);cJSON_AddNumberToObject(j,"coding_rate",cfg.cr);cJSON_AddNumberToObject(j,"max_frame_toa_ms",lref_toa(&cfg,208));cJSON_AddNumberToObject(j,"lora_chip_type",lref_chip_type);cJSON_AddNumberToObject(j,"lora_chip_fw",lref_chip_fw);cJSON_AddNumberToObject(j,"lora_chip_errors",lref_chip_errors);cJSON_AddNumberToObject(j,"lora_ref_rx_frames",__atomic_load_n(&rx_ok,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"rx_rssi",last_rx_rssi);cJSON_AddNumberToObject(j,"rx_snr",last_rx_snr);cJSON_AddNumberToObject(j,"lora_ref_last_rx_ms",(double)__atomic_load_n(&last_rx_ms,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"attempted",__atomic_load_n(&attempted,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"submitted",__atomic_load_n(&submitted,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"tx_done",__atomic_load_n(&completed,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"skipped",__atomic_load_n(&skipped,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"rx_bad",__atomic_load_n(&rx_bad,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"event_drops",__atomic_load_n(&event_drops,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_executed",__atomic_load_n(&control.executed,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_duplicates",__atomic_load_n(&control.duplicates,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_rejected",__atomic_load_n(&control.rejected,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_cache_full",__atomic_load_n(&control.full,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_ack_submitted",__atomic_load_n(&control_ack_submitted,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_ack_tx_done",__atomic_load_n(&control_ack_done,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_ack_failed",__atomic_load_n(&control_ack_failed,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"recovery_state",__atomic_load_n(&recovery_state,__ATOMIC_ACQUIRE));cJSON_AddNumberToObject(j,"recovery_attempted",__atomic_load_n(&recovery_attempted,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"recovery_success",__atomic_load_n(&recovery_success,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"recovery_exhausted",__atomic_load_n(&recovery_exhausted,__ATOMIC_RELAXED));cJSON_AddBoolToObject(j,"worker_created",task_started);cJSON_AddBoolToObject(j,"worker_task_wdt_registered",__atomic_load_n(&worker_wdt_registered,__ATOMIC_ACQUIRE));cJSON_AddNumberToObject(j,"worker_start_attempts",task_start_attempts);cJSON_AddNumberToObject(j,"worker_start_failures",task_start_failures);}
+void lora_ref_status(cJSON*j){static const char*names[]={"off","rx","tx","link"};cJSON_AddStringToObject(j,"lora_ref_requested_role",names[cfg.role]);cJSON_AddNumberToObject(j,"lora_ref_worker_state",__atomic_load_n(&running,__ATOMIC_ACQUIRE));cJSON_AddBoolToObject(j,"start_on_boot",cfg.start);cJSON_AddBoolToObject(j,"boot_role_suppressed",boot_suppressed);cJSON_AddNumberToObject(j,"requested_generation",__atomic_load_n(&generation,__ATOMIC_ACQUIRE));cJSON_AddNumberToObject(j,"applied_generation",__atomic_load_n(&applied_version,__ATOMIC_ACQUIRE));cJSON_AddNumberToObject(j,"report_period_ms",cfg.period);cJSON_AddNumberToObject(j,"jitter_ms",cfg.jitter);cJSON_AddNumberToObject(j,"frequency_hz",cfg.frequency);cJSON_AddNumberToObject(j,"tx_power_dbm",cfg.power);cJSON_AddNumberToObject(j,"switch_us",lref_switch_last_us);cJSON_AddNumberToObject(j,"apply_us",lref_apply_last_us);cJSON_AddNumberToObject(j,"sync_word",cfg.sync);cJSON_AddNumberToObject(j,"preamble_symbols",cfg.preamble);cJSON_AddNumberToObject(j,"sf",cfg.sf);cJSON_AddNumberToObject(j,"bandwidth_hz",cfg.bw);cJSON_AddNumberToObject(j,"coding_rate",cfg.cr);cJSON_AddNumberToObject(j,"max_frame_toa_ms",lref_toa(&cfg,208));cJSON_AddNumberToObject(j,"lora_chip_type",lref_chip_type);cJSON_AddNumberToObject(j,"lora_chip_fw",lref_chip_fw);cJSON_AddNumberToObject(j,"lora_chip_errors",lref_chip_errors);cJSON_AddNumberToObject(j,"lora_ref_rx_frames",__atomic_load_n(&rx_ok,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"rx_rssi",last_rx_rssi);cJSON_AddNumberToObject(j,"rx_snr",last_rx_snr);cJSON_AddNumberToObject(j,"lora_ref_last_rx_ms",(double)__atomic_load_n(&last_rx_ms,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"attempted",__atomic_load_n(&attempted,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"submitted",__atomic_load_n(&submitted,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"tx_done",__atomic_load_n(&completed,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"skipped",__atomic_load_n(&skipped,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"rx_bad",__atomic_load_n(&rx_bad,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"event_drops",__atomic_load_n(&event_drops,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_executed",__atomic_load_n(&control.executed,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_duplicates",__atomic_load_n(&control.duplicates,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_rejected",__atomic_load_n(&control.rejected,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_cache_full",__atomic_load_n(&control.full,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_ack_submitted",__atomic_load_n(&control_ack_submitted,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_ack_tx_done",__atomic_load_n(&control_ack_done,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"control_ack_failed",__atomic_load_n(&control_ack_failed,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"recovery_state",__atomic_load_n(&recovery_state,__ATOMIC_ACQUIRE));cJSON_AddNumberToObject(j,"recovery_attempted",__atomic_load_n(&recovery_attempted,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"recovery_success",__atomic_load_n(&recovery_success,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"recovery_exhausted",__atomic_load_n(&recovery_exhausted,__ATOMIC_RELAXED));cJSON_AddBoolToObject(j,"worker_created",task_started);cJSON_AddBoolToObject(j,"worker_task_wdt_registered",__atomic_load_n(&worker_wdt_registered,__ATOMIC_ACQUIRE));cJSON_AddNumberToObject(j,"worker_start_attempts",task_start_attempts);cJSON_AddNumberToObject(j,"worker_start_failures",task_start_failures);cJSON_AddNumberToObject(j,"link_rx_frames",__atomic_load_n(&link_rx_frames,__ATOMIC_RELAXED));cJSON_AddNumberToObject(j,"link_rx_dropped",__atomic_load_n(&link_rx_dropped,__ATOMIC_RELAXED));}
 static void id_text(char*s,mid_id id){snprintf(s,18,"%02x:%02x:%02x:%02x:%02x:%02x",id.mac[0],id.mac[1],id.mac[2],id.mac[3],id.mac[4],id.mac[5]);}
 cJSON*lora_ref_tick(nd_node*n,mt_node*m,uint64_t now,int(*allowed)(mid_id)){
  if(!task_started)(void)lref_recovery_tick(&task_recovery,now,spawn_worker,NULL);
