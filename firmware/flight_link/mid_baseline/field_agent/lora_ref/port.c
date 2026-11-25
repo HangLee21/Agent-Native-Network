@@ -219,7 +219,7 @@ int lref_port_rx(uint8_t*bytes,unsigned*len,int*rssi,int*snr){
  *len=b.pld_len_in_bytes;*rssi=status.rssi_pkt_in_dbm;*snr=status.snr_pkt_in_db;return 1;
 }
 int lref_port_tx(const uint8_t*bytes,unsigned len,uint32_t*toa){
- if(!active||applied.role!=2||len>208)return -1;
+ if(!active||(applied.role!=2&&applied.role!=3)||len>208)return -1;
  *toa=lref_toa(&applied,len);lr11xx_radio_pkt_params_lora_t p=packet(&applied,len);CHECK(lr11xx_system_set_standby(NULL,LR11XX_SYSTEM_STANDBY_CFG_RC));CHECK(lr11xx_radio_set_lora_pkt_params(NULL,&p));CHECK(lr11xx_system_clear_irq_status(NULL,LR11XX_SYSTEM_IRQ_ALL_MASK));CHECK(lr11xx_regmem_write_buffer8(NULL,bytes,(uint8_t)len));CHECK(lr11xx_radio_set_tx(NULL,*toa+1000));
  return 0;
 }

@@ -100,6 +100,29 @@ static void worker(void*unused){
      if(lref_port_listen()){__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}
     }
    }
+   frame_job job;
+   if(__atomic_load_n(&running,__ATOMIC_ACQUIRE)==3&&xQueueReceive(frames,&job,0)==pdTRUE){
+    if(job.generation!=applied_generation){__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);}
+    else{
+     memset(&e,0,sizeof(e));e.kind=1;e.seq=job.seq;e.frame=job;e.config=current;e.at=ms();
+     __atomic_fetch_add(&attempted,1,__ATOMIC_RELAXED);
+     int tr=lref_port_tx(job.bytes,job.len,&e.toa);e.result=tr?-1:0;
+     if(tr){__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}
+     if(!tr){
+      __atomic_fetch_add(&submitted,1,__ATOMIC_RELAXED);emit_event(&e);
+      uint64_t stop=ms()+e.toa+1500;int done=0;
+      while(ms()<stop){done=lref_port_tx_done();worker_progress_step();if(done){break;}vTaskDelay(pdMS_TO_TICKS(5)+1);}
+      e.done=ms();e.result=done==1?1:(done<0?-1:2);
+      if(done==1){
+       __atomic_fetch_add(&completed,1,__ATOMIC_RELAXED);
+       if(lref_port_listen()){__atomic_store_n(&running,-1,__ATOMIC_RELEASE);}
+      }else{
+       lref_port_off();__atomic_store_n(&running,-1,__ATOMIC_RELEASE);
+      }
+     }
+     emit_event(&e);
+    }
+   }
   }
   if(__atomic_load_n(&running,__ATOMIC_ACQUIRE)==1){memset(&e,0,sizeof(e));e.kind=0;e.at=ms();e.config=current;int r=lref_port_rx(e.frame.bytes,&e.frame.len,&e.rssi,&e.snr);
    if(r==1){uint8_t*p=e.frame.bytes;unsigned n=e.frame.len;uint32_t crc=(uint32_t)p[n-4]|((uint32_t)p[n-3]<<8)|((uint32_t)p[n-2]<<16)|((uint32_t)p[n-1]<<24);
@@ -174,7 +197,7 @@ void lora_ref_status(cJSON*j){static const char*names[]={"off","rx","tx","link"}
 static void id_text(char*s,mid_id id){snprintf(s,18,"%02x:%02x:%02x:%02x:%02x:%02x",id.mac[0],id.mac[1],id.mac[2],id.mac[3],id.mac[4],id.mac[5]);}
 cJSON*lora_ref_tick(nd_node*n,mt_node*m,uint64_t now,int(*allowed)(mid_id)){
  if(!task_started)(void)lref_recovery_tick(&task_recovery,now,spawn_worker,NULL);
- if(cfg.role==2&&__atomic_load_n(&running,__ATOMIC_ACQUIRE)==2&&now>=due){uint32_t span=2*cfg.jitter+1;due=now+cfg.period-cfg.jitter+(esp_random()%span);if(sequence==UINT32_MAX||!n->boot||!n->group)__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);else{frame_job job={.seq=++sequence,.generation=__atomic_load_n(&generation,__ATOMIC_ACQUIRE),.sampled=now};job.len=capture(n,m,now,allowed,job.bytes,job.seq);if(xQueueSend(frames,&job,0)!=pdTRUE)__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);}}
+ if((cfg.role==2||cfg.role==3)&&__atomic_load_n(&running,__ATOMIC_ACQUIRE)==cfg.role&&now>=due){uint32_t span=2*cfg.jitter+1;due=now+cfg.period-cfg.jitter+(esp_random()%span);if(sequence==UINT32_MAX||!n->boot||!n->group)__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);else{frame_job job={.seq=++sequence,.generation=__atomic_load_n(&generation,__ATOMIC_ACQUIRE),.sampled=now};job.len=capture(n,m,now,allowed,job.bytes,job.seq);if(xQueueSend(frames,&job,0)!=pdTRUE)__atomic_fetch_add(&skipped,1,__ATOMIC_RELAXED);}}
  ref_event e;if(!events||xQueueReceive(events,&e,0)!=pdTRUE)return NULL;
  if(e.kind==0&&rx_sequence==UINT32_MAX){__atomic_fetch_add(&event_drops,1,__ATOMIC_RELAXED);return NULL;}
  cJSON*j=cJSON_CreateObject();cJSON_AddStringToObject(j,"schema","lora.ref.v1");cJSON_AddStringToObject(j,"event",e.kind==0?"lora_ref_rx":e.kind==1?"lora_ref_tx":e.kind==2?"lora_ref_config_applied":"lora_ref_recovery");char mac[18];id_text(mac,identity);
