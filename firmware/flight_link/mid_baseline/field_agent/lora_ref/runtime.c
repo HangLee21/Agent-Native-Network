@@ -104,7 +104,15 @@ static int spawn_worker(void*unused){(void)unused;if(task_started)return 0;task_
  __atomic_store_n(&task_started,1,__ATOMIC_RELEASE);return 0;
 }
 #ifndef LREF_WORKER_TEST
-static int valid(const lref_config*c){return c->magic==0x3146524c&&c->role<=2&&c->period>=1000&&c->period<=3600000&&c->jitter<=1000&&c->jitter<=c->period/4&&c->frequency>=410000000&&c->frequency<=493000000&&(c->bw==125000||c->bw==250000||c->bw==500000)&&c->sf>=7&&c->sf<=12&&c->cr>=5&&c->cr<=8&&c->preamble>=8&&c->preamble<=64&&(c->sync==18||c->sync==52)&&c->power==0&&c->start<=1&&c->period>=lref_toa(c,208)+100+c->jitter;}
+/* Sub-GHz 410-493 MHz with 125/250/500 kHz, or 2.4 GHz 2400-2500 MHz with
+ * 203/406/812 kHz. Power limits come from the EBytes PA tables. */
+static int lref_band_ok(const lref_config*c){
+ if(c->frequency>=410000000u&&c->frequency<=493000000u)return (c->bw==125000||c->bw==250000||c->bw==500000)&&c->power>=-17&&c->power<=22;
+ if(c->frequency>=2400000000u&&c->frequency<=2500000000u)return (c->bw==203000||c->bw==406000||c->bw==812000)&&c->power>=-18&&c->power<=13;
+ return 0;
+}
+static int overlay_i32(cJSON*j,const char*key,int32_t*out){cJSON*v=cJSON_GetObjectItemCaseSensitive(j,key);if(!v)return 0;if(!cJSON_IsNumber(v))return -1;double d=v->valuedouble;if(d<-128||d>127)return -1;*out=(int32_t)d;return 1;}
+static int valid(const lref_config*c){return c->magic==0x3146524c&&c->role<=2&&c->period>=1000&&c->period<=3600000&&c->jitter<=1000&&c->jitter<=c->period/4&&lref_band_ok(c)&&c->sf>=7&&c->sf<=12&&c->cr>=5&&c->cr<=8&&c->preamble>=8&&c->preamble<=64&&(c->sync==18||c->sync==52)&&c->start<=1&&c->period>=lref_toa(c,208)+100+c->jitter;}
 void lora_ref_init(mid_id self,uint32_t boot){identity=self;own_boot=boot;fc_init(&control,self.mac,boot);nvs_handle_t h;lref_config saved;size_t size=sizeof(saved);if(nvs_open("lr_ref",NVS_READONLY,&h)==ESP_OK){esp_err_t r=nvs_get_blob(h,"cfg",&saved,&size);nvs_close(h);if(r==ESP_OK&&size==sizeof(saved)&&valid(&saved)){cfg=saved;}}
  generation=1;boot_suppressed=!cfg.start&&cfg.role!=0;__atomic_store_n(&watch_requested,cfg.role!=0&&!boot_suppressed,__ATOMIC_RELEASE);due=ms()+1000+((boot^((uint32_t)self.mac[4]<<8)^self.mac[5])%cfg.period);lref_recovery_reset(&task_recovery);if(spawn_worker(NULL)){running=-1;lref_recovery_fault(&task_recovery,ms());}
 }
@@ -115,7 +123,7 @@ int lora_ref_command(cJSON*j,const char*name,const char**why){
  if(!settings||!frames||!events){*why="lora_task_unavailable";return 0;}
  lref_config c=cfg;cJSON*r=cJSON_GetObjectItemCaseSensitive(j,"role");if(r){if(!cJSON_IsString(r)){*why="invalid_lora_role";return 0;}if(!strcmp(r->valuestring,"off"))c.role=0;else if(!strcmp(r->valuestring,"rx"))c.role=1;else if(!strcmp(r->valuestring,"tx"))c.role=2;else{*why="invalid_lora_role";return 0;}}
  if(overlay(j,"report_period_ms",&c.period)||overlay(j,"jitter_ms",&c.jitter)||overlay(j,"frequency_hz",&c.frequency)||overlay(j,"sf",&c.sf)||overlay(j,"bandwidth_hz",&c.bw)||overlay(j,"coding_rate",&c.cr)||overlay(j,"preamble_symbols",&c.preamble)||overlay(j,"sync_word",&c.sync)){*why="invalid_lora_number";return 0;}
- uint32_t power=0;if(overlay(j,"tx_power_dbm",&power)||power){*why="pilot_supports_only_nominal_0dBm";return 0;}
+ {int32_t power=0;int r=overlay_i32(j,"tx_power_dbm",&power);if(r<0){*why="invalid_lora_tx_power";return 0;}if(r>0)c.power=power;}
  cJSON*start=cJSON_GetObjectItemCaseSensitive(j,"start_on_boot");if(start){if(!cJSON_IsBool(start)){*why="invalid_lora_boot_policy";return 0;}c.start=cJSON_IsTrue(start);}
  if(!valid(&c)){*why="invalid_lora_config_or_period_below_ToA";return 0;}
  nvs_handle_t h;esp_err_t err=nvs_open("lr_ref",NVS_READWRITE,&h);if(err!=ESP_OK){*why="lora_nvs_open";return 0;}err=nvs_set_blob(h,"cfg",&c,sizeof(c));if(err==ESP_OK)err=nvs_commit(h);nvs_close(h);if(err!=ESP_OK){*why="lora_nvs_write";return 0;}

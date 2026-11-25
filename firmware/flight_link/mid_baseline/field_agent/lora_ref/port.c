@@ -14,6 +14,102 @@ static spi_device_handle_t spi;
 static int opened,active;
 static lref_config applied;
 uint32_t lref_chip_fw,lref_chip_type,lref_chip_errors;
+
+/* PA output mapping generated from the EBytes reference tables
+ * (vendor/reference/ebytes_esp32_lr1121.c): one entry per dBm, contiguous.
+ * power==0 selects the same LP/VREG/duty0/hp0 + register 3 combination this file
+ * hard-coded before, so the default configuration is bit-for-bit unchanged. */
+typedef struct{int8_t dbm;uint8_t sel,supply,duty,hp;int8_t reg;}lref_pa_step;
+#define LREF_PA_LP LR11XX_RADIO_PA_SEL_LP
+#define LREF_PA_HP LR11XX_RADIO_PA_SEL_HP
+#define LREF_PA_HF LR11XX_RADIO_PA_SEL_HF
+#define LREF_SUPPLY_VREG LR11XX_RADIO_PA_REG_SUPPLY_VREG
+#define LREF_SUPPLY_VBAT LR11XX_RADIO_PA_REG_SUPPLY_VBAT
+static const lref_pa_step LREF_PA_LF_TABLE[]={
+ {-17,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-15},
+ {-16,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-14},
+ {-15,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-13},
+ {-14,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-12},
+ {-13,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-11},
+ {-12,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-9},
+ {-11,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-8},
+ {-10,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-7},
+ {-9,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-6},
+ {-8,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-5},
+ {-7,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-4},
+ {-6,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-3},
+ {-5,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-2},
+ {-4,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,-1},
+ {-3,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,0},
+ {-2,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,1},
+ {-1,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,2},
+ {0,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,3},
+ {1,LREF_PA_LP,LREF_SUPPLY_VREG,1,0,3},
+ {2,LREF_PA_LP,LREF_SUPPLY_VREG,1,0,4},
+ {3,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,7},
+ {4,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,8},
+ {5,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,9},
+ {6,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,10},
+ {7,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,12},
+ {8,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,13},
+ {9,LREF_PA_LP,LREF_SUPPLY_VREG,0,0,14},
+ {10,LREF_PA_LP,LREF_SUPPLY_VREG,1,0,13},
+ {11,LREF_PA_LP,LREF_SUPPLY_VREG,2,0,13},
+ {12,LREF_PA_LP,LREF_SUPPLY_VREG,2,0,14},
+ {13,LREF_PA_LP,LREF_SUPPLY_VREG,3,0,14},
+ {14,LREF_PA_LP,LREF_SUPPLY_VREG,4,0,14},
+ {15,LREF_PA_LP,LREF_SUPPLY_VREG,7,0,14},
+ {16,LREF_PA_HP,LREF_SUPPLY_VBAT,1,4,22},
+ {17,LREF_PA_HP,LREF_SUPPLY_VBAT,2,4,22},
+ {18,LREF_PA_HP,LREF_SUPPLY_VBAT,1,6,22},
+ {19,LREF_PA_HP,LREF_SUPPLY_VBAT,3,5,22},
+ {20,LREF_PA_HP,LREF_SUPPLY_VBAT,3,7,22},
+ {21,LREF_PA_HP,LREF_SUPPLY_VBAT,4,6,22},
+ {22,LREF_PA_HP,LREF_SUPPLY_VBAT,4,7,22},
+};
+static const lref_pa_step LREF_PA_HF_TABLE[]={
+ {-18,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-18},
+ {-17,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-18},
+ {-16,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-17},
+ {-15,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-16},
+ {-14,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-15},
+ {-13,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-14},
+ {-12,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-14},
+ {-11,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-12},
+ {-10,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-10},
+ {-9,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-9},
+ {-8,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-8},
+ {-7,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-7},
+ {-6,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-6},
+ {-5,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-5},
+ {-4,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-4},
+ {-3,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-3},
+ {-2,LREF_PA_HF,LREF_SUPPLY_VREG,3,0,-2},
+ {-1,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,-1},
+ {0,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,0},
+ {1,LREF_PA_HF,LREF_SUPPLY_VREG,0,0,1},
+ {2,LREF_PA_HF,LREF_SUPPLY_VREG,0,0,2},
+ {3,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,4},
+ {4,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,5},
+ {5,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,6},
+ {6,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,7},
+ {7,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,8},
+ {8,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,9},
+ {9,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,10},
+ {10,LREF_PA_HF,LREF_SUPPLY_VREG,4,0,11},
+ {11,LREF_PA_HF,LREF_SUPPLY_VREG,3,0,12},
+ {12,LREF_PA_HF,LREF_SUPPLY_VREG,1,0,13},
+ {13,LREF_PA_HF,LREF_SUPPLY_VREG,0,0,13},
+};
+
+static const lref_pa_step*lref_pa_for(const lref_config*c){
+ const lref_pa_step*t;unsigned n;int32_t p=c->power;
+ if(c->frequency<1000000000u){t=LREF_PA_LF_TABLE;n=(unsigned)(sizeof(LREF_PA_LF_TABLE)/sizeof(LREF_PA_LF_TABLE[0]));}
+ else{t=LREF_PA_HF_TABLE;n=(unsigned)(sizeof(LREF_PA_HF_TABLE)/sizeof(LREF_PA_HF_TABLE[0]));}
+ if(p<t[0].dbm)p=t[0].dbm;
+ if(p>(int32_t)t[n-1].dbm)p=(int32_t)t[n-1].dbm;
+ return &t[p-(int32_t)t[0].dbm];
+}
 static uint64_t now_ms(void){return (uint64_t)esp_timer_get_time()/1000;}
 static int idle(void){uint64_t until=now_ms()+200;while(gpio_get_level(GPIO_NUM_13)){if(now_ms()>=until)return -1;vTaskDelay(pdMS_TO_TICKS(1)+1);}return 0;}
 static int transfer(const uint8_t*tx,uint8_t*rx,unsigned n){spi_transaction_t t={.length=n*8,.tx_buffer=tx,.rx_buffer=rx};return !spi||n>512||spi_device_polling_transmit(spi,&t)!=ESP_OK?-1:0;}
@@ -31,7 +127,7 @@ lr11xx_hal_status_t lr11xx_hal_reset(const void*c){(void)c;gpio_set_level(GPIO_N
 lr11xx_hal_status_t lr11xx_hal_wakeup(const void*c){(void)c;gpio_set_level(GPIO_NUM_8,0);vTaskDelay(pdMS_TO_TICKS(1)+1);gpio_set_level(GPIO_NUM_8,1);return idle()?LR11XX_HAL_STATUS_ERROR:LR11XX_HAL_STATUS_OK;}
 lr11xx_hal_status_t lr11xx_hal_abort_blocking_cmd(const void*c){return lr11xx_hal_wakeup(c);}
 static lr11xx_radio_mod_params_lora_t modulation(const lref_config*c){
- lr11xx_radio_mod_params_lora_t m={.sf=(lr11xx_radio_lora_sf_t)c->sf,.bw=c->bw==125000?LR11XX_RADIO_LORA_BW_125:c->bw==250000?LR11XX_RADIO_LORA_BW_250:LR11XX_RADIO_LORA_BW_500,.cr=(lr11xx_radio_lora_cr_t)(c->cr-4)};
+ lr11xx_radio_mod_params_lora_t m={.sf=(lr11xx_radio_lora_sf_t)c->sf,.bw=c->bw==125000?LR11XX_RADIO_LORA_BW_125:c->bw==250000?LR11XX_RADIO_LORA_BW_250:c->bw==500000?LR11XX_RADIO_LORA_BW_500:c->bw==203000?LR11XX_RADIO_LORA_BW_200:c->bw==406000?LR11XX_RADIO_LORA_BW_400:LR11XX_RADIO_LORA_BW_800,.cr=(lr11xx_radio_lora_cr_t)(c->cr-4)};
  m.ldro=((1u<<c->sf)*1000u/c->bw)>=16;return m;
 }
 static lr11xx_radio_pkt_params_lora_t packet(const lref_config*c,unsigned n){lr11xx_radio_pkt_params_lora_t p={.preamble_len_in_symb=(uint16_t)c->preamble,.header_type=LR11XX_RADIO_LORA_PKT_EXPLICIT,.pld_len_in_bytes=(uint8_t)n,.crc=LR11XX_RADIO_LORA_CRC_ON,.iq=LR11XX_RADIO_LORA_IQ_STANDARD};return p;}
@@ -57,7 +153,10 @@ int lref_port_apply(const lref_config*c){
  CHECK(lr11xx_system_set_reg_mode(NULL,LR11XX_SYSTEM_REG_MODE_LDO));
  CHECK(lr11xx_system_set_tcxo_mode(NULL,LR11XX_SYSTEM_TCXO_CTRL_3_0V,300));
  CHECK(lr11xx_system_calibrate(NULL,0x3f));
- CHECK(lr11xx_system_calibrate_image_in_mhz(NULL,(uint16_t)(c->frequency/1000000-4),(uint16_t)(c->frequency/1000000+4)));
+ /* Sub-GHz image calibration. The in-MHz helper encodes 4 MHz steps into a uint8
+  * and cannot express 2400 MHz (600 steps), so it is skipped for 2.4 GHz; the
+  * full calibrate(0x3f) above still runs. That gap is unverified on hardware. */
+ if(c->frequency<1000000000u)CHECK(lr11xx_system_calibrate_image_in_mhz(NULL,(uint16_t)(c->frequency/1000000-4),(uint16_t)(c->frequency/1000000+4)));
  lr11xx_system_rfswitch_cfg_t sw={.enable=7,.standby=0,.rx=2,.tx=3,.tx_hp=1,.tx_hf=0,.gnss=4,.wifi=0};CHECK(lr11xx_system_set_dio_as_rf_switch(NULL,&sw));
  CHECK(lr11xx_radio_set_pkt_type(NULL,LR11XX_RADIO_PKT_TYPE_LORA));CHECK(lr11xx_radio_set_rf_freq(NULL,c->frequency));
  lr11xx_radio_mod_params_lora_t m=modulation(c);CHECK(lr11xx_radio_set_lora_mod_params(NULL,&m));
@@ -65,9 +164,9 @@ int lref_port_apply(const lref_config*c){
   * Legacy transceivers keep the documented private/public opcode0x0208. */
  if(v.fw>=0x0303){CHECK(lr11xx_radio_set_lora_sync_word(NULL,(uint8_t)c->sync));}
  else{CHECK(lr11xx_radio_set_lora_public_network(NULL,c->sync==18?LR11XX_RADIO_LORA_NETWORK_PRIVATE:LR11XX_RADIO_LORA_NETWORK_PUBLIC));}
- lr11xx_radio_pa_cfg_t pa={.pa_sel=LR11XX_RADIO_PA_SEL_LP,.pa_reg_supply=LR11XX_RADIO_PA_REG_SUPPLY_VREG,.pa_duty_cycle=0,.pa_hp_sel=0};CHECK(lr11xx_radio_set_pa_cfg(NULL,&pa));
- /* Official EBytes table: requested nominal0dBm => LP register power3. */
- CHECK(lr11xx_radio_set_tx_params(NULL,3,LR11XX_RADIO_RAMP_48_US));
+ const lref_pa_step*ps=lref_pa_for(c);
+ lr11xx_radio_pa_cfg_t pa={.pa_sel=ps->sel,.pa_reg_supply=ps->supply,.pa_duty_cycle=ps->duty,.pa_hp_sel=ps->hp};CHECK(lr11xx_radio_set_pa_cfg(NULL,&pa));
+ CHECK(lr11xx_radio_set_tx_params(NULL,ps->reg,LR11XX_RADIO_RAMP_48_US));
  CHECK(lr11xx_radio_set_rx_tx_fallback_mode(NULL,LR11XX_RADIO_FALLBACK_STDBY_RC));
  CHECK(lr11xx_system_set_dio_irq_params(NULL,LR11XX_SYSTEM_IRQ_TX_DONE|LR11XX_SYSTEM_IRQ_RX_DONE|LR11XX_SYSTEM_IRQ_TIMEOUT|LR11XX_SYSTEM_IRQ_CRC_ERROR|LR11XX_SYSTEM_IRQ_HEADER_ERROR,0));
  CHECK(lr11xx_system_clear_irq_status(NULL,LR11XX_SYSTEM_IRQ_ALL_MASK));
