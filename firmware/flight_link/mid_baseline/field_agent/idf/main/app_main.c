@@ -51,6 +51,25 @@ static mid_id self;
 static uint32_t boot,sequence,node_number;
 static const char *node_number_source="unset";
 static int active,radio,wifi_ready,waiting,stopping,locked;
+
+/* Link-layer radio selection. Persisted so a flashed board can be switched by the Pi
+ * without reflashing. "espnow" is the only implemented backend for now; "lora24" is
+ * accepted and stored, and reports as pending until that backend is built. */
+static char link_mode[8]="espnow";
+static int link_mode_loaded;
+static void link_mode_load(void){
+ if(link_mode_loaded)return;
+ link_mode_loaded=1;
+ nvs_handle_t h;if(nvs_open("link",NVS_READONLY,&h)!=ESP_OK)return;
+ char v[8]={0};size_t n=sizeof(v);
+ if(nvs_get_str(h,"mode",v,&n)==ESP_OK&&(!strcmp(v,"espnow")||!strcmp(v,"lora24")))snprintf(link_mode,sizeof(link_mode),"%s",v);
+ nvs_close(h);
+}
+static int link_mode_save(const char*v){
+ nvs_handle_t h;if(nvs_open("link",NVS_READWRITE,&h)!=ESP_OK)return -1;
+ esp_err_t r=nvs_set_str(h,"mode",v);if(r==ESP_OK)r=nvs_commit(h);nvs_close(h);return r==ESP_OK?0:-1;
+}
+static const char*link_mode_active(void){return "espnow";}
 static uint32_t radio_epoch;
 static RTC_NOINIT_ATTR hg_record health_record;
 static uint32_t main_progress,health_restarts;static int health_state,health_started,main_wdt_registered,health_wdt_registered,task_wdt_configured,task_wdt_panic;static uint64_t health_start_due,task_wdt_retry_due;
@@ -242,7 +261,7 @@ static esp_err_t deployment_load(void){
 static esp_err_t deployment_start(void){
  if(!have_deployment||deployment_fault||active||radio||waiting||locked)return ESP_ERR_INVALID_STATE;
  if(mid_deployment_install(&node,&deployment,self,millis()))return ESP_ERR_INVALID_ARG;
- esp_err_t r=radio_start();if(r!=ESP_OK){node.have_table=0;return r;}active=1;
+ link_mode_load();esp_err_t r=radio_start();if(r!=ESP_OK){node.have_table=0;return r;}active=1;
  cJSON*j=event("deployment_applied");cJSON_AddStringToObject(j,"deployment_mode","offline_table");cJSON_AddStringToObject(j,"profile_id",deployment.profile_id);cJSON_AddBoolToObject(j,"autostart",deployment.autostart);output(j);return ESP_OK;
 }
 static esp_err_t load_mode(const char*ns){
@@ -296,7 +315,7 @@ static int position_parse(cJSON*j,mt_position*p){
 static void rf_observation(const input*e,int filtered){mid_id peer;memcpy(peer.mac,e->mac,6);cJSON*j=event("rf_rx");field_id(j,"peer_id",peer);field_id(j,"receiver_id",self);cJSON_AddStringToObject(j,"direction","peer_to_receiver");if(e->rssi_valid)cJSON_AddNumberToObject(j,"rssi_dbm",e->rssi);else cJSON_AddNullToObject(j,"rssi_dbm");if(e->channel_valid)cJSON_AddNumberToObject(j,"channel",e->rx_channel);else cJSON_AddNullToObject(j,"channel");cJSON_AddStringToObject(j,"rf_source",e->rssi_valid?"measured":"unavailable");cJSON_AddNumberToObject(j,"sample_at_ms",(double)e->rx_at_ms);cJSON_AddNumberToObject(j,"sample_age_ms",(double)(millis()-e->rx_at_ms));cJSON_AddNumberToObject(j,"frame_bytes",e->len);cJSON_AddStringToObject(j,"frame_kind",!memcmp(e->data,"MT01",4)?"MT01":!memcmp(e->data,"SR01",4)?"SR01":!memcmp(e->data,"MID1",4)?"MID1":"unknown");cJSON_AddBoolToObject(j,"filtered",filtered);int nd=!memcmp(e->data,"ND01",4);if(!nd)output(j);if(!filtered)mid_mt_sample(&mobile,peer,e->rssi_valid,e->rssi,e->channel_valid,e->rx_channel,e->rx_at_ms);}
 #include "field_runtime.inc"
 static int target_boot_find(mid_id dst,uint32_t*value,uint32_t*age,const char**source){uint64_t now=millis();nd_peer*p=nd_find(&neighbors,dst);if(p&&nd_state(p,now)==2){*value=p->boot;*age=(uint32_t)(now-p->ack);*source="direct_confirmed";return 0;}if(!bc_get(&observed_boots,dst.mac,now,value,age)){*source="observed_origin";return 0;}return -1;}
-static void command(const char*line,int len){
+static void command(const char*line,int len){if(!link_mode_loaded)link_mode_load();
  cJSON*j=NULL,*res=NULL;const char*cmd=NULL,*nonce=NULL,*why="invalid_command",*boot_source=NULL;int ok=0;uint32_t submitted_seq=0,reliable_id=0,reliable_dst_boot=0,boot_age=0;mid_id submitted_dst={{0}};const char*end=NULL;
  if(len>0&&len<=SERIAL_MAX)j=cJSON_ParseWithLengthOpts(line,(size_t)len+1,&end,true);
  if(!cJSON_IsObject(j))goto reply;
@@ -321,7 +340,14 @@ static void command(const char*line,int len){
  }else if(!strcmp(cmd,"discover_clear")||!strcmp(cmd,"route_clear")){
   if(active||radio||waiting||locked){why="busy_or_locked";goto reply;}nvs_handle_t h;esp_err_t r=nvs_open(route_mode?"mid_route":"mid_neighbor",NVS_READWRITE,&h);if(r!=ESP_OK){why="clear_failed";goto reply;}r=nvs_erase_key(h,"lastgood");if(r==ESP_ERR_NVS_NOT_FOUND)r=ESP_OK;if(r==ESP_OK)r=nvs_commit(h);if(r==ESP_OK){r=nvs_erase_key(h,"cfg");if(r==ESP_ERR_NVS_NOT_FOUND)r=ESP_OK;}if(r==ESP_OK)r=nvs_commit(h);nvs_close(h);if(r!=ESP_OK){why="clear_failed";goto reply;}have_discovery=discovery_fault=route_mode=discovery_from_backup=0;channel=6;ok=1;
  }else if(!strcmp(cmd,"routes")){ok=1;
- }else if(!strcmp(cmd,"link_filter")){
+ }else if(!strcmp(cmd,"link_mode")){
+ cJSON*m=cJSON_GetObjectItemCaseSensitive(j,"mode");
+ if(!m){ok=1;}
+ else if(!cJSON_IsString(m)){why="invalid_link_mode";}
+ else if(strcmp(m->valuestring,"espnow")&&strcmp(m->valuestring,"lora24")){why="unsupported_link_mode";}
+ else if(link_mode_save(m->valuestring)){why="link_mode_nvs_failed";}
+ else{snprintf(link_mode,sizeof(link_mode),"%s",m->valuestring);ok=1;}
+}else if(!strcmp(cmd,"link_filter")){
   cJSON*clear=cJSON_GetObjectItemCaseSensitive(j,"clear"),*a=cJSON_GetObjectItemCaseSensitive(j,"allow");mid_id proposed[8];unsigned num=0;
   if(cJSON_IsTrue(clear)){filter_enabled=0;filter_count=0;ok=1;}else{if(!cJSON_IsArray(a)||cJSON_GetArraySize(a)>8){why="invalid_filter";goto reply;}cJSON*v=NULL;cJSON_ArrayForEach(v,a){if(!cJSON_IsString(v)||parse_id(v->valuestring,&proposed[num])){why="invalid_filter_mac";goto reply;}num++;}memcpy(filter_allow,proposed,num*sizeof(mid_id));filter_count=num;filter_enabled=1;ok=1;}
  }else if(!strcmp(cmd,"neighbors")||!strcmp(cmd,"neighbor")){ok=1;
@@ -375,7 +401,7 @@ reply:
  if(ok&&boot_source){cJSON_AddStringToObject(res,"target_boot_source",boot_source);if(strcmp(boot_source,"caller"))cJSON_AddNumberToObject(res,"target_boot_age_ms",boot_age);if(cmd&&!strcmp(cmd,"target_boot_get")){field_id(res,"dst",submitted_dst);cJSON_AddNumberToObject(res,"destination_boot",reliable_dst_boot);}}
  if(ok&&submitted_seq){cJSON_AddNumberToObject(res,"packet_seq",submitted_seq);cJSON_AddNumberToObject(res,"origin_boot",boot);field_id(res,"origin",self);field_id(res,"dst",submitted_dst);cJSON_AddBoolToObject(res,"destination_confirmed",false);}
  if(ok&&cmd&&(!strcmp(cmd,"info")||!strcmp(cmd,"node_id_get")||!strcmp(cmd,"node_id_set")))node_number_json(res);
- if(ok&&cmd&&!strcmp(cmd,"info")){cJSON_AddStringToObject(res,"firmware","mid-espnow");cJSON_AddStringToObject(res,"chip","esp32s3");cJSON_AddStringToObject(res,"board","EoRa-HUB-400TB");cJSON_AddNumberToObject(res,"display_api",MID_DISPLAY_API_VERSION);cJSON_AddNumberToObject(res,"telemetry_api",1);cJSON_AddNumberToObject(res,"field_api",2);cJSON_AddNumberToObject(res,"lora_ref_api",1);cJSON_AddStringToObject(res,"field_ip_schema","field.ip.v2");char label[2]={screen.identity.label,0};cJSON_AddStringToObject(res,"device_label",label);}
+ if(ok&&cmd&&!strcmp(cmd,"info")){cJSON_AddStringToObject(res,"firmware","mid-espnow");cJSON_AddStringToObject(res,"chip","esp32s3");cJSON_AddStringToObject(res,"board","EoRa-HUB-400TB");cJSON_AddNumberToObject(res,"display_api",MID_DISPLAY_API_VERSION);cJSON_AddNumberToObject(res,"telemetry_api",1);cJSON_AddNumberToObject(res,"field_api",2);cJSON_AddNumberToObject(res,"lora_ref_api",1);cJSON_AddStringToObject(res,"field_ip_schema","field.ip.v2");cJSON_AddStringToObject(res,"link_mode",link_mode);cJSON_AddStringToObject(res,"link_mode_active",link_mode_active());cJSON_AddBoolToObject(res,"link_mode_pending",strcmp(link_mode,link_mode_active())!=0);char label[2]={screen.identity.label,0};cJSON_AddStringToObject(res,"device_label",label);}
  if(ok&&cmd&&!strcmp(cmd,"stats")){cJSON_AddNumberToObject(res,"uart_rx_bytes",__atomic_load_n(&uart_received_bytes,__ATOMIC_RELAXED));cJSON_AddNumberToObject(res,"uart_fifo_overflows",__atomic_load_n(&uart_fifo_overflows,__ATOMIC_RELAXED));cJSON_AddNumberToObject(res,"uart_ring_overflows",__atomic_load_n(&uart_ring_overflows,__ATOMIC_RELAXED));cJSON_AddNumberToObject(res,"tx_queued",screen.counts.queued);cJSON_AddNumberToObject(res,"tx_submitted",screen.counts.submitted);cJSON_AddNumberToObject(res,"link_ok",screen.counts.link_ok);cJSON_AddNumberToObject(res,"link_fail",screen.counts.link_fail);cJSON_AddNumberToObject(res,"rx_local",screen.counts.rx_dest);cJSON_AddNumberToObject(res,"rx_duplicate",screen.counts.rx_duplicate);cJSON_AddNumberToObject(res,"rx_relay",screen.counts.rx_relay);cJSON_AddNumberToObject(res,"local_fail",screen.counts.local_fail);cJSON_AddNumberToObject(res,"timeouts",screen.counts.timeouts);cJSON_AddNumberToObject(res,"faults",screen.fault_count);cJSON_AddNumberToObject(res,"config_seq",node.config_seq);cJSON_AddNumberToObject(res,"queue_depth",count);cJSON_AddNumberToObject(res,"display_hw",mid_display_hardware_state());cJSON_AddStringToObject(res,"destination_status","unconfirmed");cJSON_AddNumberToObject(res,"route_warm_queries",warm_queries);cJSON_AddNumberToObject(res,"route_warm_hits",warm_hits);cJSON_AddNumberToObject(res,"route_warm_misses",warm_misses);cJSON_AddNumberToObject(res,"route_retries",router.retries);cJSON_AddNumberToObject(res,"route_rreq_denied",router.rreq_denied);cJSON_AddNumberToObject(res,"send_callback_timeouts",callback_timeouts);cJSON_AddNumberToObject(res,"uart_tx_drops",uart_tx_drops);cJSON_AddNumberToObject(res,"radio_heal_attempts",heal_attempts);cJSON_AddBoolToObject(res,"radio_heal_pending",heal_at!=0);cJSON_AddNumberToObject(res,"input_overflow_total",input_overflow_total);}
  if(ok&&cmd&&!strcmp(cmd,"stats")){cJSON_AddNumberToObject(res,"reliable_delivered",reliable.delivered);cJSON_AddNumberToObject(res,"reliable_timeouts",reliable.timeouts);cJSON_AddNumberToObject(res,"reliable_duplicates",reliable.duplicates);cJSON_AddNumberToObject(res,"reliable_rejected",reliable.rejected);cJSON_AddNumberToObject(res,"reliable_seen_full",reliable.seen_full);cJSON_AddNumberToObject(res,"reliable_ack_queue_full",reliable_ack_full);cJSON_AddNumberToObject(res,"reliable_ack_failed",reliable_ack_failed);}
  cJSON_AddBoolToObject(res,"link_filter_enabled",filter_enabled);
