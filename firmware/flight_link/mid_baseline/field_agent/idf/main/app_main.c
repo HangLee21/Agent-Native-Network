@@ -222,9 +222,20 @@ static int espnow_link_send(const uint8_t mac[6],const uint8_t*data,unsigned len
  if(r==ESP_OK)link_send_ok++;else link_send_fail++;
  return r==ESP_OK?0:-1;
 }
+static int lora24_link_send(const uint8_t mac[6],const uint8_t*data,unsigned len){
+ (void)mac;
+ if(len>208){link_send_oversize++;return -1;}
+ if(lora_ref_link_send(data,len)){link_send_fail++;return -1;}
+ link_send_ok++;
+ return 0;
+}
+static const link_backend LINK_LORA24={"lora24",lora24_link_send};
 static const link_backend LINK_ESPNOW={"espnow",espnow_link_send};
 static const link_backend*link=&LINK_ESPNOW;
-static esp_err_t radio_start(void){esp_err_t r;if(locked)return ESP_ERR_INVALID_STATE;if(!wifi_ready){wifi_init_config_t c=WIFI_INIT_CONFIG_DEFAULT();r=esp_netif_init();if(r!=ESP_OK)return r;r=esp_event_loop_create_default();if(r!=ESP_OK&&r!=ESP_ERR_INVALID_STATE)return r;field_ip_netif();r=esp_wifi_init(&c);if(r!=ESP_OK)return r;ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_set_storage(WIFI_STORAGE_RAM));r=esp_wifi_set_mode(WIFI_MODE_STA);if(r!=ESP_OK)return r;wifi_ready=1;}r=esp_wifi_start();if(r!=ESP_OK)return r;r=esp_wifi_set_ps(WIFI_PS_NONE);if(r==ESP_OK)(void)field_ip_pin(CHANNEL);if(r==ESP_OK)r=esp_wifi_set_channel(CHANNEL,WIFI_SECOND_CHAN_NONE);if(r==ESP_OK)r=esp_now_init();if(r!=ESP_OK){esp_wifi_stop();return r;}pm_init(&radio_peers);r=esp_now_register_recv_cb(receive_cb);if(r==ESP_OK)r=esp_now_register_send_cb(send_cb);if(r!=ESP_OK){esp_now_deinit();esp_wifi_stop();return r;}radio=1;return ESP_OK;}
+static esp_err_t radio_start(void){esp_err_t r;if(locked)return ESP_ERR_INVALID_STATE;
+ /* lora24: the mesh rides on the LR1121 at 2.4 GHz instead of Wi-Fi/ESP-NOW, so the
+  * Wi-Fi stack is deliberately not started. Link RX wiring is the next stage. */
+ if(!strcmp(link_mode,"lora24")){link=&LINK_LORA24;radio=1;return ESP_OK;}if(!wifi_ready){wifi_init_config_t c=WIFI_INIT_CONFIG_DEFAULT();r=esp_netif_init();if(r!=ESP_OK)return r;r=esp_event_loop_create_default();if(r!=ESP_OK&&r!=ESP_ERR_INVALID_STATE)return r;field_ip_netif();r=esp_wifi_init(&c);if(r!=ESP_OK)return r;ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_set_storage(WIFI_STORAGE_RAM));r=esp_wifi_set_mode(WIFI_MODE_STA);if(r!=ESP_OK)return r;wifi_ready=1;}r=esp_wifi_start();if(r!=ESP_OK)return r;r=esp_wifi_set_ps(WIFI_PS_NONE);if(r==ESP_OK)(void)field_ip_pin(CHANNEL);if(r==ESP_OK)r=esp_wifi_set_channel(CHANNEL,WIFI_SECOND_CHAN_NONE);if(r==ESP_OK)r=esp_now_init();if(r!=ESP_OK){esp_wifi_stop();return r;}pm_init(&radio_peers);r=esp_now_register_recv_cb(receive_cb);if(r==ESP_OK)r=esp_now_register_send_cb(send_cb);if(r!=ESP_OK){esp_now_deinit();esp_wifi_stop();return r;}radio=1;return ESP_OK;}
 static void close_radio(void){if(radio){__atomic_add_fetch(&radio_epoch,1,__ATOMIC_RELEASE);field_ip_unpin();esp_now_deinit();esp_wifi_stop();radio=0;}stopping=0;}
 static void stop_all(void){if(route_mode){sr_stop(&router);route_events();}active=0;applied_pending=0;while(count){transmission*t=&txq[head];if(t->packet.kind==2)observation("tx_cancelled",MID_DISPLAY_EV_TX_LOCAL_FAIL,&t->packet,&t->next,-2);head=(head+1)%16;count--;}stopping=1;if(!waiting)close_radio();}
 static int enqueue(mid_packet p,mid_id next){if(count==16){if(p.kind==2)observation("tx_queue_full",MID_DISPLAY_EV_TX_LOCAL_FAIL,&p,&next,-3);else observation("control_queue_full",0,&p,&next,-3);return -1;}txq[(head+count)%16]=(transmission){p,next,millis()};count++;if(p.kind==2)observation("tx_queued",MID_DISPLAY_EV_TX_QUEUED,&p,&next,0);return 0;}

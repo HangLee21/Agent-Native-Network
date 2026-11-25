@@ -83,6 +83,22 @@ int lora_ref_link_pop(uint8_t*out,unsigned*len,int*rssi,int*snr){
  link_tail=(link_tail+1)%LREF_LINK_RING;
  return 1;
 }
+/* Link-layer transmit entry used by the main task when the link radio is the
+ * LR1121. The frame goes through the same worker queue as the uplink, so the worker
+ * stays the only owner of the SPI bus. Returns 0 when queued. */
+static uint32_t link_seq;
+int lora_ref_link_send(const uint8_t*d,unsigned n){
+ if(d==NULL||n==0||n>208)return -1;
+ if(!frames)return -1;
+ frame_job job;
+ memset(&job,0,sizeof(job));
+ memcpy(job.bytes,d,n);
+ job.len=n;
+ job.seq=++link_seq;
+ job.generation=__atomic_load_n(&applied_version,__ATOMIC_ACQUIRE);
+ job.sampled=ms();
+ return xQueueSend(frames,&job,0)==pdTRUE?0:-1;
+}
 static void emit_event(ref_event*e){if(xQueueSend(events,e,0)!=pdTRUE)__atomic_fetch_add(&event_drops,1,__ATOMIC_RELAXED);}
 static int recover_apply(void*ctx){return lref_port_apply((const lref_config*)ctx);}
 static void worker(void*unused){
