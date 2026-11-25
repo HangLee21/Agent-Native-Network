@@ -520,6 +520,24 @@ void app_main(void){
  health_start_tick();input e;
  for(;;){
   radio_heal();field_tick();cJSON*lora_event=lora_ref_tick(&neighbors,&mobile,millis(),allowed);if(lora_event)output(lora_event);
+ /* lora24: frames the LR1121 received as the link radio are drained here and fed into the
+  * same input queue ESP-NOW uses, so the neighbour/routing code needs no changes.
+  * Inert unless link_mode is lora24. */
+ if(!strcmp(link_mode,"lora24")){
+  uint8_t lbuf[208];unsigned llen=0;int lrssi=0,lsnr=0;
+  while(lora_ref_link_pop(lbuf,&llen,&lrssi,&lsnr)){
+   if(!llen||llen>sizeof(lbuf)){continue;}
+   mid_packet lp;
+   if(mid_decode(&lp,lbuf,(size_t)llen)){continue;}
+   input le={0};
+   le.type=1;le.len=(int)llen;le.rssi_valid=1;le.rssi=lrssi;
+   le.radio_epoch=__atomic_load_n(&radio_epoch,__ATOMIC_ACQUIRE);
+   le.rx_at_ms=millis();
+   memcpy(le.mac,lp.origin.mac,6);
+   memcpy(le.data,lbuf,(size_t)llen);
+   if(xQueueSend(inputs,&le,0)!=pdTRUE){__atomic_fetch_add(&callback_drops,1,__ATOMIC_RELAXED);}
+  }
+ }
   if(__atomic_exchange_n(&callback_drops,0,__ATOMIC_RELAXED)){input_overflow_total++;output(event("input_queue_overflow"));}
   if(xQueueReceive(inputs,&e,pdMS_TO_TICKS(10))==pdTRUE){
    if((e.type==1||e.type==2)&&e.radio_epoch!=__atomic_load_n(&radio_epoch,__ATOMIC_ACQUIRE))goto input_done;
