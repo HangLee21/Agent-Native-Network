@@ -1,8 +1,0 @@
-{
-  "gcc": "C:\\Strawberry\\c\\bin\\gcc.EXE",
-  "cmake": "D:\\CMake\\bin\\cmake.EXE",
-  "ninja": "C:\\Strawberry\\c\\bin\\ninja.EXE",
-  "idf_py": null,
-  "target_compilation": "not_performed",
-  "hardware": "not_available"
-}

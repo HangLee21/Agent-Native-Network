@@ -24,3 +24,6 @@ BUILD-*/mid_edge.elf
 BUILD-*/mid_edge.map
 # 56 MB generated dataset for the simulation demo; regenerate with its scripts.
 /research/agent_native_network/mid_simulation_demo/viewer-data.json
+# 本地工作区与构建产物（不入库）
+.local/
+firmware/**/idf/build/

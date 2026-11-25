@@ -1,2 +1,0 @@
-{"at":"2026-10-28T13:18:59.191521+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":180,"worker_id":1}
-{"at":"2026-10-28T13:18:59.193530+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":180,"worker_id":2}

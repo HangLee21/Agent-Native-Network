@@ -1,7 +1,0 @@
-{
-  "cmd": "deploy",
-  "nonce": "deploy-b6736dbad755",
-  "profile_id": "abc-two-way-v1",
-  "table_hex": "030290da7248a4f890da7248a5cc90da7248a4e0000202000000ffff000000000000ffff000000000000000000000000ffff000000000000ffff0000",
-  "autostart": true
-}

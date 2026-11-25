@@ -1,6 +1,0 @@
-{
-  "status": "failed",
-  "error": "KeyError: tools/espnow_hardware/hardware_tool.py; native source hash keys use Windows backslashes",
-  "resolution": "normalize dictionary keys only in subsequent final verifier",
-  "implementation_changed": false
-}

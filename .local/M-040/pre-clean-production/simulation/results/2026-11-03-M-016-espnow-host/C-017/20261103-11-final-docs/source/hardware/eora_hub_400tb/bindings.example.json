@@ -1,5 +1,0 @@
-{
-  "schema": "ann.hardware.bindings.v1",
-  "bindings": [],
-  "note": "No hardware bound. Fill only after physical identification; never identify this board from CH340 alone."
-}

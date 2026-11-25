@@ -1,8 +1,0 @@
-# Exact versions observed in the local CPU evaluation. No training / Ray.
-# Recreate in a fresh Python 3.11 venv with:
-# python -m pip install -r simulation/heteromrta_requirements.txt
---extra-index-url https://download.pytorch.org/whl/cu121
-numpy==1.26.4
-torch==2.3.1+cu121
-scipy==1.14.1
-matplotlib==3.7.5

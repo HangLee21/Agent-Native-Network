@@ -1,2 +1,0 @@
-{"event": "reserved", "run_id": "20261107-05-real-five-review", "timeout_s": 120, "scope": "five_existing_hardware_log_analysis"}
-{"event": "finished", "run_id": "20261107-05-real-five-review", "elapsed_s": 0.8120000000053551, "exit_code": 0, "protection_stopped": false}

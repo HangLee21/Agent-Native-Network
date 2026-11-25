@@ -1,9 +1,0 @@
-Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=D:\Multi-Agent Network\.local\espnow\E1-015\tools\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=0 D:\Multi-Agent Network\firmware\flight_link\mid_baseline\field_agent\idf
--- Found Git: C:/environment/Git/cmd/git.exe (found version "2.42.0.windows.2")
--- Minimal build - ON
--- The C compiler identification is unknown
--- The CXX compiler identification is unknown
--- The ASM compiler identification is unknown
--- Found assembler: xtensa-esp32s3-elf-gcc
--- Warning: Did not find file Compiler/-ASM
--- Configuring incomplete, errors occurred!

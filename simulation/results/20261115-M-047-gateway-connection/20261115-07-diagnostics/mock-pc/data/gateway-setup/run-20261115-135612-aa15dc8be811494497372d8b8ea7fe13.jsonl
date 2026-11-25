@@ -1,2 +1,0 @@
-﻿{"time":"2026-11-15T13:56:12","component":"bootstrap","stage":"start","status":"started"}
-{"time":"2026-11-15T13:56:12","component":"bootstrap","stage":"local_preflight","status":"failed","error_type":"RuntimeException"}

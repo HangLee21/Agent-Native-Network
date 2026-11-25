@@ -1,6 +1,0 @@
-test_actual_C_log_and_H_envelope (test_frozen_telemetry.FrozenTelemetryTests.test_actual_C_log_and_H_envelope) ... ok
-
-----------------------------------------------------------------------
-Ran 1 test in 0.023s
-
-OK

@@ -1,8 +1,0 @@
-{
-  "task_id": "H-001",
-  "status": "hardware_capture_unanalyzed",
-  "log_sha256": {
-    "D:\\Multi-Agent Network\\simulation\\outputs\\C-017\\20261103-06-e2-analyzer-v2\\v2-binding-fixture.jsonl": "7dcb6573d766793e214c25d62a73bee4c2fe85ead7ca20287f2c2291b03beaa7"
-  },
-  "fixture_notice": "Synthetic gate test; no real hardware"
-}

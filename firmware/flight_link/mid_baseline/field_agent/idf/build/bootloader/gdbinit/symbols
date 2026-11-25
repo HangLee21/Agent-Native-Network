@@ -1,9 +1,0 @@
-
-
-# Load bootloader symbols
-set confirm off
-    # Bootloader elf was not found
-set confirm on
-
-# Load application symbols
-file D:/Multi-Agent Network/firmware/flight_link/mid_baseline/field_agent/idf/build/bootloader/bootloader.elf

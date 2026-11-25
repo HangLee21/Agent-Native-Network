@@ -1,8 +1,0 @@
-{"at":"2026-10-28T13:28:22.245165+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":180,"worker_id":1}
-{"actual_forward_started":false,"at":"2026-10-28T13:28:22.246242+00:00","event":"worker_finished","task_id":"E1-012","wall_seconds":1,"worker_id":1}
-{"at":"2026-10-28T13:28:22.247827+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":180,"worker_id":2}
-{"actual_forward_started":false,"at":"2026-10-28T13:28:22.248366+00:00","event":"worker_finished","task_id":"E1-012","wall_seconds":1,"worker_id":2}
-{"at":"2026-10-28T13:28:22.249418+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":180,"worker_id":3}
-{"actual_forward_started":false,"at":"2026-10-28T13:28:22.249942+00:00","event":"worker_finished","task_id":"E1-012","wall_seconds":1,"worker_id":3}
-{"at":"2026-10-28T13:28:22.251820+00:00","event":"worker_reserved","max_new_tokens":256,"run_id":"unit","task_id":"E1-012","timeout_s":180,"worker_id":4}
-{"actual_forward_started":false,"at":"2026-10-28T13:28:22.252350+00:00","event":"worker_finished","task_id":"E1-012","wall_seconds":1,"worker_id":4}

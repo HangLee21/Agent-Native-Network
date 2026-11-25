@@ -1,5 +1,0 @@
-1: home = C:\environment\python3.11
-2: include-system-site-packages = true
-3: version = 3.11.5
-4: executable = D:\Multi-Agent Network\.venv\Scripts\python.exe
-5: command = D:\Multi-Agent Network\.venv\Scripts\python.exe -m venv --system-site-packages D:\Multi-Agent Network\data\agent_native\E1-010\env

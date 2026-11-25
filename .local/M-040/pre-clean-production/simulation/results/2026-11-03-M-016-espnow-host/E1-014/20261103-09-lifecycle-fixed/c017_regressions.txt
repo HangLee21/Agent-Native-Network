@@ -1,3 +1,0 @@
-{"case":"late_ack","receive_rc":0,"confirmed":0,"expired_events":1,"passed":true}
-{"case":"late_rrep","receive_rc":0,"queued_after_expiry":0,"remaining_ms":0,"self_decode_rc":0,"passed":true}
-{"case":"cancel_unsent_cached_data","cancel_rc":0,"next_type":7,"receiver_delivered":0,"passed":true}

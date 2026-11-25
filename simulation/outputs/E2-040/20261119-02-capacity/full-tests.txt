@@ -1,7 +1,0 @@
-test_full_stops_preserves_frames (__main__.Check.test_full_stops_preserves_frames) ... ok
-full_error=database or disk is full
-
-----------------------------------------------------------------------
-Ran 1 test in 0.101s
-
-OK

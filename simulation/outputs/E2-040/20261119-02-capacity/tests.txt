@@ -1,8 +1,0 @@
-test_30_nodes_1800_samples (__main__.Checks.test_30_nodes_1800_samples) ... ok
-test_failure_continues_and_old_text_reads (__main__.Checks.test_failure_continues_and_old_text_reads) ... ok
-
-----------------------------------------------------------------------
-Ran 2 tests in 27.011s
-
-OK
-frames=1800 database_bytes=22249472 elapsed_s=26.8

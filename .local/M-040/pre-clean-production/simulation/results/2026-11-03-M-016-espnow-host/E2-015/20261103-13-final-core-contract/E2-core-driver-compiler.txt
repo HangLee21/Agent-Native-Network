@@ -1,7 +1,0 @@
-D:\Multi-Agent Network\simulation\outputs\E2-015\20261103-13-final-core-contract\E1-frozen-source\src\ann_console.c: In function 'ann_command':
-D:\Multi-Agent Network\simulation\outputs\E2-015\20261103-13-final-core-contract\E1-frozen-source\src\ann_console.c:23:62: warning: '%s' directive output may be truncated writing up to 3359 bytes into a region of size 35 [-Wformat-truncation=]
-   23 |  for(i=0;i<n;i++){char name[36];snprintf(name,sizeof(name)," %s ",f[i].key);if(!strstr(allowed,name)){error="unknown_field";goto reply;}}
-      |                                                              ^~
-D:\Multi-Agent Network\simulation\outputs\E2-015\20261103-13-final-core-contract\E1-frozen-source\src\ann_console.c:23:33: note: 'snprintf' output between 3 and 3362 bytes into a destination of size 36
-   23 |  for(i=0;i<n;i++){char name[36];snprintf(name,sizeof(name)," %s ",f[i].key);if(!strstr(allowed,name)){error="unknown_field";goto reply;}}
-      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

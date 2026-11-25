@@ -1,1 +1,0 @@
-Audit helper failed before checks: UnicodeDecodeError from default Windows GBK read_text of UTF-8 ledger. No worker, no resource preflight. Corrected helper uses explicit UTF-8 in 10-final-audit.
