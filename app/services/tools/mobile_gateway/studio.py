@@ -6,19 +6,21 @@ import hashlib
 import json
 from pathlib import Path
 import signal
+import sqlite3
 import subprocess
 import sys
 import threading
 import time
 import urllib.request
 import uuid
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 
 from .server import Gateway, Handler, ROOT
 from .state import State
 from .fleet_registry import merged_fleet, read_nodes
 from .remote import RemoteGateway
 from .node_serial import SerialTopology
+from .replay import Replay, PaginationRequired
 from .sources import Sources
 from .serial_discovery import SerialDiscovery
 
@@ -151,6 +153,18 @@ class Studio:
 class StudioHandler(Handler):
     def do_GET(self):
         path=urlsplit(self.path).path
+        if path=='/api/v1/replay/sessions':return self.reply(200,self.server.replay.sessions())
+        if path=='/api/v1/replay/session':
+            query=parse_qs(urlsplit(self.path).query,keep_blank_values=True)
+            try:
+                if any(len(v)!=1 for v in query.values()):raise ValueError('参数必须唯一')
+                ident=query.get('id',[''])[0]
+                offset=int(query['offset'][0]) if 'offset' in query else None
+                limit=int(query['limit'][0]) if 'limit' in query else None
+                value=self.server.replay.session(ident,offset,limit)
+                return self.reply(200,value) if value is not None else self.reply(404,{'error':'记录不存在'})
+            except PaginationRequired as exc:return self.reply(413,{'error':str(exc),'total':exc.total,'max_limit':100})
+            except ValueError as exc:return self.reply(400,{'error':str(exc)})
         if path=='/api/v1/recovery':
             try:
                 value=json.loads(self.server.recovery_path.read_text(encoding='utf-8'))
@@ -196,6 +210,13 @@ class StudioHandler(Handler):
         return super().do_GET()
 
     def do_POST(self):
+        if urlsplit(self.path).path in ('/api/v1/replay/start','/api/v1/replay/stop'):
+            host=self.headers.get('Host');port=self.server.server_port
+            if self.headers.get_all('Host')!=[host] or host not in (f'127.0.0.1:{port}',f'localhost:{port}') or self.headers.get_all('Origin')!=['http://'+host]:return self.reply(403,{'error':'loopback same origin required'})
+            try:
+                ident=self.server.replay.start() if urlsplit(self.path).path.endswith('/start') else self.server.replay.stop()
+                return self.reply(200,{'id':ident})
+            except (OSError,ValueError,sqlite3.Error) as exc:return self.reply(503,{'error':str(exc)})
         if urlsplit(self.path).path=='/api/v1/lora/sources/select':
             host=self.headers.get('Host');port=self.server.server_port
             if self.headers.get_all('Host')!=[host] or host not in (f'127.0.0.1:{port}',f'localhost:{port}') or self.headers.get_all('Origin')!=['http://'+host]:return self.reply(403,{'error':'loopback same origin required'})
@@ -218,6 +239,7 @@ def main():
     p.add_argument('--fleet',type=Path,help='same validated fleet configuration passed by launcher')
     p.add_argument('--registry',type=Path,help='read-only runtime node registry')
     p.add_argument('--recovery-file',type=Path,help='read-only supervisor health state')
+    p.add_argument('--replay-db',type=Path,help='isolated replay database; default is data/studio-replay.sqlite3')
     p.add_argument('--topology-port',type=int,default=8780)
     p.add_argument('--udp-port',type=int,default=1680)
     p.add_argument('--gateway-mode',choices=['remote','legacy_local','node_serial'],default='legacy_local')
@@ -232,14 +254,24 @@ def main():
     p.add_argument('--stop-file',type=Path)
     args=p.parse_args()
     out=args.output.resolve()
-    fleet_path=args.fleet or (ROOT/'data/fleet.json' if (ROOT/'data/fleet.json').is_file() else ROOT/'config/fleet.default.json')
+    # ROOT is app/services inside the delivery package and the repository root in the dev
+    # tree, so try both places instead of assuming one layout.
+    def _first(*paths):
+        for candidate in paths:
+            if candidate.is_file():return candidate
+        return paths[-1]
+    fleet_path=args.fleet or _first(ROOT/'data/fleet.json',ROOT/'config/fleet.default.json',ROOT.parent.parent/'config/fleet.default.json')
     try:
         read_nodes(fleet_path)
     except (OSError,ValueError,KeyError,TypeError) as exc:
         p.error('fleet configuration invalid: '+str(exc))
     out.mkdir(parents=True,exist_ok=False)
     state=Studio(out,args.pc_port)
-    server=Gateway(('127.0.0.1',args.port),state,ROOT/'assets/mobile_gateway')
+    # Assets live under research/ in the development tree and next to the service code in
+    # the delivery package; pick whichever exists.
+    static_dir=ROOT/'research/agent_native_network/mobile_gateway'
+    if not static_dir.is_dir():static_dir=ROOT/'assets/mobile_gateway'
+    server=Gateway(('127.0.0.1',args.port),state,static_dir)
     server.RequestHandlerClass=StudioHandler
     server.fleet_path=fleet_path
     server.registry_path=args.registry or ROOT/'data/registry.json'
@@ -253,6 +285,7 @@ def main():
     if args.gateway_eui and args.candidate_host:server.sources.add('http',RemoteGateway(args.gateway_eui,args.candidate_host,args.remote_http_port,args.discovery_port),'HTTP 接收器')
     if args.gateway_mode=='legacy_local':server.sources.add('legacy',LocalTopology(),'本机 UDP 接收器')
     server.remote=server.sources
+    server.replay=Replay(args.replay_db or ROOT/'data'/'studio-replay.sqlite3',server.sources.topology)
     def halt(*_):
         threading.Thread(target=server.shutdown,daemon=True).start()
     for sig in (signal.SIGINT,signal.SIGTERM):
@@ -274,6 +307,7 @@ def main():
     finally:
         done.set()
         server.server_close()
+        server.replay.close()
         if server.serial:server.serial.close()
         server.sources.close()
         state.close()
