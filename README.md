@@ -283,3 +283,38 @@ python tools\release\sync_to_deploy.py --deploy <deploy 路径> --check
 页面中灰色连线为历史观察，不能当作当前连通；“超时未见”不直接证明设备断电。需要更新设备时按窗口提示使用 `FLASH_NODES.cmd`；运行记录位于 `data/logs/`。旧网关兼容和切源恢复须经现场条件验收，尚未现场复测。
 
 布局可选“清晰布局”“手动布局”和“GPS 布局”。清晰布局按连接分簇，点击节点聚焦一跳邻居；手动布局中拖动节点，位置按接收来源保存在当前浏览器，刷新后保留，可用“重置布局”恢复；这两种位置均不代表真实地理位置。GPS 布局仅显示有有效坐标的节点，未定位节点仍可在列表查看。连接较多时默认收起连线，可选择“全部连接”；地图会显示实际方向、连接总数和当前绘制数，隐藏不代表连接不存在。右侧可按编号、标签或 MAC 搜索并筛选状态，筛选只影响列表。
+
+## 日常操作（三条命令）
+
+```powershell
+FLASH_UPDATE.cmd              # 更新算法/固件：先归一化链路状态，再刷机，最后逐台读回校验
+SWITCH_LINK.cmd lora24        # 启用 2.4 GHz LoRa 链路层
+SWITCH_LINK.cmd espnow        # 切回 ESP-NOW
+```
+
+补充：
+
+```powershell
+SWITCH_LINK.cmd status              # 只读，看当前链路配置
+SWITCH_LINK.cmd toggle              # 在两个链路层之间来回切，不必记当前是哪个
+SWITCH_LINK.cmd lora24 eora-air-01  # 只操作指定设备
+FLASH_UPDATE.cmd --skip-normalize   # 只刷机，保留当前 NVS 链路配置
+FLASH_UPDATE.cmd path\to\image.bin  # 指定镜像（回滚用）
+```
+
+### FLASH_UPDATE 与 FLASH_NODES 的关系
+
+| 能力 | FLASH_NODES.cmd | FLASH_UPDATE.cmd |
+| --- | --- | --- |
+| 刷写固件 | 是 | 是（内部调用 FLASH_NODES） |
+| 刷前归一化链路状态 | 否 | 是 |
+| 刷后读回配置校验 | 只校验 build id | 追加参数读回 |
+| 单台定向刷写 | 是（`--only`） | 否，需直接用 FLASH_NODES |
+| 列出可用镜像 | 是（`--list`） | 否 |
+
+所以两者不是重复：`FLASH_UPDATE` 是**带安全护栏的默认入口**，
+`FLASH_NODES` 是**底层原语**（批量刷写、单台定向、列镜像时使用）。
+
+为什么必须归一化：esptool 只写 app 分区，NVS 保留 `link_mode` 与射频角色。
+节点若停在 `lora24` 且未设 `role=link`，重烧后会既无 Wi-Fi 也无 2.4G 链路，
+只能拆下来接 USB。`FLASH_UPDATE` 默认先写回 `espnow` 规避这一点。
