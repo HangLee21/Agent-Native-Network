@@ -211,6 +211,19 @@ static int pm_exists(void*ctx,const uint8_t mac[6]){(void)ctx;return esp_now_is_
 static int pm_add(void*ctx,const uint8_t mac[6]){(void)ctx;esp_now_peer_info_t p={.channel=CHANNEL,.ifidx=WIFI_IF_STA,.encrypt=false};memcpy(p.peer_addr,mac,6);return esp_now_add_peer(&p);}
 static int pm_del(void*ctx,const uint8_t mac[6]){(void)ctx;return esp_now_del_peer(mac);}
 static esp_err_t ensure_peer(const uint8_t mac[6]){const pm_ops ops={pm_exists,pm_add,pm_del,NULL};return pm_ensure(&radio_peers,&ops,mac,waiting)?ESP_FAIL:ESP_OK;}
+/* Link-layer backends. Protocol code only calls link->send(); the radio that carries
+ * the mesh is chosen at runtime from the persisted link_mode. */
+static unsigned link_tx_ok,link_tx_fail,link_tx_oversize;
+typedef struct{const char*name;int(*send)(const uint8_t mac[6],const uint8_t*data,unsigned len);}link_backend;
+static int espnow_link_send(const uint8_t mac[6],const uint8_t*data,unsigned len){
+ if(len>250){link_tx_oversize++;return -1;}
+ esp_err_t r=ensure_peer(mac);
+ if(r==ESP_OK)r=esp_now_send(mac,data,(size_t)len);
+ if(r==ESP_OK)link_tx_ok++;else link_tx_fail++;
+ return r==ESP_OK?0:-1;
+}
+static const link_backend LINK_ESPNOW={"espnow",espnow_link_send};
+static const link_backend*link=&LINK_ESPNOW;
 static esp_err_t radio_start(void){esp_err_t r;if(locked)return ESP_ERR_INVALID_STATE;if(!wifi_ready){wifi_init_config_t c=WIFI_INIT_CONFIG_DEFAULT();r=esp_netif_init();if(r!=ESP_OK)return r;r=esp_event_loop_create_default();if(r!=ESP_OK&&r!=ESP_ERR_INVALID_STATE)return r;field_ip_netif();r=esp_wifi_init(&c);if(r!=ESP_OK)return r;ESP_ERROR_CHECK_WITHOUT_ABORT(esp_wifi_set_storage(WIFI_STORAGE_RAM));r=esp_wifi_set_mode(WIFI_MODE_STA);if(r!=ESP_OK)return r;wifi_ready=1;}r=esp_wifi_start();if(r!=ESP_OK)return r;r=esp_wifi_set_ps(WIFI_PS_NONE);if(r==ESP_OK)(void)field_ip_pin(CHANNEL);if(r==ESP_OK)r=esp_wifi_set_channel(CHANNEL,WIFI_SECOND_CHAN_NONE);if(r==ESP_OK)r=esp_now_init();if(r!=ESP_OK){esp_wifi_stop();return r;}pm_init(&radio_peers);r=esp_now_register_recv_cb(receive_cb);if(r==ESP_OK)r=esp_now_register_send_cb(send_cb);if(r!=ESP_OK){esp_now_deinit();esp_wifi_stop();return r;}radio=1;return ESP_OK;}
 static void close_radio(void){if(radio){__atomic_add_fetch(&radio_epoch,1,__ATOMIC_RELEASE);field_ip_unpin();esp_now_deinit();esp_wifi_stop();radio=0;}stopping=0;}
 static void stop_all(void){if(route_mode){sr_stop(&router);route_events();}active=0;applied_pending=0;while(count){transmission*t=&txq[head];if(t->packet.kind==2)observation("tx_cancelled",MID_DISPLAY_EV_TX_LOCAL_FAIL,&t->packet,&t->next,-2);head=(head+1)%16;count--;}stopping=1;if(!waiting)close_radio();}
@@ -401,7 +414,7 @@ reply:
  if(ok&&boot_source){cJSON_AddStringToObject(res,"target_boot_source",boot_source);if(strcmp(boot_source,"caller"))cJSON_AddNumberToObject(res,"target_boot_age_ms",boot_age);if(cmd&&!strcmp(cmd,"target_boot_get")){field_id(res,"dst",submitted_dst);cJSON_AddNumberToObject(res,"destination_boot",reliable_dst_boot);}}
  if(ok&&submitted_seq){cJSON_AddNumberToObject(res,"packet_seq",submitted_seq);cJSON_AddNumberToObject(res,"origin_boot",boot);field_id(res,"origin",self);field_id(res,"dst",submitted_dst);cJSON_AddBoolToObject(res,"destination_confirmed",false);}
  if(ok&&cmd&&(!strcmp(cmd,"info")||!strcmp(cmd,"node_id_get")||!strcmp(cmd,"node_id_set")))node_number_json(res);
- if(ok&&cmd&&!strcmp(cmd,"info")){cJSON_AddStringToObject(res,"firmware","mid-espnow");cJSON_AddStringToObject(res,"chip","esp32s3");cJSON_AddStringToObject(res,"board","EoRa-HUB-400TB");cJSON_AddNumberToObject(res,"display_api",MID_DISPLAY_API_VERSION);cJSON_AddNumberToObject(res,"telemetry_api",1);cJSON_AddNumberToObject(res,"field_api",2);cJSON_AddNumberToObject(res,"lora_ref_api",1);cJSON_AddStringToObject(res,"field_ip_schema","field.ip.v2");cJSON_AddStringToObject(res,"link_mode",link_mode);cJSON_AddStringToObject(res,"link_mode_active",link_mode_active());cJSON_AddBoolToObject(res,"link_mode_pending",strcmp(link_mode,link_mode_active())!=0);char label[2]={screen.identity.label,0};cJSON_AddStringToObject(res,"device_label",label);}
+ if(ok&&cmd&&!strcmp(cmd,"info")){cJSON_AddStringToObject(res,"firmware","mid-espnow");cJSON_AddStringToObject(res,"chip","esp32s3");cJSON_AddStringToObject(res,"board","EoRa-HUB-400TB");cJSON_AddNumberToObject(res,"display_api",MID_DISPLAY_API_VERSION);cJSON_AddNumberToObject(res,"telemetry_api",1);cJSON_AddNumberToObject(res,"field_api",2);cJSON_AddNumberToObject(res,"lora_ref_api",1);cJSON_AddStringToObject(res,"field_ip_schema","field.ip.v2");cJSON_AddStringToObject(res,"link_mode",link_mode);cJSON_AddStringToObject(res,"link_mode_active",link_mode_active());cJSON_AddBoolToObject(res,"link_tx_ok",strcmp(link_mode,link_mode_active())!=0);char label[2]={screen.identity.label,0};cJSON_AddStringToObject(res,"device_label",label);}
  if(ok&&cmd&&!strcmp(cmd,"stats")){cJSON_AddNumberToObject(res,"uart_rx_bytes",__atomic_load_n(&uart_received_bytes,__ATOMIC_RELAXED));cJSON_AddNumberToObject(res,"uart_fifo_overflows",__atomic_load_n(&uart_fifo_overflows,__ATOMIC_RELAXED));cJSON_AddNumberToObject(res,"uart_ring_overflows",__atomic_load_n(&uart_ring_overflows,__ATOMIC_RELAXED));cJSON_AddNumberToObject(res,"tx_queued",screen.counts.queued);cJSON_AddNumberToObject(res,"tx_submitted",screen.counts.submitted);cJSON_AddNumberToObject(res,"link_ok",screen.counts.link_ok);cJSON_AddNumberToObject(res,"link_fail",screen.counts.link_fail);cJSON_AddNumberToObject(res,"rx_local",screen.counts.rx_dest);cJSON_AddNumberToObject(res,"rx_duplicate",screen.counts.rx_duplicate);cJSON_AddNumberToObject(res,"rx_relay",screen.counts.rx_relay);cJSON_AddNumberToObject(res,"local_fail",screen.counts.local_fail);cJSON_AddNumberToObject(res,"timeouts",screen.counts.timeouts);cJSON_AddNumberToObject(res,"faults",screen.fault_count);cJSON_AddNumberToObject(res,"config_seq",node.config_seq);cJSON_AddNumberToObject(res,"queue_depth",count);cJSON_AddNumberToObject(res,"display_hw",mid_display_hardware_state());cJSON_AddStringToObject(res,"destination_status","unconfirmed");cJSON_AddNumberToObject(res,"route_warm_queries",warm_queries);cJSON_AddNumberToObject(res,"route_warm_hits",warm_hits);cJSON_AddNumberToObject(res,"route_warm_misses",warm_misses);cJSON_AddNumberToObject(res,"route_retries",router.retries);cJSON_AddNumberToObject(res,"route_rreq_denied",router.rreq_denied);cJSON_AddNumberToObject(res,"send_callback_timeouts",callback_timeouts);cJSON_AddNumberToObject(res,"uart_tx_drops",uart_tx_drops);cJSON_AddNumberToObject(res,"radio_heal_attempts",heal_attempts);cJSON_AddBoolToObject(res,"radio_heal_pending",heal_at!=0);cJSON_AddNumberToObject(res,"input_overflow_total",input_overflow_total);}
  if(ok&&cmd&&!strcmp(cmd,"stats")){cJSON_AddNumberToObject(res,"reliable_delivered",reliable.delivered);cJSON_AddNumberToObject(res,"reliable_timeouts",reliable.timeouts);cJSON_AddNumberToObject(res,"reliable_duplicates",reliable.duplicates);cJSON_AddNumberToObject(res,"reliable_rejected",reliable.rejected);cJSON_AddNumberToObject(res,"reliable_seen_full",reliable.seen_full);cJSON_AddNumberToObject(res,"reliable_ack_queue_full",reliable_ack_full);cJSON_AddNumberToObject(res,"reliable_ack_failed",reliable_ack_failed);}
  cJSON_AddBoolToObject(res,"link_filter_enabled",filter_enabled);
@@ -445,8 +458,7 @@ static void route_pump(void){
  if(!active||waiting||!sr_next_tx(&router,&route_pending,millis()))return;
  uint8_t bytes[250];int len=sr_encode(&route_pending.packet,bytes,sizeof(bytes));esp_err_t r=len<0?ESP_ERR_INVALID_ARG:ESP_OK;
  if(!allowed(route_pending.next))r=ESP_FAIL;
- if(r==ESP_OK)r=ensure_peer(route_pending.next.mac);
- if(r==ESP_OK)r=esp_now_send(route_pending.next.mac,bytes,(size_t)len);
+ if(r==ESP_OK)r=(link->send(route_pending.next.mac,bytes,(unsigned)len)==0)?ESP_OK:ESP_FAIL;
  if(r==ESP_OK){waiting=route_waiting=1;submitted=millis();route_submitted++;if(sr_base_type(route_pending.packet.type)==SR_DATA)route_observation("tx_submit",MID_DISPLAY_EV_TX_SUBMITTED,&route_pending.packet,&route_pending.next,0);}
  else{sr_tx_abort(&router,&route_pending,millis());if(sr_base_type(route_pending.packet.type)==SR_DATA)route_observation("tx_api_failed",MID_DISPLAY_EV_TX_LOCAL_FAIL,&route_pending.packet,&route_pending.next,r);}
 }
@@ -454,7 +466,7 @@ static void telemetry_pump(void){
  if(!telemetry_enabled||!active||!have_discovery||waiting||millis()<telemetry_due)return;
  if(count||router.count){telemetry_deferred++;return;}
  uint8_t bytes[MT_FRAME];int len=mid_mt_encode(&mobile,route_mode?2:1,millis(),bytes,sizeof(bytes));telemetry_due=millis()+telemetry_period;if(len<0)return;telemetry_generated++;
- const uint8_t broadcast[6]={255,255,255,255,255,255};esp_err_t r=ensure_peer(broadcast);if(r==ESP_OK)r=esp_now_send(broadcast,bytes,(size_t)len);
+ const uint8_t broadcast[6]={255,255,255,255,255,255};esp_err_t r=(link->send(broadcast,bytes,(unsigned)len)==0)?ESP_OK:ESP_FAIL;
  if(r==ESP_OK){waiting=telemetry_waiting=1;submitted=millis();telemetry_submitted++;}else{telemetry_link_fail++;cJSON*j=event("telemetry_tx_failed");cJSON_AddNumberToObject(j,"code",r);output(j);}
 }
 static void pump(void){
@@ -462,9 +474,8 @@ static void pump(void){
  pending=txq[head];head=(head+1)%16;count--;
  if(millis()-pending.queued>1000){observation("queue_timeout",pending.packet.kind==2?MID_DISPLAY_EV_TX_TIMEOUT:0,&pending.packet,&pending.next,-4);return;}
  uint8_t bytes[250];int len=mid_encode(&pending.packet,bytes,sizeof(bytes));esp_err_t r=len<0?ESP_ERR_INVALID_ARG:ESP_OK;
- if(r==ESP_OK)r=ensure_peer(pending.next.mac);
  if(!allowed(pending.next))r=ESP_FAIL;
- if(r==ESP_OK)r=esp_now_send(pending.next.mac,bytes,(size_t)len);
+ if(r==ESP_OK)r=(link->send(pending.next.mac,bytes,(unsigned)len)==0)?ESP_OK:ESP_FAIL;
  if(r==ESP_OK){if(have_discovery&&pending.packet.kind==1)control_submitted++;waiting=1;submitted=millis();observation("tx_submit",pending.packet.kind==2?MID_DISPLAY_EV_TX_SUBMITTED:0,&pending.packet,&pending.next,0);}else observation("tx_api_failed",pending.packet.kind==2?MID_DISPLAY_EV_TX_LOCAL_FAIL:0,&pending.packet,&pending.next,(int)r);
 }
 /* Re-arm the radio after a bounded, self-clearing lock. Every fail-closed path that
